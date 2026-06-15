@@ -14,7 +14,7 @@ export default function Contents()    {
             <Route path="/employees" element = {<EmployeeList/>} />
             <Route path="/edit/:id" element={<EmployeeEdit />} />
             <Route path="/flashcards" element = {<Flashcards/>} />
-            <Route path="/flashcardslist" element = {<FlashcardsList/>} />
+            <Route path="/flashcardsList" element = {<FlashcardsList/>} />
             <Route path="/report" element = {<EmployeeReport/>} />
             <Route path="/" element = { <Navigate replace to = "/employees"/>}/>
             <Route path ="*" element = {<NotFound/>} />

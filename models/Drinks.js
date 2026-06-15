@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const DrinkSchema = new mongoose.Schema({
-    drinName: {
+    drinkName: {
         type: String,
         required: true,
         trim: true
