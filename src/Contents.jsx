@@ -5,6 +5,7 @@ import EmployeeReport from './EmployeeReport.jsx'
 import EmployeeEdit from './EmployeeEdit.jsx'
 import Flashcards from './Flashcards.jsx'
 import FlashcardsList from './FlashcardsList.jsx'
+import FlashcardGame from './FlashcardGame.jsx'
 
 export default function Contents()    {
 
@@ -15,6 +16,7 @@ export default function Contents()    {
             <Route path="/edit/:id" element={<EmployeeEdit />} />
             <Route path="/flashcards" element = {<Flashcards/>} />
             <Route path="/flashcardsList" element = {<FlashcardsList/>} />
+            <Route path="/flashcardGame" element = {<FlashcardGame/>} />
             <Route path="/report" element = {<EmployeeReport/>} />
             <Route path="/" element = { <Navigate replace to = "/employees"/>}/>
             <Route path ="*" element = {<NotFound/>} />

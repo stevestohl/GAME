@@ -10,8 +10,9 @@ function NavBar() {
             <Nav>
                 <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
                 <Nav.Link end href="/flashcardsList">Flascard List</Nav.Link>
+                <Nav.Link end href="/flashcardGame">Flashcard Game</Nav.Link>
                 <Nav.Link end href="/report">Reports</Nav.Link>
-                <Nav.Link end href="/employees">All Employees</Nav.Link>
+                {/* <Nav.Link end href="/employees">All Employees</Nav.Link> */}
             </Nav>
         </Navbar>
     )
