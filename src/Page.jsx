@@ -6,7 +6,7 @@ function NavBar() {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="/">Employee Managment Application</Navbar.Brand>
+            <Navbar.Brand href="/">Game-Temple</Navbar.Brand>
             <Nav>
                 <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
                 <Nav.Link end href="/flashcardsList">Flascard List</Nav.Link>

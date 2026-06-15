@@ -102,9 +102,6 @@ export default class EmployeeList extends React.Component {
             const newEmployees = this.state.employees.concat(newEmployee.employee)
             this.setState({ employees: newEmployees })
             console.log('Total count of employees:', newEmployees.length)
-
-
-            
         })
         .catch(err => {console.log(err)})
     }

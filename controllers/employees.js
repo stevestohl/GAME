@@ -67,7 +67,9 @@ const createEmployee = async (req, res) => {
 const createDrink = async (req, res) => {
     try {
         const drink = await Drink.create(req.body)   // FIXED: missing await
-        res.status(201).json({ drink })
+        res.status(201).json({ 
+            msg : "Drink added successfully!",
+            drink })
     } catch (err) {
         res.status(500).json({ msg: err.message })
     }
@@ -107,7 +109,10 @@ const updateDrink = async (req, res) => {
             return res.status(404).json({ msg: `No drink with ID ${drinkID} found.` })
         }
 
-        res.status(200).json({ drink })
+        res.status(200).json({
+            msg: "Drink updated successfully!",
+            drink 
+        })
     } catch (err) {
         res.status(500).json({ msg: err.message })
     }

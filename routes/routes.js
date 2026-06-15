@@ -1,5 +1,5 @@
 import express from 'express'
-import {getAllEmployees, getEmployee, createEmployee, updateEmployee, deleteEmployee, getAllDrinks, getDrink, updateDrink, deleteDrink} from '../controllers/employees.js'
+import {getAllEmployees, getEmployee, createEmployee, updateEmployee, deleteEmployee, getAllDrinks, getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/employees.js'
 
 const router = express.Router()
 
@@ -13,6 +13,7 @@ router.route('/api/employees/:id')
 
 router.route('/api/drinks')
     .get(getAllDrinks)
+    .post(createDrink)
 
 router.route('/api/drinks/:id')
     .get(getDrink)
