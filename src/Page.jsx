@@ -5,7 +5,7 @@ import Contents from './Contents.jsx'
 function NavBar() {
 
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" className='px-3'>
             <Navbar.Brand href="/home">Game-Temple</Navbar.Brand>
             <Nav>
                 <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
