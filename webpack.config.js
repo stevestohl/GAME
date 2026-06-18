@@ -19,7 +19,12 @@ const config = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                loader: 'babel-loader',                
+            },
+            {
+            // Addition to handle image files
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
         ],
     },
