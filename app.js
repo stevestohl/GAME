@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Prefix for backend API routes. Ensures they don't clash with front-end URLS
-app.use('/', routes)
+app.use('/api', routes)
 
 // Catch all for front-end requests
 app.get('*', (req, res) => {

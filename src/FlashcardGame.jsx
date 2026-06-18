@@ -67,8 +67,15 @@ export default function FlashcardGame() {
             </div>
 
             <Card className="mt-4 p-3 bg-light">
-                <h5>Recipe:</h5>
-                <p>{correctDrink.recipe}</p>
+                <Card.Header>
+                    <h5>Recipe:</h5>
+                </Card.Header>
+                <Card.Body>
+                    <p style={{ whiteSpace: "pre-line" }} 
+                    className="ps-4 mb-0 text-muted">
+                        {correctDrink.recipe.replaceAll(',', ',\n')}
+                    </p>
+                </Card.Body>
             </Card>
         </Card>
     )

@@ -6,13 +6,13 @@ function NavBar() {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="/">Game-Temple</Navbar.Brand>
+            <Navbar.Brand href="/home">Game-Temple</Navbar.Brand>
             <Nav>
                 <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
                 <Nav.Link end href="/flashcardsList">Flascard List</Nav.Link>
                 <Nav.Link end href="/flashcardGame">Flashcard Game</Nav.Link>
                 <Nav.Link end href="/report">Reports</Nav.Link>
-                {/* <Nav.Link end href="/employees">All Employees</Nav.Link> */}
+                <Nav.Link end href="/employees">All Employees</Nav.Link>
             </Nav>
         </Navbar>
     )
