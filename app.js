@@ -10,8 +10,11 @@ const app = express()
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+// Prefix for backend API routes. Ensures they don't clash with front-end URLS
 app.use('/', routes)
 
+// Catch all for front-end requests
 app.get('*', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))
 })

@@ -3,19 +3,19 @@ import {getAllEmployees, getEmployee, createEmployee, updateEmployee, deleteEmpl
 
 const router = express.Router()
 
-router.route('/api/employees')
+router.route('/employees')
     .get(getAllEmployees)
     .post(createEmployee)
-router.route('/api/employees/:id')
+router.route('/employees/:id')
     .get(getEmployee)
     .patch(updateEmployee)
     .delete(deleteEmployee)
 
-router.route('/api/drinks')
+router.route('/drinks')
     .get(getAllDrinks)
     .post(createDrink)
 
-router.route('/api/drinks/:id')
+router.route('/drinks/:id')
     .get(getDrink)
     .patch(updateDrink)
     .delete(deleteDrink)
