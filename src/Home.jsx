@@ -59,26 +59,34 @@ export default function Home() {
                     <Card.Title className="fw-bold text-muted fs-6 uppercase mb-3">Single Player and Tools</Card.Title>
                     <Row className="g-2">
                         <Col xs={6} className='d-grid'>
-                            <Button variant='outline-primary' size="lg" href='/FlashcardGame' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold">
                                 🍹Drink Game🍹
                             </Button>
                         </Col>
                             <Col xs={6} className='d-grid'>
-                            <Button variant='outline-primary' size="lg" href='/FlashcardsList' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold">
                                 Flashcard List
                             </Button>
                         </Col>
 
                         <Col xs={6} className='d-grid'>
-                            <Button variant='outline-primary' size="lg" href='/Flashcards' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold">
                                 Flashcards
                             </Button>
                         </Col>
-                            <Col xs={6} className='d-grid'>
-                            <Button variant='outline-primary' size="lg" href='/report' className="fw-semibold">
+
+                        <Col xs={6} className='d-grid'>
+                            <Button variant='primary' size="lg" href='/tictactoe' className="fw-semibold">
+                                Tic-Tac-Toe
+                            </Button>
+                        </Col>
+
+                        <Col xs={6} className='d-grid'>
+                            <Button variant='primary' size="lg" href='/report' className="fw-semibold">
                                 PlaceHolder
                             </Button>
                         </Col>
+                        
                     </Row>
                 </Card.Body>
             </Card>
