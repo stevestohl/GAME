@@ -4,12 +4,16 @@ import routes from './routes/routes.js'
 import connectDB from './db/connect.js'
 import bodyParser from 'body-parser'
 import path from 'path'
+import cors from 'cors'
 
 const app = express()
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+// I.O code 
+app.use(cors())
 
 // Prefix for backend API routes. Ensures they don't clash with front-end URLS
 app.use('/api', routes)

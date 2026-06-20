@@ -11,7 +11,24 @@ export default function Home() {
     // function to handle room entry later
     const handleJoinRoom = (e) => {
         e.preventDefault()
-        if(!roomCode) return alert("Please enter a room code!")
+        if(!roomCode) return alert("Jeff, enter a rooom!")
+
+        const cleanCode = roomCode.toUpperCase().trim()
+        const gameTypeIdentifier = cleanCode.charAt(0)
+
+        // Route guest player based on first roomcode letter
+        switch (gameTypeIdentifier) {
+            case 'T':
+                console.log(`Routing to Tic Tac Toe Room Code: ${cleanCode}`)
+                window.location.href=`/tictactoe?room=${cleanCode}`
+                break
+            case 'F':
+                console.log(`Routing to Future Game Room Code: ${cleanCode}`)
+                window.location.href=`/futureGame?room=${cleanCode}`
+                break
+            default:
+                alert("Room not found! Blame Jeff")
+        }
 
         console.log(`Connecting o room: ${roomCode}. (If this doesn't work, blame Jeff. He's bald.)`)
         alert(`Connecting to server for room: ${roomCode}... (Feature comming faster than Jeff can fall down a flight of stairs)`)
