@@ -8,6 +8,18 @@ export default function Home() {
     // Hook up state to caputre room code
     const [roomCode, setRoomCode] = useState("")
 
+    const handleHostTicTacToe = () => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let generatedCode = 'T'; 
+
+        for (let i = 0; i < 3; i++) {
+            generatedCode += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        // Route them instantly as a host!
+        window.location.href = `/tictactoe?room=${generatedCode}&role=host`;
+    };
+
+
     // function to handle room entry later
     const handleJoinRoom = (e) => {
         e.preventDefault()
@@ -76,30 +88,30 @@ export default function Home() {
                     <Card.Title className="fw-bold text-muted fs-6 uppercase mb-3">Single Player and Tools</Card.Title>
                     <Row className="g-2">
                         <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold align-items-center justify-content-center">
                                 🍹Drink Game🍹
                             </Button>
                         </Col>
                             <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold align-items-center justify-content-center">
                                 Flashcard List
                             </Button>
                         </Col>
 
                         <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold align-items-center justify-content-center">
                                 Flashcards
                             </Button>
                         </Col>
 
                         <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/tictactoe' className="fw-semibold">
-                                Tic-Tac-Toe
+                            <Button variant='primary' size="lg" onClick={handleHostTicTacToe} className="fw-semibold d-flex align-items-center justify-content-center h-100 py-0">
+                                Create Tic-Tac-Toe Room
                             </Button>
                         </Col>
 
                         <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/report' className="fw-semibold">
+                            <Button variant='primary' size="lg" href='/report' className="fw-semibold align-items-center justify-content-center">
                                 PlaceHolder
                             </Button>
                         </Col>
