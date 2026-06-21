@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Badge, Table, Button, Toast } from 'react-bootstrap'
 import FlashcardAdd from './FlashcardAdd.jsx'
+import { propTypes } from 'react-bootstrap/esm/Image.js'
 
 export default function FlashcardsList() {
 
@@ -12,7 +13,8 @@ export default function FlashcardsList() {
     useEffect(() => {
         fetch('/api/drinks')
             .then(res => res.json())
-            .then(data => setDrinks(data.drinks))
+            .then(data => setDrinks(data.drinks || []))
+            .catch(err => console.error("Error fectch drinks: "))
     }, [])
 
     // Called by FlashcardAdd.jsx after successful POST
@@ -22,15 +24,36 @@ export default function FlashcardsList() {
         setShowToast(true)
     }
 
+    const handleDeleteDrink = (id) => {
+        setDrinks(prev => prev.filter(drink => drink._id !==id))
+
+        setToastMessage("Drink removed successfully!")
+        setShowToast(true)
+
+        // Database hook
+        fetch (`api/drinks/${id}`, { method: 'DELETE'})
+            .then(res => res.json())
+            .catch(err => console.error(err))
+    }
+
+
     const drinkRows = drinks.map(drink => (
         <tr key={drink._id}>
             <td>{drink.drinkName}</td>
             <td>{drink.recipe}</td>
             <td>{drink.garnish}</td>
             <td>{drink.createdByAnon ? "Anonymous" : "User"}</td>
+            <td className='text-center align-middle'>
+                <Button 
+                    variant='danger' 
+                    size ="sm" 
+                    onClick={() => handleDeleteDrink(drink._id)}
+                >
+                    X
+                </Button></td>
         </tr>
     ))
-
+    
     return (
         <>
             <Card>
@@ -56,6 +79,7 @@ export default function FlashcardsList() {
                                 <th>Drink Recipe</th>
                                 <th>Garnish</th>
                                 <th>Created</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>{drinkRows}</tbody>
