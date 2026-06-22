@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Badge, Table, Button, Toast } from 'react-bootstrap'
 import FlashcardAdd from './FlashcardAdd.jsx'
-import { propTypes } from 'react-bootstrap/esm/Image.js'
+import FlashcardEdit from './FlashcardEdit.jsx'
 
 export default function FlashcardsList() {
 
@@ -9,12 +9,15 @@ export default function FlashcardsList() {
     const [showToast, setShowToast] = useState(false)
     const [drinks, setDrinks] = useState([])
     const [showAddModal, setShowAddModal] = useState(false)
+    
+
+    const [currentEditingDrink, setCurrentEditingDrink] = useState(null)
 
     useEffect(() => {
         fetch('/api/drinks')
             .then(res => res.json())
             .then(data => setDrinks(data.drinks || []))
-            .catch(err => console.error("Error fectch drinks: "))
+            .catch(err => console.error("Error fetching drinks:", err))
     }, [])
 
     // Called by FlashcardAdd.jsx after successful POST
@@ -25,35 +28,45 @@ export default function FlashcardsList() {
     }
 
     const handleDeleteDrink = (id) => {
-        setDrinks(prev => prev.filter(drink => drink._id !==id))
+
+        setDrinks(prev => prev.filter(drink => drink._id !== id))
 
         setToastMessage("Drink removed successfully!")
         setShowToast(true)
-
-        // Database hook
-        fetch (`api/drinks/${id}`, { method: 'DELETE'})
+        
+        // Database Hook
+        fetch(`/api/drinks/${id}`, { method: 'DELETE' })
             .then(res => res.json())
-            .catch(err => console.error(err))
+            .catch(err => console.error("Error deleting drink:", err))
     }
-
 
     const drinkRows = drinks.map(drink => (
         <tr key={drink._id}>
-            <td>{drink.drinkName}</td>
-            <td>{drink.recipe}</td>
-            <td>{drink.garnish}</td>
-            <td>{drink.createdByAnon ? "Anonymous" : "User"}</td>
+            <td className="align-middle">
+                {/* Edit Link */}
+                <Button
+                    variant='link'
+                    className='p-0 text-decoration-none fw-semibold text-start'
+                    onClick={() => setCurrentEditingDrink(drink)}
+                >
+                    {drink.drinkName}                
+                </Button>
+            </td>    
+            <td className="align-middle">{drink.recipe}</td>
+            <td className="align-middle">{drink.garnish}</td>
+            <td className="align-middle">{drink.createdByAnon ? "Anonymous" : "User"}</td>
             <td className='text-center align-middle'>
                 <Button 
                     variant='danger' 
-                    size ="sm" 
+                    size="sm" 
                     onClick={() => handleDeleteDrink(drink._id)}
                 >
                     X
-                </Button></td>
+                </Button>
+            </td>
         </tr>
     ))
-    
+
     return (
         <>
             <Card>
@@ -72,14 +85,14 @@ export default function FlashcardsList() {
                 </Card.Header>
 
                 <Card.Body>
-                    <Table striped size="sm">
+                    <Table striped size="sm" responsive>
                         <thead>
                             <tr>
                                 <th>Drink Name</th>
                                 <th>Drink Recipe</th>
                                 <th>Garnish</th>
                                 <th>Created</th>
-                                <th>Delete</th>
+                                <th className="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody>{drinkRows}</tbody>
@@ -93,6 +106,23 @@ export default function FlashcardsList() {
                 onHide={() => setShowAddModal(false)}
                 onDrinkAdded={handleDrinkAdded}
             />
+
+            {currentEditingDrink && ( 
+                <FlashcardEdit
+                    show={Boolean(currentEditingDrink)}
+                    drinkData={currentEditingDrink}
+                    onHide={() => setCurrentEditingDrink(null)}
+                    onDrinkUpdated={(updatedDrink) => {
+                        // Updates the specific drink item in array state instantly
+                        setDrinks(prev => prev.map(d => d._id === updatedDrink._id ? updatedDrink : d))
+                        setToastMessage("Drink updated successfully!")
+                        setShowToast(true)
+                        setCurrentEditingDrink(null)
+                    }}
+                />
+            )}
+
+            {/* Notification Toast */}
             <Toast 
                 onClose={() => setShowToast(false)} 
                 show={showToast} 
