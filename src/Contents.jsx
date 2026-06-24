@@ -20,7 +20,7 @@ export default function Contents()    {
             <Route path="/flashcards" element = {<Flashcards/>} />
             <Route path="/flashcardsList" element = {<FlashcardsList/>} />
             <Route path="/flashcardGame" element = {<FlashcardGame/>} />
-            <Route path="/tictactoe" element = {<TicTacToe/>} />
+            {/* <Route path="/tictactoe" element = {<TicTacToe/>} /> */}
             <Route path="/report" element = {<EmployeeReport/>} />
             <Route path="/" element = { <Navigate replace to = "/Home"/>}/>
             <Route path ="*" element = {<NotFound/>} />

@@ -12,7 +12,7 @@ export default function TictactoeRoom() {
     // OPTIMIZATION FIX: Initialize as 'loading' to prevent guest race conditions
     const [roomStatus, setRoomStatus] = useState('loading');
     const [opponentName, setOpponentName] = useState('');
-    const [board, setBoard] = useState(Array(9).fill(null));
+    const [board, setBoard] = useState(Array(9).fill(''));
     const [isNext, setIsNext] = useState(true);
 
     const playerSymbol = playerRole === 'host' ? 'X' : 'O';
@@ -24,7 +24,7 @@ export default function TictactoeRoom() {
         onValue(roomRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                setBoard(data.board || Array(9).fill(null));
+                setBoard(data.board || Array(9).fill(""));
                 setIsNext(data.isNext !== undefined ? data.isNext : true);
                 setRoomStatus(data.status || 'waiting');
                 setOpponentName(playerRole === 'host' ? data.guestName : data.hostName);
@@ -64,7 +64,7 @@ export default function TictactoeRoom() {
     };
 
     const winner = calculateWinner(board);
-    const isDraw = !winner && board.every(square => square !== null);
+    const isDraw = !winner && board.every(square => square !== '');
     const currentTurnSymbol = isNext ? 'X' : 'O';
     const isMyTurn = currentTurnSymbol === playerSymbol;
 
@@ -82,7 +82,7 @@ export default function TictactoeRoom() {
 
     const handleReset = () => {
         update(ref(db, `rooms/${roomCode}`), {
-            board: Array(9).fill(null),
+            board: Array(9).fill(''),
             isNext: true
         });
     };
