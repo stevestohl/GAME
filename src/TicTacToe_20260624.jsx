@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, Badge, Button, Spinner } from 'react-bootstrap';
-import { ref, onValue, off, update } from 'firebase/database'; 
+import { ref, set, onValue, off, update } from 'firebase/database'; 
 import { db } from './firebaseConfig.js';
 
+console.log("What is DB?", db); // <--- Temporary log
+
 export default function TictactoeRoom() {
+    // Extract URL Parameters
     const queryParams = new URLSearchParams(window.location.search);
     const roomCode = queryParams.get('room') || 'UNKNOWN';
     const playerRole = queryParams.get('role') || 'host'; 
     const playerName = queryParams.get('name') || 'Anonymous';
 
-    // OPTIMIZATION FIX: Initialize as 'loading' to prevent guest race conditions
-    const [roomStatus, setRoomStatus] = useState('loading');
+    // Game state variables
+    const [roomStatus, setRoomStatus] = useState('waiting');
     const [opponentName, setOpponentName] = useState('');
+
+    // Board and gameplay state
     const [board, setBoard] = useState(Array(9).fill(null));
     const [isNext, setIsNext] = useState(true);
 
@@ -28,16 +33,13 @@ export default function TictactoeRoom() {
                 setIsNext(data.isNext !== undefined ? data.isNext : true);
                 setRoomStatus(data.status || 'waiting');
                 setOpponentName(playerRole === 'host' ? data.guestName : data.hostName);
-            } else {
-                // If a user typed a room code that doesn't exist
-                setRoomStatus('not-found');
             }
         });
 
         return () => off(roomRef);
     }, [roomCode, playerRole]);
 
-    // 2. Guest auto-joins ONLY after database confirms the room is actively waiting
+    // 2. Guest auto-joins and updates lobby status
     useEffect(() => {
         if (playerRole === 'guest' && roomStatus === 'waiting') {
             update(ref(db, `rooms/${roomCode}`), {
@@ -68,12 +70,14 @@ export default function TictactoeRoom() {
     const currentTurnSymbol = isNext ? 'X' : 'O';
     const isMyTurn = currentTurnSymbol === playerSymbol;
 
+    // 3. Handle Player Move (Pushing to Cloud via update)
     const handleSquareClick = (index) => {
         if (board[index] || winner || isDraw || !isMyTurn) return;
 
         const newBoard = [...board];
         newBoard[index] = playerSymbol;
 
+        // CRITICAL FIX: Changed set() to update() so lobby data isn't wiped out
         update(ref(db, `rooms/${roomCode}`), {
             board: newBoard,
             isNext: !isNext
@@ -81,35 +85,14 @@ export default function TictactoeRoom() {
     };
 
     const handleReset = () => {
+        // CRITICAL FIX: Changed set() to update() here as well
         update(ref(db, `rooms/${roomCode}`), {
             board: Array(9).fill(null),
             isNext: true
         });
     };
 
-    // UI State A: Loading Screen
-    if (roomStatus === 'loading') {
-        return (
-            <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
-                <Spinner animation="border" variant="primary" />
-            </Container>
-        );
-    }
-
-    // UI State B: Invalid Room Screen
-    if (roomStatus === 'not-found') {
-        return (
-            <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
-                <Card className="shadow-sm p-5 text-center" style={{ width: "100%", maxWidth: "450px" }}>
-                    <h3 className="fw-bold text-danger mb-3">Room Not Found</h3>
-                    <p className="text-muted mb-4">The room code <strong>{roomCode}</strong> does not exist. Double check the code and try again.</p>
-                    <Button variant="primary" href="/tictactoe/lobby">Back to Lobby</Button>
-                </Card>
-            </Container>
-        );
-    }
-
-    // UI State C: Waiting Room UI
+    // 4. Conditional Rendering: Waiting Room UI
     if (roomStatus === 'waiting') {
         return (
             <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
@@ -128,7 +111,7 @@ export default function TictactoeRoom() {
         );
     }
 
-    // UI State D: Active Game Board UI
+    // 5. Conditional Rendering: Active Game Board UI
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
             <Card className="shadow-sm p-4 text-center" style={{ width: "100%", maxWidth: "450px" }}>

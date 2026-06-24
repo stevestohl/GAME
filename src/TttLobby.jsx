@@ -1,79 +1,60 @@
-import { ref, set } from 'firebase/database'
-import { db } from './firebaseConfig.js'
-import { useNavigate } from 'react-router-dom'
-import React, { useState } from 'react'
-import { Button, Card, Form, InputGroup } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Form, Button, Card, InputGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { ref, set } from 'firebase/database';
+import { db } from './firebaseConfig.js';
 
 export default function TttLobby() {
-    const [screenName, setScreenName] = useState("")
-    const [roomInput, setRoomInput] = useState("")
+    const [roomInput, setRoomInput] = useState("");
+    const navigate = useNavigate();
 
-    // Action: Host a brand-new match from this lobby screen
-    const handleCreateRoom =  async () => {
-        if(!playerName) return alert('Enter a name, Jeff!')
+    const handleCreateRoom = async () => {
+        const randomChars = Math.random().toString(36).substring(2, 5).toUpperCase();
+        const newRoomCode = `T${randomChars}`;
 
-        const newRoomCode = Math.random().toString(36).substring(2,6).toUpperCase
-
-        // Push 'waiting' state to firebase
         await set(ref(db, `rooms/${newRoomCode}`), {
             status: 'waiting',
-            hostName: playerName,
+            hostName: 'Player 1',
             guestName: '',
-            board: Array(9).fill(null)
-        })
+            board: Array(9).fill(null),
+            isNext: true
+        });
 
-        // Send Host to the room
-        window.location.href = `/tictacttoe?room=${newRoomCode}&role=host&name=${playerName}`
-    }
-    
+        navigate(`/tictactoe?room=${newRoomCode}&role=host&name=Player 1`);
+    };
 
-    // Action: Manual fallback join
     const handleJoinRoom = (e) => {
-        e.preventDefault()
-        const cleanInput = roomInput.toUpperCase().trim()
+        e.preventDefault(); // Stops the page from reloading
+        const cleanInput = roomInput.toUpperCase().trim();
 
         if (!cleanInput || cleanInput.length < 4) {
-            return alert("Please enter a valid 4-letter room code!")
+            return alert("Please enter a valid 4-letter room code!");
         }
         
         if (cleanInput.charAt(0) !== 'T') {
-            return alert("Whoops! Tic-Tac-Toe room codes must start with the letter 'T'.")
+            return alert("Whoops! Tic-Tac-Toe room codes must start with the letter 'T'.");
         }
         
-        const finalName = screenName.trim() || `Player_${Math.floor(1000 + Math.random() * 9000)}`
-        
-        // Push guest into the URL loop
-        window.location.href = `/tictactoe?room=${cleanInput}&role=guest&name=${encodeURIComponent(finalName)}`
-    }
+        navigate(`/tictactoe?room=${cleanInput}&role=guest&name=Player 2`);
+    };
 
     return (
         <Card.Body className='p-4'>
-            <Form style={{ maxWidth: "340px" }} className="mx-auto">
+            {/* The form submission handles the manual join */}
+            <Form style={{ maxWidth: "340px" }} className="mx-auto" onSubmit={handleJoinRoom}>
                 
-                {/* Step 1: Identity */}
-                <Card.Title className="fw-bold fs-5 mb-2 text-secondary">Set Your Screen Name</Card.Title>
-                <Form.Control 
-                    type="text" 
-                    placeholder="Enter nickname (Optional)..." 
-                    className="text-center mb-4 size-lg"
-                    maxLength={12}
-                    value={screenName}
-                    onChange={(e) => setScreenName(e.target.value)}
-                />
-
-                <hr className="my-3 text-muted" />
-
-                {/* Step 2, Option A: Host a room */}
-                <Card.Title className="fw-bold fs-5 mb-2 text-secondary">Start a Match</Card.Title>
+                {/* Option A: Host a room */}
+                <Card.Title className="fw-bold fs-5 mb-2 text-secondary text-center">Start a Match</Card.Title>
                 <div className="d-grid mb-4">
-                    <Button variant="primary" size="lg" className="fw-bold" onClick={handleCreateRoom}>
+                    {/* CRITICAL FIX: added type="button" so hitting Enter doesn't trigger hosting */}
+                    <Button type="button" variant="primary" size="lg" className="fw-bold" onClick={handleCreateRoom}>
                         👑 Host / Create New Room
                     </Button>
                 </div>
 
-                <div className="text-muted small fw-bold my-2">— OR JOIN MANUALLY —</div>
+                <div className="text-muted small fw-bold my-2 text-center">— OR JOIN MANUALLY —</div>
 
-                {/* Step 2, Option B: Join an explicit code */}
+                {/* Option B: Join an explicit code */}
                 <InputGroup size="lg">
                     <Form.Control
                         type="text"
@@ -84,17 +65,18 @@ export default function TttLobby() {
                         value={roomInput}
                         onChange={(e) => setRoomInput(e.target.value.toUpperCase())}
                     />
-                    <Button variant='success' className="fw-bold px-3" onClick={handleJoinRoom}>
+                    {/* CRITICAL FIX: added type="submit" so it pairs perfectly with the form */}
+                    <Button type="submit" variant="success" className="fw-bold px-3">
                         Join
                     </Button>
                 </InputGroup>
             </Form>
 
-            <div className="mt-4">
+            <div className="mt-4 text-center">
                 <Button variant="link" href="/home" className="text-muted text-decoration-none btn-sm">
                     ← Back to Main Menu
                 </Button>
             </div>
         </Card.Body>
-    )
+    );
 }
