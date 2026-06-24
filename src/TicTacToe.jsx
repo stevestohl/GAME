@@ -34,7 +34,7 @@ export default function TictactoeRoom() {
             if (data) {
                 // Whenever Firebase changes, update our local React states instantly
                 setBoard(data.board || Array(9).fill(null));
-                setIsXNext(data.isXNext !== undefined ? data.isXNext : true);
+                setIsNext(data.isXNext !== undefined ? data.isNext : true);
 
                 // sync new lobby variables
                 setRoomStatus(data.status || 'waiting')
@@ -48,7 +48,7 @@ export default function TictactoeRoom() {
 
     useEffect(()=> {
         if(playerRole ==='guest' && roomStatus === 'waiting') {
-            update(ref(db, `room/${roomCode}`), {
+            update(ref(db, `rooms/${roomCode}`), {
                 status: 'playing',
                 guestName: playerName
             })
@@ -97,8 +97,6 @@ export default function TictactoeRoom() {
             board: Array(9).fill(null),
             isXNext: true
         });
-    };
-
 
         // Conditional Rendering for waiting room
     if (roomStatus === 'waiting') {
