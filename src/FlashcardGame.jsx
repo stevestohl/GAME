@@ -48,17 +48,17 @@ export default function FlashcardGame() {
     if (!correctDrink) return <div>Loading game...</div>
 
     return (
-        <Card className="p-3">
+        <Card className="p-1">
             <h4>Round {round} / {TOTAL_ROUNDS}</h4>
             <h5>Score: {score}</h5>
 
-            <div className="d-flex flex-wrap justify-content-between mt-3">
+            <div className="d-flex flex-wrap justify-content-center gap-2">
                 {options.map(drink => (
                     <Button 
                         key={drink._id}
                         variant="outline-primary"
-                        className="m-2"
-                        style={{ width: "30%" }}
+                        className="m-1"
+                        style={{ width: "45%" }}
                         onClick={() => handleGuess(drink)}
                     >
                         {drink.drinkName}
@@ -66,13 +66,13 @@ export default function FlashcardGame() {
                 ))}
             </div>
 
-            <Card className="mt-4 p-3 bg-light">
+            <Card className="mt-2 p-2 bg-light">
                 <Card.Header>
                     <h5>Recipe:</h5>
                 </Card.Header>
                 <Card.Body>
                     <p style={{ whiteSpace: "pre-line" }} 
-                    className="ps-4 mb-0 text-muted">
+                    className="ps-2 mb-0 text-muted">
                         {correctDrink.recipe.replaceAll(',', ',\n')}
                     </p>
                 </Card.Body>

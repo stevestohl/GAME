@@ -39,8 +39,8 @@ export default function Flashcards() {
           justify-content: center;
           align-items: center;
           height: calc(100vh - 80px);
-          background: #636363;
-          color: rgb(141, 132, 132);
+
+          color: rgb(203, 143, 252);
           font-family: Arial;
         }
 
@@ -55,8 +55,8 @@ export default function Flashcards() {
           position: absolute;
           width: 100%;
           height: 100%;
-          border-radius: 12px;
-          background: #252525;
+          border-radius: 20px;
+          background: #3c89fd;
           color: white;
           display: flex;
           justify-content: center;

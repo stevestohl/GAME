@@ -8,7 +8,7 @@ import TttCreateButton from './TttCreateButton.jsx';
 
 export default function Home() {
     return (
-        <div className="d-flex justify-content-center align-items-center min-vh-100 bg-dark p-3">
+        <div className="d-flex justify-content-center align-items-center min-vh-100 p-3">
             <Card className='text-center shadow-lg border-0' style={{ maxWidth: 
                 "450px", width: "100%" }}>
                 <Card.Header as="h5" className="bg-primary text-white py-3 fw-bold tracking-wide">
@@ -54,11 +54,11 @@ export default function Home() {
                         {/* Modularized Tic-Tac-Toe Host Button Component */}
                         <TttCreateButton />
 
-                        <Col xs={6} className='d-grid'>
+                        {/* <Col xs={6} className='d-grid'>
                             <Button variant='primary' size="lg" href='/report' className="fw-semibold align-items-center justify-content-center">
                                 PlaceHolder
                             </Button>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Card.Body>
             </Card>
