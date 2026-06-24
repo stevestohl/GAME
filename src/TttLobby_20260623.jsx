@@ -9,23 +9,23 @@ export default function TttLobby() {
     const [roomInput, setRoomInput] = useState("")
 
     // Action: Host a brand-new match from this lobby screen
-    const handleCreateRoom =  async () => {
-        if(!playerName) return alert('Enter a name, Jeff!')
-
-        const newRoomCode = Math.random().toString(36).substring(2,6).toUpperCase
-
-        // Push 'waiting' state to firebase
-        await set(ref(db, `rooms/${newRoomCode}`), {
-            status: 'waiting',
-            hostName: playerName,
-            guestName: '',
-            board: Array(9).fill(null)
-        })
-
-        // Send Host to the room
-        window.location.href = `/tictacttoe?room=${newRoomCode}&role=host&name=${playerName}`
-    }
+    const handleCreateRoom = 
     
+    
+    (e) => {
+        e.preventDefault()
+        const finalName = screenName.trim() || `Player_${Math.floor(1000 + Math.random() * 9000)}`
+
+        // Generate a random 4-letter room ID starting with 'T'
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        let generatedCode = 'T' 
+        for (let i = 0; i < 3; i++) {
+            generatedCode += characters.charAt(Math.floor(Math.random() * characters.length))
+        }
+
+        // Push everything to the URL parameters to alert the main controller
+        window.location.href = `/tictactoe?room=${generatedCode}&role=host&name=${encodeURIComponent(finalName)}`
+    }
 
     // Action: Manual fallback join
     const handleJoinRoom = (e) => {
