@@ -8,11 +8,11 @@ import TttCreateButton from './TttCreateButton.jsx';
 
 export default function Home() {
     return (
-        <div className="d-flex justify-content-center align-items-center min-vh-100 p-3">
+        <div className="d-flex justify-content-center align-items-center p-3">
             <Card className='text-center shadow-lg border-0' style={{ maxWidth: 
                 "450px", width: "100%" }}>
                 <Card.Header as="h5" className="bg-primary text-white py-3 fw-bold tracking-wide">
-                    GAME-TEMPLE DASHBOARD
+                    GAME-TEMPLE
                 </Card.Header>
                 
                 <Card.Body className='p-4'>

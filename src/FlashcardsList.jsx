@@ -69,8 +69,8 @@ export default function FlashcardsList() {
 
     return (
         <>
-            <Card>
-                <Card.Header className="d-flex justify-content-between align-items-center">
+            <Card className='shadow-lg border-0'>
+                <Card.Header as='h5' className="d-flex justify-content-between align-items-center">
                     <div>
                         Flashcards List <Badge bg="secondary">{drinkRows.length}</Badge>
                     </div>

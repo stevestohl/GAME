@@ -65,6 +65,7 @@ export default function Flashcards() {
           transition: transform 0.6s;
           padding: 20px;
           text-align: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .back {
@@ -93,10 +94,11 @@ export default function Flashcards() {
         button {
           padding: 10px 20px;
           border: none;
-          background: #555;
-          color: white;
+          background: white;
+          color: #3c89fd;
           border-radius: 8px;
           font-size: 1rem;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
       `}</style>
 
