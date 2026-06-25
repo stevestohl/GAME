@@ -1,32 +1,51 @@
 import React, { useState, useEffect } from "react";
+import { Form } from "react-bootstrap"; // Importing Form for React-Bootstrap radios
 
 export default function Flashcards() {
-  const [drinks, setDrinks] = useState([]);
+  const [allDrinks, setAllDrinks] = useState([]); // Holds raw API array
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [filterMode, setFilterMode] = useState("default"); // Options: "default" or "all"
 
   // Load drinks on mount
   useEffect(() => {
     async function loadDrinks() {
       const res = await fetch("/api/drinks");
       const data = await res.json();
-      setDrinks(data.drinks);
+      setAllDrinks(data.drinks || []);
     }
     loadDrinks();
   }, []);
 
-  // Current drink
-  const drink = drinks[index];
+  // COMPUTED ARRAY: Dynamically filters based on our radio button selection
+  const visibleDrinks = allDrinks.filter((drink) => {
+    if (filterMode === "default") {
+      return drink.isDefault === true;
+    }
+    return true; // "all" mode returns everything
+  });
+
+  // Current drink pulled from the filtered array
+  const drink = visibleDrinks[index];
+
+  // Safely handle changing the radio filters
+  const handleFilterChange = (mode) => {
+    setFilterMode(mode);
+    setIndex(0); // Reset index to prevent out-of-bounds errors
+    setFlipped(false); // Reset flip state
+  };
 
   const handleFlip = () => setFlipped(!flipped);
 
   const handleNext = () => {
-    setIndex((prev) => (prev + 1) % drinks.length);
+    if (visibleDrinks.length === 0) return;
+    setIndex((prev) => (prev + 1) % visibleDrinks.length);
     setFlipped(false);
   };
 
   const handlePrev = () => {
-    setIndex((prev) => (prev - 1 + drinks.length) % drinks.length);
+    if (visibleDrinks.length === 0) return;
+    setIndex((prev) => (prev - 1 + visibleDrinks.length) % visibleDrinks.length);
     setFlipped(false);
   };
 
@@ -39,9 +58,20 @@ export default function Flashcards() {
           justify-content: center;
           align-items: center;
           height: calc(100vh - 80px);
-
           color: rgb(203, 143, 252);
           font-family: Arial;
+        }
+
+        /* Radio Toggle Container Style */
+        .filter-container {
+          background: rgba(255, 255, 255, 0.9);
+          padding: 10px 20px;
+          border-radius: 30px;
+          margin-bottom: 25px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+          color: #333;
+          display: flex;
+          gap: 20px;
         }
 
         #card {
@@ -70,11 +100,16 @@ export default function Flashcards() {
 
         .back {
           transform: rotateY(180deg);
-          flex-direction: row;
-          justify-content:center;
+          flex-direction: column; /* Changed to column to sit title above list nicely */
+          justify-content: center;
           align-items: center;
           text-align: left;
-          gap: 20px
+          gap: 10px;
+        }
+
+        .recipe-list {
+          margin: 0;
+          padding-left: 20px;
         }
 
         #card.flipped .front {
@@ -99,25 +134,47 @@ export default function Flashcards() {
           border-radius: 8px;
           font-size: 1rem;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          cursor: pointer;
         }
       `}</style>
 
       <div className="flashcard-wrapper">
+        
+        {/* RADIO BUTTON TOGGLES */}
+        <div className="filter-container">
+          <Form.Check
+            type="radio"
+            label="Default Cards"
+            name="filterMode"
+            id="filter-default"
+            checked={filterMode === "default"}
+            onChange={() => handleFilterChange("default")}
+          />
+          <Form.Check
+            type="radio"
+            label="All Cards"
+            name="filterMode"
+            id="filter-all"
+            checked={filterMode === "all"}
+            onChange={() => handleFilterChange("all")}
+          />
+        </div>
+
         <div id="card" className={flipped ? "flipped" : ""}>
           {/* FRONT SIDE */}
           <div className="front">
-            {drink ? drink.drinkName : "Loading..."}
+            {visibleDrinks.length === 0 ? "No cards found..." : (drink ? drink.drinkName : "Loading...")}
           </div>
 
           {/* BACK SIDE */}
           <div className="back">
             {drink && (
               <>
-                <div className="recipe-title">{drink.drinkName}</div>
+                <div className="recipe-title fw-bold border-bottom pb-1 mb-1">{drink.drinkName}</div>
                 <ul className="recipe-list">
-                  {drink.recipe.split(",").map((item, i) => (
+                  {drink.recipe ? drink.recipe.split(",").map((item, i) => (
                     <li key={i}>{item.trim()}</li>
-                  ))}
+                  )) : <li>No recipe found</li>}
                 </ul>
               </>
             )}

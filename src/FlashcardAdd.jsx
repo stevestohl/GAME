@@ -7,7 +7,7 @@ export default function FlashcardAdd({ show, onHide, onDrinkAdded }) {
         drinkName: "",
         recipe: "",
         garnish: "",
-        createdByAnon: false
+        createdByAnon: true
     })
 
     function handleChange(e) {

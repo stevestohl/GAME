@@ -99,15 +99,22 @@ const updateEmployee = async (req, res) => {
 const updateDrink = async (req, res) => {
     try {
         const { id: drinkID } = req.params
-        const drink = await Drink.findByIdAndUpdate(
-            drinkID,
-            req.body,
-            { new: true, runValidators: true }
-        )
+
+        const drink = await Drink.findById(drinkID)
 
         if (!drink) {
             return res.status(404).json({ msg: `No drink with ID ${drinkID} found.` })
         }
+
+        if(drink.isDefault === true) {
+            return res.status(403).json({ msg: 'You cannont udpate default drink cards'})
+        }
+
+        const updatedDrink = await Drink.findByIdAndUpdate(
+            drinkID,
+            req.body,
+            { new: true, runValidators: true }
+        )
 
         res.status(200).json({
             msg: "Drink updated successfully!",
@@ -138,13 +145,19 @@ const deleteEmployee = async (req, res) => {
 const deleteDrink = async (req, res) => {
     try {
         const { id: drinkID } = req.params
-        const drink = await Drink.findByIdAndDelete(drinkID)
+        const drink = await Drink.findById(drinkID)
 
         if (!drink) {
             return res.status(404).json({ msg: `No drink with ID ${drinkID} found.` })
         }
 
+        if (drink.isDefault === true) {
+            return res.status(403).json({msg: "You cannot modify default drink cards."})
+        }
+
+        await Drink.findByIdAndDelete(drinkID)
         res.status(200).json({ msg: 'Drink successfully deleted' })
+
     } catch (err) {
         res.status(500).json({ msg: err.message })
     }

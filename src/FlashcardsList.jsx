@@ -40,25 +40,36 @@ export default function FlashcardsList() {
             .catch(err => console.error("Error deleting drink:", err))
     }
 
-    const drinkRows = drinks.map(drink => (
+const drinkRows = drinks.map(drink => (
         <tr key={drink._id}>
             <td className="align-middle">
-                {/* Edit Link */}
-                <Button
-                    variant='link'
-                    className='p-0 text-decoration-none fw-semibold text-start'
-                    onClick={() => setCurrentEditingDrink(drink)}
-                >
-                    {drink.drinkName}                
-                </Button>
+                {/* 1. CONDITIONAL EDIT LINK */}
+                {drink.isDefault ? (
+                    // Just plain text if it's a default card
+                    <span className="fw-semibold text-dark">{drink.drinkName}</span>
+                ) : (
+                    // Clickable button link if it's user-generated
+                    <Button
+                        variant='link'
+                        className='p-0 text-decoration-none fw-semibold text-start'
+                        onClick={() => setCurrentEditingDrink(drink)}
+                    >
+                        {drink.drinkName}                
+                    </Button>
+                )}
             </td>    
             <td className="align-middle">{drink.recipe}</td>
             <td className="align-middle">{drink.garnish}</td>
-            <td className="align-middle">{drink.createdByAnon ? "Anonymous" : "User"}</td>
+            <td className="align-middle">
+                {/* Visual upgrade: Display "System" or "Default" if it's default */}
+                {drink.isDefault ? "Default" : (drink.createdByAnon ? "Anonymous" : "User")}
+            </td>
             <td className='text-center align-middle'>
+                {/* 2. CONDITIONAL DELETE BUTTON */}
                 <Button 
-                    variant='danger' 
+                    variant={drink.isDefault ? 'secondary' : 'danger'} // Changes color to grey if default
                     size="sm" 
+                    disabled={drink.isDefault} // Makes it completely unclickable if default
                     onClick={() => handleDeleteDrink(drink._id)}
                 >
                     X
@@ -66,7 +77,7 @@ export default function FlashcardsList() {
             </td>
         </tr>
     ))
-
+    
     return (
         <>
             <Card className='shadow-lg border-0'>
