@@ -20,6 +20,29 @@ const getAllTrivia = async (req, res) => {
   }
 }
 
+// Fetch Trivia document by MongoDB ObjectID
+const getTriviaByID = async (req, res) => {
+  try {
+    const triviaDoc = await Temple_Trivia.findById(req.params.id)
+
+    if(!triviaDoc) {
+      return res.status(404).json({ 
+        success: false,
+        message: "Trivia question not found"
+      })
+    }
+    res.status(200).json({
+      success: true,
+      data: triviaDoc
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      console: err.message
+    })
+  }
+}
 
 // Health check for Trivia Socket
 const getTriviaBackendStatus = async (req, res) => {
@@ -46,7 +69,7 @@ const createRoomLogic = (socket) => {
   activeRooms[roomCode] = { 
     players: [],
     currentRound: 0,
-    gameState: 'Lobby'
+    gameState: 'lobby'
   };
   
   const playerData = { id: socket.id, name: `Player 1` };
@@ -61,6 +84,7 @@ const createRoomLogic = (socket) => {
 export{
   getAllTrivia,
   getTriviaBackendStatus,
+  getTriviaByID,
   generateRoomCode,
   createRoomLogic
 }

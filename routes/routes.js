@@ -1,11 +1,16 @@
 import express from 'express'
-import {getAllEmployees, getEmployee, createEmployee, updateEmployee, deleteEmployee, getAllDrinks, getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/employees.js'
+import { getAllTrivia, getTriviaBackendStatus, getTriviaByID } from '../controllers/trivia_controller.js'
+import {getAllEmployees, getEmployee, createEmployee, 
+    updateEmployee, deleteEmployee, getAllDrinks, 
+    getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/employees.js'
+
 
 const router = express.Router()
 
 router.route('/employees')
     .get(getAllEmployees)
     .post(createEmployee)
+
 router.route('/employees/:id')
     .get(getEmployee)
     .patch(updateEmployee)
@@ -19,5 +24,16 @@ router.route('/drinks/:id')
     .get(getDrink)
     .patch(updateDrink)
     .delete(deleteDrink)
+
+//Temple-Trivia Routes
+router.route('/templetrivia')
+    .get(getAllTrivia)
+
+router.route('/templetrivia/:id')
+    .get(getTriviaByID)
+
+router.route('/templetrivia/status')
+    .get(getTriviaBackendStatus)
+
 
 export default router
