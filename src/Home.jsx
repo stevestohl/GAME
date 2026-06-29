@@ -8,16 +8,16 @@ import TttCreateButton from './TttCreateButton.jsx';
 
 export default function Home() {
     return (
-        <div className="d-flex justify-content-center align-items-center p-3">
+        <div className="d-flex justify-content-center align-items-center p-1">
             <Card className='text-center shadow-lg border-0' style={{ maxWidth: 
                 "450px", width: "100%" }}>
-                <Card.Header as="h5" className="bg-primary text-white py-3 fw-bold tracking-wide">
+                <Card.Header as="h5" className="bg-primary text-white py-2 fw-bold tracking-wide">
                     GAME-TEMPLE
                 </Card.Header>
                 
-                <Card.Body className='p-4'>
+                <Card.Body className='p-2'>
                     {/* Logo wrapper */}
-                    <div className="mb-4 bg-light p-3 rounded-3 d-inline-block shadow-sm">
+                    <div className="mb-2 bg-light p-2 rounded-3 d-inline-block shadow-sm">
                         <img 
                             src={gameLogo}
                             alt="Game-Temple Logo"
@@ -27,16 +27,16 @@ export default function Home() {
                     
                     {/* Universal Room Entry Component */}
                     {/* <Card.Title className="fw-bold fs-4 mb-3 text-secondary">Enter Room</Card.Title> */}
-                    <UniversalJoinForm />
 
-                    <hr className="my-4 text-muted" />
+
+                    <hr className="my-2 text-muted" />
 
                     {/* Navigation Menu Grid */}
                     {/* <Card.Title className="fw-bold text-muted fs-6 uppercase mb-3">Single Player and Tools</Card.Title> */}
                     <Row className="g-2">
                         <Col xs={6} className='d-grid'>
                             <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold align-items-center justify-content-center">
-                                🍹Drink Game🍹
+                                🍹Drink Game
                             </Button>
                         </Col>
                         <Col xs={6} className='d-grid'>
@@ -54,12 +54,15 @@ export default function Home() {
                         {/* Modularized Tic-Tac-Toe Host Button Component */}
                         <TttCreateButton />
 
-                        {/* <Col xs={6} className='d-grid'>
+                        <Col xs={6} className='d-grid'>
                             <Button variant='primary' size="lg" href='/report' className="fw-semibold align-items-center justify-content-center">
-                                PlaceHolder
+                                🏛️Temple-Trivia
                             </Button>
-                        </Col> */}
+                        </Col>
                     </Row>
+
+                    <hr className='my-2 text-muted'/>
+                    <UniversalJoinForm />
                 </Card.Body>
             </Card>
         </div>

@@ -28,12 +28,13 @@ router.route('/drinks/:id')
 //Temple-Trivia Routes
 router.route('/templetrivia')
     .get(getAllTrivia)
+    
+router.route('/templetrivia/status')
+    .get(getTriviaBackendStatus)
 
 router.route('/templetrivia/:id')
     .get(getTriviaByID)
 
-router.route('/templetrivia/status')
-    .get(getTriviaBackendStatus)
 
 
 export default router

@@ -1,49 +1,34 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const cors = require('cors');
-const { rand } = require('firebase/firestore/pipelines');
-require('dotenv').config(); // Ready to read your root .env file
+import app from './app.js' // Fixed path typo. This brings in your fully configured Express app!
+import http from 'http'
+import { Server } from 'socket.io'
+import cors from 'cors'
+import {} from 'dotenv/config'
+import mongoose from 'mongoose'
 
-const app = express();
-app.use(cors());
 
-// Optional: Link your existing express routes if needed
-// const apiRoutes = require('./routes/routes');
-// app.use('/api', apiRoutes);
-
-const server = http.createServer(app);
+const server = http.createServer(app); // Passes your imported app directly here
 const io = new Server(server, {
   cors: {
-    origin: "*", // Allows connections from local dev or your deployed live site
+    origin: "*", 
     methods: ["GET", "POST"]
   }
 });
 
-// Real-time room tracking state
+// Import your socket room handlers from your controller file
+import { createRoomLogic } from './controllers/trivia_controller.js'
+
+// Real-time room tracking state. Matches activeRooms object in controller
 const activeRooms = {};
 
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
-  // 1. Handle Room Creation
+  // 1. Handle Room Creation with controller
   socket.on('createRoom', () => {
-    // Generate a random 4-letter uppercase code
-    const randomThree = Math.random().toString(36).substring(2, 5).toUpperCase();
-    const roomCode = `R${randomThree}`
+    const { roomCode, players } = createRoomLogic(socket, activeRooms)
     
-    activeRooms[roomCode] = {
-      players: [],
-      currentRound: 0,
-      gameState: 'lobby' // lobby, playing, leaderboard
-    };
-
-    // Host joins as Player 1
-    const playerData = { id: socket.id, name: `Player 1` };
-    activeRooms[roomCode].players.push(playerData);
-    
-    socket.join(roomCode);
-    socket.emit('roomCreated', { roomCode, players: activeRooms[roomCode].players });
+    socket.join(roomCode)
+    socket.emit('roomCreated', { roomCode, players })
   });
 
   // 2. Handle Joining an Existing Room
@@ -53,20 +38,18 @@ io.on('connection', (socket) => {
     if (activeRooms[code]) {
       socket.join(code);
 
-      // Total count helps us determine the NEXT player number without shifting existing ones
       const totalJoinedSoFar = activeRooms[code].players.length;
       const playerData = { id: socket.id, name: `Player ${totalJoinedSoFar + 1}` };
       
       activeRooms[code].players.push(playerData);
 
-      // Sync the room for everyone inside
       io.to(code).emit('roomUpdated', { roomCode: code, players: activeRooms[code].players });
     } else {
       socket.emit('errorMsg', 'Room not found. Please check the code.');
     }
   });
 
-  // 3. Handle Disconnection (No Re-indexing)
+  // 3. Handle Disconnection 
   socket.on('disconnect', () => {
     console.log(`User Disconnected: ${socket.id}`);
     
@@ -75,14 +58,11 @@ io.on('connection', (socket) => {
       const playerIndex = room.players.findIndex(p => p.id === socket.id);
       
       if (playerIndex !== -1) {
-        // Remove the disconnected player
         room.players.splice(playerIndex, 1);
         
-        // Kill the room if entirely empty; otherwise just notify the survivors
         if (room.players.length === 0) {
           delete activeRooms[roomCode];
         } else {
-          // Send updated list out WITHOUT renaming anyone
           io.to(roomCode).emit('roomUpdated', { roomCode, players: room.players });
         }
         break;
@@ -91,7 +71,17 @@ io.on('connection', (socket) => {
   });
 });
 
+// Database Connection & Server Startup
 const PORT = process.env.PORT || 5001;
-server.listen(PORT, () => {
-  console.log(`Trivia-Temple server running on port ${PORT}`);
-});
+
+// Using process.env.DB to match your app.js working database configuration string
+mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)
+  .then(() => {
+    console.log("Connected to MongoDB successfully.");
+    server.listen(PORT, () => {
+      console.log(`Trivia-Temple server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Database connection failed:", err.message);
+  });

@@ -10,13 +10,13 @@ function NavBar() {
     return (
             <Navbar 
                 variant="light" 
-                className='px-3 justify-content-center'
+                className='px-1 justify-content-center'
                 style={{ backgroundColor:"#e3f2fd" }}>
                 <Navbar.Brand href="/home">
                     <img
                         src={logo}
                         alt="Game-temple Logo"
-                        style={{ maxWidth: "50px", height: "auto", mixBlendMode:"multiply"}}
+                        style={{ maxWidth: "40px", height: "auto", mixBlendMode:"multiply"}}
                     /></Navbar.Brand>
                 <Nav>
                     <Nav.Link end href="/flashcards">Flashcards</Nav.Link>

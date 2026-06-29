@@ -34,4 +34,6 @@ const init = async () => {
         console.log(err)
     }
 }
-init()
+// init()
+
+export default app

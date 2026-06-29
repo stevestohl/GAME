@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Form, InputGroup, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 export default function UniversalJoinForm() {
     const [roomCode, setRoomCode] = useState("");
+    const [playerName, setPlayerName] = useState(""); 
     const navigate = useNavigate();
 
     const handleJoinRoom = (e) => {
@@ -12,15 +13,20 @@ export default function UniversalJoinForm() {
 
         const cleanCode = roomCode.toUpperCase().trim();
         const gameTypeIdentifier = cleanCode.charAt(0);
+        const nameParam = playerName.trim() || "Player 2";
 
         switch (gameTypeIdentifier) {
             case 'T':
                 console.log(`Routing to Tic Tac Toe Room Code: ${cleanCode}`);
-                navigate(`/tictactoe?room=${cleanCode}&role=guest&name=Player 2`);
+                navigate(`/tictactoe?room=${cleanCode}&role=guest&name=${encodeURIComponent(nameParam)}`); 
+                break;
+            case 'R':
+                console.log(`Routing to Temple-Trivia: ${cleanCode}`);
+                navigate(`/trivia?room=${cleanCode}&role=guest&name=${encodeURIComponent(nameParam)}`); 
                 break;
             case 'F':
                 console.log(`Routing to Future Game Room Code: ${cleanCode}`);
-                navigate(`/futureGame?room=${cleanCode}&role=guest&name=Player 2`);
+                navigate(`/futureGame?room=${cleanCode}&role=guest&name=${encodeURIComponent(nameParam)}`); 
                 break;
             default:
                 alert("Room not found! Blame Jeff.");
@@ -29,19 +35,32 @@ export default function UniversalJoinForm() {
 
     return (
         <Form onSubmit={handleJoinRoom} className="mb-4 mx-auto" style={{ maxWidth: "320px" }}>
-            <InputGroup size="lg">
+            <Form.Group className='mb-3'>
                 <Form.Control
                     type="text"
                     placeholder="Enter 4-Letter Code"
-                    className="text-center fw-bold tracking-wider"
+                    className="text-center fw-bold tracking-wider border-secondary"
                     maxLength={4}
                     value={roomCode}
                     onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
                 />
-                <Button variant='primary' type="submit" className="fw-bold px-4">
-                    Enter
-                </Button>
-            </InputGroup>
+            </Form.Group>
+            
+
+            <Form.Group className='mb-3'> 
+                <Form.Control
+                    type='text'
+                    placeholder='Player Name'
+                    className='text-center fw-bold tracking-wider border-secondary'
+                    maxLength={12}
+                    value={playerName}
+                    onChange={(e) => setPlayerName(e.target.value)}              
+                />
+            </Form.Group>
+            
+           <Button variant='primary' type="submit" className="fw-bold w-100">
+                Enter Game
+            </Button>
         </Form>
     );
 }
