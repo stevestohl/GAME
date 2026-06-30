@@ -3,6 +3,10 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Card, ListGroup, Badge, Button, Alert } from 'react-bootstrap';
 import socket from './socket.js';
 
+import RulesScreen from './components/RulesScreen.jsx';
+import QuestionScreen from './components/QuestionScreen.jsx';
+import ScoreboardScreen from './components/ScoreboardScreen.jsx';
+
 export default function TriviaWaitingRoom() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -14,6 +18,8 @@ export default function TriviaWaitingRoom() {
 
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState('');
+    // Tracks roomState from Render Server
+    const [roomState, setRoomState] = useState(null);
 
     useEffect(() => {
         if (!roomCode) {
@@ -30,7 +36,13 @@ export default function TriviaWaitingRoom() {
             setPlayers(data.players);
         });
 
-        // 3. Listen for any access errors (e.g., room doesn't exist)
+        // 3. Listen for gameplay phase transitions from Render backend
+        socket.on('roomStateUpdated', (updateRoom) => {
+            console.log("Gameplay state update:", updateRoom);
+            setRoomState(updateRoom);
+        });
+
+        // 4. Listen for any access errors (e.g., room doesn't exist)
         socket.on('errorMsg', (msg) => {
             setError(msg);
         });
@@ -38,9 +50,15 @@ export default function TriviaWaitingRoom() {
         // Cleanup connections when the user leaves the page or closes the tab
         return () => {
             socket.off('roomUpdated');
+            socket.off('roomStateUpdated');
             socket.off('errorMsg');
         };
     }, [roomCode, urlName]);
+
+    // Emits activation trigger to backend to pull Questions
+    const handleStartGame = () => {
+        socket.emit('startGame', { roomCode });
+    };
 
     if (error) {
         return (
@@ -51,6 +69,53 @@ export default function TriviaWaitingRoom() {
         );
     }
 
+    // =========================================================================
+    // DYNAMIC PHASE CONTROLLER EVALUATION
+    // =========================================================================
+    if (roomState) {
+        switch (roomState.phase) {
+            case 'RULES':
+                return (
+                    <RulesScreen 
+                        roomCode={roomCode} 
+                        isHost={role === 'host'} 
+                    />
+                );
+                
+            case 'QUESTION':
+                return (
+                    <QuestionScreen 
+                        roomCode={roomCode}
+                        currentQuestion={roomState.questions[roomState.currentRound]}
+                        playerAnswers={roomState.playerAnswers}
+                    />
+                );
+                
+            case 'SCOREBOARD':
+                return (
+                    <ScoreboardScreen 
+                        roomCode={roomCode}
+                        players={roomState.players}
+                        isHost={role === 'host'}
+                    />
+                );
+                
+            case 'FINAL_RESULTS':
+                return (
+                    <Container className="mt-5 text-center" style={{ maxWidth: '420px' }}>
+                        <Card className="shadow-sm p-4">
+                            <h2 className="text-primary fw-bold">🏆 Game Over!</h2>
+                            <p className="text-muted">Final Podiums Go Here</p>
+                            <Button variant="primary" onClick={() => navigate('/')}>Return Home</Button>
+                        </Card>
+                    </Container>
+                );
+        }
+    }
+
+    // =========================================================================
+    // DEFAULT LOBBY VIEW (If no phase has been launched yet)
+    // =========================================================================
     return (
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
@@ -90,7 +155,11 @@ export default function TriviaWaitingRoom() {
 
                     {/* Action Controls */}
                     {role === 'host' ? (
-                        <Button variant="primary" className="w-100 fw-bold py-2 shadow-sm">
+                        <Button 
+                            variant="primary" 
+                            className="w-100 fw-bold py-2 shadow-sm"
+                            onClick={handleStartGame} // FIX: Connected the click listener
+                        >
                             Start Game
                         </Button>
                     ) : (

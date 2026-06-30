@@ -36,7 +36,7 @@ export default function TriviaCreateButton({ playerName }) {
                 onClick={handleCreateRoom} 
                 className="fw-semibold align-items-center justify-content-center"
             >
-                ⛪Temple-Trivia
+                Temple-Trivia
             </Button>
         </Col>
     );

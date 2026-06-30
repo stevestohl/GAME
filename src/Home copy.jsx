@@ -27,9 +27,8 @@ export default function Home() {
                     </div>
 
                     {/* MULTIPLAYER ZONE CARD */}
-                    {/* IMPROVED: Changed from p-2 to p-3 for better all-around spacing */}
-                    <Card className="border p-3 bg-body-secondary shadow-sm">
-                        <Card.Title className="text-muted text-center fw-bold small mb-1 tracking-wider">
+                    <Card className="border p-2 bg-body-secondary shadow-sm">
+                        <Card.Title className="text-muted text-center fw-bold small text-start mb-1 tracking-wider">
                             Multiplayer Games
                         </Card.Title>
                         <hr className='my-2 text-muted'/>
@@ -47,19 +46,20 @@ export default function Home() {
                         </Form.Group>
 
                         {/* STEP 2: The Split Options Row */}
-                        <Row className="g-2 alignment-stretch">
-                            {/* Left Column: Join Logic (Shrunk to xs={5} for a compact 4-character input) */}
-                            <Col xs={5} className="border-end pe-2 text-center">
+                        <Row className="g-3 alignment-stretch">
+                            {/* Left Column: Join Logic */}
+                            <Col xs={6} className="border-end pe-2 text-center">
                                 <Form.Label className="fw-bold text-muted small mb-1">Join Game</Form.Label>
                                 <UniversalJoinForm playerName={playerName} />
                             </Col>
 
-                            {/* Right Column: Create Logic (Expanded to xs={7} for side-by-side buttons) */}
-                            <Col xs={7} className="ps-2 text-center d-flex flex-column justify-content-between">
+                            {/* Right Column: Create Logic */}
+                            <Col xs={6} className="ps-2 text-center d-flex flex-column justify-content-between">
                                 <div>
                                     <Form.Label className="fw-bold text-muted small mb-1">Create Room</Form.Label>
-
-                                    <div className="d-flex gap-2 justify-content-center">
+                                    
+                                    {/* FIXED: Changed from d-grid to d-flex for horizontal button alignment */}
+                                    <div className="d-flex gap-2">
                                         <TttCreateButton />
                                         <TriviaCreateButton playerName={playerName} />
                                     </div>
@@ -68,9 +68,7 @@ export default function Home() {
                         </Row>
                     </Card>
 
-                    <hr className='my-3 text-bold'/>
-
-                    <Card.Title className='text-muted text-center fw-bold mb-1 tracking-wider'>🍸Bartending🍸</Card.Title>
+                    <hr className='my-3 text-muted'/>
 
                     {/* Single Player / Reference Links */}
                     <Row className='g-2'>
