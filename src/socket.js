@@ -1,14 +1,12 @@
-import { io } from 'socket.io-client'
+import { io } from 'socket.io-client';
 
 const SOCKET_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
-    : 'https://game-temple.org'
+    : 'https://game-temple-backend.onrender.com'; 
 
+// Render handles both polling and websockets
 const socket = io(SOCKET_URL, {
-    transports: window.location.hostname === 'Localhost'
-    ? ['polling', 'websocket']
-    : ['websocket']
+    transports: ['websocket', 'polling'] 
+});
 
-})
-
-export default socket
+export default socket;
