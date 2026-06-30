@@ -1,6 +1,6 @@
 import Temple_Trivia from "../models/Temple_Trivia.js";
 
-const activeRooms = {}
+// const activeRooms = {}
 
 const getAllTrivia = async (req, res) => {
   try {
@@ -58,11 +58,18 @@ const getTriviaBackendStatus = async (req, res) => {
 
 // Socket Room Helper: Code Generator
 const generateRoomCode = () => {
-  const randomThree =  Math.random().toString(36).substring(2, 5).toUpperCase()
-  return `R${randomThree}`
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+  let code = '';
+
+  for (let i=0; i < 3; i++) {
+    const randomIndex = Math.floor(Math.random() * alphabet.length)
+    code += alphabet.charAt(randomIndex)
+  }
+
+  return `R${code}`
 };
 
-const createRoomLogic = (socket) => {
+const createRoomLogic = (socket, activeRooms) => {
   const roomCode = generateRoomCode();
 
 

@@ -1,18 +1,20 @@
-import app from './app.js'
+import app from './app.js' // Fixed path typo. This brings in your fully configured Express app!
 import http from 'http'
 import { Server } from 'socket.io'
 import cors from 'cors'
 import {} from 'dotenv/config'
 import mongoose from 'mongoose'
-import { createRoomLogic } from './controllers/trivia_controller.js'
 
-const server = http.createServer(app); 
+const server = http.createServer(app); // Passes your imported app directly here
 const io = new Server(server, {
   cors: {
     origin: "*", 
     methods: ["GET", "POST"]
   }
 });
+
+// Import your socket room handlers from your controller file
+import { createRoomLogic } from './controllers/trivia_controller.js'
 
 // Real-time room tracking state. Matches activeRooms object in controller
 const activeRooms = {};
@@ -32,26 +34,41 @@ io.on('connection', (socket) => {
   socket.on('joinRoom', ({ roomCode, playerName }) => {
     const code = roomCode.trim().toUpperCase();
 
-    // Safety Guard: Check if the room actually exists first
     if (activeRooms[code]) {
       socket.join(code);
 
-      const chosenName = playerName && playerName.trim() ? playerName : 'Host';
+      const chosenName=playerName && playerName.trim() ? playerName : 'Host'
 
-      const existingPlayer = activeRooms[code].players.find(p => p.id === socket.id);
+      const existingPlayer = activeRooms[code].plaoyers.find(p=> p.id === socket.id)
 
-      if (existingPlayer) {
-        // If the player connection is already tracked (like the Host), update their display name
-        existingPlayer.name = chosenName;
+      if(existingPlayer) {
+        existingPlayer.name = chosenName
       } else {
-        // If it's a brand new connection (a guest joining), push them to the array
-        activeRooms[code].players.push({ id: socket.id, name: chosenName });
+        activeRooms[code].players.push( { id: socket.id, name: chosenName })
       }
-      // Broadcast the clean synchronized list back out (Only emit ONCE here)
-      io.to(code).emit('roomUpdated', { roomCode: code, players: activeRooms[code].players });
+
+    // Broadcast the clean synchronized list back out
+        io.to(code).emit('roomUpdated', { roomCode: code, players: activeRooms[code].players });
+      } else {
+        socket.emit('errorMsg', 'Room not found. Please check the code.');
+      }
+
+      // // This stops React StrictMode double-mounting from creating duplicate "ghost" players.
+      const isAlreadyInRoom = activeRooms[code].players.some(p => p.id === socket.id);
+
+      if (!isAlreadyInRoom) {
+        const totalJoinedSoFar = activeRooms[code].players.length;
+        const chosenName = playerName && playerName.trim() ? playerName : `Player ${totalJoinedSoFar + 1}`;
+        const playerData = { id: socket.id, name: chosenName };
+        
+        activeRooms[code].players.push(playerData);
+      } else {
+        console.log(`Connection ${socket.id} already exists in room ${code}. Skipping duplicate entry calculation.`);
+      }
       
+      // Always emit the room updated message to make sure the UI stays completely synchronized
+      io.to(code).emit('roomUpdated', { roomCode: code, players: activeRooms[code].players });
     } else {
-      // Handles missing rooms gracefully without crashing the server node
       socket.emit('errorMsg', 'Room not found. Please check the code.');
     }
   });

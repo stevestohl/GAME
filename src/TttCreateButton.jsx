@@ -34,11 +34,12 @@ export default function TttCreateButton() {
             <Button 
                 type="button" 
                 variant='primary' 
-                size="lg" 
+                size="sm" 
                 onClick={handleHostTicTacToe} 
                 className="fw-semibold d-flex align-items-center justify-content-center h-100 py-0"
             >
-                Create Tic-Tac-Toe Room
+                Tic-Tac-Toe
+                ❎🅾️
             </Button>
         </Col>
     );

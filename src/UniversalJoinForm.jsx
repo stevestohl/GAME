@@ -1,65 +1,47 @@
+// UniversalJoinForm.jsx
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
 
-export default function UniversalJoinForm() {
-    const [roomCode, setRoomCode] = useState("");
-    const [playerName, setPlayerName] = useState(""); 
+export default function UniversalJoinForm({ playerName }) {
+    const [roomCode, setRoomCode] = useState('');
     const navigate = useNavigate();
 
     const handleJoinRoom = (e) => {
         e.preventDefault();
-        if (!roomCode) return alert("Jeff, enter a room!");
+        
+        // Safety guard clause in case someone bypasses HTML disabled state
+        if (roomCode.trim().length !== 4) return;
 
-        const cleanCode = roomCode.toUpperCase().trim();
-        const gameTypeIdentifier = cleanCode.charAt(0);
-        const nameParam = playerName.trim() || "Player 2";
+        const cleanCode = roomCode.trim().toUpperCase();
+        const finalGuestName = playerName && playerName.trim() ? playerName.trim() : 'Guest';
 
-        switch (gameTypeIdentifier) {
-            case 'T':
-                console.log(`Routing to Tic Tac Toe Room Code: ${cleanCode}`);
-                navigate(`/tictactoe?room=${cleanCode}&role=guest&name=${encodeURIComponent(nameParam)}`); 
-                break;
-            case 'R':
-                console.log(`Routing to Temple-Trivia: ${cleanCode}`);
-                navigate(`/trivia?room=${cleanCode}&role=guest&name=${encodeURIComponent(nameParam)}`); 
-                break;
-            case 'F':
-                console.log(`Routing to Future Game Room Code: ${cleanCode}`);
-                navigate(`/futureGame?room=${cleanCode}&role=guest&name=${encodeURIComponent(nameParam)}`); 
-                break;
-            default:
-                alert("Room not found! Blame Jeff.");
-        }
+        console.log(`Joining room ${cleanCode} as player: ${finalGuestName}`);
+        navigate(`/TriviaWaitingRoom?room=${cleanCode}&role=guest&name=${encodeURIComponent(finalGuestName)}`);
     };
 
     return (
-        <Form onSubmit={handleJoinRoom} className="mb-4 mx-auto" style={{ maxWidth: "320px" }}>
-            <Form.Group className='mb-3'>
-                <Form.Control
-                    type="text"
-                    placeholder="Enter 4-Letter Code"
-                    className="text-center fw-bold tracking-wider border-secondary"
-                    maxLength={4}
+        <Form onSubmit={handleJoinRoom} className="d-flex flex-column gap-2 mt-1">
+            <Form.Group controlId="formRoomCode">
+                <Form.Control 
+                    type="text" 
+                    placeholder="TITS" // Swapped to a classic 4-letter example code 
                     value={roomCode}
-                    onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+                    onChange={(e) => setRoomCode(e.target.value)}
+                    maxLength={4}
+                    className="text-center fw-bold tracking-widest text-uppercase"
+                    autoComplete="off"
                 />
             </Form.Group>
             
-
-            <Form.Group className='mb-3'> 
-                <Form.Control
-                    type='text'
-                    placeholder='Player Name'
-                    className='text-center fw-bold tracking-wider border-secondary'
-                    maxLength={12}
-                    value={playerName}
-                    onChange={(e) => setPlayerName(e.target.value)}              
-                />
-            </Form.Group>
-            
-           <Button variant='primary' type="submit" className="fw-bold w-100">
-                Enter Game
+            {/* The disabled attribute checks the real-time trimmed state length */}
+            <Button 
+                variant="primary" 
+                type="submit" 
+                className="fw-bold w-100"
+                disabled={roomCode.trim().length !== 4}
+            >
+                Join
             </Button>
         </Form>
     );
