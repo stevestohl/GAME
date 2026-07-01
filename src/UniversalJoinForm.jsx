@@ -16,8 +16,17 @@ export default function UniversalJoinForm({ playerName }) {
         const cleanCode = roomCode.trim().toUpperCase();
         const finalGuestName = playerName && playerName.trim() ? playerName.trim() : 'Guest';
 
+        const queryParams = `?room=${cleanCode}&role=guest&name=${encodeURIComponent(finalGuestName)}`
         console.log(`Joining room ${cleanCode} as player: ${finalGuestName}`);
-        navigate(`/TriviaWaitingRoom?room=${cleanCode}&role=guest&name=${encodeURIComponent(finalGuestName)}`);
+
+        //Routing Logic for Room codes based on first letter
+        if(cleanCode.startsWith('R')){
+            navigate(`/TriviaWaitingRoom${queryParams}`)
+        } else if (cleanCode.startsWith('T')) {
+            navigate(`/TicTacToe${queryParams}`)
+        } else {
+            alert("Wrong code, Jeff!")
+        }
     };
 
     return (
@@ -34,7 +43,6 @@ export default function UniversalJoinForm({ playerName }) {
                 />
             </Form.Group>
             
-            {/* The disabled attribute checks the real-time trimmed state length */}
             <Button 
                 variant="primary" 
                 type="submit" 
