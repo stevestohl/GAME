@@ -19,6 +19,11 @@ export default function UniversalJoinForm({ playerName }) {
         const queryParams = `?room=${cleanCode}&role=guest&name=${encodeURIComponent(finalGuestName)}`
         console.log(`Joining room ${cleanCode} as player: ${finalGuestName}`);
 
+        console.log("--- ENGINE CHECK ---");
+        console.log("Code starts with T?", cleanCode.startsWith('T'));
+        console.log("Code starts with R?", cleanCode.startsWith('R'));
+
+
         //Routing Logic for Room codes based on first letter
         if(cleanCode.startsWith('R')){
             navigate(`/TriviaWaitingRoom${queryParams}`)

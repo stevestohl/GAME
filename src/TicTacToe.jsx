@@ -109,7 +109,7 @@ export default function TictactoeRoom() {
                 <Card className="shadow-sm p-5 text-center" style={{ width: "100%", maxWidth: "450px" }}>
                     <h3 className="fw-bold text-danger mb-3">Room Not Found</h3>
                     <p className="text-muted mb-4">The room code <strong>{roomCode}</strong> does not exist. Double check the code and try again.</p>
-                    <Button variant="primary" href="/tictactoe/lobby">Back to Lobby</Button>
+                    <Button variant="primary" href="/home">Back</Button>
                 </Card>
             </Container>
         );
@@ -180,7 +180,7 @@ export default function TictactoeRoom() {
                 </div>
 
                 <div className="d-flex justify-content-between align-items-center mt-2">
-                    <Button variant="outline-secondary" size="sm" href="/tictactoe/lobby">
+                    <Button variant="outline-secondary" size="sm" href="/home">
                         Leave Room
                     </Button>
                     {(winner || isDraw) && (
