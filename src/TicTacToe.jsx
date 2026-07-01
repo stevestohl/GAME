@@ -4,14 +4,19 @@ import { useSearchParams } from 'react-router-dom';
 import { io } from 'socket.io-client'; //t
 
 // Connect to your backend server URL
-const socket = io('https://game-temple-backend.onrender.com', { autoConnect: false });
+
+const SOCKET_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000' 
+    : 'https://game-temple-backend.onrender.com';
+
+const socket = io(SOCKET_URL, { autoConnect: false });
 
 export default function TictactoeRoom() {
     const [searchParams] = useSearchParams()
 
-    const roomCode = queryParams.get('room') || 'UNKNOWN';
-    const playerRole = queryParams.get('role') || 'host'; 
-    const playerName = queryParams.get('name') || 'Anonymous';
+    const roomCode = searchParams.get('room') || 'UNKNOWN';
+    const playerRole = searchParams.get('role') || 'host'; 
+    const playerName = searchParams.get('name') || 'Anonymous';
 
     const [roomStatus, setRoomStatus] = useState('loading');
     const [opponentName, setOpponentName] = useState('');

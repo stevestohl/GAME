@@ -1,39 +1,39 @@
 import express from 'express'
 import {} from 'dotenv/config'
 import routes from './routes/routes.js'
-import connectDB from './db/connect.js'
-import bodyParser from 'body-parser'
 import path from 'path'
 import cors from 'cors'
 
 const app = express()
 
-app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-// I.O code 
+// 1. Global Security Middleware (Placed first)
 app.use(cors())
 
-// Prefix for backend API routes. Ensures they don't clash with front-end URLS
+// 2. Request Parsers (Native Express alternatives to body-parser)
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
+// 3. Serve Frontend Static Assets with Cache-Busting Headers
+app.use(express.static('dist', {
+  setHeaders: (res, path) => {
+    // 🚫 NEVER cache HTML files (forces browser to look for updates)
+    if (path.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    } else {
+      // ⏳ Cache compiled JS, CSS, and images for 1 year
+      res.setHeader('Cache-Control', 'public, max-age=31536000'); 
+    }
+  }
+}));
+
+// 4. Backend API Routes
 app.use('/api', routes)
 
-// Catch all for front-end requests
+// 5. CRITICAL FIX: Catch-all routes serve the compiled index.html out of 'dist'
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve('public/index.html'))
+    res.sendFile(path.resolve('dist/index.html'))
 })
-
-const PORT = process.env.PORT || 5000
-
-const init = async () => {
-    try {
-        await connectDB(process.env.DB)
-        console.log('Connected to the database...')
-        app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
-    } catch (err) {
-        console.log(err)
-    }
-}
-// init()
 
 export default app
