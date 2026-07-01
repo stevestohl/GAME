@@ -3,27 +3,33 @@ import {} from 'dotenv/config'
 import routes from './routes/routes.js'
 import path from 'path'
 import cors from 'cors'
+import { fileURLToPath } from 'url' // 🎣 Required for absolute pathing in ES Modules
 
 const app = express()
 
-// 1. Global Security Middleware (Placed first)
+// 🛠️ Set up absolute directory pathing
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// 1. Global Security Middleware
 app.use(cors())
 
-// 2. Request Parsers (Native Express alternatives to body-parser)
+// 2. Request Parsers
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// 3. Serve Frontend Static Assets with Cache-Busting Headers
-app.use(express.static('dist', {
-  setHeaders: (res, path) => {
-    // 🚫 NEVER cache HTML files (forces browser to look for updates)
-    if (path.endsWith('.html')) {
+// 3. Serve Frontend Static Assets with Cache Revalidation Headers
+app.use(express.static('public', {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      // 🚫 Aggressive bypass for HTML (forces browser to re-fetch the gatekeeper file)
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
     } else {
-      // ⏳ Cache compiled JS, CSS, and images for 1 year
-      res.setHeader('Cache-Control', 'public, max-age=31536000'); 
+      // 🔄 For your flat Webpack bundles: cache them, but ALWAYS verify changes with the server first
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Pragma', 'no-cache');
     }
   }
 }));
@@ -31,9 +37,15 @@ app.use(express.static('dist', {
 // 4. Backend API Routes
 app.use('/api', routes)
 
-// 5. CRITICAL FIX: Catch-all routes serve the compiled index.html out of 'dist'
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve('dist/index.html'))
+// 5. Catch-all route to serve your Webpack frontend safely
+app.get('*', (req, res, next) => {
+    // 🛡️ Skip this route if Chrome/browser requests system background assets (like .json or .ico files)
+    if (req.path.includes('.')) {
+        return next();
+    }
+
+    // 🗺️ Absolute mapping straight to your public/index.html file
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
 export default app
