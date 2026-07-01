@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { ref, set } from 'firebase/database';
-import { db } from './firebaseConfig.js';
+
+// 👑 HOST UTILITY: Moved outside the component so it can be exported safely!
+export const handleCreateTttRoom = (playerName, navigate) => {
+    const nameToUse = playerName.trim() || 'Host';
+    
+    // Generates 3 random characters
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomChars = ''; 
+
+    for (let i = 0; i < 3; i++) {
+        randomChars += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    const newRoomCode = `T${randomChars}`;
+
+    // Execute navigation
+    navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
+};
 
 export default function TttLobby() {
+    const [playerName, setPlayerName] = useState("");
     const [roomInput, setRoomInput] = useState("");
     const navigate = useNavigate();
 
-    const handleCreateRoom = async () => {
-        const randomChars = Math.random().toString(36).substring(2, 5).toUpperCase();
-        const newRoomCode = `T${randomChars}`;
-
-        await set(ref(db, `rooms/${newRoomCode}`), {
-            status: 'waiting',
-            hostName: 'Player 1',
-            guestName: '',
-            board: Array(9).fill(null),
-            isNext: true
-        });
-
-        navigate(`/tictactoe?room=${newRoomCode}&role=host&name=Player 1`);
-    };
-
+    // 🤝 GUEST: Validate code format and route to game page
     const handleJoinRoom = (e) => {
         e.preventDefault(); // Stops the page from reloading
         const cleanInput = roomInput.toUpperCase().trim();
+        const nameToUse = playerName.trim() || 'Guest';
 
         if (!cleanInput || cleanInput.length < 4) {
             return alert("Please enter a valid 4-letter room code!");
@@ -35,20 +38,37 @@ export default function TttLobby() {
             return alert("Whoops! Tic-Tac-Toe room codes must start with the letter 'T'.");
         }
         
-        navigate(`/tictactoe?room=${cleanInput}&role=guest&name=Player 2`);
+        navigate(`/tictactoe?room=${cleanInput}&role=guest&name=${encodeURIComponent(nameToUse)}`);
     };
 
     return (
         <Card.Body className='p-4'>
-            {/* The form submission handles the manual join */}
             <Form style={{ maxWidth: "340px" }} className="mx-auto" onSubmit={handleJoinRoom}>
                 
+                {/* Global Step 1: Identity */}
+                <Card.Title className="fw-bold fs-5 mb-3 text-secondary text-center">Enter Your Name</Card.Title>
+                <Form.Control
+                    type="text"
+                    placeholder="Your Name (e.g., Alex)"
+                    className="text-center fw-bold mb-4 size-lg"
+                    value={playerName}
+                    onChange={(e) => setPlayerName(e.target.value)}
+                />
+
+                <hr className="my-4" />
+
                 {/* Option A: Host a room */}
                 <Card.Title className="fw-bold fs-5 mb-2 text-secondary text-center">Start a Match</Card.Title>
                 <div className="d-grid mb-4">
-                    {/* CRITICAL FIX: added type="button" so hitting Enter doesn't trigger hosting */}
-                    <Button type="button" variant="primary" size="lg" className="fw-bold" onClick={handleCreateRoom}>
-                        👑 Host / Create New Room
+                    {/* ✅ FIXED: Now calls the helper above and passes state context */}
+                    <Button 
+                        type="button" 
+                        variant="primary" 
+                        size="lg" 
+                        className="fw-bold" 
+                        onClick={() => handleCreateTttRoom(playerName, navigate)}
+                    >
+                        Host / Create New Room
                     </Button>
                 </div>
 
@@ -65,7 +85,6 @@ export default function TttLobby() {
                         value={roomInput}
                         onChange={(e) => setRoomInput(e.target.value.toUpperCase())}
                     />
-                    {/* CRITICAL FIX: added type="submit" so it pairs perfectly with the form */}
                     <Button type="submit" variant="success" className="fw-bold px-3">
                         Join
                     </Button>

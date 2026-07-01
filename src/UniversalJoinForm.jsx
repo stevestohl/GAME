@@ -25,7 +25,7 @@ export default function UniversalJoinForm({ playerName }) {
             <Form.Group controlId="formRoomCode">
                 <Form.Control 
                     type="text" 
-                    placeholder="TITS" // Swapped to a classic 4-letter example code 
+                    placeholder="CODE" // Swapped to a classic 4-letter example code 
                     value={roomCode}
                     onChange={(e) => setRoomCode(e.target.value)}
                     maxLength={4}

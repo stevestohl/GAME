@@ -16,6 +16,11 @@ export default function TttCreateButton() {
         }
         const generatedCode = `T${randomChars}`;
 
+
+
+
+        
+
         // Provision the room in Firebase
         await set(ref(db, `rooms/${generatedCode}`), {
             status: 'waiting',

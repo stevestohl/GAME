@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, Badge, Button, Spinner } from 'react-bootstrap';
-import { ref, onValue, off, update } from 'firebase/database'; 
-import { db } from './firebaseConfig.js';
+import { useSearchParams } from 'react-router-dom';
+import { io } from 'socket.io-client'; //t
+
+// Connect to your backend server URL
+const socket = io('https://game-temple-backend.onrender.com', { autoConnect: false });
 
 export default function TictactoeRoom() {
-    const queryParams = new URLSearchParams(window.location.search);
+    const [searchParams] = useSearchParams()
+
     const roomCode = queryParams.get('room') || 'UNKNOWN';
     const playerRole = queryParams.get('role') || 'host'; 
     const playerName = queryParams.get('name') || 'Anonymous';
 
-    // OPTIMIZATION FIX: Initialize as 'loading' to prevent guest race conditions
     const [roomStatus, setRoomStatus] = useState('loading');
     const [opponentName, setOpponentName] = useState('');
     const [board, setBoard] = useState(Array(9).fill(''));
@@ -17,35 +20,34 @@ export default function TictactoeRoom() {
 
     const playerSymbol = playerRole === 'host' ? 'X' : 'O';
 
-    // 1. Listen to Firebase for live room updates
+    // Handle Socket Connection and Listeners
     useEffect(() => {
-        const roomRef = ref(db, `rooms/${roomCode}`);
+        socket.connect();
 
-        onValue(roomRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                setBoard(data.board || Array(9).fill(""));
-                setIsNext(data.isNext !== undefined ? data.isNext : true);
-                setRoomStatus(data.status || 'waiting');
-                setOpponentName(playerRole === 'host' ? data.guestName : data.hostName);
-            } else {
-                // If a user typed a room code that doesn't exist
-                setRoomStatus('not-found');
-            }
+        // Join the room
+        socket.emit('joinRoom', { roomCode, playerRole, playerName });
+
+        // Handle live room state syncs from the server
+        socket.on('roomUpdate', (roomData) => {
+            setBoard(roomData.board);
+            setIsNext(roomData.isNext);
+            setRoomStatus(roomData.status);
+            setOpponentName(playerRole === 'host' ? roomData.guestName : roomData.hostName);
         });
 
-        return () => off(roomRef);
-    }, [roomCode, playerRole]);
+        // Error handling if room doesn't exist
+        socket.on('roomNotFound', () => {
+            setRoomStatus('not-found');
+        });
 
-    // 2. Guest auto-joins ONLY after database confirms the room is actively waiting
-    useEffect(() => {
-        if (playerRole === 'guest' && roomStatus === 'waiting') {
-            update(ref(db, `rooms/${roomCode}`), {
-                status: 'playing',
-                guestName: playerName
-            });
-        }
-    }, [playerRole, roomStatus, roomCode, playerName]);
+        // Cleanup on unmount
+        return () => {
+            socket.off('roomUpdate');
+            socket.off('roomNotFound');
+            socket.disconnect();
+        };
+    }, [roomCode, playerRole, playerName]);
+
 
     // Win conditions calculator
     const calculateWinner = (squares) => {
@@ -74,17 +76,16 @@ export default function TictactoeRoom() {
         const newBoard = [...board];
         newBoard[index] = playerSymbol;
 
-        update(ref(db, `rooms/${roomCode}`), {
+        socket.emit('makeMove', {
+            roomCode,
             board: newBoard,
             isNext: !isNext
         });
     };
 
     const handleReset = () => {
-        update(ref(db, `rooms/${roomCode}`), {
-            board: Array(9).fill(''),
-            isNext: true
-        });
+        // Emit reset request to server
+        socket.emit('resetMatch', { roomCode }); // 
     };
 
     // UI State A: Loading Screen
@@ -97,7 +98,7 @@ export default function TictactoeRoom() {
     }
 
     // UI State B: Invalid Room Screen
-    if (roomStatus === 'not-found') {
+    if (roomStatus === 'not-found') { // 
         return (
             <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
                 <Card className="shadow-sm p-5 text-center" style={{ width: "100%", maxWidth: "450px" }}>
@@ -153,7 +154,6 @@ export default function TictactoeRoom() {
                     </h5>
                 </Card.Header>
 
-                {/* Grid UI */}
                 <div className="mx-auto mb-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 100px)', gap: '10px' }}>
                     {board.map((square, index) => (
                         <Button

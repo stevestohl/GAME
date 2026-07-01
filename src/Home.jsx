@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap'; 
+import { useNavigate } from 'react-router-dom';
 import gameLogo from "../src/assets/logos/Logo_Temple_Table.jpg";
-
+import { handleCreateTttRoom } from './TttLobby.jsx';
 import UniversalJoinForm from './UniversalJoinForm.jsx';
-import TttCreateButton from './TttCreateButton.jsx';
-import TriviaCreateButton from './TriviaCreateButton.jsx';
+import TriviaCreateButton from './TriviaCreateButton.jsx'; // 🧠 FIXED: Added missing import
 
 export default function Home() {
     const [playerName, setPlayerName] = useState('');
+    const navigate = useNavigate();
     
     return (
         <div className="d-flex justify-content-center align-items-center p-1">
@@ -16,9 +17,9 @@ export default function Home() {
                     GAME-TEMPLE
                 </Card.Header>
                 
-                <Card.Body className='p-2'>
+                <Card.Body className='p-1'>
                     {/* Logo wrapper */}
-                    <div className="mb-2 bg-light p-2 rounded-3 d-inline-block shadow-sm">
+                    <div className="mb-1 bg-light p-2 rounded-3 d-inline-block shadow-sm">
                         <img 
                             src={gameLogo}
                             alt="Game-Temple Logo"
@@ -27,7 +28,6 @@ export default function Home() {
                     </div>
 
                     {/* MULTIPLAYER ZONE CARD */}
-                    {/* IMPROVED: Changed from p-2 to p-3 for better all-around spacing */}
                     <Card className="border p-3 bg-body-secondary shadow-sm">
                         <Card.Title className="text-muted text-center fw-bold small mb-1 tracking-wider">
                             Multiplayer Games
@@ -48,19 +48,25 @@ export default function Home() {
 
                         {/* STEP 2: The Split Options Row */}
                         <Row className="g-2 alignment-stretch">
-                            {/* Left Column: Join Logic (Shrunk to xs={5} for a compact 4-character input) */}
+                            {/* Left Column: Join Logic */}
                             <Col xs={5} className="border-end pe-2 text-center">
                                 <Form.Label className="fw-bold text-muted small mb-1">Join Game</Form.Label>
                                 <UniversalJoinForm playerName={playerName} />
                             </Col>
 
-                            {/* Right Column: Create Logic (Expanded to xs={7} for side-by-side buttons) */}
+                            {/* Right Column: Create Logic */}
                             <Col xs={7} className="ps-2 text-center d-flex flex-column justify-content-between">
                                 <div>
                                     <Form.Label className="fw-bold text-muted small mb-1">Create Room</Form.Label>
 
                                     <div className="d-flex gap-2 justify-content-center">
-                                        <TttCreateButton />
+                                        <Button 
+                                            variant="primary" 
+                                            className="fw-bold text-nowrap"
+                                            onClick={() => handleCreateTttRoom(playerName, navigate)}
+                                        >
+                                            Tic-Tac-Toe
+                                        </Button>
                                         <TriviaCreateButton playerName={playerName} />
                                     </div>
                                 </div>
