@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-// 👑 HOST UTILITY: Moved outside the component so it can be exported safely!
 export const handleCreateTttRoom = (playerName, navigate) => {
     const nameToUse = playerName.trim() || 'Host';
     

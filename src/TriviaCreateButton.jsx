@@ -1,43 +1,16 @@
-import React, { useEffect } from 'react';
-import { Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import socket from './socket.js';
+// TriviaCreateButton.jsx
+import { socket } from './socket'; // Or wherever your client-side socket instance is initialized
 
+export function handleCreateTriviaRoom(playerName, navigate) {
+    const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
+    
+    console.log(`Requesting Trivia Room creation for: ${cleanName}`);
+    
+    // 📡 Fire the socket request to server.js
+    socket.emit('createRoom');
 
-// Connect to your backend environment
-
-export default function TriviaCreateButton({ playerName }) {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        // Listen for the server to successfully generate the room object
-        socket.on('roomCreated', ({ roomCode }) => {
-            console.log(`Trivia room ready: ${roomCode}`);
-            // Route the creator directly to the lobby as the host
-            navigate(`/TriviaWaitingRoom?room=${roomCode}&role=host&name=Host`);
-        });
-
-        // Clean up listeners on unmount
-        return () => {
-            socket.off('roomCreated');
-        };
-    }, [navigate]);
-
-    const handleCreateRoom = () => {
-        console.log("Emitting createRoom event for Trivia...");
-        socket.emit('createRoom');
-    };
-
-    return (
-        <Col xs={6} className='d-grid'>
-            <Button 
-                variant='primary' 
-                size="sm" 
-                onClick={handleCreateRoom} 
-                className="fw-semibold align-items-center justify-content-center"
-            >
-                Temple-Trivia
-            </Button>
-        </Col>
-    );
+    // 🎣 Listen for the server response acknowledgment to route them
+    socket.once('roomCreated', ({ roomCode, players }) => {
+        navigate(`/TriviaWaitingRoom?room=${roomCode}&role=host&name=${encodeURIComponent(cleanName)}`);
+    });
 }
