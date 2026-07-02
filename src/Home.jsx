@@ -11,17 +11,20 @@ export default function Home() {
     const navigate = useNavigate();
     
     return (
-        // Added responsive padding container for natural screen margins
-        <div className="d-flex justify-content-center align-items-center min-vh-100 p-3 bg-light">
+        <div 
+            className="d-flex justify-content-center align-items-center"
+            style={{ minHeight: 'calc(100vh - 56px)' }}
+            >
             <Card className='text-center shadow-lg border-0' style={{ maxWidth: "430px", width: "100%" }}>
-                <Card.Header as="h5" className="bg-transparent border-0 pt-4 pb-2 fw-black tracking-widest text-uppercase fs-6"
-                    style={{ color: '#94a3b8', letterSpacing: '0.2em' }}>
+                <Card.Header 
+                    as="h5" 
+                    className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
+                    style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
                     GAME-TEMPLE
                 </Card.Header>
                 
-                <Card.Body className='p-3'>
-                    {/* Logo wrapper */}
-                    <div className="mb-3 bg-light p-2 rounded-3 d-inline-block shadow-sm">
+                <Card.Body className='p-1'>
+                    <div className="my-1 bg-light p-2 rounded-3 d-inline-block shadow-sm">
                         <img 
                             src={gameLogo}
                             alt="Game-Temple Logo"
@@ -30,11 +33,11 @@ export default function Home() {
                     </div>
 
                     {/* MULTIPLAYER ZONE CARD */}
-                    <Card className="border p-3 bg-body-secondary shadow-sm rounded-3">
-                        <Card.Title className="text-muted text-center fw-bold small mb-2 tracking-wider text-uppercase">
-                            Multiplayer Zone
+                    <Card className="border p-1 bg-body-secondary shadow-sm rounded-3">
+                        <Card.Title className="text-muted text-center fw-bold small mb-1 tracking-wider">
+                            Multi-Player Games
                         </Card.Title>
-                        <hr className='my-2 text-muted opacity-25'/>
+                        <hr className='my-1 text-muted opacity-25'/>
                         
                         {/* STEP 1: Universal Player Name input */}
                         <Form.Group className="mb-3 text-start" controlId="formPlayerName">
@@ -50,61 +53,63 @@ export default function Home() {
                         </Form.Group>
 
                         {/* STEP 2: Mobile Stacked Layout (Join then Create) */}
-                        <Row className="g-3">
+                        <Row className="g-2">
                             {/* Top Block: Join Logic takes full width */}
                             <Col xs={12} className="text-start">
                                 <Form.Label className="fw-bold text-muted small mb-1 ps-1">Join Active Room</Form.Label>
                                 <UniversalJoinForm playerName={playerName} />
                             </Col>
 
-                            {/* Clean mobile visual separator */}
-                            <Col xs={12} className="d-flex align-items-center my-2">
+                            <Col xs={12} className="d-flex align-items-center mt-1 mb-0">
                                 <hr className="flex-grow-1 my-0 opacity-25" />
-                                <span className="mx-2 text-muted small fw-bold">OR</span>
+                                <span className="mx-2 my-2 text-muted small fw-bold">
+                                    OR <br />
+                                    Create New Room
+                                    </span>
                                 <hr className="flex-grow-1 my-0 opacity-25" />
                             </Col>
 
                             {/* Bottom Block: Create Logic takes full width */}
                             <Col xs={12} className="text-start">
-                                <Form.Label className="fw-bold text-muted small mb-2 ps-1">Create New Room</Form.Label>
                                 <div className="d-flex gap-2 w-100">
                                     <Button 
                                         variant="primary" 
-                                        className="fw-bold w-50 py-2 shadow-sm"
+                                        className="fw-bold w-50 py-1 shadow-sm"
                                         onClick={() => handleCreateTttRoom(playerName, navigate)}
                                     >
-                                        ❌⭕ Tic-Tac-Toe
+                                        Tic-Tac-Toe<br/>
+                                        ❌⭕ 
                                     </Button>
                                     
-                                    {/* 🎯 TRIVIA BUTTON IS NOW VISIBLE AND ADJUSTABLE HERE */}
+
                                     <Button 
-                                        variant="success" 
-                                        className="fw-bold w-50 py-2 shadow-sm text-white"
+                                        variant="primary" 
+                                        className="fw-bold w-50 py-1 shadow-sm text-white"
                                         onClick={() => handleCreateTriviaRoom(playerName, navigate)}
                                     >
-                                        🧠 Trivia
+                                        Trivia <br />
+                                        ❔❔
                                     </Button>
                                 </div>
                             </Col>
                         </Row>
                     </Card>
 
-                    <hr className='my-3 opacity-25'/>
 
-                    <Card.Title className='text-muted text-center fw-bold mb-2 tracking-wider text-uppercase small'>🍸 Bartending Single Player</Card.Title>
+                    {/* <Card.Title className='text-muted text-center fw-bold mb-2 tracking-wider text-uppercase small'>🍸 Bartending Single Player</Card.Title> */}
 
                     {/* Single Player / Reference Links Stacked cleanly for mobile screens */}
-                    <div className="d-flex flex-column gap-2">
-                        <Button variant='outline-primary' size="lg" href='/FlashcardGame' className="fw-semibold py-2 fs-6 text-start ps-3">
+                    {/* <div className="d-flex flex-column gap-2">
+                        <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold py-2 fs-6 text-start ps-3">
                             🍹 Drink Game
                         </Button>
-                        <Button variant='outline-primary' size="lg" href='/FlashcardsList' className="fw-semibold py-2 fs-6 text-start ps-3">
+                        <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold py-2 fs-6 text-start ps-3">
                             📋 Flashcard List
                         </Button>
-                        <Button variant='outline-primary' size="lg" href='/Flashcards' className="fw-semibold py-2 fs-6 text-start ps-3">
+                        <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold py-2 fs-6 text-start ps-3">
                             🗂️ Flashcards Deck
                         </Button>
-                    </div>
+                    </div> */}
 
                 </Card.Body>
             </Card>

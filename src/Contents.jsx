@@ -9,6 +9,7 @@ import FlashcardGame from './FlashcardGame.jsx'
 import Home from './Home.jsx'
 import TicTacToe from './TicTacToe.jsx'
 import TriviaWaitingRoom from './TriviaWaitingRoom.jsx'
+import BarHome from './BarHome.jsx'
 
 
 export default function Contents() {
@@ -20,6 +21,7 @@ export default function Contents() {
             {/* Core Game-Temple Routes */}
             <Route path="/home" element={<Home />} />
             <Route path="/tictactoe" element={<TicTacToe />} />
+            <Route path="/barhome" element={<BarHome />} />
             <Route path="/TriviaWaitingRoom" element={<TriviaWaitingRoom />} />
             
             {/* Flashcard & Tools Routes */}

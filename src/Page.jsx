@@ -3,6 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 import Contents from './Contents.jsx'
 import backgroundImage from './assets/logos/background.jpg'
 import logo from './assets/logos/temple.jpg'
+import martini from './assets/logos/MartiniLogo.jpg'
 
 
 function NavBar() {
@@ -10,18 +11,26 @@ function NavBar() {
     return (
             <Navbar 
                 variant="light" 
-                className='px-1 justify-content-center'
+                className='justify-content-center'
                 style={{ backgroundColor:"#e3f2fd" }}>
                 <Navbar.Brand href="/home">
                     <img
                         src={logo}
                         alt="Game-temple Logo"
                         style={{ maxWidth: "40px", height: "auto", mixBlendMode:"multiply"}}
-                    /></Navbar.Brand>
+                    />
+                    </Navbar.Brand>
                 <Nav>
-                    <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
+                    <Nav.Link href="/barhome">
+                            <img
+                                src={martini}
+                                alt="Martini Logo"
+                                style={{ maxWidth: "30px", height: "auto", mixBlendMode: "multiply" }}
+                            />
+                        </Nav.Link>
+                    {/* <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
                     <Nav.Link end href="/flashcardsList">Flascard List</Nav.Link>
-                    <Nav.Link end href="/flashcardGame">Flashcard Game</Nav.Link>
+                    <Nav.Link end href="/flashcardGame">Flashcard Game</Nav.Link> */}
                     {/* <Nav.Link end href="/tictactoe">Tic-Tac-Toe</Nav.Link> */}
                     {/* <Nav.Link end href="/report">Reports</Nav.Link> */}
                     {/* <Nav.Link end href="/employees">All Employees</Nav.Link> */}
