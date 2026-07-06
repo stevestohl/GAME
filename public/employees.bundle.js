@@ -1645,7 +1645,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TttLobby_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TttLobby.jsx */ "./src/TttLobby.jsx");
 /* harmony import */ var _UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UniversalJoinForm.jsx */ "./src/UniversalJoinForm.jsx");
 /* harmony import */ var _TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TriviaCreateButton.jsx */ "./src/TriviaCreateButton.jsx");
-/* harmony import */ var _assets_logos_AnimatedTempleLogo1_mp4__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logos/AnimatedTempleLogo1.mp4 */ "./src/assets/logos/AnimatedTempleLogo1.mp4");
+/* harmony import */ var _assets_logos_Game_Temple_Animated_gif__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logos/Game_Temple_Animated.gif */ "./src/assets/logos/Game_Temple_Animated.gif");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./funnyNames.js */ "./src/funnyNames.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1659,7 +1659,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
+ // Fixed import syntax
 
 function Home() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_funnyNames_js__WEBPACK_IMPORTED_MODULE_5__.getRandomFunnyName),
@@ -1690,12 +1690,9 @@ function Home() {
       className: "p-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("video", {
-      src: _assets_logos_AnimatedTempleLogo1_mp4__WEBPACK_IMPORTED_MODULE_4__,
-      autoPlay: true,
-      muted: true,
-      playsInline: true,
-      controls: true,
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      src: _assets_logos_Game_Temple_Animated_gif__WEBPACK_IMPORTED_MODULE_4__,
+      alt: "Animated Game-Temple Logo",
       style: {
         maxWidth: "130px",
         height: "auto"
@@ -2807,13 +2804,13 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /***/ }),
 
-/***/ "./src/assets/logos/AnimatedTempleLogo1.mp4":
-/*!**************************************************!*\
-  !*** ./src/assets/logos/AnimatedTempleLogo1.mp4 ***!
-  \**************************************************/
+/***/ "./src/assets/logos/Game_Temple_Animated.gif":
+/*!***************************************************!*\
+  !*** ./src/assets/logos/Game_Temple_Animated.gif ***!
+  \***************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "assets/media/AnimatedTempleLogo1.b0754590.mp4";
+module.exports = __webpack_require__.p + "fbf2b82e0fe29fbec363.gif";
 
 /***/ }),
 
