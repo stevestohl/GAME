@@ -1,3 +1,3131 @@
-/*! For license information please see employees.bundle.js.LICENSE.txt */
-(()=>{"use strict";var e,t,n,r={834:(e,t,n)=>{var r=n(7294),a=n(745),o=n(9925),l=n(98),i=n(8379),c=n(3025);function u(){var e=(0,i.s0)();return r.createElement(c.Z,null,r.createElement(c.Z.Header,{as:"h5"},"Filter "),r.createElement(c.Z.Body,null,r.createElement(c.Z.Text,null,"Currently Employed:"," ",r.createElement("select",{onChange:function(t){return e(t.target.value?"/employees?employed=".concat(t.target.value):"/employees")}},r.createElement("option",{value:""},"All"),r.createElement("option",{value:"true"},"Employed"),r.createElement("option",{value:"false"},"Not Employed")))))}var s=n(5005),m=n(1004),f=n(682),d=n(4051),p=n(1555);function y(e){return y="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},y(e)}function h(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function b(e,t){return b=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},b(e,t)}function g(e,t){if(t&&("object"===y(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return v(e)}function v(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function E(e){return E=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},E(e)}var w=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&b(e,t)}(i,e);var t,n,a,o,l=(a=i,o=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=E(a);if(o){var n=E(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return g(this,e)});function i(){var e;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,i),(e=l.call(this)).state={modalVisible:!1},e.handleSubmit=e.handleSubmit.bind(v(e)),e.handleShowModal=e.handleShowModal.bind(v(e)),e.handleHideModal=e.handleHideModal.bind(v(e)),e}return t=i,(n=[{key:"handleShowModal",value:function(){this.setState({modalVisible:!0})}},{key:"handleHideModal",value:function(){this.setState({modalVisible:!1})}},{key:"handleSubmit",value:function(e){var t=document.forms.employeeAdd,n={name:t.name.value,extension:t.ext.value,email:t.email.value,title:t.title.value};this.props.createEmployee(n),t.name.value="",t.ext.value="",t.email.value="",t.title.value="",this.setState({modalVisible:!1})}},{key:"render",value:function(){return r.createElement(r.Fragment,null,r.createElement("div",{className:"addEmployee"},r.createElement(s.Z,{variant:"primary",size:"zm",onClick:this.handleShowModal},"New Employee")),r.createElement(m.Z,{show:this.state.modalVisible,onHide:this.handleHideModal,centered:!0},r.createElement(m.Z.Header,{closeButton:!0},r.createElement(m.Z.Title,null,"Add New Employee")),r.createElement(m.Z.Body,null,r.createElement(f.Z,{fluid:!0},r.createElement("form",{name:"employeeAdd"},r.createElement(d.Z,null,r.createElement(p.Z,{md:3},"Name:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"name"}),r.createElement("br",null))),r.createElement(d.Z,null,r.createElement(p.Z,{md:3},"Extension:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"ext",maxLength:4}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:3},"Email"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"email"}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:3},"Title"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"title"})))))),r.createElement(m.Z.Footer,null,r.createElement(s.Z,{type:"submit",variant:"success",size:"sm",onClick:this.handleSubmit},"Add Employee"))))}}])&&h(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),i}(r.Component),x=n(7977),N=n(5147);function Z(e){return Z="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Z(e)}function S(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function k(e,t){return k=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},k(e,t)}function j(e,t){if(t&&("object"===Z(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return O(e)}function O(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function A(e){return A=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},A(e)}function C(e){var t=(0,i.TH)().search,n=new URLSearchParams(t).get("employed"),a=e.employees.filter((function(e){return null===n||String(e.currentlyEmployed)===n})).map((function(t){return r.createElement(T,{key:t._id,employee:t,deleteEmployee:e.deleteEmployee})}));return r.createElement(c.Z,null,r.createElement(c.Z.Header,{as:"h5"},"All Employees ",r.createElement(x.Z,{bg:"secondary"},a.length)),r.createElement(c.Z.Body,null,r.createElement(c.Z.Text,null,r.createElement(N.Z,{striped:!0,size:"sm"},r.createElement("thead",null,r.createElement("tr",null,r.createElement("th",null,"Name"),r.createElement("th",null,"Extension"),r.createElement("th",null,"Email"),r.createElement("th",null,"Title"),r.createElement("th",null,"Date Hired"),r.createElement("th",null,"Currently Employed?"),r.createElement("th",null))),r.createElement("tbody",null,a)))))}function T(e){return r.createElement("tr",null,r.createElement("td",null,r.createElement(i.rU,{to:"/edit/".concat(e.employee._id)},e.employee.name)),r.createElement("td",null,e.employee.extension),r.createElement("td",null,e.employee.email),r.createElement("td",null,e.employee.title),r.createElement("td",null,e.employee.dateHired.toDateString()),r.createElement("td",null,e.employee.currentlyEmployed?"Yes":"No"),r.createElement("td",null,r.createElement(s.Z,{variant:"danger",size:"sm",onClick:function(){e.deleteEmployee(e.employee._id)}},"X")))}var L=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&k(e,t)}(i,e);var t,n,a,o,l=(a=i,o=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=A(a);if(o){var n=A(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return j(this,e)});function i(){var e;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,i),(e=l.call(this)).state={employees:[]},e.createEmployee=e.createEmployee.bind(O(e)),e.deleteEmployee=e.deleteEmployee.bind(O(e)),e}return t=i,(n=[{key:"componentDidMount",value:function(){this.loadData()}},{key:"loadData",value:function(){var e=this;fetch("/api/employees").then((function(e){return e.json()})).then((function(t){t.employees.forEach((function(e){e.dateHired=new Date(e.dateHired)})),e.setState({employees:t.employees})})).catch((function(e){console.log(e)}))}},{key:"createEmployee",value:function(e){var t=this;fetch("/api/employees",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)}).then((function(e){return e.json()})).then((function(e){e.employee.dateHired=new Date(e.employee.dateHired);var n=t.state.employees.concat(e.employee);t.setState({employees:n}),console.log("Total count of employees:",n.length)})).catch((function(e){console.log(e)}))}},{key:"deleteEmployee",value:function(e){var t=this;fetch("/api/employees/".concat(e),{method:"DELETE"}).then((function(e){e.ok?t.loadData():console.log("Failed to delete employee.")}))}},{key:"render",value:function(){return r.createElement(r.Fragment,null,r.createElement(w,{createEmployee:this.createEmployee}),r.createElement(u,null),r.createElement(C,{employees:this.state.employees,deleteEmployee:this.deleteEmployee}))}}])&&S(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),i}(r.Component);function P(){return r.createElement(c.Z,null,r.createElement(c.Z.Header,{as:"h5"},"Reports"),r.createElement(c.Z.Body,null,r.createElement(c.Z.Text,null,"This is a place holder for the employee report.")))}var _=n(9861);function R(e){return R="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},R(e)}function D(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function I(e,t){return I=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},I(e,t)}function H(e,t){if(t&&("object"===R(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return M(e)}function M(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function B(e){return B=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},B(e)}var G=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&I(e,t)}(i,e);var t,n,a,o,l=(a=i,o=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=B(a);if(o){var n=B(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return H(this,e)});function i(){var e;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,i),(e=l.call(this)).state={employee:[],alertVisible:!1,alertColor:"success",alertMessage:""},e.handleSubmit=e.handleSubmit.bind(M(e)),e}return t=i,(n=[{key:"componentDidMount",value:function(){this.loadData()}},{key:"loadData",value:function(){var e=this,t=window.location.pathname.split("/"),n=t[t.length-1];n&&"edit"!==n&&""!==n?fetch("/api/employees/".concat(n)).then((function(e){if(!e.ok)throw new Error("HTTP error! status: ".concat(e.status));return e.json()})).then((function(t){var n=t.employee||t;n&&n.dateHired?(n.dateHired=new Date(n.dateHired),e.setState({employee:n})):console.error("Employee data format received from API is invalid:",t)})).catch((function(e){return console.error("Error loading employee data:",e)})):console.error("Could not parse a valid ID from the URL pathname:",window.location.pathname)}},{key:"handleSubmit",value:function(e){var t=this;e.preventDefault();var n=e.target,r=n.id.value,a=n.name.value,o=n.extension.value,l=n.email.value,i=n.title.value,c=n.currentlyEmployed.checked,u="/api/employees/".concat(r);fetch(u,{method:"PATCH",headers:{Accept:"application/json","Content-Type":"application/json;charset=UTF-8"},body:JSON.stringify({name:a,extension:o,email:l,title:i,currentlyEmployed:c})}).then((function(e){if(!e.ok)throw new Error("Failed to update employee.");return e.json()})).then((function(e){t.setState({alertVisible:!0,alertColor:"success",alertMessage:e.message||"Employee updated successfully!"})})).catch((function(e){console.error("Error updating employee:",e),alert("Error updating employee. Check console for details.")}))}},{key:"render",value:function(){var e=this,t=this.state.employee;return t?r.createElement(c.Z,null,r.createElement(c.Z.Header,{as:"h5"},"Edit ",this.state.employee.name),r.createElement(c.Z.Body,null,r.createElement(c.Z.Text,null,r.createElement(f.Z,{fluid:!0},r.createElement("form",{name:"employeeUpdate",onSubmit:this.handleSubmit},r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"ID"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"id",value:t._id,readOnly:!0}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"Name:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"name",defaultValue:t.name}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"Extension:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",maxLength:"4",name:"extension",defaultValue:t.extension}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"Email:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"email",defaultValue:t.email}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"Title:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"title",defaultValue:t.title}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"Date Hired:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"text",name:"dateHired",value:t.dateHired?t.dateHired.toDateString():"",readOnly:!0}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},"Currently Employed:"),r.createElement(p.Z,{md:"auto"},r.createElement("input",{type:"checkbox",name:"currentlyEmployed",defaultChecked:t.currentlyEmployed}))),r.createElement(d.Z,null,r.createElement(p.Z,{md:2},r.createElement(s.Z,{type:"submit",variant:"primary",size:"sm",value:"Update",className:"mt-3"},"Update Employee"))),r.createElement(d.Z,{className:"mt-3"},r.createElement(p.Z,null,r.createElement(_.Z,{variant:this.state.alertColor,show:this.state.alertVisible,onClose:function(){return e.setState({alertVisible:!1})},dismissible:!0},this.state.alertMessage)))))))):r.createElement("h2",null,"Loading...")}}])&&D(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),i}(r.Component),W=n(7833);function F(e){return F="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},F(e)}function U(){U=function(){return e};var e={},t=Object.prototype,n=t.hasOwnProperty,r="function"==typeof Symbol?Symbol:{},a=r.iterator||"@@iterator",o=r.asyncIterator||"@@asyncIterator",l=r.toStringTag||"@@toStringTag";function i(e,t,n){return Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}),e[t]}try{i({},"")}catch(e){i=function(e,t,n){return e[t]=n}}function c(e,t,n,r){var a=t&&t.prototype instanceof m?t:m,o=Object.create(a.prototype),l=new N(r||[]);return o._invoke=function(e,t,n){var r="suspendedStart";return function(a,o){if("executing"===r)throw new Error("Generator is already running");if("completed"===r){if("throw"===a)throw o;return{value:void 0,done:!0}}for(n.method=a,n.arg=o;;){var l=n.delegate;if(l){var i=E(l,n);if(i){if(i===s)continue;return i}}if("next"===n.method)n.sent=n._sent=n.arg;else if("throw"===n.method){if("suspendedStart"===r)throw r="completed",n.arg;n.dispatchException(n.arg)}else"return"===n.method&&n.abrupt("return",n.arg);r="executing";var c=u(e,t,n);if("normal"===c.type){if(r=n.done?"completed":"suspendedYield",c.arg===s)continue;return{value:c.arg,done:n.done}}"throw"===c.type&&(r="completed",n.method="throw",n.arg=c.arg)}}}(e,n,l),o}function u(e,t,n){try{return{type:"normal",arg:e.call(t,n)}}catch(e){return{type:"throw",arg:e}}}e.wrap=c;var s={};function m(){}function f(){}function d(){}var p={};i(p,a,(function(){return this}));var y=Object.getPrototypeOf,h=y&&y(y(Z([])));h&&h!==t&&n.call(h,a)&&(p=h);var b=d.prototype=m.prototype=Object.create(p);function g(e){["next","throw","return"].forEach((function(t){i(e,t,(function(e){return this._invoke(t,e)}))}))}function v(e,t){function r(a,o,l,i){var c=u(e[a],e,o);if("throw"!==c.type){var s=c.arg,m=s.value;return m&&"object"==F(m)&&n.call(m,"__await")?t.resolve(m.__await).then((function(e){r("next",e,l,i)}),(function(e){r("throw",e,l,i)})):t.resolve(m).then((function(e){s.value=e,l(s)}),(function(e){return r("throw",e,l,i)}))}i(c.arg)}var a;this._invoke=function(e,n){function o(){return new t((function(t,a){r(e,n,t,a)}))}return a=a?a.then(o,o):o()}}function E(e,t){var n=e.iterator[t.method];if(void 0===n){if(t.delegate=null,"throw"===t.method){if(e.iterator.return&&(t.method="return",t.arg=void 0,E(e,t),"throw"===t.method))return s;t.method="throw",t.arg=new TypeError("The iterator does not provide a 'throw' method")}return s}var r=u(n,e.iterator,t.arg);if("throw"===r.type)return t.method="throw",t.arg=r.arg,t.delegate=null,s;var a=r.arg;return a?a.done?(t[e.resultName]=a.value,t.next=e.nextLoc,"return"!==t.method&&(t.method="next",t.arg=void 0),t.delegate=null,s):a:(t.method="throw",t.arg=new TypeError("iterator result is not an object"),t.delegate=null,s)}function w(e){var t={tryLoc:e[0]};1 in e&&(t.catchLoc=e[1]),2 in e&&(t.finallyLoc=e[2],t.afterLoc=e[3]),this.tryEntries.push(t)}function x(e){var t=e.completion||{};t.type="normal",delete t.arg,e.completion=t}function N(e){this.tryEntries=[{tryLoc:"root"}],e.forEach(w,this),this.reset(!0)}function Z(e){if(e){var t=e[a];if(t)return t.call(e);if("function"==typeof e.next)return e;if(!isNaN(e.length)){var r=-1,o=function t(){for(;++r<e.length;)if(n.call(e,r))return t.value=e[r],t.done=!1,t;return t.value=void 0,t.done=!0,t};return o.next=o}}return{next:S}}function S(){return{value:void 0,done:!0}}return f.prototype=d,i(b,"constructor",d),i(d,"constructor",f),f.displayName=i(d,l,"GeneratorFunction"),e.isGeneratorFunction=function(e){var t="function"==typeof e&&e.constructor;return!!t&&(t===f||"GeneratorFunction"===(t.displayName||t.name))},e.mark=function(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,d):(e.__proto__=d,i(e,l,"GeneratorFunction")),e.prototype=Object.create(b),e},e.awrap=function(e){return{__await:e}},g(v.prototype),i(v.prototype,o,(function(){return this})),e.AsyncIterator=v,e.async=function(t,n,r,a,o){void 0===o&&(o=Promise);var l=new v(c(t,n,r,a),o);return e.isGeneratorFunction(n)?l:l.next().then((function(e){return e.done?e.value:l.next()}))},g(b),i(b,l,"Generator"),i(b,a,(function(){return this})),i(b,"toString",(function(){return"[object Generator]"})),e.keys=function(e){var t=[];for(var n in e)t.push(n);return t.reverse(),function n(){for(;t.length;){var r=t.pop();if(r in e)return n.value=r,n.done=!1,n}return n.done=!0,n}},e.values=Z,N.prototype={constructor:N,reset:function(e){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach(x),!e)for(var t in this)"t"===t.charAt(0)&&n.call(this,t)&&!isNaN(+t.slice(1))&&(this[t]=void 0)},stop:function(){this.done=!0;var e=this.tryEntries[0].completion;if("throw"===e.type)throw e.arg;return this.rval},dispatchException:function(e){if(this.done)throw e;var t=this;function r(n,r){return l.type="throw",l.arg=e,t.next=n,r&&(t.method="next",t.arg=void 0),!!r}for(var a=this.tryEntries.length-1;a>=0;--a){var o=this.tryEntries[a],l=o.completion;if("root"===o.tryLoc)return r("end");if(o.tryLoc<=this.prev){var i=n.call(o,"catchLoc"),c=n.call(o,"finallyLoc");if(i&&c){if(this.prev<o.catchLoc)return r(o.catchLoc,!0);if(this.prev<o.finallyLoc)return r(o.finallyLoc)}else if(i){if(this.prev<o.catchLoc)return r(o.catchLoc,!0)}else{if(!c)throw new Error("try statement without catch or finally");if(this.prev<o.finallyLoc)return r(o.finallyLoc)}}}},abrupt:function(e,t){for(var r=this.tryEntries.length-1;r>=0;--r){var a=this.tryEntries[r];if(a.tryLoc<=this.prev&&n.call(a,"finallyLoc")&&this.prev<a.finallyLoc){var o=a;break}}o&&("break"===e||"continue"===e)&&o.tryLoc<=t&&t<=o.finallyLoc&&(o=null);var l=o?o.completion:{};return l.type=e,l.arg=t,o?(this.method="next",this.next=o.finallyLoc,s):this.complete(l)},complete:function(e,t){if("throw"===e.type)throw e.arg;return"break"===e.type||"continue"===e.type?this.next=e.arg:"return"===e.type?(this.rval=this.arg=e.arg,this.method="return",this.next="end"):"normal"===e.type&&t&&(this.next=t),s},finish:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var n=this.tryEntries[t];if(n.finallyLoc===e)return this.complete(n.completion,n.afterLoc),x(n),s}},catch:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var n=this.tryEntries[t];if(n.tryLoc===e){var r=n.completion;if("throw"===r.type){var a=r.arg;x(n)}return a}}throw new Error("illegal catch attempt")},delegateYield:function(e,t,n){return this.delegate={iterator:Z(e),resultName:t,nextLoc:n},"next"===this.method&&(this.arg=void 0),s}},e}function z(e,t,n,r,a,o,l){try{var i=e[o](l),c=i.value}catch(e){return void n(e)}i.done?t(c):Promise.resolve(c).then(r,a)}function V(e){return function(){var t=this,n=arguments;return new Promise((function(r,a){var o=e.apply(t,n);function l(e){z(o,r,a,l,i,"next",e)}function i(e){z(o,r,a,l,i,"throw",e)}l(void 0)}))}}function Y(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||function(e,t){if(e){if("string"==typeof e)return $(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?$(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function $(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function J(){var e=Y((0,r.useState)([]),2),t=e[0],n=e[1],a=Y((0,r.useState)(0),2),o=a[0],l=a[1],i=Y((0,r.useState)(!1),2),c=i[0],u=i[1],s=Y((0,r.useState)("default"),2),m=s[0],f=s[1];(0,r.useEffect)((function(){function e(){return(e=V(U().mark((function e(){var t,r;return U().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,fetch("/api/drinks");case 2:return t=e.sent,e.next=5,t.json();case 5:r=e.sent,n(r.drinks||[]);case 7:case"end":return e.stop()}}),e)})))).apply(this,arguments)}!function(){e.apply(this,arguments)}()}),[]);var d=t.filter((function(e){return"default"!==m||!0===e.isDefault})),p=d[o],y=function(e){f(e),l(0),u(!1)};return r.createElement(r.Fragment,null,r.createElement("style",null,"\n        .flashcard-wrapper {\n          display: flex;\n          flex-direction: column;\n          justify-content: center;\n          align-items: center;\n          height: calc(100vh - 80px);\n          color: rgb(203, 143, 252);\n          font-family: Arial;\n        }\n\n        /* Radio Toggle Container Style */\n        .filter-container {\n          background: rgba(255, 255, 255, 0.9);\n          padding: 10px 20px;\n          border-radius: 30px;\n          margin-bottom: 25px;\n          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);\n          color: #333;\n          display: flex;\n          gap: 20px;\n        }\n\n        #card {\n          position: relative;\n          width: 400px;\n          height: 250px;\n          perspective: 1000px;\n        }\n\n        .front, .back {\n          position: absolute;\n          width: 100%;\n          height: 100%;\n          border-radius: 20px;\n          background: #3c89fd;\n          color: white;\n          display: flex;\n          justify-content: center;\n          align-items: center;\n          backface-visibility: hidden;\n          transition: transform 0.6s;\n          padding: 20px;\n          text-align: center;\n          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);\n        }\n\n        .back {\n          transform: rotateY(180deg);\n          flex-direction: column; /* Changed to column to sit title above list nicely */\n          justify-content: center;\n          align-items: center;\n          text-align: left;\n          gap: 10px;\n        }\n\n        .recipe-list {\n          margin: 0;\n          padding-left: 20px;\n        }\n\n        #card.flipped .front {\n          transform: rotateY(180deg);\n        }\n\n        #card.flipped .back {\n          transform: rotateY(0deg);\n        }\n\n        .controls {\n          margin-top: 20px;\n          display: flex;\n          gap: 20px;\n        }\n\n        button {\n          padding: 10px 20px;\n          border: none;\n          background: white;\n          color: #3c89fd;\n          border-radius: 8px;\n          font-size: 1rem;\n          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);\n          cursor: pointer;\n        }\n      "),r.createElement("div",{className:"flashcard-wrapper"},r.createElement("div",{className:"filter-container"},r.createElement(W.Z.Check,{type:"radio",label:"Default Cards",name:"filterMode",id:"filter-default",checked:"default"===m,onChange:function(){return y("default")}}),r.createElement(W.Z.Check,{type:"radio",label:"All Cards",name:"filterMode",id:"filter-all",checked:"all"===m,onChange:function(){return y("all")}})),r.createElement("div",{id:"card",className:c?"flipped":""},r.createElement("div",{className:"front"},0===d.length?"No cards found...":p?p.drinkName:"Loading..."),r.createElement("div",{className:"back"},p&&r.createElement(r.Fragment,null,r.createElement("div",{className:"recipe-title fw-bold border-bottom pb-1 mb-1"},p.drinkName),r.createElement("ul",{className:"recipe-list"},p.recipe?p.recipe.split(",").map((function(e,t){return r.createElement("li",{key:t},e.trim())})):r.createElement("li",null,"No recipe found"))))),r.createElement("div",{className:"controls"},r.createElement("button",{onClick:function(){0!==d.length&&(l((function(e){return(e-1+d.length)%d.length})),u(!1))}},"◀"),r.createElement("button",{onClick:function(){return u(!c)}},"Flip"),r.createElement("button",{onClick:function(){0!==d.length&&(l((function(e){return(e+1)%d.length})),u(!1))}},"▶"))))}var q=n(6379);function Q(e){return Q="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Q(e)}function X(){X=function(){return e};var e={},t=Object.prototype,n=t.hasOwnProperty,r="function"==typeof Symbol?Symbol:{},a=r.iterator||"@@iterator",o=r.asyncIterator||"@@asyncIterator",l=r.toStringTag||"@@toStringTag";function i(e,t,n){return Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}),e[t]}try{i({},"")}catch(e){i=function(e,t,n){return e[t]=n}}function c(e,t,n,r){var a=t&&t.prototype instanceof m?t:m,o=Object.create(a.prototype),l=new N(r||[]);return o._invoke=function(e,t,n){var r="suspendedStart";return function(a,o){if("executing"===r)throw new Error("Generator is already running");if("completed"===r){if("throw"===a)throw o;return{value:void 0,done:!0}}for(n.method=a,n.arg=o;;){var l=n.delegate;if(l){var i=E(l,n);if(i){if(i===s)continue;return i}}if("next"===n.method)n.sent=n._sent=n.arg;else if("throw"===n.method){if("suspendedStart"===r)throw r="completed",n.arg;n.dispatchException(n.arg)}else"return"===n.method&&n.abrupt("return",n.arg);r="executing";var c=u(e,t,n);if("normal"===c.type){if(r=n.done?"completed":"suspendedYield",c.arg===s)continue;return{value:c.arg,done:n.done}}"throw"===c.type&&(r="completed",n.method="throw",n.arg=c.arg)}}}(e,n,l),o}function u(e,t,n){try{return{type:"normal",arg:e.call(t,n)}}catch(e){return{type:"throw",arg:e}}}e.wrap=c;var s={};function m(){}function f(){}function d(){}var p={};i(p,a,(function(){return this}));var y=Object.getPrototypeOf,h=y&&y(y(Z([])));h&&h!==t&&n.call(h,a)&&(p=h);var b=d.prototype=m.prototype=Object.create(p);function g(e){["next","throw","return"].forEach((function(t){i(e,t,(function(e){return this._invoke(t,e)}))}))}function v(e,t){function r(a,o,l,i){var c=u(e[a],e,o);if("throw"!==c.type){var s=c.arg,m=s.value;return m&&"object"==Q(m)&&n.call(m,"__await")?t.resolve(m.__await).then((function(e){r("next",e,l,i)}),(function(e){r("throw",e,l,i)})):t.resolve(m).then((function(e){s.value=e,l(s)}),(function(e){return r("throw",e,l,i)}))}i(c.arg)}var a;this._invoke=function(e,n){function o(){return new t((function(t,a){r(e,n,t,a)}))}return a=a?a.then(o,o):o()}}function E(e,t){var n=e.iterator[t.method];if(void 0===n){if(t.delegate=null,"throw"===t.method){if(e.iterator.return&&(t.method="return",t.arg=void 0,E(e,t),"throw"===t.method))return s;t.method="throw",t.arg=new TypeError("The iterator does not provide a 'throw' method")}return s}var r=u(n,e.iterator,t.arg);if("throw"===r.type)return t.method="throw",t.arg=r.arg,t.delegate=null,s;var a=r.arg;return a?a.done?(t[e.resultName]=a.value,t.next=e.nextLoc,"return"!==t.method&&(t.method="next",t.arg=void 0),t.delegate=null,s):a:(t.method="throw",t.arg=new TypeError("iterator result is not an object"),t.delegate=null,s)}function w(e){var t={tryLoc:e[0]};1 in e&&(t.catchLoc=e[1]),2 in e&&(t.finallyLoc=e[2],t.afterLoc=e[3]),this.tryEntries.push(t)}function x(e){var t=e.completion||{};t.type="normal",delete t.arg,e.completion=t}function N(e){this.tryEntries=[{tryLoc:"root"}],e.forEach(w,this),this.reset(!0)}function Z(e){if(e){var t=e[a];if(t)return t.call(e);if("function"==typeof e.next)return e;if(!isNaN(e.length)){var r=-1,o=function t(){for(;++r<e.length;)if(n.call(e,r))return t.value=e[r],t.done=!1,t;return t.value=void 0,t.done=!0,t};return o.next=o}}return{next:S}}function S(){return{value:void 0,done:!0}}return f.prototype=d,i(b,"constructor",d),i(d,"constructor",f),f.displayName=i(d,l,"GeneratorFunction"),e.isGeneratorFunction=function(e){var t="function"==typeof e&&e.constructor;return!!t&&(t===f||"GeneratorFunction"===(t.displayName||t.name))},e.mark=function(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,d):(e.__proto__=d,i(e,l,"GeneratorFunction")),e.prototype=Object.create(b),e},e.awrap=function(e){return{__await:e}},g(v.prototype),i(v.prototype,o,(function(){return this})),e.AsyncIterator=v,e.async=function(t,n,r,a,o){void 0===o&&(o=Promise);var l=new v(c(t,n,r,a),o);return e.isGeneratorFunction(n)?l:l.next().then((function(e){return e.done?e.value:l.next()}))},g(b),i(b,l,"Generator"),i(b,a,(function(){return this})),i(b,"toString",(function(){return"[object Generator]"})),e.keys=function(e){var t=[];for(var n in e)t.push(n);return t.reverse(),function n(){for(;t.length;){var r=t.pop();if(r in e)return n.value=r,n.done=!1,n}return n.done=!0,n}},e.values=Z,N.prototype={constructor:N,reset:function(e){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach(x),!e)for(var t in this)"t"===t.charAt(0)&&n.call(this,t)&&!isNaN(+t.slice(1))&&(this[t]=void 0)},stop:function(){this.done=!0;var e=this.tryEntries[0].completion;if("throw"===e.type)throw e.arg;return this.rval},dispatchException:function(e){if(this.done)throw e;var t=this;function r(n,r){return l.type="throw",l.arg=e,t.next=n,r&&(t.method="next",t.arg=void 0),!!r}for(var a=this.tryEntries.length-1;a>=0;--a){var o=this.tryEntries[a],l=o.completion;if("root"===o.tryLoc)return r("end");if(o.tryLoc<=this.prev){var i=n.call(o,"catchLoc"),c=n.call(o,"finallyLoc");if(i&&c){if(this.prev<o.catchLoc)return r(o.catchLoc,!0);if(this.prev<o.finallyLoc)return r(o.finallyLoc)}else if(i){if(this.prev<o.catchLoc)return r(o.catchLoc,!0)}else{if(!c)throw new Error("try statement without catch or finally");if(this.prev<o.finallyLoc)return r(o.finallyLoc)}}}},abrupt:function(e,t){for(var r=this.tryEntries.length-1;r>=0;--r){var a=this.tryEntries[r];if(a.tryLoc<=this.prev&&n.call(a,"finallyLoc")&&this.prev<a.finallyLoc){var o=a;break}}o&&("break"===e||"continue"===e)&&o.tryLoc<=t&&t<=o.finallyLoc&&(o=null);var l=o?o.completion:{};return l.type=e,l.arg=t,o?(this.method="next",this.next=o.finallyLoc,s):this.complete(l)},complete:function(e,t){if("throw"===e.type)throw e.arg;return"break"===e.type||"continue"===e.type?this.next=e.arg:"return"===e.type?(this.rval=this.arg=e.arg,this.method="return",this.next="end"):"normal"===e.type&&t&&(this.next=t),s},finish:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var n=this.tryEntries[t];if(n.finallyLoc===e)return this.complete(n.completion,n.afterLoc),x(n),s}},catch:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var n=this.tryEntries[t];if(n.tryLoc===e){var r=n.completion;if("throw"===r.type){var a=r.arg;x(n)}return a}}throw new Error("illegal catch attempt")},delegateYield:function(e,t,n){return this.delegate={iterator:Z(e),resultName:t,nextLoc:n},"next"===this.method&&(this.arg=void 0),s}},e}function K(e,t,n,r,a,o,l){try{var i=e[o](l),c=i.value}catch(e){return void n(e)}i.done?t(c):Promise.resolve(c).then(r,a)}function ee(e){return function(){var t=this,n=arguments;return new Promise((function(r,a){var o=e.apply(t,n);function l(e){K(o,r,a,l,i,"next",e)}function i(e){K(o,r,a,l,i,"throw",e)}l(void 0)}))}}function te(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),n.push.apply(n,r)}return n}function ne(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{};t%2?te(Object(n),!0).forEach((function(t){re(e,t,n[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):te(Object(n)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))}))}return e}function re(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function ae(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function oe(e){var t,n,a=e.show,o=e.onHide,l=e.onDrinkAdded,i=(t=(0,r.useState)({drinkName:"",recipe:"",garnish:"",createdByAnon:!0}),n=2,function(e){if(Array.isArray(e))return e}(t)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(t,n)||function(e,t){if(e){if("string"==typeof e)return ae(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?ae(e,t):void 0}}(t,n)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()),c=i[0],u=i[1];function f(e){var t=e.target,n=t.name,r=t.value,a=t.type,o=t.checked;u((function(e){return ne(ne({},e),{},re({},n,"checkbox"===a?o:r))}))}function d(){return(d=ee(X().mark((function e(){var t,n;return X().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,fetch("/api/drinks",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(c)});case 2:return t=e.sent,e.next=5,t.json();case 5:n=e.sent,l(n.drink,n.msg),u({drinkName:"",recipe:"",garnish:"",createdByAnon:!1}),o();case 9:case"end":return e.stop()}}),e)})))).apply(this,arguments)}return r.createElement(m.Z,{show:a,onHide:o,centered:!0},r.createElement(m.Z.Header,{closeButton:!0},r.createElement(m.Z.Title,null,"Add New Drink")),r.createElement(m.Z.Body,null,r.createElement(W.Z,null,r.createElement(W.Z.Group,{className:"mb-3"},r.createElement(W.Z.Label,null,"Drink Name"),r.createElement(W.Z.Control,{type:"text",name:"drinkName",value:c.drinkName,onChange:f})),r.createElement(W.Z.Group,{className:"mb-3"},r.createElement(W.Z.Label,null,"Recipe"),r.createElement(W.Z.Control,{type:"text",name:"recipe",value:c.recipe,onChange:f})),r.createElement(W.Z.Group,{className:"mb-3"},r.createElement(W.Z.Label,null,"Garnish"),r.createElement(W.Z.Control,{type:"text",name:"garnish",value:c.garnish,onChange:f})),r.createElement(W.Z.Group,{className:"mb-3"},r.createElement(W.Z.Check,{type:"checkbox",label:"Anonymous?",name:"createdByAnon",checked:c.createdByAnon,onChange:f})))),r.createElement(m.Z.Footer,null,r.createElement(s.Z,{variant:"success",size:"sm",onClick:function(){return d.apply(this,arguments)}},"Add Drink")))}function le(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),n.push.apply(n,r)}return n}function ie(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{};t%2?le(Object(n),!0).forEach((function(t){ce(e,t,n[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):le(Object(n)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))}))}return e}function ce(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function ue(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||function(e,t){if(e){if("string"==typeof e)return se(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?se(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function se(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function me(e){var t=e.show,n=e.drinkData,a=e.onHide,o=e.onDrinkUpdated,l=ue((0,r.useState)(""),2),i=l[0],c=l[1],u=ue((0,r.useState)(""),2),f=u[0],d=u[1],p=ue((0,r.useState)(""),2),y=p[0],h=p[1],b=ue((0,r.useState)(!1),2),g=b[0],v=b[1],E=ue((0,r.useState)(!1),2),w=E[0],x=E[1];return(0,r.useEffect)((function(){n&&(c(n.drinkName||""),d(n.recipe||""),h(n.garnish||""),v(n.createdByAnon||!1))}),[n]),r.createElement(m.Z,{show:t,onHide:a,centered:!0},r.createElement(m.Z.Header,{closeButton:!0},r.createElement(m.Z.Title,{className:"fw-bold text-secondary"},"Edit: ",null==n?void 0:n.drinkName)),r.createElement(W.Z,{onSubmit:function(e){e.preventDefault(),x(!0);var t={drinkName:i.trim(),recipe:f.trim(),garnish:y.trim(),createdByAnon:g};fetch("/api/drinks/".concat(n._id),{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(t)}).then((function(e){if(!e.ok)throw new Error("Failed to update the drink.");return e.json()})).then((function(e){var r=e.drink||ie(ie({},n),t);o(r)})).catch((function(e){console.error("Error updating drink:",e),alert("Something went wrong updating the drink. Check the console.")})).finally((function(){x(!1)}))}},r.createElement(m.Z.Body,null,r.createElement(W.Z.Group,{className:"mb-3",controlId:"editDrinkName"},r.createElement(W.Z.Label,{className:"fw-semibold"},"Drink Name"),r.createElement(W.Z.Control,{type:"text",required:!0,value:i,onChange:function(e){return c(e.target.value)}})),r.createElement(W.Z.Group,{className:"mb-3",controlId:"editDrinkRecipe"},r.createElement(W.Z.Label,{className:"fw-semibold"},"Drink Recipe"),r.createElement(W.Z.Control,{as:"textarea",rows:3,required:!0,value:f,onChange:function(e){return d(e.target.value)}})),r.createElement(W.Z.Group,{className:"mb-3",controlId:"editDrinkGarnish"},r.createElement(W.Z.Label,{className:"fw-semibold"},"Garnish"),r.createElement(W.Z.Control,{type:"text",value:y,onChange:function(e){return h(e.target.value)}})),r.createElement(W.Z.Group,{className:"mb-3",controlId:"editCreatedByAnon"},r.createElement(W.Z.Check,{type:"checkbox",label:"Post as Anonymous User",checked:g,onChange:function(e){return v(e.target.checked)}}))),r.createElement(m.Z.Footer,{className:"bg-light"},r.createElement(s.Z,{variant:"outline-secondary",onClick:a,disabled:w},"Cancel"),r.createElement(s.Z,{variant:"primary",type:"submit",disabled:w},w?"Saving...":"Save Changes"))))}function fe(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||de(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function de(e,t){if(e){if("string"==typeof e)return pe(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?pe(e,t):void 0}}function pe(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function ye(){var e=fe((0,r.useState)(""),2),t=e[0],n=e[1],a=fe((0,r.useState)(!1),2),o=a[0],l=a[1],i=fe((0,r.useState)([]),2),u=i[0],m=i[1],f=fe((0,r.useState)(!1),2),d=f[0],p=f[1],y=fe((0,r.useState)(null),2),h=y[0],b=y[1];(0,r.useEffect)((function(){fetch("/api/drinks").then((function(e){return e.json()})).then((function(e){return m(e.drinks||[])})).catch((function(e){return console.error("Error fetching drinks:",e)}))}),[]);var g=u.map((function(e){return r.createElement("tr",{key:e._id},r.createElement("td",{className:"align-middle"},e.isDefault?r.createElement("span",{className:"fw-semibold text-dark"},e.drinkName):r.createElement(s.Z,{variant:"link",className:"p-0 text-decoration-none fw-semibold text-start",onClick:function(){return b(e)}},e.drinkName)),r.createElement("td",{className:"align-middle"},e.recipe),r.createElement("td",{className:"align-middle"},e.garnish),r.createElement("td",{className:"align-middle"},e.isDefault?"Default":e.createdByAnon?"Anonymous":"User"),r.createElement("td",{className:"text-center align-middle"},r.createElement(s.Z,{variant:e.isDefault?"secondary":"danger",size:"sm",disabled:e.isDefault,onClick:function(){return t=e._id,m((function(e){return e.filter((function(e){return e._id!==t}))})),n("Drink removed successfully!"),l(!0),void fetch("/api/drinks/".concat(t),{method:"DELETE"}).then((function(e){return e.json()})).catch((function(e){return console.error("Error deleting drink:",e)}));var t}},"X")))}));return r.createElement(r.Fragment,null,r.createElement(c.Z,{className:"shadow-lg border-0"},r.createElement(c.Z.Header,{as:"h5",className:"d-flex justify-content-between align-items-center"},r.createElement("div",null,"Flashcards List ",r.createElement(x.Z,{bg:"secondary"},g.length)),r.createElement(s.Z,{variant:"primary",size:"sm",onClick:function(){return p(!0)}},"Add Drink")),r.createElement(c.Z.Body,null,r.createElement(N.Z,{striped:!0,size:"sm",responsive:!0},r.createElement("thead",null,r.createElement("tr",null,r.createElement("th",null,"Drink Name"),r.createElement("th",null,"Drink Recipe"),r.createElement("th",null,"Garnish"),r.createElement("th",null,"Created"),r.createElement("th",{className:"text-center"},"Delete"))),r.createElement("tbody",null,g)))),r.createElement(oe,{show:d,onHide:function(){return p(!1)},onDrinkAdded:function(e,t){m((function(t){return[].concat(function(e){if(Array.isArray(e))return pe(e)}(n=t)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(n)||de(n)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}(),[e]);var n})),n(t),l(!0)}}),h&&r.createElement(me,{show:Boolean(h),drinkData:h,onHide:function(){return b(null)},onDrinkUpdated:function(e){m((function(t){return t.map((function(t){return t._id===e._id?e:t}))})),n("Drink updated successfully!"),l(!0),b(null)}}),r.createElement(q.Z,{onClose:function(){return l(!1)},show:o,delay:3e3,autohide:!0,bg:"success",style:{position:"fixed",top:"20px",right:"20px",zIndex:9999}},r.createElement(q.Z.Header,null,r.createElement("strong",{className:"me-auto"},"Success")),r.createElement(q.Z.Body,{className:"text-white"},t)))}function he(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||be(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function be(e,t){if(e){if("string"==typeof e)return ge(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?ge(e,t):void 0}}function ge(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function ve(){var e=he((0,r.useState)([]),2),t=e[0],n=e[1],a=he((0,r.useState)(1),2),o=a[0],l=a[1],i=he((0,r.useState)(0),2),u=i[0],m=i[1],f=he((0,r.useState)([]),2),d=f[0],p=f[1],y=he((0,r.useState)(null),2),h=y[0],b=y[1],g=he((0,r.useState)("default"),2),v=g[0],E=g[1];(0,r.useEffect)((function(){fetch("/api/drinks").then((function(e){return e.json()})).then((function(e){return n(e.drinks||[])}))}),[]);var w=t.filter((function(e){return"default"!==v||!0===e.isDefault}));function x(e){E(e),l(1),m(0)}return(0,r.useEffect)((function(){w.length>0&&function(){if(0!==w.length){var e,t=(e=w,function(e){if(Array.isArray(e))return ge(e)}(e)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(e)||be(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()).sort((function(){return Math.random()-.5})),n=Math.min(6,t.length),r=t.slice(0,n),a=r[Math.floor(Math.random()*r.length)];p(r),b(a)}}()}),[t,v,o]),0===w.length?r.createElement("div",{className:"d-flex justify-content-center align-items-center p-3"},r.createElement(c.Z,{className:"text-center p-4 shadow-lg border-0",style:{maxWidth:"450px",width:"100%"}},r.createElement("p",{className:"mb-2 fw-semibold text-muted"},"No items found in this deck."),r.createElement(s.Z,{variant:"primary",onClick:function(){return x("all")}},"Switch to All Decks"))):h?r.createElement("div",{className:"d-flex justify-content-center align-items-center p-3"},r.createElement(c.Z,{className:"text-center shadow-lg border-0",style:{maxWidth:"450px",width:"100%"}},r.createElement(c.Z.Header,{as:"h5",className:"bg-primary text-white py-3 fw-bold tracking-wide d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2"},r.createElement("div",null,"FLASHCARD QUIZ"),r.createElement("div",{className:"d-flex gap-3 fs-6 fw-normal text-start"},r.createElement(W.Z.Check,{type:"radio",label:"Default Cards",name:"gameFilter",id:"game-default",checked:"default"===v,onChange:function(){return x("default")},className:"text-white custom-game-radio"}),r.createElement(W.Z.Check,{type:"radio",label:"All Cards",name:"gameFilter",id:"game-all",checked:"all"===v,onChange:function(){return x("all")},className:"text-white custom-game-radio"}))),r.createElement("h4",{className:"mt-3"},"Round ",o," / ",10),r.createElement("h5",null,"Score: ",u),r.createElement("div",{className:"d-flex flex-wrap justify-content-center gap-2 px-2 my-2"},d.map((function(e){return r.createElement(s.Z,{key:e._id,variant:"outline-primary",style:{width:"45%"},onClick:function(){return function(e){var t=u;e._id===h._id&&(m((function(e){return e+1})),t+=1),o<10?l((function(e){return e+1})):(alert("Game over! You scored ".concat(t," out of ").concat(10)),l(1),m(0))}(e)}},e.drinkName)}))),r.createElement(c.Z,{className:"m-3 p-2 bg-light border-0 shadow-sm rounded-3"},r.createElement(c.Z.Header,{className:"bg-transparent border-0 py-1"},r.createElement("h6",{className:"fw-bold mb-0 text-secondary text-start"},"Recipe:")),r.createElement(c.Z.Body,{className:"py-2"},r.createElement("p",{style:{whiteSpace:"pre-line"},className:"ps-2 mb-0 text-muted text-start fs-6"},h.recipe?h.recipe.replaceAll(",",",\n"):"No details listed."))))):r.createElement("div",{className:"text-center mt-5 text-white"},"Loading game...")}const Ee=n.p+"e031c451c8fbf4ce86cf.jpg";function we(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function xe(e){var t,n,a=e.playerName,o=(t=(0,r.useState)(""),n=2,function(e){if(Array.isArray(e))return e}(t)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(t,n)||function(e,t){if(e){if("string"==typeof e)return we(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?we(e,t):void 0}}(t,n)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()),l=o[0],c=o[1],u=(0,i.s0)();return r.createElement(W.Z,{onSubmit:function(e){if(e.preventDefault(),4===l.trim().length){var t=l.trim().toUpperCase(),n=a&&a.trim()?a.trim():"Guest",r="?room=".concat(t,"&role=guest&name=").concat(encodeURIComponent(n));console.log("Joining room ".concat(t," as player: ").concat(n)),console.log("--- ENGINE CHECK ---"),console.log("Code starts with T?",t.startsWith("T")),console.log("Code starts with R?",t.startsWith("R")),t.startsWith("R")?u("/TriviaWaitingRoom".concat(r)):t.startsWith("T")?u("/TicTacToe".concat(r)):alert("Wrong code, Jeff!")}},className:"d-flex flex-column gap-2 mt-1"},r.createElement(W.Z.Group,{controlId:"formRoomCode"},r.createElement(W.Z.Control,{type:"text",placeholder:"CODE",value:l,onChange:function(e){return c(e.target.value)},maxLength:4,className:"text-center fw-bold tracking-widest text-uppercase",autoComplete:"off"})),r.createElement(s.Z,{variant:"primary",type:"submit",className:"fw-bold w-100",disabled:4!==l.trim().length},"Join"))}var Ne=n(7359),Ze="localhost"===window.location.hostname?"http://localhost:5000":"https://game-temple-backend.onrender.com";const Se=(0,Ne.io)(Ze,{transports:["websocket","polling"]});function ke(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function je(){var e,t,n=(e=(0,r.useState)(""),t=2,function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||function(e,t){if(e){if("string"==typeof e)return ke(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?ke(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()),a=n[0],o=n[1],l=(0,i.s0)();return r.createElement("div",{className:"d-flex justify-content-center align-items-center",style:{minHeight:"calc(100vh - 56px)"}},r.createElement(c.Z,{className:"text-center shadow-lg border-0",style:{maxWidth:"430px",width:"100%"}},r.createElement(c.Z.Header,{as:"h5",className:"d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",style:{backgroundColor:"#014eb6",color:"#f1f2f5",letterSpacing:"0.2em"}},"GAME-TEMPLE"),r.createElement(c.Z.Body,{className:"p-1"},r.createElement("div",{className:"my-1 bg-light p-2 rounded-3 d-inline-block shadow-sm"},r.createElement("img",{src:Ee,alt:"Game-Temple Logo",style:{maxWidth:"130px",height:"auto"}})),r.createElement(c.Z,{className:"border p-1 bg-body-secondary shadow-sm rounded-3"},r.createElement(c.Z.Title,{className:"text-muted text-center fw-bold small mb-1 tracking-wider"},"Multi-Player Games"),r.createElement("hr",{className:"my-1 text-muted opacity-25"}),r.createElement(W.Z.Group,{className:"mb-3 text-start",controlId:"formPlayerName"},r.createElement(W.Z.Label,{className:"fw-bold text-muted small mb-1"},"Player Name"),r.createElement(W.Z.Control,{type:"text",placeholder:"Anita Break",value:a,onChange:function(e){return o(e.target.value)},autoComplete:"off",className:"py-2"})),r.createElement(d.Z,{className:"g-2"},r.createElement(p.Z,{xs:12,className:"text-start"},r.createElement(W.Z.Label,{className:"fw-bold text-muted small mb-1 ps-1"},"Join Active Room"),r.createElement(xe,{playerName:a})),r.createElement(p.Z,{xs:12,className:"d-flex align-items-center mt-1 mb-0"},r.createElement("hr",{className:"flex-grow-1 my-0 opacity-25"}),r.createElement("span",{className:"mx-2 my-2 text-muted small fw-bold"},"OR ",r.createElement("br",null),"Create New Room"),r.createElement("hr",{className:"flex-grow-1 my-0 opacity-25"})),r.createElement(p.Z,{xs:12,className:"text-start"},r.createElement("div",{className:"d-flex gap-2 w-100"},r.createElement(s.Z,{variant:"primary",className:"fw-bold w-50 py-1 shadow-sm",onClick:function(){return function(e,t){for(var n=e.trim()||"Host",r="ABCDEFGHIJKLMNOPQRSTUVWXYZ",a="",o=0;o<3;o++)a+=r.charAt(Math.floor(Math.random()*r.length));var l="T".concat(a);t("/tictactoe?room=".concat(l,"&role=host&name=").concat(encodeURIComponent(n)))}(a,l)}},"Tic-Tac-Toe",r.createElement("br",null),"❌⭕"),r.createElement(s.Z,{variant:"primary",className:"fw-bold w-50 py-1 shadow-sm text-white",onClick:function(){return function(e,t){var n=e&&e.trim()?e.trim():"Host";console.log("Requesting Trivia Room creation for: ".concat(n)),console.log("Is socket connected?",Se.connected),Se.connected||(console.warn("Socket is disconnected! Attempting to reconnect..."),Se.connect()),Se.emit("createRoom"),Se.once("roomCreated",(function(e){var r=e.roomCode;e.players,console.log("Room created successfully! Code: ".concat(r)),t("/TriviaWaitingRoom?room=".concat(r,"&role=host&name=").concat(encodeURIComponent(n)))}))}(a,l)}},"Trivia ",r.createElement("br",null),"❔❔"))))))))}var Oe=n(6968);function Ae(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||Ce(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function Ce(e,t){if(e){if("string"==typeof e)return Te(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?Te(e,t):void 0}}function Te(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}var Le="localhost"===window.location.hostname?"http://localhost:5000":"https://game-temple-backend.onrender.com",Pe=(0,Ne.io)(Le,{autoConnect:!1});function _e(){var e=Ae((0,i.lr)(),1)[0],t=e.get("room")||"UNKNOWN",n=e.get("role")||"host",a=e.get("name")||"Anonymous",o=Ae((0,r.useState)("loading"),2),l=o[0],u=o[1],m=Ae((0,r.useState)(""),2),d=m[0],p=m[1],y=Ae((0,r.useState)(Array(9).fill("")),2),h=y[0],b=y[1],g=Ae((0,r.useState)(!0),2),v=g[0],E=g[1],w="host"===n?"X":"O";(0,r.useEffect)((function(){return Pe.connect(),Pe.emit("joinRoom",{roomCode:t,playerRole:n,playerName:a}),Pe.on("roomUpdate",(function(e){b(e.board),E(e.isNext),u(e.status),p("host"===n?e.guestName:e.hostName)})),Pe.on("roomNotFound",(function(){u("not-found")})),function(){Pe.off("roomUpdate"),Pe.off("roomNotFound"),Pe.disconnect()}}),[t,n,a]);var N=function(e){for(var t=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]],n=0;n<t.length;n++){var r=Ae(t[n],3),a=r[0],o=r[1],l=r[2];if(e[a]&&e[a]===e[o]&&e[a]===e[l])return e[a]}return null}(h),Z=!N&&h.every((function(e){return""!==e})),S=(v?"X":"O")===w;return"loading"===l?r.createElement(f.Z,{className:"d-flex justify-content-center align-items-center",style:{minHeight:"80vh"}},r.createElement(Oe.Z,{animation:"border",variant:"primary"})):"not-found"===l?r.createElement(f.Z,{className:"d-flex justify-content-center align-items-center",style:{minHeight:"80vh"}},r.createElement(c.Z,{className:"shadow-sm p-5 text-center",style:{width:"100%",maxWidth:"450px"}},r.createElement("h3",{className:"fw-bold text-danger mb-3"},"Room Not Found"),r.createElement("p",{className:"text-muted mb-4"},"The room code ",r.createElement("strong",null,t)," does not exist. Double check the code and try again."),r.createElement(s.Z,{variant:"primary",href:"/home"},"Back"))):"waiting"===l?r.createElement(f.Z,{className:"d-flex justify-content-center align-items-center",style:{minHeight:"80vh"}},r.createElement(c.Z,{className:"shadow-sm p-5 text-center",style:{width:"100%",maxWidth:"450px"}},r.createElement("h3",{className:"fw-bold mb-4"},"Room Created!"),r.createElement("h1",{className:"display-4 fw-bold text-primary mb-4"},t),r.createElement("p",{className:"text-muted mb-4"},"Share this code with your opponent. The game will automatically start when they join."),r.createElement("div",{className:"d-flex justify-content-center align-items-center gap-2"},r.createElement(Oe.Z,{animation:"border",variant:"primary",size:"sm"}),r.createElement("span",{className:"fw-bold"},"Waiting for opponent...")))):r.createElement(f.Z,{className:"d-flex justify-content-center align-items-center",style:{minHeight:"80vh"}},r.createElement(c.Z,{className:"shadow-sm p-4 text-center",style:{width:"100%",maxWidth:"450px"}},r.createElement(c.Z.Header,{className:"bg-transparent border-0 mb-3"},r.createElement("h3",{className:"fw-bold text-primary mb-1"},"Room: ",t),r.createElement("div",{className:"d-flex justify-content-center gap-2 mb-2"},r.createElement(x.Z,{bg:"secondary"},"Name: ",a),r.createElement(x.Z,{bg:"host"===n?"info":"warning",className:"text-dark"},"Role: ",n.toUpperCase()," (",w,")"),d&&r.createElement(x.Z,{bg:"success"},"vs ",d)),r.createElement("hr",null),r.createElement("h5",{className:"fw-bold my-3"},N&&r.createElement("span",{className:"text-success"},"🎉 Winner: ",N,"!"),Z&&r.createElement("span",{className:"text-muted"},"🤝 It's a Draw!"),!N&&!Z&&(S?r.createElement("span",{className:"text-danger"},"🔥 Your Turn (",w,")"):r.createElement("span",{className:"text-muted"},"⏳ Waiting for opponent...")))),r.createElement("div",{className:"mx-auto mb-4",style:{display:"grid",gridTemplateColumns:"repeat(3, 100px)",gap:"10px"}},h.map((function(e,n){return r.createElement(s.Z,{key:n,variant:"light",className:"border d-flex align-items-center justify-content-center fw-bold fs-1",style:{width:"100px",height:"100px",cursor:h[n]||N||!S?"not-allowed":"pointer",color:"X"===e?"#0d6efd":"#dc3545",backgroundColor:e?"#f8f9fa":"#ffffff"},onClick:function(){return function(e){if(!(h[e]||N||Z)&&S){var n=function(e){if(Array.isArray(e))return Te(e)}(r=h)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(r)||Ce(r)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}();n[e]=w,Pe.emit("makeMove",{roomCode:t,board:n,isNext:!v})}var r}(n)}},e)}))),r.createElement("div",{className:"d-flex justify-content-between align-items-center mt-2"},r.createElement(s.Z,{variant:"outline-secondary",size:"sm",href:"/home"},"Leave Room"),(N||Z)&&r.createElement(s.Z,{variant:"success",size:"sm",onClick:function(){Pe.emit("resetMatch",{roomCode:t})}},"Reset Match"))))}var Re=n(3068);function De(e){var t=e.roomCode,n=e.isHost;return r.createElement(f.Z,{className:"mt-5 d-flex justify-content-center"},r.createElement(c.Z,{className:"shadow-sm w-100",style:{maxWidth:"420px"}},r.createElement(c.Z.Body,{className:"text-center"},r.createElement(c.Z.Title,{className:"fs-3 fw-bold mb-3 text-primary"},"Game Rules"),r.createElement(c.Z.Text,{className:"text-start fs-6 mb-4 p-3 bg-light rounded border"},r.createElement("strong",null,"How to play Temple-Trivia:"),r.createElement("br",null),r.createElement("br",null),"1. The game consists of ",r.createElement("strong",null,"3 rounds"),".",r.createElement("br",null),"2. Read the question carefully.",r.createElement("br",null),"3. You earn ",r.createElement("strong",null,"1 point")," per correct answer.",r.createElement("br",null),"4. The scoreboard shifts instantly once everyone logs their vote!"),n?r.createElement(s.Z,{variant:"success",className:"w-100 fw-bold py-2 shadow-sm",onClick:function(){Se.emit("nextRound",{roomCode:t})}},"Begin Round 1"):r.createElement("div",{className:"text-muted small py-2 border border-dashed rounded bg-light"},"⏳ Waiting for the host to launch the first question..."))))}function Ie(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function He(e){var t=e.roomCode,n=e.currentQuestion,a=e.playerAnswers,o=a.hasOwnProperty(Se.id),l=(0,r.useMemo)((function(){if(!n)return[];var e,t=Array.isArray(n.incorrect_answers)?n.incorrect_answers.flat():[];return[].concat((e=t,function(e){if(Array.isArray(e))return Ie(e)}(e)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(e)||function(e,t){if(e){if("string"==typeof e)return Ie(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?Ie(e,t):void 0}}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()),[n.correct_answer]).sort((function(e,t){return e.localeCompare(t)}))}),[n]);return r.createElement(f.Z,{className:"mt-5 d-flex justify-content-center"},r.createElement(c.Z,{className:"shadow-sm w-100",style:{maxWidth:"460px"}},r.createElement(c.Z.Body,{className:"text-center"},r.createElement(c.Z.Text,{className:"text-muted small mb-1 uppercase tracking-wider fw-bold"},"Question Station"),r.createElement(c.Z.Title,{className:"fs-4 fw-bold mb-4 text-dark"},null==n?void 0:n.question),r.createElement("div",{className:"d-grid gap-2.5"},l.map((function(e,n){var l=a[Se.id]===e;return r.createElement(s.Z,{key:n,variant:l?"primary":"outline-secondary",disabled:o,onClick:function(){return n=e,void(o||Se.emit("submitAnswers",{roomCode:t,answer:n}));var n},className:"py-2.5 fw-semibold text-start px-3 shadow-sm"},e)}))),o&&r.createElement("div",{className:"text-muted small py-2 border border-dashed rounded bg-light mt-4 animate-pulse"},"⏳ Answer locked! Waiting for remaining players..."))))}function Me(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function Be(e){var t,n=e.roomCode,a=e.players,o=e.isHost,l=(t=a,function(e){if(Array.isArray(e))return Me(e)}(t)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(t)||function(e,t){if(e){if("string"==typeof e)return Me(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?Me(e,t):void 0}}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()).sort((function(e,t){return(t.score||0)-(e.score||0)}));return r.createElement(f.Z,{className:"mt-5 d-flex justify-content-center"},r.createElement(c.Z,{className:"shadow-sm w-100",style:{maxWidth:"420px"}},r.createElement(c.Z.Body,{className:"text-center"},r.createElement(c.Z.Title,{className:"fs-3 fw-bold mb-1 text-primary"},"Round Standings"),r.createElement(c.Z.Text,{className:"text-muted small mb-4"},"Temple-Trivia Leaderboard"),r.createElement(Re.Z,{className:"mb-4 text-start border border-secondary rounded shadow-inner"},l.map((function(e,t){return r.createElement(Re.Z.Item,{key:e.id,className:"d-flex justify-content-between align-items-center py-2.5 fw-semibold"},r.createElement("div",{className:"d-flex align-items-center"},r.createElement("span",{className:"text-muted me-2 small"},"#",t+1),r.createElement("span",null,e.name),e.id===Se.id&&r.createElement(x.Z,{bg:"info",className:"ms-2 text-dark font-normal"},"You")),r.createElement(x.Z,{bg:"success",className:"fs-6 py-1.5 px-2.5 rounded-pill"},e.score||0," pts"))}))),o?r.createElement(s.Z,{variant:"primary",className:"w-100 fw-bold py-2 shadow-sm",onClick:function(){Se.emit("nextRound",{roomCode:n})}},"Advance Stage ➡️"):r.createElement("div",{className:"text-muted small py-2 border border-dashed rounded bg-light"},"⏳ Waiting for host to load the next round..."))))}function Ge(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var r,a,o=[],l=!0,i=!1;try{for(n=n.call(e);!(l=(r=n.next()).done)&&(o.push(r.value),!t||o.length!==t);l=!0);}catch(e){i=!0,a=e}finally{try{l||null==n.return||n.return()}finally{if(i)throw a}}return o}}(e,t)||function(e,t){if(e){if("string"==typeof e)return We(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?We(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function We(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function Fe(){var e=Ge((0,i.lr)(),1)[0],t=(0,i.s0)(),n=e.get("room"),a=e.get("name")||"Anonymous",o=e.get("role")||"guest",l=Ge((0,r.useState)([]),2),u=l[0],m=l[1],d=Ge((0,r.useState)(""),2),p=d[0],y=d[1],h=Ge((0,r.useState)(null),2),b=h[0],g=h[1];if((0,r.useEffect)((function(){if(n)return Se.emit("joinRoom",{roomCode:n,playerName:a}),Se.on("roomUpdated",(function(e){console.log("Lobby updated from server:",e),m(e.players)})),Se.on("roomStateUpdated",(function(e){console.log("Gameplay state update:",e),g(e)})),Se.on("errorMsg",(function(e){y(e)})),function(){Se.off("roomUpdated"),Se.off("roomStateUpdated"),Se.off("errorMsg")};y("No room code provided!")}),[n,a]),p)return r.createElement(f.Z,{className:"mt-5 text-center",style:{maxWidth:"400px"}},r.createElement(_.Z,{variant:"danger"},p),r.createElement(s.Z,{variant:"primary",onClick:function(){return t("/")}},"Back to Home"));if(b)switch(b.phase){case"RULES":return r.createElement(De,{roomCode:n,isHost:"host"===o});case"QUESTION":return r.createElement(He,{roomCode:n,currentQuestion:b.questions[b.currentRound],playerAnswers:b.playerAnswers});case"SCOREBOARD":return r.createElement(Be,{roomCode:n,players:b.players,isHost:"host"===o});case"FINAL_RESULTS":return r.createElement(f.Z,{className:"mt-5 text-center",style:{maxWidth:"420px"}},r.createElement(c.Z,{className:"shadow-sm p-4"},r.createElement("h2",{className:"text-primary fw-bold"},"🏆 Game Over!"),r.createElement("p",{className:"text-muted"},"Final Podiums Go Here"),r.createElement(s.Z,{variant:"primary",onClick:function(){return t("/")}},"Return Home")))}return r.createElement(f.Z,{className:"mt-5 d-flex justify-content-center"},r.createElement(c.Z,{className:"shadow-sm w-100",style:{maxWidth:"420px"}},r.createElement(c.Z.Body,{className:"text-center"},r.createElement(c.Z.Title,{className:"fs-3 fw-bold mb-1 text-primary"},"Lobby Waiting Room"),r.createElement(c.Z.Text,{className:"text-muted small mb-4"},"Temple-Trivia"),r.createElement("div",{className:"bg-light border border-secondary rounded p-3 mb-4"},r.createElement("span",{className:"text-uppercase tracking-wider small fw-bold text-muted d-block mb-1"},"Room Code"),r.createElement("span",{className:"fs-2 fw-black text-dark tracking-widest"},n)),r.createElement("h5",{className:"text-start fw-bold mb-2 px-1"},"Players Joined",r.createElement(x.Z,{bg:"secondary",className:"ms-2"},u.length)),r.createElement(Re.Z,{className:"mb-4 text-start border border-secondary rounded"},u.map((function(e){return r.createElement(Re.Z.Item,{key:e.id,className:"d-flex justify-content-between align-items-center py-2.5 fw-semibold"},r.createElement("span",null,e.name),e.id===Se.id?r.createElement(x.Z,{bg:"primary"},"You"):r.createElement("span",{className:"text-muted small"},"Ready"))}))),"host"===o?r.createElement(s.Z,{variant:"primary",className:"w-100 fw-bold py-2 shadow-sm",onClick:function(){Se.emit("startGame",{roomCode:n})}},"Start Game"):r.createElement("div",{className:"text-muted small py-2 border border-dashed rounded bg-light"},"⏳ Waiting for host to launch the match..."))))}const Ue=n.p+"7f66e46716ec6b0af16f.jpg";function ze(){return r.createElement("div",{className:"d-flex justify-content-center align-items-center p-1"},r.createElement(c.Z,{className:"text-center shadow-lg border-0",style:{maxWidth:"450px",width:"100%"}},r.createElement(c.Z.Header,{as:"h5",className:"d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",style:{backgroundColor:"#014eb6",color:"#f1f2f5",letterSpacing:"0.2em"}},"BAR-TEMPLE"),r.createElement(c.Z.Body,{className:"p-1"},r.createElement("div",{className:"mb-1 bg-light p-2 rounded-3 d-inline-block shadow-sm"},r.createElement("img",{src:Ue,alt:"Game-Temple Logo",style:{maxWidth:"140px",height:"auto"}})),r.createElement("hr",{className:"my-3 text-bold"}),r.createElement(c.Z.Title,{className:"text-muted text-center fw-bold mb-1 tracking-wider"},"🍸Bartending🍸"),r.createElement(d.Z,{className:"g-2"},r.createElement(p.Z,{xs:6,className:"d-grid"},r.createElement(s.Z,{variant:"primary",size:"lg",href:"/FlashcardGame",className:"fw-semibold align-items-center justify-content-center"},"🍹Drink Game")),r.createElement(p.Z,{xs:6,className:"d-grid"},r.createElement(s.Z,{variant:"primary",size:"lg",href:"/FlashcardsList",className:"fw-semibold align-items-center justify-content-center"},"Flashcard List")),r.createElement(p.Z,{xs:6,className:"d-grid"},r.createElement(s.Z,{variant:"primary",size:"lg",href:"/Flashcards",className:"fw-semibold align-items-center justify-content-center"},"Flashcards"))))))}function Ve(){var e=function(){return r.createElement("h1",null,"Page Not Found")};return r.createElement(i.Z5,null,r.createElement(i.AW,{path:"/home",element:r.createElement(je,null)}),r.createElement(i.AW,{path:"/tictactoe",element:r.createElement(_e,null)}),r.createElement(i.AW,{path:"/barhome",element:r.createElement(ze,null)}),r.createElement(i.AW,{path:"/TriviaWaitingRoom",element:r.createElement(Fe,null)}),r.createElement(i.AW,{path:"/flashcards",element:r.createElement(J,null)}),r.createElement(i.AW,{path:"/flashcardsList",element:r.createElement(ye,null)}),r.createElement(i.AW,{path:"/flashcardGame",element:r.createElement(ve,null)}),r.createElement(i.AW,{path:"/employees",element:r.createElement(L,null)}),r.createElement(i.AW,{path:"/edit/:id",element:r.createElement(G,null)}),r.createElement(i.AW,{path:"/report",element:r.createElement(P,null)}),r.createElement(i.AW,{path:"/",element:r.createElement(i.Fg,{replace:!0,to:"/home"})}),r.createElement(i.AW,{path:"*",element:r.createElement(e,null)}))}const Ye=n.p+"04cb48e407c1ac01c31f.jpg",$e=n.p+"d989b26bd9bf9b335ac8.jpg";function Je(){return r.createElement(o.Z,{variant:"light",className:"justify-content-center",style:{backgroundColor:"#e3f2fd"}},r.createElement(o.Z.Brand,{href:"/home"},r.createElement("img",{src:$e,alt:"Game-temple Logo",style:{maxWidth:"40px",height:"auto",mixBlendMode:"multiply"}})),r.createElement(l.Z,null,r.createElement(l.Z.Link,{href:"/barhome"},r.createElement("img",{src:Ue,alt:"Martini Logo",style:{maxWidth:"30px",height:"auto",mixBlendMode:"multiply"}}))))}function qe(){var e={backgroundImage:"url(".concat(Ye,")"),backgroundSize:"cover",backgroundPosition:"center",backgroundRepeat:"no-repeat",backgroundAttachment:"fixed",minHeight:"100vh",width:"100%",mixBlendMode:"multiply"};return r.createElement("div",{style:e},r.createElement(Je,null),r.createElement(Ve,null))}(0,a.s)(document.getElementById("content")).render(r.createElement(i.VK,null,r.createElement(r.StrictMode,null,r.createElement(qe,null))))}},a={};function o(e){var t=a[e];if(void 0!==t)return t.exports;var n=a[e]={exports:{}};return r[e](n,n.exports,o),n.exports}o.m=r,e=[],o.O=(t,n,r,a)=>{if(!n){var l=1/0;for(s=0;s<e.length;s++){for(var[n,r,a]=e[s],i=!0,c=0;c<n.length;c++)(!1&a||l>=a)&&Object.keys(o.O).every((e=>o.O[e](n[c])))?n.splice(c--,1):(i=!1,a<l&&(l=a));if(i){e.splice(s--,1);var u=r();void 0!==u&&(t=u)}}return t}a=a||0;for(var s=e.length;s>0&&e[s-1][2]>a;s--)e[s]=e[s-1];e[s]=[n,r,a]},o.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return o.d(t,{a:t}),t},n=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,o.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if("object"==typeof e&&e){if(4&r&&e.__esModule)return e;if(16&r&&"function"==typeof e.then)return e}var a=Object.create(null);o.r(a);var l={};t=t||[null,n({}),n([]),n(n)];for(var i=2&r&&e;"object"==typeof i&&!~t.indexOf(i);i=n(i))Object.getOwnPropertyNames(i).forEach((t=>l[t]=()=>e[t]));return l.default=()=>e,o.d(a,l),a},o.d=(e,t)=>{for(var n in t)o.o(t,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},o.g=function(){if("object"==typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(e){if("object"==typeof window)return window}}(),o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),o.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},(()=>{var e;o.g.importScripts&&(e=o.g.location+"");var t=o.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var n=t.getElementsByTagName("script");n.length&&(e=n[n.length-1].src)}if(!e)throw new Error("Automatic publicPath is not supported in this browser");e=e.replace(/#.*$/,"").replace(/\?.*$/,"").replace(/\/[^\/]+$/,"/"),o.p=e})(),(()=>{var e={624:0};o.O.j=t=>0===e[t];var t=(t,n)=>{var r,a,[l,i,c]=n,u=0;if(l.some((t=>0!==e[t]))){for(r in i)o.o(i,r)&&(o.m[r]=i[r]);if(c)var s=c(o)}for(t&&t(n);u<l.length;u++)a=l[u],o.o(e,a)&&e[a]&&e[a][0](),e[a]=0;return o.O(s)},n=self.webpackChunkmodule01=self.webpackChunkmodule01||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})();var l=o.O(void 0,[736],(()=>o(834)));l=o.O(l)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/BarHome.jsx":
+/*!*************************!*\
+  !*** ./src/BarHome.jsx ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BarHome)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _src_assets_logos_MartiniLogo_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/assets/logos/MartiniLogo.jpg */ "./src/assets/logos/MartiniLogo.jpg");
+
+
+
+// import gameLogo from "../src/assets/logos/Logo_Temple_Table.jpg";
+
+function BarHome() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "text-center shadow-lg border-0",
+    style: {
+      maxWidth: "450px",
+      width: "100%"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "BAR-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "p-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mb-1 bg-light p-2 rounded-3 d-inline-block shadow-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: _src_assets_logos_MartiniLogo_jpg__WEBPACK_IMPORTED_MODULE_1__,
+    alt: "Game-Temple Logo",
+    style: {
+      maxWidth: "140px",
+      height: "auto"
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "my-3 text-bold"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "text-muted text-center fw-bold mb-1 tracking-wider"
+  }, "\uD83C\uDF78Bartending\uD83C\uDF78"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "g-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    xs: 6,
+    className: "d-grid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "primary",
+    size: "lg",
+    href: "/FlashcardGame",
+    className: "fw-semibold align-items-center justify-content-center"
+  }, "\uD83C\uDF79Drink Game")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    xs: 6,
+    className: "d-grid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "primary",
+    size: "lg",
+    href: "/FlashcardsList",
+    className: "fw-semibold align-items-center justify-content-center"
+  }, "Flashcard List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    xs: 6,
+    className: "d-grid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "primary",
+    size: "lg",
+    href: "/Flashcards",
+    className: "fw-semibold align-items-center justify-content-center"
+  }, "Flashcards"))))));
+}
+
+/***/ }),
+
+/***/ "./src/Contents.jsx":
+/*!**************************!*\
+  !*** ./src/Contents.jsx ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Contents)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeList.jsx */ "./src/EmployeeList.jsx");
+/* harmony import */ var _EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EmployeeReport.jsx */ "./src/EmployeeReport.jsx");
+/* harmony import */ var _EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EmployeeEdit.jsx */ "./src/EmployeeEdit.jsx");
+/* harmony import */ var _Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Flashcards.jsx */ "./src/Flashcards.jsx");
+/* harmony import */ var _FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FlashcardsList.jsx */ "./src/FlashcardsList.jsx");
+/* harmony import */ var _FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FlashcardGame.jsx */ "./src/FlashcardGame.jsx");
+/* harmony import */ var _Home_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Home.jsx */ "./src/Home.jsx");
+/* harmony import */ var _TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./TicTacToe.jsx */ "./src/TicTacToe.jsx");
+/* harmony import */ var _TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./TriviaWaitingRoom.jsx */ "./src/TriviaWaitingRoom.jsx");
+/* harmony import */ var _BarHome_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./BarHome.jsx */ "./src/BarHome.jsx");
+
+
+
+
+
+
+
+
+
+
+
+
+function Contents() {
+  var NotFound = function NotFound() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Page Not Found");
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/home",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Home_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/tictactoe",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/barhome",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BarHome_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/TriviaWaitingRoom",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/flashcards",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/flashcardsList",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/flashcardGame",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/employees",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/edit/:id",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/report",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Navigate, {
+      replace: true,
+      to: "/home"
+    })
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "*",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NotFound, null)
+  }));
+}
+
+/***/ }),
+
+/***/ "./src/EmployeeAdd.jsx":
+/*!*****************************!*\
+  !*** ./src/EmployeeAdd.jsx ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EmployeeAdd)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+var EmployeeAdd = /*#__PURE__*/function (_React$Component) {
+  _inherits(EmployeeAdd, _React$Component);
+  var _super = _createSuper(EmployeeAdd);
+  function EmployeeAdd() {
+    var _this;
+    _classCallCheck(this, EmployeeAdd);
+    _this = _super.call(this);
+    _this.state = {
+      modalVisible: false
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleShowModal = _this.handleShowModal.bind(_assertThisInitialized(_this));
+    _this.handleHideModal = _this.handleHideModal.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+  _createClass(EmployeeAdd, [{
+    key: "handleShowModal",
+    value: function handleShowModal() {
+      this.setState({
+        modalVisible: true
+      });
+    }
+  }, {
+    key: "handleHideModal",
+    value: function handleHideModal() {
+      this.setState({
+        modalVisible: false
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var form = document.forms.employeeAdd;
+      var employee = {
+        name: form.name.value,
+        extension: form.ext.value,
+        email: form.email.value,
+        title: form.title.value
+      };
+      this.props.createEmployee(employee);
+      form.name.value = '';
+      form.ext.value = '';
+      form.email.value = '';
+      form.title.value = '';
+      this.setState({
+        modalVisible: false
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "addEmployee"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        variant: "primary",
+        size: "zm",
+        onClick: this.handleShowModal
+      }, "New Employee")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        show: this.state.modalVisible,
+        onHide: this.handleHideModal,
+        centered: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+        closeButton: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Add New Employee")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        fluid: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        name: "employeeAdd"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: 3
+      }, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "name"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: 3
+      }, "Extension:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "ext",
+        maxLength: 4
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: 3
+      }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "email"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: 3
+      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "title"
+      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        type: "submit",
+        variant: "success",
+        size: "sm",
+        onClick: this.handleSubmit
+      }, "Add Employee"))));
+    }
+  }]);
+  return EmployeeAdd;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+
+/***/ }),
+
+/***/ "./src/EmployeeEdit.jsx":
+/*!******************************!*\
+  !*** ./src/EmployeeEdit.jsx ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EmployeeEdit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+var EmployeeEdit = /*#__PURE__*/function (_React$Component) {
+  _inherits(EmployeeEdit, _React$Component);
+  var _super = _createSuper(EmployeeEdit);
+  function EmployeeEdit() {
+    var _this;
+    _classCallCheck(this, EmployeeEdit);
+    _this = _super.call(this);
+    _this.state = {
+      employee: [],
+      alertVisible: false,
+      alertColor: 'success',
+      alertMessage: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+  _createClass(EmployeeEdit, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadData();
+    }
+  }, {
+    key: "loadData",
+    value: function loadData() {
+      var _this2 = this;
+      var pathParts = window.location.pathname.split('/');
+      var id = pathParts[pathParts.length - 1];
+      if (!id || id === "edit" || id === "") {
+        console.error("Could not parse a valid ID from the URL pathname:", window.location.pathname);
+        return;
+      }
+      fetch("/api/employees/".concat(id)).then(function (response) {
+        if (!response.ok) {
+          throw new Error("HTTP error! status: ".concat(response.status));
+        }
+        return response.json();
+      }).then(function (data) {
+        var employee = data.employee || data;
+        if (employee && employee.dateHired) {
+          employee.dateHired = new Date(employee.dateHired);
+          _this2.setState({
+            employee: employee
+          });
+        } else {
+          console.error("Employee data format received from API is invalid:", data);
+        }
+      })["catch"](function (err) {
+        return console.error("Error loading employee data:", err);
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+      e.preventDefault();
+
+      // Grab the form directly from the event target instead of the global document object
+      var form = e.target;
+      var id = form.id.value;
+      var name = form.name.value;
+      var extension = form.extension.value;
+      var email = form.email.value;
+      var title = form.title.value;
+      var currentlyEmployed = form.currentlyEmployed.checked;
+      var url = "/api/employees/".concat(id);
+      fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8' // Fixed typo here
+        },
+
+        body: JSON.stringify({
+          name: name,
+          extension: extension,
+          email: email,
+          title: title,
+          currentlyEmployed: currentlyEmployed
+        })
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error("Failed to update employee.");
+        }
+        return response.json();
+      }).then(function (updatedData) {
+        _this3.setState({
+          alertVisible: true,
+          alertColor: 'success',
+          alertMessage: updatedData.message || "Employee updated successfully!"
+        });
+
+        // Optionally update state or redirect the user here
+      })["catch"](function (err) {
+        console.error("Error updating employee:", err);
+        alert("Error updating employee. Check console for details.");
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+      var employee = this.state.employee;
+      if (!employee) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Loading...");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+        as: "h5"
+      }, "Edit ", this.state.employee.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Text, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        fluid: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        name: "employeeUpdate",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "id",
+        value: employee._id,
+        readOnly: true
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "name",
+        defaultValue: employee.name
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "Extension:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        maxLength: "4",
+        name: "extension",
+        defaultValue: employee.extension
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "email",
+        defaultValue: employee.email
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "title",
+        defaultValue: employee.title
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "Date Hired:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        name: "dateHired",
+        value: employee.dateHired ? employee.dateHired.toDateString() : '',
+        readOnly: true
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, "Currently Employed:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: "auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "checkbox",
+        name: "currentlyEmployed",
+        defaultChecked: employee.currentlyEmployed
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        md: 2
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        type: "submit",
+        variant: "primary",
+        size: "sm",
+        value: "Update",
+        className: "mt-3"
+      }, "Update Employee"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "mt-3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        variant: this.state.alertColor,
+        show: this.state.alertVisible,
+        onClose: function onClose() {
+          return _this4.setState({
+            alertVisible: false
+          });
+        },
+        dismissible: true
+      }, this.state.alertMessage))))))));
+    }
+  }]);
+  return EmployeeEdit;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+
+/***/ }),
+
+/***/ "./src/EmployeeFilter.jsx":
+/*!********************************!*\
+  !*** ./src/EmployeeFilter.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EmployeeFilter)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+
+
+
+function EmployeeFilter() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    as: "h5"
+  }, "Filter "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Text, null, "Currently Employed:", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+    onChange: function onChange(e) {
+      return navigate(e.target.value ? "/employees?employed=".concat(e.target.value) : "/employees");
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: ""
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "true"
+  }, "Employed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "false"
+  }, "Not Employed")))));
+}
+
+/***/ }),
+
+/***/ "./src/EmployeeList.jsx":
+/*!******************************!*\
+  !*** ./src/EmployeeList.jsx ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EmployeeList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _EmployeeFilter_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeFilter.jsx */ "./src/EmployeeFilter.jsx");
+/* harmony import */ var _EmployeeAdd_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EmployeeAdd.jsx */ "./src/EmployeeAdd.jsx");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Table.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+function EmployeeTable(props) {
+  // Get the URL
+  var _useLocation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)(),
+    search = _useLocation.search;
+  // Get filter parameters from the URL
+  var query = new URLSearchParams(search);
+  // Get employed parameter specifically
+  var q = query.get('employed');
+  var employeeRows = props.employees.filter(function (employee) {
+    if (q === null) return true; // no filter applied
+    return String(employee.currentlyEmployed) === q;
+  }).map(function (employee) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(EmployeeRow, {
+      key: employee._id,
+      employee: employee,
+      deleteEmployee: props.deleteEmployee
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
+    as: "h5"
+  }, "All Employees ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    bg: "secondary"
+  }, employeeRows.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    striped: true,
+    size: "sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Extension"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Date Hired"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Currently Employed?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, employeeRows)))));
+}
+function EmployeeRow(props) {
+  function onDeleteClick() {
+    props.deleteEmployee(props.employee._id);
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/edit/".concat(props.employee._id)
+  }, props.employee.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, props.employee.extension), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, props.employee.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, props.employee.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, props.employee.dateHired.toDateString()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, props.employee.currentlyEmployed ? 'Yes' : 'No'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    variant: "danger",
+    size: "sm",
+    onClick: onDeleteClick
+  }, "X")));
+}
+var EmployeeList = /*#__PURE__*/function (_React$Component) {
+  _inherits(EmployeeList, _React$Component);
+  var _super = _createSuper(EmployeeList);
+  function EmployeeList() {
+    var _this;
+    _classCallCheck(this, EmployeeList);
+    _this = _super.call(this);
+    _this.state = {
+      employees: []
+    };
+    _this.createEmployee = _this.createEmployee.bind(_assertThisInitialized(_this));
+    _this.deleteEmployee = _this.deleteEmployee.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+  _createClass(EmployeeList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadData();
+    }
+  }, {
+    key: "loadData",
+    value: function loadData() {
+      var _this2 = this;
+      fetch('/api/employees').then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        data.employees.forEach(function (employee) {
+          employee.dateHired = new Date(employee.dateHired);
+        });
+        _this2.setState({
+          employees: data.employees
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: "createEmployee",
+    value: function createEmployee(employee) {
+      var _this3 = this;
+      fetch('/api/employees', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(employee)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (newEmployee) {
+        newEmployee.employee.dateHired = new Date(newEmployee.employee.dateHired);
+        var newEmployees = _this3.state.employees.concat(newEmployee.employee);
+        _this3.setState({
+          employees: newEmployees
+        });
+        console.log('Total count of employees:', newEmployees.length);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: "deleteEmployee",
+    value: function deleteEmployee(id) {
+      var _this4 = this;
+      fetch("/api/employees/".concat(id), {
+        method: 'DELETE'
+      }).then(function (response) {
+        if (!response.ok) {
+          console.log('Failed to delete employee.');
+        } else {
+          _this4.loadData();
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EmployeeAdd_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        createEmployee: this.createEmployee
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EmployeeFilter_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(EmployeeTable, {
+        employees: this.state.employees,
+        deleteEmployee: this.deleteEmployee
+      }));
+    }
+  }]);
+  return EmployeeList;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+
+/***/ }),
+
+/***/ "./src/EmployeeReport.jsx":
+/*!********************************!*\
+  !*** ./src/EmployeeReport.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EmployeeReport)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+
+
+function EmployeeReport() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    as: "h5"
+  }, "Reports"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Text, null, "This is a place holder for the employee report.")));
+}
+
+/***/ }),
+
+/***/ "./src/FlashcardAdd.jsx":
+/*!******************************!*\
+  !*** ./src/FlashcardAdd.jsx ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FlashcardAdd)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function FlashcardAdd(_ref) {
+  var show = _ref.show,
+    onHide = _ref.onHide,
+    onDrinkAdded = _ref.onDrinkAdded;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      drinkName: "",
+      recipe: "",
+      garnish: "",
+      createdByAnon: true
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    form = _useState2[0],
+    setForm = _useState2[1];
+  function handleChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value,
+      type = _e$target.type,
+      checked = _e$target.checked;
+    setForm(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, type === "checkbox" ? checked : value));
+    });
+  }
+  function handleSubmit() {
+    return _handleSubmit.apply(this, arguments);
+  }
+  function _handleSubmit() {
+    _handleSubmit = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var res, data;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return fetch("/api/drinks", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+              });
+            case 2:
+              res = _context.sent;
+              _context.next = 5;
+              return res.json();
+            case 5:
+              data = _context.sent;
+              // Notify parent
+              onDrinkAdded(data.drink, data.msg);
+
+              // Reset form + close modal
+              setForm({
+                drinkName: "",
+                recipe: "",
+                garnish: "",
+                createdByAnon: false
+              });
+              onHide();
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _handleSubmit.apply(this, arguments);
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    show: show,
+    onHide: onHide,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Title, null, "Add New Drink")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Label, null, "Drink Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    type: "text",
+    name: "drinkName",
+    value: form.drinkName,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Label, null, "Recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    type: "text",
+    name: "recipe",
+    value: form.recipe,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Label, null, "Garnish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    type: "text",
+    name: "garnish",
+    value: form.garnish,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Check, {
+    type: "checkbox",
+    label: "Anonymous?",
+    name: "createdByAnon",
+    checked: form.createdByAnon,
+    onChange: handleChange
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "success",
+    size: "sm",
+    onClick: handleSubmit
+  }, "Add Drink")));
+}
+
+/***/ }),
+
+/***/ "./src/FlashcardEdit.jsx":
+/*!*******************************!*\
+  !*** ./src/FlashcardEdit.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FlashcardEdit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function FlashcardEdit(_ref) {
+  var show = _ref.show,
+    drinkData = _ref.drinkData,
+    onHide = _ref.onHide,
+    onDrinkUpdated = _ref.onDrinkUpdated;
+  // 1. Initialize local form state (Using correct boolean defaults)
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    drinkName = _useState2[0],
+    setDrinkName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    recipe = _useState4[0],
+    setRecipe = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    garnish = _useState6[0],
+    setGarnish = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    createdByAnon = _useState8[0],
+    setCreatedByAnon = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isSubmitting = _useState10[0],
+    setIsSubmitting = _useState10[1];
+
+  // 2. Watch for changes to drinkData
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (drinkData) {
+      setDrinkName(drinkData.drinkName || "");
+      setRecipe(drinkData.recipe || "");
+      setGarnish(drinkData.garnish || "");
+      setCreatedByAnon(drinkData.createdByAnon || false);
+    }
+  }, [drinkData]); // Fixed typo: dirnkData -> drinkData
+
+  // 3. Handle form submission
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    var updatePayload = {
+      drinkName: drinkName.trim(),
+      recipe: recipe.trim(),
+      garnish: garnish.trim(),
+      createdByAnon: createdByAnon
+    };
+    fetch("/api/drinks/".concat(drinkData._id), {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatePayload)
+    }).then(function (res) {
+      if (!res.ok) throw new Error("Failed to update the drink.");
+      return res.json();
+    }).then(function (data) {
+      // If backend returns whole updated object, return that
+      var finalUpdatedDrink = data.drink || _objectSpread(_objectSpread({}, drinkData), updatePayload);
+      onDrinkUpdated(finalUpdatedDrink);
+    })["catch"](function (err) {
+      console.error("Error updating drink:", err);
+      alert("Something went wrong updating the drink. Check the console.");
+    })["finally"](function () {
+      setIsSubmitting(false);
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    show: show,
+    onHide: onHide,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Title, {
+    className: "fw-bold text-secondary"
+  }, "Edit: ", drinkData === null || drinkData === void 0 ? void 0 : drinkData.drinkName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3",
+    controlId: "editDrinkName"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Label, {
+    className: "fw-semibold"
+  }, "Drink Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    type: "text",
+    required: true,
+    value: drinkName,
+    onChange: function onChange(e) {
+      return setDrinkName(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3",
+    controlId: "editDrinkRecipe"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Label, {
+    className: "fw-semibold"
+  }, "Drink Recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    as: "textarea",
+    rows: 3,
+    required: true,
+    value: recipe,
+    onChange: function onChange(e) {
+      return setRecipe(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3",
+    controlId: "editDrinkGarnish"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Label, {
+    className: "fw-semibold"
+  }, "Garnish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    type: "text",
+    value: garnish,
+    onChange: function onChange(e) {
+      return setGarnish(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    className: "mb-3",
+    controlId: "editCreatedByAnon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Check, {
+    type: "checkbox",
+    label: "Post as Anonymous User",
+    checked: createdByAnon,
+    onChange: function onChange(e) {
+      return setCreatedByAnon(e.target.checked);
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, {
+    className: "bg-light"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "outline-secondary",
+    onClick: onHide,
+    disabled: isSubmitting
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "primary",
+    type: "submit",
+    disabled: isSubmitting
+  }, isSubmitting ? "Saving..." : "Save Changes"))));
+}
+
+/***/ }),
+
+/***/ "./src/FlashcardGame.jsx":
+/*!*******************************!*\
+  !*** ./src/FlashcardGame.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FlashcardGame)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function FlashcardGame() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    allDrinks = _useState2[0],
+    setAllDrinks = _useState2[1]; // Raw pool from API
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState4 = _slicedToArray(_useState3, 2),
+    round = _useState4[0],
+    setRound = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState6 = _slicedToArray(_useState5, 2),
+    score = _useState6[0],
+    setScore = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    options = _useState8[0],
+    setOptions = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    correctDrink = _useState10[0],
+    setCorrectDrink = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("default"),
+    _useState12 = _slicedToArray(_useState11, 2),
+    filterMode = _useState12[0],
+    setFilterMode = _useState12[1]; // "default" or "all"
+  var TOTAL_ROUNDS = 10;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetch("/api/drinks").then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      return setAllDrinks(data.drinks || []);
+    });
+  }, []);
+
+  // COMPUTED ARRAY: Dynamic pool based on selected deck mode
+  var visibleDrinks = allDrinks.filter(function (drink) {
+    if (filterMode === "default") {
+      return drink.isDefault === true;
+    }
+    return true;
+  });
+
+  // Restarts or updates round when pool changes or round increments
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (visibleDrinks.length > 0) {
+      startRound();
+    }
+  }, [allDrinks, filterMode, round]); // Added filterMode to dependencies to trigger reload on switch
+
+  function startRound() {
+    if (visibleDrinks.length === 0) return;
+
+    // Shuffle current active pool
+    var shuffled = _toConsumableArray(visibleDrinks).sort(function () {
+      return Math.random() - 0.5;
+    });
+
+    // Dynamically slice depending on pool availability (max 6 options)
+    var count = Math.min(6, shuffled.length);
+    var gameChoices = shuffled.slice(0, count);
+
+    // Choose 1 correct target answer from the selection pool
+    var correct = gameChoices[Math.floor(Math.random() * gameChoices.length)];
+    setOptions(gameChoices);
+    setCorrectDrink(correct);
+  }
+  function handleFilterChange(mode) {
+    setFilterMode(mode);
+    setRound(1); // Reset game state
+    setScore(0);
+  }
+  function handleGuess(drink) {
+    var currentScore = score;
+    if (drink._id === correctDrink._id) {
+      setScore(function (prev) {
+        return prev + 1;
+      });
+      currentScore += 1;
+    }
+    if (round < TOTAL_ROUNDS) {
+      setRound(function (prev) {
+        return prev + 1;
+      });
+    } else {
+      alert("Game over! You scored ".concat(currentScore, " out of ").concat(TOTAL_ROUNDS));
+      setRound(1); // Automatically reset the loop
+      setScore(0);
+    }
+  }
+  if (visibleDrinks.length === 0) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex justify-content-center align-items-center p-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      className: "text-center p-4 shadow-lg border-0",
+      style: {
+        maxWidth: "450px",
+        width: "100%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "mb-2 fw-semibold text-muted"
+    }, "No items found in this deck."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      variant: "primary",
+      onClick: function onClick() {
+        return handleFilterChange("all");
+      }
+    }, "Switch to All Decks")));
+  }
+  if (!correctDrink) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center mt-5 text-white"
+  }, "Loading game...");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "text-center shadow-lg border-0",
+    style: {
+      maxWidth: "450px",
+      width: "100%"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    as: "h5",
+    className: "bg-primary text-white py-3 fw-bold tracking-wide d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "FLASHCARD QUIZ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex gap-3 fs-6 fw-normal text-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Check, {
+    type: "radio",
+    label: "Default Cards",
+    name: "gameFilter",
+    id: "game-default",
+    checked: filterMode === "default",
+    onChange: function onChange() {
+      return handleFilterChange("default");
+    },
+    className: "text-white custom-game-radio"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Check, {
+    type: "radio",
+    label: "All Cards",
+    name: "gameFilter",
+    id: "game-all",
+    checked: filterMode === "all",
+    onChange: function onChange() {
+      return handleFilterChange("all");
+    },
+    className: "text-white custom-game-radio"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "mt-3"
+  }, "Round ", round, " / ", TOTAL_ROUNDS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Score: ", score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-wrap justify-content-center gap-2 px-2 my-2"
+  }, options.map(function (drink) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: drink._id,
+      variant: "outline-primary",
+      style: {
+        width: "45%"
+      },
+      onClick: function onClick() {
+        return handleGuess(drink);
+      }
+    }, drink.drinkName);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "m-3 p-2 bg-light border-0 shadow-sm rounded-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    className: "bg-transparent border-0 py-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
+    className: "fw-bold mb-0 text-secondary text-start"
+  }, "Recipe:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "py-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    style: {
+      whiteSpace: "pre-line"
+    },
+    className: "ps-2 mb-0 text-muted text-start fs-6"
+  }, correctDrink.recipe ? correctDrink.recipe.replaceAll(',', ',\n') : "No details listed.")))));
+}
+
+/***/ }),
+
+/***/ "./src/Flashcards.jsx":
+/*!****************************!*\
+  !*** ./src/Flashcards.jsx ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Flashcards)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+ // Importing Form for React-Bootstrap radios
+
+function Flashcards() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    allDrinks = _useState2[0],
+    setAllDrinks = _useState2[1]; // Holds raw API array
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    index = _useState4[0],
+    setIndex = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    flipped = _useState6[0],
+    setFlipped = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("default"),
+    _useState8 = _slicedToArray(_useState7, 2),
+    filterMode = _useState8[0],
+    setFilterMode = _useState8[1]; // Options: "default" or "all"
+
+  // Load drinks on mount
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    function loadDrinks() {
+      return _loadDrinks.apply(this, arguments);
+    }
+    function _loadDrinks() {
+      _loadDrinks = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res, data;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return fetch("/api/drinks");
+              case 2:
+                res = _context.sent;
+                _context.next = 5;
+                return res.json();
+              case 5:
+                data = _context.sent;
+                setAllDrinks(data.drinks || []);
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+      return _loadDrinks.apply(this, arguments);
+    }
+    loadDrinks();
+  }, []);
+
+  // COMPUTED ARRAY: Dynamically filters based on our radio button selection
+  var visibleDrinks = allDrinks.filter(function (drink) {
+    if (filterMode === "default") {
+      return drink.isDefault === true;
+    }
+    return true; // "all" mode returns everything
+  });
+
+  // Current drink pulled from the filtered array
+  var drink = visibleDrinks[index];
+
+  // Safely handle changing the radio filters
+  var handleFilterChange = function handleFilterChange(mode) {
+    setFilterMode(mode);
+    setIndex(0); // Reset index to prevent out-of-bounds errors
+    setFlipped(false); // Reset flip state
+  };
+
+  var handleFlip = function handleFlip() {
+    return setFlipped(!flipped);
+  };
+  var handleNext = function handleNext() {
+    if (visibleDrinks.length === 0) return;
+    setIndex(function (prev) {
+      return (prev + 1) % visibleDrinks.length;
+    });
+    setFlipped(false);
+  };
+  var handlePrev = function handlePrev() {
+    if (visibleDrinks.length === 0) return;
+    setIndex(function (prev) {
+      return (prev - 1 + visibleDrinks.length) % visibleDrinks.length;
+    });
+    setFlipped(false);
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n        .flashcard-wrapper {\n          display: flex;\n          flex-direction: column;\n          justify-content: center;\n          align-items: center;\n          height: calc(100vh - 80px);\n          color: rgb(203, 143, 252);\n          font-family: Arial;\n        }\n\n        /* Radio Toggle Container Style */\n        .filter-container {\n          background: rgba(255, 255, 255, 0.9);\n          padding: 10px 20px;\n          border-radius: 30px;\n          margin-bottom: 25px;\n          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);\n          color: #333;\n          display: flex;\n          gap: 20px;\n        }\n\n        #card {\n          position: relative;\n          width: 400px;\n          height: 250px;\n          perspective: 1000px;\n        }\n\n        .front, .back {\n          position: absolute;\n          width: 100%;\n          height: 100%;\n          border-radius: 20px;\n          background: #3c89fd;\n          color: white;\n          display: flex;\n          justify-content: center;\n          align-items: center;\n          backface-visibility: hidden;\n          transition: transform 0.6s;\n          padding: 20px;\n          text-align: center;\n          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);\n        }\n\n        .back {\n          transform: rotateY(180deg);\n          flex-direction: column; /* Changed to column to sit title above list nicely */\n          justify-content: center;\n          align-items: center;\n          text-align: left;\n          gap: 10px;\n        }\n\n        .recipe-list {\n          margin: 0;\n          padding-left: 20px;\n        }\n\n        #card.flipped .front {\n          transform: rotateY(180deg);\n        }\n\n        #card.flipped .back {\n          transform: rotateY(0deg);\n        }\n\n        .controls {\n          margin-top: 20px;\n          display: flex;\n          gap: 20px;\n        }\n\n        button {\n          padding: 10px 20px;\n          border: none;\n          background: white;\n          color: #3c89fd;\n          border-radius: 8px;\n          font-size: 1rem;\n          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);\n          cursor: pointer;\n        }\n      "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flashcard-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "filter-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Check, {
+    type: "radio",
+    label: "Default Cards",
+    name: "filterMode",
+    id: "filter-default",
+    checked: filterMode === "default",
+    onChange: function onChange() {
+      return handleFilterChange("default");
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Check, {
+    type: "radio",
+    label: "All Cards",
+    name: "filterMode",
+    id: "filter-all",
+    checked: filterMode === "all",
+    onChange: function onChange() {
+      return handleFilterChange("all");
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "card",
+    className: flipped ? "flipped" : ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "front"
+  }, visibleDrinks.length === 0 ? "No cards found..." : drink ? drink.drinkName : "Loading..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "back"
+  }, drink && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "recipe-title fw-bold border-bottom pb-1 mb-1"
+  }, drink.drinkName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "recipe-list"
+  }, drink.recipe ? drink.recipe.split(",").map(function (item, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: i
+    }, item.trim());
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "No recipe found"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "controls"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: handlePrev
+  }, "\u25C0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: handleFlip
+  }, "Flip"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: handleNext
+  }, "\u25B6"))));
+}
+
+/***/ }),
+
+/***/ "./src/FlashcardsList.jsx":
+/*!********************************!*\
+  !*** ./src/FlashcardsList.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FlashcardsList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Table.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var _FlashcardAdd_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FlashcardAdd.jsx */ "./src/FlashcardAdd.jsx");
+/* harmony import */ var _FlashcardEdit_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashcardEdit.jsx */ "./src/FlashcardEdit.jsx");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function FlashcardsList() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    toastMessage = _useState2[0],
+    setToastMessage = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showToast = _useState4[0],
+    setShowToast = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    drinks = _useState6[0],
+    setDrinks = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    showAddModal = _useState8[0],
+    setShowAddModal = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    currentEditingDrink = _useState10[0],
+    setCurrentEditingDrink = _useState10[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetch('/api/drinks').then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      return setDrinks(data.drinks || []);
+    })["catch"](function (err) {
+      return console.error("Error fetching drinks:", err);
+    });
+  }, []);
+
+  // Called by FlashcardAdd.jsx after successful POST
+  function handleDrinkAdded(newDrink, msg) {
+    setDrinks(function (prev) {
+      return [].concat(_toConsumableArray(prev), [newDrink]);
+    });
+    setToastMessage(msg);
+    setShowToast(true);
+  }
+  var handleDeleteDrink = function handleDeleteDrink(id) {
+    setDrinks(function (prev) {
+      return prev.filter(function (drink) {
+        return drink._id !== id;
+      });
+    });
+    setToastMessage("Drink removed successfully!");
+    setShowToast(true);
+
+    // Database Hook
+    fetch("/api/drinks/".concat(id), {
+      method: 'DELETE'
+    }).then(function (res) {
+      return res.json();
+    })["catch"](function (err) {
+      return console.error("Error deleting drink:", err);
+    });
+  };
+  var drinkRows = drinks.map(function (drink) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
+      key: drink._id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "align-middle"
+    }, drink.isDefault ?
+    /*#__PURE__*/
+    // Just plain text if it's a default card
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "fw-semibold text-dark"
+    }, drink.drinkName) :
+    /*#__PURE__*/
+    // Clickable button link if it's user-generated
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      variant: "link",
+      className: "p-0 text-decoration-none fw-semibold text-start",
+      onClick: function onClick() {
+        return setCurrentEditingDrink(drink);
+      }
+    }, drink.drinkName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "align-middle"
+    }, drink.recipe), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "align-middle"
+    }, drink.garnish), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "align-middle"
+    }, drink.isDefault ? "Default" : drink.createdByAnon ? "Anonymous" : "User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "text-center align-middle"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      variant: drink.isDefault ? 'secondary' : 'danger' // Changes color to grey if default
+      ,
+      size: "sm",
+      disabled: drink.isDefault // Makes it completely unclickable if default
+      ,
+      onClick: function onClick() {
+        return handleDeleteDrink(drink._id);
+      }
+    }, "X")));
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "shadow-lg border-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
+    as: "h5",
+    className: "d-flex justify-content-between align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Flashcards List ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    bg: "secondary"
+  }, drinkRows.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "primary",
+    size: "sm",
+    onClick: function onClick() {
+      return setShowAddModal(true);
+    }
+  }, "Add Drink")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    striped: true,
+    size: "sm",
+    responsive: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Drink Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Drink Recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Garnish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Created"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    className: "text-center"
+  }, "Delete"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, drinkRows)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_FlashcardAdd_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    show: showAddModal,
+    onHide: function onHide() {
+      return setShowAddModal(false);
+    },
+    onDrinkAdded: handleDrinkAdded
+  }), currentEditingDrink && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_FlashcardEdit_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    show: Boolean(currentEditingDrink),
+    drinkData: currentEditingDrink,
+    onHide: function onHide() {
+      return setCurrentEditingDrink(null);
+    },
+    onDrinkUpdated: function onDrinkUpdated(updatedDrink) {
+      // Updates the specific drink item in array state instantly
+      setDrinks(function (prev) {
+        return prev.map(function (d) {
+          return d._id === updatedDrink._id ? updatedDrink : d;
+        });
+      });
+      setToastMessage("Drink updated successfully!");
+      setShowToast(true);
+      setCurrentEditingDrink(null);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    onClose: function onClose() {
+      return setShowToast(false);
+    },
+    show: showToast,
+    delay: 3000,
+    autohide: true,
+    bg: "success",
+    style: {
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "me-auto"
+  }, "Success")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+    className: "text-white"
+  }, toastMessage)));
+}
+
+/***/ }),
+
+/***/ "./src/Home.jsx":
+/*!**********************!*\
+  !*** ./src/Home.jsx ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Home)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _TttLobby_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TttLobby.jsx */ "./src/TttLobby.jsx");
+/* harmony import */ var _UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UniversalJoinForm.jsx */ "./src/UniversalJoinForm.jsx");
+/* harmony import */ var _TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TriviaCreateButton.jsx */ "./src/TriviaCreateButton.jsx");
+/* harmony import */ var _assets_logos_Animated_Temple_Logo_mp4__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logos/Animated_Temple_Logo.mp4 */ "./src/assets/logos/Animated_Temple_Logo.mp4");
+/* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./funnyNames.js */ "./src/funnyNames.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+function Home() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_funnyNames_js__WEBPACK_IMPORTED_MODULE_5__.getRandomFunnyName),
+    _useState2 = _slicedToArray(_useState, 2),
+    playerName = _useState2[0],
+    setPlayerName = _useState2[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  return (
+    /*#__PURE__*/
+    /* Match outer layout and padding of BarHome */
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex justify-content-center align-items-center p-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      className: "text-center shadow-lg border-0",
+      style: {
+        maxWidth: "450px",
+        width: "100%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, {
+      as: "h5",
+      className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
+      style: {
+        backgroundColor: '#014eb6',
+        color: '#f1f2f5',
+        letterSpacing: '0.2em'
+      }
+    }, "GAME-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+      className: "p-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("video", {
+      src: _assets_logos_Animated_Temple_Logo_mp4__WEBPACK_IMPORTED_MODULE_4__,
+      autoPlay: true,
+      muted: true,
+      playsInline: true,
+      style: {
+        maxWidth: "130px",
+        height: "auto"
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      className: "border p-1 bg-body-secondary shadow-sm rounded-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Title, {
+      className: "text-muted text-center fw-bold small mb-1 tracking-wider"
+    }, "Multi-Player Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+      className: "my-1 text-muted opacity-25"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
+      className: "mb-3 text-start",
+      controlId: "formPlayerName"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
+      className: "fw-bold text-muted small mb-1"
+    }, "Player Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
+      type: "text",
+      placeholder: "Anita Break",
+      value: playerName,
+      onChange: function onChange(e) {
+        return setPlayerName(e.target.value);
+      },
+      autoComplete: "off",
+      className: "py-2"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      className: "g-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      xs: 12,
+      className: "text-start"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
+      className: "fw-bold text-muted small mb-1 ps-1"
+    }, "Join Active Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      playerName: playerName
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      xs: 12,
+      className: "d-flex align-items-center mt-1 mb-0"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+      className: "flex-grow-1 my-0 opacity-25"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "mx-2 my-2 text-muted small fw-bold"
+    }, "OR ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Create New Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+      className: "flex-grow-1 my-0 opacity-25"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      xs: 12,
+      className: "text-start"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex gap-2 w-100"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      variant: "primary",
+      className: "fw-bold w-50 py-1 shadow-sm",
+      onClick: function onClick() {
+        return (0,_TttLobby_jsx__WEBPACK_IMPORTED_MODULE_1__.handleCreateTttRoom)(playerName, navigate);
+      }
+    }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u274C\u2B55"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      variant: "primary",
+      className: "fw-bold w-50 py-1 shadow-sm text-white",
+      onClick: function onClick() {
+        return (0,_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateTriviaRoom)(playerName, navigate);
+      }
+    }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754"))))))))
+  );
+}
+
+/***/ }),
+
+/***/ "./src/Page.jsx":
+/*!**********************!*\
+  !*** ./src/Page.jsx ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Page)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
+/* harmony import */ var _Contents_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Contents.jsx */ "./src/Contents.jsx");
+/* harmony import */ var _assets_logos_background_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/logos/background.jpg */ "./src/assets/logos/background.jpg");
+/* harmony import */ var _assets_logos_temple_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/logos/temple.jpg */ "./src/assets/logos/temple.jpg");
+/* harmony import */ var _assets_logos_MartiniLogo_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logos/MartiniLogo.jpg */ "./src/assets/logos/MartiniLogo.jpg");
+
+
+
+
+
+
+function NavBar() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "light",
+    className: "justify-content-center",
+    style: {
+      backgroundColor: "#e3f2fd"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Brand, {
+    href: "/home"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: _assets_logos_temple_jpg__WEBPACK_IMPORTED_MODULE_3__,
+    alt: "Game-temple Logo",
+    style: {
+      maxWidth: "40px",
+      height: "auto",
+      mixBlendMode: "multiply"
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Link, {
+    href: "/barhome"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: _assets_logos_MartiniLogo_jpg__WEBPACK_IMPORTED_MODULE_4__,
+    alt: "Martini Logo",
+    style: {
+      maxWidth: "30px",
+      height: "auto",
+      mixBlendMode: "multiply"
+    }
+  }))));
+}
+function Page() {
+  var pageStyle = {
+    backgroundImage: "url(".concat(_assets_logos_background_jpg__WEBPACK_IMPORTED_MODULE_2__, ")"),
+    backgroundSize: "cover",
+    // Forces image to fill the screen without stretching out of proportion
+    backgroundPosition: "center",
+    // Centers the image horizontally and vertically
+    backgroundRepeat: "no-repeat",
+    // Prevents the image from repeating like a tile grid
+    backgroundAttachment: "fixed",
+    // Keeps the image pinned in place while content scrolls past
+    minHeight: "100vh",
+    // Ensures the background covers at least 100% of the screen height
+    width: "100%",
+    mixBlendMode: "multiply"
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: pageStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavBar, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Contents_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+}
+
+/***/ }),
+
+/***/ "./src/TicTacToe.jsx":
+/*!***************************!*\
+  !*** ./src/TicTacToe.jsx ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TictactoeRoom)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+ //t
+
+// Connect to your backend server URL
+
+var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://game-temple-backend.onrender.com';
+var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_1__.io)(SOCKET_URL, {
+  autoConnect: false
+});
+function TictactoeRoom() {
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useSearchParams)(),
+    _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
+    searchParams = _useSearchParams2[0];
+  var roomCode = searchParams.get('room') || 'UNKNOWN';
+  var playerRole = searchParams.get('role') || 'host';
+  var playerName = searchParams.get('name') || 'Anonymous';
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('loading'),
+    _useState2 = _slicedToArray(_useState, 2),
+    roomStatus = _useState2[0],
+    setRoomStatus = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    opponentName = _useState4[0],
+    setOpponentName = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(Array(9).fill('')),
+    _useState6 = _slicedToArray(_useState5, 2),
+    board = _useState6[0],
+    setBoard = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isNext = _useState8[0],
+    setIsNext = _useState8[1];
+  var playerSymbol = playerRole === 'host' ? 'X' : 'O';
+
+  // Handle Socket Connection and Listeners
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    socket.connect();
+
+    // Join the room
+    socket.emit('joinRoom', {
+      roomCode: roomCode,
+      playerRole: playerRole,
+      playerName: playerName
+    });
+
+    // Handle live room state syncs from the server
+    socket.on('roomUpdate', function (roomData) {
+      setBoard(roomData.board);
+      setIsNext(roomData.isNext);
+      setRoomStatus(roomData.status);
+      setOpponentName(playerRole === 'host' ? roomData.guestName : roomData.hostName);
+    });
+
+    // Error handling if room doesn't exist
+    socket.on('roomNotFound', function () {
+      setRoomStatus('not-found');
+    });
+
+    // Cleanup on unmount
+    return function () {
+      socket.off('roomUpdate');
+      socket.off('roomNotFound');
+      socket.disconnect();
+    };
+  }, [roomCode, playerRole, playerName]);
+
+  // Win conditions calculator
+  var calculateWinner = function calculateWinner(squares) {
+    var lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    for (var i = 0; i < lines.length; i++) {
+      var _lines$i = _slicedToArray(lines[i], 3),
+        a = _lines$i[0],
+        b = _lines$i[1],
+        c = _lines$i[2];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
+  };
+  var winner = calculateWinner(board);
+  var isDraw = !winner && board.every(function (square) {
+    return square !== '';
+  });
+  var currentTurnSymbol = isNext ? 'X' : 'O';
+  var isMyTurn = currentTurnSymbol === playerSymbol;
+  var handleSquareClick = function handleSquareClick(index) {
+    if (board[index] || winner || isDraw || !isMyTurn) return;
+    var newBoard = _toConsumableArray(board);
+    newBoard[index] = playerSymbol;
+    socket.emit('makeMove', {
+      roomCode: roomCode,
+      board: newBoard,
+      isNext: !isNext
+    });
+  };
+  var handleReset = function handleReset() {
+    // Emit reset request to server
+    socket.emit('resetMatch', {
+      roomCode: roomCode
+    }); // 
+  };
+
+  // UI State A: Loading Screen
+  if (roomStatus === 'loading') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "d-flex justify-content-center align-items-center",
+      style: {
+        minHeight: "80vh"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      animation: "border",
+      variant: "primary"
+    }));
+  }
+
+  // UI State B: Invalid Room Screen
+  if (roomStatus === 'not-found') {
+    // 
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "d-flex justify-content-center align-items-center",
+      style: {
+        minHeight: "80vh"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: "shadow-sm p-5 text-center",
+      style: {
+        width: "100%",
+        maxWidth: "450px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "fw-bold text-danger mb-3"
+    }, "Room Not Found"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted mb-4"
+    }, "The room code ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, roomCode), " does not exist. Double check the code and try again."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      variant: "primary",
+      href: "/home"
+    }, "Back")));
+  }
+
+  // UI State C: Waiting Room UI
+  if (roomStatus === 'waiting') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "d-flex justify-content-center align-items-center",
+      style: {
+        minHeight: "80vh"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: "shadow-sm p-5 text-center",
+      style: {
+        width: "100%",
+        maxWidth: "450px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "fw-bold mb-4"
+    }, "Room Created!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "display-4 fw-bold text-primary mb-4"
+    }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted mb-4"
+    }, "Share this code with your opponent. The game will automatically start when they join."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex justify-content-center align-items-center gap-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      animation: "border",
+      variant: "primary",
+      size: "sm"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "fw-bold"
+    }, "Waiting for opponent..."))));
+  }
+
+  // UI State D: Active Game Board UI
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "d-flex justify-content-center align-items-center",
+    style: {
+      minHeight: "80vh"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "shadow-sm p-4 text-center",
+    style: {
+      width: "100%",
+      maxWidth: "450px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Header, {
+    className: "bg-transparent border-0 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+    className: "fw-bold text-primary mb-1"
+  }, "Room: ", roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center gap-2 mb-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    bg: "secondary"
+  }, "Name: ", playerName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    bg: playerRole === 'host' ? 'info' : 'warning',
+    className: "text-dark"
+  }, "Role: ", playerRole.toUpperCase(), " (", playerSymbol, ")"), opponentName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    bg: "success"
+  }, "vs ", opponentName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "fw-bold my-3"
+  }, winner && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-success"
+  }, "\uD83C\uDF89 Winner: ", winner, "!"), isDraw && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-muted"
+  }, "\uD83E\uDD1D It's a Draw!"), !winner && !isDraw && (isMyTurn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-danger"
+  }, "\uD83D\uDD25 Your Turn (", playerSymbol, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-muted"
+  }, "\u23F3 Waiting for opponent...")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-auto mb-4",
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 100px)',
+      gap: '10px'
+    }
+  }, board.map(function (square, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      key: index,
+      variant: "light",
+      className: "border d-flex align-items-center justify-content-center fw-bold fs-1",
+      style: {
+        width: '100px',
+        height: '100px',
+        cursor: board[index] || winner || !isMyTurn ? 'not-allowed' : 'pointer',
+        color: square === 'X' ? '#0d6efd' : '#dc3545',
+        backgroundColor: square ? '#f8f9fa' : '#ffffff'
+      },
+      onClick: function onClick() {
+        return handleSquareClick(index);
+      }
+    }, square);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-between align-items-center mt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "outline-secondary",
+    size: "sm",
+    href: "/home"
+  }, "Leave Room"), (winner || isDraw) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "success",
+    size: "sm",
+    onClick: handleReset
+  }, "Reset Match"))));
+}
+
+/***/ }),
+
+/***/ "./src/TriviaCreateButton.jsx":
+/*!************************************!*\
+  !*** ./src/TriviaCreateButton.jsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleCreateTriviaRoom": () => (/* binding */ handleCreateTriviaRoom)
+/* harmony export */ });
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./socket */ "./src/socket.js");
+
+function handleCreateTriviaRoom(playerName, navigate) {
+  var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
+  console.log("Requesting Trivia Room creation for: ".concat(cleanName));
+  // 🧠 Check socket status
+  console.log("Is socket connected?", _socket__WEBPACK_IMPORTED_MODULE_0__["default"].connected);
+  if (!_socket__WEBPACK_IMPORTED_MODULE_0__["default"].connected) {
+    console.warn("Socket is disconnected! Attempting to reconnect...");
+    _socket__WEBPACK_IMPORTED_MODULE_0__["default"].connect();
+  }
+
+  // 📡 Fire the socket request to server.js
+  _socket__WEBPACK_IMPORTED_MODULE_0__["default"].emit('createRoom');
+
+  // 🎣 Listen for the server response acknowledgment to route them
+  _socket__WEBPACK_IMPORTED_MODULE_0__["default"].once('roomCreated', function (_ref) {
+    var roomCode = _ref.roomCode,
+      players = _ref.players;
+    console.log("Room created successfully! Code: ".concat(roomCode));
+    navigate("/TriviaWaitingRoom?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(cleanName)));
+  });
+}
+
+/***/ }),
+
+/***/ "./src/TriviaWaitingRoom.jsx":
+/*!***********************************!*\
+  !*** ./src/TriviaWaitingRoom.jsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TriviaWaitingRoom)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./socket.js */ "./src/socket.js");
+/* harmony import */ var _components_RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RulesScreen.jsx */ "./src/components/RulesScreen.jsx");
+/* harmony import */ var _components_QuestionScreen_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/QuestionScreen.jsx */ "./src/components/QuestionScreen.jsx");
+/* harmony import */ var _components_ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ScoreboardScreen.jsx */ "./src/components/ScoreboardScreen.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function TriviaWaitingRoom() {
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useSearchParams)(),
+    _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
+    searchParams = _useSearchParams2[0];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+
+  // Grab configuration from the URL params sent by UniversalJoinForm
+  var roomCode = searchParams.get('room');
+  var urlName = searchParams.get('name') || 'Anonymous';
+  var role = searchParams.get('role') || 'guest'; // 'host' or 'guest'
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    players = _useState2[0],
+    setPlayers = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    error = _useState4[0],
+    setError = _useState4[1];
+  // Tracks roomState from Render Server
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    roomState = _useState6[0],
+    setRoomState = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!roomCode) {
+      setError('No room code provided!');
+      return;
+    }
+
+    // 1. Tell the server we want to join this room
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('joinRoom', {
+      roomCode: roomCode,
+      playerName: urlName
+    });
+
+    // 2. Listen for real-time room synchronization updates
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].on('roomUpdated', function (data) {
+      console.log("Lobby updated from server:", data);
+      setPlayers(data.players);
+    });
+
+    // 3. Listen for gameplay phase transitions from Render backend
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].on('roomStateUpdated', function (updateRoom) {
+      console.log("Gameplay state update:", updateRoom);
+      setRoomState(updateRoom);
+    });
+
+    // 4. Listen for any access errors (e.g., room doesn't exist)
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].on('errorMsg', function (msg) {
+      setError(msg);
+    });
+
+    // Cleanup connections when the user leaves the page or closes the tab
+    return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].off('roomUpdated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].off('roomStateUpdated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].off('errorMsg');
+    };
+  }, [roomCode, urlName]);
+
+  // Emits activation trigger to backend to pull Questions
+  var handleStartGame = function handleStartGame() {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('startGame', {
+      roomCode: roomCode
+    });
+  };
+  if (error) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "mt-5 text-center",
+      style: {
+        maxWidth: '400px'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      variant: "danger"
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      variant: "primary",
+      onClick: function onClick() {
+        return navigate('/');
+      }
+    }, "Back to Home"));
+  }
+
+  // =========================================================================
+  // DYNAMIC PHASE CONTROLLER EVALUATION
+  // =========================================================================
+  if (roomState) {
+    switch (roomState.phase) {
+      case 'RULES':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          roomCode: roomCode,
+          isHost: role === 'host'
+        });
+      case 'QUESTION':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_QuestionScreen_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          roomCode: roomCode,
+          currentQuestion: roomState.questions[roomState.currentRound],
+          playerAnswers: roomState.playerAnswers
+        });
+      case 'SCOREBOARD':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          roomCode: roomCode,
+          players: roomState.players,
+          isHost: role === 'host'
+        });
+      case 'FINAL_RESULTS':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          className: "mt-5 text-center",
+          style: {
+            maxWidth: '420px'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          className: "shadow-sm p-4"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+          className: "text-primary fw-bold"
+        }, "\uD83C\uDFC6 Game Over!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "text-muted"
+        }, "Final Podiums Go Here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          variant: "primary",
+          onClick: function onClick() {
+            return navigate('/');
+          }
+        }, "Return Home")));
+    }
+  }
+
+  // =========================================================================
+  // DEFAULT LOBBY VIEW (If no phase has been launched yet)
+  // =========================================================================
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "mt-5 d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    className: "shadow-sm w-100",
+    style: {
+      maxWidth: '420px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Title, {
+    className: "fs-3 fw-bold mb-1 text-primary"
+  }, "Lobby Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Text, {
+    className: "text-muted small mb-4"
+  }, "Temple-Trivia"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-light border border-secondary rounded p-3 mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-uppercase tracking-wider small fw-bold text-muted d-block mb-1"
+  }, "Room Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fs-2 fw-black text-dark tracking-widest"
+  }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "text-start fw-bold mb-2 px-1"
+  }, "Players Joined", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    bg: "secondary",
+    className: "ms-2"
+  }, players.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    className: "mb-4 text-start border border-secondary rounded"
+  }, players.map(function (player) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Item, {
+      key: player.id,
+      className: "d-flex justify-content-between align-items-center py-2.5 fw-semibold"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      bg: "primary"
+    }, "You") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "text-muted small"
+    }, "Ready"));
+  })), role === 'host' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    variant: "primary",
+    className: "w-100 fw-bold py-2 shadow-sm",
+    onClick: handleStartGame // FIX: Connected the click listener
+  }, "Start Game") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small py-2 border border-dashed rounded bg-light"
+  }, "\u23F3 Waiting for host to launch the match..."))));
+}
+
+/***/ }),
+
+/***/ "./src/TttLobby.jsx":
+/*!**************************!*\
+  !*** ./src/TttLobby.jsx ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TttLobby),
+/* harmony export */   "handleCreateTttRoom": () => (/* binding */ handleCreateTttRoom)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var handleCreateTttRoom = function handleCreateTttRoom(playerName, navigate) {
+  var nameToUse = playerName.trim() || 'Host';
+
+  // Generates 3 random characters
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var randomChars = '';
+  for (var i = 0; i < 3; i++) {
+    randomChars += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  var newRoomCode = "T".concat(randomChars);
+
+  // Execute navigation
+  navigate("/tictactoe?room=".concat(newRoomCode, "&role=host&name=").concat(encodeURIComponent(nameToUse)));
+};
+function TttLobby() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    playerName = _useState2[0],
+    setPlayerName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    roomInput = _useState4[0],
+    setRoomInput = _useState4[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+
+  // 🤝 GUEST: Validate code format and route to game page
+  var handleJoinRoom = function handleJoinRoom(e) {
+    e.preventDefault(); // Stops the page from reloading
+    var cleanInput = roomInput.toUpperCase().trim();
+    var nameToUse = playerName.trim() || 'Guest';
+    if (!cleanInput || cleanInput.length < 4) {
+      return alert("Please enter a valid 4-letter room code!");
+    }
+    if (cleanInput.charAt(0) !== 'T') {
+      return alert("Whoops! Tic-Tac-Toe room codes must start with the letter 'T'.");
+    }
+    navigate("/tictactoe?room=".concat(cleanInput, "&role=guest&name=").concat(encodeURIComponent(nameToUse)));
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    style: {
+      maxWidth: "340px"
+    },
+    className: "mx-auto",
+    onSubmit: handleJoinRoom
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "fw-bold fs-5 mb-3 text-secondary text-center"
+  }, "Enter Your Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Control, {
+    type: "text",
+    placeholder: "Your Name (e.g., Alex)",
+    className: "text-center fw-bold mb-4 size-lg",
+    value: playerName,
+    onChange: function onChange(e) {
+      return setPlayerName(e.target.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "my-4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "fw-bold fs-5 mb-2 text-secondary text-center"
+  }, "Start a Match"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-grid mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "button",
+    variant: "primary",
+    size: "lg",
+    className: "fw-bold",
+    onClick: function onClick() {
+      return handleCreateTttRoom(playerName, navigate);
+    }
+  }, "Host / Create New Room")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small fw-bold my-2 text-center"
+  }, "\u2014 OR JOIN MANUALLY \u2014"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    size: "lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Control, {
+    type: "text",
+    placeholder: "EX: TABC",
+    className: "text-center fw-bold",
+    style: {
+      letterSpacing: "0.15em"
+    },
+    maxLength: 4,
+    value: roomInput,
+    onChange: function onChange(e) {
+      return setRoomInput(e.target.value.toUpperCase());
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "submit",
+    variant: "success",
+    className: "fw-bold px-3"
+  }, "Join"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mt-4 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "link",
+    href: "/home",
+    className: "text-muted text-decoration-none btn-sm"
+  }, "\u2190 Back to Main Menu")));
+}
+
+/***/ }),
+
+/***/ "./src/UniversalJoinForm.jsx":
+/*!***********************************!*\
+  !*** ./src/UniversalJoinForm.jsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UniversalJoinForm)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+// UniversalJoinForm.jsx
+
+
+
+function UniversalJoinForm(_ref) {
+  var playerName = _ref.playerName;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    roomCode = _useState2[0],
+    setRoomCode = _useState2[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+  var handleJoinRoom = function handleJoinRoom(e) {
+    e.preventDefault();
+
+    // Safety guard clause in case someone bypasses HTML disabled state
+    if (roomCode.trim().length !== 4) return;
+    var cleanCode = roomCode.trim().toUpperCase();
+    var finalGuestName = playerName && playerName.trim() ? playerName.trim() : 'Guest';
+    var queryParams = "?room=".concat(cleanCode, "&role=guest&name=").concat(encodeURIComponent(finalGuestName));
+    console.log("Joining room ".concat(cleanCode, " as player: ").concat(finalGuestName));
+    console.log("--- ENGINE CHECK ---");
+    console.log("Code starts with T?", cleanCode.startsWith('T'));
+    console.log("Code starts with R?", cleanCode.startsWith('R'));
+
+    //Routing Logic for Room codes based on first letter
+    if (cleanCode.startsWith('R')) {
+      navigate("/TriviaWaitingRoom".concat(queryParams));
+    } else if (cleanCode.startsWith('T')) {
+      navigate("/TicTacToe".concat(queryParams));
+    } else {
+      alert("Wrong code, Jeff!");
+    }
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onSubmit: handleJoinRoom,
+    className: "d-flex flex-column gap-2 mt-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    controlId: "formRoomCode"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+    type: "text",
+    placeholder: "CODE" // Swapped to a classic 4-letter example code 
+    ,
+    value: roomCode,
+    onChange: function onChange(e) {
+      return setRoomCode(e.target.value);
+    },
+    maxLength: 4,
+    className: "text-center fw-bold tracking-widest text-uppercase",
+    autoComplete: "off"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "primary",
+    type: "submit",
+    className: "fw-bold w-100",
+    disabled: roomCode.trim().length !== 4
+  }, "Join"));
+}
+
+/***/ }),
+
+/***/ "./src/components/QuestionScreen.jsx":
+/*!*******************************************!*\
+  !*** ./src/components/QuestionScreen.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QuestionScreen)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../socket.js */ "./src/socket.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function QuestionScreen(_ref) {
+  var roomCode = _ref.roomCode,
+    currentQuestion = _ref.currentQuestion,
+    playerAnswers = _ref.playerAnswers;
+  // Check if this specific player has logged an answer already
+  var hasAnswered = playerAnswers.hasOwnProperty(_socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].id);
+
+  // Stably merge correct and incorrect options together
+  var choices = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    if (!currentQuestion) return [];
+
+    // Flatten array just in case your data parsing maps it deeply
+    var incorrects = Array.isArray(currentQuestion.incorrect_answers) ? currentQuestion.incorrect_answers.flat() : [];
+    var combined = [].concat(_toConsumableArray(incorrects), [currentQuestion.correct_answer]);
+
+    // Sorts choices alphabetically so all devices see buttons in identical positions
+    return combined.sort(function (a, b) {
+      return a.localeCompare(b);
+    });
+  }, [currentQuestion]);
+  var handleChoiceClick = function handleChoiceClick(selectedChoice) {
+    if (hasAnswered) return; // Prevention lock
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('submitAnswers', {
+      roomCode: roomCode,
+      answer: selectedChoice
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-5 d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "shadow-sm w-100",
+    style: {
+      maxWidth: '460px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+    className: "text-muted small mb-1 uppercase tracking-wider fw-bold"
+  }, "Question Station"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    className: "fs-4 fw-bold mb-4 text-dark"
+  }, currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-grid gap-2.5"
+  }, choices.map(function (choice, index) {
+    var isMyChoice = playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].id] === choice;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      key: index,
+      variant: isMyChoice ? "primary" : "outline-secondary",
+      disabled: hasAnswered,
+      onClick: function onClick() {
+        return handleChoiceClick(choice);
+      },
+      className: "py-2.5 fw-semibold text-start px-3 shadow-sm"
+    }, choice);
+  })), hasAnswered && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small py-2 border border-dashed rounded bg-light mt-4 animate-pulse"
+  }, "\u23F3 Answer locked! Waiting for remaining players..."))));
+}
+
+/***/ }),
+
+/***/ "./src/components/RulesScreen.jsx":
+/*!****************************************!*\
+  !*** ./src/components/RulesScreen.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ RulesScreen)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../socket.js */ "./src/socket.js");
+
+
+ // Steps back up one directory to find socket.js
+
+function RulesScreen(_ref) {
+  var roomCode = _ref.roomCode,
+    isHost = _ref.isHost;
+  var handleNext = function handleNext() {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('nextRound', {
+      roomCode: roomCode
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-5 d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "shadow-sm w-100",
+    style: {
+      maxWidth: '420px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    className: "fs-3 fw-bold mb-3 text-primary"
+  }, "Game Rules"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+    className: "text-start fs-6 mb-4 p-3 bg-light rounded border"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "How to play Temple-Trivia:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "1. The game consists of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "3 rounds"), ".", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2. Read the question carefully.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "3. You earn ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 point"), " per correct answer.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "4. The scoreboard shifts instantly once everyone logs their vote!"), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "success",
+    className: "w-100 fw-bold py-2 shadow-sm",
+    onClick: handleNext
+  }, "Begin Round 1") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small py-2 border border-dashed rounded bg-light"
+  }, "\u23F3 Waiting for the host to launch the first question..."))));
+}
+
+/***/ }),
+
+/***/ "./src/components/ScoreboardScreen.jsx":
+/*!*********************************************!*\
+  !*** ./src/components/ScoreboardScreen.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ScoreboardScreen)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../socket.js */ "./src/socket.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function ScoreboardScreen(_ref) {
+  var roomCode = _ref.roomCode,
+    players = _ref.players,
+    isHost = _ref.isHost;
+  var handleNextRound = function handleNextRound() {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('nextRound', {
+      roomCode: roomCode
+    });
+  };
+
+  // Keep highest ranking profile at array position index 0
+  var sortedPlayers = _toConsumableArray(players).sort(function (a, b) {
+    return (b.score || 0) - (a.score || 0);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-5 d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "shadow-sm w-100",
+    style: {
+      maxWidth: '420px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    className: "fs-3 fw-bold mb-1 text-primary"
+  }, "Round Standings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+    className: "text-muted small mb-4"
+  }, "Temple-Trivia Leaderboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "mb-4 text-start border border-secondary rounded shadow-inner"
+  }, sortedPlayers.map(function (player, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+      key: player.id,
+      className: "d-flex justify-content-between align-items-center py-2.5 fw-semibold"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "text-muted me-2 small"
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      bg: "info",
+      className: "ms-2 text-dark font-normal"
+    }, "You")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      bg: "success",
+      className: "fs-6 py-1.5 px-2.5 rounded-pill"
+    }, player.score || 0, " pts"));
+  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "primary",
+    className: "w-100 fw-bold py-2 shadow-sm",
+    onClick: handleNextRound
+  }, "Advance Stage \u27A1\uFE0F") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small py-2 border border-dashed rounded bg-light"
+  }, "\u23F3 Waiting for host to load the next round..."))));
+}
+
+/***/ }),
+
+/***/ "./src/employees.jsx":
+/*!***************************!*\
+  !*** ./src/employees.jsx ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _Page_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Page.jsx */ "./src/Page.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+
+
+// import EmployeeList from './EmployeeList.jsx'
+
+
+var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById('content'));
+root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Page_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
+
+/***/ }),
+
+/***/ "./src/assets/logos/Animated_Temple_Logo.mp4":
+/*!***************************************************!*\
+  !*** ./src/assets/logos/Animated_Temple_Logo.mp4 ***!
+  \***************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/media/Animated_Temple_Logo.cefa0f2a.mp4";
+
+/***/ }),
+
+/***/ "./src/assets/logos/MartiniLogo.jpg":
+/*!******************************************!*\
+  !*** ./src/assets/logos/MartiniLogo.jpg ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
+
+/***/ }),
+
+/***/ "./src/assets/logos/background.jpg":
+/*!*****************************************!*\
+  !*** ./src/assets/logos/background.jpg ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
+
+/***/ }),
+
+/***/ "./src/assets/logos/temple.jpg":
+/*!*************************************!*\
+  !*** ./src/assets/logos/temple.jpg ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
+
+/***/ }),
+
+/***/ "./src/funnyNames.js":
+/*!***************************!*\
+  !*** ./src/funnyNames.js ***!
+  \***************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "funnyNames": () => (/* binding */ funnyNames),
+/* harmony export */   "getRandomFunnyName": () => (/* binding */ getRandomFunnyName)
+/* harmony export */ });
+/* harmony import */ var firebase_firestore_pipelines__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/firestore/pipelines */ "./node_modules/firebase/firestore/pipelines/dist/esm/pipelines.esm.js");
+
+var funnyNames = ["Anita Break", "Gladys Overwith", "Justin Case", "Paige Turner", "Robin Banks", "Barry Cade", "Ella Vator", "Tim Burr", "Al B. Back", "Luke Warm", "Ben There", "Chris P. Bacon", "Artie Choke", "Barb Dwyer", "Carrie Oakey", "Anita Job", "Neil Down", "Otto Mattic", "Phil M. Up", "Sue Shei"];
+function getRandomFunnyName() {
+  var randomIndex = Math.floor(Math.random() * funnyNames.length);
+  return funnyNames[randomIndex];
+}
+
+/***/ }),
+
+/***/ "./src/socket.js":
+/*!***********************!*\
+  !*** ./src/socket.js ***!
+  \***********************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
+
+var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://game-temple-backend.onrender.com';
+
+// Render handles both polling and websockets
+var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)(SOCKET_URL, {
+  transports: ['websocket', 'polling']
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (socket);
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/create fake namespace object */
+/******/ 	(() => {
+/******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
+/******/ 		var leafPrototypes;
+/******/ 		// create a fake namespace object
+/******/ 		// mode & 1: value is a module id, require it
+/******/ 		// mode & 2: merge all properties of value into the ns
+/******/ 		// mode & 4: return value when already ns object
+/******/ 		// mode & 16: return value when it's Promise-like
+/******/ 		// mode & 8|1: behave like require
+/******/ 		__webpack_require__.t = function(value, mode) {
+/******/ 			if(mode & 1) value = this(value);
+/******/ 			if(mode & 8) return value;
+/******/ 			if(typeof value === 'object' && value) {
+/******/ 				if((mode & 4) && value.__esModule) return value;
+/******/ 				if((mode & 16) && typeof value.then === 'function') return value;
+/******/ 			}
+/******/ 			var ns = Object.create(null);
+/******/ 			__webpack_require__.r(ns);
+/******/ 			var def = {};
+/******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
+/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
+/******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
+/******/ 			}
+/******/ 			def['default'] = () => (value);
+/******/ 			__webpack_require__.d(ns, def);
+/******/ 			return ns;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"employees": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkmodule01"] = self["webpackChunkmodule01"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor"], () => (__webpack_require__("./src/employees.jsx")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
 //# sourceMappingURL=employees.bundle.js.map
