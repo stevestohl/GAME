@@ -1645,7 +1645,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TttLobby_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TttLobby.jsx */ "./src/TttLobby.jsx");
 /* harmony import */ var _UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UniversalJoinForm.jsx */ "./src/UniversalJoinForm.jsx");
 /* harmony import */ var _TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TriviaCreateButton.jsx */ "./src/TriviaCreateButton.jsx");
-/* harmony import */ var _assets_logos_Animated_Temple_Logo_mp4__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logos/Animated_Temple_Logo.mp4 */ "./src/assets/logos/Animated_Temple_Logo.mp4");
+/* harmony import */ var _assets_logos_AnimatedTempleLogo1_mp4__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logos/AnimatedTempleLogo1.mp4 */ "./src/assets/logos/AnimatedTempleLogo1.mp4");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./funnyNames.js */ "./src/funnyNames.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1691,10 +1691,11 @@ function Home() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("video", {
-      src: _assets_logos_Animated_Temple_Logo_mp4__WEBPACK_IMPORTED_MODULE_4__,
+      src: _assets_logos_AnimatedTempleLogo1_mp4__WEBPACK_IMPORTED_MODULE_4__,
       autoPlay: true,
       muted: true,
       playsInline: true,
+      controls: true,
       style: {
         maxWidth: "130px",
         height: "auto"
@@ -2806,13 +2807,13 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /***/ }),
 
-/***/ "./src/assets/logos/Animated_Temple_Logo.mp4":
-/*!***************************************************!*\
-  !*** ./src/assets/logos/Animated_Temple_Logo.mp4 ***!
-  \***************************************************/
+/***/ "./src/assets/logos/AnimatedTempleLogo1.mp4":
+/*!**************************************************!*\
+  !*** ./src/assets/logos/AnimatedTempleLogo1.mp4 ***!
+  \**************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "assets/media/Animated_Temple_Logo.cefa0f2a.mp4";
+module.exports = __webpack_require__.p + "assets/media/AnimatedTempleLogo1.b0754590.mp4";
 
 /***/ }),
 

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { handleCreateTttRoom } from './TttLobby.jsx';
 import UniversalJoinForm from './UniversalJoinForm.jsx';
 import { handleCreateTriviaRoom } from './TriviaCreateButton.jsx';
-import animatedLogo from "./assets/logos/Animated_Temple_Logo.mp4";
+import animatedLogo from "./assets/logos/AnimatedTempleLogo1.mp4";
 import { getRandomFunnyName } from './funnyNames.js';
 
 export default function Home() {
@@ -28,8 +28,9 @@ export default function Home() {
                         <video 
                             src={animatedLogo}
                             autoPlay
-                            muted
+                            muted={true} 
                             playsInline
+                            controls     
                             style={{ maxWidth: "130px", height: "auto" }}
                         />
                     </div>
