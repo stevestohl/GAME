@@ -130,7 +130,7 @@ export default function FlashcardGame() {
                     ))}
                 </div>
 
-                <Card className="m-3 p-2 bg-light border-0 shadow-sm rounded-3">
+                <Card className="m-3 p-2 bg-body-secondary border-0 shadow-sm rounded-3">
                     <Card.Header className="bg-transparent border-0 py-1">
                         <h6 className="fw-bold mb-0 text-secondary text-start">Recipe:</h6>
                     </Card.Header>

@@ -120,8 +120,8 @@ export default function TriviaWaitingRoom() {
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
                 <Card.Body className="text-center">
-                    <Card.Title className="fs-3 fw-bold mb-1 text-primary">Lobby Waiting Room</Card.Title>
-                    <Card.Text className="text-muted small mb-4">Temple-Trivia</Card.Text>
+                    <Card.Title className="fs-3 fw-bold mb-4 text-primary">Trivia Waiting Room</Card.Title>
+                    {/* <Card.Text className="text-muted small mb-4">Temple-Trivia</Card.Text> */}
 
                     {/* Room Code Banner */}
                     <div className="bg-light border border-secondary rounded p-3 mb-4">

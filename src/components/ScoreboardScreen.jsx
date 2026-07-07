@@ -14,8 +14,8 @@ export default function ScoreboardScreen({ roomCode, players, isHost }) {
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
                 <Card.Body className="text-center">
-                    <Card.Title className="fs-3 fw-bold mb-1 text-primary">Round Standings</Card.Title>
-                    <Card.Text className="text-muted small mb-4">Temple-Trivia Leaderboard</Card.Text>
+                    <Card.Title className="fs-3 fw-bold mb-3 text-primary">Scores</Card.Title>
+                    {/* <Card.Text className="text-muted small mb-4">Temple-Trivia Leaderboard</Card.Text> */}
 
                     <ListGroup className="mb-4 text-start border border-secondary rounded shadow-inner">
                         {sortedPlayers.map((player, index) => (
@@ -27,7 +27,7 @@ export default function ScoreboardScreen({ roomCode, players, isHost }) {
                                     <span className="text-muted me-2 small">#{index + 1}</span>
                                     <span>{player.name}</span>
                                     {player.id === socket.id && (
-                                        <Badge bg="info" className="ms-2 text-dark font-normal">You</Badge>
+                                        <Badge bg="info" className="ms-2 text-white font-normal">You</Badge>
                                     )}
                                 </div>
                                 <Badge bg="success" className="fs-6 py-1.5 px-2.5 rounded-pill">

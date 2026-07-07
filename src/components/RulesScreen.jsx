@@ -23,12 +23,12 @@ export default function RulesScreen({ roomCode, isHost }) {
                     </Card.Text>
 
                     {isHost ? (
-                        <Button variant="success" className="w-100 fw-bold py-2 shadow-sm" onClick={handleNext}>
+                        <Button variant="primary" className="w-100 fw-bold py-2 shadow-sm" onClick={handleNext}>
                             Begin Round 1
                         </Button>
                     ) : (
                         <div className="text-muted small py-2 border border-dashed rounded bg-light">
-                            ⏳ Waiting for the host to launch the first question...
+                            Waiting for the host to launch the first question...
                         </div>
                     )}
                 </Card.Body>

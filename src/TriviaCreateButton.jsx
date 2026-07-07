@@ -4,7 +4,7 @@ export function handleCreateTriviaRoom(playerName, navigate) {
     const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
     
     console.log(`Requesting Trivia Room creation for: ${cleanName}`);
-    // 🧠 Check socket status
+    //  Check socket status
     console.log("Is socket connected?", socket.connected); 
     
     if (!socket.connected) {

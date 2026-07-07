@@ -30,9 +30,9 @@ export default function QuestionScreen({ roomCode, currentQuestion, playerAnswer
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-sm w-100" style={{ maxWidth: '460px' }}>
                 <Card.Body className="text-center">
-                    <Card.Text className="text-muted small mb-1 uppercase tracking-wider fw-bold">
+                    {/* <Card.Text className="text-muted small mb-1 uppercase tracking-wider fw-bold">
                         Question Station
-                    </Card.Text>
+                    </Card.Text> */}
                     <Card.Title className="fs-4 fw-bold mb-4 text-dark">
                         {currentQuestion?.question}
                     </Card.Title>

@@ -1,6 +1,7 @@
 import { rand } from "firebase/firestore/pipelines";
 
-export const funnyNames =  [
+export const funnyNames = [
+
     "Anita Break",
     "Gladys Overwith",
     "Justin Case",
@@ -20,9 +21,80 @@ export const funnyNames =  [
     "Neil Down",
     "Otto Mattic",
     "Phil M. Up",
-    "Sue Shei"
-];
+    "Sue Shei",
 
+    // Food & Drink
+    "Al Dente",
+    "Brie Cheese",
+    "Mac Aroni",
+    "Olive Tree",
+    "Tom Morrow",
+    "Sal Monella",
+    "Pea Soup",
+    "Heinz Sight",
+    "C. Senor",
+    "Sherry Wine",
+
+    // Actions & Phrasing
+    "Amanda Hugginkiss",
+    "Anita Room",
+    "Dan D. Lyon",
+    "Earl E. Bird",
+    "Eileen Dover",
+    "Gilda Wreck",
+    "Helen Highwater",
+    "Hy Price",
+    "Ilene Left",
+    "Ivana Tinkle",
+    "May B. Tomorrow",
+    "Morey Bund",
+    "Owen Money",
+    "Ray O’Sunshyne",
+    "Sharon Schmidt",
+    "Theresa Green",
+    "Walter Wall",
+    "Warren Peace",
+    "Will Power",
+    "Xavier Breath",
+
+    // Occupations & Hobbies
+    "Ali Gator",
+    "Anna Tomy",
+    "Bill Ding",
+    "Dusty Miller",
+    "Ginger Vitis",
+    "Harry Beard",
+    "Jay Walker",
+    "Lou Stool",
+    "Marsha Mellow",
+    "Penny Less",
+    "Polly Graph",
+    "Ray Gunn",
+    "Rocky Shore",
+    "Sandy Beaches",
+    "Woody Forrester",
+
+    // Medical & Science
+    "Barry D. Hatchett",
+    "Candy Barr",
+    "Frank Enstein",
+    "Gene Poole",
+    "Gerry Atric",
+    "Holly Wood",
+    "Jack Pott",
+    "Lily Pad",
+    "Luke Sky-Walker",
+    "Marcus Absent",
+
+    // Mischief & Crime
+    "Buster Move",
+    "Chuck Wagon",
+    "Crystal Ball",
+    "Daisy Chain",
+    "Don Key",
+    "Ella Phant",
+    "G. I. Joe",
+]
 export function getRandomFunnyName() {
     const randomIndex = Math.floor(Math.random () * funnyNames.length)
     return funnyNames[randomIndex]

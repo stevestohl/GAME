@@ -28,31 +28,33 @@ export default function BarHome() {
                         />
                     </div>
 
-                    <hr className='my-3 text-bold'/>
 
-                    <Card.Title className='text-muted text-center fw-bold mb-1 tracking-wider'>🍸Bartending🍸</Card.Title>
+                    <Card className = "border p-1 bg-body-secondary shadow-sm rounded-3">
+                        <Card.Title className='text-muted text-center fw-bold small mb-1 tracking-wider'>
+                            Bartending
+                        </Card.Title>
 
-                    {/* Single Player / Reference Links */}
-                    <Row className='g-2'>
-                        <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold align-items-center justify-content-center">
-                                🍹Drink Game
-                            </Button>
-                        </Col>
-                        
-                        <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold align-items-center justify-content-center">
-                                Flashcard List
-                            </Button>
-                        </Col>
+                        {/* Single Player / Reference Links */}
+                        <Row className='g-2'>
+                            <Col xs={6} className='d-grid'>
+                                <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold align-items-center justify-content-center">
+                                    🍹Drink Game 🍹
+                                </Button>
+                            </Col>
+                            
+                            <Col xs={6} className='d-grid'>
+                                <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold align-items-center justify-content-center">
+                                    Flashcard List
+                                </Button>
+                            </Col>
 
-                        <Col xs={6} className='d-grid'>
-                            <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold align-items-center justify-content-center">
-                                Flashcards
-                            </Button>
-                        </Col>
-                    </Row>
-
+                            <Col xs={6} className='d-grid'>
+                                <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold align-items-center justify-content-center">
+                                    Flashcards
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Card>
                 </Card.Body>
             </Card>
         </div>

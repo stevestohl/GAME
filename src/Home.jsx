@@ -75,7 +75,7 @@ export default function Home() {
                                         onClick={() => handleCreateTttRoom(playerName, navigate)}
                                     >
                                         Tic-Tac-Toe<br/>
-                                        ❌⭕ 
+                                        X O
                                     </Button>
                                     
                                     <Button 

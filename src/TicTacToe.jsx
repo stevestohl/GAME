@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, Badge, Button, Spinner } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
-import { io } from 'socket.io-client'; //t
+import { io } from 'socket.io-client';
+import { HourGlassBlue } from './assets/logos/HourGlassBlue.png'
 
 // Connect to your backend server URL
 
@@ -119,22 +120,26 @@ export default function TictactoeRoom() {
     if (roomStatus === 'waiting') {
         return (
             <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
-                <Card className="shadow-sm p-5 text-center" style={{ width: "100%", maxWidth: "450px" }}>
-                    <h3 className="fw-bold mb-4 text-primary">Tic-Tac-Toe<br/>Room Created</h3>
-                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
+                <Card className="shadow-sm p-3 text-center" style={{ width: "100%", maxWidth: "450px" }}>
+                    <h3 className="fw-bold mb-2 text-primary">Tic-Tac-Toe<br/>Room Created</h3>
+                    <div className="my-1 bg-transparent p-2 rounded-3 d-inline-block">
                         <img 
                             src="https://game-temple.org/Tic-Tac-Toe.png"
-                            alt="Animated Game-Temple Logo"
+                            alt="Tic-Tac-Toe Logo"
+                            className="bg-white rounded-3" 
                             style={{ maxWidth: "130px", height: "auto" }}
                         />
                     </div>
-                    <h1 className="display-4 fw-bold text-primary mb-4">{roomCode}</h1>
-                    <p className="text-muted mb-4">
-                        Share this code with your opponent. The game will start when they join.
+                    <h1 className="display-4 fw-bold text-primary mb-2">{roomCode}</h1>
+                    <p className="text-muted mb-2">
+                        Share this code with your opponent
                     </p>
-                    <div className="d-flex justify-content-center align-items-center gap-2">
-                        <Spinner animation="border" variant="primary" size="sm" />
-                        <span className="fw-bold">Waiting for opponent...</span>
+                    <div className="d-flex justify-content-center align-items-center gap-3">
+                        {/* <Spinner animation="border" variant="primary" size="sm" /> */}
+                        <img
+                            HourGlassBlue
+                        />
+                        <span className="fw-bold text-primary">    Waiting for opponent...</span>
                     </div>
                 </Card>
             </Container>
@@ -147,21 +152,27 @@ export default function TictactoeRoom() {
             <Card className="shadow-sm p-4 text-center" style={{ width: "100%", maxWidth: "450px" }}>
                 <Card.Header className="bg-transparent border-0 mb-3">
                     <h3 className="fw-bold text-primary mb-1">Room: {roomCode}</h3>
-                    <div className="d-flex justify-content-center gap-2 mb-2">
-                        <Badge bg="secondary">Name: {playerName}</Badge>
-                        <Badge bg={playerRole === 'host' ? 'info' : 'warning'} className="text-dark">
-                            Role: {playerRole.toUpperCase()} ({playerSymbol})
-                        </Badge>
-                        {opponentName && <Badge bg="success">vs {opponentName}</Badge>}
-                    </div>
+                        <div className="d-flex justify-content-center gap-2 mb-2 align-items-center">
+                            <Badge bg="secondary">Name: {playerName}</Badge>
+                            
+                            <Badge 
+                                as="h5" 
+                                bg="transparent"
+                                className="text-dark mb-0"
+                            >
+                                Role: {playerRole.toUpperCase()} ({playerSymbol})
+                            </Badge>
+                            
+                            {opponentName && <Badge bg="primary">vs {opponentName}</Badge>}
+                        </div>
                     <hr />
                     <h5 className="fw-bold my-3">
-                        {winner && <span className="text-success">🎉 Winner: {winner}!</span>}
-                        {isDraw && <span className="text-muted">🤝 It's a Draw!</span>}
+                        {winner && <span className="text-primary">Winner: {winner}!</span>}
+                        {isDraw && <span className="text-muted">It's a Draw!</span>}
                         {!winner && !isDraw && (
                             isMyTurn ? 
-                            <span className="text-danger">🔥 Your Turn ({playerSymbol})</span> : 
-                            <span className="text-muted">⏳ Waiting for opponent...</span>
+                            <span className="text-success">Your Turn ({playerSymbol})</span> : 
+                            <span className="text-muted">Waiting for opponent...</span>
                         )}
                     </h5>
                 </Card.Header>
