@@ -120,10 +120,17 @@ export default function TictactoeRoom() {
         return (
             <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
                 <Card className="shadow-sm p-5 text-center" style={{ width: "100%", maxWidth: "450px" }}>
-                    <h3 className="fw-bold mb-4">Room Created!</h3>
+                    <h3 className="fw-bold mb-4 text-primary">Tic-Tac-Toe<br/>Room Created</h3>
+                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
+                        <img 
+                            src="https://game-temple.org/Tic-Tac-Toe.png"
+                            alt="Animated Game-Temple Logo"
+                            style={{ maxWidth: "130px", height: "auto" }}
+                        />
+                    </div>
                     <h1 className="display-4 fw-bold text-primary mb-4">{roomCode}</h1>
                     <p className="text-muted mb-4">
-                        Share this code with your opponent. The game will automatically start when they join.
+                        Share this code with your opponent. The game will start when they join.
                     </p>
                     <div className="d-flex justify-content-center align-items-center gap-2">
                         <Spinner animation="border" variant="primary" size="sm" />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
 // import gameLogo from "../src/assets/logos/Logo_Temple_Table.jpg";
-import martini from '../src/assets/logos/MartiniLogo.jpg'
+//import martini from '../src/assets/logos/MartiniLogo.jpg'
 
 
 export default function BarHome() {
@@ -20,11 +20,11 @@ export default function BarHome() {
                 
                 <Card.Body className='p-1'>
                     {/* Logo wrapper */}
-                    <div className="mb-1 bg-light p-2 rounded-3 d-inline-block shadow-sm">
+                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
                         <img 
-                            src={martini}
-                            alt="Game-Temple Logo"
-                            style={{ maxWidth: "140px", height: "auto" }}
+                            src="https://game-temple.org/MartiniLogo.gif"
+                            alt="Animated Game-Temple Logo"
+                            style={{ maxWidth: "130px", height: "auto" }}
                         />
                     </div>
 

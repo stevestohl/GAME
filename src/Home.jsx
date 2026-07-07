@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { handleCreateTttRoom } from './TttLobby.jsx';
 import UniversalJoinForm from './UniversalJoinForm.jsx';
 import { handleCreateTriviaRoom } from './TriviaCreateButton.jsx';
-import animatedLogo from './assets/logos/Game_Temple_Animated.gif'; // Fixed import syntax
 import { getRandomFunnyName } from './funnyNames.js';
 
 export default function Home() {
@@ -25,9 +24,8 @@ export default function Home() {
                 
                 <Card.Body className='p-1'>
                     <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
-                        {/* Swapped video tag for standard img tag */}
                         <img 
-                            src={animatedLogo}
+                            src="https://game-temple.org/Game_Temple_Animated.gif"
                             alt="Animated Game-Temple Logo"
                             style={{ maxWidth: "130px", height: "auto" }}
                         />
