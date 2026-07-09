@@ -38,7 +38,7 @@ export default function BarHome() {
                         <Row className='g-2'>
                             <Col xs={6} className='d-grid'>
                                 <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold align-items-center justify-content-center">
-                                    🍹Drink Game 🍹
+                                    Drink Quiz <br/>🍹🍹
                                 </Button>
                             </Col>
                             

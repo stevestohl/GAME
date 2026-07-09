@@ -60,33 +60,48 @@ export default function Home() {
 
                             <Col xs={12} className="d-flex align-items-center mt-1 mb-0">
                                 <hr className="flex-grow-1 my-0 opacity-25" />
-                                <span className="mx-2 my-2 text-muted small fw-bold">
+                                <span className="mx-2 my-2 text-muted small fw-bold text-center">
                                     OR <br />
                                     Create New Room
                                 </span>
                                 <hr className="flex-grow-1 my-0 opacity-25" />
                             </Col>
-
-                            <Col xs={12} className="text-start">
-                                <div className="d-flex gap-2 w-100">
-                                    <Button 
-                                        variant="primary" 
-                                        className="fw-bold w-50 py-1 shadow-sm"
-                                        onClick={() => handleCreateTttRoom(playerName, navigate)}
-                                    >
-                                        Tic-Tac-Toe<br/>
-                                        X O
-                                    </Button>
+                            
+                            {/* Create Buttons Section Grid */}
+                            <Col xs={12}>
+                                <Row className="g-2">
+                                    <Col xs={6}>
+                                        <Button 
+                                            variant="primary" 
+                                            className="fw-bold w-100 h-100 py-2 shadow-sm"
+                                            onClick={() => handleCreateTttRoom(playerName, navigate)}
+                                        >
+                                            Tic-Tac-Toe<br/>
+                                            X O
+                                        </Button>
+                                    </Col>
                                     
-                                    <Button 
-                                        variant="primary" 
-                                        className="fw-bold w-50 py-1 shadow-sm text-white"
-                                        onClick={() => handleCreateTriviaRoom(playerName, navigate)}
-                                    >
-                                        Trivia <br />
-                                        ❔❔
-                                    </Button>
-                                </div>
+                                    <Col xs={6}>
+                                        <Button 
+                                            variant="primary" 
+                                            className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
+                                            onClick={() => handleCreateTriviaRoom(playerName, navigate)}
+                                        >
+                                            Trivia <br />
+                                            ❔❔
+                                        </Button>
+                                    </Col>
+
+                                    <Col xs={6}>
+                                        <Button
+                                            variant="primary"
+                                            className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
+                                        >
+                                            Prompt <br/>
+                                            2
+                                        </Button>
+                                    </Col>
+                                </Row>
                             </Col>
                         </Row>
                     </Card>

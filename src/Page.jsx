@@ -11,23 +11,23 @@ function NavBar() {
     return (
             <Navbar 
                 variant="light" 
-                className='justify-content-center'
+                className='justify-content-center py-0'
                 style={{ backgroundColor:"#e3f2fd" }}>
-                <Navbar.Brand href="/home">
-                    <img
-                        src={logo}
-                        alt="Game-temple Logo"
-                        style={{ maxWidth: "40px", height: "auto", mixBlendMode:"multiply"}}
-                    />
+                    <Navbar.Brand href="/home">
+                        <img
+                            src={logo}
+                            alt="Game-temple Logo"
+                            style={{ maxWidth: "40px", height: "auto", mixBlendMode:"multiply"}}
+                        />
                     </Navbar.Brand>
                 <Nav>
-                    <Nav.Link href="/barhome">
+                    <Nav.Link href="/barhome" className='py-0'>
                             <img
                                 src={martini}
                                 alt="Martini Logo"
                                 style={{ maxWidth: "30px", height: "auto", mixBlendMode: "multiply" }}
                             />
-                        </Nav.Link>
+                    </Nav.Link>
                     {/* <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
                     <Nav.Link end href="/flashcardsList">Flascard List</Nav.Link>
                     <Nav.Link end href="/flashcardGame">Flashcard Game</Nav.Link> */}
