@@ -217,7 +217,7 @@ mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)
   .then(() => {
     console.log("Connected to MongoDB successfully.");
     server.listen(PORT, () => {
-      console.log(`Trivia-Temple server running on port ${PORT}`);
+      console.log(`Game-Temple server running on port ${PORT}`);
     });
   })
   .catch((err) => {

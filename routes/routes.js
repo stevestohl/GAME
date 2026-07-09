@@ -3,6 +3,7 @@ import { getAllTrivia, getTriviaBackendStatus, getTriviaByID } from '../controll
 import {getAllEmployees, getEmployee, createEmployee, 
     updateEmployee, deleteEmployee, getAllDrinks, 
     getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/employees.js'
+import { getAllPrompt2Cards } from '../controllers/prompt2_controller.js'
 
 
 const router = express.Router()
@@ -10,6 +11,9 @@ const router = express.Router()
 router.route('/employees')
     .get(getAllEmployees)
     .post(createEmployee)
+
+router.route('/prompt2')
+    .get(getAllPrompt2Cards)
 
 router.route('/employees/:id')
     .get(getEmployee)
@@ -34,7 +38,5 @@ router.route('/templetrivia/status')
 
 router.route('/templetrivia/:id')
     .get(getTriviaByID)
-
-
 
 export default router

@@ -22,12 +22,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public', {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
-      // 🚫 Aggressive bypass for HTML (forces browser to re-fetch the gatekeeper file)
+      // Aggressive bypass for HTML (forces browser to re-fetch the gatekeeper file)
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
     } else {
-      // 🔄 For your flat Webpack bundles: cache them, but ALWAYS verify changes with the server first
+      //  For your flat Webpack bundles: cache them, but ALWAYS verify changes with the server first
       res.setHeader('Cache-Control', 'no-cache');
       res.setHeader('Pragma', 'no-cache');
     }
@@ -39,12 +39,10 @@ app.use('/api', routes)
 
 // 5. Catch-all route to serve your Webpack frontend safely
 app.get('*', (req, res, next) => {
-    // 🛡️ Skip this route if Chrome/browser requests system background assets (like .json or .ico files)
     if (req.path.includes('.')) {
         return next();
     }
 
-    // 🗺️ Absolute mapping straight to your public/index.html file
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
