@@ -1,4 +1,4 @@
-import socket from './socket';
+import socket from '../../socket';
 
 export function handleCreateTriviaRoom(playerName, navigate) {
     const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';

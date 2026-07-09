@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Badge, Button, Spinner } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import { HourGlassBlue } from './assets/logos/HourGlassBlue.png'
+import { HourGlassBlue } from '../../assets/logos/HourGlassBlue.png'
 
 // Connect to your backend server URL
 

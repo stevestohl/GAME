@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
-import { handleCreateTttRoom } from './TttLobby.jsx';
-import UniversalJoinForm from './UniversalJoinForm.jsx';
-import { handleCreateTriviaRoom } from './TriviaCreateButton.jsx';
-import { getRandomFunnyName } from './funnyNames.js';
+import { handleCreateTttRoom } from '../TicTacToe/TttLobby.jsx';
+import UniversalJoinForm from '../../UniversalJoinForm.jsx';
+import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
+import { getRandomFunnyName } from '../../funnyNames.js';
 
 export default function Home() {
     const [playerName, setPlayerName] = useState(getRandomFunnyName);
