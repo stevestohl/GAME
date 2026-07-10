@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
-import { handleCreateTttRoom } from '../TicTacToe/TttLobby.jsx';
 import UniversalJoinForm from '../../UniversalJoinForm.jsx';
 import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import { getRandomFunnyName } from '../../funnyNames.js';
@@ -10,6 +9,20 @@ export default function Home() {
     const [playerName, setPlayerName] = useState(getRandomFunnyName);
     const navigate = useNavigate();
     
+    const handleCreateTttRoom = (playerName, navigate) => {
+    const nameToUse = playerName.trim() || 'Host';
+    
+    // Generates 3 random characters with a 'T' prefix
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomChars = ''; 
+    for (let i = 0; i < 3; i++) {
+        randomChars += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    const newRoomCode = `T${randomChars}`;
+
+    // Navigate straight to the game board
+    navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
+    };
     return (
         /* Match outer layout and padding of BarHome */
         <div className="d-flex justify-content-center align-items-center p-1">

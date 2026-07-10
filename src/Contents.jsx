@@ -7,21 +7,23 @@ import Flashcards from './features/Flashcards/Flashcards.jsx'
 import FlashcardsList from './features/Flashcards/FlashcardsList.jsx'
 import FlashcardGame from './features/Flashcards/FlashcardGame.jsx'
 import Home from './features/Menu/Home.jsx'
-import TicTacToe from './features/TicTacToe/TicTacToe.jsx'
-import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 import BarHome from './features/Menu/BarHome.jsx'
 
+// --- Game Imports ---
+import TicTacToe from './features/TicTacToe/TicTacToe.jsx'
+import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 
 export default function Contents() {
-
     const NotFound = () => <h1>Page Not Found</h1>
     
     return (
         <Routes>
             {/* Core Game-Temple Routes */}
             <Route path="/home" element={<Home />} />
-            <Route path="/tictactoe" element={<TicTacToe />} />
             <Route path="/barhome" element={<BarHome />} />
+            
+            {/* Direct routing to game board */}
+            <Route path="/tictactoe" element={<TicTacToe />} />
             <Route path="/TriviaWaitingRoom" element={<TriviaWaitingRoom />} />
             
             {/* Flashcard & Tools Routes */}

@@ -64,6 +64,7 @@ export default function TttLobby() {
                         type="button" 
                         variant="primary" 
                         size="lg" 
+                        size="lg" 
                         className="fw-bold" 
                         onClick={() => handleCreateTttRoom(playerName, navigate)}
                     >
