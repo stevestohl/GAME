@@ -2203,15 +2203,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-// ✅ FIXED: Corrected import syntax for the image
 
 
-
-// ✅ FIXED: Connect directly to the /tictactoe namespace
 var BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000/tictactoe' : 'https://game-temple-backend.onrender.com/tictactoe';
 var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_1__.io)(BACKEND_URL, {
-  autoConnect: false
+  autoConnect: false,
+  transports: ['websocket', 'polling'] // Keeps your existing transport settings
 });
+
 function TictactoeRoom() {
   var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
@@ -2237,7 +2236,7 @@ function TictactoeRoom() {
     setIsNext = _useState8[1];
   var playerSymbol = playerRole === 'host' ? 'X' : 'O';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // 1. Define the connection handler
+    // Define the connection handler
     var onConnect = function onConnect() {
       console.log("Socket connected, joining room...");
       socket.emit('joinRoom', {
@@ -2247,7 +2246,7 @@ function TictactoeRoom() {
       });
     };
 
-    // 2. Listen for the connection event
+    // Listen for the connection event
     socket.on('connect', onConnect);
 
     // 3. Manually connect
@@ -2319,8 +2318,6 @@ function TictactoeRoom() {
       className: "text-muted"
     }, "Waiting for opponent...")));
   }
-
-  // ... (rest of your return statement)
 }
 
 /***/ }),
@@ -2667,7 +2664,8 @@ var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:50
 
 // Render handles both polling and websockets
 var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)(SOCKET_URL, {
-  transports: ['websocket', 'polling']
+  transports: ['websocket', 'polling'],
+  autoConnect: false
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (socket);
 

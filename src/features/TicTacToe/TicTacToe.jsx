@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Badge, Button, Spinner } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-// ✅ FIXED: Corrected import syntax for the image
 import HourGlassBlue from '../../assets/logos/HourGlassBlue.png'; 
 import TicTacToeLogo from '../../assets/logos/Tic-Tac-Toe.png'; 
 
-// ✅ FIXED: Connect directly to the /tictactoe namespace
+
 const BACKEND_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:5000/tictactoe' 
     : 'https://game-temple-backend.onrender.com/tictactoe';
 
-const socket = io(BACKEND_URL, { autoConnect: false });
+const socket = io(BACKEND_URL, { 
+    autoConnect: false,
+    transports: ['websocket', 'polling'] // Keeps your existing transport settings
+});
 
 export default function TictactoeRoom() {
     const [searchParams] = useSearchParams();
@@ -27,13 +29,13 @@ export default function TictactoeRoom() {
     const playerSymbol = playerRole === 'host' ? 'X' : 'O';
 
 useEffect(() => {
-    // 1. Define the connection handler
+ // Define the connection handler
     const onConnect = () => {
         console.log("Socket connected, joining room...");
         socket.emit('joinRoom', { roomCode, playerRole, playerName });
     };
 
-    // 2. Listen for the connection event
+    // Listen for the connection event
     socket.on('connect', onConnect);
     
     // 3. Manually connect
@@ -92,6 +94,4 @@ useEffect(() => {
             </Container>
         );
     }
-
-    // ... (rest of your return statement)
 }

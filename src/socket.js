@@ -6,7 +6,8 @@ const SOCKET_URL = window.location.hostname === 'localhost'
 
 // Render handles both polling and websockets
 const socket = io(SOCKET_URL, {
-    transports: ['websocket', 'polling'] 
+    transports: ['websocket', 'polling'],
+    autoConnect: false 
 });
 
 export default socket;

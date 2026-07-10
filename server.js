@@ -21,9 +21,17 @@ const io = new Server(server, {
 
 // Initialize Namespaces
 // Each function takes the specific namespace instance
-registerTriviaNamespace(io.of('/trivia'));
-registerTictactoeNamespace(io.of('/tictactoe'));
-registerPrompt2Namespace(io.of('/prompt2'));
+const triviaNS = io.of('/trivia');
+registerTriviaNamespace(triviaNS);
+console.log("Namespace '/trivia' registered.");
+
+const tttNS = io.of('/tictactoe');
+registerTictactoeNamespace(tttNS);
+console.log("Namespace '/tictactoe' registered.");
+
+const promptNS = io.of('/prompt2');
+registerPrompt2Namespace(promptNS);
+console.log("Namespace '/prompt2' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)
