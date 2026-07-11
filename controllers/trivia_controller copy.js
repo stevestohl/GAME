@@ -1,83 +1,89 @@
 import Temple_Trivia from "../models/Temple_Trivia.js";
-import TriviaHandler from "./../src/sockets/trivia_handler.js"; // Import your new TriviaHandler class
+
+// const activeRooms = {}
 
 const activeRooms = {};
 
 const getAllTrivia = async (req, res) => {
   try {
-    const triviaDocs = await Temple_Trivia.find({});
+    const triviaDocs = await Temple_Trivia.find({})
+
     res.status(200).json({
       success: true,
       count: triviaDocs.length,
-      data: triviaDocs,
+      data:triviaDocs,
       console: "Get Trivia Working"
-    });
+    })
   } catch (err) {
     res.status(500).json({
       success: false,
       console: err.message
-    });
+    })
   }
-};
+}
 
 // Fetch Trivia document by MongoDB ObjectID
 const getTriviaByID = async (req, res) => {
   try {
-    const triviaDoc = await Temple_Trivia.findById(req.params.id);
+    const triviaDoc = await Temple_Trivia.findById(req.params.id)
 
-    if (!triviaDoc) {
+    if(!triviaDoc) {
       return res.status(404).json({ 
         success: false,
         message: "Trivia question not found"
-      });
+      })
     }
     res.status(200).json({
       success: true,
       data: triviaDoc
-    });
+    })
+
   } catch (err) {
     res.status(500).json({
       success: false,
       console: err.message
-    });
+    })
   }
-};
+}
 
 // Health check for Trivia Socket
 const getTriviaBackendStatus = async (req, res) => {
   try {
     res.status(200).json({
-      status: "online",
+      status:"online",
       message: "Welcome to the Trivia-Temple API!"
-    });
+    })
   } catch (err) {
-    res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message })
   }
-};
+}
 
 // Socket Room Helper: Code Generator
 const generateRoomCode = () => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
   let code = '';
-  for (let i = 0; i < 3; i++) {
-    const randomIndex = Math.floor(Math.random() * alphabet.length);
-    code += alphabet.charAt(randomIndex);
+
+  for (let i=0; i < 3; i++) {
+    const randomIndex = Math.floor(Math.random() * alphabet.length)
+    code += alphabet.charAt(randomIndex)
   }
-  return `R${code}`;
+
+  return `R${code}`
 };
 
 const createRoomLogic = (socket, activeRooms) => {
   const roomCode = generateRoomCode();
 
+
   activeRooms[roomCode] = { 
     players: [],
     currentRound: 0,
-    gameState: 'lobby',
-    gameEngine: null // Placed here to hold the TriviaHandler instance later
+    gameState: 'lobby'
   };
     
   return { roomCode, players: activeRooms[roomCode].players };
 };
+
 
 // This is the Default Export your server.js is looking for!
 export default function registerTriviaNamespace(namespace) {
@@ -89,7 +95,9 @@ export default function registerTriviaNamespace(namespace) {
     // ==========================================
     socket.on('createRoom', () => {
       const { roomCode, players } = createRoomLogic(socket, activeRooms);
+      
       socket.join(roomCode);
+      // Notice we use the socket directly to emit back to the creator
       socket.emit('roomCreated', { roomCode, players });
     });
 
@@ -102,15 +110,18 @@ export default function registerTriviaNamespace(namespace) {
       if (currentRoom) {
         socket.join(code);
         
+        // FIX: Check if this player socket is already in the room array
         const playerExists = currentRoom.players.some(p => p.id === socket.id);
         
         if (!playerExists) {
+          // Add them safely if they aren't tracked yet
           currentRoom.players.push({ 
             id: socket.id, 
             name: playerName || 'Anonymous', 
             score: 0 
           });
         } else {
+          // If they already exist (due to double-mounts), simply update their name 
           const index = currentRoom.players.findIndex(p => p.id === socket.id);
           currentRoom.players[index].name = playerName || 'Anonymous';
         }
@@ -122,8 +133,8 @@ export default function registerTriviaNamespace(namespace) {
       } else {
         socket.emit('errorMsg', 'Trivia room not found.');
       }
-    });
-
+    }
+  );
     // ==========================================
     // Phase Transitions (Moving from Rules to Question)
     // ==========================================
@@ -139,12 +150,15 @@ export default function registerTriviaNamespace(namespace) {
 
       console.log(`🏁 Transitioning room ${code} to QUESTION phase (Round ${currentRoom.currentRound + 1})`);
 
+      // 1. Clear any player answers left over from prior testing or rounds
       currentRoom.playerAnswers = {};
+
+      // 2. Advance the UI phase state to 'QUESTION'
       currentRoom.phase = 'QUESTION';
 
+      // 3. Broadcast the updated state out to all players in the match room
       namespace.to(code).emit('roomStateUpdated', currentRoom);
     });
-
     // ==========================================
     // Gameplay Lifecycle Initialization
     // ==========================================
@@ -158,41 +172,32 @@ export default function registerTriviaNamespace(namespace) {
       }
 
       try {
-        console.log(`幕 Launching match for room: ${code}`);
+        console.log(`🎮 Launching match for room: ${code}`);
 
-        // 1. Fetch questions from database
-        const MAX_ROUNDS = 3; // Set your round limit here
-        const questionPool = await Temple_Trivia.find({}).limit(MAX_ROUNDS);
+        // 1. Fetch a pool of trivia questions from your MongoDB collection
+        // Adjust the .limit() number based on how many questions you want per match
+        const questionPool = await Temple_Trivia.find({}).limit(5);
 
         if (!questionPool || questionPool.length === 0) {
-          return socket.emit('errorMsg', 'No trivia questions found in the database.');
+          return socket.emit('errorMsg', 'No trivia questions found in the database database.');
         }
 
-        // 2. Initialize the TriviaHandler engine for this room instance
-        // Map db properties to fit whatever naming convention trivia_handler expects (e.g. correct_answer vs correctAnswer)
-        const formattedQuestions = questionPool.map(q => ({
-          question: q.question,
-          options: q.options,
-          correctAnswer: q.correct_answer || q.correctAnswer, 
-          explanation: q.explanation || ''
-        }));
-
-        currentRoom.gameEngine = new TriviaHandler(formattedQuestions);
-
-        // 3. Populate the room's core state object
+        // 2. Populate the room's core state object
         currentRoom.gameState = 'active';
-        currentRoom.phase = 'RULES'; 
+        currentRoom.phase = 'RULES'; // Change phase from lobby to RULES
         currentRoom.questions = questionPool;
         currentRoom.currentRound = 0;
-        currentRoom.playerAnswers = {}; 
+        currentRoom.playerAnswers = {}; // Reset tracking map for submissions
 
+        // Initialize everyone's base scores to 0 if not already handled
         currentRoom.players.forEach(player => {
-          player.score = 0;
+          player.score = player.score || 0;
         });
 
-        // 4. Broadcast state back down to clients
+        // 3. Broadcast the synchronized gameplay state update to all players in the room
         namespace.to(code).emit('roomStateUpdated', currentRoom);
-        console.log(`📢 Room state initialized with TriviaHandler engine for room ${code}`);
+        
+        console.log(`📢 Room state initialized to RULES phase for room ${code}`);
 
       } catch (err) {
         console.error("Failed to safely initialize game room state:", err);
@@ -200,7 +205,7 @@ export default function registerTriviaNamespace(namespace) {
       }
     });
 
-    // ==========================================
+  // ==========================================
     // Answer Submission & Scoring Engine
     // ==========================================
     socket.on('submitAnswers', ({ roomCode, answer }) => {
@@ -209,30 +214,23 @@ export default function registerTriviaNamespace(namespace) {
       const code = roomCode.trim().toUpperCase();
       const currentRoom = activeRooms[code];
 
-      if (!currentRoom || !currentRoom.gameEngine) {
-        return socket.emit('errorMsg', 'Room or Game engine not found.');
+      if (!currentRoom) {
+        return socket.emit('errorMsg', 'Room not found.');
       }
 
-      // 1. Record this specific player's answer
+      // 1. Record this specific player's answer text string
       currentRoom.playerAnswers[socket.id] = answer;
 
-      // 2. Leverage TriviaHandler logic to validate correctness
-      const currentQuestion = currentRoom.gameEngine.getCurrentQuestion();
-      const isCorrect = currentQuestion && currentQuestion.correctAnswer === answer;
-
-      if (isCorrect) {
+      // 2. Evaluate answer correctness against current round question context
+      const currentQuestion = currentRoom.questions[currentRoom.currentRound];
+      if (currentQuestion && currentQuestion.correct_answer === answer) {
+        // Find the player object and increment score safely
         const player = currentRoom.players.find(p => p.id === socket.id);
         if (player) {
-          player.score += 1;
+          player.score = (player.score || 0) + 1;
           console.log(`✨ Correct answer by ${player.name}! Score is now: ${player.score}`);
         }
       }
-
-      // Send immediate confirmation back to the individual client
-      socket.emit('answer_feedback', {
-        isCorrect,
-        correctAnswer: currentQuestion ? currentQuestion.correctAnswer : ''
-      });
 
       // 3. Automated Phase Controller: Check if all active players have submitted
       const totalPlayersInRoom = currentRoom.players.length;
@@ -242,9 +240,12 @@ export default function registerTriviaNamespace(namespace) {
 
       if (totalAnswersLogged >= totalPlayersInRoom) {
         console.log(`📊 All answers collected for room ${code}. Shifting to SCOREBOARD phase.`);
+        
+        // Update the game room phase status
         currentRoom.phase = 'SCOREBOARD';
       }
 
+      // 4. Synchronize the room state data back down to all clients
       namespace.to(code).emit('roomStateUpdated', currentRoom);
     });
 
@@ -257,30 +258,31 @@ export default function registerTriviaNamespace(namespace) {
       const code = roomCode.trim().toUpperCase();
       const currentRoom = activeRooms[code];
 
-      if (!currentRoom || !currentRoom.gameEngine) {
-        return socket.emit('errorMsg', 'Room or Game engine not found.');
+      if (!currentRoom) {
+        return socket.emit('errorMsg', 'Room not found.');
       }
 
-      // 1. Advance the turn on our TriviaHandler instance
-      currentRoom.gameEngine.advanceTurn();
-      
-      // Update our controller's sync tracking index
-      currentRoom.currentRound = currentRoom.gameEngine.currentState.currentQuestionIndex;
+      // Increment the round index tracker
+      currentRoom.currentRound += 1;
 
-      // 2. Read the game over flag computed by the handler
-      if (currentRoom.gameEngine.currentState.isGameOver) {
+      // Define your match cap condition (e.g., 3 rounds max)
+      const MAX_ROUNDS = 3;
+
+      if (currentRoom.currentRound >= MAX_ROUNDS) {
         console.log(`🏆 Match completed for room ${code}. Transitioning to FINAL_RESULTS.`);
+        
+        // Change the UI phase to trigger your podium layouts
         currentRoom.phase = 'FINAL_RESULTS';
         currentRoom.gameState = 'completed';
-        
-        // Send a detailed metrics payload from the engine
-        namespace.to(code).emit('game_over_summary', currentRoom.gameEngine.getGameSummary());
       } else {
         console.log(`➡️ Advancing room ${code} to Round ${currentRoom.currentRound + 1}`);
+        
+        // Clear old answer map and go back to the question card
         currentRoom.playerAnswers = {};
         currentRoom.phase = 'QUESTION';
       }
 
+      // Broadcast the state change to all clients
       namespace.to(code).emit('roomStateUpdated', currentRoom);
     });
     
@@ -290,6 +292,7 @@ export default function registerTriviaNamespace(namespace) {
     socket.on('disconnect', () => {
       console.log(`Trivia User Disconnected: ${socket.id}`);
       
+      // Cleanup Trivia Rooms specific to this namespace
       for (const roomCode in activeRooms) {
         const room = activeRooms[roomCode];
         const playerIndex = room.players.findIndex(p => p.id === socket.id);
@@ -298,7 +301,7 @@ export default function registerTriviaNamespace(namespace) {
           room.players.splice(playerIndex, 1);
           
           if (room.players.length === 0) {
-            delete activeRooms[roomCode]; 
+            delete activeRooms[roomCode]; // Delete empty rooms
           } else {
             namespace.to(roomCode).emit('roomUpdated', { 
               roomCode, 
@@ -313,10 +316,10 @@ export default function registerTriviaNamespace(namespace) {
   });
 }
 
-export {
+export{
   getAllTrivia,
   getTriviaBackendStatus,
   getTriviaByID,
   generateRoomCode,
   createRoomLogic
-};
+}
