@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Card, ListGroup, Badge, Button, Alert } from 'react-bootstrap';
-import socket from '../../socket.js';
+import {triviaSocket as socket } from '../../socket.js';
 
 import RulesScreen from '../../components/RulesScreen.jsx';
 import QuestionScreen from '../../components/QuestionScreen.jsx';
@@ -27,22 +27,24 @@ export default function TriviaWaitingRoom() {
             return;
         }
 
-        // 1. Tell the server we want to join this room
+        // Ensure socket connects to namespace
+        if(!socket.connected) socket.connect()
+        // Tell the server we want to join this room            
         socket.emit('joinRoom', { roomCode, playerName: urlName });
 
-        // 2. Listen for real-time room synchronization updates
+        // Listen for real-time room synchronization updates
         socket.on('roomUpdated', (data) => {
-            console.log("Lobby updated from server:", data);
+            console.log("Lobby updated from trivia server:", data);
             setPlayers(data.players);
         });
 
-        // 3. Listen for gameplay phase transitions from Render backend
+        // Listen for gameplay phase transitions from Render backend
         socket.on('roomStateUpdated', (updateRoom) => {
             console.log("Gameplay state update:", updateRoom);
             setRoomState(updateRoom);
         });
 
-        // 4. Listen for any access errors (e.g., room doesn't exist)
+        // Listen for any access errors (e.g., room doesn't exist)
         socket.on('errorMsg', (msg) => {
             setError(msg);
         });
@@ -57,6 +59,7 @@ export default function TriviaWaitingRoom() {
 
     // Emits activation trigger to backend to pull Questions
     const handleStartGame = () => {
+        console.log("Starting trivia match for room: ", roomCode)
         socket.emit('startGame', { roomCode });
     };
 
@@ -164,7 +167,7 @@ export default function TriviaWaitingRoom() {
                         </Button>
                     ) : (
                         <div className="text-muted small py-2 border border-dashed rounded bg-light">
-                            ⏳ Waiting for host to launch the match...
+                            Waiting for host to launch the match...
                         </div>
                     )}
                 </Card.Body>

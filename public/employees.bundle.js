@@ -2502,28 +2502,43 @@ function TictactoeRoom() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleCreateTriviaRoom": () => (/* binding */ handleCreateTriviaRoom)
+/* harmony export */   "handleCreateTriviaRoom": () => (/* binding */ handleCreateTriviaRoom),
+/* harmony export */   "triviaSocket": () => (/* binding */ triviaSocket)
 /* harmony export */ });
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
 
+
+// 1. Define the unique URL for this specific game namespace
+var BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000/trivia' : 'https://game-temple-backend.onrender.com/trivia';
+
+// 2. Instantiate the socket connection once at the module level
+var triviaSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)(BACKEND_URL, {
+  autoConnect: false,
+  transports: ['websocket', 'polling']
+});
+
+// 3. Click handler function (Notice: triviaSocket is no longer a required parameter!)
 function handleCreateTriviaRoom(playerName, navigate) {
   var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
-  console.log("Requesting Trivia Room creation for: ".concat(cleanName));
-  //  Check socket status
-  console.log("Is socket connected?", _socket__WEBPACK_IMPORTED_MODULE_0__["default"].connected);
-  if (!_socket__WEBPACK_IMPORTED_MODULE_0__["default"].connected) {
-    console.warn("Socket is disconnected! Attempting to reconnect...");
-    _socket__WEBPACK_IMPORTED_MODULE_0__["default"].connect();
+  console.log("\uD83D\uDCE1 Requesting Trivia Room creation for: ".concat(cleanName));
+
+  // Check connection status
+  console.log("Is trivia socket connected?", triviaSocket.connected);
+  if (!triviaSocket.connected) {
+    console.warn("Trivia socket is disconnected! Attempting to reconnect...");
+    triviaSocket.connect();
   }
 
-  // 📡 Fire the socket request to server.js
-  _socket__WEBPACK_IMPORTED_MODULE_0__["default"].emit('createRoom');
+  // Clears other listeners to prevent memory leaks
+  triviaSocket.off('roomCreated');
 
-  // 🎣 Listen for the server response acknowledgment to route them
-  _socket__WEBPACK_IMPORTED_MODULE_0__["default"].once('roomCreated', function (_ref) {
-    var roomCode = _ref.roomCode,
-      players = _ref.players;
-    console.log("Room created successfully! Code: ".concat(roomCode));
+  // Fire the socket request to the /trivia namespace backend handlers
+  triviaSocket.emit('createRoom');
+
+  // Listen for the server response acknowledgment to route them
+  triviaSocket.once('roomCreated', function (_ref) {
+    var roomCode = _ref.roomCode;
+    console.log("\uD83C\uDF89 Trivia room created successfully! Code: ".concat(roomCode));
     navigate("/TriviaWaitingRoom?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(cleanName)));
   });
 }
@@ -2596,40 +2611,43 @@ function TriviaWaitingRoom() {
       return;
     }
 
-    // 1. Tell the server we want to join this room
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('joinRoom', {
+    // Ensure socket connects to namespace
+    if (!_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.connected) _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.connect();
+    // Tell the server we want to join this room            
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('joinRoom', {
       roomCode: roomCode,
       playerName: urlName
     });
 
-    // 2. Listen for real-time room synchronization updates
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].on('roomUpdated', function (data) {
-      console.log("Lobby updated from server:", data);
+    // Listen for real-time room synchronization updates
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('roomUpdated', function (data) {
+      console.log("Lobby updated from trivia server:", data);
       setPlayers(data.players);
     });
 
-    // 3. Listen for gameplay phase transitions from Render backend
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].on('roomStateUpdated', function (updateRoom) {
+    // Listen for gameplay phase transitions from Render backend
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('roomStateUpdated', function (updateRoom) {
       console.log("Gameplay state update:", updateRoom);
       setRoomState(updateRoom);
     });
 
-    // 4. Listen for any access errors (e.g., room doesn't exist)
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].on('errorMsg', function (msg) {
+    // Listen for any access errors (e.g., room doesn't exist)
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('errorMsg', function (msg) {
       setError(msg);
     });
 
     // Cleanup connections when the user leaves the page or closes the tab
     return function () {
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].off('roomUpdated');
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].off('roomStateUpdated');
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].off('errorMsg');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomUpdated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomStateUpdated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('errorMsg');
     };
   }, [roomCode, urlName]);
 
   // Emits activation trigger to backend to pull Questions
   var handleStartGame = function handleStartGame() {
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].emit('startGame', {
+    console.log("Starting trivia match for room: ", roomCode);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('startGame', {
       roomCode: roomCode
     });
   };
@@ -2723,7 +2741,7 @@ function TriviaWaitingRoom() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Item, {
       key: player.id,
       className: "d-flex justify-content-between align-items-center py-2.5 fw-semibold"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__["default"].id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       bg: "primary"
     }, "You") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-muted small"
@@ -2734,7 +2752,7 @@ function TriviaWaitingRoom() {
     onClick: handleStartGame // FIX: Connected the click listener
   }, "Start Game") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted small py-2 border border-dashed rounded bg-light"
-  }, "\u23F3 Waiting for host to launch the match..."))));
+  }, "Waiting for host to launch the match..."))));
 }
 
 /***/ }),
@@ -2868,7 +2886,8 @@ function getRandomFunnyName() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "triviaSocket": () => (/* binding */ triviaSocket)
 /* harmony export */ });
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
 
@@ -2876,6 +2895,10 @@ var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:50
 
 // Render handles both polling and websockets
 var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)(SOCKET_URL, {
+  transports: ['websocket', 'polling'],
+  autoConnect: false
+});
+var triviaSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/trivia"), {
   transports: ['websocket', 'polling'],
   autoConnect: false
 });

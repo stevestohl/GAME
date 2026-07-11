@@ -1,23 +1,39 @@
-import socket from '../../socket';
+import { io } from 'socket.io-client';
 
+// 1. Define the unique URL for this specific game namespace
+const BACKEND_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000/trivia' 
+    : 'https://game-temple-backend.onrender.com/trivia';
+
+// 2. Instantiate the socket connection once at the module level
+export const triviaSocket = io(BACKEND_URL, { 
+    autoConnect: false,
+    transports: ['websocket', 'polling']
+});
+
+// 3. Click handler function (Notice: triviaSocket is no longer a required parameter!)
 export function handleCreateTriviaRoom(playerName, navigate) {
     const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
     
-    console.log(`Requesting Trivia Room creation for: ${cleanName}`);
-    //  Check socket status
-    console.log("Is socket connected?", socket.connected); 
+    console.log(`📡 Requesting Trivia Room creation for: ${cleanName}`);
     
-    if (!socket.connected) {
-        console.warn("Socket is disconnected! Attempting to reconnect...");
-        socket.connect();
+    // Check connection status
+    console.log("Is trivia socket connected?", triviaSocket.connected);     
+    
+    if (!triviaSocket.connected) {
+        console.warn("Trivia socket is disconnected! Attempting to reconnect...");
+        triviaSocket.connect();
     }
-    
-    // 📡 Fire the socket request to server.js
-    socket.emit('createRoom');
 
-    // 🎣 Listen for the server response acknowledgment to route them
-    socket.once('roomCreated', ({ roomCode, players }) => {
-        console.log(`Room created successfully! Code: ${roomCode}`);
+    // Clears other listeners to prevent memory leaks
+    triviaSocket.off('roomCreated');
+
+    // Fire the socket request to the /trivia namespace backend handlers
+    triviaSocket.emit('createRoom');
+
+    // Listen for the server response acknowledgment to route them
+    triviaSocket.once('roomCreated', ({ roomCode }) => {
+        console.log(`🎉 Trivia room created successfully! Code: ${roomCode}`);
         navigate(`/TriviaWaitingRoom?room=${roomCode}&role=host&name=${encodeURIComponent(cleanName)}`);
     });
 }
