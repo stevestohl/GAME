@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Card, ListGroup, Badge, Button } from 'react-bootstrap';
-import socket from '../socket.js';
+import { triviaSocket as socket } from '../socket.js';
 
 export default function ScoreboardScreen({ roomCode, players, isHost }) {
     const handleNextRound = () => {
-        socket.emit('nextRound', { roomCode });
+        socket.emit('advanceFromScoreboard', { roomCode });
     };
 
     // Keep highest ranking profile at array position index 0
@@ -39,7 +39,7 @@ export default function ScoreboardScreen({ roomCode, players, isHost }) {
 
                     {isHost ? (
                         <Button variant="primary" className="w-100 fw-bold py-2 shadow-sm" onClick={handleNextRound}>
-                            Advance Stage ➡️
+                            Advance Stage
                         </Button>
                     ) : (
                         <div className="text-muted small py-2 border border-dashed rounded bg-light">

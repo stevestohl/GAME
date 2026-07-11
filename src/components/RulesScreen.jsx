@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
-import socket from '../socket.js'; // Steps back up one directory to find socket.js
+import { triviaSocket as socket } from '../socket.js';
 
 export default function RulesScreen({ roomCode, isHost }) {
     const handleNext = () => {
+        console.log(`Sending nextRound event for room:${roomCode }`)
         socket.emit('nextRound', { roomCode });
     };
 

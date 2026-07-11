@@ -28,7 +28,15 @@ export default function TriviaWaitingRoom() {
         }
 
         // Ensure socket connects to namespace
-        if(!socket.connected) socket.connect()
+        if(!socket.connected) {
+            console.log("Waiting room socket disconnected. Estabilishing fresh handshake...")
+            socket.connect()
+        }
+        // Removes pre-existing listener bindings - looks like double code, but isn't, so keep it
+        socket.off('roomUpdated');
+        socket.off('roomStateUpdated');
+        socket.off('errorMsg');
+
         // Tell the server we want to join this room            
         socket.emit('joinRoom', { roomCode, playerName: urlName });
 
