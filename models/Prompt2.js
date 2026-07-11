@@ -12,12 +12,12 @@ const Prompt2Schema = new mongoose.Schema({
         required: [true, 'Cardtype Required (prompt/response)']
     },
     expansion: {
-        type: String, // Fixed: changed lowercase 'text' to 'String'
+        type: String, 
         default: "core",
         required: [true, 'Expansion type required']
     },
     createdBy: {
-        type: String, // Fixed: changed lowercase 'text' to 'String'
+        type: String, 
         default: 'system',
         required: [true, 'created by Required']
     },
@@ -26,6 +26,10 @@ const Prompt2Schema = new mongoose.Schema({
         default: true,
         required: [true, 'Auto translate isVerbPhrase required']
     }
+}, { 
+    // Option A: Forces Mongoose to target your exact collection name
+    collection: 'prompt2' 
 });
 
-export default mongoose.model('Prompt2', Prompt2Schema);
+// Option B: Alternatively, passing 'prompt2' as the 3rd argument does the same thing:
+export default mongoose.model('Prompt2', Prompt2Schema, 'prompt2');

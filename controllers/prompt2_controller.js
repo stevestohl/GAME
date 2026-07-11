@@ -31,7 +31,7 @@ export default function registerPrompt2Namespace(namespace) {
 
     socket.on('submitPrompt', async ({ roomCode, promptData }) => {
       try {
-        // ✅ FIXED: Using the imported 'Prompt2' variable
+        // FIXED: Using the imported 'Prompt2' variable
         const newEntry = new Prompt2(promptData);
         await newEntry.save();
         
