@@ -3,9 +3,9 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Card, ListGroup, Badge, Button, Alert } from 'react-bootstrap';
 import {triviaSocket as socket } from '../../socket.js';
 
-import RulesScreen from '../../components/RulesScreen.jsx';
-import QuestionScreen from '../../components/QuestionScreen.jsx';
-import ScoreboardScreen from '../../components/ScoreboardScreen.jsx';
+import RulesScreen from './RulesScreen.jsx';
+import QuestionScreen from './QuestionScreen.jsx';
+import ScoreboardScreen from './ScoreboardScreen.jsx';
 
 export default function TriviaWaitingRoom() {
     const [searchParams] = useSearchParams();

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
-import { triviaSocket as socket } from '../socket.js';
+import { triviaSocket as socket } from '../../socket.js';
 
 export default function QuestionScreen({ roomCode, currentQuestion, playerAnswers }) {
     // Check if this specific player has logged an answer already

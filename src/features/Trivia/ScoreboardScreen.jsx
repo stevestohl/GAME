@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Card, ListGroup, Badge, Button } from 'react-bootstrap';
-import { triviaSocket as socket } from '../socket.js';
+import { triviaSocket as socket } from '../../socket.js';
 
 export default function ScoreboardScreen({ roomCode, players, isHost }) {
     const handleNextRound = () => {

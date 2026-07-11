@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
-import { triviaSocket as socket } from '../socket.js';
+import { triviaSocket as socket } from '../../socket.js';
 
 export default function RulesScreen({ roomCode, isHost }) {
     const handleNext = () => {

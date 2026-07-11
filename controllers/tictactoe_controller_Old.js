@@ -1,51 +1,11 @@
 const activeTictactoeRooms = {};
 
-// ==========================================
-// Room Code Generator Helper
-// ==========================================
-const generateTttRoomCode = () => {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-  let code = '';
-  for (let i = 0; i < 3; i++) {
-    const randomIndex = Math.floor(Math.random() * alphabet.length);
-    code += alphabet.charAt(randomIndex);
-  }
-  return `T${code}`; // 'T' prefix for Tic-Tac-Toe
-};
-
-// CHANGED: Parameter renamed from 'io' to 'namespace' to align with Trivia structure
-export default function registerTictactoeNamespace(namespace) {
-  namespace.on('connection', (socket) => {
+export default function registerTictactoeNamespace(io) {
+  io.on('connection', (socket) => {
     console.log("SERVER: A client reached the Tic-Tac-Toe engine!");
-    
-    // ==========================================
-    // 1. Room Creation Logic
-    // ==========================================
-    socket.on('createRoom', ({ hostName }) => {
-      const roomCode = generateTttRoomCode();
-    
-      // Initialize the core room object layout
-      activeTictactoeRooms[roomCode] = {
-        board: Array(9).fill(''), // FIXED: Changed arrayUnion(9) to Array(9)
-        isNext: true,
-        status: 'waiting',         // FIXED: Corrected spelling from 'stauts'
-        hostName: hostName || 'Anonymous',
-        hostId: socket.id,
-        guestName: '',
-        guestId: ''
-      };
-
-      console.log(`SERVER: Room ${roomCode} successfully created by host.`);
-
-      // Host socket into unique room channel
-      socket.join(roomCode);
-
-      // Emit the generated code back to the creator socket
-      socket.emit('roomCreated', { roomCode });
-    });
 
     // ==========================================
-    // 2. Room Joining Logic
+    // Room Joining Logic
     // ==========================================
     socket.on('joinRoom', (payload) => {
       const { roomCode, playerName, playerRole } = payload;
@@ -60,22 +20,34 @@ export default function registerTictactoeNamespace(namespace) {
       console.log(`SERVER: joinRoom request for: ${code} by ${playerRole}`);
 
       if (playerRole === 'host') {
-        // The room was already constructed by 'createRoom', so just re-sync/join them
         socket.join(code);
-        // CHANGED: io.to -> namespace.to
-        namespace.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
-      } else if (playerRole === 'guest') {
+        if (!activeTictactoeRooms[code]) {
+          activeTictactoeRooms[code] = {
+            board: Array(9).fill(''),
+            isNext: true,
+            status: 'waiting',
+            hostName: playerName || 'Anonymous',
+            hostId: socket.id,
+            guestName: '',
+            guestId: ''
+          };
+          console.log(`SERVER: Room ${code} created by host.`);
+        }
+        io.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
+      } 
+      else if (playerRole === 'guest') {
+        // CHECK: Room existence
         if (activeTictactoeRooms[code]) {
           socket.join(code);
           
+          // CHECK: Prevent joining full rooms
           if (activeTictactoeRooms[code].status === 'waiting') {
             activeTictactoeRooms[code].status = 'playing';
             activeTictactoeRooms[code].guestName = playerName || 'Anonymous';
             activeTictactoeRooms[code].guestId = socket.id;
             console.log(`SERVER: Guest joined room ${code}`);
           }
-          // CHANGED: io.to -> namespace.to
-          namespace.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
+          io.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
         } else {
           console.warn(`SERVER: Room ${code} not found for guest.`);
           socket.emit('roomNotFound');
@@ -91,8 +63,7 @@ export default function registerTictactoeNamespace(namespace) {
       if (code && activeTictactoeRooms[code]) {
         activeTictactoeRooms[code].board = board;
         activeTictactoeRooms[code].isNext = isNext;
-        // CHANGED: io.to -> namespace.to
-        namespace.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
+        io.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
       }
     });
 
@@ -101,8 +72,7 @@ export default function registerTictactoeNamespace(namespace) {
       if (code && activeTictactoeRooms[code]) {
         activeTictactoeRooms[code].board = Array(9).fill('');
         activeTictactoeRooms[code].isNext = true;
-        // CHANGED: io.to -> namespace.to
-        namespace.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
+        io.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
       }
     });
 
@@ -116,8 +86,7 @@ export default function registerTictactoeNamespace(namespace) {
         const room = activeTictactoeRooms[roomCode];
         if (room.hostId === socket.id || room.guestId === socket.id) {
           console.log(`SERVER: Cleaning up room ${roomCode} due to disconnect.`);
-          // CHANGED: io.to -> namespace.to
-          namespace.to(roomCode).emit('roomNotFound'); 
+          io.to(roomCode).emit('roomNotFound'); 
           delete activeTictactoeRooms[roomCode];
           break;
         }

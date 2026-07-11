@@ -47,8 +47,8 @@ export default function registerPrompt2Namespace(namespace) {
       // Loop through activePrompt2Rooms to clean up this specific user
     });
   });
-} // ✅ FIXED: Added missing closing bracket for the function
+}
 
 export {
-    getAllPrompt2Cards
+    getAllPrompt2Cards,
 }

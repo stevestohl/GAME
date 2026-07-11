@@ -13,7 +13,7 @@ const BACKEND_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5000/tictactoe' 
     : 'https://game-temple-backend.onrender.com/tictactoe';
 
-const socket = io(BACKEND_URL, { 
+export const tictactoeSocket = io(BACKEND_URL, { 
     autoConnect: false,
     transports: ['websocket', 'polling']
 });
@@ -30,26 +30,42 @@ export default function TictactoeRoom() {
     const [opponentName, setOpponentName] = useState('');
 
     useEffect(() => {
-        const onConnect = () => {
-            console.log("Socket connected, joining room...");
-            socket.emit('joinRoom', { roomCode, playerRole, playerName });
+        // Helper function to emit the join payload
+        const emitJoinRoom = () => {
+            console.log("Emitting joinRoom payload...", { roomCode, playerRole, playerName });
+            tictactoeSocket.emit('joinRoom', { roomCode, playerRole, playerName });
         };
 
-        socket.on('connect', onConnect);
-        socket.on('roomUpdate', (roomData) => {
-            setBoard(roomData.board);
-            setIsNext(roomData.isNext);
-            setRoomStatus(roomData.status);
-            setOpponentName(playerRole === 'host' ? roomData.guestName : roomData.hostName);
+        const onConnect = () => {
+            console.log("Socket connected event fired, joining room...");
+            emitJoinRoom();
+        };
+
+        tictactoeSocket.on('connect', onConnect);
+        tictactoeSocket.on('roomUpdate', (roomData) => {
+            if (roomData) {
+                setBoard(roomData.board);
+                setIsNext(roomData.isNext);
+                setRoomStatus(roomData.status);
+                setOpponentName(playerRole === 'host' ? roomData.guestName : roomData.hostName);
+            }
         });
 
-        socket.on('roomNotFound', () => setRoomStatus('not-found'));
-        socket.connect();
+        tictactoeSocket.on('roomNotFound', () => setRoomStatus('not-found'));
+
+        // --- CRITICAL CONNECTION TIMING FIX ---
+        // If the socket connection is already active from our button handler file, join immediately!
+        if (tictactoeSocket.connected) {
+            console.log("Socket is already open, skipping connect event block.");
+            emitJoinRoom();
+        } else {
+            tictactoeSocket.connect();
+        }
 
         return () => {
-            socket.off('connect', onConnect);
-            socket.off('roomUpdate');
-            socket.off('roomNotFound');
+            tictactoeSocket.off('connect', onConnect);
+            tictactoeSocket.off('roomUpdate');
+            tictactoeSocket.off('roomNotFound');
         };
     }, [roomCode, playerRole, playerName]);
 
@@ -81,14 +97,15 @@ export default function TictactoeRoom() {
 
     const handleSquareClick = (index) => {
         if (board[index] || winner) return;
-        if (!isMyTurn) return; // Cleanly reuse the variable here
+        if (!isMyTurn) return;
 
         const newBoard = [...board];
         newBoard[index] = playerRole === 'host' ? 'X' : 'O';
-        socket.emit('makeMove', { roomCode, board: newBoard, isNext: !isNext });
+        
+        tictactoeSocket.emit('makeMove', { roomCode, board: newBoard, isNext: !isNext });
     };
 
-    const handleReset = () => socket.emit('resetMatch', { roomCode });
+    const handleReset = () => tictactoeSocket.emit('resetMatch', { roomCode });
     const handleLeaveRoom = () => window.location.href = '/home';
 
     if (roomStatus === 'loading') return (
@@ -196,7 +213,7 @@ export default function TictactoeRoom() {
             </Card>
             <Modal
                 show={!!winner}
-                onHide={()=> {}} // prevents closing by clicking back
+                onHide={()=> {}} 
                 backdrop="static"
                 keyboard={false}    
                 centered
@@ -217,8 +234,6 @@ export default function TictactoeRoom() {
                     />                    
                     <h2 className='fw-bold text-dark mb-4'>{getWinnerText()}</h2>
                     <div className='d-flex gap-2'>
-
-
                         <Button variant='outline-primary' className='w-100 fw-bold py-2' onClick={handleReset}>
                             Play Again
                         </Button>
