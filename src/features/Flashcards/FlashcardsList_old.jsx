@@ -3,9 +3,6 @@ import { Card, Badge, Table, Button, Toast } from 'react-bootstrap'
 import FlashcardAdd from './FlashcardAdd.jsx'
 import FlashcardEdit from './FlashcardEdit.jsx'
 
-// 🌐 Your live Render backend base URL
-const API_BASE_URL = 'https://game-temple-backend.onrender.com'
-
 export default function FlashcardsList() {
 
     const [toastMessage, setToastMessage] = useState("")
@@ -13,11 +10,11 @@ export default function FlashcardsList() {
     const [drinks, setDrinks] = useState([])
     const [showAddModal, setShowAddModal] = useState(false)
     
+
     const [currentEditingDrink, setCurrentEditingDrink] = useState(null)
 
     useEffect(() => {
-        // 🔄 Updated to target Render instead of relative pathing
-        fetch(`${API_BASE_URL}/api/drinks`)
+        fetch('/api/drinks')
             .then(res => res.json())
             .then(data => setDrinks(data.drinks || []))
             .catch(err => console.error("Error fetching drinks:", err))
@@ -37,20 +34,21 @@ export default function FlashcardsList() {
         setToastMessage("Drink removed successfully!")
         setShowToast(true)
         
-        // 🔄 Updated to route the DELETE request to Render
-        fetch(`${API_BASE_URL}/api/drinks/${id}`, { method: 'DELETE' })
+        // Database Hook
+        fetch(`/api/drinks/${id}`, { method: 'DELETE' })
             .then(res => res.json())
-            .then(data => console.log("Delete confirmation:", data))
             .catch(err => console.error("Error deleting drink:", err))
     }
 
-    const drinkRows = drinks.map(drink => (
+const drinkRows = drinks.map(drink => (
         <tr key={drink._id}>
             <td className="align-middle">
                 {/* 1. CONDITIONAL EDIT LINK */}
                 {drink.isDefault ? (
+                    // Just plain text if it's a default card
                     <span className="fw-semibold text-dark">{drink.drinkName}</span>
                 ) : (
+                    // Clickable button link if it's user-generated
                     <Button
                         variant='link'
                         className='p-0 text-decoration-none fw-semibold text-start'
@@ -63,14 +61,15 @@ export default function FlashcardsList() {
             <td className="align-middle">{drink.recipe}</td>
             <td className="align-middle">{drink.garnish}</td>
             <td className="align-middle">
+                {/* Visual upgrade: Display "System" or "Default" if it's default */}
                 {drink.isDefault ? "Default" : (drink.createdByAnon ? "Anonymous" : "User")}
             </td>
             <td className='text-center align-middle'>
                 {/* 2. CONDITIONAL DELETE BUTTON */}
                 <Button 
-                    variant={drink.isDefault ? 'secondary' : 'danger'} 
+                    variant={drink.isDefault ? 'secondary' : 'danger'} // Changes color to grey if default
                     size="sm" 
-                    disabled={drink.isDefault} 
+                    disabled={drink.isDefault} // Makes it completely unclickable if default
                     onClick={() => handleDeleteDrink(drink._id)}
                 >
                     X
@@ -125,6 +124,7 @@ export default function FlashcardsList() {
                     drinkData={currentEditingDrink}
                     onHide={() => setCurrentEditingDrink(null)}
                     onDrinkUpdated={(updatedDrink) => {
+                        // Updates the specific drink item in array state instantly
                         setDrinks(prev => prev.map(d => d._id === updatedDrink._id ? updatedDrink : d))
                         setToastMessage("Drink updated successfully!")
                         setShowToast(true)

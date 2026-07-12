@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 
-// 🌐 Your live Render backend base URL
-const API_BASE_URL = 'https://game-temple-backend.onrender.com'
-
 export default function FlashcardEdit({ show, drinkData, onHide, onDrinkUpdated }) {
 
     // 1. Initialize local form state (Using correct boolean defaults)
@@ -21,7 +18,7 @@ export default function FlashcardEdit({ show, drinkData, onHide, onDrinkUpdated 
             setGarnish(drinkData.garnish || "")
             setCreatedByAnon(drinkData.createdByAnon || false)
         }
-    }, [drinkData]) 
+    }, [drinkData]) // Fixed typo: dirnkData -> drinkData
 
     // 3. Handle form submission
     const handleSubmit = (e) => {
@@ -35,8 +32,7 @@ export default function FlashcardEdit({ show, drinkData, onHide, onDrinkUpdated 
             createdByAnon
         }
 
-        // 🔄 Updated to target Render instead of a relative path
-        fetch(`${API_BASE_URL}/api/drinks/${drinkData._id}`, {
+        fetch(`/api/drinks/${drinkData._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json' 
@@ -48,6 +44,7 @@ export default function FlashcardEdit({ show, drinkData, onHide, onDrinkUpdated 
             return res.json()
         })
         .then(data => {
+            // If backend returns whole updated object, return that
             const finalUpdatedDrink = data.drink || { ...drinkData, ...updatePayload } 
             onDrinkUpdated(finalUpdatedDrink) 
         })

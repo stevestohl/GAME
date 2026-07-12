@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./features/Employee/EmployeeList.jsx */ "./src/features/Employee/EmployeeList.jsx");
 /* harmony import */ var _features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./features/Employee/EmployeeReport.jsx */ "./src/features/Employee/EmployeeReport.jsx");
 /* harmony import */ var _features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features/Employee/EmployeeEdit.jsx */ "./src/features/Employee/EmployeeEdit.jsx");
@@ -23,8 +23,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _features_Flashcards_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./features/Flashcards/FlashcardGame.jsx */ "./src/features/Flashcards/FlashcardGame.jsx");
 /* harmony import */ var _features_Menu_Home_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./features/Menu/Home.jsx */ "./src/features/Menu/Home.jsx");
 /* harmony import */ var _features_Menu_BarHome_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./features/Menu/BarHome.jsx */ "./src/features/Menu/BarHome.jsx");
-/* harmony import */ var _features_TicTacToe_TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToe.jsx */ "./src/features/TicTacToe/TicTacToe.jsx");
-/* harmony import */ var _features_Trivia_TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./features/Trivia/TriviaWaitingRoom.jsx */ "./src/features/Trivia/TriviaWaitingRoom.jsx");
+/* harmony import */ var _features_Prompt2_Prompt2Lobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./features/Prompt2/Prompt2Lobby.jsx */ "./src/features/Prompt2/Prompt2Lobby.jsx");
+/* harmony import */ var _features_TicTacToe_TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToe.jsx */ "./src/features/TicTacToe/TicTacToe.jsx");
+/* harmony import */ var _features_Trivia_TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./features/Trivia/TriviaWaitingRoom.jsx */ "./src/features/Trivia/TriviaWaitingRoom.jsx");
+
 
 
 
@@ -43,43 +45,46 @@ function Contents() {
   var NotFound = function NotFound() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Page Not Found");
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/home",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_Home_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/barhome",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_BarHome_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/tictactoe",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/TriviaWaitingRoom",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/flashcards",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/flashcardsList",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/flashcardGame",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+    path: "/prompt2",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2Lobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/employees",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/edit/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/report",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "/",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Navigate, {
       replace: true,
       to: "/home"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
     path: "*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NotFound, null)
   }));
@@ -889,6 +894,9 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
+// 🌐 Your live Render backend base URL
+var API_BASE_URL = 'https://game-temple-backend.onrender.com';
 function FlashcardAdd(_ref) {
   var show = _ref.show,
     onHide = _ref.onHide,
@@ -923,7 +931,7 @@ function FlashcardAdd(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return fetch("/api/drinks", {
+              return fetch("".concat(API_BASE_URL, "/api/drinks"), {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -1026,6 +1034,9 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
+// 🌐 Your live Render backend base URL
+var API_BASE_URL = 'https://game-temple-backend.onrender.com';
 function FlashcardEdit(_ref) {
   var show = _ref.show,
     drinkData = _ref.drinkData,
@@ -1061,7 +1072,7 @@ function FlashcardEdit(_ref) {
       setGarnish(drinkData.garnish || "");
       setCreatedByAnon(drinkData.createdByAnon || false);
     }
-  }, [drinkData]); // Fixed typo: dirnkData -> drinkData
+  }, [drinkData]);
 
   // 3. Handle form submission
   var handleSubmit = function handleSubmit(e) {
@@ -1073,7 +1084,9 @@ function FlashcardEdit(_ref) {
       garnish: garnish.trim(),
       createdByAnon: createdByAnon
     };
-    fetch("/api/drinks/".concat(drinkData._id), {
+
+    // 🔄 Updated to target Render instead of a relative path
+    fetch("".concat(API_BASE_URL, "/api/drinks/").concat(drinkData._id), {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -1083,7 +1096,6 @@ function FlashcardEdit(_ref) {
       if (!res.ok) throw new Error("Failed to update the drink.");
       return res.json();
     }).then(function (data) {
-      // If backend returns whole updated object, return that
       var finalUpdatedDrink = data.drink || _objectSpread(_objectSpread({}, drinkData), updatePayload);
       onDrinkUpdated(finalUpdatedDrink);
     })["catch"](function (err) {
@@ -1191,6 +1203,9 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
+// 🌐 Your live Render backend base URL
+var API_BASE_URL = 'https://game-temple-backend.onrender.com';
 function FlashcardGame() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -1218,7 +1233,8 @@ function FlashcardGame() {
     setFilterMode = _useState12[1]; // "default" or "all"
   var TOTAL_ROUNDS = 10;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetch("/api/drinks").then(function (res) {
+    // 🔄 Updated to target Render instead of a relative path
+    fetch("".concat(API_BASE_URL, "/api/drinks")).then(function (res) {
       return res.json();
     }).then(function (data) {
       return setAllDrinks(data.drinks || []);
@@ -1393,6 +1409,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // Importing Form for React-Bootstrap radios
 
+// 🌐 Your live Render backend base URL
+var API_BASE_URL = 'https://game-temple-backend.onrender.com';
 function Flashcards() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -1424,7 +1442,7 @@ function Flashcards() {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return fetch("/api/drinks");
+                return fetch("".concat(API_BASE_URL, "/api/drinks"));
               case 2:
                 res = _context.sent;
                 _context.next = 5;
@@ -1562,6 +1580,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+// 🌐 Your live Render backend base URL
+var API_BASE_URL = 'https://game-temple-backend.onrender.com';
 function FlashcardsList() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
@@ -1584,7 +1605,8 @@ function FlashcardsList() {
     currentEditingDrink = _useState10[0],
     setCurrentEditingDrink = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetch('/api/drinks').then(function (res) {
+    // 🔄 Updated to target Render instead of relative pathing
+    fetch("".concat(API_BASE_URL, "/api/drinks")).then(function (res) {
       return res.json();
     }).then(function (data) {
       return setDrinks(data.drinks || []);
@@ -1610,11 +1632,13 @@ function FlashcardsList() {
     setToastMessage("Drink removed successfully!");
     setShowToast(true);
 
-    // Database Hook
-    fetch("/api/drinks/".concat(id), {
+    // 🔄 Updated to route the DELETE request to Render
+    fetch("".concat(API_BASE_URL, "/api/drinks/").concat(id), {
       method: 'DELETE'
     }).then(function (res) {
       return res.json();
+    }).then(function (data) {
+      return console.log("Delete confirmation:", data);
     })["catch"](function (err) {
       return console.error("Error deleting drink:", err);
     });
@@ -1624,15 +1648,9 @@ function FlashcardsList() {
       key: drink._id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
       className: "align-middle"
-    }, drink.isDefault ?
-    /*#__PURE__*/
-    // Just plain text if it's a default card
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    }, drink.isDefault ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "fw-semibold text-dark"
-    }, drink.drinkName) :
-    /*#__PURE__*/
-    // Clickable button link if it's user-generated
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, drink.drinkName) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       variant: "link",
       className: "p-0 text-decoration-none fw-semibold text-start",
       onClick: function onClick() {
@@ -1647,11 +1665,9 @@ function FlashcardsList() {
     }, drink.isDefault ? "Default" : drink.createdByAnon ? "Anonymous" : "User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
       className: "text-center align-middle"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      variant: drink.isDefault ? 'secondary' : 'danger' // Changes color to grey if default
-      ,
+      variant: drink.isDefault ? 'secondary' : 'danger',
       size: "sm",
-      disabled: drink.isDefault // Makes it completely unclickable if default
-      ,
+      disabled: drink.isDefault,
       onClick: function onClick() {
         return handleDeleteDrink(drink._id);
       }
@@ -1689,7 +1705,6 @@ function FlashcardsList() {
       return setCurrentEditingDrink(null);
     },
     onDrinkUpdated: function onDrinkUpdated(updatedDrink) {
-      // Updates the specific drink item in array state instantly
       setDrinks(function (prev) {
         return prev.map(function (d) {
           return d._id === updatedDrink._id ? updatedDrink : d;
@@ -1948,9 +1963,192 @@ function Home() {
       xs: 6
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "primary",
-      className: "fw-bold w-100 h-100 py-2 shadow-sm text-white"
+      className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
+      onClick: function onClick() {
+        return navigate("/prompt2?name=".concat(encodeURIComponent(playerName)));
+      }
     }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2")))))))))
   );
+}
+
+/***/ }),
+
+/***/ "./src/features/Prompt2/Prompt2Lobby.jsx":
+/*!***********************************************!*\
+  !*** ./src/features/Prompt2/Prompt2Lobby.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Prompt2Lobby)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+ // 🎣 Import this to parse URL strings
+
+var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000/prompt2' : 'https://game-temple-backend.onrender.com/prompt2';
+var prompt2Socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_1__["default"])(SOCKET_URL);
+function Prompt2Lobby() {
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useSearchParams)(),
+    _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
+    searchParams = _useSearchParams2[0];
+
+  // 💡 Pre-fill the name automatically if it was provided on the home screen!
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(searchParams.get('name') || ''),
+    _useState2 = _slicedToArray(_useState, 2),
+    name = _useState2[0],
+    setName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    roomCode = _useState4[0],
+    setRoomCode = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    roomData = _useState6[0],
+    setRoomData = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isHost = _useState8[0],
+    setIsHost = _useState8[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // 🔄 Aligned listener: Catching room updates from the backend state machine
+    prompt2Socket.on('room_updated', function (data) {
+      setRoomData(data);
+    });
+
+    // 🔄 Aligned listener: Catching game state change to transition components
+    prompt2Socket.on('game_started', function (data) {
+      console.log("Game is starting with data:", data);
+      // Later you will lift state or use a view switcher here (e.g., setGameState(data.gameState))
+    });
+
+    return function () {
+      prompt2Socket.off('room_updated');
+      prompt2Socket.off('game_started');
+    };
+  }, []);
+  var handleCreateRoom = function handleCreateRoom(e) {
+    e.preventDefault();
+    if (!name.trim()) return alert('Please enter a name!');
+
+    // Generate a random 4-character room code
+    var generatedCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+    setRoomCode(generatedCode);
+    setIsHost(true);
+
+    // 🔄 Aligned event: Sending payload expected by registerPrompt2Namespace
+    prompt2Socket.emit('join_room', {
+      roomCode: generatedCode,
+      username: name
+    });
+  };
+  var handleStartGame = function handleStartGame() {
+    // 🔄 Aligned event: Sending payload to transition room state
+    prompt2Socket.emit('start_game', {
+      roomCode: roomCode
+    });
+  };
+
+  // Transform players object into an array for easy mapping
+  var playersArray = roomData ? Object.entries(roomData.players).map(function (_ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+      id = _ref2[0],
+      details = _ref2[1];
+    return {
+      id: id,
+      name: details.username
+    };
+  }) : [];
+
+  // --- STATE 1: Create Room Form ---
+  if (!roomData) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "mt-5 d-flex justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      className: "shadow-sm w-100",
+      style: {
+        maxWidth: '420px'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+      className: "text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
+      className: "fs-3 fw-bold mb-3 text-primary"
+    }, "Prompt2 Setup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      onSubmit: handleCreateRoom
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+      className: "mb-3 text-start"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+      className: "fw-semibold"
+    }, "Your Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+      type: "text",
+      placeholder: "Enter name",
+      value: name,
+      onChange: function onChange(e) {
+        return setName(e.target.value);
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "submit",
+      variant: "primary",
+      className: "w-100 fw-bold"
+    }, "Create Room")))));
+  }
+
+  // --- STATE 2: Waiting Room Lobby ---
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "mt-5 d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "shadow-sm w-100",
+    style: {
+      maxWidth: '420px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
+    className: "fs-3 fw-bold mb-1 text-success"
+  }, "Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small mb-4"
+  }, "Game: Apples-to-Apples Style"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-light p-3 rounded mb-4 border"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-secondary d-block small fw-bold text-uppercase"
+  }, "Room Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fs-2 fw-bold text-dark tracking-wide"
+  }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "text-start mb-2 fw-semibold"
+  }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: "mb-4 text-start"
+  }, playersArray.map(function (player) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Item, {
+      key: player.id,
+      className: "d-flex justify-content-between align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), isHost && player.name === name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "badge bg-primary rounded-pill"
+    }, "Host"));
+  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "success",
+    className: "w-100 fw-bold py-2",
+    disabled: playersArray.length < 3 // Apples to apples usually needs at least 3 players
+    ,
+    onClick: handleStartGame
+  }, playersArray.length < 3 ? 'Waiting for Players (Min 3)' : 'Start Game') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted italic small animate-pulse"
+  }, "Waiting for the host to start the game..."))));
 }
 
 /***/ }),

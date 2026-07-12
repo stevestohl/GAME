@@ -8,6 +8,7 @@ import FlashcardsList from './features/Flashcards/FlashcardsList.jsx'
 import FlashcardGame from './features/Flashcards/FlashcardGame.jsx'
 import Home from './features/Menu/Home.jsx'
 import BarHome from './features/Menu/BarHome.jsx'
+import Prompt2 from './features/Prompt2/Prompt2Lobby.jsx'
 
 // --- Game Imports ---
 import TicTacToe from './features/TicTacToe/TicTacToe.jsx'
@@ -30,7 +31,10 @@ export default function Contents() {
             <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/flashcardsList" element={<FlashcardsList />} />
             <Route path="/flashcardGame" element={<FlashcardGame />} />
-            
+
+            {/* Employee Management Routes */}
+            <Route path="/prompt2" element={<Prompt2 />} />
+
             {/* Employee Management Routes */}
             <Route path="/employees" element={<EmployeeList />} />
             <Route path="/edit/:id" element={<EmployeeEdit />} />

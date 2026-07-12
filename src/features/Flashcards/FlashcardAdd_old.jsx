@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 
-// 🌐 Your live Render backend base URL
-const API_BASE_URL = 'https://game-temple-backend.onrender.com'
-
 export default function FlashcardAdd({ show, onHide, onDrinkAdded }) {
 
     const [form, setForm] = useState({
@@ -22,8 +19,7 @@ export default function FlashcardAdd({ show, onHide, onDrinkAdded }) {
     }
 
     async function handleSubmit() {
-        // 🔄 Updated to target Render instead of a relative path
-        const res = await fetch(`${API_BASE_URL}/api/drinks`, {
+        const res = await fetch("/api/drinks", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)

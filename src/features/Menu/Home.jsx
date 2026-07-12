@@ -97,11 +97,11 @@ export default function Home() {
                                             ❔❔
                                         </Button>
                                     </Col>
-
                                     <Col xs={6}>
                                         <Button
                                             variant="primary"
                                             className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
+                                            onClick={() => navigate(`/prompt2?name=${encodeURIComponent(playerName)}`)}
                                         >
                                             Prompt <br/>
                                             2

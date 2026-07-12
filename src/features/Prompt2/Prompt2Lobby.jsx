@@ -1,25 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Form, ListGroup } from 'react-bootstrap';
-import io from 'socket.io-client'; // Replace with your central socket import if you have one
+import { useSearchParams } from 'react-router-dom'; // 🎣 Import this to parse URL strings
+import io from 'socket.io-client';
 
-// Connecting to our prompt2 namespace
-const prompt2Socket = io('http://localhost:5000/prompt2'); // Adjust URL/port to match your server
+const SOCKET_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000/prompt2' 
+    : 'https://game-temple-backend.onrender.com/prompt2';
+
+const prompt2Socket = io(SOCKET_URL);
 
 export default function Prompt2Lobby() {
-    const [name, setName] = useState('');
+    const [searchParams] = useSearchParams();
+    
+    // 💡 Pre-fill the name automatically if it was provided on the home screen!
+    const [name, setName] = useState(searchParams.get('name') || '');
     const [roomCode, setRoomCode] = useState('');
-    const [roomData, setRoomData] = useState(null); // Holds { host, players, status }
+    const [roomData, setRoomData] = useState(null); 
     const [isHost, setIsHost] = useState(false);
 
     useEffect(() => {
-        // Listen for successful room creation/update
-        prompt2Socket.on('roomCreated', (data) => {
+        // 🔄 Aligned listener: Catching room updates from the backend state machine
+        prompt2Socket.on('room_updated', (data) => {
             setRoomData(data);
         });
 
-        // Clean up listeners on unmount
+        // 🔄 Aligned listener: Catching game state change to transition components
+        prompt2Socket.on('game_started', (data) => {
+            console.log("Game is starting with data:", data);
+            // Later you will lift state or use a view switcher here (e.g., setGameState(data.gameState))
+        });
+
         return () => {
-            prompt2Socket.off('roomCreated');
+            prompt2Socket.off('room_updated');
+            prompt2Socket.off('game_started');
         };
     }, []);
 
@@ -32,14 +45,20 @@ export default function Prompt2Lobby() {
         setRoomCode(generatedCode);
         setIsHost(true);
 
-        // Emit to prompt2_controller.js
-        prompt2Socket.emit('createRoom', { roomCode: generatedCode, hostName: name });
+        // 🔄 Aligned event: Sending payload expected by registerPrompt2Namespace
+        prompt2Socket.emit('join_room', { roomCode: generatedCode, username: name });
     };
 
     const handleStartGame = () => {
-        // This will transition everyone to the active game screen later
-        prompt2Socket.emit('startGame', { roomCode });
+        // 🔄 Aligned event: Sending payload to transition room state
+        prompt2Socket.emit('start_game', { roomCode });
     };
+
+    // Transform players object into an array for easy mapping
+    const playersArray = roomData ? Object.entries(roomData.players).map(([id, details]) => ({
+        id,
+        name: details.username
+    })) : [];
 
     // --- STATE 1: Create Room Form ---
     if (!roomData) {
@@ -83,10 +102,10 @@ export default function Prompt2Lobby() {
 
                     <h5 className="text-start mb-2 fw-semibold">Players Joined:</h5>
                     <ListGroup className="mb-4 text-start">
-                        {roomData.players.map((player) => (
+                        {playersArray.map((player) => (
                             <ListGroup.Item key={player.id} className="d-flex justify-content-between align-items-center">
                                 <span>{player.name}</span>
-                                {player.name === roomData.host && (
+                                {isHost && player.name === name && (
                                     <span className="badge bg-primary rounded-pill">Host</span>
                                 )}
                             </ListGroup.Item>
@@ -97,10 +116,10 @@ export default function Prompt2Lobby() {
                         <Button 
                             variant="success" 
                             className="w-100 fw-bold py-2"
-                            disabled={roomData.players.length < 3} // Apples to apples usually needs at least 3 players
+                            disabled={playersArray.length < 3} // Apples to apples usually needs at least 3 players
                             onClick={handleStartGame}
                         >
-                            {roomData.players.length < 3 ? 'Waiting for Players (Min 3)' : 'Start Game'}
+                            {playersArray.length < 3 ? 'Waiting for Players (Min 3)' : 'Start Game'}
                         </Button>
                     ) : (
                         <div className="text-muted italic small animate-pulse">

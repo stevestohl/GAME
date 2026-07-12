@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap"; // Importing Form for React-Bootstrap radios
 
-// 🌐 Your live Render backend base URL
-const API_BASE_URL = 'https://game-temple-backend.onrender.com'
-
 export default function Flashcards() {
   const [allDrinks, setAllDrinks] = useState([]); // Holds raw API array
   const [index, setIndex] = useState(0);
@@ -13,8 +10,7 @@ export default function Flashcards() {
   // Load drinks on mount
   useEffect(() => {
     async function loadDrinks() {
-      // 🔄 Updated to target Render instead of a relative path
-      const res = await fetch(`${API_BASE_URL}/api/drinks`);
+      const res = await fetch("/api/drinks");
       const data = await res.json();
       setAllDrinks(data.drinks || []);
     }

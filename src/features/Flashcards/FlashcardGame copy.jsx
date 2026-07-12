@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Button, Card, Form } from "react-bootstrap"
 
-// 🌐 Your live Render backend base URL
-const API_BASE_URL = 'https://game-temple-backend.onrender.com'
-
 export default function FlashcardGame() {
     const [allDrinks, setAllDrinks] = useState([]) // Raw pool from API
     const [round, setRound] = useState(1)
@@ -14,8 +11,7 @@ export default function FlashcardGame() {
     const TOTAL_ROUNDS = 10
 
     useEffect(() => {
-        // 🔄 Updated to target Render instead of a relative path
-        fetch(`${API_BASE_URL}/api/drinks`)
+        fetch("/api/drinks")
             .then(res => res.json())
             .then(data => setAllDrinks(data.drinks || []))
     }, [])
