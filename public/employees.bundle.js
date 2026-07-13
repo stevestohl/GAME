@@ -2313,27 +2313,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 /**
  * Prompt2PromptSelectionScreen
- * 
- * @param {boolean} isHost - Determines if the current player is the host.
- * @param {Array} options - An array of exactly 3 random prompt card objects.
+ * * @param {boolean} isHost - Determines if the current player is the host.
  * @param {function} onSelectPrompt - Callback function triggered when the host selects a card.
  */
-
 function Prompt2PromptSelectionScreen(_ref) {
   var isHost = _ref.isHost,
-    _ref$options = _ref.options,
-    options = _ref$options === void 0 ? [] : _ref$options,
     onSelectPrompt = _ref.onSelectPrompt;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    options = _useState2[0],
+    setOptions = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isLoading = _useState4[0],
+    setIsLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    error = _useState6[0],
+    setError = _useState6[1];
+
+  // 1. Fetch random prompts from the backend when the Host view mounts
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isHost) {
+      setIsLoading(true);
+      setError(null);
+
+      // Note: If your React app is on port 3000/5173 and your server is on 5000,
+      // make sure you have a proxy set up, or use the full URL: "http://localhost:5000/prompt2host"
+      fetch('/prompt2host').then(function (res) {
+        if (!res.ok) {
+          throw new Error("Failed to fetch cards: Status ".concat(res.status));
+        }
+        return res.json();
+      }).then(function (response) {
+        if (response.success && Array.isArray(response.data)) {
+          setOptions(response.data);
+        } else {
+          throw new Error("Invalid API response structure");
+        }
+      })["catch"](function (err) {
+        console.error("Error fetching prompts:", err);
+        setError(err.message);
+      })["finally"](function () {
+        setIsLoading(false);
+      });
+    }
+  }, [isHost]);
+
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)
   // ----------------------------------------------------
   if (!isHost) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "text-center space-y-6 max-w-md"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2350,11 +2392,49 @@ function Prompt2PromptSelectionScreen(_ref) {
       className: "text-slate-400 text-sm"
     }, "Think ahead! Get ready to play your best response cards once the prompt is chosen.")));
   }
+
   // ----------------------------------------------------
-  // HOST VIEW
+  // HOST VIEW - LOADING STATE
+  // ----------------------------------------------------
+  if (isLoading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "text-center space-y-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-slate-400 text-lg"
+    }, "Gathering potential prompts...")));
+  }
+
+  // ----------------------------------------------------
+  // HOST VIEW - ERROR STATE
+  // ----------------------------------------------------
+  if (error) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "text-center space-y-4 max-w-md"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "text-red-500 text-5xl"
+    }, "\u26A0\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "text-xl font-bold text-slate-200"
+    }, "Failed to load prompts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-red-400 text-sm"
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: function onClick() {
+        return window.location.reload();
+      },
+      className: "mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition"
+    }, "Try Again")));
+  }
+
+  // ----------------------------------------------------
+  // HOST VIEW - SUCCESS STATE
   // ----------------------------------------------------
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
+    className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "max-w-4xl w-full text-center space-y-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -2367,7 +2447,8 @@ function Prompt2PromptSelectionScreen(_ref) {
     className: "grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"
   }, options.map(function (card, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      key: card.id || index,
+      key: card._id || index // MongoDB uses _id instead of id
+      ,
       onClick: function onClick() {
         return onSelectPrompt(card);
       },
