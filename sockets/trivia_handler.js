@@ -7,7 +7,7 @@ import Temple_Trivia from "../models/Temple_Trivia.js";
 // In-memory state storage for active Trivia rooms
 const activeRooms = {};
 
-const createRoomLogic = (socket, roomsObject) => {
+const createRoomLogic = (socket, roomsObject) => {  
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
     let randomLetters = '';
     

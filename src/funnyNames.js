@@ -1,5 +1,3 @@
-import { rand } from "firebase/firestore/pipelines";
-
 export const funnyNames = [
 
     "Anita Break",

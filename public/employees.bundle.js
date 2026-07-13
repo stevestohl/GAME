@@ -1834,16 +1834,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UniversalJoinForm.jsx */ "./src/UniversalJoinForm.jsx");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
 /* harmony import */ var _Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
 /* harmony import */ var _TicTacToe_TicTacToeCreateButton_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../TicTacToe/TicTacToeCreateButton.jsx */ "./src/features/TicTacToe/TicTacToeCreateButton.jsx");
+/* harmony import */ var _Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Prompt2/Prompt2CreateButton.jsx */ "./src/features/Prompt2/Prompt2CreateButton.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1860,13 +1861,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 // ROOMCODES ARE GENERATED IN EACH INDIVIDULE Nampsapce socket for each app
 function Home() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_funnyNames_js__WEBPACK_IMPORTED_MODULE_2__.getRandomFunnyName),
     _useState2 = _slicedToArray(_useState, 2),
     playerName = _useState2[0],
     setPlayerName = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
 
   // Navigate straight to the game board
   //navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
@@ -1876,13 +1878,13 @@ function Home() {
     /* Match outer layout and padding of BarHome */
     react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "d-flex justify-content-center align-items-center p-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       className: "text-center shadow-lg border-0",
       style: {
         maxWidth: "450px",
         width: "100%"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, {
       as: "h5",
       className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
       style: {
@@ -1890,7 +1892,7 @@ function Home() {
         color: '#f1f2f5',
         letterSpacing: '0.2em'
       }
-    }, "GAME-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+    }, "GAME-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
       className: "p-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
@@ -1901,18 +1903,18 @@ function Home() {
         maxWidth: "130px",
         height: "auto"
       }
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       className: "border p-1 bg-body-secondary shadow-sm rounded-3"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Title, {
       className: "text-muted text-center fw-bold small mb-1 tracking-wider"
     }, "Multi-Player Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
       className: "my-1 text-muted opacity-25"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
       className: "mb-3 text-start",
       controlId: "formPlayerName"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Label, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
       className: "fw-bold text-muted small mb-1"
-    }, "Player Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+    }, "Player Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
       type: "text",
       placeholder: "Anita Break",
       value: playerName,
@@ -1921,16 +1923,16 @@ function Home() {
       },
       autoComplete: "off",
       className: "py-2"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       className: "g-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 12,
       className: "text-start"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Label, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
       className: "fw-bold text-muted small mb-1 ps-1"
     }, "Join Active Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       playerName: playerName
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 12,
       className: "d-flex align-items-center mt-1 mb-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -1939,36 +1941,69 @@ function Home() {
       className: "mx-2 my-2 text-muted small fw-bold text-center"
     }, "OR ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Create New Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
       className: "flex-grow-1 my-0 opacity-25"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 12
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      className: "g-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      xs: 6
+      className: "g-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      xs: 6
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm",
       onClick: function onClick() {
         return (0,_TicTacToe_TicTacToeCreateButton_jsx__WEBPACK_IMPORTED_MODULE_4__.handleCreateTttRoom)(playerName, navigate);
       }
-    }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
       onClick: function onClick() {
         return (0,_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateTriviaRoom)(playerName, navigate);
       }
-    }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
       onClick: function onClick() {
-        return navigate("/prompt2?name=".concat(encodeURIComponent(playerName)));
+        return (0,_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__.handleCreatePrompt2Room)(playerName, navigate);
       }
     }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2")))))))))
   );
+}
+
+/***/ }),
+
+/***/ "./src/features/Prompt2/Prompt2CreateButton.jsx":
+/*!******************************************************!*\
+  !*** ./src/features/Prompt2/Prompt2CreateButton.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleCreatePrompt2Room": () => (/* binding */ handleCreatePrompt2Room)
+/* harmony export */ });
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+
+function handleCreatePrompt2Room(playerName, navigate) {
+  var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
+  console.log("Request Prompt2 Room creation for ".concat(cleanName));
+  if (!_socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connected) {
+    console.warn("Trivia socket is disconnected! Connecting...");
+    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connect();
+  }
+  _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated');
+
+  // Create the room/event
+  _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.emit('createRoom');
+  _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.once('roomcreated', function (_ref) {
+    var roomCode = _ref.roomCode;
+    console.log("Prompt2 room created successfully! Code: ".concat(roomCode));
+    // FIXED: Route changed from /TriviaWaitingRoom to /prompt2
+    navigate("/prompt2?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(cleanName)));
+  });
 }
 
 /***/ }),
@@ -1985,11 +2020,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2000,82 +2037,95 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Prompt2Lobby(_ref) {
-  var name = _ref.name,
-    roomCode = _ref.roomCode,
-    setRoomCode = _ref.setRoomCode,
-    roomData = _ref.roomData,
-    isHost = _ref.isHost;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(name),
+
+function Prompt2Lobby() {
+  // FIXED: Added () invocation
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useSearchParams)(),
+    _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
+    searchParams = _useSearchParams2[0];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
+
+  // Grab config from URL params sent by Universal Join form
+  var roomCode = searchParams.get('room');
+  var urlName = searchParams.get('name') || 'Anonymous';
+  var role = searchParams.get('role') || 'guest';
+  var isHost = role === 'host';
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
-    localName = _useState2[0],
-    setLocalName = _useState2[1];
-  var handleCreateRoom = function handleCreateRoom(e) {
-    e.preventDefault();
-    if (!localName.trim()) return alert('Please enter a name!');
-    var generatedCode = Math.random().toString(36).substring(2, 6).toUpperCase();
-    setRoomCode(generatedCode);
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('join_room', {
-      roomCode: generatedCode,
-      username: localName
+    players = _useState2[0],
+    setPlayers = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    error = _useState4[0],
+    setError = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    roomState = _useState6[0],
+    setRoomState = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!roomCode) {
+      setError('No room code provided!');
+      return;
+    }
+    if (!_socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connected) {
+      console.log("Waiting room socket disconnected. Establishing fresh handshake...");
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connect();
+    }
+
+    // Remove pre-existing listener bindings
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomUpdated');
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomStateUpdated');
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('errorMsg');
+
+    // Tell the server we want to join this room
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
+      roomCode: roomCode,
+      playerName: urlName
     });
-  };
+
+    // FIXED: Changed socket.emit to socket.on to properly listen for updates
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('roomUpdated', function (data) {
+      console.log('Lobby updated from Prompt2', data);
+      setPlayers(data.players);
+    });
+
+    // Listen for gameplay phase transitions from Render backend
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('roomStateUpdated', function (updateRoom) {
+      console.log("Gameplay state update:", updateRoom);
+      setRoomState(updateRoom);
+    });
+
+    // Listen for any access errors
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('errorMsg', function (msg) {
+      setError(msg);
+    });
+
+    // Cleanup connections when the user leaves the page or closes the tab
+    return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomUpdated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomStateUpdated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('errorMsg');
+    };
+  }, [roomCode, urlName]); // FIXED: Closed the useEffect structure correctly with a closing curly brace
+
   var handleStartGame = function handleStartGame() {
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('start_game', {
+    console.log("Starting Prompt2 game for room:", roomCode);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('startGame', {
       roomCode: roomCode
     });
   };
-  var playersArray = roomData ? Object.entries(roomData.players).map(function (_ref2) {
-    var _ref3 = _slicedToArray(_ref2, 2),
-      id = _ref3[0],
-      details = _ref3[1];
-    return {
-      id: id,
-      name: details.username,
-      isPlayerHost: roomData.hostId === id
-    };
-  }) : [];
-  if (!roomData) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "shadow-sm w-100",
-      style: {
-        maxWidth: '420px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-      className: "text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-      className: "fs-3 fw-bold mb-3 text-primary"
-    }, "Prompt2 Setup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      onSubmit: handleCreateRoom
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Group, {
-      className: "mb-3 text-start"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Label, {
-      className: "fw-semibold"
-    }, "Your Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Control, {
-      type: "text",
-      placeholder: "Enter name",
-      value: localName,
-      onChange: function onChange(e) {
-        return setLocalName(e.target.value);
-      }
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      type: "submit",
-      variant: "primary",
-      className: "w-100 fw-bold"
-    }, "Create Room")))));
-  }
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "shadow-sm w-100",
     style: {
       maxWidth: '420px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }, error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "danger"
+  }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
     className: "fs-3 fw-bold mb-1 text-success"
   }, "Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted small mb-4"
@@ -2089,19 +2139,20 @@ function Prompt2Lobby(_ref) {
     className: "text-start mb-2 fw-semibold"
   }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "mb-4 text-start"
-  }, playersArray.map(function (player) {
+  }, players.map(function (player) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Item, {
       key: player.id,
       className: "d-flex justify-content-between align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "badge bg-primary rounded-pill"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      bg: "primary",
+      className: "rounded-pill"
     }, "Host / Judge"));
-  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    variant: "success",
+  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    variant: "primary",
     className: "w-100 fw-bold py-2",
-    disabled: playersArray.length < 3,
+    disabled: players.length < 3,
     onClick: handleStartGame
-  }, playersArray.length < 3 ? 'Waiting for Players (Min 3)' : 'Start Game') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, players.length < 3 ? 'Waiting for Players (Min 3)' : 'All in!') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted small py-2 border border-dashed rounded bg-light"
   }, "Waiting for the host to start the game..."))));
 }
@@ -2733,7 +2784,7 @@ function handleCreateTriviaRoom(playerName, navigate) {
   // Listen once for the backend room blueprint assignment
   _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.once('roomCreated', function (_ref) {
     var roomCode = _ref.roomCode;
-    console.log("\uD83C\uDF89 Trivia room created successfully! Code: ".concat(roomCode));
+    console.log("Trivia room created successfully! Code: ".concat(roomCode));
     navigate("/TriviaWaitingRoom?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(cleanName)));
   });
 }
@@ -3145,8 +3196,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "funnyNames": () => (/* binding */ funnyNames),
 /* harmony export */   "getRandomFunnyName": () => (/* binding */ getRandomFunnyName)
 /* harmony export */ });
-/* harmony import */ var firebase_firestore_pipelines__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/firestore/pipelines */ "./node_modules/firebase/firestore/pipelines/dist/esm/pipelines.esm.js");
-
 var funnyNames = ["Anita Break", "Gladys Overwith", "Justin Case", "Paige Turner", "Robin Banks", "Barry Cade", "Ella Vator", "Tim Burr", "Al B. Back", "Luke Warm", "Ben There", "Chris P. Bacon", "Artie Choke", "Barb Dwyer", "Carrie Oakey", "Anita Job", "Neil Down", "Otto Mattic", "Phil M. Up", "Sue Shei",
 // Food & Drink
 "Al Dente", "Brie Cheese", "Mac Aroni", "Olive Tree", "Tom Morrow", "Sal Monella", "Pea Soup", "Heinz Sight", "C. Senor", "Sherry Wine",

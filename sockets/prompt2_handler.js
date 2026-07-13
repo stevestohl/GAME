@@ -1,53 +1,96 @@
 import Prompt2Model from "../models/Prompt2.js";
 
-// In-memory state storage specific to Prompt2 game rooms
 const activePrompt2Rooms = {}; 
+
+const createRoomLogic = (socket, roomsObject) => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomLetters = '';
+    for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * alphabet.length);
+        randomLetters += alphabet.charAt(randomIndex);
+    }
+    const finalRoomCode = `P${randomLetters}`;
+
+    roomsObject[finalRoomCode] = {
+        roomCode: finalRoomCode,
+        gameState: 'lobby',
+        hostId: socket.id,
+        currentPrompt: null,
+        players: {
+            [socket.id]: {
+                id: socket.id,
+                name: 'Host',
+                score: 0,
+                hasSubmitted: false,
+                currentAnswer: "",
+                isPlayerHost: true // FIXED: Added flag for frontend badge rendering
+            }
+        }
+    };
+    return {
+        roomCode: finalRoomCode,
+        players: Object.values(roomsObject[finalRoomCode].players)
+    };
+};
 
 export default function registerPrompt2Namespace(promptNS) {
     promptNS.on('connection', (socket) => {
         console.log(`[Prompt2 Socket] Player connected: ${socket.id}`);
 
-        // --- Event: Player Joins a Game Room ---
-        socket.on('join_room', ({ roomCode, username }) => {
+        //---- Event: Room Creation ------
+        socket.on('createRoom', () => {
+            const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms);
             socket.join(roomCode);
-            
-            const isCreator = !activePrompt2Rooms[roomCode];
-
-            if (isCreator) {
-                activePrompt2Rooms[roomCode] = {
-                    roomCode,
-                    gameState: 'lobby', 
-                    hostId: socket.id,  
-                    currentPrompt: null,
-                    players: {}
-                };
-            }
-
-            activePrompt2Rooms[roomCode].players[socket.id] = {
-                username,
-                score: 0,
-                hasSubmitted: false,
-                currentAnswer: ""
-            };
-
-            console.log(`[Prompt2] ${username} joined room: ${roomCode}`);
-            promptNS.to(roomCode).emit('room_updated', activePrompt2Rooms[roomCode]);
+            socket.emit('roomcreated', { roomCode, players });
         });
+        // --- Event: Room Joining ---
+ socket.on('joinRoom', ({ roomCode, playerName }) => {
+            if (!roomCode) return;
+            const code = roomCode.trim().toUpperCase();
+            const currentRoom = activePrompt2Rooms[code];
 
-        // --- Event: Game Start Triggered (By Room Creator) ---
-        socket.on('start_game', async ({ roomCode }) => {
+            if (currentRoom) {
+                socket.join(code);
+
+                // Add or update the player using unified Object notation
+                currentRoom.players[socket.id] = {
+                    id: socket.id,
+                    name: playerName || 'Anonymous',
+                    score: currentRoom.players[socket.id]?.score || 0,
+                    hasSubmitted: currentRoom.players[socket.id]?.hasSubmitted || false,
+                    currentAnswer: currentRoom.players[socket.id]?.currentAnswer || "",
+                    isPlayerHost: socket.id === currentRoom.hostId // FIXED: Dynamically flags the host
+                };
+
+                console.log(`[Prompt2] ${playerName || 'Anonymous'} joined room: ${code}`);
+                
+                // Send array format to Lobby for rendering
+                promptNS.to(code).emit('roomUpdated', { 
+                    roomCode: code, 
+                    players: Object.values(currentRoom.players)      
+                });
+                
+                // Send raw object data to GameManager 
+                promptNS.to(code).emit('room_updated', currentRoom);
+            } else {
+                socket.emit('errorMsg', 'Room not found!');
+            }
+            // FIXED: Extraneous duplicate code that crashed the block has been completely removed from here!
+        });
+        // --- Event: Game Start Triggered (Matches frontend 'startGame') ---
+        socket.on('startGame', async ({ roomCode }) => {
             const room = activePrompt2Rooms[roomCode];
             if (room && socket.id === room.hostId) {
                 try {
                     room.gameState = 'prompt_selection';
                     const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
                     
+                    // Send options directly to the choosing host
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     
-                    promptNS.to(roomCode).emit('gameState_changed', { 
-                        gameState: room.gameState,
-                        hostName: room.players[room.hostId]?.username 
-                    });
+                    // Signal to GameManager to transition states globally
+                    promptNS.to(roomCode).emit('game_started');
+                    promptNS.to(roomCode).emit('room_updated', room);
                 } catch (err) {
                     console.error("Error fetching random prompts for socket:", err);
                 }
@@ -70,6 +113,7 @@ export default function registerPrompt2Namespace(promptNS) {
                     gameState: room.gameState,
                     prompt: room.currentPrompt
                 });
+                promptNS.to(roomCode).emit('room_updated', room);
             }
         });
 
@@ -100,8 +144,44 @@ export default function registerPrompt2Namespace(promptNS) {
                 } else {
                     promptNS.to(roomCode).emit('player_submitted', { playerId: socket.id });
                 }
+                promptNS.to(roomCode).emit('room_updated', room);
             }
         });
+
+        // --- Event: Game Start Triggered ---
+        socket.on('startGame', ({ roomCode }) => {
+            const room = activePrompt2Rooms[roomCode];
+            if (room && socket.id === room.hostId) {
+                // 1. Set state to rules first!
+                room.gameState = 'rules';
+                
+                // 2. Broadcast the state change to everyone
+                promptNS.to(roomCode).emit('room_updated', room);
+            }
+        });
+
+        // --- NEW Event: Move from Rules to Prompt Selection ---
+        socket.on('startPromptSelection', async ({ roomCode }) => {
+            const room = activePrompt2Rooms[roomCode];
+            if (room && socket.id === room.hostId) {
+                try {
+                    room.gameState = 'prompt_selection';
+                    
+                    // Fetch your random cards/prompts from MongoDB
+                    const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                    
+                    // Send choices to the host
+                    socket.emit('prompt_options', { prompts: randomPrompts });
+                    
+                    // Update the room phase globally
+                    promptNS.to(roomCode).emit('room_updated', room);
+                } catch (err) {
+                    console.error("Error transitioning to prompt selection:", err);
+                }
+            }
+        });
+
+
 
         // --- Event: Host Picks the Winning Answer ---
         socket.on('pick_winner', ({ roomCode, winningPlayerId }) => {
@@ -118,6 +198,7 @@ export default function registerPrompt2Namespace(promptNS) {
                     winner: room.players[winningPlayerId],
                     updatedRoom: room
                 });
+                promptNS.to(roomCode).emit('room_updated', room);
             }
         });
 
@@ -127,7 +208,7 @@ export default function registerPrompt2Namespace(promptNS) {
                 const room = activePrompt2Rooms[roomCode];
                 
                 if (room.players[socket.id]) {
-                    const disconnectedUser = room.players[socket.id].username;
+                    const disconnectedUser = room.players[socket.id].name;
                     delete room.players[socket.id];
                     
                     if (Object.keys(room.players).length === 0) {
@@ -142,6 +223,7 @@ export default function registerPrompt2Namespace(promptNS) {
                             message: `${disconnectedUser} disconnected.`,
                             updatedRoom: room
                         });
+                        promptNS.to(roomCode).emit('room_updated', room);
                     }
                 }
             }

@@ -4,8 +4,9 @@ import { prompt2Socket as socket } from '../../socket.js';
 
 export default function Prompt2RulesScreen({ roomCode, isHost }) {
     const handleNext = () => {
-        console.log(`Sending nextRound event for room: ${roomCode}`);
-        socket.emit('nextRound', { roomCode });
+        // FIXED: Now matches the backend listener we set up to advance the state
+        console.log(`Sending startPromptSelection event for room: ${roomCode}`);
+        socket.emit('startPromptSelection', { roomCode });
     };
 
     return (

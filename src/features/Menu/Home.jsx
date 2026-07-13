@@ -7,6 +7,7 @@ import { getRandomFunnyName } from '../../funnyNames.js';
 // helper functions for creating rooms and socket ID's
 import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import { handleCreateTttRoom } from '../TicTacToe/TicTacToeCreateButton.jsx';
+import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
 
 // ROOMCODES ARE GENERATED IN EACH INDIVIDULE Nampsapce socket for each app
 export default function Home() {
@@ -101,7 +102,7 @@ export default function Home() {
                                         <Button
                                             variant="primary"
                                             className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
-                                            onClick={() => navigate(`/prompt2?name=${encodeURIComponent(playerName)}`)}
+                                            onClick={() => handleCreatePrompt2Room(playerName, navigate)}
                                         >
                                             Prompt <br/>
                                             2

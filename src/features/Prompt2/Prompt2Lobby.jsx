@@ -1,59 +1,79 @@
-import React, { useState } from 'react';
-import { Container, Card, Button, Form, ListGroup } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Container, Card, Badge, Button, Alert, Form, ListGroup } from 'react-bootstrap';
 import { prompt2Socket as socket } from '../../socket.js';
 
-export default function Prompt2Lobby({ name, roomCode, setRoomCode, roomData, isHost }) {
-    const [localName, setLocalName] = useState(name);
+export default function Prompt2Lobby() {
+    // FIXED: Added () invocation
+    const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
 
-    const handleCreateRoom = (e) => {
-        e.preventDefault();
-        if (!localName.trim()) return alert('Please enter a name!');
+    // Grab config from URL params sent by Universal Join form
+    const roomCode = searchParams.get('room');
+    const urlName = searchParams.get('name') || 'Anonymous';
+    const role = searchParams.get('role') || 'guest'; 
 
-        const generatedCode = Math.random().toString(36).substring(2, 6).toUpperCase();
-        setRoomCode(generatedCode);
-        socket.emit('join_room', { roomCode: generatedCode, username: localName });
-    };
+    const isHost = role === 'host';
+
+    const [players, setPlayers] = useState([]);
+    const [error, setError] = useState('');
+    const [roomState, setRoomState] = useState(null);
+    
+    useEffect(() => {
+        if (!roomCode) {
+            setError('No room code provided!');
+            return;
+        } 
+
+        if (!socket.connected) {
+            console.log("Waiting room socket disconnected. Establishing fresh handshake...");
+            socket.connect();
+        }
+
+        // Remove pre-existing listener bindings
+        socket.off('roomUpdated');
+        socket.off('roomStateUpdated');
+        socket.off('errorMsg');
+
+        // Tell the server we want to join this room
+        socket.emit('joinRoom', { roomCode, playerName: urlName });
+
+        // FIXED: Changed socket.emit to socket.on to properly listen for updates
+        socket.on('roomUpdated', (data) => {
+            console.log('Lobby updated from Prompt2', data);
+            setPlayers(data.players);
+        });
+
+        // Listen for gameplay phase transitions from Render backend
+        socket.on('roomStateUpdated', (updateRoom) => {
+            console.log("Gameplay state update:", updateRoom);
+            setRoomState(updateRoom);
+        });
+
+        // Listen for any access errors
+        socket.on('errorMsg', (msg) => {
+            setError(msg);
+        });
+
+        // Cleanup connections when the user leaves the page or closes the tab
+        return () => {
+            socket.off('roomUpdated');
+            socket.off('roomStateUpdated');
+            socket.off('errorMsg');
+        };
+    }, [roomCode, urlName]); // FIXED: Closed the useEffect structure correctly with a closing curly brace
 
     const handleStartGame = () => {
-        socket.emit('start_game', { roomCode });
+        console.log("Starting Prompt2 game for room:", roomCode);
+        socket.emit('startGame', { roomCode });
     };
-
-    const playersArray = roomData ? Object.entries(roomData.players).map(([id, details]) => ({
-        id,
-        name: details.username,
-        isPlayerHost: roomData.hostId === id
-    })) : [];
-
-    if (!roomData) {
-        return (
-            <Container className="mt-5 d-flex justify-content-center">
-                <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
-                    <Card.Body className="text-center">
-                        <Card.Title className="fs-3 fw-bold mb-3 text-primary">Prompt2 Setup</Card.Title>
-                        <Form onSubmit={handleCreateRoom}>
-                            <Form.Group className="mb-3 text-start">
-                                <Form.Label className="fw-semibold">Your Name</Form.Label>
-                                <Form.Control 
-                                    type="text" 
-                                    placeholder="Enter name" 
-                                    value={localName} 
-                                    onChange={(e) => setLocalName(e.target.value)} 
-                                />
-                            </Form.Group>
-                            <Button type="submit" variant="primary" className="w-100 fw-bold">
-                                Create Room
-                            </Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </Container>
-        );
-    }
 
     return (
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
                 <Card.Body className="text-center">
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    
                     <Card.Title className="fs-3 fw-bold mb-1 text-success">Waiting Room</Card.Title>
                     <p className="text-muted small mb-4">Game: Judge Style Arena</p>
 
@@ -64,30 +84,31 @@ export default function Prompt2Lobby({ name, roomCode, setRoomCode, roomData, is
 
                     <h5 className="text-start mb-2 fw-semibold">Players Joined:</h5>
                     <ListGroup className="mb-4 text-start">
-                        {playersArray.map((player) => (
+                        {players.map((player) => (
                             <ListGroup.Item key={player.id} className="d-flex justify-content-between align-items-center">
                                 <span>{player.name}</span>
                                 {player.isPlayerHost && (
-                                    <span className="badge bg-primary rounded-pill">Host / Judge</span>
+                                    <Badge bg="primary" className="rounded-pill">Host / Judge</Badge>
                                 )}
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
 
-                    {isHost ? (
-                        <Button 
-                            variant="success" 
-                            className="w-100 fw-bold py-2"
-                            disabled={playersArray.length < 3}
-                            onClick={handleStartGame}
-                        >
-                            {playersArray.length < 3 ? 'Waiting for Players (Min 3)' : 'Start Game'}
-                        </Button>
-                    ) : (
-                        <div className="text-muted small py-2 border border-dashed rounded bg-light">
-                            Waiting for the host to start the game...
-                        </div>
-                    )}
+                {isHost ? (
+                    <Button 
+                        variant="primary" 
+                        className="w-100 fw-bold py-2"
+                        disabled={players.length < 3}
+                        onClick={handleStartGame}
+                    >
+                        {/* UPDATED: Changed 'Start Game' to 'All in!' */}
+                        {players.length < 3 ? 'Waiting for Players (Min 3)' : 'All in!'}
+                    </Button>
+                ) : (
+                    <div className="text-muted small py-2 border border-dashed rounded bg-light">
+                        Waiting for the host to start the game...
+                    </div>
+                )}
                 </Card.Body>
             </Card>
         </Container>

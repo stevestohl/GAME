@@ -19,7 +19,7 @@ export function handleCreateTriviaRoom(playerName, navigate) {
 
     // Listen once for the backend room blueprint assignment
     triviaSocket.once('roomCreated', ({ roomCode }) => {
-        console.log(`🎉 Trivia room created successfully! Code: ${roomCode}`);
+        console.log(`Trivia room created successfully! Code: ${roomCode}`);
         navigate(`/TriviaWaitingRoom?room=${roomCode}&role=host&name=${encodeURIComponent(cleanName)}`);
     });
 }
