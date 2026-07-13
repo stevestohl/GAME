@@ -1,4 +1,4 @@
-import Prompt2Model from "../../models/Prompt2.js";
+import Prompt2Model from "../models/Prompt2.js";
 
 // In-memory state storage specific to Prompt2 game rooms
 const activePrompt2Rooms = {}; 

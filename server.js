@@ -5,9 +5,9 @@ import 'dotenv/config';
 import mongoose from 'mongoose';
 
 // Import Namespace Controllers
-import registerTriviaNamespace from './src/sockets/trivia_handler.js';
-import registerTicTacToeNamespace from './src/sockets/tictactoe_handler.js';
-import registerPrompt2Namespace from './src/sockets/prompt2_handler.js';
+import registerTriviaNamespace from './sockets/trivia_handler.js';
+import registerTicTacToeNamespace from './sockets/tictactoe_handler.js';
+import registerPrompt2Namespace from './sockets/prompt2_handler.js';
 
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app); 

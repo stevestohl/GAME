@@ -1,4 +1,4 @@
-import Temple_Trivia from "../../models/Temple_Trivia.js";
+import Temple_Trivia from "../models/Temple_Trivia.js";
 /**
  * trivia_handler.js
  * Manages game state, answer validation, and score tracking.
@@ -74,7 +74,8 @@ export default function registerTriviaNamespace(namespace) {
                 socket.emit('errorMsg', 'Trivia room not found.');
             }
         });
-// --- Event: Start Game ---
+
+        // --- Event: Start Game ---
         socket.on('startGame', async ({ roomCode }) => {
             if (!roomCode) return;
             const code = roomCode.trim().toUpperCase();
@@ -82,7 +83,7 @@ export default function registerTriviaNamespace(namespace) {
             
             if (currentRoom) {
                 try {
-                    // ADDED .lean() here to make sure data is clean JSON for WebSockets
+                    // Fetching data cleanly as pure JSON
                     const dbQuestions = await Temple_Trivia.find({}).limit(3).lean();
 
                     if (!dbQuestions || dbQuestions.length === 0) {
@@ -106,7 +107,7 @@ export default function registerTriviaNamespace(namespace) {
             }
         });
 
-        // --- Event: Next Round (DIAGNOSTIC LOGS ADDED) ---
+        // --- Event: Next Round ---
         socket.on('nextRound', ({ roomCode }) => {
             console.log(`➡️ Received 'nextRound' event from client for room: ${roomCode}`);
             if (!roomCode) return;
@@ -122,6 +123,67 @@ export default function registerTriviaNamespace(namespace) {
                 console.log(`❌ Failed 'nextRound': Room ${code} not found in activeRooms.`);
                 socket.emit('errorMsg', 'Cannot start round. Room not found.');
             }
+        });
+
+        // --- Event: Player Answer Submissions ---
+        socket.on('submitAnswer', ({ roomCode, answer }) => {
+            if (!roomCode) return;
+            const code = roomCode.trim().toUpperCase();
+            const currentRoom = activeRooms[code];
+
+            if (!currentRoom) return;
+
+            // Record this player's answer text
+            currentRoom.playerAnswers[socket.id] = answer;
+
+            // Evaluate correctness using the current round's question
+            const currentQuestion = currentRoom.questions[currentRoom.currentRound];
+            if (currentQuestion && currentQuestion.correct_answer === answer) {
+                // Find the player profile in the array and update score
+                const player = currentRoom.players.find(p => p.id === socket.id);
+                if (player) {
+                    player.score = (player.score || 0) + 10; // Award 10 points
+                }
+            }
+
+            // Game Logic Check: Have all players locked in an answer?
+            const totalPlayers = currentRoom.players.length;
+            const totalAnswers = Object.keys(currentRoom.playerAnswers).length;
+
+            if (totalAnswers === totalPlayers) {
+                console.log(`🏁 All players have answered in Room ${code}. Advancing to SCOREBOARD.`);
+                currentRoom.phase = 'SCOREBOARD';
+            }
+
+            // Sync the fresh state back out to all clients in the room
+            namespace.to(code).emit('roomStateUpdated', currentRoom);
+        });
+
+        // --- Event: Host Advancing from Scoreboard ---
+        socket.on('advanceFromScoreboard', ({ roomCode }) => {
+            if (!roomCode) return;
+            const code = roomCode.trim().toUpperCase();
+            const currentRoom = activeRooms[code];
+
+            if (!currentRoom) return;
+
+            // Clear the answers map out for the upcoming round
+            currentRoom.playerAnswers = {};
+
+            // Increment the round index counter
+            currentRoom.currentRound += 1;
+
+            // Check if we just ran out of DB questions
+            if (currentRoom.currentRound >= currentRoom.questions.length) {
+                console.log(`🏆 Trivia Game Over for Room ${code}.`);
+                currentRoom.phase = 'GAMEOVER';
+            } else {
+                console.log(`🃏 Moving Room ${code} to Round #${currentRoom.currentRound + 1}`);
+                currentRoom.phase = 'QUESTION';
+            }
+
+            // Sync state across everyone's devices
+            namespace.to(code).emit('roomStateUpdated', currentRoom);
         });
 
         // --- Event: Disconnect Cleanup ---

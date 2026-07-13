@@ -23,7 +23,7 @@ export default function QuestionScreen({ roomCode, currentQuestion, playerAnswer
 
     const handleChoiceClick = (selectedChoice) => {
         if (hasAnswered) return; // Prevention lock
-        socket.emit('submitAnswers', { roomCode, answer: selectedChoice });
+        socket.emit('submitAnswer', { roomCode, answer: selectedChoice });
     };
 
     return (

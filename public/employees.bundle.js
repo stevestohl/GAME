@@ -2534,7 +2534,7 @@ function QuestionScreen(_ref) {
   }, [currentQuestion]);
   var handleChoiceClick = function handleChoiceClick(selectedChoice) {
     if (hasAnswered) return; // Prevention lock
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('submitAnswers', {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('submitAnswer', {
       roomCode: roomCode,
       answer: selectedChoice
     });
@@ -2594,7 +2594,7 @@ function RulesScreen(_ref) {
     isHost = _ref.isHost;
   var handleNext = function handleNext() {
     console.log("Sending nextRound event for room:".concat(roomCode));
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('startRound', {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('nextRound', {
       roomCode: roomCode
     });
   };

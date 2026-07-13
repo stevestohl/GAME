@@ -5,7 +5,7 @@ import { triviaSocket as socket } from '../../socket.js';
 export default function RulesScreen({ roomCode, isHost }) {
     const handleNext = () => {
         console.log(`Sending nextRound event for room:${roomCode }`)
-        socket.emit('startRound', { roomCode });
+        socket.emit('nextRound', { roomCode });
     };
 
     return (
