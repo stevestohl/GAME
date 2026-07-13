@@ -6,6 +6,7 @@ import {triviaSocket as socket } from '../../socket.js';
 import RulesScreen from './RulesScreen.jsx';
 import QuestionScreen from './QuestionScreen.jsx';
 import ScoreboardScreen from './ScoreboardScreen.jsx';
+import GameOverScreen from './TriviaGameOver.jsx';
 
 export default function TriviaWaitingRoom() {
     const [searchParams] = useSearchParams();
@@ -111,15 +112,13 @@ export default function TriviaWaitingRoom() {
                     />
                 );
                 
-            case 'FINAL_RESULTS':
+            case 'GAMEOVER':
                 return (
-                    <Container className="mt-5 text-center" style={{ maxWidth: '420px' }}>
-                        <Card className="shadow-sm p-4">
-                            <h2 className="text-primary fw-bold">🏆 Game Over!</h2>
-                            <p className="text-muted">Final Podiums Go Here</p>
-                            <Button variant="primary" onClick={() => navigate('/')}>Return Home</Button>
-                        </Card>
-                    </Container>
+                    <GameOverScreen 
+                        players={roomState.players} 
+                        roomCode={roomCode} 
+                        isHost={role === 'host'} 
+                    />
                 );
         }
     }
