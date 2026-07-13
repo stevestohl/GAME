@@ -1,9 +1,11 @@
 import express from 'express'
 import { getAllTrivia, getTriviaBackendStatus, getTriviaByID } from '../controllers/trivia_controller.js'
 import {getAllEmployees, getEmployee, createEmployee, 
-    updateEmployee, deleteEmployee, getAllDrinks, 
-    getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/employees.js'
+    updateEmployee, deleteEmployee } from '../controllers/employees_controller.js'
 import { getAllPrompt2Cards } from '../controllers/prompt2_controller.js'
+
+import {getAllDrinks, 
+    getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/drinks_controller.js'
 
 
 const router = express.Router()
