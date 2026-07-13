@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename)
 // 1. Global Security Middleware - UPDATED FOR RENDER
 // This explicitly allows your iFast domain to safely request data from Render
 app.use(cors({
-  origin: ['https://game-temple.org', 'https://www.game-temple.org', 'http://localhost:3000'],
+  origin: ['https://game-temple.org', 'https://www.game-temple.org', 'http://localhost:3000', 'http://localhost:5000'],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials: true
 }))
