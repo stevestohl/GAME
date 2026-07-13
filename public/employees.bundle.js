@@ -1991,7 +1991,7 @@ function handleCreatePrompt2Room(playerName, navigate) {
   var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
   console.log("Request Prompt2 Room creation for ".concat(cleanName));
   if (!_socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connected) {
-    console.warn("Trivia socket is disconnected! Connecting...");
+    console.warn("Prompt2Socket socket is disconnected! Connecting...");
     _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connect();
   }
   _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated');
@@ -2039,13 +2039,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Prompt2Lobby() {
-  // FIXED: Added () invocation
   var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
-
-  // Grab config from URL params sent by Universal Join form
   var roomCode = searchParams.get('room');
   var urlName = searchParams.get('name') || 'Anonymous';
   var role = searchParams.get('role') || 'guest';
@@ -2058,59 +2055,37 @@ function Prompt2Lobby() {
     _useState4 = _slicedToArray(_useState3, 2),
     error = _useState4[0],
     setError = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState6 = _slicedToArray(_useState5, 2),
-    roomState = _useState6[0],
-    setRoomState = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!roomCode) {
       setError('No room code provided!');
       return;
     }
     if (!_socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connected) {
-      console.log("Waiting room socket disconnected. Establishing fresh handshake...");
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connect();
     }
-
-    // Remove pre-existing listener bindings
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomUpdated');
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomStateUpdated');
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('errorMsg');
-
-    // Tell the server we want to join this room
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
       roomCode: roomCode,
       playerName: urlName
     });
-
-    // FIXED: Changed socket.emit to socket.on to properly listen for updates
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('roomUpdated', function (data) {
       console.log('Lobby updated from Prompt2', data);
       setPlayers(data.players);
     });
-
-    // Listen for gameplay phase transitions from Render backend
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('roomStateUpdated', function (updateRoom) {
-      console.log("Gameplay state update:", updateRoom);
-      setRoomState(updateRoom);
-    });
-
-    // Listen for any access errors
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('errorMsg', function (msg) {
       setError(msg);
     });
-
-    // Cleanup connections when the user leaves the page or closes the tab
     return function () {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomUpdated');
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('roomStateUpdated');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('errorMsg');
     };
-  }, [roomCode, urlName]); // FIXED: Closed the useEffect structure correctly with a closing curly brace
+  }, [roomCode, urlName]);
 
-  var handleStartGame = function handleStartGame() {
-    console.log("Starting Prompt2 game for room:", roomCode);
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('startGame', {
+  // FIXED: Renamed workflow method to reflect pushing rules out to clients
+  var handleShowRules = function handleShowRules() {
+    console.log("Emitting showRules event for room:", roomCode);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('showRules', {
       roomCode: roomCode
     });
   };
@@ -2151,10 +2126,10 @@ function Prompt2Lobby() {
     variant: "primary",
     className: "w-100 fw-bold py-2",
     disabled: players.length < 3,
-    onClick: handleStartGame
+    onClick: handleShowRules // FIXED: Triggers renamed handler
   }, players.length < 3 ? 'Waiting for Players (Min 3)' : 'All in!') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted small py-2 border border-dashed rounded bg-light"
-  }, "Waiting for the host to start the game..."))));
+  }, "Waiting for the host to show rules..."))));
 }
 
 /***/ }),

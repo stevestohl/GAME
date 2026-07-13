@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { prompt2Socket as socket } from '../../socket.js'; 
-
 import Prompt2Lobby from './Prompt2Lobby';
 import Prompt2RulesScreen from './Prompt2RulesScreen';
 import Prompt2PromptSelection from './Prompt2PromptSelection';
-import Prompt2CardSelectionScreen from './Prompt2CardSelectionScreen'; // FIXED
+import Prompt2CardSelectionScreen from './Prompt2CardSelectionScreen'; 
 import Prompt2JudgingScreen from './Prompt2JudgingScreen';
 import Prompt2Scoreboard from './Prompt2Scoreboard';
 
@@ -14,8 +13,8 @@ export default function Prompt2GameManager() {
     const [name] = useState(searchParams.get('name') || '');
     const [roomCode, setRoomCode] = useState(searchParams.get('room') || '');
     const [roomData, setRoomData] = useState(null);
-    const [gameState, setGameState] = useState('setup'); // setup, lobby, rules, prompt_selection, writing, judging, scoreboard
-    
+    const [gameState, setGameState] = useState('setup'); 
+
     // Game-specific payloads received from backend events
     const [promptOptions, setPromptOptions] = useState([]);
     const [currentPrompt, setCurrentPrompt] = useState(null);
@@ -26,19 +25,18 @@ export default function Prompt2GameManager() {
         // Manually open the namespace connection because autoConnect is false
         socket.connect();
 
-        // If we loaded into the page with a room and name, register this socket instantly
+        // FIXED: Changed event name to 'joinRoom' and key to 'playerName' to match backend
         if (roomCode && name) {
-            socket.emit('join_room', { roomCode, name });
+            socket.emit('joinRoom', { roomCode, playerName: name });
         }
 
         // Core room syncing (Handles state routing dynamically)
         socket.on('room_updated', (data) => {
+            console.log("[GameManager] room_updated state received:", data); 
             setRoomData(data);
-
             if (data.roomCode) {
                 setRoomCode(data.roomCode);
             }
-            
             // Synchronizes UI view with whatever phase the backend dictates
             if (data.gameState) {
                 setGameState(data.gameState);
@@ -69,7 +67,7 @@ export default function Prompt2GameManager() {
             setGameState('scoreboard');
         });
 
-        // Cleanup tracking listeners and kill the connection instance on component unmount
+        // Cleanup tracking listeners on component unmount
         return () => {
             socket.off('room_updated');
             socket.off('prompt_options');
@@ -77,8 +75,9 @@ export default function Prompt2GameManager() {
             socket.off('start_judging');
             socket.off('round_ended');
             
-            socket.disconnect(); 
+            // FIXED: Removed socket.disconnect() to prevent resetting host socket.id
         };
+
     }, [roomCode, name]); 
 
     // Helper to determine if this client window is the current room judge/host
@@ -102,7 +101,6 @@ export default function Prompt2GameManager() {
         case 'prompt_selection':
             return <Prompt2PromptSelection roomCode={roomCode} isHost={isHost} options={promptOptions} />;
         case 'writing':
-            // FIXED: Component now correctly matches the imported layout name
             return <Prompt2CardSelectionScreen roomCode={roomCode} isHost={isHost} prompt={currentPrompt} />;
         case 'judging':
             return <Prompt2JudgingScreen roomCode={roomCode} isHost={isHost} submissions={submissions} />;

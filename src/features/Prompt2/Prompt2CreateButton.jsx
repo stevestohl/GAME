@@ -5,7 +5,7 @@ export function handleCreatePrompt2Room (playerName, navigate) {
     console.log(`Request Prompt2 Room creation for ${cleanName}`);
     
     if (!prompt2Socket.connected) {
-        console.warn("Trivia socket is disconnected! Connecting...");
+        console.warn("Prompt2Socket socket is disconnected! Connecting...");
         prompt2Socket.connect();
     }
 
