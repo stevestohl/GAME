@@ -26,7 +26,7 @@ export default function Home() {
                     as="h5" 
                     className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
                     style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
-                    GAME-TEMPLE
+                    GAME-TEMPLE.ORG
                 </Card.Header>
                 
                 <Card.Body className='p-1'>

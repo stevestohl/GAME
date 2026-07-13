@@ -2,7 +2,7 @@ import express from 'express'
 import { getAllTrivia, getTriviaBackendStatus, getTriviaByID } from '../controllers/trivia_controller.js'
 import {getAllEmployees, getEmployee, createEmployee, 
     updateEmployee, deleteEmployee } from '../controllers/employees_controller.js'
-import { getAllPrompt2Cards } from '../controllers/prompt2_controller.js'
+import { getAllPrompt2Cards, getRandomPromptsForHost, getRandomResponsesForPlayers } from '../controllers/prompt2_controller.js'
 
 import {getAllDrinks, 
     getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/drinks_controller.js'
@@ -16,6 +16,12 @@ router.route('/employees')
 
 router.route('/prompt2')
     .get(getAllPrompt2Cards)
+
+router.route('/prompt2host')
+    .get(getRandomPromptsForHost)
+
+router.route('/prompt2players')
+    .get(getRandomResponsesForPlayers)
 
 router.route('/employees/:id')
     .get(getEmployee)

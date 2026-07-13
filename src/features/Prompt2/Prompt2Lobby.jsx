@@ -1,52 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { Container, Card, Badge, Button, Alert, ListGroup } from 'react-bootstrap';
+import React from 'react';
+import { Container, Card, Badge, Button, ListGroup } from 'react-bootstrap';
 import { prompt2Socket as socket } from '../../socket.js';
 
-export default function Prompt2Lobby() {
-    const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+export default function Prompt2Lobby({ roomCode, players =[], isHost }) {
     
-    const roomCode = searchParams.get('room');
-    const urlName = searchParams.get('name') || 'Anonymous';
-    const role = searchParams.get('role') || 'guest'; 
-    const isHost = role === 'host';
-    
-    const [players, setPlayers] = useState([]);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        if (!roomCode) {
-            setError('No room code provided!');
-            return;
-        } 
-        if (!socket.connected) {
-            socket.connect();
-        }
-        
-        socket.off('roomUpdated');
-        socket.off('errorMsg');
-        
-        socket.emit('joinRoom', { roomCode, playerName: urlName });
-        
-        socket.on('roomUpdated', (data) => {
-            console.log('Lobby updated from Prompt2', data);
-            setPlayers(data.players);
-        });
-
-        socket.on('errorMsg', (msg) => {
-            setError(msg);
-        });
-
-        return () => {
-            socket.off('roomUpdated');
-            socket.off('errorMsg');
-        };
-    }, [roomCode, urlName]);
-
-    // FIXED: Renamed workflow method to reflect pushing rules out to clients
     const handleShowRules = () => {
-        console.log("Emitting showRules event for room:", roomCode);
+        console.log("[Lobby] Clicked 'All in!' - Emitting showRules event for room:", roomCode);
         socket.emit('showRules', { roomCode });
     };
 
@@ -54,7 +13,6 @@ export default function Prompt2Lobby() {
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
                 <Card.Body className="text-center">
-                    {error && <Alert variant="danger">{error}</Alert>}
                     
                     <Card.Title className="fs-3 fw-bold mb-1 text-success">Waiting Room</Card.Title>
                     <p className="text-muted small mb-4">Game: Judge Style Arena</p>
@@ -80,10 +38,10 @@ export default function Prompt2Lobby() {
                         <Button 
                             variant="primary" 
                             className="w-100 fw-bold py-2"
-                            disabled={players.length < 3}
-                            onClick={handleShowRules} // FIXED: Triggers renamed handler
+                            disabled={players.length < 2}
+                            onClick={handleShowRules}
                         >
-                            {players.length < 3 ? 'Waiting for Players (Min 3)' : 'All in!'}
+                            {players.length < 2 ? 'Waiting for Players (Min 3)' : 'All in!'}
                         </Button>
                     ) : (
                         <div className="text-muted small py-2 border border-dashed rounded bg-light">

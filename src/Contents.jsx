@@ -8,7 +8,9 @@ import FlashcardsList from './features/Flashcards/FlashcardsList.jsx'
 import FlashcardGame from './features/Flashcards/FlashcardGame.jsx'
 import Home from './features/Menu/Home.jsx'
 import BarHome from './features/Menu/BarHome.jsx'
-import Prompt2 from './features/Prompt2/Prompt2Lobby.jsx'
+
+// FIXED: Changed this from Prompt2Lobby to Prompt2GameManager
+import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
 
 // --- Game Imports ---
 import TicTacToe from './features/TicTacToe/TicTacToe.jsx'
@@ -32,8 +34,8 @@ export default function Contents() {
             <Route path="/flashcardsList" element={<FlashcardsList />} />
             <Route path="/flashcardGame" element={<FlashcardGame />} />
 
-            {/* Employee Management Routes */}
-            <Route path="/prompt2" element={<Prompt2 />} />
+            {/* FIXED: Route now points to the Manager instead of the raw Lobby */}
+            <Route path="/prompt2" element={<Prompt2GameManager />} />
 
             {/* Employee Management Routes */}
             <Route path="/employees" element={<EmployeeList />} />
