@@ -15,4 +15,8 @@ export const triviaSocket = io(`${SOCKET_URL}/trivia`, {
     autoConnect: false
 })
 
+export const prompt2Socket = io(`${SOCKET_URL}/prompt2`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 export default socket;

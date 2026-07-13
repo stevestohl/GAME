@@ -5,9 +5,9 @@ import 'dotenv/config';
 import mongoose from 'mongoose';
 
 // Import Namespace Controllers
-import registerTriviaNamespace from './controllers/trivia_controller.js';
-import registerTictactoeNamespace from './controllers/tictactoe_controller.js';
-import registerPrompt2Namespace from './controllers/prompt2_controller.js';
+import registerTriviaNamespace from './src/sockets/trivia_handler.js';
+import registerTicTacToeNamespace from './src/sockets/tictactoe_handler.js';
+import registerPrompt2Namespace from './src/sockets/prompt2_handler.js';
 
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app); 
@@ -20,17 +20,16 @@ const io = new Server(server, {
 });
 
 // Initialize Namespaces
-// Each function takes the specific namespace instance
 const triviaNS = io.of('/trivia');
-registerTriviaNamespace(triviaNS);
+registerTriviaNamespace(triviaNS); 
 console.log("Namespace '/trivia' registered.");
 
 const tttNS = io.of('/tictactoe');
-registerTictactoeNamespace(tttNS);
+registerTicTacToeNamespace(tttNS); 
 console.log("Namespace '/tictactoe' registered.");
 
 const promptNS = io.of('/prompt2');
-registerPrompt2Namespace(promptNS);
+registerPrompt2Namespace(promptNS); 
 console.log("Namespace '/prompt2' registered.");
 
 // Database Connection & Server Startup

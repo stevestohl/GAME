@@ -1,58 +1,23 @@
-import Prompt2Model from "../models/Prompt2.js";
+import Prompt2Model from "../../models/Prompt2.js";
 
-// ==========================================
-// 1. HTTP REST API Controllers
-// ==========================================
-
-export const getAllPrompt2Cards = async (req, res) => {
-    try {
-        const prompt2Cards = await Prompt2Model.find({});
-        res.status(200).json({ 
-            success: true, 
-            data: prompt2Cards,
-            message: "HTTP endpoint hit! Prompt2 cards fetched successfully." 
-        });
-    } catch (error) {
-        console.error("Error in getAllPrompt2Cards:", error.message);
-        res.status(500).json({ success: false, message: "Server Error fetching prompt cards." });
-    }
-};
-
-// ==========================================
-// Socket Room Code Helper
-// ==========================================
-const generateRoomCode = () => {
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let code = "";
-    for (let i = 0; i < 3; i++) {
-        const randomIndex = Math.floor(Math.random() * alphabet.length);
-        code += alphabet.charAt(randomIndex);
-    }
-    return `R${code}`;
-};
-
-// ==========================================
-// 2. Real-Time Socket.io Namespace Handler
-// ==========================================
-
+// In-memory state storage specific to Prompt2 game rooms
 const activePrompt2Rooms = {}; 
 
 export default function registerPrompt2Namespace(promptNS) {
     promptNS.on('connection', (socket) => {
-        console.log(`[Prompt2] New player connected: ${socket.id}`);
+        console.log(`[Prompt2 Socket] Player connected: ${socket.id}`);
 
         // --- Event: Player Joins a Game Room ---
         socket.on('join_room', ({ roomCode, username }) => {
             socket.join(roomCode);
             
-            // If the room doesn't exist, this player is the creator/initial host
             const isCreator = !activePrompt2Rooms[roomCode];
 
             if (isCreator) {
                 activePrompt2Rooms[roomCode] = {
                     roomCode,
-                    gameState: 'lobby', // lobby, prompt_selection, writing, judging, scoreboard
-                    hostId: socket.id,  // The room creator starts as the game coordinator / first host
+                    gameState: 'lobby', 
+                    hostId: socket.id,  
                     currentPrompt: null,
                     players: {}
                 };
@@ -65,7 +30,7 @@ export default function registerPrompt2Namespace(promptNS) {
                 currentAnswer: ""
             };
 
-            console.log(`[Prompt2] ${username} (${socket.id}) joined room: ${roomCode}`);
+            console.log(`[Prompt2] ${username} joined room: ${roomCode}`);
             promptNS.to(roomCode).emit('room_updated', activePrompt2Rooms[roomCode]);
         });
 
@@ -75,20 +40,16 @@ export default function registerPrompt2Namespace(promptNS) {
             if (room && socket.id === room.hostId) {
                 try {
                     room.gameState = 'prompt_selection';
-
-                    // Pull 3 random prompts from MongoDB for the host to choose from
                     const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
                     
-                    // Send options ONLY to the host
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     
-                    // Inform the rest of the room that the host is choosing
                     promptNS.to(roomCode).emit('gameState_changed', { 
                         gameState: room.gameState,
                         hostName: room.players[room.hostId]?.username 
                     });
                 } catch (err) {
-                    console.error("Error fetching random prompts:", err);
+                    console.error("Error fetching random prompts for socket:", err);
                 }
             }
         });
@@ -100,44 +61,37 @@ export default function registerPrompt2Namespace(promptNS) {
                 room.gameState = 'writing';
                 room.currentPrompt = selectedPrompt;
 
-                // Reset submission tracking states for a new round
                 Object.values(room.players).forEach(p => {
                     p.hasSubmitted = false;
                     p.currentAnswer = "";
                 });
 
-                // Send the selected prompt out to everyone to kick off answer choosing/writing
-                promptNS.to(roomCode).emit('game_started', {
+                promptNS.to(roomCode).emit('writing_phase_started', {
                     gameState: room.gameState,
                     prompt: room.currentPrompt
                 });
             }
         });
 
-        // --- Event: Player Submits Their Answer (From Hand of 7) ---
+        // --- Event: Player Submits Their Answer ---
         socket.on('submit_answer', ({ roomCode, answer }) => {
             const room = activePrompt2Rooms[roomCode];
             const player = room?.players[socket.id];
 
-            // Ensure the player exists and that the Host isn't trying to submit an answer
             if (player && socket.id !== room.hostId) {
                 player.currentAnswer = answer;
                 player.hasSubmitted = true;
                 
-                console.log(`[Prompt2] ${player.username} submitted an answer.`);
-
-                // Count regular players (excluding the host judge)
                 const regularPlayers = Object.keys(room.players).filter(id => id !== room.hostId);
                 const allSubmitted = regularPlayers.every(id => room.players[id].hasSubmitted);
                 
                 if (allSubmitted) {
                     room.gameState = 'judging';
 
-                    // Map answers cleanly and anonymously so the judge can't see who wrote what
                     const anonymousSubmissions = regularPlayers.map(id => ({
-                        playerId: id, // Retain ID to assign points later, but hide this on the frontend client
+                        playerId: id, 
                         answer: room.players[id].currentAnswer
-                    })).sort(() => Math.random() - 0.5); // Shuffle submissions randomly
+                    })).sort(() => Math.random() - 0.5); 
 
                     promptNS.to(roomCode).emit('start_judging', {
                         gameState: room.gameState,
@@ -155,12 +109,10 @@ export default function registerPrompt2Namespace(promptNS) {
             if (room && socket.id === room.hostId) {
                 room.gameState = 'scoreboard';
                 
-                // Award points to the chosen author
                 if (room.players[winningPlayerId]) {
                     room.players[winningPlayerId].score += 100; 
                 }
 
-                // Broadcast round results
                 promptNS.to(roomCode).emit('round_ended', {
                     gameState: room.gameState,
                     winner: room.players[winningPlayerId],
@@ -171,8 +123,6 @@ export default function registerPrompt2Namespace(promptNS) {
 
         // --- Event: Handle Disconnection ---
         socket.on('disconnect', () => {
-            console.log(`[Prompt2] Player disconnected: ${socket.id}`);
-            
             for (const roomCode in activePrompt2Rooms) {
                 const room = activePrompt2Rooms[roomCode];
                 
@@ -182,16 +132,14 @@ export default function registerPrompt2Namespace(promptNS) {
                     
                     if (Object.keys(room.players).length === 0) {
                         delete activePrompt2Rooms[roomCode];
-                        console.log(`[Prompt2] Room ${roomCode} emptied and deleted.`);
+                        console.log(`[Prompt2] Room ${roomCode} deleted.`);
                     } else {
-                        // If the host leaves, pass the host crown down to the next active socket
                         if (socket.id === room.hostId) {
                             room.hostId = Object.keys(room.players)[0];
-                            console.log(`[Prompt2] Host left. New host is: ${room.hostId}`);
                         }
 
                         promptNS.to(roomCode).emit('player_left', {
-                            message: `${disconnectedUser} dropped connection.`,
+                            message: `${disconnectedUser} disconnected.`,
                             updatedRoom: room
                         });
                     }

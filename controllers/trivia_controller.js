@@ -1,27 +1,34 @@
 import Temple_Trivia from "../models/Temple_Trivia.js";
-import TriviaHandler from "./../src/sockets/trivia_handler.js"; // Import your new TriviaHandler class
 
-const activeRooms = {};
+// ==========================================
+// HTTP REST API Controllers Only
+// ==========================================
 
-const getAllTrivia = async (req, res) => {
+/**
+ * Gets all trivia documents from the database.
+ */
+export const getAllTrivia = async (req, res) => {
   try {
     const triviaDocs = await Temple_Trivia.find({});
     res.status(200).json({
       success: true,
       count: triviaDocs.length,
       data: triviaDocs,
-      console: "Get Trivia Working"
+      message: "Trivia documents fetched successfully over HTTP."
     });
   } catch (err) {
+    console.error("Error in getAllTrivia:", err.message);
     res.status(500).json({
       success: false,
-      console: err.message
+      error: err.message
     });
   }
 };
 
-// Fetch Trivia document by MongoDB ObjectID
-const getTriviaByID = async (req, res) => {
+/**
+ * Fetch a single Trivia document by its MongoDB ObjectID.
+ */
+export const getTriviaByID = async (req, res) => {
   try {
     const triviaDoc = await Temple_Trivia.findById(req.params.id);
 
@@ -31,20 +38,24 @@ const getTriviaByID = async (req, res) => {
         message: "Trivia question not found"
       });
     }
+    
     res.status(200).json({
       success: true,
       data: triviaDoc
     });
   } catch (err) {
+    console.error("Error in getTriviaByID:", err.message);
     res.status(500).json({
       success: false,
-      console: err.message
+      error: err.message
     });
   }
 };
 
-// Health check for Trivia Socket
-const getTriviaBackendStatus = async (req, res) => {
+/**
+ * Simple uptime health check for the Trivia engine.
+ */
+export const getTriviaBackendStatus = async (req, res) => {
   try {
     res.status(200).json({
       status: "online",
@@ -53,270 +64,4 @@ const getTriviaBackendStatus = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
-
-// Socket Room Helper: Code Generator
-const generateRoomCode = () => {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-  let code = '';
-  for (let i = 0; i < 3; i++) {
-    const randomIndex = Math.floor(Math.random() * alphabet.length);
-    code += alphabet.charAt(randomIndex);
-  }
-  return `R${code}`;
-};
-
-const createRoomLogic = (socket, activeRooms) => {
-  const roomCode = generateRoomCode();
-
-  activeRooms[roomCode] = { 
-    players: [],
-    currentRound: 0,
-    gameState: 'lobby',
-    gameEngine: null // Placed here to hold the TriviaHandler instance later
-  };
-    
-  return { roomCode, players: activeRooms[roomCode].players };
-};
-
-// This is the Default Export your server.js is looking for!
-export default function registerTriviaNamespace(namespace) {
-  namespace.on('connection', (socket) => {
-    console.log(`Trivia User Connected: ${socket.id}`);
-
-    // ==========================================
-    // Room Creation & Joining
-    // ==========================================
-    socket.on('createRoom', () => {
-      const { roomCode, players } = createRoomLogic(socket, activeRooms);
-      socket.join(roomCode);
-      socket.emit('roomCreated', { roomCode, players });
-    });
-
-    socket.on('joinRoom', ({ roomCode, playerName }) => {
-      if (!roomCode) return socket.emit('errorMsg', 'Room code is missing.');
-      
-      const code = roomCode.trim().toUpperCase();
-      const currentRoom = activeRooms[code];
-      
-      if (currentRoom) {
-        socket.join(code);
-        
-        const playerExists = currentRoom.players.some(p => p.id === socket.id);
-        
-        if (!playerExists) {
-          currentRoom.players.push({ 
-            id: socket.id, 
-            name: playerName || 'Anonymous', 
-            score: 0 
-          });
-        } else {
-          const index = currentRoom.players.findIndex(p => p.id === socket.id);
-          currentRoom.players[index].name = playerName || 'Anonymous';
-        }
-        
-        namespace.to(code).emit('roomUpdated', { 
-          roomCode: code, 
-          players: currentRoom.players 
-        });
-      } else {
-        socket.emit('errorMsg', 'Trivia room not found.');
-      }
-    });
-
-    // ==========================================
-    // Phase Transitions (Moving from Rules to Question)
-    // ==========================================
-    socket.on('nextRound', ({ roomCode }) => {
-      if (!roomCode) return;
-      
-      const code = roomCode.trim().toUpperCase();
-      const currentRoom = activeRooms[code];
-
-      if (!currentRoom) {
-        return socket.emit('errorMsg', 'Room not found.');
-      }
-
-      console.log(`🏁 Transitioning room ${code} to QUESTION phase (Round ${currentRoom.currentRound + 1})`);
-
-      currentRoom.playerAnswers = {};
-      currentRoom.phase = 'QUESTION';
-
-      namespace.to(code).emit('roomStateUpdated', currentRoom);
-    });
-
-    // ==========================================
-    // Gameplay Lifecycle Initialization
-    // ==========================================
-    socket.on('startGame', async ({ roomCode }) => {
-      if (!roomCode) return;
-      const code = roomCode.trim().toUpperCase();
-      const currentRoom = activeRooms[code];
-
-      if (!currentRoom) {
-        return socket.emit('errorMsg', 'Cannot start a match for a non-existent room.');
-      }
-
-      try {
-        console.log(`幕 Launching match for room: ${code}`);
-
-        // 1. Fetch questions from database
-        const MAX_ROUNDS = 3; // Set your round limit here
-        const questionPool = await Temple_Trivia.find({}).limit(MAX_ROUNDS);
-
-        if (!questionPool || questionPool.length === 0) {
-          return socket.emit('errorMsg', 'No trivia questions found in the database.');
-        }
-
-        // 2. Initialize the TriviaHandler engine for this room instance
-        // Map db properties to fit whatever naming convention trivia_handler expects (e.g. correct_answer vs correctAnswer)
-        const formattedQuestions = questionPool.map(q => ({
-          question: q.question,
-          options: q.options,
-          correctAnswer: q.correct_answer || q.correctAnswer, 
-          explanation: q.explanation || ''
-        }));
-
-        currentRoom.gameEngine = new TriviaHandler(formattedQuestions);
-
-        // 3. Populate the room's core state object
-        currentRoom.gameState = 'active';
-        currentRoom.phase = 'RULES'; 
-        currentRoom.questions = questionPool;
-        currentRoom.currentRound = 0;
-        currentRoom.playerAnswers = {}; 
-
-        currentRoom.players.forEach(player => {
-          player.score = 0;
-        });
-
-        // 4. Broadcast state back down to clients
-        namespace.to(code).emit('roomStateUpdated', currentRoom);
-        console.log(`📢 Room state initialized with TriviaHandler engine for room ${code}`);
-
-      } catch (err) {
-        console.error("Failed to safely initialize game room state:", err);
-        socket.emit('errorMsg', 'Server error initializing match question context.');
-      }
-    });
-
-    // ==========================================
-    // Answer Submission & Scoring Engine
-    // ==========================================
-    socket.on('submitAnswers', ({ roomCode, answer }) => {
-      if (!roomCode) return;
-      
-      const code = roomCode.trim().toUpperCase();
-      const currentRoom = activeRooms[code];
-
-      if (!currentRoom || !currentRoom.gameEngine) {
-        return socket.emit('errorMsg', 'Room or Game engine not found.');
-      }
-
-      // 1. Record this specific player's answer
-      currentRoom.playerAnswers[socket.id] = answer;
-
-      // 2. Leverage TriviaHandler logic to validate correctness
-      const currentQuestion = currentRoom.gameEngine.getCurrentQuestion();
-      const isCorrect = currentQuestion && currentQuestion.correctAnswer === answer;
-
-      if (isCorrect) {
-        const player = currentRoom.players.find(p => p.id === socket.id);
-        if (player) {
-          player.score += 1;
-          console.log(`✨ Correct answer by ${player.name}! Score is now: ${player.score}`);
-        }
-      }
-
-      // Send immediate confirmation back to the individual client
-      socket.emit('answer_feedback', {
-        isCorrect,
-        correctAnswer: currentQuestion ? currentQuestion.correctAnswer : ''
-      });
-
-      // 3. Automated Phase Controller: Check if all active players have submitted
-      const totalPlayersInRoom = currentRoom.players.length;
-      const totalAnswersLogged = Object.keys(currentRoom.playerAnswers).length;
-
-      console.log(`📝 Answer logged for room ${code} (${totalAnswersLogged}/${totalPlayersInRoom})`);
-
-      if (totalAnswersLogged >= totalPlayersInRoom) {
-        console.log(`📊 All answers collected for room ${code}. Shifting to SCOREBOARD phase.`);
-        currentRoom.phase = 'SCOREBOARD';
-      }
-
-      namespace.to(code).emit('roomStateUpdated', currentRoom);
-    });
-
-    // ==========================================
-    // Scoreboard to Next Round / End Game Controller
-    // ==========================================
-    socket.on('advanceFromScoreboard', ({ roomCode }) => {
-      if (!roomCode) return;
-      
-      const code = roomCode.trim().toUpperCase();
-      const currentRoom = activeRooms[code];
-
-      if (!currentRoom || !currentRoom.gameEngine) {
-        return socket.emit('errorMsg', 'Room or Game engine not found.');
-      }
-
-      // 1. Advance the turn on our TriviaHandler instance
-      currentRoom.gameEngine.advanceTurn();
-      
-      // Update our controller's sync tracking index
-      currentRoom.currentRound = currentRoom.gameEngine.currentState.currentQuestionIndex;
-
-      // 2. Read the game over flag computed by the handler
-      if (currentRoom.gameEngine.currentState.isGameOver) {
-        console.log(`🏆 Match completed for room ${code}. Transitioning to FINAL_RESULTS.`);
-        currentRoom.phase = 'FINAL_RESULTS';
-        currentRoom.gameState = 'completed';
-        
-        // Send a detailed metrics payload from the engine
-        namespace.to(code).emit('game_over_summary', currentRoom.gameEngine.getGameSummary());
-      } else {
-        console.log(`➡️ Advancing room ${code} to Round ${currentRoom.currentRound + 1}`);
-        currentRoom.playerAnswers = {};
-        currentRoom.phase = 'QUESTION';
-      }
-
-      namespace.to(code).emit('roomStateUpdated', currentRoom);
-    });
-    
-    // ==========================================
-    // Disconnection Handler (Trivia Only)
-    // ==========================================
-    socket.on('disconnect', () => {
-      console.log(`Trivia User Disconnected: ${socket.id}`);
-      
-      for (const roomCode in activeRooms) {
-        const room = activeRooms[roomCode];
-        const playerIndex = room.players.findIndex(p => p.id === socket.id);
-        
-        if (playerIndex !== -1) {
-          room.players.splice(playerIndex, 1);
-          
-          if (room.players.length === 0) {
-            delete activeRooms[roomCode]; 
-          } else {
-            namespace.to(roomCode).emit('roomUpdated', { 
-              roomCode, 
-              players: room.players 
-            });
-          }
-          break;
-        }
-      }
-    });
-
-  });
-}
-
-export {
-  getAllTrivia,
-  getTriviaBackendStatus,
-  getTriviaByID,
-  generateRoomCode,
-  createRoomLogic
 };
