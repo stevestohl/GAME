@@ -2045,7 +2045,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Prompt2RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Prompt2RulesScreen.jsx */ "./src/features/Prompt2/Prompt2RulesScreen.jsx");
 /* harmony import */ var _Prompt2PromptSelectionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Prompt2PromptSelectionScreen.jsx */ "./src/features/Prompt2/Prompt2PromptSelectionScreen.jsx");
 /* harmony import */ var _Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Prompt2ResponseSelectionScreen */ "./src/features/Prompt2/Prompt2ResponseSelectionScreen.jsx");
-/* harmony import */ var _Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Prompt2JudgingScreen.jsx */ "./src/features/Prompt2/Prompt2JudgingScreen.jsx");
 /* harmony import */ var _Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Prompt2Scoreboard.jsx */ "./src/features/Prompt2/Prompt2Scoreboard.jsx");
@@ -2167,6 +2166,39 @@ function Prompt2GameManager() {
   // Extract array format out of raw room object data safely for map components
   var playersArray = roomData && roomData.players ? Object.values(roomData.players) : [];
 
+  // =========================================================================
+  // NEW SOCKET HANDLERS 
+  // (Note: Make sure these event names match what your Node.js backend expects!)
+  // =========================================================================
+
+  // Handler for when the Host clicks on a prompt
+  var handleSelectPrompt = function handleSelectPrompt(selectedPrompt) {
+    console.log("[GameManager] Host selected prompt: \"".concat(selectedPrompt, "\". Emitting 'select_prompt'..."));
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('selectPrompt', {
+      roomCode: roomCode,
+      prompt: selectedPrompt
+    });
+  };
+
+  // Handler for when a Player submits their response text
+  var handleSubmitResponse = function handleSubmitResponse(responseChoice) {
+    console.log("[GameManager] Player submitting response: \"".concat(responseChoice, "\". Emitting 'submit_response'..."));
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('submitResponse', {
+      roomCode: roomCode,
+      response: responseChoice
+    });
+  };
+
+  // Handler for when the Host decides to reveal the choices to the lobby
+  var handleRevealChoices = function handleRevealChoices() {
+    console.log("[GameManager] Host revealing choices. Emitting 'reveal_choices'...");
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('revealChoices', {
+      roomCode: roomCode
+    });
+  };
+
+  // =========================================================================
+
   // Direct conditional screen rendering based on engine gameState state
   switch (gameState) {
     case 'setup':
@@ -2185,14 +2217,31 @@ function Prompt2GameManager() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2PromptSelectionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         roomCode: roomCode,
         isHost: isHost,
-        options: promptOptions
+        options: promptOptions,
+        onSelectPrompt: handleSelectPrompt // Pass the missing prop handler!
       });
+
     case 'writing':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((_Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5___default()), {
-        roomCode: roomCode,
-        isHost: isHost,
-        prompt: currentPrompt
+      // Count players who aren't the host
+      var activePlayers = playersArray.filter(function (p) {
+        return !p.isPlayerHost;
       });
+      var totalPlayersCount = activePlayers.length || 1; // Fallback to 1 to avoid NaN divides
+
+      // Count how many players have "hasSubmitted" flag set to true in the sync data
+      var submittedCount = activePlayers.filter(function (p) {
+        return p.hasSubmitted;
+      }).length;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        isHost: isHost,
+        promptText: currentPrompt,
+        submittedCount: submittedCount,
+        totalPlayers: totalPlayersCount,
+        onSubmitResponse: handleSubmitResponse // Pass the submit handler!
+        ,
+        onRevealChoices: handleRevealChoices // Pass the reveal handler!
+      });
+
     case 'judging':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((_Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6___default()), {
         roomCode: roomCode,
@@ -2207,7 +2256,7 @@ function Prompt2GameManager() {
       });
     default:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "text-center mt-5"
+        className: "text-center mt-5 text-white"
       }, "Loading Game Phase (", gameState, ")...");
   }
 }
@@ -2350,7 +2399,7 @@ function Prompt2PromptSelectionScreen(_ref) {
 
       // Note: If your React app is on port 3000/5173 and your server is on 5000,
       // make sure you have a proxy set up, or use the full URL: "http://localhost:5000/prompt2host"
-      fetch('/prompt2host').then(function (res) {
+      fetch('/api/prompt2host').then(function (res) {
         if (!res.ok) {
           throw new Error("Failed to fetch cards: Status ".concat(res.status));
         }
@@ -2375,7 +2424,7 @@ function Prompt2PromptSelectionScreen(_ref) {
   // ----------------------------------------------------
   if (!isHost) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "text-center space-y-6 max-w-md"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2398,7 +2447,7 @@ function Prompt2PromptSelectionScreen(_ref) {
   // ----------------------------------------------------
   if (isLoading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "text-center space-y-4"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2413,7 +2462,7 @@ function Prompt2PromptSelectionScreen(_ref) {
   // ----------------------------------------------------
   if (error) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "text-center space-y-4 max-w-md"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2434,7 +2483,7 @@ function Prompt2PromptSelectionScreen(_ref) {
   // HOST VIEW - SUCCESS STATE
   // ----------------------------------------------------
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+    className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "max-w-4xl w-full text-center space-y-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -2456,7 +2505,7 @@ function Prompt2PromptSelectionScreen(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-xs font-semibold tracking-wider text-indigo-400 uppercase bg-indigo-950/60 px-2.5 py-1 rounded-md w-max border border-indigo-500/10"
     }, card.type || 'prompt'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "text-lg font-medium text-slate-200 mt-4 flex-grow group-hover:text-white leading-relaxed"
+      className: "text-lg font-medium text-slate-200 mt-4 flex-grow group-hover:text-black leading-relaxed"
     }, card.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mt-6 text-sm font-semibold text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1"
     }, "Choose this prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u2192")));
@@ -2469,9 +2518,224 @@ function Prompt2PromptSelectionScreen(_ref) {
 /*!*****************************************************************!*\
   !*** ./src/features/Prompt2/Prompt2ResponseSelectionScreen.jsx ***!
   \*****************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Prompt2ResponseSelectionScreen)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+/**
+ * Prompt2ResponseSelectionScreen Component
+ * * @param {boolean} isHost - Whether the current client is the host.
+ * @param {string} promptText - The prompt selected for this round.
+ * @param {number} submittedCount - Number of players who have already submitted.
+ * @param {number} totalPlayers - Total number of active players (excluding host).
+ * @param {function} onSubmitResponse - Callback when player submits a response. Takes selected response string.
+ * @param {function} onRevealChoices - Callback when host clicks 'Reveal Choices'.
+ */
+function Prompt2ResponseSelectionScreen(_ref) {
+  var isHost = _ref.isHost,
+    _ref$promptText = _ref.promptText,
+    promptText = _ref$promptText === void 0 ? "Default Prompt: What is the meaning of life?" : _ref$promptText,
+    _ref$submittedCount = _ref.submittedCount,
+    submittedCount = _ref$submittedCount === void 0 ? 0 : _ref$submittedCount,
+    _ref$totalPlayers = _ref.totalPlayers,
+    totalPlayers = _ref$totalPlayers === void 0 ? 4 : _ref$totalPlayers,
+    onSubmitResponse = _ref.onSubmitResponse,
+    onRevealChoices = _ref.onRevealChoices;
+  // Player-specific state
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    responses = _useState2[0],
+    setResponses = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedIdx = _useState4[0],
+    setSelectedIdx = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    hasSubmitted = _useState6[0],
+    setHasSubmitted = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!isHost),
+    _useState8 = _slicedToArray(_useState7, 2),
+    loading = _useState8[0],
+    setLoading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    error = _useState10[0],
+    setError = _useState10[1];
+
+  // Fetch 7 random responses for the player
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isHost) return;
+    var fetchResponses = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response, data, fetchedList;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                setLoading(true);
+                _context.next = 4;
+                return fetch('/prompt2players');
+              case 4:
+                response = _context.sent;
+                if (response.ok) {
+                  _context.next = 7;
+                  break;
+                }
+                throw new Error('Failed to fetch responses from server.');
+              case 7:
+                _context.next = 9;
+                return response.json();
+              case 9:
+                data = _context.sent;
+                // Expecting an array of strings or objects from the API. 
+                // Adjust "data.responses" if your API returns a nested object.
+                fetchedList = Array.isArray(data) ? data : data.responses || [];
+                setResponses(fetchedList.slice(0, 7)); // Ensure we grab exactly 7
+                _context.next = 17;
+                break;
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](0);
+                setError(_context.t0.message);
+              case 17:
+                _context.prev = 17;
+                setLoading(false);
+                return _context.finish(17);
+              case 20:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 14, 17, 20]]);
+      }));
+      return function fetchResponses() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+    fetchResponses();
+  }, [isHost]);
+
+  // Handle Player Submission
+  var handleSubmit = function handleSubmit() {
+    if (selectedIdx === null) return;
+    var choice = responses[selectedIdx];
+    setHasSubmitted(true);
+    if (onSubmitResponse) {
+      onSubmitResponse(choice);
+    }
+  };
+
+  // --- HOST VIEW ---
+  if (isHost) {
+    var allPlayersSubmitted = submittedCount >= totalPlayers;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "max-w-2xl w-full text-center space-y-8 bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "px-4 py-1.5 bg-indigo-600/30 text-indigo-400 rounded-full text-sm font-semibold tracking-wide uppercase"
+    }, "Host Screen"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "space-y-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-slate-400 text-sm font-medium"
+    }, "Active Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "text-2xl md:text-3xl font-extrabold text-amber-400 leading-snug"
+    }, "\"", promptText, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+      className: "border-slate-700"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "space-y-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "text-lg font-medium text-slate-300"
+    }, "Submissions Received"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "text-4xl font-black text-white"
+    }, submittedCount, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "text-slate-500"
+    }, "/"), " ", totalPlayers), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "w-full bg-slate-700 rounded-full h-3 overflow-hidden"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "bg-emerald-500 h-full transition-all duration-500 ease-out",
+      style: {
+        width: "".concat(submittedCount / totalPlayers * 100, "%")
+      }
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "pt-6"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: onRevealChoices,
+      disabled: !allPlayersSubmitted,
+      className: "w-full md:w-auto px-8 py-4 rounded-xl font-bold text-lg shadow-lg transform transition active:scale-95 ".concat(allPlayersSubmitted ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 cursor-pointer animate-pulse' : 'bg-slate-700 text-slate-500 cursor-not-allowed')
+    }, allPlayersSubmitted ? '💡 Reveal Choices!' : 'Waiting for Players...'))));
+  }
+
+  // --- PLAYER VIEW ---
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex flex-col items-center min-h-screen bg-slate-950 text-white p-4 md:p-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "max-w-3xl w-full space-y-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-slate-900 p-6 rounded-2xl border border-slate-800 text-center shadow-lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-xs font-bold text-amber-400 tracking-wider uppercase block mb-2"
+  }, "The Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "text-xl md:text-2xl font-bold leading-relaxed text-slate-100"
+  }, promptText)), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center py-12 space-y-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "animate-spin rounded-full h-10 w-10 border-t-2 border-indigo-500 mx-auto"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-slate-400"
+  }, "Loading your answer choices...")), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl text-center"
+  }, error), !loading && !error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, hasSubmitted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-slate-900 p-12 rounded-2xl border border-slate-800 text-center space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-5xl"
+  }, "\u2705"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+    className: "text-xl font-bold text-emerald-400"
+  }, "Response Submitted!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-slate-400 text-sm"
+  }, "Sit tight. Waiting for the rest of the players to choose their answers.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-sm font-semibold text-slate-400 uppercase tracking-wider text-center"
+  }, "Select your favorite response:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "grid grid-cols-1 gap-3"
+  }, responses.map(function (resp, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      key: idx,
+      onClick: function onClick() {
+        return setSelectedIdx(idx);
+      },
+      className: "w-full p-4 text-left rounded-xl border font-medium transition duration-150 transform hover:-translate-y-0.5 ".concat(selectedIdx === idx ? 'bg-indigo-600 border-indigo-400 text-white ring-2 ring-indigo-500 shadow-indigo-500/25 shadow-md' : 'bg-slate-900 border-slate-800 hover:border-slate-700 text-slate-300')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "inline-block w-6 text-slate-500 font-mono text-sm"
+    }, idx + 1, "."), resp);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "pt-4 flex justify-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: handleSubmit,
+    disabled: selectedIdx === null,
+    className: "w-full md:w-64 py-4 rounded-xl font-bold text-lg shadow-lg transition duration-200 transform active:scale-95 ".concat(selectedIdx !== null ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 cursor-pointer' : 'bg-slate-850 text-slate-600 border border-slate-800 cursor-not-allowed')
+  }, "Submit Answer"))))));
+}
 
 /***/ }),
 

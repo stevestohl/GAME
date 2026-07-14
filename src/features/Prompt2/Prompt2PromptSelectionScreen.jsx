@@ -21,7 +21,7 @@ export default function Prompt2PromptSelectionScreen({
 
       // Note: If your React app is on port 3000/5173 and your server is on 5000,
       // make sure you have a proxy set up, or use the full URL: "http://localhost:5000/prompt2host"
-      fetch('/prompt2host')
+      fetch('/api/prompt2host')
         .then((res) => {
           if (!res.ok) {
             throw new Error(`Failed to fetch cards: Status ${res.status}`);
@@ -50,7 +50,7 @@ export default function Prompt2PromptSelectionScreen({
   // ----------------------------------------------------
   if (!isHost) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6">
         <div className="text-center space-y-6 max-w-md">
           {/* Animated loading spinner / indicator */}
           <div className="relative flex items-center justify-center w-20 h-20 mx-auto">
@@ -77,7 +77,7 @@ export default function Prompt2PromptSelectionScreen({
   // ----------------------------------------------------
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
           <p className="text-slate-400 text-lg">Gathering potential prompts...</p>
@@ -91,7 +91,7 @@ export default function Prompt2PromptSelectionScreen({
   // ----------------------------------------------------
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6">
         <div className="text-center space-y-4 max-w-md">
           <div className="text-red-500 text-5xl">⚠️</div>
           <h3 className="text-xl font-bold text-slate-200">Failed to load prompts</h3>
@@ -111,7 +111,7 @@ export default function Prompt2PromptSelectionScreen({
   // HOST VIEW - SUCCESS STATE
   // ----------------------------------------------------
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6">
       <div className="max-w-4xl w-full text-center space-y-8">
         <div>
           <span className="text-xs font-bold uppercase tracking-widest bg-indigo-600/30 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20">
@@ -139,7 +139,7 @@ export default function Prompt2PromptSelectionScreen({
               </span>
               
               {/* Card Body Text */}
-              <p className="text-lg font-medium text-slate-200 mt-4 flex-grow group-hover:text-white leading-relaxed">
+              <p className="text-lg font-medium text-slate-200 mt-4 flex-grow group-hover:text-black leading-relaxed">
                 {card.text}
               </p>
               

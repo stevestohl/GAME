@@ -85,6 +85,31 @@ export default function Prompt2GameManager() {
     // Extract array format out of raw room object data safely for map components
     const playersArray = roomData && roomData.players ? Object.values(roomData.players) : [];
 
+    // =========================================================================
+    // NEW SOCKET HANDLERS 
+    // (Note: Make sure these event names match what your Node.js backend expects!)
+    // =========================================================================
+    
+    // Handler for when the Host clicks on a prompt
+    const handleSelectPrompt = (selectedPrompt) => {
+        console.log(`[GameManager] Host selected prompt: "${selectedPrompt}". Emitting 'select_prompt'...`);
+        socket.emit('selectPrompt', { roomCode, prompt: selectedPrompt });
+    };
+
+    // Handler for when a Player submits their response text
+    const handleSubmitResponse = (responseChoice) => {
+        console.log(`[GameManager] Player submitting response: "${responseChoice}". Emitting 'submit_response'...`);
+        socket.emit('submitResponse', { roomCode, response: responseChoice });
+    };
+
+    // Handler for when the Host decides to reveal the choices to the lobby
+    const handleRevealChoices = () => {
+        console.log("[GameManager] Host revealing choices. Emitting 'reveal_choices'...");
+        socket.emit('revealChoices', { roomCode });
+    };
+
+    // =========================================================================
+
     // Direct conditional screen rendering based on engine gameState state
     switch (gameState) {
         case 'setup':
@@ -98,15 +123,41 @@ export default function Prompt2GameManager() {
             );
         case 'rules':
             return <Prompt2RulesScreen roomCode={roomCode} isHost={isHost} />;
+        
         case 'prompt_selection':
-            return <Prompt2PromptSelection roomCode={roomCode} isHost={isHost} options={promptOptions} />;
+            return (
+                <Prompt2PromptSelection 
+                    roomCode={roomCode} 
+                    isHost={isHost} 
+                    options={promptOptions} 
+                    onSelectPrompt={handleSelectPrompt} // Pass the missing prop handler!
+                />
+            );
+            
         case 'writing':
-            return <Prompt2ResponseSelectionScreen roomCode={roomCode} isHost={isHost} prompt={currentPrompt} />;
+            // Count players who aren't the host
+            const activePlayers = playersArray.filter(p => !p.isPlayerHost);
+            const totalPlayersCount = activePlayers.length || 1; // Fallback to 1 to avoid NaN divides
+            
+            // Count how many players have "hasSubmitted" flag set to true in the sync data
+            const submittedCount = activePlayers.filter(p => p.hasSubmitted).length;
+
+            return (
+                <Prompt2ResponseSelectionScreen 
+                    isHost={isHost} 
+                    promptText={currentPrompt} 
+                    submittedCount={submittedCount}
+                    totalPlayers={totalPlayersCount}
+                    onSubmitResponse={handleSubmitResponse} // Pass the submit handler!
+                    onRevealChoices={handleRevealChoices}     // Pass the reveal handler!
+                />
+            );
+            
         case 'judging':
             return <Prompt2JudgingScreen roomCode={roomCode} isHost={isHost} submissions={submissions} />;
         case 'scoreboard':
             return <Prompt2Scoreboard roomCode={roomCode} isHost={isHost} results={roundResults} />;
         default:
-            return <div className="text-center mt-5">Loading Game Phase ({gameState})...</div>;
+            return <div className="text-center mt-5 text-white">Loading Game Phase ({gameState})...</div>;
     }
 }
