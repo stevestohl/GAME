@@ -2394,12 +2394,16 @@ function Prompt2PromptSelectionScreen(_ref) {
   // 1. Fetch random prompts from the backend when the Host view mounts
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isHost) {
-      setIsLoading(true);
-      setError(null);
+      // 1. Check if we are running locally
+      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-      // Note: If your React app is on port 3000/5173 and your server is on 5000,
-      // make sure you have a proxy set up, or use the full URL: "http://localhost:5000/prompt2host"
-      fetch('/api/prompt2host').then(function (res) {
+      // 2. Point to localhost for local dev, or the working Render backend for production
+      var backendBase = isLocal ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
+      : 'https://game-temple-backend.onrender.com';
+      setIsLoading(true);
+
+      // 3. Fetch using the dynamically resolved backend base
+      fetch("".concat(backendBase, "/api/prompt2host")).then(function (res) {
         if (!res.ok) {
           throw new Error("Failed to fetch cards: Status ".concat(res.status));
         }
@@ -2418,7 +2422,6 @@ function Prompt2PromptSelectionScreen(_ref) {
       });
     }
   }, [isHost]);
-
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)
   // ----------------------------------------------------

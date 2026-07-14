@@ -14,37 +14,42 @@ export default function Prompt2PromptSelectionScreen({
   const [error, setError] = useState(null);
 
   // 1. Fetch random prompts from the backend when the Host view mounts
-  useEffect(() => {
-    if (isHost) {
-      setIsLoading(true);
-      setError(null);
+useEffect(() => {
+  if (isHost) {
+    // 1. Check if we are running locally
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    // 2. Point to localhost for local dev, or the working Render backend for production
+    const backendBase = isLocal 
+      ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
+      : 'https://game-temple-backend.onrender.com';
 
-      // Note: If your React app is on port 3000/5173 and your server is on 5000,
-      // make sure you have a proxy set up, or use the full URL: "http://localhost:5000/prompt2host"
-      fetch('/api/prompt2host')
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`Failed to fetch cards: Status ${res.status}`);
-          }
-          return res.json();
-        })
-        .then((response) => {
-          if (response.success && Array.isArray(response.data)) {
-            setOptions(response.data);
-          } else {
-            throw new Error("Invalid API response structure");
-          }
-        })
-        .catch((err) => {
-          console.error("Error fetching prompts:", err);
-          setError(err.message);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [isHost]);
-
+    setIsLoading(true);
+    
+    // 3. Fetch using the dynamically resolved backend base
+    fetch(`${backendBase}/api/prompt2host`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch cards: Status ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((response) => {
+        if (response.success && Array.isArray(response.data)) {
+          setOptions(response.data);
+        } else {
+          throw new Error("Invalid API response structure");
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching prompts:", err);
+        setError(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+}, [isHost]);
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)
   // ----------------------------------------------------
