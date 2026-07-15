@@ -17,17 +17,17 @@ export default function Prompt2PromptSelectionScreen({
 useEffect(() => {
   if (isHost) {
     // 1. Check if we are running locally
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    // const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
-    // 2. Point to localhost for local dev, or the working Render backend for production
-    const backendBase = isLocal 
-      ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
-      : 'https://game-temple-backend.onrender.com';
+    // // 2. Point to localhost for local dev, or the working Render backend for production
+    // const backendBase = isLocal 
+    //   ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
+    //   : 'https://game-temple-backend.onrender.com';
 
     setIsLoading(true);
     
     // 3. Fetch using the dynamically resolved backend base
-    fetch(`${backendBase}/api/prompt2host`)
+    fetch(`https://game-temple-backend.onrender.com/api/prompt2host`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Failed to fetch cards: Status ${res.status}`);

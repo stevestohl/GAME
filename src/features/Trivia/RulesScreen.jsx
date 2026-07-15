@@ -9,8 +9,16 @@ export default function RulesScreen({ roomCode, isHost }) {
     };
 
     return (
-        <Container className="mt-5 d-flex justify-content-center">
-            <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
+
+    <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: "80vh" }}>        
+        <Card className="text-center shadow-lg border-0" style={{ maxWidth: "450px", width: "100%" }}>
+            <Card.Header
+                as="h5"
+                className="d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6"
+                style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}
+            >
+                TRIVIA-TEMPLE
+            </Card.Header>
                 <Card.Body className="text-center">
                     <Card.Title className="fs-3 fw-bold mb-3 text-primary">Game Rules</Card.Title>
                     
@@ -34,6 +42,6 @@ export default function RulesScreen({ roomCode, isHost }) {
                     )}
                 </Card.Body>
             </Card>
-        </Container>
+        </div>
     );
 }

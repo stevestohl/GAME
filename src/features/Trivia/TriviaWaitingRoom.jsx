@@ -7,6 +7,7 @@ import RulesScreen from './RulesScreen.jsx';
 import QuestionScreen from './QuestionScreen.jsx';
 import ScoreboardScreen from './ScoreboardScreen.jsx';
 import GameOverScreen from './TriviaGameOver.jsx';
+import HourGlass from '../../assets/logos/HourGlass.gif';
 
 export default function TriviaWaitingRoom() {
     const [searchParams] = useSearchParams();
@@ -127,58 +128,66 @@ export default function TriviaWaitingRoom() {
     // DEFAULT LOBBY VIEW (If no phase has been launched yet)
     // =========================================================================
     return (
-        <Container className="mt-5 d-flex justify-content-center">
-            <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
-                <Card.Body className="text-center">
-                    <Card.Title className="fs-3 fw-bold mb-4 text-primary">Trivia Waiting Room</Card.Title>
-                    {/* <Card.Text className="text-muted small mb-4">Temple-Trivia</Card.Text> */}
 
-                    {/* Room Code Banner */}
-                    <div className="bg-light border border-secondary rounded p-3 mb-4">
-                        <span className="text-uppercase tracking-wider small fw-bold text-muted d-block mb-1">
-                            Room Code
-                        </span>
-                        <span className="fs-2 fw-black text-dark tracking-widest">{roomCode}</span>
-                    </div>
-
-                    {/* Live Player Roster */}
-                    <h5 className="text-start fw-bold mb-2 px-1">
-                        Players Joined 
-                        <Badge bg="secondary" className="ms-2">{players.length}</Badge>
-                    </h5>
-                    
-                    <ListGroup className="mb-4 text-start border border-secondary rounded">
-                        {players.map((player) => (
-                            <ListGroup.Item 
-                                key={player.id} 
-                                className="d-flex justify-content-between align-items-center py-2.5 fw-semibold"
-                            >
-                                <span>{player.name}</span>
-                                {player.id === socket.id ? (
-                                    <Badge bg="primary">You</Badge>
-                                ) : (
-                                    <span className="text-muted small">Ready</span>
-                                )}
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-
-                    {/* Action Controls */}
-                    {role === 'host' ? (
-                        <Button 
-                            variant="primary" 
-                            className="w-100 fw-bold py-2 shadow-sm"
-                            onClick={handleStartGame} // FIX: Connected the click listener
-                        >
-                            Start Game
-                        </Button>
-                    ) : (
-                        <div className="text-muted small py-2 border border-dashed rounded bg-light">
-                            Waiting for host to launch the match...
+        <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: "80vh" }}>
+            
+                <Card className="text-center shadow-lg border-0" style={{ maxWidth: "450px", width: "100%" }}>
+                    <Card.Header
+                        as="h5"
+                        className="d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6"
+                        style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}
+                    >
+                        TRIVIA ROOM CREATED
+                    </Card.Header>
+                    <Card.Body className="text-center">
+                        <Card.Title className="fs-3 fw-bold mb-4 text-primary">Trivia Waiting Room</Card.Title>
+                        {/* <Card.Text className="text-muted small mb-4">Temple-Trivia</Card.Text> */}
+                        {/* Room Code Banner */}
+                        <div className="bg-light border border-secondary rounded p-3 mb-4">
+                            <span className="text-uppercase tracking-wider small fw-bold text-muted d-block mb-1">
+                                Room Code
+                            </span>                            
+                            <span className="fs-2 fw-black text-dark tracking-widest">{roomCode}</span>
                         </div>
-                    )}
-                </Card.Body>
-            </Card>
-        </Container>
+
+                        {/* Live Player Roster */}
+                        <h5 className="text-start fw-bold mb-2 px-1">
+                            Players Joined 
+                            <Badge bg="secondary" className="ms-2">{players.length}</Badge>
+                        </h5>
+                        
+                        <ListGroup className="mb-4 text-start border border-secondary rounded">
+                            {players.map((player) => (
+                                <ListGroup.Item 
+                                    key={player.id} 
+                                    className="d-flex justify-content-between align-items-center py-2.5 fw-semibold"
+                                >
+                                    <span>{player.name}</span>
+                                    {player.id === socket.id ? (
+                                        <Badge bg="primary">You</Badge>
+                                    ) : (
+                                        <span className="text-muted small">Ready</span>
+                                    )}
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+
+                        {/* Action Controls */}
+                        {role === 'host' ? (
+                            <Button 
+                                variant="primary" 
+                                className="w-100 fw-bold py-2 shadow-sm"
+                                onClick={handleStartGame} // FIX: Connected the click listener
+                            >
+                                Start Game
+                            </Button>
+                        ) : (
+                            <div className="text-muted small py-2 border border-dashed rounded bg-light">
+                                Waiting for host to launch the match...
+                            </div>
+                        )}
+                    </Card.Body>
+                </Card>
+        </div>
     );
 }

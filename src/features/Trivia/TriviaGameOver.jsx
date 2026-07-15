@@ -8,14 +8,13 @@ export default function GameOverScreen({ players, roomCode, isHost }) {
     const winner = standings[0];
 
     const handleRestart = () => {
-        // Optional: Emit an event if you write a lobby restart route on the backend
         socket.emit('nextRound', { roomCode }); 
     };
 
     return (
         <Container className="mt-5 d-flex justify-content-center">
             <Card className="shadow-lg w-100 text-center border-0" style={{ maxWidth: '440px', background: '#f8f9fa' }}>
-                <Card.Body className="py-5">
+                <Card.Body className="py-5 px-4">
                     <div className="fs-1 mb-2">🏆</div>
                     <Card.Title className="fs-2 fw-bold text-dark mb-1">Game Over!</Card.Title>
                     <Card.Text className="text-muted mb-4">Final Standings</Card.Text>
@@ -28,9 +27,10 @@ export default function GameOverScreen({ players, roomCode, isHost }) {
                         </div>
                     )}
 
+                    {/* Fixed py-2.5 typo to standard Bootstrap py-2 */}
                     <ListGroup className="mb-4 text-start shadow-sm rounded border">
                         {standings.slice(1).map((player, index) => (
-                            <ListGroup.Item key={player.id} className="d-flex justify-content-between align-items-center py-2.5 bg-white">
+                            <ListGroup.Item key={player.id} className="d-flex justify-content-between align-items-center py-2 bg-white">
                                 <div>
                                     <span className="text-muted me-2 small">#{index + 2}</span>
                                     <span className="fw-semibold text-secondary">{player.name}</span>
@@ -40,15 +40,26 @@ export default function GameOverScreen({ players, roomCode, isHost }) {
                         ))}
                     </ListGroup>
 
-                    {isHost ? (
-                        <Button variant="primary" className="w-100 fw-bold py-2.5 shadow-sm" onClick={handleRestart}>
-                            Play Again
+                    {/* Normalized Actions Stack Container */}
+                    <div className="d-grid gap-2 mt-4">
+                        {isHost ? (
+                            <Button variant="primary" className="w-100 fw-bold py-2 shadow-sm" onClick={handleRestart}>
+                                Play Again
+                            </Button>
+                        ) : (
+                            <div className="text-muted small py-2.5 border border-dashed rounded bg-white text-center">
+                                ⏳ Waiting for the host to start a new match...
+                            </div>
+                        )}
+                        
+                        <Button 
+                            variant="outline-primary" 
+                            className="w-100 fw-bold py-2 shadow-sm" 
+                            onClick={() => window.location.href = '/home'}
+                        >
+                            Home
                         </Button>
-                    ) : (
-                        <div className="text-muted small py-2 border border-dashed rounded bg-white">
-                            ⏳ Waiting for the host to start a new match...
-                        </div>
-                    )}
+                    </div>
                 </Card.Body>
             </Card>
         </Container>

@@ -25,6 +25,8 @@ export default function registerTicTacToeNamespace(namespace) {
     socket.on('createRoom', ({ hostName }) => {
       const roomCode = generateTttRoomCode();
     
+
+///      setTimeout(() => {
       // Initialize the core room object layout
       activeTictactoeRooms[roomCode] = {
         board: Array(9).fill(''), 
@@ -43,6 +45,7 @@ export default function registerTicTacToeNamespace(namespace) {
 
       // Emit the generated code back to the creator socket
       socket.emit('roomCreated', { roomCode });
+//    }, 5000)
     });
 
     // ==========================================
@@ -61,6 +64,7 @@ export default function registerTicTacToeNamespace(namespace) {
 
       if (playerRole === 'host') {
         // The room was already constructed by 'createRoom', so just re-sync/join them
+
         socket.join(code);
         namespace.to(code).emit('roomUpdate', activeTictactoeRooms[code]);
       } else if (playerRole === 'guest') {

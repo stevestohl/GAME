@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Row, Col, Button, Form } from 'react-bootstrap'; 
+import { Card, Row, Col, Button, Form, Modal, Spinner } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
 import UniversalJoinForm from '../../UniversalJoinForm.jsx';
 import { getRandomFunnyName } from '../../funnyNames.js';
@@ -13,6 +13,9 @@ import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
 export default function Home() {
     const [playerName, setPlayerName] = useState(getRandomFunnyName);
     const navigate = useNavigate();
+
+    //Loading state for TicTacToe Room Creation
+    const[isCreatingRoom, setIsCreatingRoom ]= useState(false)
     
 // Navigate straight to the game board
     //navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
@@ -81,7 +84,8 @@ export default function Home() {
                                         <Button 
                                             variant="primary" 
                                             className="fw-bold w-100 h-100 py-2 shadow-sm"
-                                            onClick={() => handleCreateTttRoom(playerName, navigate)}
+                                            disabled={isCreatingRoom}
+                                            onClick={() => handleCreateTttRoom(playerName, navigate, setIsCreatingRoom)}
                                         >
                                             Tic-Tac-Toe<br/>
                                             X O
@@ -92,7 +96,8 @@ export default function Home() {
                                         <Button 
                                             variant="primary" 
                                             className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
-                                            onClick={() => handleCreateTriviaRoom(playerName, navigate)}
+                                            disabled={isCreatingRoom}
+                                            onClick={() => handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom)}
                                         >
                                             Trivia <br />
                                             ❔❔
@@ -114,6 +119,20 @@ export default function Home() {
                     </Card>
                 </Card.Body>
             </Card>
+            <Modal
+                show={isCreatingRoom}
+                backdrop="static"
+                keyboard={false}
+                centered
+            >
+                <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4'>
+                    <Spinner animation='border' variant="primary" className='mb-3'/>
+                    <h4 className='fw-bold text-dark'>Creating Room...</h4>
+                    <p className='text-muted small mb-0'>
+                        Waking up game server...
+                    </p>
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }

@@ -1,8 +1,11 @@
 import { tictactoeSocket } from './TicTacToe.jsx'; // Adjust path to your TicTacToe component
 
-export function handleCreateTttRoom(playerName, navigate) {
+export function handleCreateTttRoom(playerName, navigate, setIsCreatingRoom) {
     const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
     
+    // Turn on Loading Modal
+    if(setIsCreatingRoom) setIsCreatingRoom(true)
+
     console.log(`Requesting Tic-Tac-Toe Room creation for: ${cleanName}`);
     
     // Ensure the namespace socket is connected
@@ -12,6 +15,14 @@ export function handleCreateTttRoom(playerName, navigate) {
 
     // Clean up stale creation listeners
     tictactoeSocket.off('roomCreated');
+    tictactoeSocket.off('connect_error')
+
+    // If socket connect fails, turn off Modal
+    tictactoeSocket.once('connect_error', (err) =>{
+        console.error("Socket connection error: ", err)
+        if(setIsCreatingRoom) setIsCreatingRoom(false)
+            alert("Could not connect to the game server.")
+    })
 
     // Fire the creation event to the backend
     tictactoeSocket.emit('createRoom', { hostName: cleanName });

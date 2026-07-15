@@ -38,9 +38,11 @@ export default function registerTriviaNamespace(namespace) {
 
         // --- Event: Room Creation ---
         socket.on('createRoom', () => {
+ //           setTimeout(() => {
             const { roomCode, players } = createRoomLogic(socket, activeRooms);
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
+//                        }, 5000);
         });
 
         // --- Event: Room Joining ---

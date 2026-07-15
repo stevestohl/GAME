@@ -114,6 +114,9 @@ export default function TictactoeRoom() {
         </div>
     );
 
+    //-----------------
+    // Waiting Room
+    //-----------------
     if (roomStatus === 'waiting') return (
         <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: "80vh" }}>
             <Card className="text-center shadow-lg border-0" style={{ maxWidth: "450px", width: "100%" }}>

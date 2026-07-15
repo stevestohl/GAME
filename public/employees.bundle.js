@@ -1856,6 +1856,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UniversalJoinForm.jsx */ "./src/UniversalJoinForm.jsx");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
@@ -1886,6 +1888,12 @@ function Home() {
     playerName = _useState2[0],
     setPlayerName = _useState2[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+
+  //Loading state for TicTacToe Room Creation
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isCreatingRoom = _useState4[0],
+    setIsCreatingRoom = _useState4[1];
 
   // Navigate straight to the game board
   //navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
@@ -1967,16 +1975,18 @@ function Home() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm",
+      disabled: isCreatingRoom,
       onClick: function onClick() {
-        return (0,_TicTacToe_TicTacToeCreateButton_jsx__WEBPACK_IMPORTED_MODULE_4__.handleCreateTttRoom)(playerName, navigate);
+        return (0,_TicTacToe_TicTacToeCreateButton_jsx__WEBPACK_IMPORTED_MODULE_4__.handleCreateTttRoom)(playerName, navigate, setIsCreatingRoom);
       }
     }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 6
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
+      disabled: isCreatingRoom,
       onClick: function onClick() {
-        return (0,_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateTriviaRoom)(playerName, navigate);
+        return (0,_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateTriviaRoom)(playerName, navigate, setIsCreatingRoom);
       }
     }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       xs: 6
@@ -1986,7 +1996,22 @@ function Home() {
       onClick: function onClick() {
         return (0,_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__.handleCreatePrompt2Room)(playerName, navigate);
       }
-    }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2")))))))))
+    }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      show: isCreatingRoom,
+      backdrop: "static",
+      keyboard: false,
+      centered: true
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+      className: "d-flex flex-column align-items-center justify-content-center p-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      animation: "border",
+      variant: "primary",
+      className: "mb-3"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+      className: "fw-bold text-dark"
+    }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted small mb-0"
+    }, "Waking up game server..."))))
   );
 }
 
@@ -2395,15 +2420,17 @@ function Prompt2PromptSelectionScreen(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isHost) {
       // 1. Check if we are running locally
-      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      // const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-      // 2. Point to localhost for local dev, or the working Render backend for production
-      var backendBase = isLocal ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
-      : 'https://game-temple-backend.onrender.com';
+      // // 2. Point to localhost for local dev, or the working Render backend for production
+      // const backendBase = isLocal 
+      //   ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
+      //   : 'https://game-temple-backend.onrender.com';
+
       setIsLoading(true);
 
       // 3. Fetch using the dynamically resolved backend base
-      fetch("".concat(backendBase, "/api/prompt2host")).then(function (res) {
+      fetch("https://game-temple-backend.onrender.com/api/prompt2host").then(function (res) {
         if (!res.ok) {
           throw new Error("Failed to fetch cards: Status ".concat(res.status));
         }
@@ -3165,8 +3192,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TicTacToe.jsx */ "./src/features/TicTacToe/TicTacToe.jsx");
  // Adjust path to your TicTacToe component
 
-function handleCreateTttRoom(playerName, navigate) {
+function handleCreateTttRoom(playerName, navigate, setIsCreatingRoom) {
   var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
+
+  // Turn on Loading Modal
+  if (setIsCreatingRoom) setIsCreatingRoom(true);
   console.log("Requesting Tic-Tac-Toe Room creation for: ".concat(cleanName));
 
   // Ensure the namespace socket is connected
@@ -3176,6 +3206,14 @@ function handleCreateTttRoom(playerName, navigate) {
 
   // Clean up stale creation listeners
   _TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_0__.tictactoeSocket.off('roomCreated');
+  _TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_0__.tictactoeSocket.off('connect_error');
+
+  // If socket connect fails, turn off Modal
+  _TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_0__.tictactoeSocket.once('connect_error', function (err) {
+    console.error("Socket connection error: ", err);
+    if (setIsCreatingRoom) setIsCreatingRoom(false);
+    alert("Could not connect to the game server.");
+  });
 
   // Fire the creation event to the backend
   _TicTacToe_jsx__WEBPACK_IMPORTED_MODULE_0__.tictactoeSocket.emit('createRoom', {
@@ -3206,9 +3244,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3223,56 +3260,67 @@ function QuestionScreen(_ref) {
   var roomCode = _ref.roomCode,
     currentQuestion = _ref.currentQuestion,
     playerAnswers = _ref.playerAnswers;
-  // Check if this specific player has logged an answer already
-  var hasAnswered = playerAnswers.hasOwnProperty(_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id);
-
-  // Stably merge correct and incorrect options together
+  var hasAnswered = !!(playerAnswers !== null && playerAnswers !== void 0 && playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id]);
   var choices = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     if (!currentQuestion) return [];
-
-    // Flatten array just in case your data parsing maps it deeply
     var incorrects = Array.isArray(currentQuestion.incorrect_answers) ? currentQuestion.incorrect_answers.flat() : [];
     var combined = [].concat(_toConsumableArray(incorrects), [currentQuestion.correct_answer]);
-
-    // Sorts choices alphabetically so all devices see buttons in identical positions
     return combined.sort(function (a, b) {
       return a.localeCompare(b);
     });
   }, [currentQuestion]);
   var handleChoiceClick = function handleChoiceClick(selectedChoice) {
-    if (hasAnswered) return; // Prevention lock
+    if (hasAnswered) return;
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('submitAnswer', {
       roomCode: roomCode,
       answer: selectedChoice
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-sm w-100",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-1",
     style: {
-      maxWidth: '460px'
+      minHeight: "80vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-    className: "fs-4 fw-bold mb-4 text-dark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "text-center shadow-lg border-0 w-100",
+    style: {
+      maxWidth: "450px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 text-center p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "fs-4 fw-bold mb-4 text-dark text-break"
   }, currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-grid gap-2.5"
+    className: "d-grid gap-2"
   }, choices.map(function (choice, index) {
-    var isMyChoice = playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id] === choice;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    var isMyChoice = (playerAnswers === null || playerAnswers === void 0 ? void 0 : playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id]) === choice;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: index,
       variant: isMyChoice ? "primary" : "outline-secondary",
       disabled: hasAnswered,
       onClick: function onClick() {
         return handleChoiceClick(choice);
-      },
-      className: "py-2.5 fw-semibold text-start px-3 shadow-sm"
+      }
+      // 3. Added 'text-break' to the buttons to handle long answers gracefully
+      ,
+      className: "py-2 fw-semibold text-start px-3 shadow-sm text-break"
     }, choice);
-  })), hasAnswered && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2 border border-dashed rounded bg-light mt-4 animate-pulse"
-  }, "\u23F3 Answer locked! Waiting for remaining players..."))));
+  })), hasAnswered &&
+  /*#__PURE__*/
+  // 4. Added 'text-break' to the locked message banner
+  react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small py-2 border border-dashed rounded bg-light mt-4 animate-pulse text-break"
+  }, "\u23F3 Answer locked! Waiting for remaining players...")))));
 }
 
 /***/ }),
@@ -3290,9 +3338,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 
 
@@ -3306,20 +3353,32 @@ function RulesScreen(_ref) {
       roomCode: roomCode
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-sm w-100",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-1",
     style: {
-      maxWidth: '420px'
+      minHeight: "80vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "text-center shadow-lg border-0",
+    style: {
+      maxWidth: "450px",
+      width: "100%"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
     className: "fs-3 fw-bold mb-3 text-primary"
-  }, "Game Rules"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+  }, "Game Rules"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Text, {
     className: "text-start fs-6 mb-4 p-3 bg-light rounded border"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "How to play Temple-Trivia:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "1. The game consists of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "3 rounds"), ".", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2. Read the question carefully.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "3. You earn ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 point"), " per correct answer.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "4. The scoreboard shifts instantly once everyone logs their vote!"), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "How to play Temple-Trivia:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "1. The game consists of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "3 rounds"), ".", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2. Read the question carefully.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "3. You earn ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 point"), " per correct answer.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "4. The scoreboard shifts instantly once everyone logs their vote!"), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "primary",
     className: "w-100 fw-bold py-2 shadow-sm",
     onClick: handleNext
@@ -3343,11 +3402,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3372,35 +3430,46 @@ function ScoreboardScreen(_ref) {
   var sortedPlayers = _toConsumableArray(players).sort(function (a, b) {
     return (b.score || 0) - (a.score || 0);
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-sm w-100",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-1",
     style: {
-      maxWidth: '420px'
+      minHeight: "80vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "text-center shadow-lg border-0 w-100",
+    style: {
+      maxWidth: "450px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
     className: "fs-3 fw-bold mb-3 text-primary"
-  }, "Scores"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Scores"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "mb-4 text-start border border-secondary rounded shadow-inner"
   }, sortedPlayers.map(function (player, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
       key: player.id,
       className: "d-flex justify-content-between align-items-center py-2.5 fw-semibold"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-muted me-2 small"
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       bg: "info",
       className: "ms-2 text-white font-normal"
-    }, "You")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, "You")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       bg: "success",
       className: "fs-6 py-1.5 px-2.5 rounded-pill"
     }, player.score || 0, " pts"));
-  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     variant: "primary",
     className: "w-100 fw-bold py-2 shadow-sm",
     onClick: handleNextRound
@@ -3424,8 +3493,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 
-function handleCreateTriviaRoom(playerName, navigate) {
+function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom) {
   var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
+  if (setIsCreatingRoom) setIsCreatingRoom(true);
   console.log("Requesting Trivia Room creation for: ".concat(cleanName));
 
   // Ensure the shared socket instance is open
@@ -3436,9 +3506,19 @@ function handleCreateTriviaRoom(playerName, navigate) {
 
   // Clean up any stale listeners on the shared socket
   _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.off('roomCreated');
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.off('connect_error');
+
+  // Close Modal if connection fails
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.once('connect_error', function (err) {
+    console.error("Trivia Socket connection error:", err);
+    if (setIsCreatingRoom) setIsCreatingRoom(false);
+    alert("Could not connect to the Trivia server.");
+  });
 
   // Fire the creation event
-  _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.emit('createRoom');
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.emit('createRoom', {
+    hostName: cleanName
+  });
 
   // Listen once for the backend room blueprint assignment
   _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaSocket.once('roomCreated', function (_ref) {
@@ -3488,7 +3568,6 @@ function GameOverScreen(_ref) {
   });
   var winner = standings[0];
   var handleRestart = function handleRestart() {
-    // Optional: Emit an event if you write a lobby restart route on the backend
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('nextRound', {
       roomCode: roomCode
     });
@@ -3502,7 +3581,7 @@ function GameOverScreen(_ref) {
       background: '#f8f9fa'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "py-5"
+    className: "py-5 px-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fs-1 mb-2"
   }, "\uD83C\uDFC6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
@@ -3525,7 +3604,7 @@ function GameOverScreen(_ref) {
   }, standings.slice(1).map(function (player, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
       key: player.id,
-      className: "d-flex justify-content-between align-items-center py-2.5 bg-white"
+      className: "d-flex justify-content-between align-items-center py-2 bg-white"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-muted me-2 small"
     }, "#", index + 2), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -3534,13 +3613,21 @@ function GameOverScreen(_ref) {
       bg: "secondary",
       className: "rounded-pill"
     }, player.score || 0, " pts"));
-  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-grid gap-2 mt-4"
+  }, isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     variant: "primary",
-    className: "w-100 fw-bold py-2.5 shadow-sm",
+    className: "w-100 fw-bold py-2 shadow-sm",
     onClick: handleRestart
   }, "Play Again") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2 border border-dashed rounded bg-white"
-  }, "\u23F3 Waiting for the host to start a new match..."))));
+    className: "text-muted small py-2.5 border border-dashed rounded bg-white text-center"
+  }, "\u23F3 Waiting for the host to start a new match..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "outline-primary",
+    className: "w-100 fw-bold py-2 shadow-sm",
+    onClick: function onClick() {
+      return window.location.href = '/home';
+    }
+  }, "Home")))));
 }
 
 /***/ }),
@@ -3558,18 +3645,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RulesScreen.jsx */ "./src/features/Trivia/RulesScreen.jsx");
 /* harmony import */ var _QuestionScreen_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuestionScreen.jsx */ "./src/features/Trivia/QuestionScreen.jsx");
 /* harmony import */ var _ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ScoreboardScreen.jsx */ "./src/features/Trivia/ScoreboardScreen.jsx");
 /* harmony import */ var _TriviaGameOver_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TriviaGameOver.jsx */ "./src/features/Trivia/TriviaGameOver.jsx");
+/* harmony import */ var _assets_logos_HourGlass_gif__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../assets/logos/HourGlass.gif */ "./src/assets/logos/HourGlass.gif");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -3584,11 +3672,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function TriviaWaitingRoom() {
-  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useSearchParams)(),
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
 
   // Grab configuration from the URL params sent by UniversalJoinForm
   var roomCode = searchParams.get('room');
@@ -3663,14 +3752,14 @@ function TriviaWaitingRoom() {
     });
   };
   if (error) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       className: "mt-5 text-center",
       style: {
         maxWidth: '400px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       variant: "danger"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "primary",
       onClick: function onClick() {
         return navigate('/');
@@ -3712,16 +3801,28 @@ function TriviaWaitingRoom() {
   // =========================================================================
   // DEFAULT LOBBY VIEW (If no phase has been launched yet)
   // =========================================================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "shadow-sm w-100",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-1",
     style: {
-      maxWidth: '420px'
+      minHeight: "80vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    className: "text-center shadow-lg border-0",
+    style: {
+      maxWidth: "450px",
+      width: "100%"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "TRIVIA ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Title, {
     className: "fs-3 fw-bold mb-4 text-primary"
   }, "Trivia Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "bg-light border border-secondary rounded p-3 mb-4"
@@ -3731,21 +3832,21 @@ function TriviaWaitingRoom() {
     className: "fs-2 fw-black text-dark tracking-widest"
   }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "text-start fw-bold mb-2 px-1"
-  }, "Players Joined", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, "Players Joined", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     bg: "secondary",
     className: "ms-2"
-  }, players.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, players.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: "mb-4 text-start border border-secondary rounded"
   }, players.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Item, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Item, {
       key: player.id,
       className: "d-flex justify-content-between align-items-center py-2.5 fw-semibold"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       bg: "primary"
     }, "You") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-muted small"
     }, "Ready"));
-  })), role === 'host' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  })), role === 'host' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "primary",
     className: "w-100 fw-bold py-2 shadow-sm",
     onClick: handleStartGame // FIX: Connected the click listener
