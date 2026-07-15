@@ -36,21 +36,32 @@ export default function BarHome() {
 
                         {/* Single Player / Reference Links */}
                         <Row className='g-2'>
-                            <Col xs={6} className='d-grid'>
-                                <Button variant='primary' size="lg" href='/FlashcardGame' className="fw-semibold align-items-center justify-content-center">
+                            <Col xs={6}>
+                                <Button 
+                                    variant='primary' 
+                                    href='/FlashcardGame' 
+                                    className="fw-bold w-100 h-100 py-2 shadow-sm text-white">
                                     Drink Quiz <br/>🍹🍹
                                 </Button>
                             </Col>
                             
-                            <Col xs={6} className='d-grid'>
-                                <Button variant='primary' size="lg" href='/FlashcardsList' className="fw-semibold align-items-center justify-content-center">
-                                    Flashcard List
+                            <Col xs={6}>
+                                <Button 
+                                    variant='primary' 
+                                    href='/FlashcardsList' 
+                                    className="fw-bold w-100 h-100 py-2 shadow-sm text-white">
+                                    Drink List<br/>
+                                    📃📃
                                 </Button>
                             </Col>
 
-                            <Col xs={6} className='d-grid'>
-                                <Button variant='primary' size="lg" href='/Flashcards' className="fw-semibold align-items-center justify-content-center">
-                                    Flashcards
+                            <Col xs={6}>
+                                <Button 
+                                    variant='primary' 
+                                    href='/Flashcards' 
+                                    className="fw-bold w-100 h-100 py-2 shadow-sm text-white">
+                                    Flashcards<br/>
+                                    🎴🎴
                                 </Button>
                             </Col>
                         </Row>

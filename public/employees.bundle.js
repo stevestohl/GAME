@@ -1810,30 +1810,24 @@ function BarHome() {
   }, "Bartending"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "g-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    className: "d-grid"
+    xs: 6
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "primary",
-    size: "lg",
     href: "/FlashcardGame",
-    className: "fw-semibold align-items-center justify-content-center"
+    className: "fw-bold w-100 h-100 py-2 shadow-sm text-white"
   }, "Drink Quiz ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83C\uDF79\uD83C\uDF79")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    className: "d-grid"
+    xs: 6
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "primary",
-    size: "lg",
     href: "/FlashcardsList",
-    className: "fw-semibold align-items-center justify-content-center"
-  }, "Flashcard List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    className: "d-grid"
+    className: "fw-bold w-100 h-100 py-2 shadow-sm text-white"
+  }, "Drink List", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDCC3\uD83D\uDCC3")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    xs: 6
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "primary",
-    size: "lg",
     href: "/Flashcards",
-    className: "fw-semibold align-items-center justify-content-center"
-  }, "Flashcards")))))));
+    className: "fw-bold w-100 h-100 py-2 shadow-sm text-white"
+  }, "Flashcards", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83C\uDFB4\uD83C\uDFB4")))))));
 }
 
 /***/ }),
