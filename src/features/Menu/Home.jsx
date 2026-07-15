@@ -105,12 +105,16 @@ export default function Home() {
                                         </Button>
                                     </Col>
                                     <Col xs={6}>
-<Button
+                                        <Button
                                             variant="primary"
                                             className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
                                             disabled={isCreatingRoom}
-                                            // 2. TOGGLE COMING SOON STATE ON CLICK
-                                            onClick={() => setShowComingSoon(true)}
+
+                                            // ---------Reset this when in Prod-------
+                                            onClick={() => handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom)}
+                                            // onClick={() => setShowComingSoon(true)}
+                                            // ----------------
+                                            
                                         >
                                             Prompt <br/> 2
                                         </Button>

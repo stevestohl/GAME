@@ -2122,11 +2122,14 @@ function Home() {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
       disabled: isCreatingRoom
-      // 2. TOGGLE COMING SOON STATE ON CLICK
+
+      // ---------Reset this when in Prod-------
       ,
       onClick: function onClick() {
-        return setShowComingSoon(true);
+        return (0,_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__.handleCreatePrompt2Room)(playerName, navigate, setIsCreatingRoom);
       }
+      // onClick={() => setShowComingSoon(true)}
+      // ----------------
     }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), " 2")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       show: isCreatingRoom,
       backdrop: "static",
