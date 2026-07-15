@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "react-bootstrap"; // Importing Form for React-Bootstrap radios
+import { Form, Modal, Spinner } from "react-bootstrap"; // Importing Form for React-Bootstrap radios
 
 // 🌐 Your live Render backend base URL
 const API_BASE_URL = 'https://game-temple-backend.onrender.com'
@@ -9,15 +9,21 @@ export default function Flashcards() {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [filterMode, setFilterMode] = useState("default"); // Options: "default" or "all"
+  const [isLoading, setIsLoading] = useState(true)
 
   // Load drinks on mount
   useEffect(() => {
     async function loadDrinks() {
-      // 🔄 Updated to target Render instead of a relative path
-      const res = await fetch(`${API_BASE_URL}/api/drinks`);
-      const data = await res.json();
-      setAllDrinks(data.drinks || []);
-    }
+      try{ 
+        const res = await fetch(`${API_BASE_URL}/api/drinks`);
+        const data = await res.json();
+        setAllDrinks(data.drinks || []);
+    } catch (error){
+      console.log("Failed to wake up server:", error)
+  } finally {
+      setIsLoading(false)
+  }
+  }
     loadDrinks();
   }, []);
 
@@ -191,6 +197,20 @@ export default function Flashcards() {
           <button onClick={handleNext}>▶</button>
         </div>
       </div>
+      <Modal
+          show={isLoading}
+          backdrop="static"
+          keyboard={false}
+          centered
+          >
+              <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4 text-center'>
+                  <Spinner animation='border' variant='primary' className='mb-3'/>
+                      <h4 className='fw-bold text-dark'>Creating Room...</h4>
+                      <p className='text-muted small mb-0'>
+                          Waking up server...
+                      </p>
+              </Modal.Body>
+      </Modal>
     </>
   );
 }

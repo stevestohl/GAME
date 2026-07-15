@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Row, Col, Button, Form } from 'react-bootstrap'; 
+import { Card, Row, Col, Button, Form, Modal } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
 // import gameLogo from "../src/assets/logos/Logo_Temple_Table.jpg";
 //import martini from '../src/assets/logos/MartiniLogo.jpg'
@@ -69,5 +69,6 @@ export default function BarHome() {
                 </Card.Body>
             </Card>
         </div>
+        
     );
 }
