@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Badge, Table, Button, Toast } from 'react-bootstrap'
+import { Card, Badge, Table, Button, Toast, Modal, Spinner } from 'react-bootstrap'
 import FlashcardAdd from './FlashcardAdd.jsx'
 import FlashcardEdit from './FlashcardEdit.jsx'
 
@@ -12,15 +12,24 @@ export default function FlashcardsList() {
     const [showToast, setShowToast] = useState(false)
     const [drinks, setDrinks] = useState([])
     const [showAddModal, setShowAddModal] = useState(false)
-    
     const [currentEditingDrink, setCurrentEditingDrink] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        // 🔄 Updated to target Render instead of relative pathing
-        fetch(`${API_BASE_URL}/api/drinks`)
-            .then(res => res.json())
-            .then(data => setDrinks(data.drinks || []))
-            .catch(err => console.error("Error fetching drinks:", err))
+        async function loadDrinks() {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/drinks`)
+                const data = await res.json()
+                // Fixed 1: Changed setAllDrinks to setDrinks to match state declaration
+                setDrinks(data.drinks || [])
+            } catch (err) {
+                // Fixed 2: Changed error to err to match catch parameter
+                console.log("Failed to wake up server:", err)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadDrinks(); // Don't forget to invoke it inside useEffect!
     }, [])
 
     // Called by FlashcardAdd.jsx after successful POST
@@ -31,9 +40,7 @@ export default function FlashcardsList() {
     }
 
     const handleDeleteDrink = (id) => {
-
         setDrinks(prev => prev.filter(drink => drink._id !== id))
-
         setToastMessage("Drink removed successfully!")
         setShowToast(true)
         
@@ -42,6 +49,27 @@ export default function FlashcardsList() {
             .then(res => res.json())
             .then(data => console.log("Delete confirmation:", data))
             .catch(err => console.error("Error deleting drink:", err))
+    }
+
+    // Fixed 4: Handled early loading return here to keep background clean
+    if (isLoading) {
+        return (
+            <Modal
+                show={isLoading}
+                backdrop="static"
+                keyboard={false}
+                centered
+            >
+                <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4 text-center'>
+                    <Spinner animation='border' variant='primary' className='mb-3'/>
+                    {/* Fixed 3: Updated contextual copy text */}
+                    <h4 className='fw-bold text-dark'>Loading Drinks...</h4>
+                    <p className='text-muted small mb-0'>
+                        Waking up server...
+                    </p>
+                </Modal.Body>
+            </Modal>
+        )
     }
 
     const drinkRows = drinks.map(drink => (

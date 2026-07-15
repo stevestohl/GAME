@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { Button, Card, Form } from "react-bootstrap"
+import { Button, Card, Form, Modal, Spinner } from "react-bootstrap"
 
-// 🌐 Your live Render backend base URL
 const API_BASE_URL = 'https://game-temple-backend.onrender.com'
 
 export default function FlashcardGame() {
@@ -11,13 +10,16 @@ export default function FlashcardGame() {
     const [options, setOptions] = useState([])
     const [correctDrink, setCorrectDrink] = useState(null)
     const [filterMode, setFilterMode] = useState("default") // "default" or "all"
+    const [isLoading, setIsLoading] = useState(true)
     const TOTAL_ROUNDS = 10
 
     useEffect(() => {
-        // 🔄 Updated to target Render instead of a relative path
+        // 🔄 Added catch and finally blocks to control the modal state
         fetch(`${API_BASE_URL}/api/drinks`)
             .then(res => res.json())
             .then(data => setAllDrinks(data.drinks || []))
+            .catch(err => console.error("Error catching drinks:", err))
+            .finally(() => setIsLoading(false)) // Turns off modal when server responds
     }, [])
 
     // COMPUTED ARRAY: Dynamic pool based on selected deck mode
@@ -74,6 +76,28 @@ export default function FlashcardGame() {
         }
     }
 
+    // 1. FIRST GUARD: Show the waking up modal if we are still fetching data
+    if (isLoading) {
+        return (
+            <Modal
+                show={isLoading}
+                backdrop="static"
+                keyboard={false}
+                centered
+            >
+                {/* Fixed visual alignment class typo here */}
+                <Modal.Body className="d-flex flex-column align-items-center justify-content-center p-4 text-center">
+                    <Spinner animation='border' variant="primary" className="mb-3"/>
+                    <h4 className="fw-bold text-dark">Loading Quiz...</h4>
+                    <p className="text-muted small mb-0">
+                        Waking up server...
+                    </p>
+                </Modal.Body>
+            </Modal>
+        )
+    }
+
+    // 2. SECOND GUARD: Show empty pool warning only after loading is complete
     if (visibleDrinks.length === 0) {
         return (
             <div className="d-flex justify-content-center align-items-center p-3">
@@ -85,8 +109,10 @@ export default function FlashcardGame() {
         )
     }
 
+    // 3. THIRD GUARD: Prevent crashes if the game state loop hasn't generated choices yet
     if (!correctDrink) return <div className="text-center mt-5 text-white">Loading game...</div>
 
+    // MAIN GAME INTERFACE
     return (
         <div className="d-flex justify-content-center align-items-center p-3">
             <Card 
