@@ -53,7 +53,7 @@ export default function Home() {
                             <Form.Label className="fw-bold text-muted small mb-1">Player Name</Form.Label>
                             <Form.Control 
                                 type="text" 
-                                placeholder="Anita Break" 
+                                placeholder="" 
                                 value={playerName} 
                                 onChange={(e) => setPlayerName(e.target.value)}
                                 autoComplete="off"

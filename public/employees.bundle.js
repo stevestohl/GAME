@@ -1941,7 +1941,7 @@ function Home() {
       className: "fw-bold text-muted small mb-1"
     }, "Player Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
       type: "text",
-      placeholder: "Anita Break",
+      placeholder: "",
       value: playerName,
       onChange: function onChange(e) {
         return setPlayerName(e.target.value);
@@ -3018,6 +3018,10 @@ function TictactoeRoom() {
     animation: "border",
     variant: "primary"
   }));
+
+  //-----------------
+  // Waiting Room
+  //-----------------
   if (roomStatus === 'waiting') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-1",
     style: {
