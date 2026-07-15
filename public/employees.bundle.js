@@ -1894,6 +1894,10 @@ function Home() {
     _useState4 = _slicedToArray(_useState3, 2),
     isCreatingRoom = _useState4[0],
     setIsCreatingRoom = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    showComingSoon = _useState6[0],
+    setShowComingSoon = _useState6[1];
 
   // Navigate straight to the game board
   //navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
@@ -1993,10 +1997,13 @@ function Home() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
+      disabled: isCreatingRoom
+      // 2. TOGGLE COMING SOON STATE ON CLICK
+      ,
       onClick: function onClick() {
-        return (0,_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__.handleCreatePrompt2Room)(playerName, navigate);
+        return setShowComingSoon(true);
       }
-    }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), " 2")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       show: isCreatingRoom,
       backdrop: "static",
       keyboard: false,
@@ -2011,7 +2018,28 @@ function Home() {
       className: "fw-bold text-dark"
     }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
       className: "text-muted small mb-0"
-    }, "Waking up game server..."))))
+    }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      show: showComingSoon,
+      onHide: function onHide() {
+        return setShowComingSoon(false);
+      } // Allows closing by clicking backdrop
+      ,
+      centered: true
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+      className: "d-flex flex-column align-items-center justify-content-center p-4 text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "fs-1 mb-2"
+    }, "\uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+      className: "fw-bold text-dark"
+    }, "Prompt 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted small mb-4"
+    }, "This game mode is currently under construction deep within the temple layout. Stay tuned!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      variant: "primary",
+      className: "fw-bold px-4 shadow-sm",
+      onClick: function onClick() {
+        return setShowComingSoon(false);
+      }
+    }, "Got It"))))
   );
 }
 

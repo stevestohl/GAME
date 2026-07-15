@@ -16,6 +16,7 @@ export default function Home() {
 
     //Loading state for TicTacToe Room Creation
     const[isCreatingRoom, setIsCreatingRoom ]= useState(false)
+    const[showComingSoon, setShowComingSoon] =useState(false)
     
 // Navigate straight to the game board
     //navigate(`/tictactoe?room=${newRoomCode}&role=host&name=${encodeURIComponent(nameToUse)}`);
@@ -104,13 +105,14 @@ export default function Home() {
                                         </Button>
                                     </Col>
                                     <Col xs={6}>
-                                        <Button
+<Button
                                             variant="primary"
                                             className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
-                                            onClick={() => handleCreatePrompt2Room(playerName, navigate)}
+                                            disabled={isCreatingRoom}
+                                            // 2. TOGGLE COMING SOON STATE ON CLICK
+                                            onClick={() => setShowComingSoon(true)}
                                         >
-                                            Prompt <br/>
-                                            2
+                                            Prompt <br/> 2
                                         </Button>
                                     </Col>
                                 </Row>
@@ -131,6 +133,27 @@ export default function Home() {
                     <p className='text-muted small mb-0'>
                         Waking up game server...
                     </p>
+                </Modal.Body>
+            </Modal>
+
+            <Modal
+                show={showComingSoon}
+                onHide={() => setShowComingSoon(false)} // Allows closing by clicking backdrop
+                centered
+            >
+                <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4 text-center'>
+                    <div className="fs-1 mb-2">🚧</div>
+                    <h4 className='fw-bold text-dark'>Prompt 2</h4>
+                    <p className='text-muted small mb-4'>
+                        This game mode is currently under construction deep within the temple layout. Stay tuned!
+                    </p>
+                    <Button 
+                        variant="primary" 
+                        className="fw-bold px-4 shadow-sm"
+                        onClick={() => setShowComingSoon(false)}
+                    >
+                        Got It
+                    </Button>
                 </Modal.Body>
             </Modal>
         </div>
