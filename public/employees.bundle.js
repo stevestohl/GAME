@@ -2226,7 +2226,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Prompt2PromptSelectionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Prompt2PromptSelectionScreen.jsx */ "./src/features/Prompt2/Prompt2PromptSelectionScreen.jsx");
 /* harmony import */ var _Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Prompt2ResponseSelectionScreen */ "./src/features/Prompt2/Prompt2ResponseSelectionScreen.jsx");
 /* harmony import */ var _Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Prompt2JudgingScreen.jsx */ "./src/features/Prompt2/Prompt2JudgingScreen.jsx");
-/* harmony import */ var _Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Prompt2Scoreboard.jsx */ "./src/features/Prompt2/Prompt2Scoreboard.jsx");
 /* harmony import */ var _Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -2245,7 +2244,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Prompt2GameManager() {
-  var _roomData$players$soc;
+  var _roomData$players, _roomData$players$soc;
   var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
@@ -2281,12 +2280,8 @@ function Prompt2GameManager() {
     roundResults = _useState14[0],
     setRoundResults = _useState14[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log("[GameManager] Mounting and establishing socket connection...");
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connect();
-
-    // Join room cleanly on mount using synchronized backend keys
     if (roomCode && name) {
-      console.log("[GameManager] Emitting joinRoom for room: ".concat(roomCode, ", player: ").concat(name));
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: name
@@ -2295,43 +2290,33 @@ function Prompt2GameManager() {
 
     // Centralized room listener (Handles state transitions globally)
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('room_updated', function (data) {
-      console.log("[GameManager] room_updated state received:", data);
+      console.log("SERVER UPDATED ROOM STATE TO:", data.gameState);
       setRoomData(data);
-      if (data.roomCode) {
-        setRoomCode(data.roomCode);
-      }
-      if (data.gameState) {
-        setGameState(data.gameState);
+      if (data.roomCode) setRoomCode(data.roomCode);
+      if (data.gameState) setGameState(data.gameState);
+      if (data.currentPrompt) {
+        setCurrentPrompt(data.currentPrompt);
       }
     });
 
-    // Step 1: Host chooses a prompt
+    // Specific phase listeners
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('prompt_options', function (data) {
       setPromptOptions(data.prompts);
       setGameState('prompt_selection');
     });
-
-    // Step 2: Everyone writes/chooses an answer
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('writing_phase_started', function (data) {
       setCurrentPrompt(data.prompt);
       setGameState('writing');
     });
-
-    // Step 3: Host judges anonymous submissions
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('start_judging', function (data) {
       setSubmissions(data.submissions);
       setGameState('judging');
     });
-
-    // Step 4: Show scoreboard and round winner
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('round_ended', function (data) {
       setRoundResults(data);
       setGameState('scoreboard');
     });
-
-    // Cleanup tracking listeners on component unmount
     return function () {
-      console.log("[GameManager] Cleaning up socket listeners...");
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('room_updated');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('prompt_options');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('writing_phase_started');
@@ -2340,46 +2325,41 @@ function Prompt2GameManager() {
     };
   }, [roomCode, name]);
 
-  // Strictly verify host identity using the socket context data structures
-  var isHost = (roomData === null || roomData === void 0 ? void 0 : roomData.hostId) === _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.id || (roomData === null || roomData === void 0 ? void 0 : (_roomData$players$soc = roomData.players[_socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.id]) === null || _roomData$players$soc === void 0 ? void 0 : _roomData$players$soc.isPlayerHost) === true;
-
-  // Extract array format out of raw room object data safely for map components
-  var playersArray = roomData && roomData.players ? Object.values(roomData.players) : [];
+  // Host Identification
+  var isHost = (roomData === null || roomData === void 0 ? void 0 : roomData.hostId) === _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.id || (roomData === null || roomData === void 0 ? void 0 : (_roomData$players = roomData.players) === null || _roomData$players === void 0 ? void 0 : (_roomData$players$soc = _roomData$players[_socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.id]) === null || _roomData$players$soc === void 0 ? void 0 : _roomData$players$soc.isPlayerHost) === true;
+  var playersArray = roomData !== null && roomData !== void 0 && roomData.players ? Object.values(roomData.players) : [];
 
   // =========================================================================
-  // NEW SOCKET HANDLERS 
-  // (Note: Make sure these event names match what your Node.js backend expects!)
+  // SOCKET EVENT HANDLERS
+  // These trigger the backend updates. The backend will then 
+  // broadcast 'room_updated' which automatically refreshes the UI.
   // =========================================================================
 
-  // Handler for when the Host clicks on a prompt
   var handleSelectPrompt = function handleSelectPrompt(selectedPrompt) {
-    console.log("[GameManager] Host selected prompt: \"".concat(selectedPrompt, "\". Emitting 'select_prompt'..."));
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('selectPrompt', {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('select_prompt', {
       roomCode: roomCode,
-      prompt: selectedPrompt
+      selectedPrompt: selectedPrompt
     });
   };
-
-  // Handler for when a Player submits their response text
   var handleSubmitResponse = function handleSubmitResponse(responseChoice) {
-    console.log("[GameManager] Player submitting response: \"".concat(responseChoice, "\". Emitting 'submit_response'..."));
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('submitResponse', {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('submit_answer', {
       roomCode: roomCode,
-      response: responseChoice
+      answer: responseChoice
     });
   };
-
-  // Handler for when the Host decides to reveal the choices to the lobby
   var handleRevealChoices = function handleRevealChoices() {
-    console.log("[GameManager] Host revealing choices. Emitting 'reveal_choices'...");
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('revealChoices', {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('reveal_choices', {
       roomCode: roomCode
     });
   };
+  var handlePickWinner = function handlePickWinner(winningPlayerId) {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('pick_winner', {
+      roomCode: roomCode,
+      winningPlayerId: winningPlayerId
+    });
+  };
 
-  // =========================================================================
-
-  // Direct conditional screen rendering based on engine gameState state
+  // Rendering Logic
   switch (gameState) {
     case 'setup':
     case 'lobby':
@@ -2395,38 +2375,33 @@ function Prompt2GameManager() {
       });
     case 'prompt_selection':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2PromptSelectionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        roomCode: roomCode,
         isHost: isHost,
-        options: promptOptions,
-        onSelectPrompt: handleSelectPrompt // Pass the missing prop handler!
+        onSelectPrompt: handleSelectPrompt
       });
-
     case 'writing':
-      // Count players who aren't the host
       var activePlayers = playersArray.filter(function (p) {
         return !p.isPlayerHost;
       });
-      var totalPlayersCount = activePlayers.length || 1; // Fallback to 1 to avoid NaN divides
-
-      // Count how many players have "hasSubmitted" flag set to true in the sync data
+      var totalPlayersCount = activePlayers.length || 1;
       var submittedCount = activePlayers.filter(function (p) {
         return p.hasSubmitted;
       }).length;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        isHost: isHost,
-        promptText: currentPrompt,
+        isHost: isHost
+        // Extract the text safely if it exists, otherwise pass the raw string
+        ,
+        promptText: (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt || "Loading prompt...",
         submittedCount: submittedCount,
         totalPlayers: totalPlayersCount,
-        onSubmitResponse: handleSubmitResponse // Pass the submit handler!
-        ,
-        onRevealChoices: handleRevealChoices // Pass the reveal handler!
+        onSubmitResponse: handleSubmitResponse,
+        onRevealChoices: handleRevealChoices
       });
-
     case 'judging':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((_Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6___default()), {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
         roomCode: roomCode,
         isHost: isHost,
-        submissions: submissions
+        submissions: submissions,
+        onPickWinner: handlePickWinner
       });
     case 'scoreboard':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((_Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7___default()), {
@@ -2447,9 +2422,64 @@ function Prompt2GameManager() {
 /*!*******************************************************!*\
   !*** ./src/features/Prompt2/Prompt2JudgingScreen.jsx ***!
   \*******************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Prompt2JudgingScreen)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 
 
+function Prompt2JudgingScreen(_ref) {
+  var isHost = _ref.isHost,
+    submission = _ref.submission,
+    onPickWinner = _ref.onPickWinner;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg border-0",
+    style: {
+      maxWidth: '450px',
+      width: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    as: "h5",
+    className: "border-0 py-2 fw-black tracking-widest text-uppercase fs-6 text-center",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "Judging Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-center text-muted fw-bold mb-4"
+  }, isHost ? "Pick the best response!" : "Waiting for the judge to decide..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column gap-3"
+  }, submissions && submissions.length > 0 ? submissions.map(function (sub, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: idx,
+      className: "border shadow-sm p-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex justify-content-between align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "fw-medium text-dark"
+    }, sub.answer), isHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      variant: "outline-success",
+      size: "sm",
+      onClick: function onClick() {
+        return onPickWinner(sub.playerId);
+      }
+    }, "\uD83C\uDFC6 Pick")));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center p-4 text-muted"
+  }, "No submissions yet...")))));
+}
 
 /***/ }),
 
@@ -2466,11 +2496,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 
 
@@ -2486,20 +2515,29 @@ function Prompt2Lobby(_ref) {
       roomCode: roomCode
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-1",
+    style: {
+      minHeight: "80vh"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "shadow-sm w-100",
     style: {
-      maxWidth: '420px'
+      maxWidth: '450px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "PROMPT2 ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-    className: "fs-3 fw-bold mb-1 text-success"
-  }, "Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-muted small mb-4"
-  }, "Game: Judge Style Arena"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "fs-3 fw-bold mb-1 text-primary"
+  }, "Waiting For Players to Join..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "bg-light p-3 rounded mb-4 border"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "text-secondary d-block small fw-bold text-uppercase"
@@ -2507,22 +2545,22 @@ function Prompt2Lobby(_ref) {
     className: "fs-2 fw-bold text-dark tracking-wide"
   }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "text-start mb-2 fw-semibold"
-  }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "mb-4 text-start"
   }, players.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
       key: player.id,
       className: "d-flex justify-content-between align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       bg: "primary",
       className: "rounded-pill"
     }, "Host / Judge"));
-  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     variant: "primary",
     className: "w-100 fw-bold py-2",
     disabled: players.length < 2,
     onClick: handleShowRules
-  }, players.length < 2 ? 'Waiting for Players (Min 3)' : 'All in!') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, players.length < 2 ? 'Waiting for Players' : 'All in!') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted small py-2 border border-dashed rounded bg-light"
   }, "Waiting for the host to show rules..."))));
 }
@@ -2542,6 +2580,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -2549,10 +2589,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+// Fixed 2: Added Row and Col to the Bootstrap imports
+
 
 /**
  * Prompt2PromptSelectionScreen
- * * @param {boolean} isHost - Determines if the current player is the host.
+ * @param {boolean} isHost - Determines if the current player is the host.
  * @param {function} onSelectPrompt - Callback function triggered when the host selects a card.
  */
 function Prompt2PromptSelectionScreen(_ref) {
@@ -2571,21 +2613,18 @@ function Prompt2PromptSelectionScreen(_ref) {
     error = _useState6[0],
     setError = _useState6[1];
 
-  // 1. Fetch random prompts from the backend when the Host view mounts
+  // Fetch random prompts from the backend when the Host view mounts
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isHost) {
       // 1. Check if we are running locally
-      // const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-      // // 2. Point to localhost for local dev, or the working Render backend for production
-      // const backendBase = isLocal 
-      //   ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
-      //   : 'https://game-temple-backend.onrender.com';
-
+      // 2. Point to localhost for local dev, or the working Render backend for production
+      var backendBase = isLocal ? 'http://localhost:5000' : 'https://game-temple-backend.onrender.com';
       setIsLoading(true);
 
-      // 3. Fetch using the dynamically resolved backend base
-      fetch("https://game-temple-backend.onrender.com/api/prompt2host").then(function (res) {
+      // Fixed 3: Fetch using the dynamically resolved backend base string variable
+      fetch("".concat(backendBase, "/api/prompt2host")).then(function (res) {
         if (!res.ok) {
           throw new Error("Failed to fetch cards: Status ".concat(res.status));
         }
@@ -2604,6 +2643,7 @@ function Prompt2PromptSelectionScreen(_ref) {
       });
     }
   }, [isHost]);
+
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)
   // ----------------------------------------------------
@@ -2668,33 +2708,65 @@ function Prompt2PromptSelectionScreen(_ref) {
   // HOST VIEW - SUCCESS STATE
   // ----------------------------------------------------
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "max-w-4xl w-full text-center space-y-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-xs font-bold uppercase tracking-widest bg-indigo-600/30 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20"
-  }, "Host Turn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 mt-3"
-  }, "Pick the Perfect Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-slate-400 mt-2 text-base md:text-lg"
-  }, "Choose one of the three random cards below to set the theme for this round.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"
+    className: "d-flex justify-content-center align-items-center p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "text-center shadow-lg border-0",
+    style: {
+      maxWidth: '450px',
+      width: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    as: "h5",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "Prompt Selection"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small mx-auto mb-4"
+  }, "Choose one of the three random cards below to set the theme for this round."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column align-items-center gap-3 mt-1",
+    style: {
+      width: '100%'
+    }
   }, options.map(function (card, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      key: card._id || index // MongoDB uses _id instead of id
-      ,
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: card._id || index,
+      role: "button",
+      tabIndex: 0,
       onClick: function onClick() {
         return onSelectPrompt(card);
       },
-      className: "flex flex-col justify-between p-6 bg-slate-800 border-2 border-slate-700/60 rounded-2xl text-left transition-all duration-300 hover:border-indigo-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/10 active:scale-98 group min-h-[220px]"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-xs font-semibold tracking-wider text-indigo-400 uppercase bg-indigo-950/60 px-2.5 py-1 rounded-md w-max border border-indigo-500/10"
+      onKeyDown: function onKeyDown(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelectPrompt(card);
+        }
+      }
+      // Left text-start so the inside text stays aligned nicely to the left
+      ,
+      className: "text-start p-3 border shadow-sm bg-white prompt-card-btn",
+      style: {
+        width: '92%',
+        // Fixed: Forces a deliberate, controlled width
+        cursor: "pointer",
+        transition: "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "w-100"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      bg: "light",
+      className: "text-uppercase text-muted border tracking-wide px-2 py-1 fw-semibold",
+      style: {
+        fontSize: '0.65rem'
+      }
     }, card.type || 'prompt'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "text-lg font-medium text-slate-200 mt-4 flex-grow group-hover:text-black leading-relaxed"
-    }, card.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "mt-6 text-sm font-semibold text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1"
-    }, "Choose this prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u2192")));
-  }))));
+      className: "fw-medium text-dark mb-0 mt-2 fs-6 lh-base"
+    }, card.text)));
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n        .prompt-card-btn {\n          border-color: rgba(0,0,0,0.1) !important;\n        }\n        .prompt-card-btn:hover {\n          transform: translateY(-2px);\n          border-color: #014eb6 !important;\n          box-shadow: 0 6px 12px rgba(1, 78, 182, 0.1) !important;\n        }\n        .prompt-card-btn:active {\n          transform: translateY(0px);\n        }\n        .prompt-card-btn:focus-visible {\n          outline: 2px solid #014eb6;\n          outline-offset: 2px;\n        }\n      "));
 }
 
 /***/ }),
@@ -2712,6 +2784,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2724,15 +2800,6 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-/**
- * Prompt2ResponseSelectionScreen Component
- * * @param {boolean} isHost - Whether the current client is the host.
- * @param {string} promptText - The prompt selected for this round.
- * @param {number} submittedCount - Number of players who have already submitted.
- * @param {number} totalPlayers - Total number of active players (excluding host).
- * @param {function} onSubmitResponse - Callback when player submits a response. Takes selected response string.
- * @param {function} onRevealChoices - Callback when host clicks 'Reveal Choices'.
- */
 function Prompt2ResponseSelectionScreen(_ref) {
   var isHost = _ref.isHost,
     _ref$promptText = _ref.promptText,
@@ -2743,7 +2810,7 @@ function Prompt2ResponseSelectionScreen(_ref) {
     totalPlayers = _ref$totalPlayers === void 0 ? 4 : _ref$totalPlayers,
     onSubmitResponse = _ref.onSubmitResponse,
     onRevealChoices = _ref.onRevealChoices;
-  // Player-specific state
+  // 1. Keep these as state - they belong to this component's lifecycle
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     responses = _useState2[0],
@@ -2765,6 +2832,11 @@ function Prompt2ResponseSelectionScreen(_ref) {
     error = _useState10[0],
     setError = _useState10[1];
 
+  // 2. Define your backend base URL
+
+  var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  var backendBase = isLocal ? 'http://localhost:5000' : 'https://game-temple-backend.onrender.com';
+
   // Fetch 7 random responses for the player
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isHost) return;
@@ -2778,7 +2850,7 @@ function Prompt2ResponseSelectionScreen(_ref) {
                 _context.prev = 0;
                 setLoading(true);
                 _context.next = 4;
-                return fetch('/prompt2players');
+                return fetch("".concat(backendBase, "/api/prompt2players"));
               case 4:
                 response = _context.sent;
                 if (response.ok) {
@@ -2791,10 +2863,8 @@ function Prompt2ResponseSelectionScreen(_ref) {
                 return response.json();
               case 9:
                 data = _context.sent;
-                // Expecting an array of strings or objects from the API. 
-                // Adjust "data.responses" if your API returns a nested object.
-                fetchedList = Array.isArray(data) ? data : data.responses || [];
-                setResponses(fetchedList.slice(0, 7)); // Ensure we grab exactly 7
+                fetchedList = data.data || [];
+                setResponses(fetchedList.slice(0, 7));
                 _context.next = 17;
                 break;
               case 14:
@@ -2832,94 +2902,110 @@ function Prompt2ResponseSelectionScreen(_ref) {
   // --- HOST VIEW ---
   if (isHost) {
     var allPlayersSubmitted = submittedCount >= totalPlayers;
+    var progress = totalPlayers > 0 ? submittedCount / totalPlayers * 100 : 0;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "max-w-2xl w-full text-center space-y-8 bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "px-4 py-1.5 bg-indigo-600/30 text-indigo-400 rounded-full text-sm font-semibold tracking-wide uppercase"
-    }, "Host Screen"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "space-y-3"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "text-slate-400 text-sm font-medium"
-    }, "Active Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-      className: "text-2xl md:text-3xl font-extrabold text-amber-400 leading-snug"
-    }, "\"", promptText, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
-      className: "border-slate-700"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "space-y-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "text-lg font-medium text-slate-300"
-    }, "Submissions Received"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "text-4xl font-black text-white"
-    }, submittedCount, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-slate-500"
-    }, "/"), " ", totalPlayers), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "w-full bg-slate-700 rounded-full h-3 overflow-hidden"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "bg-emerald-500 h-full transition-all duration-500 ease-out",
+      className: "d-flex justify-content-center align-items-center p-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      className: "text-center shadow-lg border-0",
       style: {
-        width: "".concat(submittedCount / totalPlayers * 100, "%")
+        maxWidth: '450px',
+        width: '100%'
       }
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "pt-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: onRevealChoices,
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+      as: "h5",
+      className: "border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
+      style: {
+        backgroundColor: '#014eb6',
+        color: '#f1f2f5',
+        letterSpacing: '0.2em'
+      }
+    }, "PROMPT2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+      className: "p-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted small mb-1"
+    }, "Waiting for players to submit their responses..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+      className: "fw-bold text-dark mb-4"
+    }, "\"", promptText, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "my-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "text-muted small fw-bold mb-2"
+    }, "Submissions Received"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "display-6 fw-black text-dark"
+    }, submittedCount, " / ", totalPlayers), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      now: progress,
+      variant: "success",
+      className: "mt-3",
+      style: {
+        height: '10px'
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      variant: allPlayersSubmitted ? "success" : "secondary",
+      className: "w-100 py-3 fw-bold",
       disabled: !allPlayersSubmitted,
-      className: "w-full md:w-auto px-8 py-4 rounded-xl font-bold text-lg shadow-lg transform transition active:scale-95 ".concat(allPlayersSubmitted ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 cursor-pointer animate-pulse' : 'bg-slate-700 text-slate-500 cursor-not-allowed')
+      onClick: onRevealChoices
     }, allPlayersSubmitted ? '💡 Reveal Choices!' : 'Waiting for Players...'))));
   }
 
   // --- PLAYER VIEW ---
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex flex-col items-center min-h-screen bg-slate-950 text-white p-4 md:p-8"
+    className: "d-flex justify-content-center align-items-center p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg border-0",
+    style: {
+      maxWidth: '450px',
+      width: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    as: "h5",
+    className: "border-0 py-2 fw-black tracking-widest text-uppercase fs-6 text-center",
+    style: {
+      backgroundColor: '#014eb6',
+      color: '#f1f2f5',
+      letterSpacing: '0.2em'
+    }
+  }, "Response Selection"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "max-w-3xl w-full space-y-6"
+    className: "text-center mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    bg: "light",
+    text: "dark",
+    className: "border mb-2 text-uppercase"
+  }, "The Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fw-medium fs-6"
+  }, promptText)), loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center py-4 text-muted"
+  }, "Loading options...") : error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-danger text-center p-2 border border-danger rounded"
+  }, error) : hasSubmitted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center py-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-slate-900 p-6 rounded-2xl border border-slate-800 text-center shadow-lg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-xs font-bold text-amber-400 tracking-wider uppercase block mb-2"
-  }, "The Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-xl md:text-2xl font-bold leading-relaxed text-slate-100"
-  }, promptText)), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center py-12 space-y-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "animate-spin rounded-full h-10 w-10 border-t-2 border-indigo-500 mx-auto"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-slate-400"
-  }, "Loading your answer choices...")), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl text-center"
-  }, error), !loading && !error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, hasSubmitted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-slate-900 p-12 rounded-2xl border border-slate-800 text-center space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-5xl"
-  }, "\u2705"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    className: "text-xl font-bold text-emerald-400"
-  }, "Response Submitted!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-slate-400 text-sm"
-  }, "Sit tight. Waiting for the rest of the players to choose their answers.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "space-y-4"
+    className: "fs-1 mb-2"
+  }, "\u2705"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "text-success fw-bold"
+  }, "Submitted!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small"
+  }, "Waiting for others...")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column gap-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-sm font-semibold text-slate-400 uppercase tracking-wider text-center"
-  }, "Select your favorite response:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "grid grid-cols-1 gap-3"
-  }, responses.map(function (resp, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "text-muted small fw-bold text-center text-uppercase"
+  }, "Pick one:"), responses.map(function (resp, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: idx,
+      variant: selectedIdx === idx ? "primary" : "outline-primary",
+      className: "text-start p-3",
       onClick: function onClick() {
         return setSelectedIdx(idx);
-      },
-      className: "w-full p-4 text-left rounded-xl border font-medium transition duration-150 transform hover:-translate-y-0.5 ".concat(selectedIdx === idx ? 'bg-indigo-600 border-indigo-400 text-white ring-2 ring-indigo-500 shadow-indigo-500/25 shadow-md' : 'bg-slate-900 border-slate-800 hover:border-slate-700 text-slate-300')
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "inline-block w-6 text-slate-500 font-mono text-sm"
-    }, idx + 1, "."), resp);
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "pt-4 flex justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: handleSubmit,
+      className: "text-muted me-2"
+    }, idx + 1, "."), resp.text);
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "warning",
+    className: "w-100 mt-3 fw-bold text-dark",
     disabled: selectedIdx === null,
-    className: "w-full md:w-64 py-4 rounded-xl font-bold text-lg shadow-lg transition duration-200 transform active:scale-95 ".concat(selectedIdx !== null ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 cursor-pointer' : 'bg-slate-850 text-slate-600 border border-slate-800 cursor-not-allowed')
-  }, "Submit Answer"))))));
+    onClick: handleSubmit
+  }, "Submit Answer")))));
 }
 
 /***/ }),

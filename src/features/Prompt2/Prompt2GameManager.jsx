@@ -22,141 +22,126 @@ export default function Prompt2GameManager() {
     const [roundResults, setRoundResults] = useState(null);
 
     useEffect(() => {
-        console.log("[GameManager] Mounting and establishing socket connection...");
         socket.connect();
 
-        // Join room cleanly on mount using synchronized backend keys
         if (roomCode && name) {
-            console.log(`[GameManager] Emitting joinRoom for room: ${roomCode}, player: ${name}`);
             socket.emit('joinRoom', { roomCode, playerName: name });
         }
 
         // Centralized room listener (Handles state transitions globally)
-        socket.on('room_updated', (data) => {
-            console.log("[GameManager] room_updated state received:", data); 
+socket.on('room_updated', (data) => {
+            console.log("SERVER UPDATED ROOM STATE TO:", data.gameState);
             setRoomData(data);
-            if (data.roomCode) {
-                setRoomCode(data.roomCode);
-            }
-            if (data.gameState) {
-                setGameState(data.gameState);
+            if (data.roomCode) setRoomCode(data.roomCode);
+            if (data.gameState) setGameState(data.gameState);
+            if (data.currentPrompt) {
+                setCurrentPrompt(data.currentPrompt);
             }
         });
 
-        // Step 1: Host chooses a prompt
+        // Specific phase listeners
         socket.on('prompt_options', (data) => {
             setPromptOptions(data.prompts);
             setGameState('prompt_selection');
         });
 
-        // Step 2: Everyone writes/chooses an answer
         socket.on('writing_phase_started', (data) => {
             setCurrentPrompt(data.prompt);
             setGameState('writing');
         });
 
-        // Step 3: Host judges anonymous submissions
         socket.on('start_judging', (data) => {
             setSubmissions(data.submissions);
             setGameState('judging');
         });
 
-        // Step 4: Show scoreboard and round winner
         socket.on('round_ended', (data) => {
             setRoundResults(data);
             setGameState('scoreboard');
         });
 
-        // Cleanup tracking listeners on component unmount
         return () => {
-            console.log("[GameManager] Cleaning up socket listeners...");
             socket.off('room_updated');
             socket.off('prompt_options');
             socket.off('writing_phase_started');
             socket.off('start_judging');
             socket.off('round_ended');
         };
-
     }, [roomCode, name]); 
 
-    // Strictly verify host identity using the socket context data structures
-    const isHost = roomData?.hostId === socket.id || roomData?.players[socket.id]?.isPlayerHost === true;
-    
-    // Extract array format out of raw room object data safely for map components
-    const playersArray = roomData && roomData.players ? Object.values(roomData.players) : [];
+    // Host Identification
+    const isHost = roomData?.hostId === socket.id || roomData?.players?.[socket.id]?.isPlayerHost === true;
+    const playersArray = roomData?.players ? Object.values(roomData.players) : [];
 
     // =========================================================================
-    // NEW SOCKET HANDLERS 
-    // (Note: Make sure these event names match what your Node.js backend expects!)
+    // SOCKET EVENT HANDLERS
+    // These trigger the backend updates. The backend will then 
+    // broadcast 'room_updated' which automatically refreshes the UI.
     // =========================================================================
     
-    // Handler for when the Host clicks on a prompt
     const handleSelectPrompt = (selectedPrompt) => {
-        console.log(`[GameManager] Host selected prompt: "${selectedPrompt}". Emitting 'select_prompt'...`);
-        socket.emit('selectPrompt', { roomCode, prompt: selectedPrompt });
+        socket.emit('select_prompt', { roomCode, selectedPrompt: selectedPrompt });
     };
 
-    // Handler for when a Player submits their response text
     const handleSubmitResponse = (responseChoice) => {
-        console.log(`[GameManager] Player submitting response: "${responseChoice}". Emitting 'submit_response'...`);
-        socket.emit('submitResponse', { roomCode, response: responseChoice });
+        socket.emit('submit_answer', { roomCode, answer: responseChoice });
     };
 
-    // Handler for when the Host decides to reveal the choices to the lobby
     const handleRevealChoices = () => {
-        console.log("[GameManager] Host revealing choices. Emitting 'reveal_choices'...");
-        socket.emit('revealChoices', { roomCode });
+        socket.emit('reveal_choices', { roomCode });
     };
 
-    // =========================================================================
+    const handlePickWinner = (winningPlayerId) => {
+    socket.emit('pick_winner', { roomCode, winningPlayerId });
+};
 
-    // Direct conditional screen rendering based on engine gameState state
+
+    // Rendering Logic
     switch (gameState) {
         case 'setup':
         case 'lobby':
-            return (
-                <Prompt2Lobby 
-                    roomCode={roomCode} 
-                    players={playersArray} 
-                    isHost={isHost} 
-                />
-            );
+            return <Prompt2Lobby roomCode={roomCode} players={playersArray} isHost={isHost} />;
+            
         case 'rules':
             return <Prompt2RulesScreen roomCode={roomCode} isHost={isHost} />;
         
         case 'prompt_selection':
             return (
                 <Prompt2PromptSelection 
-                    roomCode={roomCode} 
                     isHost={isHost} 
-                    options={promptOptions} 
-                    onSelectPrompt={handleSelectPrompt} // Pass the missing prop handler!
+                    onSelectPrompt={handleSelectPrompt} 
                 />
             );
             
         case 'writing':
-            // Count players who aren't the host
             const activePlayers = playersArray.filter(p => !p.isPlayerHost);
-            const totalPlayersCount = activePlayers.length || 1; // Fallback to 1 to avoid NaN divides
-            
-            // Count how many players have "hasSubmitted" flag set to true in the sync data
+            const totalPlayersCount = activePlayers.length || 1;
             const submittedCount = activePlayers.filter(p => p.hasSubmitted).length;
 
             return (
                 <Prompt2ResponseSelectionScreen 
                     isHost={isHost} 
-                    promptText={currentPrompt} 
+                    // Extract the text safely if it exists, otherwise pass the raw string
+                    promptText={currentPrompt?.text || currentPrompt || "Loading prompt..."} 
                     submittedCount={submittedCount}
                     totalPlayers={totalPlayersCount}
-                    onSubmitResponse={handleSubmitResponse} // Pass the submit handler!
-                    onRevealChoices={handleRevealChoices}     // Pass the reveal handler!
+                    onSubmitResponse={handleSubmitResponse}
+                    onRevealChoices={handleRevealChoices}
                 />
             );
             
         case 'judging':
-            return <Prompt2JudgingScreen roomCode={roomCode} isHost={isHost} submissions={submissions} />;
+            return ( 
+                <Prompt2JudgingScreen 
+                    roomCode={roomCode} 
+                    isHost={isHost} 
+                    submissions={submissions}
+                    onPickWinner={handlePickWinner}
+                    />
+            )
         case 'scoreboard':
             return <Prompt2Scoreboard roomCode={roomCode} isHost={isHost} results={roundResults} />;
+            
         default:
             return <div className="text-center mt-5 text-white">Loading Game Phase ({gameState})...</div>;
     }

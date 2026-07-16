@@ -10,13 +10,16 @@ export default function Prompt2Lobby({ roomCode, players =[], isHost }) {
     };
 
     return (
-        <Container className="mt-5 d-flex justify-content-center">
-            <Card className="shadow-sm w-100" style={{ maxWidth: '420px' }}>
+        <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: "80vh" }}>
+            <Card className="shadow-sm w-100" style={{ maxWidth: '450px' }}>
+                <Card.Header 
+                    as="h5" 
+                    className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
+                    style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
+                    PROMPT2 ROOM CREATED
+                </Card.Header>
                 <Card.Body className="text-center">
-                    
-                    <Card.Title className="fs-3 fw-bold mb-1 text-success">Waiting Room</Card.Title>
-                    <p className="text-muted small mb-4">Game: Judge Style Arena</p>
-                    
+                    <Card.Title className="fs-3 fw-bold mb-1 text-primary">Waiting For Players to Join...</Card.Title>
                     <div className="bg-light p-3 rounded mb-4 border">
                         <span className="text-secondary d-block small fw-bold text-uppercase">Room Code</span>
                         <span className="fs-2 fw-bold text-dark tracking-wide">{roomCode}</span>
@@ -41,7 +44,7 @@ export default function Prompt2Lobby({ roomCode, players =[], isHost }) {
                             disabled={players.length < 2}
                             onClick={handleShowRules}
                         >
-                            {players.length < 2 ? 'Waiting for Players (Min 3)' : 'All in!'}
+                            {players.length < 2 ? 'Waiting for Players' : 'All in!'}
                         </Button>
                     ) : (
                         <div className="text-muted small py-2 border border-dashed rounded bg-light">
@@ -50,6 +53,6 @@ export default function Prompt2Lobby({ roomCode, players =[], isHost }) {
                     )}
                 </Card.Body>
             </Card>
-        </Container>
+        </div>
     );
 }

@@ -179,6 +179,21 @@ export default function registerPrompt2Namespace(promptNS) {
             }
         });
 
+
+        // --- Event: Reveal Choices (for the judge) ---
+        socket.on('reveal_choices', ({ roomCode }) => {
+            const room = activePrompt2Rooms[roomCode];
+            if (room && socket.id === room.hostId) {
+                // Logic to transition the game state to judging or reveal results
+                room.gameState = 'judging'; 
+                console.log(`[BACKEND] Host revealing choices for room: ${roomCode}`);
+                
+                // Broadcast to all players that it's time to judge
+                promptNS.to(roomCode).emit('room_updated', room);
+            }
+        });
+
+
         // --- NEW Event: Move from Rules to Prompt Selection ---
         socket.on('startPromptSelection', async ({ roomCode }) => {
             const room = activePrompt2Rooms[roomCode];

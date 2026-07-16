@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+// Fixed 2: Added Row and Col to the Bootstrap imports
+import { Card, Badge, Row, Col } from 'react-bootstrap';
 
 /**
  * Prompt2PromptSelectionScreen
- * * @param {boolean} isHost - Determines if the current player is the host.
+ * @param {boolean} isHost - Determines if the current player is the host.
  * @param {function} onSelectPrompt - Callback function triggered when the host selects a card.
  */
 export default function Prompt2PromptSelectionScreen({
@@ -13,43 +15,44 @@ export default function Prompt2PromptSelectionScreen({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // 1. Fetch random prompts from the backend when the Host view mounts
-useEffect(() => {
-  if (isHost) {
-    // 1. Check if we are running locally
-    // const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    
-    // // 2. Point to localhost for local dev, or the working Render backend for production
-    // const backendBase = isLocal 
-    //   ? 'http://localhost:5000' // Change this to your Render URL if you aren't running a local backend
-    //   : 'https://game-temple-backend.onrender.com';
+  // Fetch random prompts from the backend when the Host view mounts
+  useEffect(() => {
+    if (isHost) {
+      // 1. Check if we are running locally
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      
+      // 2. Point to localhost for local dev, or the working Render backend for production
+      const backendBase = isLocal 
+        ? 'http://localhost:5000' 
+        : 'https://game-temple-backend.onrender.com';
 
-    setIsLoading(true);
-    
-    // 3. Fetch using the dynamically resolved backend base
-    fetch(`https://game-temple-backend.onrender.com/api/prompt2host`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`Failed to fetch cards: Status ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((response) => {
-        if (response.success && Array.isArray(response.data)) {
-          setOptions(response.data);
-        } else {
-          throw new Error("Invalid API response structure");
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching prompts:", err);
-        setError(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-}, [isHost]);
+      setIsLoading(true);
+      
+      // Fixed 3: Fetch using the dynamically resolved backend base string variable
+      fetch(`${backendBase}/api/prompt2host`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`Failed to fetch cards: Status ${res.status}`);
+          }
+          return res.json();
+        })
+        .then((response) => {
+          if (response.success && Array.isArray(response.data)) {
+            setOptions(response.data);
+          } else {
+            throw new Error("Invalid API response structure");
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching prompts:", err);
+          setError(err.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isHost]);
+
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)
   // ----------------------------------------------------
@@ -116,46 +119,85 @@ useEffect(() => {
   // HOST VIEW - SUCCESS STATE
   // ----------------------------------------------------
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-black p-6">
-      <div className="max-w-4xl w-full text-center space-y-8">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest bg-indigo-600/30 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20">
-            Host Turn
-          </span>
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 mt-3">
-            Pick the Perfect Prompt
-          </h1>
-          <p className="text-slate-400 mt-2 text-base md:text-lg">
+    <div className="d-flex justify-content-center align-items-center p-3">
+      {/* Main Framework Container locked down tightly to 450px */}
+      <Card className="text-center shadow-lg border-0" style={{ maxWidth: '450px', width: '100%' }}>
+        <Card.Header
+          as="h5"
+          className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
+          style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}
+        >
+          Prompt Selection
+        </Card.Header>
+
+        <Card.Body className="p-3">
+          {/* Core Context Headers */}
+          <p className="text-muted small mx-auto mb-4">
             Choose one of the three random cards below to set the theme for this round.
           </p>
-        </div>
 
-        {/* 3-Card Grid Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          {options.map((card, index) => (
-            <button
-              key={card._id || index} // MongoDB uses _id instead of id
-              onClick={() => onSelectPrompt(card)}
-              className="flex flex-col justify-between p-6 bg-slate-800 border-2 border-slate-700/60 rounded-2xl text-left transition-all duration-300 hover:border-indigo-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/10 active:scale-98 group min-h-[220px]"
-            >
-              {/* Card Header Tag */}
-              <span className="text-xs font-semibold tracking-wider text-indigo-400 uppercase bg-indigo-950/60 px-2.5 py-1 rounded-md w-max border border-indigo-500/10">
-                {card.type || 'prompt'}
-              </span>
-              
-              {/* Card Body Text */}
-              <p className="text-lg font-medium text-slate-200 mt-4 flex-grow group-hover:text-black leading-relaxed">
-                {card.text}
-              </p>
-              
-              {/* Action Prompt Indicator */}
-              <div className="mt-6 text-sm font-semibold text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
-                Choose this prompt <span>→</span>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
+          {/* Fixed: Added align-items-center to drop the buttons perfectly into the middle */}
+          <div className="d-flex flex-column align-items-center gap-3 mt-1" style={{ width: '100%' }}>
+            {options.map((card, index) => (
+              <Card 
+                key={card._id || index}
+                role="button"
+                tabIndex={0} 
+                onClick={() => onSelectPrompt(card)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelectPrompt(card);
+                  }
+                }}
+                // Left text-start so the inside text stays aligned nicely to the left
+                className="text-start p-3 border shadow-sm bg-white prompt-card-btn"
+                style={{ 
+                  width: '92%', // Fixed: Forces a deliberate, controlled width
+                  cursor: "pointer",
+                  transition: "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
+                }}
+              >
+                {/* Enforced content container alignment rules */}
+                <div className="w-100">
+                  {/* Content Categorization Flag */}
+                  <Badge 
+                    bg="light" 
+                    className="text-uppercase text-muted border tracking-wide px-2 py-1 fw-semibold"
+                    style={{ fontSize: '0.65rem' }}
+                  >
+                    {card.type || 'prompt'}
+                  </Badge>
+
+                  {/* Display Prompt Text */}
+                  <p className="fw-medium text-dark mb-0 mt-2 fs-6 lh-base">
+                    {card.text}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </Card.Body>
+      </Card>
+
+      {/* Custom hover transition rules styling */}
+      <style>{`
+        .prompt-card-btn {
+          border-color: rgba(0,0,0,0.1) !important;
+        }
+        .prompt-card-btn:hover {
+          transform: translateY(-2px);
+          border-color: #014eb6 !important;
+          box-shadow: 0 6px 12px rgba(1, 78, 182, 0.1) !important;
+        }
+        .prompt-card-btn:active {
+          transform: translateY(0px);
+        }
+        .prompt-card-btn:focus-visible {
+          outline: 2px solid #014eb6;
+          outline-offset: 2px;
+        }
+      `}</style>
     </div>
   );
 }
