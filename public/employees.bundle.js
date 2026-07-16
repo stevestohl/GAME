@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/Contents.jsx":
@@ -7,7 +8,6 @@
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Contents)
@@ -100,7 +100,6 @@ function Contents() {
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Page)
@@ -178,7 +177,6 @@ function Page() {
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ UniversalJoinForm)
@@ -261,7 +259,6 @@ function UniversalJoinForm(_ref) {
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -284,7 +281,6 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeAdd)
@@ -425,7 +421,6 @@ var EmployeeAdd = /*#__PURE__*/function (_React$Component) {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeEdit)
@@ -654,7 +649,6 @@ var EmployeeEdit = /*#__PURE__*/function (_React$Component) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeFilter)
@@ -691,7 +685,6 @@ function EmployeeFilter() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeList)
@@ -856,7 +849,6 @@ var EmployeeList = /*#__PURE__*/function (_React$Component) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeReport)
@@ -880,7 +872,6 @@ function EmployeeReport() {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardAdd)
@@ -1025,7 +1016,6 @@ function FlashcardAdd(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardEdit)
@@ -1194,7 +1184,6 @@ function FlashcardEdit(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardGame)
@@ -1436,7 +1425,6 @@ function FlashcardGame() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Flashcards)
@@ -1633,7 +1621,6 @@ function Flashcards() {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardsList)
@@ -1888,7 +1875,6 @@ function FlashcardsList() {
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BarHome)
@@ -1968,7 +1954,6 @@ function BarHome() {
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Home)
@@ -2178,7 +2163,6 @@ function Home() {
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "handleCreatePrompt2Room": () => (/* binding */ handleCreatePrompt2Room)
@@ -2212,14 +2196,13 @@ function handleCreatePrompt2Room(playerName, navigate) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2GameManager)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _Prompt2Lobby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Prompt2Lobby */ "./src/features/Prompt2/Prompt2Lobby.jsx");
 /* harmony import */ var _Prompt2RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Prompt2RulesScreen.jsx */ "./src/features/Prompt2/Prompt2RulesScreen.jsx");
@@ -2227,7 +2210,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Prompt2ResponseSelectionScreen */ "./src/features/Prompt2/Prompt2ResponseSelectionScreen.jsx");
 /* harmony import */ var _Prompt2JudgingScreen_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Prompt2JudgingScreen.jsx */ "./src/features/Prompt2/Prompt2JudgingScreen.jsx");
 /* harmony import */ var _Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Prompt2Scoreboard.jsx */ "./src/features/Prompt2/Prompt2Scoreboard.jsx");
-/* harmony import */ var _Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _Prompt2RoundWinner_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Prompt2RoundWinner.jsx */ "./src/features/Prompt2/Prompt2RoundWinner.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -2243,9 +2226,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Prompt2GameManager() {
   var _roomData$players, _roomData$players$soc;
-  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useSearchParams)(),
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
   var name = searchParams.get('name') || 'Anonymous';
@@ -2314,7 +2298,11 @@ function Prompt2GameManager() {
     });
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('round_ended', function (data) {
       setRoundResults(data);
-      setGameState('scoreboard');
+      if (data.isGameOver) {
+        setGameState('scoreboard');
+      } else {
+        setGameState('winner_reveal');
+      }
     });
     return function () {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('room_updated');
@@ -2349,6 +2337,11 @@ function Prompt2GameManager() {
   };
   var handleRevealChoices = function handleRevealChoices() {
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('reveal_choices', {
+      roomCode: roomCode
+    });
+  };
+  var handleNextRound = function handleNextRound() {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('nextRound', {
       roomCode: roomCode
     });
   };
@@ -2403,11 +2396,19 @@ function Prompt2GameManager() {
         submissions: submissions,
         onPickWinner: handlePickWinner
       });
-    case 'scoreboard':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((_Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7___default()), {
+    case 'winner_reveal':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2RoundWinner_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
         roomCode: roomCode,
         isHost: isHost,
-        results: roundResults
+        results: roundResults,
+        onNextRound: handleNextRound,
+        nextHostName: (roundResults === null || roundResults === void 0 ? void 0 : roundResults.nextHostName) || "UNKNOWN"
+      });
+    case 'scoreboard':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2Scoreboard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        roomCode: roomCode,
+        isHost: isHost,
+        players: playersArray
       });
     default:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2424,7 +2425,6 @@ function Prompt2GameManager() {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2JudgingScreen)
@@ -2435,9 +2435,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 
 
+
+// Fix 1: Make sure 'submissions' is inside the curly braces { }
 function Prompt2JudgingScreen(_ref) {
   var isHost = _ref.isHost,
-    submission = _ref.submission,
+    _ref$submissions = _ref.submissions,
+    submissions = _ref$submissions === void 0 ? [] : _ref$submissions,
     onPickWinner = _ref.onPickWinner;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-3"
@@ -2457,11 +2460,11 @@ function Prompt2JudgingScreen(_ref) {
     }
   }, "Judging Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
     className: "p-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-center text-muted fw-bold mb-4"
-  }, isHost ? "Pick the best response!" : "Waiting for the judge to decide..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-center fw-bold mb-4"
+  }, "Host: Pick the best response!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-column gap-3"
-  }, submissions && submissions.length > 0 ? submissions.map(function (sub, idx) {
+  }, submissions.map(function (sub, idx) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: idx,
       className: "border shadow-sm p-3"
@@ -2469,16 +2472,22 @@ function Prompt2JudgingScreen(_ref) {
       className: "d-flex justify-content-between align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "fw-medium text-dark"
-    }, sub.answer), isHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, sub.answer.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
       variant: "outline-success",
       size: "sm",
       onClick: function onClick() {
         return onPickWinner(sub.playerId);
       }
     }, "\uD83C\uDFC6 Pick")));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center p-4 text-muted"
-  }, "No submissions yet...")))));
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center py-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fs-1 mb-3"
+  }, "\u2696\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "text-primary fw-bold"
+  }, "Waiting for Judge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted"
+  }, "The host is currently reviewing the answers. Sit tight!")))));
 }
 
 /***/ }),
@@ -2489,7 +2498,6 @@ function Prompt2JudgingScreen(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2Lobby)
@@ -2573,7 +2581,6 @@ function Prompt2Lobby(_ref) {
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2PromptSelectionScreen)
@@ -2777,7 +2784,6 @@ function Prompt2PromptSelectionScreen(_ref) {
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2ResponseSelectionScreen)
@@ -3010,13 +3016,65 @@ function Prompt2ResponseSelectionScreen(_ref) {
 
 /***/ }),
 
+/***/ "./src/features/Prompt2/Prompt2RoundWinner.jsx":
+/*!*****************************************************!*\
+  !*** ./src/features/Prompt2/Prompt2RoundWinner.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ RoundWinnerScreen)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+
+
+
+// Removed duplicate prop, ensured 'results' is included
+function RoundWinnerScreen(_ref) {
+  var results = _ref.results,
+    nextHostName = _ref.nextHostName,
+    onNextRound = _ref.onNextRound,
+    isHost = _ref.isHost;
+  // Safety check: Don't crash if results are still loading
+  if (!results || !results.winner) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading results...");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg border-0",
+    style: {
+      maxWidth: '450px',
+      width: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    className: "text-center bg-success text-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Winner: ", results.winner.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Answer: ", results.winner.currentAnswer.text))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mt-4 p-2 bg-light rounded"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "mb-0"
+  }, "Next Judge: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, nextHostName))), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-3",
+    variant: "primary",
+    size: "lg",
+    onClick: onNextRound
+  }, "Begin Next Round") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted mt-3"
+  }, "Waiting for ", nextHostName, " to start the next round..."))));
+}
+
+/***/ }),
+
 /***/ "./src/features/Prompt2/Prompt2RulesScreen.jsx":
 /*!*****************************************************!*\
   !*** ./src/features/Prompt2/Prompt2RulesScreen.jsx ***!
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2RulesScreen)
@@ -3074,9 +3132,69 @@ function Prompt2RulesScreen(_ref) {
 /*!****************************************************!*\
   !*** ./src/features/Prompt2/Prompt2Scoreboard.jsx ***!
   \****************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Prompt2Scoreboard)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Table.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
+function Prompt2Scoreboard(_ref) {
+  var _ref$players = _ref.players,
+    players = _ref$players === void 0 ? [] : _ref$players,
+    isHost = _ref.isHost;
+  // Sort players by score descending (highest first)
+  var sortedPlayers = _toConsumableArray(players).sort(function (a, b) {
+    return b.score - a.score;
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg border-0",
+    style: {
+      maxWidth: '500px',
+      width: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    className: "text-center bg-dark text-white py-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+    className: "mb-0"
+  }, "Final Scores")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    hover: true,
+    responsive: true,
+    className: "mt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Rank"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Player"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    className: "text-end"
+  }, "Score"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, sortedPlayers.map(function (player, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
+      key: player.id,
+      className: index === 0 ? "table-warning fw-bold" : ""
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, player.name, " ", index === 0 ? "🏆" : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "text-end"
+    }, player.score));
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, {
+    className: "text-center bg-white border-0 py-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted"
+  }, "Thanks for playing!"), isHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "outline-primary",
+    onClick: function onClick() {
+      return window.location.reload();
+    }
+  }, "Play Again"))));
+}
 
 /***/ }),
 
@@ -3086,7 +3204,6 @@ function Prompt2RulesScreen(_ref) {
   \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TictactoeRoom),
@@ -3284,6 +3401,8 @@ function TictactoeRoom() {
     }
   }, "Tic-Tac-Toe Room Created"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
     className: "p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: _assets_logos_HourGlass_gif__WEBPACK_IMPORTED_MODULE_6__,
     alt: "Waiting Hourglass",
@@ -3292,7 +3411,7 @@ function TictactoeRoom() {
       maxWidth: "140px",
       height: "auto"
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "display-4 fw-bold text-primary mb-2"
   }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted fw-bold small text-uppercase tracking-wider mb-0"
@@ -3429,7 +3548,6 @@ function TictactoeRoom() {
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "handleCreateTttRoom": () => (/* binding */ handleCreateTttRoom)
@@ -3482,7 +3600,6 @@ function handleCreateTttRoom(playerName, navigate, setIsCreatingRoom) {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ QuestionScreen)
@@ -3576,7 +3693,6 @@ function QuestionScreen(_ref) {
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ RulesScreen)
@@ -3640,7 +3756,6 @@ function RulesScreen(_ref) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ScoreboardScreen)
@@ -3731,7 +3846,6 @@ function ScoreboardScreen(_ref) {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "handleCreateTriviaRoom": () => (/* binding */ handleCreateTriviaRoom)
@@ -3781,7 +3895,6 @@ function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom) {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ GameOverScreen)
@@ -3883,7 +3996,6 @@ function GameOverScreen(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaWaitingRoom)
@@ -3902,7 +4014,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _QuestionScreen_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuestionScreen.jsx */ "./src/features/Trivia/QuestionScreen.jsx");
 /* harmony import */ var _ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ScoreboardScreen.jsx */ "./src/features/Trivia/ScoreboardScreen.jsx");
 /* harmony import */ var _TriviaGameOver_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TriviaGameOver.jsx */ "./src/features/Trivia/TriviaGameOver.jsx");
-/* harmony import */ var _assets_logos_HourGlass_gif__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../assets/logos/HourGlass.gif */ "./src/assets/logos/HourGlass.gif");
+/* harmony import */ var _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../assets/logos/Prompt2Blueberries.gif */ "./src/assets/logos/Prompt2Blueberries.gif");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -4058,19 +4170,29 @@ function TriviaWaitingRoom() {
       width: "100%"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Header, {
-    as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase",
     style: {
       backgroundColor: '#014eb6',
       color: '#f1f2f5',
-      letterSpacing: '0.2em'
+      letterSpacing: '0.2em',
+      fontSize: '0.85rem' // Explicitly setting a smaller, cleaner size
     }
   }, "TRIVIA ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Title, {
-    className: "fs-3 fw-bold mb-4 text-primary"
+    className: "fs-3 fw-bold mb-2 text-primary"
   }, "Trivia Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-light border border-secondary rounded p-3 mb-4"
+    className: "my-2 bg-white p-2 rounded-3 d-inline-block shadow-lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_6__,
+    alt: "Waiting Hourglass",
+    className: "img-fluid",
+    style: {
+      maxWidth: "140px",
+      height: "auto"
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mt-4 mb-4 bg-light border border-secondary rounded p-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "text-uppercase tracking-wider small fw-bold text-muted d-block mb-1"
   }, "Room Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -4094,7 +4216,7 @@ function TriviaWaitingRoom() {
   })), role === 'host' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "primary",
     className: "w-100 fw-bold py-2 shadow-sm",
-    onClick: handleStartGame // FIX: Connected the click listener
+    onClick: handleStartGame
   }, "Start Game") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted small py-2 border border-dashed rounded bg-light"
   }, "Waiting for host to launch the match..."))));
@@ -4108,7 +4230,6 @@ function TriviaWaitingRoom() {
   \****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "7e6af87e7c42ff614657.gif";
 
 /***/ }),
@@ -4119,7 +4240,6 @@ module.exports = __webpack_require__.p + "7e6af87e7c42ff614657.gif";
   \********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "52e1a2fc0ccdd3e2ee00.png";
 
 /***/ }),
@@ -4130,7 +4250,6 @@ module.exports = __webpack_require__.p + "52e1a2fc0ccdd3e2ee00.png";
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
 
 /***/ }),
@@ -4141,8 +4260,17 @@ module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "dad1b0ee3a5c252adfc7.png";
+
+/***/ }),
+
+/***/ "./src/assets/logos/Prompt2Blueberries.gif":
+/*!*************************************************!*\
+  !*** ./src/assets/logos/Prompt2Blueberries.gif ***!
+  \*************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "bd8002f46102dac80ef0.gif";
 
 /***/ }),
 
@@ -4152,7 +4280,6 @@ module.exports = __webpack_require__.p + "dad1b0ee3a5c252adfc7.png";
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "c33163bef38b2a6ae0d9.png";
 
 /***/ }),
@@ -4163,7 +4290,6 @@ module.exports = __webpack_require__.p + "c33163bef38b2a6ae0d9.png";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
 
 /***/ }),
@@ -4174,7 +4300,6 @@ module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
 
 /***/ }),
@@ -4185,7 +4310,6 @@ module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
 
 /***/ }),
@@ -4196,7 +4320,6 @@ module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
   \*************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
 
 /***/ }),
@@ -4207,7 +4330,6 @@ module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
   \***************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "funnyNames": () => (/* binding */ funnyNames),
@@ -4237,7 +4359,6 @@ function getRandomFunnyName() {
   \***********************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),

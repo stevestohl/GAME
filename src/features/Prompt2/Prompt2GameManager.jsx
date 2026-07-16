@@ -7,6 +7,7 @@ import Prompt2PromptSelection from './Prompt2PromptSelectionScreen.jsx';
 import Prompt2ResponseSelectionScreen from './Prompt2ResponseSelectionScreen'; 
 import Prompt2JudgingScreen from './Prompt2JudgingScreen.jsx';
 import Prompt2Scoreboard from './Prompt2Scoreboard.jsx';
+import RoundWinnerScreen from './Prompt2RoundWinner.jsx';
 
 export default function Prompt2GameManager() {
     const [searchParams] = useSearchParams();
@@ -57,7 +58,11 @@ socket.on('room_updated', (data) => {
 
         socket.on('round_ended', (data) => {
             setRoundResults(data);
-            setGameState('scoreboard');
+            if(data.isGameOver) {
+                setGameState('scoreboard')
+            } else {
+                setGameState('winner_reveal');
+            }
         });
 
         return () => {
@@ -89,6 +94,11 @@ socket.on('room_updated', (data) => {
 
     const handleRevealChoices = () => {
         socket.emit('reveal_choices', { roomCode });
+    };
+
+
+    const handleNextRound = () => {
+        socket.emit('nextRound', { roomCode });
     };
 
     const handlePickWinner = (winningPlayerId) => {
@@ -139,9 +149,24 @@ socket.on('room_updated', (data) => {
                     onPickWinner={handlePickWinner}
                     />
             )
+        case 'winner_reveal':
+            return (
+                <RoundWinnerScreen
+                roomCode={roomCode}
+                isHost={isHost}
+                results={roundResults}
+                onNextRound={handleNextRound}
+                nextHostName={roundResults?.nextHostName || "UNKNOWN"}
+                />
+            )
         case 'scoreboard':
-            return <Prompt2Scoreboard roomCode={roomCode} isHost={isHost} results={roundResults} />;
-            
+            return (
+                <Prompt2Scoreboard 
+                    roomCode={roomCode} 
+                    isHost={isHost} 
+                    players={playersArray}
+                />
+            )
         default:
             return <div className="text-center mt-5 text-white">Loading Game Phase ({gameState})...</div>;
     }

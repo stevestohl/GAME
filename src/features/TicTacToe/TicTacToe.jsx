@@ -128,12 +128,14 @@ export default function TictactoeRoom() {
                 </Card.Header>
                 
                 <Card.Body className="p-4">
-                    <img
-                        src={HourGlass}
-                        alt="Waiting Hourglass"
-                        className="img-fluid"
-                        style={{ maxWidth: "140px", height: "auto" }}
-                    />
+                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
+                        <img
+                            src={HourGlass}
+                            alt="Waiting Hourglass"
+                            className="img-fluid"
+                            style={{ maxWidth: "140px", height: "auto" }}
+                        />
+                    </div>
                     <h1 className="display-4 fw-bold text-primary mb-2">{roomCode}</h1>
                     <p className="text-muted fw-bold small text-uppercase tracking-wider mb-0">
                         Waiting for opponent...

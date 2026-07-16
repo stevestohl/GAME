@@ -1,9 +1,10 @@
-import React from "react";
-import { Card, Button } from 'react-bootstrap'
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
 
-export default function Prompt2JudgingScreen({ isHost, submission, onPickWinner}){
-
-return (
+// Fix 1: Make sure 'submissions' is inside the curly braces { }
+export default function Prompt2JudgingScreen({ isHost, submissions = [], onPickWinner }) {
+  
+  return (
     <div className="d-flex justify-content-center align-items-center p-3">
       <Card className="shadow-lg border-0" style={{ maxWidth: '450px', width: '100%' }}>
         <Card.Header as="h5" className="border-0 py-2 fw-black tracking-widest text-uppercase fs-6 text-center" 
@@ -12,18 +13,16 @@ return (
         </Card.Header>
 
         <Card.Body className="p-3">
-          <p className="text-center text-muted fw-bold mb-4">
-            {isHost ? "Pick the best response!" : "Waiting for the judge to decide..."}
-          </p>
-
-          <div className="d-flex flex-column gap-3">
-            {submissions && submissions.length > 0 ? (
-              submissions.map((sub, idx) => (
-                <Card key={idx} className="border shadow-sm p-3">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="fw-medium text-dark">{sub.answer}</span>
-                    
-                    {isHost && (
+          
+          {/* Fix 2: Added conditional UI for guests vs host */}
+          {isHost ? (
+            <>
+              <p className="text-center fw-bold mb-4">Host: Pick the best response!</p>
+              <div className="d-flex flex-column gap-3">
+                {submissions.map((sub, idx) => (
+                  <Card key={idx} className="border shadow-sm p-3">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <span className="fw-medium text-dark">{sub.answer.text}</span>
                       <Button 
                         variant="outline-success" 
                         size="sm" 
@@ -31,14 +30,19 @@ return (
                       >
                         🏆 Pick
                       </Button>
-                    )}
-                  </div>
-                </Card>
-              ))
-            ) : (
-              <div className="text-center p-4 text-muted">No submissions yet...</div>
-            )}
-          </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-5">
+              <div className="fs-1 mb-3">⚖️</div>
+              <h5 className="text-primary fw-bold">Waiting for Judge</h5>
+              <p className="text-muted">The host is currently reviewing the answers. Sit tight!</p>
+            </div>
+          )}
+
         </Card.Body>
       </Card>
     </div>
