@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Card, Badge, Button, ListGroup } from 'react-bootstrap';
 import { prompt2Socket as socket } from '../../socket.js';
+//import Prompt2Logo from '../../assets/logos/Prompt2Logo.gif';
 
 export default function Prompt2Lobby({ roomCode, players =[], isHost }) {
     
@@ -20,6 +21,15 @@ export default function Prompt2Lobby({ roomCode, players =[], isHost }) {
                 </Card.Header>
                 <Card.Body className="text-center">
                     <Card.Title className="fs-3 fw-bold mb-1 text-primary">Waiting For Players to Join...</Card.Title>
+                                        {/* Image Container */}
+                    <div className="my-2 bg-white p-2 rounded-3 d-inline-block shadow-lg">
+                        <img
+                            src='https://game-temple.org/Prompt2Logo.gif'
+                            alt="Prompt2Logo"
+                            className="img-fluid"
+                            style={{ maxWidth: "140px", height: "auto" }}
+                        />
+                    </div>
                     <div className="bg-light p-3 rounded mb-4 border">
                         <span className="text-secondary d-block small fw-bold text-uppercase">Room Code</span>
                         <span className="fs-2 fw-bold text-dark tracking-wide">{roomCode}</span>

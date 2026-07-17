@@ -2169,9 +2169,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 
-function handleCreatePrompt2Room(playerName, navigate) {
+function handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom) {
   var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
   console.log("Request Prompt2 Room creation for ".concat(cleanName));
+  if (setIsCreatingRoom) setIsCreatingRoom(true);
+  var timeout = setTimeout(function () {
+    setIsCreatingRoom(false);
+    alert("The server is taking too long to wake up. Please try again.");
+    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated'); // Clean up the listener
+  }, 60000);
   if (!_socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connected) {
     console.warn("Prompt2Socket socket is disconnected! Connecting...");
     _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connect();
@@ -2183,7 +2189,7 @@ function handleCreatePrompt2Room(playerName, navigate) {
   _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.once('roomcreated', function (_ref) {
     var roomCode = _ref.roomCode;
     console.log("Prompt2 room created successfully! Code: ".concat(roomCode));
-    // FIXED: Route changed from /TriviaWaitingRoom to /prompt2
+    if (setIsCreatingRoom) setIsCreatingRoom(false);
     navigate("/prompt2?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(cleanName)));
   });
 }
@@ -2512,6 +2518,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//import Prompt2Logo from '../../assets/logos/Prompt2Logo.gif';
+
 function Prompt2Lobby(_ref) {
   var roomCode = _ref.roomCode,
     _ref$players = _ref.players,
@@ -2546,6 +2554,16 @@ function Prompt2Lobby(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
     className: "fs-3 fw-bold mb-1 text-primary"
   }, "Waiting For Players to Join..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "my-2 bg-white p-2 rounded-3 d-inline-block shadow-lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: "https://game-temple.org/Prompt2Logo.gif",
+    alt: "Prompt2Logo",
+    className: "img-fluid",
+    style: {
+      maxWidth: "140px",
+      height: "auto"
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "bg-light p-3 rounded mb-4 border"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "text-secondary d-block small fw-bold text-uppercase"
@@ -4184,8 +4202,8 @@ function TriviaWaitingRoom() {
   }, "Trivia Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-2 bg-white p-2 rounded-3 d-inline-block shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_6__,
-    alt: "Waiting Hourglass",
+    src: "https://game-temple.org/Prompt2Blueberries.gif",
+    alt: "BlueBerries",
     className: "img-fluid",
     style: {
       maxWidth: "140px",

@@ -149,8 +149,8 @@ export default function TriviaWaitingRoom() {
                     {/* Image Container */}
                     <div className="my-2 bg-white p-2 rounded-3 d-inline-block shadow-lg">
                         <img
-                            src={BlueBerries}
-                            alt="Waiting Hourglass"
+                            src='https://game-temple.org/Prompt2Blueberries.gif'
+                            alt="BlueBerries"
                             className="img-fluid"
                             style={{ maxWidth: "140px", height: "auto" }}
                         />
