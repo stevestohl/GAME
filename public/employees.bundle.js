@@ -2270,6 +2270,27 @@ function Prompt2GameManager() {
     roundResults = _useState14[0],
     setRoundResults = _useState14[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get or generate Persistnt player ID
+    var playerId = localStorage.getItem('prompt2_player_id');
+    if (!playerId) {
+      playerId = crypto.randomUUID();
+      localStorage.setItem('prompt2_player_id', playerId);
+    }
+
+    // Define Connect Handler
+    var onConnect = function onConnect() {
+      console.log("Connected! Registering with playerId:", playerId);
+      if (roomCode && name) {
+        // Pass the persistent ID to the backend
+        _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
+          roomCode: roomCode,
+          playerName: name,
+          playerId: playerId
+        });
+      }
+    };
+    // Setup Listeners
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('connect', onConnect);
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connect();
     if (roomCode && name) {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
@@ -2310,8 +2331,23 @@ function Prompt2GameManager() {
         setGameState('winner_reveal');
       }
     });
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('sync_game_state'), function (data) {
+      console.log("Full state recover: ", data);
+
+      // udpate all necessary state variables at once
+      setRoomData(data.roomData);
+      setGameState(data.gameState);
+
+      // Check if these fields exists in sync played
+      if (data.submissions) setSubmissions(data.submissions);
+      if (data.currentPrompt) setCurrentPrompt(data.currentPrompt);
+      if (data.promptOptions) setPromptOptions(data.promptOptions);
+      if (data.roundResults) setRoundResults(data.roundResults);
+    };
     return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('connect', onConnect);
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('room_updated');
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('sync_game_state');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('prompt_options');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('writing_phase_started');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('start_judging');

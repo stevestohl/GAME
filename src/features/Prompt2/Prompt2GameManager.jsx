@@ -23,6 +23,23 @@ export default function Prompt2GameManager() {
     const [roundResults, setRoundResults] = useState(null);
 
     useEffect(() => {
+        // Get or generate Persistnt player ID
+        let playerId = localStorage.getItem('prompt2_player_id');
+        if (!playerId) {
+            playerId = crypto.randomUUID();
+            localStorage.setItem('prompt2_player_id', playerId);
+        }
+
+        // Define Connect Handler
+        const onConnect = () => {
+            console.log("Connected! Registering with playerId:", playerId);
+            if (roomCode && name) {
+                // Pass the persistent ID to the backend
+                socket.emit('joinRoom', { roomCode, playerName: name, playerId });
+            }
+        };
+        // Setup Listeners
+        socket.on('connect', onConnect);
         socket.connect();
 
         if (roomCode && name) {
@@ -61,12 +78,29 @@ socket.on('room_updated', (data) => {
             if(data.isGameOver) {
                 setGameState('scoreboard')
             } else {
-                setGameState('winner_reveal');
+                setGameState('winner_reveal')
             }
         });
 
+
+        socket.on('sync_game_state'), (data) => {
+            console.log("Full state recover: ", data)
+
+            // udpate all necessary state variables at once
+            setRoomData(data.roomData)
+            setGameState(data.gameState)
+
+            // Check if these fields exists in sync played
+            if(data.submissions) setSubmissions(data.submissions)
+            if(data.currentPrompt) setCurrentPrompt(data.currentPrompt)
+            if(data.promptOptions) setPromptOptions(data.promptOptions)
+            if (data.roundResults) setRoundResults(data.roundResults);
+        
+            }
         return () => {
+            socket.off('connect', onConnect);
             socket.off('room_updated');
+            socket.off('sync_game_state')
             socket.off('prompt_options');
             socket.off('writing_phase_started');
             socket.off('start_judging');
