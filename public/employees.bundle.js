@@ -1209,6 +1209,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var API_BASE_URL = 'https://game-temple-backend.onrender.com';
 function FlashcardGame() {
+  var _feedbackModal$drinkD, _feedbackModal$drinkD2;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     allDrinks = _useState2[0],
@@ -1238,8 +1239,24 @@ function FlashcardGame() {
     isLoading = _useState14[0],
     setIsLoading = _useState14[1];
   var TOTAL_ROUNDS = 10;
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(Array(TOTAL_ROUNDS).fill(null)),
+    _useState16 = _slicedToArray(_useState15, 2),
+    roundHistory = _useState16[0],
+    setRoundHistory = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      show: false,
+      isCorrect: false,
+      drinkData: null
+    }),
+    _useState18 = _slicedToArray(_useState17, 2),
+    feedbackModal = _useState18[0],
+    setFeedbackModal = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    gameOverModal = _useState20[0],
+    setGameOverModal = _useState20[1]; // Fixed: Added missing state
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // 🔄 Added catch and finally blocks to control the modal state
     fetch("".concat(API_BASE_URL, "/api/drinks")).then(function (res) {
       return res.json();
     }).then(function (data) {
@@ -1264,8 +1281,7 @@ function FlashcardGame() {
     if (visibleDrinks.length > 0) {
       startRound();
     }
-  }, [allDrinks, filterMode, round]); // Added filterMode to dependencies to trigger reload on switch
-
+  }, [allDrinks, filterMode, round]);
   function startRound() {
     if (visibleDrinks.length === 0) return;
 
@@ -1287,24 +1303,48 @@ function FlashcardGame() {
     setFilterMode(mode);
     setRound(1); // Reset game state
     setScore(0);
+    setRoundHistory(Array(TOTAL_ROUNDS).fill(null));
+    setGameOverModal(false);
   }
   function handleGuess(drink) {
-    var currentScore = score;
-    if (drink._id === correctDrink._id) {
-      setScore(function (prev) {
-        return prev + 1;
-      });
-      currentScore += 1;
+    var isCorrect = drink._id === correctDrink._id;
+    var newScore = score;
+    if (isCorrect) {
+      newScore += 1;
+      setScore(newScore);
     }
+
+    // Update the 10-square round history tracker
+    var updateHistory = _toConsumableArray(roundHistory);
+    updateHistory[round - 1] = isCorrect;
+    setRoundHistory(updateHistory);
+
+    // Show feedback modal with the correct drink details
+    setFeedbackModal({
+      show: true,
+      isCorrect: isCorrect,
+      drinkData: correctDrink
+    });
+  }
+  function handleNextRound() {
+    setFeedbackModal({
+      show: false,
+      isCorrect: false,
+      drinkData: null
+    }); // Fixed: changed drink to drinkData
     if (round < TOTAL_ROUNDS) {
       setRound(function (prev) {
         return prev + 1;
       });
     } else {
-      alert("Game over! You scored ".concat(currentScore, " out of ").concat(TOTAL_ROUNDS));
-      setRound(1); // Automatically reset the loop
-      setScore(0);
+      setGameOverModal(true);
     }
+  }
+  function handleRestartGame() {
+    setGameOverModal(false);
+    setRound(1);
+    setScore(0);
+    setRoundHistory(Array(TOTAL_ROUNDS).fill(null));
   }
 
   // 1. FIRST GUARD: Show the waking up modal if we are still fetching data
@@ -1389,6 +1429,22 @@ function FlashcardGame() {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
     className: "mt-3"
   }, "Round ", round, " / ", TOTAL_ROUNDS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Score: ", score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center gap-1 my-2 px-3"
+  }, roundHistory.map(function (status, index) {
+    var bgClass = "bg-light border text-muted"; // unplayed
+    if (status === true) bgClass = "bg-primary text-white border-primary"; // correct (blue)
+    if (status === false) bgClass = "bg-danger text-white border-danger"; // incorrect (red)
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: index,
+      className: "d-flex align-items-center justify-content-center rounded-2 fw-bold small ".concat(bgClass),
+      style: {
+        width: "32px",
+        height: "32px",
+        transition: "all 0.2s"
+      }
+    }, index + 1);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-wrap justify-content-center gap-2 px-2 my-2"
   }, options.map(function (drink) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -1414,7 +1470,72 @@ function FlashcardGame() {
       whiteSpace: "pre-line"
     },
     className: "ps-2 mb-0 text-muted text-start fs-6"
-  }, correctDrink.recipe ? correctDrink.recipe.replaceAll(',', ',\n') : "No details listed.")))));
+  }, correctDrink.recipe ? correctDrink.recipe.replaceAll(',', ',\n') : "No details listed.")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    show: feedbackModal.show,
+    backdrop: "static",
+    keyboard: false,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    className: "text-white ".concat(feedbackModal.isCorrect ? 'bg-primary' : 'bg-danger')
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Title, {
+    className: "fw-bold"
+  }, feedbackModal.isCorrect ? '🎉 Correct!' : '❌ Oops! Incorrect')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "text-start py-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "fw-bold text-dark mb-1"
+  }, feedbackModal.isCorrect ? 'You nailed it!' : 'The correct drink was:'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-primary fw-bold mb-3"
+  }, (_feedbackModal$drinkD = feedbackModal.drinkData) === null || _feedbackModal$drinkD === void 0 ? void 0 : _feedbackModal$drinkD.drinkName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-body-secondary p-3 rounded-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
+    className: "fw-bold text-secondary mb-1"
+  }, "Recipe:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    style: {
+      whiteSpace: "pre-line"
+    },
+    className: "mb-0 text-muted fs-6"
+  }, (_feedbackModal$drinkD2 = feedbackModal.drinkData) !== null && _feedbackModal$drinkD2 !== void 0 && _feedbackModal$drinkD2.recipe ? feedbackModal.drinkData.recipe.replaceAll(',', ',\n') : "No details listed."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: feedbackModal.isCorrect ? 'primary' : 'danger',
+    onClick: handleNextRound,
+    className: "w-100 fw-bold"
+  }, round < TOTAL_ROUNDS ? 'Next Round ➔' : 'View Final Score 🏆'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    show: gameOverModal,
+    backdrop: "static",
+    keyboard: false,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
+    className: "bg-primary text-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Title, {
+    className: "fw-bold"
+  }, "\uD83C\uDFC6 Game Complete!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "text-center py-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "fw-bold mb-2"
+  }, "Great job playing!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5 text-muted mb-3"
+  }, "You scored ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-primary"
+  }, score), " out of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, TOTAL_ROUNDS)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center gap-1 my-3"
+  }, roundHistory.map(function (status, index) {
+    var bgClass = "bg-light text-muted";
+    if (status === true) bgClass = "bg-primary text-white";
+    if (status === false) bgClass = "bg-danger text-white";
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: index,
+      className: "d-flex align-items-center justify-content-center rounded-1 small ".concat(bgClass),
+      style: {
+        width: "24px",
+        height: "24px"
+      }
+    }, index + 1);
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "primary",
+    onClick: handleRestartGame,
+    className: "w-100 fw-bold"
+  }, "Play Again \uD83D\uDD04"))));
 }
 
 /***/ }),
@@ -2173,25 +2294,44 @@ function handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom) {
   var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
   console.log("Request Prompt2 Room creation for ".concat(cleanName));
   if (setIsCreatingRoom) setIsCreatingRoom(true);
+
+  // 1. Set the timeout
   var timeout = setTimeout(function () {
     setIsCreatingRoom(false);
     alert("The server is taking too long to wake up. Please try again.");
-    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated'); // Clean up the listener
+    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated');
   }, 60000);
-  if (!_socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connected) {
-    console.warn("Prompt2Socket socket is disconnected! Connecting...");
-    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connect();
-  }
-  _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated');
 
-  // Create the room/event
-  _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.emit('createRoom');
+  // 2. Helper to emit the create event
+  var emitCreate = function emitCreate() {
+    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.emit('createRoom', {
+      playerName: cleanName
+    });
+  };
+
+  // 3. Setup the Success Listener
+  _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.off('roomcreated'); // Clean slate
   _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.once('roomcreated', function (_ref) {
     var roomCode = _ref.roomCode;
+    clearTimeout(timeout); // IMPORTANT: Stop the timeout if we succeed!
     console.log("Prompt2 room created successfully! Code: ".concat(roomCode));
     if (setIsCreatingRoom) setIsCreatingRoom(false);
     navigate("/prompt2?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(cleanName)));
   });
+
+  // 4. Handle Connection
+  if (_socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connected) {
+    emitCreate();
+  } else {
+    console.warn("Socket disconnected! Waiting for connection to emit...");
+    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.connect();
+
+    // Wait until we are connected, THEN emit
+    _socket__WEBPACK_IMPORTED_MODULE_0__.prompt2Socket.once('connect', function () {
+      console.log("Socket connected, now emitting createRoom...");
+      emitCreate();
+    });
+  }
 }
 
 /***/ }),
@@ -2279,7 +2419,7 @@ function Prompt2GameManager() {
 
     // Define Connect Handler
     var onConnect = function onConnect() {
-      console.log("Connected! Registering with playerId:", playerId);
+      console.log("Connected! Joining or Rejoining with ID: ", playerId);
       if (roomCode && name) {
         // Pass the persistent ID to the backend
         _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
@@ -2292,12 +2432,6 @@ function Prompt2GameManager() {
     // Setup Listeners
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('connect', onConnect);
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.connect();
-    if (roomCode && name) {
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('joinRoom', {
-        roomCode: roomCode,
-        playerName: name
-      });
-    }
 
     // Centralized room listener (Handles state transitions globally)
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('room_updated', function (data) {
@@ -2331,7 +2465,7 @@ function Prompt2GameManager() {
         setGameState('winner_reveal');
       }
     });
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('sync_game_state'), function (data) {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.on('sync_game_state', function (data) {
       console.log("Full state recover: ", data);
 
       // udpate all necessary state variables at once
@@ -2343,7 +2477,7 @@ function Prompt2GameManager() {
       if (data.currentPrompt) setCurrentPrompt(data.currentPrompt);
       if (data.promptOptions) setPromptOptions(data.promptOptions);
       if (data.roundResults) setRoundResults(data.roundResults);
-    };
+    });
     return function () {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('connect', onConnect);
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.off('room_updated');
@@ -2365,6 +2499,12 @@ function Prompt2GameManager() {
   // broadcast 'room_updated' which automatically refreshes the UI.
   // =========================================================================
 
+  var handleCreateRoom = function handleCreateRoom() {
+    // Make sure 'name' is defined in your component
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('createRoom', {
+      playerName: name
+    });
+  };
   var handleSelectPrompt = function handleSelectPrompt(selectedPrompt) {
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('select_prompt', {
       roomCode: roomCode,

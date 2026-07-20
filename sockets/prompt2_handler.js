@@ -2,7 +2,7 @@ import Prompt2Model from "../models/Prompt2.js";
 
 const activePrompt2Rooms = {}; 
 
-const createRoomLogic = (socket, roomsObject) => {
+const createRoomLogic = (socket, roomsObject, playerName) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let randomLetters = '';
     for (let i = 0; i < 3; i++) {
@@ -21,7 +21,7 @@ const createRoomLogic = (socket, roomsObject) => {
         players: {
             [socket.id]: {
                 id: socket.id,
-                name: 'Host',
+                name: playerName || 'Host',
                 score: 0,
                 hasSubmitted: false,
                 currentAnswer: "",
@@ -40,11 +40,14 @@ export default function registerPrompt2Namespace(promptNS) {
         console.log(`[Prompt2 Socket] Player connected: ${socket.id}`);
 
         // ---- Event: Room Creation ------
-        socket.on('createRoom', () => {
-            const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms);
-            socket.join(roomCode);
-            socket.emit('roomcreated', { roomCode, players });
-        });
+    socket.on('createRoom', (data) => {
+        const nameToUse = data.playerName || 'Host';
+        const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse);
+        
+    // CRITICAL: You were missing these two lines!
+    socket.join(roomCode); 
+    socket.emit('roomcreated', { roomCode, players });
+});
 
        // --- Event: Room Joining ---
 socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {
@@ -74,6 +77,7 @@ socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {
         const existingPlayerKey = Object.keys(currentRoom.players).find(
             (key) => currentRoom.players[key].playerId === playerId
         );
+        //console.log("Found existing player?", !!existingPlayerKey)
 
         if (existingPlayerKey) {
             console.log(`[Reconnection] Player ${playerName} reconnected.`);
@@ -255,7 +259,6 @@ socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {
 
         // --- Event: Handle Disconnection ---
         socket.on('disconnect', () => {
-            // ... (Your existing disconnect logic)
         });
     });
 }

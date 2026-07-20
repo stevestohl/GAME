@@ -32,7 +32,7 @@ export default function Prompt2GameManager() {
 
         // Define Connect Handler
         const onConnect = () => {
-            console.log("Connected! Registering with playerId:", playerId);
+            console.log("Connected! Joining or Rejoining with ID: ", playerId);
             if (roomCode && name) {
                 // Pass the persistent ID to the backend
                 socket.emit('joinRoom', { roomCode, playerName: name, playerId });
@@ -41,10 +41,6 @@ export default function Prompt2GameManager() {
         // Setup Listeners
         socket.on('connect', onConnect);
         socket.connect();
-
-        if (roomCode && name) {
-            socket.emit('joinRoom', { roomCode, playerName: name });
-        }
 
         // Centralized room listener (Handles state transitions globally)
 socket.on('room_updated', (data) => {
@@ -83,7 +79,7 @@ socket.on('room_updated', (data) => {
         });
 
 
-        socket.on('sync_game_state'), (data) => {
+        socket.on('sync_game_state', (data) => {
             console.log("Full state recover: ", data)
 
             // udpate all necessary state variables at once
@@ -96,7 +92,7 @@ socket.on('room_updated', (data) => {
             if(data.promptOptions) setPromptOptions(data.promptOptions)
             if (data.roundResults) setRoundResults(data.roundResults);
         
-            }
+            })
         return () => {
             socket.off('connect', onConnect);
             socket.off('room_updated');
@@ -118,6 +114,12 @@ socket.on('room_updated', (data) => {
     // broadcast 'room_updated' which automatically refreshes the UI.
     // =========================================================================
     
+
+    const handleCreateRoom = () => {
+    // Make sure 'name' is defined in your component
+    socket.emit('createRoom', { playerName: name }); 
+    }; 
+
     const handleSelectPrompt = (selectedPrompt) => {
         socket.emit('select_prompt', { roomCode, selectedPrompt: selectedPrompt });
     };
