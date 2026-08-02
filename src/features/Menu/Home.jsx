@@ -104,6 +104,7 @@ export default function Home() {
                                             ❔❔
                                         </Button>
                                     </Col>
+
                                     <Col xs={6}>
                                         <Button
                                             variant="primary"
@@ -119,6 +120,20 @@ export default function Home() {
                                             Prompt <br/> 2
                                         </Button>
                                     </Col>
+
+                                    <Col xs={6}>
+                                        <Button 
+                                            variant="primary" 
+                                            className="fw-bold w-100 h-100 py-2 shadow-sm"
+                                            disabled={isCreatingRoom}
+                                            onClick={() => setShowComingSoon(true)}
+                                        >
+                                            Button<br/>
+                                            🔘🔘
+                                        </Button>
+                                    </Col>
+
+
                                 </Row>
                             </Col>
                         </Row>
