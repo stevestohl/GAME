@@ -1752,9 +1752,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Table.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Table.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
 /* harmony import */ var _FlashcardAdd_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FlashcardAdd.jsx */ "./src/features/Flashcards/FlashcardAdd.jsx");
 /* harmony import */ var _FlashcardEdit_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashcardEdit.jsx */ "./src/features/Flashcards/FlashcardEdit.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -1803,6 +1806,25 @@ function FlashcardsList() {
     _useState12 = _slicedToArray(_useState11, 2),
     isLoading = _useState12[0],
     setIsLoading = _useState12[1];
+
+  // 🔍 Filter States
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState14 = _slicedToArray(_useState13, 2),
+    nameFilter = _useState14[0],
+    setNameFilter = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    recipeFilter = _useState16[0],
+    setRecipeFilter = _useState16[1];
+
+  // 🔃 Sort State: tracks column key and direction ('asc' or 'desc')
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      key: null,
+      direction: 'asc'
+    }),
+    _useState18 = _slicedToArray(_useState17, 2),
+    sortConfig = _useState18[0],
+    setSortConfig = _useState18[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     function loadDrinks() {
       return _loadDrinks.apply(this, arguments);
@@ -1823,14 +1845,12 @@ function FlashcardsList() {
                 return res.json();
               case 6:
                 data = _context.sent;
-                // Fixed 1: Changed setAllDrinks to setDrinks to match state declaration
                 setDrinks(data.drinks || []);
                 _context.next = 13;
                 break;
               case 10:
                 _context.prev = 10;
                 _context.t0 = _context["catch"](0);
-                // Fixed 2: Changed error to err to match catch parameter
                 console.log("Failed to wake up server:", _context.t0);
               case 13:
                 _context.prev = 13;
@@ -1845,10 +1865,8 @@ function FlashcardsList() {
       }));
       return _loadDrinks.apply(this, arguments);
     }
-    loadDrinks(); // Don't forget to invoke it inside useEffect!
+    loadDrinks();
   }, []);
-
-  // Called by FlashcardAdd.jsx after successful POST
   function handleDrinkAdded(newDrink, msg) {
     setDrinks(function (prev) {
       return [].concat(_toConsumableArray(prev), [newDrink]);
@@ -1864,8 +1882,6 @@ function FlashcardsList() {
     });
     setToastMessage("Drink removed successfully!");
     setShowToast(true);
-
-    // 🔄 Updated to route the DELETE request to Render
     fetch("".concat(API_BASE_URL, "/api/drinks/").concat(id), {
       method: 'DELETE'
     }).then(function (res) {
@@ -1877,7 +1893,17 @@ function FlashcardsList() {
     });
   };
 
-  // Fixed 4: Handled early loading return here to keep background clean
+  // 🔃 Sort Handler: Updates sort config when a header is clicked
+  var requestSort = function requestSort(key) {
+    var direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({
+      key: key,
+      direction: direction
+    });
+  };
   if (isLoading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: isLoading,
@@ -1896,7 +1922,47 @@ function FlashcardsList() {
       className: "text-muted small mb-0"
     }, "Waking up server...")));
   }
-  var drinkRows = drinks.map(function (drink) {
+
+  // 1. First, apply filters
+  var filteredDrinks = drinks.filter(function (drink) {
+    var matchesName = (drink.drinkName || "").toLowerCase().includes(nameFilter.toLowerCase());
+    var matchesRecipe = (drink.recipe || "").toLowerCase().includes(recipeFilter.toLowerCase());
+    return matchesName && matchesRecipe;
+  });
+
+  // 2. Then, apply sorting to the filtered results
+  var sortedDrinks = _toConsumableArray(filteredDrinks).sort(function (a, b) {
+    if (!sortConfig.key) return 0; // If no sort key is set, keep original order
+
+    var valA = a[sortConfig.key];
+    var valB = b[sortConfig.key];
+
+    // Handle the unique 'Created' column logic to sort by the rendered text
+    if (sortConfig.key === 'created') {
+      valA = a.isDefault ? "Default" : a.createdByAnon ? "Anonymous" : "User";
+      valB = b.isDefault ? "Default" : b.createdByAnon ? "Anonymous" : "User";
+    }
+
+    // Fallback to empty string to prevent errors if a field is null/undefined
+    valA = valA ? String(valA).toLowerCase() : "";
+    valB = valB ? String(valB).toLowerCase() : "";
+    if (valA < valB) {
+      return sortConfig.direction === 'asc' ? -1 : 1;
+    }
+    if (valA > valB) {
+      return sortConfig.direction === 'asc' ? 1 : -1;
+    }
+    return 0;
+  });
+
+  // Helper to render the up/down arrows in the table headers
+  var getSortIcon = function getSortIcon(columnName) {
+    if (sortConfig.key !== columnName) return null;
+    return sortConfig.direction === 'asc' ? ' ▲' : ' ▼';
+  };
+
+  // 3. Map over the sorted & filtered drinks
+  var drinkRows = sortedDrinks.map(function (drink) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
       key: drink._id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
@@ -1927,11 +1993,40 @@ function FlashcardsList() {
     }, "X")));
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "shadow-sm border-0 mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    md: 6,
+    className: "mb-3 mb-md-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Group, {
+    controlId: "filterName"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Label, {
+    className: "fw-semibold text-muted small"
+  }, "Filter by Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Control, {
+    type: "text",
+    placeholder: "e.g. \"marg\"",
+    value: nameFilter,
+    onChange: function onChange(e) {
+      return setNameFilter(e.target.value);
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    md: 6
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Group, {
+    controlId: "filterRecipe"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Label, {
+    className: "fw-semibold text-muted small"
+  }, "Filter by Recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Control, {
+    type: "text",
+    placeholder: "e.g. \"tequila\"",
+    value: recipeFilter,
+    onChange: function onChange(e) {
+      return setRecipeFilter(e.target.value);
+    }
+  })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "shadow-lg border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
     as: "h5",
     className: "d-flex justify-content-between align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Flashcards List ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Flashcards List ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     bg: "secondary"
   }, drinkRows.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     variant: "primary",
@@ -1939,11 +2034,40 @@ function FlashcardsList() {
     onClick: function onClick() {
       return setShowAddModal(true);
     }
-  }, "Add Drink")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "Add Drink")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     striped: true,
     size: "sm",
-    responsive: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Drink Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Drink Recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Garnish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Created"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    responsive: true,
+    hover: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    onClick: function onClick() {
+      return requestSort('drinkName');
+    },
+    style: {
+      cursor: 'pointer'
+    }
+  }, "Drink Name ", getSortIcon('drinkName')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    onClick: function onClick() {
+      return requestSort('recipe');
+    },
+    style: {
+      cursor: 'pointer'
+    }
+  }, "Drink Recipe ", getSortIcon('recipe')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    onClick: function onClick() {
+      return requestSort('garnish');
+    },
+    style: {
+      cursor: 'pointer'
+    }
+  }, "Garnish ", getSortIcon('garnish')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    onClick: function onClick() {
+      return requestSort('created');
+    },
+    style: {
+      cursor: 'pointer'
+    }
+  }, "Created ", getSortIcon('created')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     className: "text-center"
   }, "Delete"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, drinkRows)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_FlashcardAdd_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     show: showAddModal,
@@ -1967,7 +2091,7 @@ function FlashcardsList() {
       setShowToast(true);
       setCurrentEditingDrink(null);
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     onClose: function onClose() {
       return setShowToast(false);
     },
@@ -1981,9 +2105,9 @@ function FlashcardsList() {
       right: "20px",
       zIndex: 9999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "me-auto"
-  }, "Success")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
+  }, "Success")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
     className: "text-white"
   }, toastMessage)));
 }

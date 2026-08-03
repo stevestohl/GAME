@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Badge, Table, Button, Toast, Modal, Spinner } from 'react-bootstrap'
+import { Card, Badge, Table, Button, Toast, Modal, Spinner, Form, Row, Col } from 'react-bootstrap'
 import FlashcardAdd from './FlashcardAdd.jsx'
 import FlashcardEdit from './FlashcardEdit.jsx'
 
@@ -15,24 +15,28 @@ export default function FlashcardsList() {
     const [currentEditingDrink, setCurrentEditingDrink] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
+    // 🔍 Filter States
+    const [nameFilter, setNameFilter] = useState("")
+    const [recipeFilter, setRecipeFilter] = useState("")
+
+    // 🔃 Sort State: tracks column key and direction ('asc' or 'desc')
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
+
     useEffect(() => {
         async function loadDrinks() {
             try {
                 const res = await fetch(`${API_BASE_URL}/api/drinks`)
                 const data = await res.json()
-                // Fixed 1: Changed setAllDrinks to setDrinks to match state declaration
                 setDrinks(data.drinks || [])
             } catch (err) {
-                // Fixed 2: Changed error to err to match catch parameter
                 console.log("Failed to wake up server:", err)
             } finally {
                 setIsLoading(false)
             }
         }
-        loadDrinks(); // Don't forget to invoke it inside useEffect!
+        loadDrinks(); 
     }, [])
 
-    // Called by FlashcardAdd.jsx after successful POST
     function handleDrinkAdded(newDrink, msg) {
         setDrinks(prev => [...prev, newDrink])
         setToastMessage(msg)
@@ -44,14 +48,21 @@ export default function FlashcardsList() {
         setToastMessage("Drink removed successfully!")
         setShowToast(true)
         
-        // 🔄 Updated to route the DELETE request to Render
         fetch(`${API_BASE_URL}/api/drinks/${id}`, { method: 'DELETE' })
             .then(res => res.json())
             .then(data => console.log("Delete confirmation:", data))
             .catch(err => console.error("Error deleting drink:", err))
     }
 
-    // Fixed 4: Handled early loading return here to keep background clean
+    // 🔃 Sort Handler: Updates sort config when a header is clicked
+    const requestSort = (key) => {
+        let direction = 'asc'
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc'
+        }
+        setSortConfig({ key, direction })
+    }
+
     if (isLoading) {
         return (
             <Modal
@@ -62,7 +73,6 @@ export default function FlashcardsList() {
             >
                 <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4 text-center'>
                     <Spinner animation='border' variant='primary' className='mb-3'/>
-                    {/* Fixed 3: Updated contextual copy text */}
                     <h4 className='fw-bold text-dark'>Loading Drinks...</h4>
                     <p className='text-muted small mb-0'>
                         Waking up server...
@@ -72,10 +82,49 @@ export default function FlashcardsList() {
         )
     }
 
-    const drinkRows = drinks.map(drink => (
+    // 1. First, apply filters
+    const filteredDrinks = drinks.filter(drink => {
+        const matchesName = (drink.drinkName || "").toLowerCase().includes(nameFilter.toLowerCase())
+        const matchesRecipe = (drink.recipe || "").toLowerCase().includes(recipeFilter.toLowerCase())
+        return matchesName && matchesRecipe
+    })
+
+    // 2. Then, apply sorting to the filtered results
+    const sortedDrinks = [...filteredDrinks].sort((a, b) => {
+        if (!sortConfig.key) return 0; // If no sort key is set, keep original order
+
+        let valA = a[sortConfig.key];
+        let valB = b[sortConfig.key];
+
+        // Handle the unique 'Created' column logic to sort by the rendered text
+        if (sortConfig.key === 'created') {
+            valA = a.isDefault ? "Default" : (a.createdByAnon ? "Anonymous" : "User");
+            valB = b.isDefault ? "Default" : (b.createdByAnon ? "Anonymous" : "User");
+        }
+
+        // Fallback to empty string to prevent errors if a field is null/undefined
+        valA = valA ? String(valA).toLowerCase() : "";
+        valB = valB ? String(valB).toLowerCase() : "";
+
+        if (valA < valB) {
+            return sortConfig.direction === 'asc' ? -1 : 1;
+        }
+        if (valA > valB) {
+            return sortConfig.direction === 'asc' ? 1 : -1;
+        }
+        return 0;
+    })
+
+    // Helper to render the up/down arrows in the table headers
+    const getSortIcon = (columnName) => {
+        if (sortConfig.key !== columnName) return null;
+        return sortConfig.direction === 'asc' ? ' ▲' : ' ▼';
+    }
+
+    // 3. Map over the sorted & filtered drinks
+    const drinkRows = sortedDrinks.map(drink => (
         <tr key={drink._id}>
             <td className="align-middle">
-                {/* 1. CONDITIONAL EDIT LINK */}
                 {drink.isDefault ? (
                     <span className="fw-semibold text-dark">{drink.drinkName}</span>
                 ) : (
@@ -94,7 +143,6 @@ export default function FlashcardsList() {
                 {drink.isDefault ? "Default" : (drink.createdByAnon ? "Anonymous" : "User")}
             </td>
             <td className='text-center align-middle'>
-                {/* 2. CONDITIONAL DELETE BUTTON */}
                 <Button 
                     variant={drink.isDefault ? 'secondary' : 'danger'} 
                     size="sm" 
@@ -109,6 +157,35 @@ export default function FlashcardsList() {
     
     return (
         <>
+            <Card className='shadow-sm border-0 mb-4'>
+                <Card.Body>
+                    <Row>
+                        <Col md={6} className="mb-3 mb-md-0">
+                            <Form.Group controlId="filterName">
+                                <Form.Label className="fw-semibold text-muted small">Filter by Name</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder='e.g. "marg"' 
+                                    value={nameFilter}
+                                    onChange={(e) => setNameFilter(e.target.value)}
+                                />
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                            <Form.Group controlId="filterRecipe">
+                                <Form.Label className="fw-semibold text-muted small">Filter by Recipe</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder='e.g. "tequila"' 
+                                    value={recipeFilter}
+                                    onChange={(e) => setRecipeFilter(e.target.value)}
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
+
             <Card className='shadow-lg border-0'>
                 <Card.Header as='h5' className="d-flex justify-content-between align-items-center">
                     <div>
@@ -125,13 +202,22 @@ export default function FlashcardsList() {
                 </Card.Header>
 
                 <Card.Body>
-                    <Table striped size="sm" responsive>
+                    <Table striped size="sm" responsive hover>
                         <thead>
                             <tr>
-                                <th>Drink Name</th>
-                                <th>Drink Recipe</th>
-                                <th>Garnish</th>
-                                <th>Created</th>
+                                {/* Added inline styles so the cursor changes to a pointer, indicating it's clickable */}
+                                <th onClick={() => requestSort('drinkName')} style={{ cursor: 'pointer' }}>
+                                    Drink Name {getSortIcon('drinkName')}
+                                </th>
+                                <th onClick={() => requestSort('recipe')} style={{ cursor: 'pointer' }}>
+                                    Drink Recipe {getSortIcon('recipe')}
+                                </th>
+                                <th onClick={() => requestSort('garnish')} style={{ cursor: 'pointer' }}>
+                                    Garnish {getSortIcon('garnish')}
+                                </th>
+                                <th onClick={() => requestSort('created')} style={{ cursor: 'pointer' }}>
+                                    Created {getSortIcon('created')}
+                                </th>
                                 <th className="text-center">Delete</th>
                             </tr>
                         </thead>
@@ -140,7 +226,6 @@ export default function FlashcardsList() {
                 </Card.Body>
             </Card>
 
-            {/* Add Drink Modal */}
             <FlashcardAdd 
                 show={showAddModal}
                 onHide={() => setShowAddModal(false)}
@@ -161,7 +246,6 @@ export default function FlashcardsList() {
                 />
             )}
 
-            {/* Notification Toast */}
             <Toast 
                 onClose={() => setShowToast(false)} 
                 show={showToast} 
