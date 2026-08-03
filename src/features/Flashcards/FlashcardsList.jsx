@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Badge, Table, Button, Toast, Modal, Spinner, Form, Row, Col } from 'react-bootstrap'
+import { Card, Badge, Table, Button, Toast, Modal, Spinner, Form, Row, Col, Collapse } from 'react-bootstrap'
 import FlashcardAdd from './FlashcardAdd.jsx'
 import FlashcardEdit from './FlashcardEdit.jsx'
 
@@ -18,6 +18,7 @@ export default function FlashcardsList() {
     // 🔍 Filter States
     const [nameFilter, setNameFilter] = useState("")
     const [recipeFilter, setRecipeFilter] = useState("")
+    const [openFilters, setOpenFilters] = useState(false)
 
     // 🔃 Sort State: tracks column key and direction ('asc' or 'desc')
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
@@ -157,7 +158,23 @@ export default function FlashcardsList() {
     
     return (
         <>
-            <Card className='shadow-sm border-0 mb-4'>
+<Card className='shadow-sm border-0 mb-4'>
+    <Card.Header 
+        as='h5' 
+        className='d-flex justify-content-between align-items-center bg-secondary-subtle' 
+        onClick={()=> setOpenFilters(!openFilters)}
+        style={{ cursor: 'pointer'}}
+        aria-controls="filter-collapse-content"
+        aria-expanded={openFilters}
+    >
+        Filters
+        <span className='text-muted' style={{ fontSize: '0.8rem'}}> {/* Fixed 0.08rem to 0.8rem */}
+            {openFilters ? '▲' : '▼'}
+        </span>
+    </Card.Header>
+
+        <Collapse in={openFilters}>
+            <div id="filter-collapse-content">
                 <Card.Body>
                     <Row>
                         <Col md={6} className="mb-3 mb-md-0">
@@ -184,10 +201,12 @@ export default function FlashcardsList() {
                         </Col>
                     </Row>
                 </Card.Body>
-            </Card>
+            </div>
+        </Collapse>
+    </Card>
 
             <Card className='shadow-lg border-0'>
-                <Card.Header as='h5' className="d-flex justify-content-between align-items-center">
+                <Card.Header as='h5' className="d-flex justify-content-between align-items-center bg-secondary-subtle">
                     <div>
                         Flashcards List <Badge bg="secondary">{drinkRows.length}</Badge>
                     </div>
