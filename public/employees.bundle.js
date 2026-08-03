@@ -2422,9 +2422,9 @@ function Home() {
       className: "fs-1 mb-2"
     }, "\uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
       className: "fw-bold text-dark"
-    }, "Prompt 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    }, "Button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
       className: "text-muted small mb-4"
-    }, "This game mode is currently under construction deep within the temple layout. Stay tuned!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }, "This button is fake."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "primary",
       className: "fw-bold px-4 shadow-sm",
       onClick: function onClick() {

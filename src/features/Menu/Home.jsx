@@ -162,9 +162,9 @@ export default function Home() {
             >
                 <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4 text-center'>
                     <div className="fs-1 mb-2">🚧</div>
-                    <h4 className='fw-bold text-dark'>Prompt 2</h4>
+                    <h4 className='fw-bold text-dark'>Button</h4>
                     <p className='text-muted small mb-4'>
-                        This game mode is currently under construction deep within the temple layout. Stay tuned!
+                        This button is fake.
                     </p>
                     <Button 
                         variant="primary" 
