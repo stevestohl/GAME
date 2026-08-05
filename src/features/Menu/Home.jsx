@@ -46,6 +46,13 @@ export default function Home() {
             {/* CSS ANIMATION STYLES INJECTED HERE */}
             <style>
                 {`
+                    .temple-logo {
+                        image-rendering: -moz-crisp-edges;
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges;
+                        image-rendering: pixelated;                 
+                    }
+
                     @keyframes burglarHeist {
                         0%   { transform: translate(400px, -50%); opacity: 1; }  /* Starts way off to the right */
                         35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */
@@ -83,9 +90,10 @@ export default function Home() {
                 <Card.Body className='p-1'>
                     <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
                         <img 
-                            src="https://game-temple.org/Game_Temple_Animated.gif"
+                            className='temple-logo'
+                            src="https://game-temple.org/Game_Temple_Animated.gif?v=2"
                             alt="Animated Game-Temple Logo"
-                            style={{ maxWidth: "130px", height: "auto" }}
+                            // style={{ maxWidth: "130px", height: "auto" }}
                         />
                     </div>
 
@@ -165,7 +173,7 @@ export default function Home() {
                                         {/* The Burglar Character */}
                                             <div className={`burglar-character ${burglarActive ? 'burglar-running' : ''}`}>
                                                 {/* 2. USE THE IMPORTED IMAGES IN AN IMG TAG */}
-                                                 <img 
+                                             <img 
                                                     src={isStolen ? burglarWithButton : burglarEmpty} 
                                                     alt="Button Burglar"
                                                     style={{ 

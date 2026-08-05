@@ -2359,7 +2359,7 @@ function Home() {
     style: {
       minHeight: "100vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    @keyframes burglarHeist {\n                        0%   { transform: translate(400px, -50%); opacity: 1; }  /* Starts way off to the right */\n                        35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */\n                        50%  { transform: translate(0px, -50%); opacity: 1; }    /* Pauses to grab it */\n                        85%  { transform: translate(-400px, -50%); opacity: 1; } /* Runs away to the left */\n                        100% { transform: translate(-400px, -50%); opacity: 0; } /* Disappears */\n                    }\n                    .burglar-character {\n                        position: absolute;\n                        top: 50%;\n                        left: 40%;\n                        z-index: 999;\n                        opacity: 0;\n                        pointer-events: none; /* So it doesn't block clicks */\n                    }\n                    .burglar-running {\n                        animation: burglarHeist 3s ease-in-out forwards;\n                    }\n                    .stolen-slot {\n                        border: 2px dashed #ccc;\n                        background-color: transparent;\n                        color: #aaa;\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    .temple-logo {\n                        image-rendering: -moz-crisp-edges;\n                        image-rendering: -webkit-optimize-contrast;\n                        image-rendering: crisp-edges;\n                        image-rendering: pixelated;                 \n                    }\n\n                    @keyframes burglarHeist {\n                        0%   { transform: translate(400px, -50%); opacity: 1; }  /* Starts way off to the right */\n                        35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */\n                        50%  { transform: translate(0px, -50%); opacity: 1; }    /* Pauses to grab it */\n                        85%  { transform: translate(-400px, -50%); opacity: 1; } /* Runs away to the left */\n                        100% { transform: translate(-400px, -50%); opacity: 0; } /* Disappears */\n                    }\n                    .burglar-character {\n                        position: absolute;\n                        top: 50%;\n                        left: 40%;\n                        z-index: 999;\n                        opacity: 0;\n                        pointer-events: none; /* So it doesn't block clicks */\n                    }\n                    .burglar-running {\n                        animation: burglarHeist 3s ease-in-out forwards;\n                    }\n                    .stolen-slot {\n                        border: 2px dashed #ccc;\n                        background-color: transparent;\n                        color: #aaa;\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "text-center shadow-lg border-0 position-relative",
     style: {
       maxWidth: "450px",
@@ -2378,12 +2378,10 @@ function Home() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: "https://game-temple.org/Game_Temple_Animated.gif",
-    alt: "Animated Game-Temple Logo",
-    style: {
-      maxWidth: "130px",
-      height: "auto"
-    }
+    className: "temple-logo",
+    src: "https://game-temple.org/Game_Temple_Animated.gif?v=2",
+    alt: "Animated Game-Temple Logo"
+    // style={{ maxWidth: "130px", height: "auto" }}
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "border p-1 bg-body-secondary shadow-sm rounded-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Title, {
