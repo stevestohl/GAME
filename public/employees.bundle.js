@@ -121,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
 function NavBar() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     variant: "light",
-    className: "justify-content-center py-0",
+    className: "justify-content-center py-0 position-relative",
     style: {
       backgroundColor: "#e3f2fd"
     }
@@ -2328,16 +2328,20 @@ function Home() {
     _useState4 = _slicedToArray(_useState3, 2),
     isCreatingRoom = _useState4[0],
     setIsCreatingRoom = _useState4[1];
-
-  // 🥷 Burglar Animation States
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    burglarActive = _useState6[0],
-    setBurglarActive = _useState6[1];
+    isUnderConstruction = _useState6[0],
+    setIsUnderConstruction = _useState6[1];
+
+  // 🥷 Burglar Animation States
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState8 = _slicedToArray(_useState7, 2),
-    isStolen = _useState8[0],
-    setIsStolen = _useState8[1];
+    burglarActive = _useState8[0],
+    setBurglarActive = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isStolen = _useState10[0],
+    setIsStolen = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // 1. Wait 2 seconds after the page loads, then start the burglar animation
     var initialTimer = setTimeout(function () {
@@ -2418,9 +2422,20 @@ function Home() {
     className: "flex-grow-1 my-0 opacity-25"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "mx-2 my-2 text-muted small fw-bold text-center"
-  }, "OR ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Create New Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+  }, "OR ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\xAC\xF8 Create New Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    xs: 12
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    className: "g-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    variant: "primary",
+    className: "fw-bold w-100 h-100 py-2 shadow-small",
+    disabled: isCreatingRoom,
+    onClick: function onClick() {
+      return setIsUnderConstruction(true);
+    }
+  }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDECB\uFE0F\uD83D\uDECB\uFE0F")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     xs: 12
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "g-2"
@@ -2486,7 +2501,24 @@ function Home() {
     className: "fw-bold text-dark"
   }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted small mb-0"
-  }, "Waking up game server..."))));
+  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    show: isUnderConstruction,
+    onHide: function onHide() {
+      return setIsUnderConstruction(false);
+    },
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
+    className: "d-flex flex-column align-items-center justify-content-center p-4 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "fw-bold mb-3"
+  }, "\uD83D\uDEA7 Under Construction \uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted medium mb-4"
+  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    variant: "primary",
+    onClick: function onClick() {
+      return setIsUnderConstruction(false);
+    }
+  }, "Close"))));
 }
 
 /***/ }),
@@ -4788,6 +4820,7 @@ function getRandomFunnyName() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "couchCastSocket": () => (/* binding */ couchCastSocket),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "prompt2Socket": () => (/* binding */ prompt2Socket),
 /* harmony export */   "triviaSocket": () => (/* binding */ triviaSocket)
@@ -4806,6 +4839,10 @@ var triviaSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".conca
   autoConnect: false
 });
 var prompt2Socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/prompt2"), {
+  transports: ['websocket', 'polling'],
+  autoConnect: false
+});
+var couchCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/couchcast"), {
   transports: ['websocket', 'polling'],
   autoConnect: false
 });

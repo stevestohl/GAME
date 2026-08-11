@@ -13,12 +13,14 @@ import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import { handleCreateTttRoom } from '../TicTacToe/TicTacToeCreateButton.jsx';
 import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
 
+
 export default function Home() {
     const [playerName, setPlayerName] = useState(getRandomFunnyName);
     const navigate = useNavigate();
 
     // Loading states
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
+    const [isUnderConstruction, setIsUnderConstruction] = useState(false)
     
     // 🥷 Burglar Animation States
     const [burglarActive, setBurglarActive] = useState(false);
@@ -114,7 +116,6 @@ export default function Home() {
                                 className="py-2" 
                             />
                         </Form.Group>
-
                         <Row className="g-2">
                             <Col xs={12} className="text-start">
                                 <Form.Label className="fw-bold text-muted small mb-1 ps-1">Join Active Room</Form.Label>
@@ -124,12 +125,27 @@ export default function Home() {
                             <Col xs={12} className="d-flex align-items-center mt-1 mb-0">
                                 <hr className="flex-grow-1 my-0 opacity-25" />
                                 <span className="mx-2 my-2 text-muted small fw-bold text-center">
-                                    OR <br />
+                                    OR <br />¬ø
                                     Create New Room
                                 </span>
                                 <hr className="flex-grow-1 my-0 opacity-25" />
                             </Col>
                             
+                            <Col xs={12}>
+                                <Row className='g-2'>
+                                    <Col>
+                                        <Button
+                                            variant='primary'
+                                            className='fw-bold w-100 h-100 py-2 shadow-small'
+                                            disabled={isCreatingRoom}
+                                            onClick={()=> setIsUnderConstruction(true)}
+                                            >
+                                            Couch Cast<br/>
+                                            🛋️🛋️
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Col>
                             <Col xs={12}>
                                 <Row className="g-2">
                                     <Col xs={6}>
@@ -215,6 +231,18 @@ export default function Home() {
                     <p className='text-muted small mb-0'>
                         Waking up game server...
                     </p>
+                </Modal.Body>
+            </Modal>
+
+            <Modal show={isUnderConstruction} onHide={() => setIsUnderConstruction(false)} centered>
+                <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4 text-center'>
+                    <h5 className="fw-bold mb-3">🚧 Under Construction 🚧</h5>
+                    <p className='text-muted medium mb-4'>
+                        This game is currently being built. Check back soon!
+                    </p>
+                    <Button variant="primary" onClick={() => setIsUnderConstruction(false)}>
+                        Close
+                    </Button>
                 </Modal.Body>
             </Modal>
         </div>

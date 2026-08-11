@@ -11,7 +11,7 @@ function NavBar() {
     return (
             <Navbar 
                 variant="light" 
-                className='justify-content-center py-0'
+                className='justify-content-center py-0 position-relative'
                 style={{ backgroundColor:"#e3f2fd" }}>
                     <Navbar.Brand href="/home">
                         <img
@@ -35,6 +35,8 @@ function NavBar() {
                     {/* <Nav.Link end href="/report">Reports</Nav.Link> */}
                     {/* <Nav.Link end href="/employees">All Employees</Nav.Link> */}
                 </Nav>
+
+
             </Navbar>
     )
 }

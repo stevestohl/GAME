@@ -19,4 +19,9 @@ export const prompt2Socket = io(`${SOCKET_URL}/prompt2`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+
+export const couchCastSocket = io(`${SOCKET_URL}/couchcast`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 export default socket;

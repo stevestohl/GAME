@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CouchCast Receiver</title>
+    <style>
+        body {
+            background-color: #014eb6; /* Game-Temple Blue */
+            color: white;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 5rem;
+            letter-spacing: 0.2em;
+        }
+        #status {
+            font-size: 2rem;
+            color: #f1f2f5;
+            opacity: 0.8;
+        }
+    </style>
+    <!-- 1. Include the Cast Receiver Framework -->
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+</head>
+<body>
+    
+    <!-- Cast Debugging UI -->
+    <cast-media-player></cast-media-player>
+    
+    <h1>COUCHCAST</h1>
+    <div id="status">Waiting for game server...</div>
+
+    <script>
+        // 2. Initialize the Receiver Context
+        const context = cast.framework.CastReceiverContext.getInstance();
+        
+        // 3. Start the Receiver
+        context.start();
+        
+        // (Later, we will add your WebSocket connection logic here!)
+    </script>
+</body>
+</html>
