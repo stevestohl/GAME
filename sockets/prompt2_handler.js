@@ -76,7 +76,6 @@ export default function registerPrompt2Namespace(promptNS) {
             const existingPlayerKey = Object.keys(currentRoom.players).find(
                 (key) => currentRoom.players[key].playerId === playerId
             );
-            //console.log("Found existing player?", !!existingPlayerKey)
 
             if (existingPlayerKey) {
                 console.log(`[Reconnection] Player ${playerName} reconnected.`);

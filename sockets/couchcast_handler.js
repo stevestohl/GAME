@@ -67,8 +67,23 @@ export default function registerCCNamespace(CCNS) {
                     currentPrompt: currentRoom.currentPrompt || null,
                     prommptOptions: currentRoom.prommptOptions || null,
                     submissions: currentRoom.promptSubmissions || null,
-                    
+                    roundResults: currentRoom.roundResults || null,
+                    playerStatus: currentRoom.players[playerId] || null
                 }
+
+                // Emit the sync to the user who just joined
+                socket.emit('sync_game_state', syncPayload)
+
+                // Handle Reconnection vs New Player Logic
+                const existingPlayerKey = Object.keys(currentRoom.players).find(
+                    (key) => currentRoom.players([key]) === playerId
+                )
+                
+                if (existingPlayerKey){
+                    console.log(`[Reconnection] Player ${playerName} reconnected.`)
+
+                }
+
             }
 
         }
