@@ -1,6 +1,7 @@
 import registerTriviaHandlers from './trivia_handler.js';
 import registerTicTacToeHandlers from './tictactoe_handler.js';
 import registerPrompt2Handlers from './prompt2_handler.js';
+import registerCCHandlers from './couchcast_handler.js';
 
 export default function initializeSockets(io) {
   io.on('connection', (socket) => {
@@ -19,6 +20,8 @@ export default function initializeSockets(io) {
         registerTriviaHandlers(io, socket, payload);
       } else if (code.startsWith('P')) { // New game prefix
         registerPrompt2Handlers(io, socket, payload);
+      } else if (code.startsWith('C')) { // New game prefix
+        registerCCHandlers(io, socket, payload);
       } else {
         socket.emit('errorMsg', 'Invalid room code format.');
       }

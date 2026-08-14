@@ -39,76 +39,75 @@ export default function registerPrompt2Namespace(promptNS) {
     promptNS.on('connection', (socket) => {
         console.log(`[Prompt2 Socket] Player connected: ${socket.id}`);
 
-        // ---- Event: Room Creation ------
+    // ---- Event: Room Creation ------
     socket.on('createRoom', (data) => {
         const nameToUse = data.playerName || 'Host';
         const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse);
         
-    // CRITICAL: You were missing these two lines!
     socket.join(roomCode); 
     socket.emit('roomcreated', { roomCode, players });
 });
 
-       // --- Event: Room Joining ---
-socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {
-    if (!roomCode) return;
-    const code = roomCode.trim().toUpperCase();
-    const currentRoom = activePrompt2Rooms[code];
+    // --- Event: Room Joining ---
+    socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {
+        if (!roomCode) return;
+        const code = roomCode.trim().toUpperCase();
+        const currentRoom = activePrompt2Rooms[code];
 
-    if (currentRoom) {
-        socket.join(code);
+        if (currentRoom) {
+            socket.join(code);
 
-        // 1. Construct the Payload (Inside the success block)
-        const syncPayload = {
-            gameState: currentRoom.gameState,
-            roomData: currentRoom,
-            // Use logical OR || to ensure empty arrays/objects if data doesn't exist yet
-            currentPrompt: currentRoom.currentPrompt || null,
-            promptOptions: currentRoom.promptOptions || [],
-            submissions: currentRoom.submissions || [],
-            roundResults: currentRoom.roundResults || null,
-            playerStatus: currentRoom.players[playerId] || null
-        };
+            // 1. Construct the Payload (Inside the success block)
+            const syncPayload = {
+                gameState: currentRoom.gameState,
+                roomData: currentRoom,
+                // Use logical OR || to ensure empty arrays/objects if data doesn't exist yet
+                currentPrompt: currentRoom.currentPrompt || null,
+                promptOptions: currentRoom.promptOptions || [],
+                submissions: currentRoom.submissions || [],
+                roundResults: currentRoom.roundResults || null,
+                playerStatus: currentRoom.players[playerId] || null
+            };
 
-        // 2. Emit the sync to the user who just joined
-        socket.emit('sync_game_state', syncPayload);
+            // 2. Emit the sync to the user who just joined
+            socket.emit('sync_game_state', syncPayload);
 
-        // 3. Handle Reconnection vs New Player Logic
-        const existingPlayerKey = Object.keys(currentRoom.players).find(
-            (key) => currentRoom.players[key].playerId === playerId
-        );
-        //console.log("Found existing player?", !!existingPlayerKey)
+            // 3. Handle Reconnection vs New Player Logic
+            const existingPlayerKey = Object.keys(currentRoom.players).find(
+                (key) => currentRoom.players[key].playerId === playerId
+            );
+            //console.log("Found existing player?", !!existingPlayerKey)
 
-        if (existingPlayerKey) {
-            console.log(`[Reconnection] Player ${playerName} reconnected.`);
-            const playerData = currentRoom.players[existingPlayerKey];
-            playerData.id = socket.id;
-            
-            if (currentRoom.hostId === existingPlayerKey) {
-                currentRoom.hostId = socket.id;
+            if (existingPlayerKey) {
+                console.log(`[Reconnection] Player ${playerName} reconnected.`);
+                const playerData = currentRoom.players[existingPlayerKey];
+                playerData.id = socket.id;
+                
+                if (currentRoom.hostId === existingPlayerKey) {
+                    currentRoom.hostId = socket.id;
+                }
+                
+                delete currentRoom.players[existingPlayerKey];
+                currentRoom.players[socket.id] = playerData;
+            } else {
+                console.log(`[New Player] ${playerName} joined.`);
+                currentRoom.players[socket.id] = {
+                    playerId: playerId,
+                    id: socket.id,
+                    name: playerName || 'Anonymous',
+                    score: 0,
+                    hasSubmitted: false,
+                    currentAnswer: "",
+                    isPlayerHost: socket.id === currentRoom.hostId 
+                };
             }
             
-            delete currentRoom.players[existingPlayerKey];
-            currentRoom.players[socket.id] = playerData;
+            // Broadcast the update to everyone else
+            promptNS.to(code).emit('room_updated', currentRoom);
         } else {
-            console.log(`[New Player] ${playerName} joined.`);
-            currentRoom.players[socket.id] = {
-                playerId: playerId,
-                id: socket.id,
-                name: playerName || 'Anonymous',
-                score: 0,
-                hasSubmitted: false,
-                currentAnswer: "",
-                isPlayerHost: socket.id === currentRoom.hostId 
-            };
+            // If room doesn't exist
+            socket.emit('errorMsg', 'Room not found!');
         }
-        
-        // Broadcast the update to everyone else
-        promptNS.to(code).emit('room_updated', currentRoom);
-    } else {
-        // If room doesn't exist
-        socket.emit('errorMsg', 'Room not found!');
-    }
 });
             
 

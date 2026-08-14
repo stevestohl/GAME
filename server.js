@@ -32,6 +32,10 @@ const promptNS = io.of('/prompt2');
 registerPrompt2Namespace(promptNS); 
 console.log("Namespace '/prompt2' registered.");
 
+const CCNS = io.of('/couchcast');
+registerCCNamespace(CCNS); 
+console.log("Namespace '/couchcast' registered.");
+
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)
   .then(() => {
