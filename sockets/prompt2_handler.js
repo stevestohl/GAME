@@ -88,25 +88,25 @@ export default function registerPrompt2Namespace(promptNS) {
                 
                 delete currentRoom.players[existingPlayerKey];
                 currentRoom.players[socket.id] = playerData;
-            } else {
-                console.log(`[New Player] ${playerName} joined.`);
-                currentRoom.players[socket.id] = {
-                    playerId: playerId,
-                    id: socket.id,
-                    name: playerName || 'Anonymous',
-                    score: 0,
-                    hasSubmitted: false,
-                    currentAnswer: "",
-                    isPlayerHost: socket.id === currentRoom.hostId 
-                };
-            }
+                } else {
+                    console.log(`[New Player] ${playerName} joined.`);
+                    currentRoom.players[socket.id] = {
+                        playerId: playerId,
+                        id: socket.id,
+                        name: playerName || 'Anonymous',
+                        score: 0,
+                        hasSubmitted: false,
+                        currentAnswer: "",
+                        isPlayerHost: socket.id === currentRoom.hostId 
+                    };
+                }
             
             // Broadcast the update to everyone else
             promptNS.to(code).emit('room_updated', currentRoom);
-        } else {
-            // If room doesn't exist
-            socket.emit('errorMsg', 'Room not found!');
-        }
+            } else {
+                // If room doesn't exist
+                socket.emit('errorMsg', 'Room not found!');
+            }
 });
             
 

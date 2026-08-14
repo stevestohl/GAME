@@ -8,13 +8,19 @@ import mongoose from 'mongoose';
 import registerTriviaNamespace from './sockets/trivia_handler.js';
 import registerTicTacToeNamespace from './sockets/tictactoe_handler.js';
 import registerPrompt2Namespace from './sockets/prompt2_handler.js';
+import registerCCNamespace from './sockets/couchcast_handler.js';
 
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app); 
 
 const io = new Server(server, {
   cors: {
-    origin: "*", 
+    origin: [
+      "http://localhost:3000",
+      "https://game-temple.org",
+      "https://www.game-temple.org",
+      "https://game-temple-backend.onrender.com"
+    ], 
     methods: ["GET", "POST"]
   }
 });
