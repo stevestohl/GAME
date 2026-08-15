@@ -125,7 +125,7 @@ export default function Home() {
                             <Col xs={12} className="d-flex align-items-center mt-1 mb-0">
                                 <hr className="flex-grow-1 my-0 opacity-25" />
                                 <span className="mx-2 my-2 text-muted small fw-bold text-center">
-                                    OR <br />¬ø
+                                    OR <br />
                                     Create New Room
                                 </span>
                                 <hr className="flex-grow-1 my-0 opacity-25" />

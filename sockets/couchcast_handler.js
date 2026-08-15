@@ -146,7 +146,8 @@ export default function registerCCNamespace(CCNS) {
                         isCaster: false,
                         isPlayerHost: isFirstActualPlayer,
                         isConnected: true,
-                        joinOrder: currentRoom.playerCount
+                        joinOrder: currentRoom.playerCount,
+                        hasUsedWriteIn: false
                     };
 
                     currentRoom.playerCount++; 
@@ -215,13 +216,18 @@ export default function registerCCNamespace(CCNS) {
         });
 
         // --- Event: Player Submits Their Answer ---
-        socket.on('submit_answer', ({ roomCode, answer }) => {
+        socket.on('submit_answer', ({ roomCode, answer, usedWriteIn }) => { // 👈 Catch it here
             const room = activeCCRooms[roomCode];
             const player = room?.players[socket.id];
             
             if (player && socket.id !== room.hostId && !player.isCaster) {
                 player.currentAnswer = answer;
                 player.hasSubmitted = true;
+
+                // Flags writin answer as used
+                if (usedWriteIn) {
+                    player.hasUsedWriteIn = true; 
+                }
                 
                 const activeRegularPlayers = Object.keys(room.players).filter(
                     id => id !== room.hostId && !room.players[id].isCaster && room.players[id].isConnected
@@ -236,7 +242,6 @@ export default function registerCCNamespace(CCNS) {
                 }
             }
         });
-
         // --- Event: Reveal Choices (for the judge) ---
         socket.on('reveal_choices', ({ roomCode }) => {
             const room = activeCCRooms[roomCode];

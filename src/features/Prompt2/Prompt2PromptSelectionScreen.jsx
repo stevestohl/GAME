@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// Fixed 2: Added Row and Col to the Bootstrap imports
 import { Card, Badge, Row, Col } from 'react-bootstrap';
 
 /**

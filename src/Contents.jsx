@@ -9,12 +9,15 @@ import FlashcardGame from './features/Flashcards/FlashcardGame.jsx'
 import Home from './features/Menu/Home.jsx'
 import BarHome from './features/Menu/BarHome.jsx'
 
-// FIXED: Changed this from Prompt2Lobby to Prompt2GameManager
 import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
+import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 
 // --- Game Imports ---
 import TicTacToe from './features/TicTacToe/TicTacToe.jsx'
 import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
+
+// Import whatever component you want mobile players to land on when they scan the QR code
+// import MobileJoinScreen from './features/CouchCast/MobileJoinScreen.jsx'
 
 export default function Contents() {
     const NotFound = () => <h1>Page Not Found</h1>
@@ -34,8 +37,13 @@ export default function Contents() {
             <Route path="/flashcardsList" element={<FlashcardsList />} />
             <Route path="/flashcardGame" element={<FlashcardGame />} />
 
-            {/* FIXED: Route now points to the Manager instead of the raw Lobby */}
+            {/* Manager Routes */}
             <Route path="/prompt2" element={<Prompt2GameManager />} />
+            <Route path="/CouchCast" element={<CouchCastManager />} />
+
+            {/* NEW: Mobile Player Join Route via QR Code */}
+            {/* Replace CouchCastManager with your specific mobile join component if you have a separate one */}
+            <Route path="/play" element={<CouchCastManager />} />
 
             {/* Employee Management Routes */}
             <Route path="/employees" element={<EmployeeList />} />
