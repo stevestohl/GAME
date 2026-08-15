@@ -285,6 +285,61 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /***/ }),
 
+/***/ "./src/features/CouchCast/CouchCastCreate.jsx":
+/*!****************************************************!*\
+  !*** ./src/features/CouchCast/CouchCastCreate.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleCreateCouchCast": () => (/* binding */ handleCreateCouchCast)
+/* harmony export */ });
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+// CouchCast will use the same card deck as Prompt2
+
+function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
+  var cleanName = 'Caster';
+  console.log("Request Couch Cast Room creation fropm ".concat(cleanName));
+}
+if (setIsCreatingRoom) setIsCreatingRoom(true);
+
+// Set the timeout
+var timeout = setTimeout(function () {
+  setIsCreatingRoom(false);
+  alert("The server is taking too long to wake up. Please try again.");
+  CouchCastSocket.off('roomCreated');
+}, 60000);
+var emitCreate = function emitCreate() {
+  couchCastSocket.emit('createRoom', {
+    playerName: cleanName
+  });
+};
+
+// Sets up the Success Listner
+couchCastSocket.off('roomCreated');
+couchCastSocket.once('roomCreated', function (_ref) {
+  var roomCode = _ref.roomCode;
+  clearTimeout(timeout); //Stops timeout on success
+  console.log("CouchCast room created successfully! Code: ".concat(roomCode));
+  if (setIsCreatingRoom) setIsCreatingRoom(false);
+  navigate("/couchcast?room=".concat(roomCode, "&role=caster&name=").concat(encodeURIComponent(cleanName)));
+});
+
+// Handle Connection
+if (couchCastSocket.connected) {
+  emitCreate();
+} else {
+  console.warn("Socket disconnected! Waiting for connection to emit...");
+  couchCastSocket.connect();
+  couchCast.once('connect', function () {
+    console.log("Socket connected, now emitting createRoom...");
+    emitCreate();
+  });
+}
+
+/***/ }),
+
 /***/ "./src/features/CouchCast/CouchCastJudgingTV.jsx":
 /*!*******************************************************!*\
   !*** ./src/features/CouchCast/CouchCastJudgingTV.jsx ***!
@@ -469,14 +524,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
 /* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
 /* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
 /* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
+/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -492,8 +548,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-// import CouchCastRulesTV from './CouchCastRulesTV.jsx';
-// import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
+//import CouchCastRulesTV from './CouchCastRulesTV.jsx';
+
+i; //mport CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
 
 function CouchCastManager() {
   // --- STATE MANAGEMENT ---
@@ -593,7 +650,7 @@ function CouchCastManager() {
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "text-center mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         animation: "border",
         variant: "primary"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -636,21 +693,93 @@ function CouchCastManager() {
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "[TV View: Final Scores]"));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          players: playersArray
+        });
       default:
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     fluid: true,
     className: "p-0"
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
       zIndex: 999
     }
   }, errorMessage), renderGamePhase());
+}
+
+/***/ }),
+
+/***/ "./src/features/CouchCast/CouchCastScoreboardTV.jsx":
+/*!**********************************************************!*\
+  !*** ./src/features/CouchCast/CouchCastScoreboardTV.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CouchCastScoreboardTV)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+
+
+function CouchCastScoreboardTV(_ref) {
+  var players = _ref.players;
+  // Filter out the Caster and sort the rest by score (highest to lowest)
+  var rankedPlayers = players.filter(function (p) {
+    return !p.isCaster;
+  }).sort(function (a, b) {
+    return b.score - a.score;
+  });
+  var winner = rankedPlayers[0];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "mt-5 d-flex flex-column align-items-center pb-5 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "text-warning fw-bold mb-2 tracking-widest text-uppercase"
+  }, "Final Standings"), winner && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "display-1 mb-2"
+  }, "\uD83D\uDC51"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "display-4 fw-bold text-white mb-0"
+  }, winner.name, " Wins!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "shadow-lg w-100 border-0",
+    style: {
+      maxWidth: '700px',
+      backgroundColor: '#fdfdfd'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "p-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "flush",
+    className: "rounded"
+  }, rankedPlayers.map(function (player, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
+      key: player.id,
+      className: "d-flex justify-content-between align-items-center p-4 ".concat(index === 0 ? 'bg-primary text-white' : '')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "m-0 me-4 fw-bold ".concat(index === 0 ? 'text-warning' : 'text-muted')
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "m-0 fw-bold"
+    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      bg: index === 0 ? 'warning' : 'secondary',
+      text: index === 0 ? 'dark' : 'light',
+      className: "fs-4 rounded-pill px-4"
+    }, player.score, " pts"));
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-light mt-4 opacity-75"
+  }, "Thanks for playing! Close the room to start a new game."));
 }
 
 /***/ }),
@@ -2829,14 +2958,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UniversalJoinForm.jsx */ "./src/UniversalJoinForm.jsx");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
 /* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
@@ -2844,6 +2973,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
 /* harmony import */ var _TicTacToe_TicTacToeCreateButton_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../TicTacToe/TicTacToeCreateButton.jsx */ "./src/features/TicTacToe/TicTacToeCreateButton.jsx");
 /* harmony import */ var _Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Prompt2/Prompt2CreateButton.jsx */ "./src/features/Prompt2/Prompt2CreateButton.jsx");
+/* harmony import */ var _CouchCast_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastCreate.jsx */ "./src/features/CouchCast/CouchCastCreate.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -2862,12 +2992,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Home() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_funnyNames_js__WEBPACK_IMPORTED_MODULE_2__.getRandomFunnyName),
     _useState2 = _slicedToArray(_useState, 2),
     playerName = _useState2[0],
     setPlayerName = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
 
   // Loading states
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -2909,13 +3040,13 @@ function Home() {
     style: {
       minHeight: "100vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    .temple-logo {\n                        image-rendering: -moz-crisp-edges;\n                        image-rendering: -webkit-optimize-contrast;\n                        image-rendering: crisp-edges;\n                        image-rendering: pixelated;                 \n                    }\n\n                    @keyframes burglarHeist {\n                        0%   { transform: translate(400px, -50%); opacity: 1; }  /* Starts way off to the right */\n                        35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */\n                        50%  { transform: translate(0px, -50%); opacity: 1; }    /* Pauses to grab it */\n                        85%  { transform: translate(-400px, -50%); opacity: 1; } /* Runs away to the left */\n                        100% { transform: translate(-400px, -50%); opacity: 0; } /* Disappears */\n                    }\n                    .burglar-character {\n                        position: absolute;\n                        top: 50%;\n                        left: 40%;\n                        z-index: 999;\n                        opacity: 0;\n                        pointer-events: none; /* So it doesn't block clicks */\n                    }\n                    .burglar-running {\n                        animation: burglarHeist 3s ease-in-out forwards;\n                    }\n                    .stolen-slot {\n                        border: 2px dashed #ccc;\n                        background-color: transparent;\n                        color: #aaa;\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    .temple-logo {\n                        image-rendering: -moz-crisp-edges;\n                        image-rendering: -webkit-optimize-contrast;\n                        image-rendering: crisp-edges;\n                        image-rendering: pixelated;                 \n                    }\n\n                    @keyframes burglarHeist {\n                        0%   { transform: translate(400px, -50%); opacity: 1; }  /* Starts way off to the right */\n                        35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */\n                        50%  { transform: translate(0px, -50%); opacity: 1; }    /* Pauses to grab it */\n                        85%  { transform: translate(-400px, -50%); opacity: 1; } /* Runs away to the left */\n                        100% { transform: translate(-400px, -50%); opacity: 0; } /* Disappears */\n                    }\n                    .burglar-character {\n                        position: absolute;\n                        top: 50%;\n                        left: 40%;\n                        z-index: 999;\n                        opacity: 0;\n                        pointer-events: none; /* So it doesn't block clicks */\n                    }\n                    .burglar-running {\n                        animation: burglarHeist 3s ease-in-out forwards;\n                    }\n                    .stolen-slot {\n                        border: 2px dashed #ccc;\n                        background-color: transparent;\n                        color: #aaa;\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "text-center shadow-lg border-0 position-relative",
     style: {
       maxWidth: "450px",
       width: "100%"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Header, {
     as: "h5",
     className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
     style: {
@@ -2923,7 +3054,7 @@ function Home() {
       color: '#f1f2f5',
       letterSpacing: '0.2em'
     }
-  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
+  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
     className: "p-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
@@ -2932,18 +3063,18 @@ function Home() {
     src: "https://game-temple.org/Game_Temple_Animated.gif?v=2",
     alt: "Animated Game-Temple Logo"
     // style={{ maxWidth: "130px", height: "auto" }}
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "border p-1 bg-body-secondary shadow-sm rounded-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Title, {
     className: "text-muted text-center fw-bold small mb-1 tracking-wider"
   }, "Multi-Player Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "my-1 text-muted opacity-25"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Group, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Group, {
     className: "mb-3 text-start",
     controlId: "formPlayerName"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Label, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Label, {
     className: "fw-bold text-muted small mb-1"
-  }, "Player Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Control, {
+  }, "Player Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Control, {
     type: "text",
     placeholder: "",
     value: playerName,
@@ -2952,16 +3083,16 @@ function Home() {
     },
     autoComplete: "off",
     className: "py-2"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "g-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 12,
     className: "text-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Label, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Label, {
     className: "fw-bold text-muted small mb-1 ps-1"
   }, "Join Active Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     playerName: playerName
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 12,
     className: "d-flex align-items-center mt-1 mb-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -2970,49 +3101,49 @@ function Home() {
     className: "mx-2 my-2 text-muted small fw-bold text-center"
   }, "OR ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Create New Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "g-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-small",
     disabled: isCreatingRoom,
     onClick: function onClick() {
-      return setIsUnderConstruction(true);
+      return (0,_CouchCast_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_8__.handleCreateCouchCast)(playerName, navigate, setIsCreatingRoom);
     }
-  }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDECB\uFE0F\uD83D\uDECB\uFE0F")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDECB\uFE0F\uD83D\uDECB\uFE0F")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    className: "g-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    xs: 6
+    className: "g-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    xs: 6
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return (0,_TicTacToe_TicTacToeCreateButton_jsx__WEBPACK_IMPORTED_MODULE_6__.handleCreateTttRoom)(playerName, navigate, setIsCreatingRoom);
     }
-  }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return (0,_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_5__.handleCreateTriviaRoom)(playerName, navigate, setIsCreatingRoom);
     }
-  }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return (0,_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_7__.handleCreatePrompt2Room)(playerName, navigate, setIsCreatingRoom);
     }
-  }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), " 2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), " 2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 6,
     className: "position-relative overflow-visible"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3025,21 +3156,21 @@ function Home() {
       height: 'auto',
       mixBlendMode: 'multiply' // 🪄 THIS IS THE MAGIC WAND
     }
-  })), !isStolen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  })), !isStolen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm"
   }, "Button", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDD18\uD83D\uDD18") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-100 h-100 py-2 rounded d-flex flex-column justify-content-center align-items-center stolen-slot fw-bold small"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stolen!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "fs-5"
-  }, "\uD83D\uDCA8"))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, "\uD83D\uDCA8"))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -3047,19 +3178,19 @@ function Home() {
     className: "fw-bold text-dark"
   }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted small mb-0"
-  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     show: isUnderConstruction,
     onHide: function onHide() {
       return setIsUnderConstruction(false);
     },
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "fw-bold mb-3"
   }, "\uD83D\uDEA7 Under Construction \uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted medium mb-4"
-  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "primary",
     onClick: function onClick() {
       return setIsUnderConstruction(false);

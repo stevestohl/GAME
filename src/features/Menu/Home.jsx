@@ -12,7 +12,7 @@ import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import { handleCreateTttRoom } from '../TicTacToe/TicTacToeCreateButton.jsx';
 import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
-
+import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
 export default function Home() {
     const [playerName, setPlayerName] = useState(getRandomFunnyName);
@@ -138,7 +138,7 @@ export default function Home() {
                                             variant='primary'
                                             className='fw-bold w-100 h-100 py-2 shadow-small'
                                             disabled={isCreatingRoom}
-                                            onClick={()=> setIsUnderConstruction(true)}
+                                            onClick={()=> handleCreateCouchCast(playerName, navigate, setIsCreatingRoom)}
                                             >
                                             Couch Cast<br/>
                                             🛋️🛋️

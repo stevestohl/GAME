@@ -7,8 +7,9 @@ import CouchCastLobby from './CouchCastLobby.jsx';
 import CouchCastWritingTV from './CouchCastWritingTV.jsx';
 import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
 import CouchCastWinerREvealTV from './CouchCastWinnerRevealTV.jsx'
-// import CouchCastRulesTV from './CouchCastRulesTV.jsx';
-// import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
+//import CouchCastRulesTV from './CouchCastRulesTV.jsx';
+import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
+i//mport CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
 
 export default function CouchCastManager() {
     // --- STATE MANAGEMENT ---
@@ -143,7 +144,7 @@ export default function CouchCastManager() {
                     );
 
             case 'scoreboard':
-                return <div><h3>[TV View: Final Scores]</h3></div>;
+                return <CouchCastScoreboardTV players={playersArray} />;
 
             default:
                 return <div><h3>Unknown Game State: {gameState}</h3></div>;

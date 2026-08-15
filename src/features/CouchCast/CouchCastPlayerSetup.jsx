@@ -3,8 +3,9 @@ import { Container, Spinner, Alert, Card } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
 // 🎮 Import your mobile screens as you build them!
-// import CouchCastRules from './CouchCastRules';
-// import CouchCastPromptSelection from './CouchCastPromptSelection';
+import CouchCastScoreboard from './CouchCastScoreboard.jsx';
+import CouchCastRules from './CouchCastRules';
+import CouchCastPromptSelection from './CouchCastPromptSelection';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -161,6 +162,14 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
                 />
             );
         case 'scoreboard':
+            return (
+                    <CouchCastScoreboard 
+                        playerData={playerData} 
+                        players={Object.values(roomData.players)} 
+                    />
+                );
+
+
         default:
             return (
                 <Container className="mt-5 text-center">
