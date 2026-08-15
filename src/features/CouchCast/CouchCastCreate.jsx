@@ -1,43 +1,44 @@
-// CouchCast will use the same card deck as Prompt2
-import { prompt2Socket } from "../../socket";
+// CouchCastCreate.jsx
 
-export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom){
-    const cleanName = 'Caster'
-    console.log(`Request Couch Cast Room creation fropm ${cleanName}`)
-}
+// Correctly importing the specific CouchCast namespace socket
+import { couchCastSocket } from "../../socket";
 
-if (setIsCreatingRoom) setIsCreatingRoom(true)
+export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
+    const cleanName = 'Caster';
+    console.log(`Request Couch Cast Room creation from ${cleanName}`);
 
-// Set the timeout
-const timeout= setTimeout(() => {
-    setIsCreatingRoom(false)
-    alert("The server is taking too long to wake up. Please try again.")
-    CouchCastSocket.off('roomCreated')
-}, 60000)
+    if (setIsCreatingRoom) setIsCreatingRoom(true);
 
-const emitCreate= () => {
-    couchCastSocket.emit('createRoom', { playerName: cleanName})
-}
+    // Set the timeout
+    const timeout = setTimeout(() => {
+        setIsCreatingRoom(false);
+        alert("The server is taking too long to wake up. Please try again.");
+        couchCastSocket.off('roomCreated');
+    }, 60000);
 
-// Sets up the Success Listner
-couchCastSocket.off('roomCreated')
-couchCastSocket.once('roomCreated', ({roomCode})=> {
-    clearTimeout(timeout) //Stops timeout on success
-    console.log(`CouchCast room created successfully! Code: ${roomCode}`)
-    if (setIsCreatingRoom) setIsCreatingRoom(false)
-    navigate(`/couchcast?room=${roomCode}&role=caster&name=${encodeURIComponent(cleanName)}`)
-})
+    const emitCreate = () => {
+        couchCastSocket.emit('createRoom', { playerName: cleanName });
+    };
 
-// Handle Connection
-if (couchCastSocket.connected) {
-    emitCreate()
-} else {
-    console.warn("Socket disconnected! Waiting for connection to emit...")
-    couchCastSocket.connect()
+    // Sets up the Success Listener
+    couchCastSocket.off('roomCreated');
+    couchCastSocket.once('roomCreated', ({ roomCode }) => {
+        clearTimeout(timeout); // Stops timeout on success
+        console.log(`CouchCast room created successfully! Code: ${roomCode}`);
+        if (setIsCreatingRoom) setIsCreatingRoom(false);
+        navigate(`/couchcast?room=${roomCode}&role=caster&name=${encodeURIComponent(cleanName)}`);
+    });
 
-    couchCast.once('connect', ()=> {
-        console.log("Socket connected, now emitting createRoom...")
-        emitCreate()
-    })
-
+    // Handle Connection
+    if (couchCastSocket.connected) {
+        emitCreate();
+    } else {
+        console.warn("Socket disconnected! Waiting for connection to emit...");
+        couchCastSocket.connect();
+        
+        couchCastSocket.once('connect', () => {
+            console.log("Socket connected, now emitting createRoom...");
+            emitCreate();
+        });
+    }
 }

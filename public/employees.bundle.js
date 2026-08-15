@@ -296,46 +296,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "handleCreateCouchCast": () => (/* binding */ handleCreateCouchCast)
 /* harmony export */ });
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-// CouchCast will use the same card deck as Prompt2
+// CouchCastCreate.jsx
+
+// Correctly importing the specific CouchCast namespace socket
 
 function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
   var cleanName = 'Caster';
-  console.log("Request Couch Cast Room creation fropm ".concat(cleanName));
-}
-if (setIsCreatingRoom) setIsCreatingRoom(true);
+  console.log("Request Couch Cast Room creation from ".concat(cleanName));
+  if (setIsCreatingRoom) setIsCreatingRoom(true);
 
-// Set the timeout
-var timeout = setTimeout(function () {
-  setIsCreatingRoom(false);
-  alert("The server is taking too long to wake up. Please try again.");
-  CouchCastSocket.off('roomCreated');
-}, 60000);
-var emitCreate = function emitCreate() {
-  couchCastSocket.emit('createRoom', {
-    playerName: cleanName
+  // Set the timeout
+  var timeout = setTimeout(function () {
+    setIsCreatingRoom(false);
+    alert("The server is taking too long to wake up. Please try again.");
+    _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.off('roomCreated');
+  }, 60000);
+  var emitCreate = function emitCreate() {
+    _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.emit('createRoom', {
+      playerName: cleanName
+    });
+  };
+
+  // Sets up the Success Listener
+  _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.off('roomCreated');
+  _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.once('roomCreated', function (_ref) {
+    var roomCode = _ref.roomCode;
+    clearTimeout(timeout); // Stops timeout on success
+    console.log("CouchCast room created successfully! Code: ".concat(roomCode));
+    if (setIsCreatingRoom) setIsCreatingRoom(false);
+    navigate("/couchcast?room=".concat(roomCode, "&role=caster&name=").concat(encodeURIComponent(cleanName)));
   });
-};
 
-// Sets up the Success Listner
-couchCastSocket.off('roomCreated');
-couchCastSocket.once('roomCreated', function (_ref) {
-  var roomCode = _ref.roomCode;
-  clearTimeout(timeout); //Stops timeout on success
-  console.log("CouchCast room created successfully! Code: ".concat(roomCode));
-  if (setIsCreatingRoom) setIsCreatingRoom(false);
-  navigate("/couchcast?room=".concat(roomCode, "&role=caster&name=").concat(encodeURIComponent(cleanName)));
-});
-
-// Handle Connection
-if (couchCastSocket.connected) {
-  emitCreate();
-} else {
-  console.warn("Socket disconnected! Waiting for connection to emit...");
-  couchCastSocket.connect();
-  couchCast.once('connect', function () {
-    console.log("Socket connected, now emitting createRoom...");
+  // Handle Connection
+  if (_socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.connected) {
     emitCreate();
-  });
+  } else {
+    console.warn("Socket disconnected! Waiting for connection to emit...");
+    _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.connect();
+    _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.once('connect', function () {
+      console.log("Socket connected, now emitting createRoom...");
+      emitCreate();
+    });
+  }
 }
 
 /***/ }),
@@ -550,7 +552,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 //import CouchCastRulesTV from './CouchCastRulesTV.jsx';
 
-i; //mport CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
+//import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
 
 function CouchCastManager() {
   // --- STATE MANAGEMENT ---
