@@ -11,6 +11,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [roomData, setRoomData] = useState(null);
     const [playerData, setPlayerData] = useState(null);
     const [error, setError] = useState('');
+    const [roundResults, setRoundResults] = useState(null);
 
     useEffect(() => {
         // 1. Generate or grab a persistent Player ID for your backend's reconnection logic
@@ -46,6 +47,18 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         socket.on('sync_game_state', handleSync);
         socket.on('room_updated', handleRoomUpdate);
         socket.on('errorMsg', handleError);
+        // Add this inside the useEffect:
+        socket.on('round_ended', (data) => {
+            setGameState(data.gameState);
+            setRoundResults({
+                winner: data.winner,
+                nextHostName: data.nextHostName,
+                isGameOver: data.isGameOver
+            });
+        });
+
+        // Don't forget to clean it up in the return statement!
+        socket.off('round_ended');
 
         // Cleanup listeners on unmount
         return () => {
@@ -126,7 +139,27 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'judging':
+            return (
+                    <CouchCastJudging 
+                        roomCode={roomCode} 
+                        isJudge={isJudge} 
+                        currentPrompt={roomData.currentPrompt} 
+                        // We pass the anonymous submissions so the judge has buttons to click!
+                        submissions={roomData.submissions} 
+                    />
+            );
+
         case 'winner_reveal':
+            return (
+                <CouchCastWinnerReveal 
+                    roomCode={roomCode} 
+                    isJudge={isJudge} // This automatically points to the NEXT judge!
+                    winner={roundResults?.winner} 
+                    nextHostName={roundResults?.nextHostName} 
+                    isGameOver={roundResults?.isGameOver} 
+                    isWinner={playerData.id === roundResults?.winner?.id} 
+                />
+            );
         case 'scoreboard':
         default:
             return (

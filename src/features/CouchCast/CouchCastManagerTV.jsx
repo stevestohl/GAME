@@ -4,6 +4,9 @@ import { couchCastSocket as socket } from "../../socket";
 
 // Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
+import CouchCastWritingTV from './CouchCastWritingTV.jsx';
+import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
+import CouchCastWinerREvealTV from './CouchCastWinnerRevealTV.jsx'
 // import CouchCastRulesTV from './CouchCastRulesTV.jsx';
 // import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
 
@@ -109,13 +112,35 @@ export default function CouchCastManager() {
                 return <div><h3>[TV View: Timer & Judge is picking...]</h3></div>;
 
             case 'writing':
-                return <div><h3>[TV View: Timer & Show who has submitted]</h3></div>;
+                return (
+                    <CouchCastWritingTV 
+                        currentPrompt={currentPrompt} 
+                        endTime={endTime} 
+                        players={playersArray} 
+                        hostId={roomData.hostId} 
+                    />
+                );
 
             case 'judging':
-                return <div><h3>[TV View: Display Anonymous Submissions]</h3></div>;
+            // Find the Judge's name to display
+                const judgeName = roomData.players[roomData.hostId]?.name || 'The Judge';
+                return (
+                    <CouchCastJudgingTV 
+                        currentPrompt={currentPrompt} 
+                        submissions={submissions} 
+                        judgeName={judgeName} 
+                    />
+                );
 
             case 'winner_reveal':
-                return <div><h3>[TV View: And the winner is...]</h3></div>;
+                return (
+                        <CouchCastWinnerRevealTV 
+                            currentPrompt={currentPrompt} 
+                            winner={roundResults?.winner} 
+                            nextHostName={roundResults?.nextHostName} 
+                            isGameOver={roundResults?.isGameOver} 
+                        />
+                    );
 
             case 'scoreboard':
                 return <div><h3>[TV View: Final Scores]</h3></div>;
