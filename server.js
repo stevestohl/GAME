@@ -10,7 +10,7 @@ import registerTicTacToeNamespace from './sockets/tictactoe_handler.js';
 import registerPrompt2Namespace from './sockets/prompt2_handler.js';
 import registerCCNamespace from './sockets/couchcast_handler.js';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
 
 const io = new Server(server, {
