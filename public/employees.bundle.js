@@ -587,19 +587,22 @@ function CouchCastManager() {
     roundResults = _useState14[0],
     setRoundResults = _useState14[1];
 
+  // Grab the room code and player name from the URL!
+  var searchParams = new URLSearchParams(window.location.search);
+  var urlRoomCode = searchParams.get('room');
+  var urlPlayerName = searchParams.get('name') || 'Caster';
+
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // 1. Instantly create the room when the TV component mounts!
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('createRoom', {
-      playerName: 'Caster'
-    });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('roomCreated', function (_ref) {
-      var roomCode = _ref.roomCode,
-        players = _ref.players;
-      console.log("TV Room Created: ".concat(roomCode));
-      // We wait for 'room_updated' to actually shift the state
-    });
-
+    // 1. Join the existing room using the URL code instead of creating a new one
+    if (urlRoomCode) {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
+        roomCode: urlRoomCode,
+        playerName: urlPlayerName
+      });
+    } else {
+      setErrorMessage("No room code found in the URL!");
+    }
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('sync_game_state', function (payload) {
       setGameState(payload.gameState);
       setRoomData(payload.roomData);
@@ -636,7 +639,6 @@ function CouchCastManager() {
       }, 5000);
     });
     return function () {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('roomcreated');
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('sync_game_state');
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('room_updated');
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('writing_phase_started');
@@ -644,7 +646,7 @@ function CouchCastManager() {
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('round_ended');
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('errorMsg');
     };
-  }, []);
+  }, [urlRoomCode, urlPlayerName]);
 
   // --- RENDER LOGIC ---
   var renderGamePhase = function renderGamePhase() {

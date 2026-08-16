@@ -23,15 +23,19 @@ export default function CouchCastManager() {
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
 
+    // Grab the room code and player name from the URL!
+    const searchParams = new URLSearchParams(window.location.search);
+    const urlRoomCode = searchParams.get('room');
+    const urlPlayerName = searchParams.get('name') || 'Caster';
+
     // --- SOCKET LISTENERS ---
     useEffect(() => {
-        // 1. Instantly create the room when the TV component mounts!
-        socket.emit('createRoom', { playerName: 'Caster' });
-
-        socket.on('roomCreated', ({ roomCode, players }) => {
-            console.log(`TV Room Created: ${roomCode}`);
-            // We wait for 'room_updated' to actually shift the state
-        });
+        // 1. Join the existing room using the URL code instead of creating a new one
+        if (urlRoomCode) {
+             socket.emit('joinRoom', { roomCode: urlRoomCode, playerName: urlPlayerName });
+        } else {
+             setErrorMessage("No room code found in the URL!");
+        }
 
         socket.on('sync_game_state', (payload) => {
             setGameState(payload.gameState);
@@ -73,7 +77,6 @@ export default function CouchCastManager() {
         });
 
         return () => {
-            socket.off('roomcreated');
             socket.off('sync_game_state');
             socket.off('room_updated');
             socket.off('writing_phase_started');
@@ -81,7 +84,7 @@ export default function CouchCastManager() {
             socket.off('round_ended');
             socket.off('errorMsg');
         };
-    }, []);
+    }, [urlRoomCode, urlPlayerName]);
 
     // --- RENDER LOGIC ---
     const renderGamePhase = () => {
