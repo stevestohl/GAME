@@ -28,7 +28,7 @@ export default function CouchCastManager() {
         // 1. Instantly create the room when the TV component mounts!
         socket.emit('createRoom', { playerName: 'Caster' });
 
-        socket.on('roomcreated', ({ roomCode, players }) => {
+        socket.on('roomCreated', ({ roomCode, players }) => {
             console.log(`TV Room Created: ${roomCode}`);
             // We wait for 'room_updated' to actually shift the state
         });

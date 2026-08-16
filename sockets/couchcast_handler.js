@@ -90,7 +90,7 @@ export default function registerCCNamespace(CCNS) {
             const nameToUse = data.playerName || 'Caster';
             const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse);
             socket.join(roomCode);
-            socket.emit('roomcreated', { roomCode, players });
+            socket.emit('roomCreated', { roomCode, players });
         });
 
         // --- Event: Room Joining ---

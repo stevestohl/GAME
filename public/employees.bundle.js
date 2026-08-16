@@ -593,7 +593,7 @@ function CouchCastManager() {
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('createRoom', {
       playerName: 'Caster'
     });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('roomcreated', function (_ref) {
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('roomCreated', function (_ref) {
       var roomCode = _ref.roomCode,
         players = _ref.players;
       console.log("TV Room Created: ".concat(roomCode));

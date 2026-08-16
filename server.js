@@ -15,19 +15,18 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    
-    // [
-    //   "http://localhost:3000",
-    //   "http://localhost:5000",
-    //   "http://localhost:5001",
-    //   "http://localhost:5001/home",
-    //   "https://game-temple.org",
-    //   "https://www.game-temple.org",
-    //   "https://game-temple-backend.onrender.com"
-    // ], 
-    methods: ["GET", "POST"]
-    // credentials: true
+    origin:    
+    [
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "http://localhost:5001",
+      "http://localhost:5001/home",
+      "https://game-temple.org",
+      "https://www.game-temple.org",
+      "https://game-temple-backend.onrender.com"
+    ], 
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
