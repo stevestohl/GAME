@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Button, Form, Modal, Spinner } from 'react-bootstrap'; 
+import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
-import UniversalJoinForm from '../../UniversalJoinForm.jsx';
 import { getRandomFunnyName } from '../../funnyNames.js';
-
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png'; 
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -89,138 +87,119 @@ export default function Home() {
                     GAME-TEMPLE.ORG
                 </Card.Header>
                 
-                <Card.Body className='p-1'>
+                <Card.Body className='p-3'>
                     <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
                         <img 
                             className='temple-logo'
                             src="https://game-temple.org/Game_Temple_Animated.gif?v=2"
                             alt="Animated Game-Temple Logo"
-                            // style={{ maxWidth: "130px", height: "auto" }}
                         />
                     </div>
 
-                    <Card className="border p-1 bg-body-secondary shadow-sm rounded-3">
-                        <Card.Title className="text-muted text-center fw-bold small mb-1 tracking-wider">
-                            Multi-Player Games
-                        </Card.Title>
-                        <hr className='my-1 text-muted opacity-25'/>
-                        
-                        <Form.Group className="mb-3 text-start" controlId="formPlayerName">
-                            <Form.Label className="fw-bold text-muted small mb-1">Player Name</Form.Label>
-                            <Form.Control 
-                                type="text" 
-                                placeholder="" 
-                                value={playerName} 
-                                onChange={(e) => setPlayerName(e.target.value)}
-                                autoComplete="off"
-                                className="py-2" 
-                            />
-                        </Form.Group>
-                        <Row className="g-2">
-                            <Col xs={12} className="text-start">
-                                <Form.Label className="fw-bold text-muted small mb-1 ps-1">Join Active Room</Form.Label>
-                                <UniversalJoinForm playerName={playerName} />
-                            </Col>
+                    <Row className="g-2 mt-2">
+                        <Col xs={12}>
+                            <Button
+                                variant='primary'
+                                className='fw-bold w-100 py-2 shadow-sm'
+                                disabled={isCreatingRoom}
+                                onClick={() => navigate('/join')}
+                            >
+                                Join a Room
+                            </Button>
+                        </Col>
 
-                            <Col xs={12} className="d-flex align-items-center mt-1 mb-0">
-                                <hr className="flex-grow-1 my-0 opacity-25" />
-                                <span className="mx-2 my-2 text-muted small fw-bold text-center">
-                                    OR <br />
-                                    Create New Room
-                                </span>
-                                <hr className="flex-grow-1 my-0 opacity-25" />
-                            </Col>
-                            
-                            <Col xs={12}>
-                                <Row className='g-2'>
-                                    <Col>
-                                        <Button
-                                            variant='primary'
-                                            className='fw-bold w-100 h-100 py-2 shadow-small'
-                                            disabled={isCreatingRoom}
-                                            onClick={()=> handleCreateCouchCast(playerName, navigate, setIsCreatingRoom)}
-                                            >
-                                            Couch Cast<br/>
-                                            🛋️🛋️
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xs={12}>
-                                <Row className="g-2">
-                                    <Col xs={6}>
+                        <Col xs={12} className="d-flex align-items-center mb-1">
+                            <hr className="flex-grow-1 my-0 opacity-25" />
+                            <span className="mx-2 text-muted small fw-bold text-center">
+                                OR <br />
+                                Create New Room
+                            </span>
+                            <hr className="flex-grow-1 my-0 opacity-25" />
+                        </Col>
+                        
+                        <Col xs={12}>
+                            <Button
+                                variant='primary'
+                                className='fw-bold w-100 py-2 shadow-sm'
+                                disabled={isCreatingRoom}
+                                onClick={() => handleCreateCouchCast(playerName, navigate, setIsCreatingRoom)}
+                            >
+                                Couch Cast<br/>
+                                🛋️🛋️
+                            </Button>
+                        </Col>
+
+                        <Col xs={12}>
+                            <Row className="g-2">
+                                <Col xs={6}>
+                                    <Button 
+                                        variant="primary" 
+                                        className="fw-bold w-100 h-100 py-2 shadow-sm"
+                                        disabled={isCreatingRoom}
+                                        onClick={() => handleCreateTttRoom(playerName, navigate, setIsCreatingRoom)}
+                                    >
+                                        Tic-Tac-Toe<br/>
+                                        X O
+                                    </Button>
+                                </Col>
+                                
+                                <Col xs={6}>
+                                    <Button 
+                                        variant="primary" 
+                                        className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
+                                        disabled={isCreatingRoom}
+                                        onClick={() => handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom)}
+                                    >
+                                        Trivia <br />
+                                        ❔❔
+                                    </Button>
+                                </Col>
+
+                                <Col xs={6}>
+                                    <Button
+                                        variant="primary"
+                                        className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
+                                        disabled={isCreatingRoom}
+                                        onClick={() => handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom)}
+                                    >
+                                        Prompt <br/> 2
+                                    </Button>
+                                </Col>
+
+                                {/* 🥷 THE BURGLAR ZONE */}
+                                <Col xs={6} className="position-relative overflow-visible">
+                                    {/* The Burglar Character */}
+                                    <div className={`burglar-character ${burglarActive ? 'burglar-running' : ''}`}>
+                                        <img 
+                                            src={isStolen ? burglarWithButton : burglarEmpty} 
+                                            alt="Button Burglar"
+                                            style={{ 
+                                                width: '60px', 
+                                                height: 'auto',
+                                                mixBlendMode: 'multiply' 
+                                            }} 
+                                        />
+                                    </div>
+
+                                    {/* The Button (Swaps to a dashed outline when stolen) */}
+                                    {!isStolen ? (
                                         <Button 
                                             variant="primary" 
                                             className="fw-bold w-100 h-100 py-2 shadow-sm"
-                                            disabled={isCreatingRoom}
-                                            onClick={() => handleCreateTttRoom(playerName, navigate, setIsCreatingRoom)}
                                         >
-                                            Tic-Tac-Toe<br/>
-                                            X O
+                                            Button<br/>
+                                            🔘🔘
                                         </Button>
-                                    </Col>
-                                    
-                                    <Col xs={6}>
-                                        <Button 
-                                            variant="primary" 
-                                            className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
-                                            disabled={isCreatingRoom}
-                                            onClick={() => handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom)}
-                                        >
-                                            Trivia <br />
-                                            ❔❔
-                                        </Button>
-                                    </Col>
-
-                                    <Col xs={6}>
-                                        <Button
-                                            variant="primary"
-                                            className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
-                                            disabled={isCreatingRoom}
-                                            onClick={() => handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom)}
-                                        >
-                                            Prompt <br/> 2
-                                        </Button>
-                                    </Col>
-
-                                    {/* 🥷 THE BURGLAR ZONE */}
-                                    <Col xs={6} className="position-relative overflow-visible">
-
-                                        {/* The Burglar Character */}
-                                            <div className={`burglar-character ${burglarActive ? 'burglar-running' : ''}`}>
-                                                {/* 2. USE THE IMPORTED IMAGES IN AN IMG TAG */}
-                                             <img 
-                                                    src={isStolen ? burglarWithButton : burglarEmpty} 
-                                                    alt="Button Burglar"
-                                                    style={{ 
-                                                        width: '60px', 
-                                                        height: 'auto',
-                                                        mixBlendMode: 'multiply' // 🪄 THIS IS THE MAGIC WAND
-                                                    }} 
-                                                />
-                                            </div>
-
-                                        {/* The Button (Swaps to a dashed outline when stolen) */}
-                                        {!isStolen ? (
-                                            <Button 
-                                                variant="primary" 
-                                                className="fw-bold w-100 h-100 py-2 shadow-sm"
-                                            >
-                                                Button<br/>
-                                                🔘🔘
-                                            </Button>
-                                        ) : (
-                                            <div className="w-100 h-100 py-2 rounded d-flex flex-column justify-content-center align-items-center stolen-slot fw-bold small">
-                                                <span>Stolen!</span>
-                                                <span className="fs-5">💨</span>
-                                            </div>
-                                        )}
-
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Card>
+                                    ) : (
+                                        <div className="w-100 h-100 py-2 rounded d-flex flex-column justify-content-center align-items-center stolen-slot fw-bold small">
+                                            <span>Stolen!</span>
+                                            <span className="fs-5">💨</span>
+                                        </div>
+                                    )}
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Card.Body>
             </Card>
 
