@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Spinner, Row, Col, Badge, Modal } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import { QRCodeCanvas } from 'qrcode.react';
-
 import HourGlassBlue from '../../assets/logos/HourGlassBlue.png'; 
 import TicTacToeLogo from '../../assets/logos/Tic-Tac-Toe.png'; 
 import xIcon from '../../assets/logos/X.png'; 
@@ -129,36 +127,16 @@ export default function TictactoeRoom() {
                     Tic-Tac-Toe Room Created
                 </Card.Header>
                 
-                <Card.Body className="p-3 text-center">
-                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-sm">
+                <Card.Body className="p-4">
+                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
                         <img
                             src={HourGlass}
                             alt="Waiting Hourglass"
                             className="img-fluid"
-                            style={{ maxWidth: "110px", height: "auto" }}
+                            style={{ maxWidth: "140px", height: "auto" }}
                         />
                     </div>
-
-                    {/* Combined Room Code & QR Code Box */}
-                    <div className="my-3 bg-light border border-secondary rounded p-3 text-center">                            
-                        <span className="text-uppercase tracking-wider small fw-bold text-muted d-block mb-1">
-                            Room Code
-                        </span>                            
-                        <span className="fs-3 fw-black text-dark tracking-widest mb-3 d-block">{roomCode}</span>
-                        
-                        <div className="bg-white p-2 rounded border d-inline-block shadow-sm">
-                            <QRCodeCanvas 
-                                value="https://game-temple.org/" 
-                                size={110}
-                                level={"M"}
-                                includeMargin={true}
-                            />
-                            <span className="text-muted small d-block mt-1 fw-semibold" style={{ fontSize: '0.75rem' }}>
-                                Scan to Game-Temple.org
-                            </span>
-                        </div>
-                    </div>
-
+                    <h1 className="display-4 fw-bold text-primary mb-2">{roomCode}</h1>
                     <p className="text-muted fw-bold small text-uppercase tracking-wider mb-0">
                         Waiting for opponent...
                     </p>
