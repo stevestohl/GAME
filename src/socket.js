@@ -10,6 +10,11 @@ const socket = io(SOCKET_URL, {
     autoConnect: false 
 });
 
+export const tictactoeSocket = io(`${SOCKET_URL}/tictactoe`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
+
 export const triviaSocket = io(`${SOCKET_URL}/trivia`, {
     transports: ['websocket', 'polling'],
     autoConnect: false

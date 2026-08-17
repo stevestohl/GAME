@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap'; 
 import { useNavigate } from 'react-router-dom';
-import { getRandomFunnyName } from '../../funnyNames.js';
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png'; 
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 
-// helper functions for creating rooms
+// Helper functions for existing room creation routines
 import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
-import { handleCreateTttRoom } from '../TicTacToe/TicTacToeCreateButton.jsx';
 import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
 import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
 export default function Home() {
-    const [playerName, setPlayerName] = useState(getRandomFunnyName);
     const navigate = useNavigate();
 
     // Loading states
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [isUnderConstruction, setIsUnderConstruction] = useState(false)
+    const [isUnderConstruction, setIsUnderConstruction] = useState(false);
     
     // 🥷 Burglar Animation States
     const [burglarActive, setBurglarActive] = useState(false);
@@ -29,13 +26,12 @@ export default function Home() {
         const initialTimer = setTimeout(() => {
             setBurglarActive(true);
 
-            // 2. The CSS animation takes 3s total. The burglar pauses over the button 
-            // at about 1.2 seconds. That's when we hide the button!
+            // 2. The burglar pauses over the button at ~1.2s to steal it
             setTimeout(() => {
                 setIsStolen(true);
             }, 1200);
 
-        }, 2000); // 2000ms = 2 seconds before he attacks
+        }, 2000);
 
         return () => clearTimeout(initialTimer);
     }, []);
@@ -43,7 +39,7 @@ export default function Home() {
     return (
         <div className="d-flex justify-content-center align-items-center p-1 overflow-hidden" style={{ minHeight: "100vh" }}>
             
-            {/* CSS ANIMATION STYLES INJECTED HERE */}
+            {/* CSS ANIMATION STYLES */}
             <style>
                 {`
                     .temple-logo {
@@ -54,11 +50,11 @@ export default function Home() {
                     }
 
                     @keyframes burglarHeist {
-                        0%   { transform: translate(400px, -50%); opacity: 1; }  /* Starts way off to the right */
-                        35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */
-                        50%  { transform: translate(0px, -50%); opacity: 1; }    /* Pauses to grab it */
-                        85%  { transform: translate(-400px, -50%); opacity: 1; } /* Runs away to the left */
-                        100% { transform: translate(-400px, -50%); opacity: 0; } /* Disappears */
+                        0%   { transform: translate(400px, -50%); opacity: 1; }
+                        35%  { transform: translate(0px, -50%); opacity: 1; }
+                        50%  { transform: translate(0px, -50%); opacity: 1; }
+                        85%  { transform: translate(-400px, -50%); opacity: 1; }
+                        100% { transform: translate(-400px, -50%); opacity: 0; }
                     }
                     .burglar-character {
                         position: absolute;
@@ -66,7 +62,7 @@ export default function Home() {
                         left: 40%;
                         z-index: 999;
                         opacity: 0;
-                        pointer-events: none; /* So it doesn't block clicks */
+                        pointer-events: none;
                     }
                     .burglar-running {
                         animation: burglarHeist 3s ease-in-out forwards;
@@ -97,6 +93,7 @@ export default function Home() {
                     </div>
 
                     <Row className="g-2 mt-2">
+                        {/* Join Room Portal Route */}
                         <Col xs={12}>
                             <Button
                                 variant='primary'
@@ -117,12 +114,13 @@ export default function Home() {
                             <hr className="flex-grow-1 my-0 opacity-25" />
                         </Col>
                         
+                        {/* Couch Cast */}
                         <Col xs={12}>
                             <Button
                                 variant='primary'
                                 className='fw-bold w-100 py-2 shadow-sm'
                                 disabled={isCreatingRoom}
-                                onClick={() => handleCreateCouchCast(playerName, navigate, setIsCreatingRoom)}
+                                onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
                             >
                                 Couch Cast<br/>
                                 🛋️🛋️
@@ -131,36 +129,39 @@ export default function Home() {
 
                         <Col xs={12}>
                             <Row className="g-2">
+                                {/* Tic-Tac-Toe Setup Route */}
                                 <Col xs={6}>
                                     <Button 
                                         variant="primary" 
                                         className="fw-bold w-100 h-100 py-2 shadow-sm"
                                         disabled={isCreatingRoom}
-                                        onClick={() => handleCreateTttRoom(playerName, navigate, setIsCreatingRoom)}
+                                        onClick={() => navigate('/tictactoe-create')}
                                     >
                                         Tic-Tac-Toe<br/>
                                         X O
                                     </Button>
                                 </Col>
                                 
+                                {/* Trivia */}
                                 <Col xs={6}>
                                     <Button 
                                         variant="primary" 
                                         className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
                                         disabled={isCreatingRoom}
-                                        onClick={() => handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom)}
+                                        onClick={() => handleCreateTriviaRoom(null, navigate, setIsCreatingRoom)}
                                     >
                                         Trivia <br />
                                         ❔❔
                                     </Button>
                                 </Col>
 
+                                {/* Prompt 2 */}
                                 <Col xs={6}>
                                     <Button
                                         variant="primary"
                                         className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
                                         disabled={isCreatingRoom}
-                                        onClick={() => handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom)}
+                                        onClick={() => handleCreatePrompt2Room(null, navigate, setIsCreatingRoom)}
                                     >
                                         Prompt <br/> 2
                                     </Button>
@@ -168,7 +169,6 @@ export default function Home() {
 
                                 {/* 🥷 THE BURGLAR ZONE */}
                                 <Col xs={6} className="position-relative overflow-visible">
-                                    {/* The Burglar Character */}
                                     <div className={`burglar-character ${burglarActive ? 'burglar-running' : ''}`}>
                                         <img 
                                             src={isStolen ? burglarWithButton : burglarEmpty} 
@@ -181,7 +181,6 @@ export default function Home() {
                                         />
                                     </div>
 
-                                    {/* The Button (Swaps to a dashed outline when stolen) */}
                                     {!isStolen ? (
                                         <Button 
                                             variant="primary" 
@@ -203,6 +202,7 @@ export default function Home() {
                 </Card.Body>
             </Card>
 
+            {/* Modals */}
             <Modal show={isCreatingRoom} backdrop="static" keyboard={false} centered>
                 <Modal.Body className='d-flex flex-column align-items-center justify-content-center p-4'>
                     <Spinner animation='border' variant="primary" className='mb-3'/>

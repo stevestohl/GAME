@@ -6,18 +6,18 @@ import EmployeeEdit from './features/Employee/EmployeeEdit.jsx'
 import Flashcards from './features/Flashcards/Flashcards.jsx'
 import FlashcardsList from './features/Flashcards/FlashcardsList.jsx'
 import FlashcardGame from './features/Flashcards/FlashcardGame.jsx'
+
+// --- Menu Imports ---
 import Home from './features/Menu/Home.jsx'
 import BarHome from './features/Menu/BarHome.jsx'
 
+// --- Game Imports ---
 import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
 import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
-
-// --- Game Imports ---
-import TicTacToe from './features/TicTacToe/TicTacToe.jsx'
+import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
+import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
-
-// Import whatever component you want mobile players to land on when they scan the QR code
-// import MobileJoinScreen from './features/CouchCast/MobileJoinScreen.jsx'
+import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
 
 export default function Contents() {
     const NotFound = () => <h1>Page Not Found</h1>
@@ -27,9 +27,11 @@ export default function Contents() {
             {/* Core Game-Temple Routes */}
             <Route path="/home" element={<Home />} />
             <Route path="/barhome" element={<BarHome />} />
+            <Route path="/join" element={<UniversalJoinScreen />} />
             
             {/* Direct routing to game board */}
             <Route path="/tictactoe" element={<TicTacToe />} />
+            <Route path="/tictactoe-create" element={<TicTacToeCreateScreen />} /> 
             <Route path="/TriviaWaitingRoom" element={<TriviaWaitingRoom />} />
             
             {/* Flashcard & Tools Routes */}
@@ -42,7 +44,6 @@ export default function Contents() {
             <Route path="/CouchCast" element={<CouchCastManager />} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}
-            {/* Replace CouchCastManager with your specific mobile join component if you have a separate one */}
             <Route path="/play" element={<CouchCastManager />} />
 
             {/* Employee Management Routes */}
