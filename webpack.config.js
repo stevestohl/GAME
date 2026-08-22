@@ -30,6 +30,10 @@ const config = {
                 type: 'asset/resource',
             },
             {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
                 // Handles video and audio files (including your new logo!)
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 type: 'asset/resource',

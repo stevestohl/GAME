@@ -1,0 +1,99 @@
+/* Centered Full Height Container */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.25rem;
+  overflow-x: hidden;
+  
+  /* Fallback for standard viewports */
+  min-height: calc(100vh - 56px);
+  
+  /* Modern dynamic viewport height (accounts for mobile URL bars) */
+  min-height: calc(100dvh - 56px);
+}
+
+/* Standardized Card Layout */
+.main-card {
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  position: relative;
+  border: none !important;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Custom Card Header styling */
+.main-card-header {
+  background-color: #014eb6 !important;
+  color: #f1f2f5 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important; 
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;  
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 1rem !important;
+}
+
+/* Custom Text Brand Color */
+.text-brand-primary {
+  color: #014eb6;
+}
+
+/* -------------------------------------------------- */
+/* 🥷 Burglar Animations                              */
+/* -------------------------------------------------- */
+
+.stolen-slot {
+  border: 2px dashed #ccc;
+  background-color: transparent;
+  color: #aaa;
+}
+
+/* 1. Left-to-Right Keyframe (Flips image to face Right) */
+@keyframes burglarHeistLTR {
+  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }
+  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }
+  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }
+  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }
+  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }
+}
+
+/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */
+@keyframes burglarHeistRTL {
+  0%   { transform: translate(400px, -50%); opacity: 1; }
+  35%  { transform: translate(0px, -50%); opacity: 1; }
+  50%  { transform: translate(0px, -50%); opacity: 1; }
+  85%  { transform: translate(-400px, -50%); opacity: 1; }
+  100% { transform: translate(-400px, -50%); opacity: 0; }
+}
+
+/* Home Page Burglar (Runs Left to Right) */
+.burglar-ltr {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+}
+.burglar-ltr.active {
+  animation: burglarHeistLTR 3s ease-in-out forwards;
+}
+
+/* Bar Home Burglar (Runs Right to Left) */
+.burglar-rtl {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+}
+.burglar-rtl.active {
+  animation: burglarHeistRTL 3s ease-in-out forwards;
+}

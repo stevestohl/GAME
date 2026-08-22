@@ -25,41 +25,9 @@ export default function BarHome() {
     }, []);
 
     return (
-        <div className="d-flex justify-content-center align-items-center p-1">
-            {/* CSS ANIMATION STYLES INJECTED HERE */}
-            <style>
-                {`
-                    @keyframes burglarHeist {
-                        0%   { transform: translate(-400px, -50%); opacity: 1; }  /* Starts way off to the left */
-                        35%  { transform: translate(0px, -50%); opacity: 1; }    /* Arrives at the button */
-                        50%  { transform: translate(0px, -50%); opacity: 1; }    /* Pauses to grab it */
-                        85%  { transform: translate(400px, -50%); opacity: 1; } /* Runs away to the right */
-                        100% { transform: translate(400px, -50%); opacity: 0; } /* Disappears */
-                    }
-                    .burglar-character {
-                        position: absolute;
-                        top: 50%;
-                        left: 40%;
-                        z-index: 999;
-                        opacity: 0;
-                        pointer-events: none; /* So it doesn't block clicks */
-                    }
-                    .burglar-running {
-                        animation: burglarHeist 3s ease-in-out forwards;
-                    }
-                    .stolen-slot {
-                        border: 2px dashed #ccc;
-                        background-color: transparent;
-                        color: #aaa;
-                    }
-                `}
-            </style>
-
-            <Card className='text-center shadow-lg border-0' style={{ maxWidth: "450px", width: "100%" }}>
-                <Card.Header 
-                as="h5" 
-                className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
-                style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
+        <div className="page-container">
+            <Card className='main-card'>
+                <Card.Header className="main-card-header">
                     BAR-TEMPLE
                 </Card.Header>
                 
@@ -112,16 +80,11 @@ export default function BarHome() {
                             {/* 🥷 THE BURGLAR ZONE */}
                             <Col xs={6} className="position-relative overflow-visible">
                                 {/* The Burglar Character */}
-                                <div className={`burglar-character ${burglarActive ? 'burglar-running' : ''}`}>
+                                <div className={`burglar-rtl ${burglarActive ? 'active' : ''}`}>
                                     <img 
                                         src={isStolen ? burglarWithButton : burglarEmpty} 
                                         alt="Button Burglar"
-                                        style={{ 
-                                            width: '60px', 
-                                            height: 'auto',
-                                            mixBlendMode: 'multiply',
-                                            transform: 'scaleX(-1)'
-                                        }} 
+                                        style={{ width: '60px', height: 'auto', mixBlendMode: 'multiply' }} 
                                     />
                                 </div>
 

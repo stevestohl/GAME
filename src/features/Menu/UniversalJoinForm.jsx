@@ -53,8 +53,11 @@ export default function UniversalJoinScreen() {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-start pt-5 p-1" style={{ minHeight: "100vh", backgroundColor: "#f4f6f9" }}>
-            <Card className='shadow-sm w-100 border-0' style={{ maxWidth: '400px' }}>
+        <div className="page-container">
+            <Card className='main-card'>
+                <Card.Header className='main-card-header'>
+                    Join a Room
+                </Card.Header>
                 <Card.Body className='p-4 text-center'>
                     <div className='mb-4'>
                         <h2 className='fw-bold text-primary mb-1'>Game Temple</h2>

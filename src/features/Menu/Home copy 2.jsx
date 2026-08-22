@@ -37,10 +37,49 @@ export default function Home() {
     }, []);
     
     return (
-        <div className="page-container">
-            <Card className='main-card'>
+        <div className="d-flex justify-content-center align-items-start p-1 overflow-hidden" style={{ minHeight: "100vh" }}>
+            
+            {/* CSS ANIMATION STYLES */}
+            <style>
+                {`
+                    .temple-logo {
+                        image-rendering: -moz-crisp-edges;
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges;
+                        image-rendering: pixelated;                 
+                    }
+
+                    @keyframes burglarHeist {
+                        0%   { transform: translate(400px, -50%); opacity: 1; }
+                        35%  { transform: translate(0px, -50%); opacity: 1; }
+                        50%  { transform: translate(0px, -50%); opacity: 1; }
+                        85%  { transform: translate(-400px, -50%); opacity: 1; }
+                        100% { transform: translate(-400px, -50%); opacity: 0; }
+                    }
+                    .burglar-character {
+                        position: absolute;
+                        top: 50%;
+                        left: 40%;
+                        z-index: 999;
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                    .burglar-running {
+                        animation: burglarHeist 3s ease-in-out forwards;
+                    }
+                    .stolen-slot {
+                        border: 2px dashed #ccc;
+                        background-color: transparent;
+                        color: #aaa;
+                    }
+                `}
+            </style>
+
+            <Card className='text-center shadow-lg border-0 position-relative' style={{ maxWidth: "450px", width: "100%" }}>
                 <Card.Header 
-                    className="main-card-header">
+                    as="h5" 
+                    className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
+                    style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
                     GAME-TEMPLE.ORG
                 </Card.Header>
                 
@@ -130,11 +169,15 @@ export default function Home() {
 
                                 {/* 🥷 THE BURGLAR ZONE */}
                                 <Col xs={6} className="position-relative overflow-visible">
-                                    <div className={`burglar-ltr ${burglarActive ? 'active' : ''}`}>
+                                    <div className={`burglar-character ${burglarActive ? 'burglar-running' : ''}`}>
                                         <img 
                                             src={isStolen ? burglarWithButton : burglarEmpty} 
                                             alt="Button Burglar"
-                                            style={{ width: '60px', height: 'auto', mixBlendMode: 'multiply' }} 
+                                            style={{ 
+                                                width: '60px', 
+                                                height: 'auto',
+                                                mixBlendMode: 'multiply' 
+                                            }} 
                                         />
                                     </div>
 

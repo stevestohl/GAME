@@ -4,7 +4,7 @@ import Contents from './Contents.jsx'
 import backgroundImage from './assets/logos/background.jpg'
 import logo from './assets/logos/temple.jpg'
 import martini from './assets/logos/MartiniLogo.jpg'
-
+import './styles/cards.css'
 
 function NavBar() {
 
