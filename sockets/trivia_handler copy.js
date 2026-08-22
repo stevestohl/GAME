@@ -46,7 +46,7 @@ export default function registerTriviaNamespace(namespace) {
         });
 
         // --- Event: Room Joining ---
-        socket.on('joinRoom', ({ roomCode, playerName, sessionToken }) => {
+        socket.on('joinRoom', ({ roomCode, playerName }) => {
             if (!roomCode) return socket.emit('errorMsg', 'Room code is missing.');
             
             const code = roomCode.trim().toUpperCase();
@@ -54,43 +54,20 @@ export default function registerTriviaNamespace(namespace) {
             
             if (currentRoom) {
                 socket.join(code);
-                const cleanName = (playerName || 'Anonymous').trim();
-
-                // 1. 🔍 Look for an existing player by SESSION TOKEN first
-                const existingPlayer = currentRoom.players.find(p => p.sessionToken === sessionToken);
-
-                if (existingPlayer) {
-                    // 🎉 Welcome back! Update their socket ID so they receive new events
-                    existingPlayer.id = socket.id;
-                    
-                    // Optional: update their name if they changed it on the join screen
-                    existingPlayer.name = cleanName; 
-                    
-                    console.log(`♻️ Player reconnected: ${cleanName}`);
-                } else {
-                    // 2. 🛑 It's a new session. Check if the requested name is already taken!
-                    const nameTaken = currentRoom.players.some(
-                        p => p.name.toLowerCase() === cleanName.toLowerCase()
-                    );
-
-                    if (nameTaken) {
-                        return socket.emit('nameTaken', { 
-                            roomCode: code,
-                            message: 'That name is already taken in this room. Please pick another!' 
-                        });
-                    }
-
-                    // 3. 🆕 Add brand new player with their session token
+                
+                const playerExists = currentRoom.players.some(p => p.id === socket.id);
+                
+                if (!playerExists) {
                     currentRoom.players.push({ 
                         id: socket.id, 
-                        name: cleanName, 
-                        score: 0,
-                        sessionToken: sessionToken // Save the token for future reconnects!
+                        name: playerName || 'Anonymous', 
+                        score: 0 
                     });
-                    console.log(`👋 New player joined: ${cleanName}`);
+                } else {
+                    const index = currentRoom.players.findIndex(p => p.id === socket.id);
+                    currentRoom.players[index].name = playerName || 'Anonymous';
                 }
                 
-                // Sync the room for everyone
                 namespace.to(code).emit('roomUpdated', { 
                     roomCode: code, 
                     players: currentRoom.players 
@@ -99,8 +76,6 @@ export default function registerTriviaNamespace(namespace) {
                 socket.emit('errorMsg', 'Trivia room not found.');
             }
         });
-
-
 
         // --- Event: Start Game ---
         socket.on('startGame', async ({ roomCode }) => {

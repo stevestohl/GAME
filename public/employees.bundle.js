@@ -5073,252 +5073,6 @@ function TictactoeManager() {
 
 /***/ }),
 
-/***/ "./src/features/Trivia/QuestionScreen.jsx":
-/*!************************************************!*\
-  !*** ./src/features/Trivia/QuestionScreen.jsx ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ QuestionScreen)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-function QuestionScreen(_ref) {
-  var roomCode = _ref.roomCode,
-    currentQuestion = _ref.currentQuestion,
-    playerAnswers = _ref.playerAnswers;
-  var hasAnswered = !!(playerAnswers !== null && playerAnswers !== void 0 && playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id]);
-  var choices = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
-    if (!currentQuestion) return [];
-    var incorrects = Array.isArray(currentQuestion.incorrect_answers) ? currentQuestion.incorrect_answers.flat() : [];
-    var combined = [].concat(_toConsumableArray(incorrects), [currentQuestion.correct_answer]);
-    return combined.sort(function (a, b) {
-      return a.localeCompare(b);
-    });
-  }, [currentQuestion]);
-  var handleChoiceClick = function handleChoiceClick(selectedChoice) {
-    if (hasAnswered) return;
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('submitAnswer', {
-      roomCode: roomCode,
-      answer: selectedChoice
-    });
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-center align-items-center p-1",
-    style: {
-      minHeight: "80vh"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "text-center shadow-lg border-0 w-100",
-    style: {
-      maxWidth: "450px"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
-    as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
-    style: {
-      backgroundColor: '#014eb6',
-      color: '#f1f2f5',
-      letterSpacing: '0.2em'
-    }
-  }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "p-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 text-center p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
-    className: "fs-4 fw-bold mb-4 text-dark text-break"
-  }, currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-grid gap-2"
-  }, choices.map(function (choice, index) {
-    var isMyChoice = (playerAnswers === null || playerAnswers === void 0 ? void 0 : playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id]) === choice;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      key: index,
-      variant: isMyChoice ? "primary" : "outline-secondary",
-      disabled: hasAnswered,
-      onClick: function onClick() {
-        return handleChoiceClick(choice);
-      }
-      // 3. Added 'text-break' to the buttons to handle long answers gracefully
-      ,
-      className: "py-2 fw-semibold text-start px-3 shadow-sm text-break"
-    }, choice);
-  })), hasAnswered &&
-  /*#__PURE__*/
-  // 4. Added 'text-break' to the locked message banner
-  react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2 border border-dashed rounded bg-light mt-4 animate-pulse text-break"
-  }, "\u23F3 Answer locked! Waiting for remaining players...")))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Trivia/RulesScreen.jsx":
-/*!*********************************************!*\
-  !*** ./src/features/Trivia/RulesScreen.jsx ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ RulesScreen)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
-
-
-
-function RulesScreen(_ref) {
-  var roomCode = _ref.roomCode,
-    isHost = _ref.isHost;
-  var handleNext = function handleNext() {
-    console.log("Sending nextRound event for room:".concat(roomCode));
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('nextRound', {
-      roomCode: roomCode
-    });
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-center align-items-center p-1",
-    style: {
-      minHeight: "80vh"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "text-center shadow-lg border-0",
-    style: {
-      maxWidth: "450px",
-      width: "100%"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
-    as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
-    style: {
-      backgroundColor: '#014eb6',
-      color: '#f1f2f5',
-      letterSpacing: '0.2em'
-    }
-  }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
-    className: "fs-3 fw-bold mb-3 text-primary"
-  }, "Game Rules"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Text, {
-    className: "text-start fs-6 mb-4 p-3 bg-light rounded border"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "How to play Temple-Trivia:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "1. The game consists of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "3 rounds"), ".", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "2. Read the question carefully.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "3. You earn ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 point"), " per correct answer.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "4. The scoreboard shifts instantly once everyone logs their vote!"), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    variant: "primary",
-    className: "w-100 fw-bold py-2 shadow-sm",
-    onClick: handleNext
-  }, "Begin Round 1") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2 border border-dashed rounded bg-light"
-  }, "Waiting for the host to launch the first question..."))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Trivia/ScoreboardScreen.jsx":
-/*!**************************************************!*\
-  !*** ./src/features/Trivia/ScoreboardScreen.jsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ScoreboardScreen)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-function ScoreboardScreen(_ref) {
-  var roomCode = _ref.roomCode,
-    players = _ref.players,
-    isHost = _ref.isHost;
-  var handleNextRound = function handleNextRound() {
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('advanceFromScoreboard', {
-      roomCode: roomCode
-    });
-  };
-
-  // Keep highest ranking profile at array position index 0
-  var sortedPlayers = _toConsumableArray(players).sort(function (a, b) {
-    return (b.score || 0) - (a.score || 0);
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-center align-items-center p-1",
-    style: {
-      minHeight: "80vh"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "text-center shadow-lg border-0 w-100",
-    style: {
-      maxWidth: "450px"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
-    as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase fs-6",
-    style: {
-      backgroundColor: '#014eb6',
-      color: '#f1f2f5',
-      letterSpacing: '0.2em'
-    }
-  }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
-    className: "fs-3 fw-bold mb-3 text-primary"
-  }, "Scores"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "mb-4 text-start border border-secondary rounded shadow-inner"
-  }, sortedPlayers.map(function (player, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-      key: player.id,
-      className: "d-flex justify-content-between align-items-center py-2.5 fw-semibold"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-muted me-2 small"
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      bg: "info",
-      className: "ms-2 text-white font-normal"
-    }, "You")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      bg: "success",
-      className: "fs-6 py-1.5 px-2.5 rounded-pill"
-    }, player.score || 0, " pts"));
-  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    variant: "primary",
-    className: "w-100 fw-bold py-2 shadow-sm",
-    onClick: handleNextRound
-  }, "Advance Stage") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2 border border-dashed rounded bg-light"
-  }, "\u23F3 Waiting for host to load the next round..."))));
-}
-
-/***/ }),
-
 /***/ "./src/features/Trivia/TriviaCreateButton.jsx":
 /*!****************************************************!*\
   !*** ./src/features/Trivia/TriviaCreateButton.jsx ***!
@@ -5480,107 +5234,6 @@ function TriviaCreateScreen() {
 
 /***/ }),
 
-/***/ "./src/features/Trivia/TriviaGameOver.jsx":
-/*!************************************************!*\
-  !*** ./src/features/Trivia/TriviaGameOver.jsx ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ GameOverScreen)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-function GameOverScreen(_ref) {
-  var players = _ref.players,
-    roomCode = _ref.roomCode,
-    isHost = _ref.isHost;
-  // Sort players to find the ultimate winner
-  var standings = _toConsumableArray(players).sort(function (a, b) {
-    return (b.score || 0) - (a.score || 0);
-  });
-  var winner = standings[0];
-  var handleRestart = function handleRestart() {
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('nextRound', {
-      roomCode: roomCode
-    });
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-lg w-100 text-center border-0",
-    style: {
-      maxWidth: '440px',
-      background: '#f8f9fa'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "py-5 px-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fs-1 mb-2"
-  }, "\uD83C\uDFC6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-    className: "fs-2 fw-bold text-dark mb-1"
-  }, "Game Over!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
-    className: "text-muted mb-4"
-  }, "Final Standings"), winner && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "p-3 mb-4 rounded-3 border bg-white shadow-sm",
-    style: {
-      borderColor: '#ffd700'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-muted small d-block uppercase fw-bold tracking-wider text-warning"
-  }, "Grand Champion"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fs-3 fw-black text-dark"
-  }, winner.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "d-block text-success fw-bold fs-5 mt-1"
-  }, winner.score || 0, " Points")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "mb-4 text-start shadow-sm rounded border"
-  }, standings.slice(1).map(function (player, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-      key: player.id,
-      className: "d-flex justify-content-between align-items-center py-2 bg-white"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-muted me-2 small"
-    }, "#", index + 2), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fw-semibold text-secondary"
-    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      bg: "secondary",
-      className: "rounded-pill"
-    }, player.score || 0, " pts"));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-grid gap-2 mt-4"
-  }, isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    variant: "primary",
-    className: "w-100 fw-bold py-2 shadow-sm",
-    onClick: handleRestart
-  }, "Play Again") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2.5 border border-dashed rounded bg-white text-center"
-  }, "\u23F3 Waiting for the host to start a new match..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    variant: "outline-primary",
-    className: "w-100 fw-bold py-2 shadow-sm",
-    onClick: function onClick() {
-      return window.location.href = '/home';
-    }
-  }, "Home")))));
-}
-
-/***/ }),
-
 /***/ "./src/features/Trivia/TriviaWaitingRoom.jsx":
 /*!***************************************************!*\
   !*** ./src/features/Trivia/TriviaWaitingRoom.jsx ***!
@@ -5593,157 +5246,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
-/* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
-/* harmony import */ var _RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RulesScreen.jsx */ "./src/features/Trivia/RulesScreen.jsx");
-/* harmony import */ var _QuestionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuestionScreen.jsx */ "./src/features/Trivia/QuestionScreen.jsx");
-/* harmony import */ var _ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ScoreboardScreen.jsx */ "./src/features/Trivia/ScoreboardScreen.jsx");
-/* harmony import */ var _TriviaGameOver_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./TriviaGameOver.jsx */ "./src/features/Trivia/TriviaGameOver.jsx");
-/* harmony import */ var _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/logos/Prompt2Blueberries.gif */ "./src/assets/logos/Prompt2Blueberries.gif");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+/* harmony import */ var _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/logos/Prompt2Blueberries.gif */ "./src/assets/logos/Prompt2Blueberries.gif");
 
 
 
 
 
-
-
-
-
-
-function TriviaWaitingRoom() {
-  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useSearchParams)(),
-    _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
-    searchParams = _useSearchParams2[0];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
-
-  // Grab configuration from the URL params
-  var roomCode = searchParams.get('room');
-  var urlName = searchParams.get('name') || 'Anonymous';
-  var role = searchParams.get('role') || 'guest'; // 'host' or 'guest'
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState2 = _slicedToArray(_useState, 2),
-    players = _useState2[0],
-    setPlayers = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState4 = _slicedToArray(_useState3, 2),
-    error = _useState4[0],
-    setError = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState6 = _slicedToArray(_useState5, 2),
-    roomState = _useState6[0],
-    setRoomState = _useState6[1];
-
-  // Dynamic QR URL that carries roomCode parameter directly to the Join Portal
+function TriviaWaitingRoom(_ref) {
+  var roomCode = _ref.roomCode,
+    role = _ref.role,
+    players = _ref.players,
+    socketId = _ref.socketId;
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!roomCode) {
-      setError('No room code provided!');
-      return;
-    }
-    if (!_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.connected) {
-      console.log("Waiting room socket disconnected. Establishing fresh handshake...");
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.connect();
-    }
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomUpdated');
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomStateUpdated');
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('errorMsg');
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('joinRoom', {
-      roomCode: roomCode,
-      playerName: urlName
-    });
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('roomUpdated', function (data) {
-      console.log("Lobby updated from trivia server:", data);
-      setPlayers(data.players);
-    });
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('roomStateUpdated', function (updateRoom) {
-      console.log("Gameplay state update:", updateRoom);
-      setRoomState(updateRoom);
-    });
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('errorMsg', function (msg) {
-      setError(msg);
-    });
-    return function () {
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomUpdated');
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomStateUpdated');
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('errorMsg');
-    };
-  }, [roomCode, urlName]);
   var handleStartGame = function handleStartGame() {
-    console.log("Starting trivia match for room: ", roomCode);
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('startGame', {
+    _socket_js__WEBPACK_IMPORTED_MODULE_2__.triviaSocket.emit('startGame', {
       roomCode: roomCode
     });
   };
-  if (error) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      className: "mt-5 text-center",
-      style: {
-        maxWidth: '400px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      variant: "danger"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      variant: "primary",
-      onClick: function onClick() {
-        return navigate('/');
-      }
-    }, "Back to Home"));
-  }
-  if (roomState) {
-    switch (roomState.phase) {
-      case 'RULES':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RulesScreen_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          roomCode: roomCode,
-          isHost: role === 'host'
-        });
-      case 'QUESTION':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuestionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          roomCode: roomCode,
-          currentQuestion: roomState.questions[roomState.currentRound],
-          playerAnswers: roomState.playerAnswers
-        });
-      case 'SCOREBOARD':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          roomCode: roomCode,
-          players: roomState.players,
-          isHost: role === 'host'
-        });
-      case 'GAMEOVER':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaGameOver_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          players: roomState.players,
-          roomCode: roomCode,
-          isHost: role === 'host'
-        });
-      default:
-        break;
-    }
-  }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-1",
     style: {
       minHeight: "80vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "text-center shadow-lg border-0",
     style: {
       maxWidth: "450px",
       width: "100%"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
     className: "d-flex align-items-center justify-content-center border-0 py-2 fw-bold text-uppercase",
     style: {
       backgroundColor: '#014eb6',
@@ -5751,14 +5288,14 @@ function TriviaWaitingRoom() {
       letterSpacing: '0.2em',
       fontSize: '0.85rem'
     }
-  }, "TRIVIA ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+  }, "TRIVIA ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "text-center py-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
     className: "fs-4 fw-bold mb-2 text-primary"
   }, "Trivia Waiting Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-sm"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_7__,
+    src: _assets_logos_Prompt2Blueberries_gif__WEBPACK_IMPORTED_MODULE_3__,
     alt: "BlueBerries",
     className: "img-fluid",
     style: {
@@ -5773,7 +5310,7 @@ function TriviaWaitingRoom() {
     className: "fs-3 fw-black text-dark tracking-widest mb-3 d-block"
   }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "bg-white p-2 rounded border d-inline-block shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_2__.QRCodeCanvas, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeCanvas, {
     value: joinUrl,
     size: 120,
     level: "M",
@@ -5785,25 +5322,25 @@ function TriviaWaitingRoom() {
     }
   }, "Scan to Join Room Direct"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "text-start fw-bold mb-2 px-1 fs-6"
-  }, "Players Joined", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, "Players Joined ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     bg: "secondary",
     className: "ms-2"
-  }, players.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, players.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "mb-3 text-start border border-secondary rounded",
     style: {
       maxHeight: '150px',
       overflowY: 'auto'
     }
   }, players.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Item, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Item, {
       key: player.id,
       className: "d-flex justify-content-between align-items-center py-2 fw-semibold small"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === socketId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       bg: "primary"
     }, "You") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-muted small"
     }, "Ready"));
-  })), role === 'host' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  })), role === 'host' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     variant: "primary",
     className: "w-100 fw-bold py-2 shadow-sm",
     onClick: handleStartGame
