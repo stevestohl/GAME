@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Card, ListGroup, Badge, Button, Alert } from 'react-bootstrap';
-import {triviaSocket as socket } from '../../socket.js';
+import { triviaSocket as socket } from '../../socket.js';
 import { QRCodeCanvas } from 'qrcode.react';
 
 import RulesScreen from './RulesScreen.jsx';
@@ -14,15 +14,17 @@ export default function TriviaWaitingRoom() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
-    // Grab configuration from the URL params sent by UniversalJoinForm
+    // Grab configuration from the URL params
     const roomCode = searchParams.get('room');
     const urlName = searchParams.get('name') || 'Anonymous';
     const role = searchParams.get('role') || 'guest'; // 'host' or 'guest'
 
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState('');
-    // Tracks roomState from Render Server
     const [roomState, setRoomState] = useState(null);
+
+    // Dynamic QR URL that carries roomCode parameter directly to the Join Portal
+    const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
     useEffect(() => {
         if (!roomCode) {
@@ -30,37 +32,31 @@ export default function TriviaWaitingRoom() {
             return;
         }
 
-        // Ensure socket connects to namespace
-        if(!socket.connected) {
-            console.log("Waiting room socket disconnected. Establishing fresh handshake...")
-            socket.connect()
+        if (!socket.connected) {
+            console.log("Waiting room socket disconnected. Establishing fresh handshake...");
+            socket.connect();
         }
-        // Removes pre-existing listener bindings - looks like double code, but isn't, so keep it
+
         socket.off('roomUpdated');
         socket.off('roomStateUpdated');
         socket.off('errorMsg');
 
-        // Tell the server we want to join this room            
         socket.emit('joinRoom', { roomCode, playerName: urlName });
 
-        // Listen for real-time room synchronization updates
         socket.on('roomUpdated', (data) => {
             console.log("Lobby updated from trivia server:", data);
             setPlayers(data.players);
         });
 
-        // Listen for gameplay phase transitions from Render backend
         socket.on('roomStateUpdated', (updateRoom) => {
             console.log("Gameplay state update:", updateRoom);
             setRoomState(updateRoom);
         });
 
-        // Listen for any access errors (e.g., room doesn't exist)
         socket.on('errorMsg', (msg) => {
             setError(msg);
         });
 
-        // Cleanup connections when the user leaves the page or closes the tab
         return () => {
             socket.off('roomUpdated');
             socket.off('roomStateUpdated');
@@ -68,9 +64,8 @@ export default function TriviaWaitingRoom() {
         };
     }, [roomCode, urlName]);
 
-    // Emits activation trigger to backend to pull Questions
     const handleStartGame = () => {
-        console.log("Starting trivia match for room: ", roomCode)
+        console.log("Starting trivia match for room: ", roomCode);
         socket.emit('startGame', { roomCode });
     };
 
@@ -83,19 +78,10 @@ export default function TriviaWaitingRoom() {
         );
     }
 
-    // =========================================================================
-    // DYNAMIC PHASE CONTROLLER EVALUATION
-    // =========================================================================
     if (roomState) {
         switch (roomState.phase) {
             case 'RULES':
-                return (
-                    <RulesScreen 
-                        roomCode={roomCode} 
-                        isHost={role === 'host'} 
-                    />
-                );
-                
+                return <RulesScreen roomCode={roomCode} isHost={role === 'host'} />;
             case 'QUESTION':
                 return (
                     <QuestionScreen 
@@ -104,7 +90,6 @@ export default function TriviaWaitingRoom() {
                         playerAnswers={roomState.playerAnswers}
                     />
                 );
-                
             case 'SCOREBOARD':
                 return (
                     <ScoreboardScreen 
@@ -113,7 +98,6 @@ export default function TriviaWaitingRoom() {
                         isHost={role === 'host'}
                     />
                 );
-                
             case 'GAMEOVER':
                 return (
                     <GameOverScreen 
@@ -127,9 +111,6 @@ export default function TriviaWaitingRoom() {
         }
     }
 
-    // =========================================================================
-    // DEFAULT LOBBY VIEW (If no phase has been launched yet)
-    // =========================================================================
     return (
         <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: "80vh" }}>
             <Card className="text-center shadow-lg border-0" style={{ maxWidth: "450px", width: "100%" }}>
@@ -148,7 +129,6 @@ export default function TriviaWaitingRoom() {
                 <Card.Body className="text-center py-3">
                     <Card.Title className="fs-4 fw-bold mb-2 text-primary">Trivia Waiting Room</Card.Title>
 
-                    {/* Image Container (Slightly more compact) */}
                     <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-sm">
                         <img
                             src={BlueBerries}
@@ -158,7 +138,7 @@ export default function TriviaWaitingRoom() {
                         />
                     </div>
 
-                    {/* 📦 Combined Room Code & QR Code Box */}
+                    {/* 📦 Combined Room Code & Dynamic QR Code Box */}
                     <div className="my-3 bg-light border border-secondary rounded p-3 text-center">                            
                         <span className="text-uppercase tracking-wider small fw-bold text-muted d-block mb-1">
                             Room Code
@@ -167,13 +147,13 @@ export default function TriviaWaitingRoom() {
                         
                         <div className="bg-white p-2 rounded border d-inline-block shadow-sm">
                             <QRCodeCanvas 
-                                value="https://game-temple.org/" 
-                                size={110}
+                                value={joinUrl} 
+                                size={120}
                                 level={"M"}
                                 includeMargin={true}
                             />
                             <span className="text-muted small d-block mt-1 fw-semibold" style={{ fontSize: '0.75rem' }}>
-                                Scan to Game-Temple.org
+                                Scan to Join Room Direct
                             </span>
                         </div>
                     </div>                            

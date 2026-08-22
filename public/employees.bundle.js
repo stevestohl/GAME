@@ -5629,7 +5629,7 @@ function TriviaWaitingRoom() {
     searchParams = _useSearchParams2[0];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
 
-  // Grab configuration from the URL params sent by UniversalJoinForm
+  // Grab configuration from the URL params
   var roomCode = searchParams.get('room');
   var urlName = searchParams.get('name') || 'Anonymous';
   var role = searchParams.get('role') || 'guest'; // 'host' or 'guest'
@@ -5642,59 +5642,46 @@ function TriviaWaitingRoom() {
     _useState4 = _slicedToArray(_useState3, 2),
     error = _useState4[0],
     setError = _useState4[1];
-  // Tracks roomState from Render Server
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState6 = _slicedToArray(_useState5, 2),
     roomState = _useState6[0],
     setRoomState = _useState6[1];
+
+  // Dynamic QR URL that carries roomCode parameter directly to the Join Portal
+  var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!roomCode) {
       setError('No room code provided!');
       return;
     }
-
-    // Ensure socket connects to namespace
     if (!_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.connected) {
       console.log("Waiting room socket disconnected. Establishing fresh handshake...");
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.connect();
     }
-    // Removes pre-existing listener bindings - looks like double code, but isn't, so keep it
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomUpdated');
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomStateUpdated');
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('errorMsg');
-
-    // Tell the server we want to join this room            
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('joinRoom', {
       roomCode: roomCode,
       playerName: urlName
     });
-
-    // Listen for real-time room synchronization updates
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('roomUpdated', function (data) {
       console.log("Lobby updated from trivia server:", data);
       setPlayers(data.players);
     });
-
-    // Listen for gameplay phase transitions from Render backend
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('roomStateUpdated', function (updateRoom) {
       console.log("Gameplay state update:", updateRoom);
       setRoomState(updateRoom);
     });
-
-    // Listen for any access errors (e.g., room doesn't exist)
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.on('errorMsg', function (msg) {
       setError(msg);
     });
-
-    // Cleanup connections when the user leaves the page or closes the tab
     return function () {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomUpdated');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('roomStateUpdated');
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.off('errorMsg');
     };
   }, [roomCode, urlName]);
-
-  // Emits activation trigger to backend to pull Questions
   var handleStartGame = function handleStartGame() {
     console.log("Starting trivia match for room: ", roomCode);
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('startGame', {
@@ -5716,10 +5703,6 @@ function TriviaWaitingRoom() {
       }
     }, "Back to Home"));
   }
-
-  // =========================================================================
-  // DYNAMIC PHASE CONTROLLER EVALUATION
-  // =========================================================================
   if (roomState) {
     switch (roomState.phase) {
       case 'RULES':
@@ -5749,10 +5732,6 @@ function TriviaWaitingRoom() {
         break;
     }
   }
-
-  // =========================================================================
-  // DEFAULT LOBBY VIEW (If no phase has been launched yet)
-  // =========================================================================
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-1",
     style: {
@@ -5795,8 +5774,8 @@ function TriviaWaitingRoom() {
   }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "bg-white p-2 rounded border d-inline-block shadow-sm"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_2__.QRCodeCanvas, {
-    value: "https://game-temple.org/",
-    size: 110,
+    value: joinUrl,
+    size: 120,
     level: "M",
     includeMargin: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -5804,7 +5783,7 @@ function TriviaWaitingRoom() {
     style: {
       fontSize: '0.75rem'
     }
-  }, "Scan to Game-Temple.org"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+  }, "Scan to Join Room Direct"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "text-start fw-bold mb-2 px-1 fs-6"
   }, "Players Joined", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     bg: "secondary",
