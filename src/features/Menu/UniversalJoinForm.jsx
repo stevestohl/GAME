@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { Container, Card, Form, Button, Alert } from 'react-bootstrap';
+import { Card, Form, Button, Alert, InputGroup } from 'react-bootstrap';
+import { getRandomFunnyName } from '../../funnyNames.js';
 
 export default function UniversalJoinScreen() {
     const [searchParams] = useSearchParams();
@@ -15,8 +16,15 @@ export default function UniversalJoinScreen() {
 
     useEffect(() => {
         const savedName = localStorage.getItem('templePlayerName');
-        if (savedName) setPlayerName(savedName);
+        // Populate saved name, or generate a random funny name default
+        setPlayerName(savedName || getRandomFunnyName());
     }, []);
+
+    // 🎲 Dice button handler
+    const handleRandomizeName = () => {
+        const randomName = getRandomFunnyName();
+        setPlayerName(randomName);
+    };
 
     const handleJoin = (e) => {
         e.preventDefault();
@@ -60,8 +68,10 @@ export default function UniversalJoinScreen() {
                 </Card.Header>
                 <Card.Body className='p-4 text-center'>
                     <div className='mb-4'>
-                        <h2 className='fw-bold text-primary mb-1'>Game Temple</h2>
-                        <p className='text-muted'>Player Portal</p>
+                        <h2 className='fw-bold text-primary mb-1'>Have a Room Code?</h2>
+                        <h2 className='fw-bold text-primary mb-1'>Enter it Here!</h2>
+                        {/* <h2 className='text-muted small'>Have a Room Code?</h2> */}
+                        {/* <h2 className='text-muted small'>Enter it Here!</h2> */}
                     </div>
 
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -83,18 +93,29 @@ export default function UniversalJoinScreen() {
                             />
                         </Form.Group>
 
-                        <Form.Group className='mb-4 text-start'>
+                        <Form.Group className='mb-4 text-start'>              
                             <Form.Label className='fw-bold text-secondary small'>Your Name</Form.Label>
-                            <Form.Control 
-                                size="lg"
-                                type="text" 
-                                placeholder="Enter your nickname" 
-                                value={playerName}
-                                onChange={(e) => setPlayerName(e.target.value)}
-                                maxLength={12}
-                                className='text-center'
-                                required
-                            />
+                            <InputGroup>
+                                <Form.Control 
+                                    size="lg"
+                                    type="text" 
+                                    placeholder="Enter your nickname" 
+                                    value={playerName}
+                                    onChange={(e) => setPlayerName(e.target.value)}
+                                    maxLength={12}
+                                    className='text-center fw-bold'
+                                    required
+                                />
+                                <Button 
+                                    variant="outline-primary" 
+                                    type="button"
+                                    onClick={handleRandomizeName}
+                                    title="Generate Random Name"
+                                    className="px-3 fs-5"
+                                >
+                                    🎲
+                                </Button>
+                            </InputGroup>
                         </Form.Group>
 
                         <Button 
