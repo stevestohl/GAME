@@ -9727,6 +9727,61 @@ ToastBody.displayName = 'ToastBody';
 
 /***/ }),
 
+/***/ "./node_modules/react-bootstrap/esm/ToastContainer.js":
+/*!************************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ToastContainer.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+"use client";
+
+
+
+
+
+const positionClasses = {
+  'top-start': 'top-0 start-0',
+  'top-center': 'top-0 start-50 translate-middle-x',
+  'top-end': 'top-0 end-0',
+  'middle-start': 'top-50 start-0 translate-middle-y',
+  'middle-center': 'top-50 start-50 translate-middle',
+  'middle-end': 'top-50 end-0 translate-middle-y',
+  'bottom-start': 'bottom-0 start-0',
+  'bottom-center': 'bottom-0 start-50 translate-middle-x',
+  'bottom-end': 'bottom-0 end-0'
+};
+const ToastContainer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(({
+  bsPrefix,
+  position,
+  containerPosition,
+  className,
+  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+  as: Component = 'div',
+  ...props
+}, ref) => {
+  bsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_3__.useBootstrapPrefix)(bsPrefix, 'toast-container');
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Component, {
+    ref: ref,
+    ...props,
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(bsPrefix, position && positionClasses[position], containerPosition && `position-${containerPosition}`, className)
+  });
+});
+ToastContainer.displayName = 'ToastContainer';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToastContainer);
+
+/***/ }),
+
 /***/ "./node_modules/react-bootstrap/esm/ToastContext.js":
 /*!**********************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/ToastContext.js ***!

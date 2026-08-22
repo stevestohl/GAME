@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap'; 
-import { useNavigate } from 'react-router-dom';
+import { Card, Row, Col, Button, Modal, Spinner, Toast, ToastContainer } from 'react-bootstrap'; 
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png'; 
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -12,21 +12,29 @@ import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
 export default function Home() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Loading states
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [isUnderConstruction, setIsUnderConstruction] = useState(false);
+    const [toastMsg, setToastMsg] = useState(location.state?.toastMessage || '');
     
     // 🥷 Burglar Animation States
     const [burglarActive, setBurglarActive] = useState(false);
     const [isStolen, setIsStolen] = useState(false);
 
+    // 1. Clear history state after reading toast message
     useEffect(() => {
-        // 1. Wait 2 seconds after the page loads, then start the burglar animation
+        if (location.state?.toastMessage) {
+            window.history.replaceState({}, document.title);
+        }
+    }, [location]);
+
+    // 2. Burglar Animation Timer
+    useEffect(() => {
         const initialTimer = setTimeout(() => {
             setBurglarActive(true);
 
-            // 2. The burglar pauses over the button at ~1.2s to steal it
             setTimeout(() => {
                 setIsStolen(true);
             }, 1200);
@@ -35,12 +43,26 @@ export default function Home() {
 
         return () => clearTimeout(initialTimer);
     }, []);
-    
+
     return (
         <div className="page-container">
+            {/* 🍞 Floating Toast Notification */}
+            <ToastContainer position="top-center" className="p-3 position-fixed" style={{ zIndex: 9999 }}>
+                <Toast 
+                    show={!!toastMsg} 
+                    onClose={() => setToastMsg('')} 
+                    delay={4000} 
+                    autohide 
+                    bg="dark"
+                >
+                    <Toast.Body className="fw-bold text-white text-center">
+                        👋 {toastMsg}
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
+
             <Card className='main-card'>
-                <Card.Header 
-                    className="main-card-header">
+                <Card.Header className="main-card-header">
                     GAME-TEMPLE.ORG
                 </Card.Header>
                 

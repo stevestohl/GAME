@@ -57,7 +57,16 @@ export default function TictactoeGameScreen({ roomCode, roomData, playerRole, pl
         socket.emit('resetMatch', { roomCode });
     };
 
-    const handleLeaveRoom = () => {
+    // Inside TictactoeGameScreen.jsx or TTTLobby.jsx
+    const handleLeaveGame = () => {
+        console.log("CLIENT: Emitting leaveRoom for:", roomCode);
+        
+        // Ensure roomCode is defined here!
+        socket.emit('leaveRoom', { 
+            roomCode: roomCode?.toUpperCase().trim(), 
+            playerName 
+        });
+        
         navigate('/');
     };
 

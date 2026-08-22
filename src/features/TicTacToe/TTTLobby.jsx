@@ -1,59 +1,71 @@
-import React from 'react';
-import { Card, Badge } from 'react-bootstrap';
-import { QRCodeCanvas } from 'qrcode.react';
-import HourGlass from '../../assets/logos/HourGlass.gif';
+import React, { useState } from 'react';
+import { Card, Button, Spinner, Badge } from 'react-bootstrap';
+import { QRCodeSVG } from 'qrcode.react'; // or your existing QR code component
 
-export default function TTTLobby({ roomCode, playerName }) {
+export default function TicTacToeLobby({ roomCode = 'TSSL', hostName = 'steve' }) {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopyLink = () => {
+        const joinUrl = `${window.location.origin}/join?roomCode=${roomCode}`;
+        navigator.clipboard.writeText(joinUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
-        <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: "80vh" }}>
-            <Card className="text-center shadow-lg border-0" style={{ maxWidth: "420px", width: "100%" }}>
-                <Card.Header 
-                    as="h5" 
-                    className="d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6"
-                    style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
+        <div className="page-container">
+            <Card className="main-card">
+                <Card.Header className="main-card-header">
                     Tic-Tac-Toe Lobby
                 </Card.Header>
-                
+
                 <Card.Body className="p-4 text-center">
-                    {/* Host Identity Badge */}
-                    <div className="mb-2 text-muted small fw-semibold">
-                        Host: <span className="text-primary fw-bold">{playerName}</span>
+                    {/* Host Badge */}
+                    <div className="mb-3">
+                        <Badge bg="primary-subtle" className="text-primary border border-primary-subtle px-3 py-2 rounded-pill fs-6 fw-normal">
+                            Host: <span className="fw-bold">{hostName}</span>
+                        </Badge>
                     </div>
 
-                    {/* Hourglass Visual */}
-                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-sm">
-                        <img
-                            src={HourGlass}
-                            alt="Waiting Hourglass"
-                            className="img-fluid"
-                            style={{ maxWidth: "100px", height: "auto" }}
-                        />
-                    </div>
-
-                    {/* Hero Box: Room Code + QR Code */}
-                    <div className="my-3 bg-light border border-secondary rounded p-3 text-center">                            
-                        <span className="text-uppercase tracking-wider small fw-bold text-muted d-block mb-1">
+                    {/* Borderless Inner Card Container */}
+                    <div className="bg-light rounded-4 p-3 mb-3">
+                        <div className="text-muted small fw-bold text-uppercase tracking-wider mb-1">
                             Room Code
-                        </span>                            
-                        <span className="fs-2 fw-black text-dark tracking-widest mb-3 d-block">{roomCode}</span>
-                        
-                        <div className="bg-white p-2 rounded border d-inline-block shadow-sm">
-                            <QRCodeCanvas 
-                                value={`https://game-temple.org/join?roomCode=${roomCode}`} 
-                                size={130}
-                                level={"M"}
-                                includeMargin={true}
+                        </div>
+
+                        {/* Room Code + Copy Link Button */}
+                        <div className="d-flex align-items-center justify-content-center gap-2 mb-3">
+                            <h1 className="fw-black mb-0 text-dark" style={{ letterSpacing: '0.25em' }}>
+                                {roomCode}
+                            </h1>
+                            <Button 
+                                variant="outline-secondary" 
+                                size="sm" 
+                                className="border-0 bg-white shadow-sm px-2"
+                                onClick={handleCopyLink}
+                                title="Copy Join Link"
+                            >
+                                {copied ? '✅' : '📋'}
+                            </Button>
+                        </div>
+
+                        {/* QR Code Container */}
+                        <div className="bg-white p-3 rounded-3 d-inline-block shadow-sm">
+                            <QRCodeSVG 
+                                value={`${window.location.origin}/join?roomCode=${roomCode}`} 
+                                size={140} 
                             />
-                            <span className="text-muted small d-block mt-1 fw-semibold" style={{ fontSize: '0.75rem' }}>
+                            <p className="text-muted small fw-semibold mb-0 mt-2">
                                 Scan to Join Match
-                            </span>
+                            </p>
                         </div>
                     </div>
 
-                    {/* Status Indicator */}
-                    <Badge bg="warning" text="dark" className="p-2 w-100 fs-6">
-                        Waiting for opponent to join...
-                    </Badge>
+                    {/* Non-Clickable Live Status Indicator */}
+                    <div className="p-2 rounded-3 bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center gap-2">
+                        <Spinner animation="grow" size="sm" variant="primary" />
+                        <span>Waiting for opponent to join...</span>
+                    </div>
                 </Card.Body>
             </Card>
         </div>

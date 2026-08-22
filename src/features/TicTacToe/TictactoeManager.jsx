@@ -18,6 +18,9 @@ export default function TictactoeManager() {
     const [roomData, setRoomData] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
+    // 🚪 State to track when an opponent leaves or disconnects
+    const [opponentLeftMessage, setOpponentLeftMessage] = useState('');
+
     useEffect(() => {
         if (!roomCode) {
             setErrorMessage('No room code provided!');
@@ -27,7 +30,6 @@ export default function TictactoeManager() {
 
         const emitJoin = () => {
             console.log("Manager emitting joinRoom:", { roomCode, playerName, playerRole });
-            // 👈 Included playerRole in socket payload
             socket.emit('joinRoom', { roomCode, playerName, playerRole });
         };
 
@@ -49,6 +51,15 @@ export default function TictactoeManager() {
             }
         });
 
+
+        socket.on('playerLeft', (data) => {
+            const leaverName = data?.playerName || 'Your opponent';
+            // Redirect to Home with Toast payload in history state
+            navigate('/', { 
+                state: { toastMessage: `${leaverName} has left the room.` } 
+            });
+        });
+
         socket.on('roomNotFound', () => {
             setErrorMessage('Room not found or expired.');
             setRoomStatus('error');
@@ -66,6 +77,34 @@ export default function TictactoeManager() {
             socket.off('errorMsg');
         };
     }, [roomCode, playerName, playerRole]);
+    
+    // 🚪 Opponent Left Screen
+    if (roomStatus === 'ended') {
+        return (
+            <div className="page-container">
+                <Card className="main-card">
+                    <Card.Header className="main-card-header">
+                        Game Over
+                    </Card.Header>
+                    <Card.Body className="p-4 text-center">
+                        <div className="fs-1 mb-2">🚪</div>
+                        <h5 className="fw-bold text-dark mb-2">Match Ended</h5>
+                        <p className="text-muted small mb-4">
+                            {opponentLeftMessage}
+                        </p>
+                        <Button 
+                            variant="primary" 
+                            size="lg"
+                            className="w-100 fw-bold shadow-sm"
+                            onClick={() => navigate('/')}
+                        >
+                            Return to Home
+                        </Button>
+                    </Card.Body>
+                </Card>
+            </div>
+        );
+    }
 
     if (roomStatus === 'loading') {
         return (

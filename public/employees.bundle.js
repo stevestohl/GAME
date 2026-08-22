@@ -2879,12 +2879,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
 /* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
@@ -2908,7 +2910,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Home() {
+  var _location$state;
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)();
 
   // Loading states
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -2919,22 +2923,33 @@ function Home() {
     _useState4 = _slicedToArray(_useState3, 2),
     isUnderConstruction = _useState4[0],
     setIsUnderConstruction = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.toastMessage) || ''),
+    _useState6 = _slicedToArray(_useState5, 2),
+    toastMsg = _useState6[0],
+    setToastMsg = _useState6[1];
 
   // 🥷 Burglar Animation States
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    burglarActive = _useState6[0],
-    setBurglarActive = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState8 = _slicedToArray(_useState7, 2),
-    isStolen = _useState8[0],
-    setIsStolen = _useState8[1];
+    burglarActive = _useState8[0],
+    setBurglarActive = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isStolen = _useState10[0],
+    setIsStolen = _useState10[1];
+
+  // 1. Clear history state after reading toast message
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // 1. Wait 2 seconds after the page loads, then start the burglar animation
+    var _location$state2;
+    if ((_location$state2 = location.state) !== null && _location$state2 !== void 0 && _location$state2.toastMessage) {
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
+  // 2. Burglar Animation Timer
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var initialTimer = setTimeout(function () {
       setBurglarActive(true);
-
-      // 2. The burglar pauses over the button at ~1.2s to steal it
       setTimeout(function () {
         setIsStolen(true);
       }, 1200);
@@ -2946,10 +2961,26 @@ function Home() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    position: "top-center",
+    className: "p-3 position-fixed",
+    style: {
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    show: !!toastMsg,
+    onClose: function onClose() {
+      return setToastMsg('');
+    },
+    delay: 4000,
+    autohide: true,
+    bg: "dark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+    className: "fw-bold text-white text-center"
+  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
     className: "main-card-header"
-  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
     className: "p-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg"
@@ -2957,18 +2988,18 @@ function Home() {
     className: "temple-logo",
     src: "https://game-temple.org/Game_Temple_Animated.gif?v=2",
     alt: "Animated Game-Temple Logo"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "g-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     className: "fw-bold w-100 py-2 shadow-sm",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return navigate('/join');
     }
-  }, "Join a Room")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "Join a Room")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12,
     className: "d-flex align-items-center mb-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -2977,47 +3008,47 @@ function Home() {
     className: "mx-2 text-muted small fw-bold text-center"
   }, "OR ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Create New Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     className: "fw-bold w-100 py-2 shadow-sm",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return (0,_CouchCast_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_5__.handleCreateCouchCast)(null, navigate, setIsCreatingRoom);
     }
-  }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDECB\uFE0F\uD83D\uDECB\uFE0F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDECB\uFE0F\uD83D\uDECB\uFE0F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    className: "g-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    xs: 6
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "g-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    xs: 6
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return navigate('/tictactoe-create');
     }
-  }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "Tic-Tac-Toe", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "X O")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return (0,_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateTriviaRoom)(null, navigate, setIsCreatingRoom);
     }
-  }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "Trivia ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\u2754\u2754")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm text-white",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return (0,_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_4__.handleCreatePrompt2Room)(null, navigate, setIsCreatingRoom);
     }
-  }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), " 2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "Prompt ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), " 2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 6,
     className: "position-relative overflow-visible"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3030,21 +3061,21 @@ function Home() {
       height: 'auto',
       mixBlendMode: 'multiply'
     }
-  })), !isStolen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  })), !isStolen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     className: "fw-bold w-100 h-100 py-2 shadow-sm"
   }, "Button", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDD18\uD83D\uDD18") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-100 h-100 py-2 rounded d-flex flex-column justify-content-center align-items-center stolen-slot fw-bold small"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stolen!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "fs-5"
-  }, "\uD83D\uDCA8")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, "\uD83D\uDCA8")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -3052,19 +3083,19 @@ function Home() {
     className: "fw-bold text-dark"
   }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted small mb-0"
-  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     show: isUnderConstruction,
     onHide: function onHide() {
       return setIsUnderConstruction(false);
     },
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "fw-bold mb-3"
   }, "\uD83D\uDEA7 Under Construction \uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted medium mb-4"
-  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "primary",
     onClick: function onClick() {
       return setIsUnderConstruction(false);
@@ -4361,79 +4392,88 @@ function Prompt2Scoreboard(_ref) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TTTLobby)
+/* harmony export */   "default": () => (/* binding */ TicTacToeLobby)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
-/* harmony import */ var _assets_logos_HourGlass_gif__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/logos/HourGlass.gif */ "./src/assets/logos/HourGlass.gif");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+ // or your existing QR code component
 
-
-function TTTLobby(_ref) {
-  var roomCode = _ref.roomCode,
-    playerName = _ref.playerName;
+function TicTacToeLobby(_ref) {
+  var _ref$roomCode = _ref.roomCode,
+    roomCode = _ref$roomCode === void 0 ? 'TSSL' : _ref$roomCode,
+    _ref$hostName = _ref.hostName,
+    hostName = _ref$hostName === void 0 ? 'steve' : _ref$hostName;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    copied = _useState2[0],
+    setCopied = _useState2[1];
+  var handleCopyLink = function handleCopyLink() {
+    var joinUrl = "".concat(window.location.origin, "/join?roomCode=").concat(roomCode);
+    navigator.clipboard.writeText(joinUrl);
+    setCopied(true);
+    setTimeout(function () {
+      return setCopied(false);
+    }, 2000);
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-center align-items-center p-1",
-    style: {
-      minHeight: "80vh"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "text-center shadow-lg border-0",
-    style: {
-      maxWidth: "420px",
-      width: "100%"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
-    as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-widest text-uppercase fs-6",
-    style: {
-      backgroundColor: '#014eb6',
-      color: '#f1f2f5',
-      letterSpacing: '0.2em'
-    }
-  }, "Tic-Tac-Toe Lobby"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "page-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "main-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    className: "main-card-header"
+  }, "Tic-Tac-Toe Lobby"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-2 text-muted small fw-semibold"
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    bg: "primary-subtle",
+    className: "text-primary border border-primary-subtle px-3 py-2 rounded-pill fs-6 fw-normal"
   }, "Host: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-primary fw-bold"
-  }, playerName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "my-1 bg-white p-2 rounded-3 d-inline-block shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: _assets_logos_HourGlass_gif__WEBPACK_IMPORTED_MODULE_2__,
-    alt: "Waiting Hourglass",
-    className: "img-fluid",
+    className: "fw-bold"
+  }, hostName))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-light rounded-4 p-3 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted small fw-bold text-uppercase tracking-wider mb-1"
+  }, "Room Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex align-items-center justify-content-center gap-2 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "fw-black mb-0 text-dark",
     style: {
-      maxWidth: "100px",
-      height: "auto"
+      letterSpacing: '0.25em'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "my-3 bg-light border border-secondary rounded p-3 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-uppercase tracking-wider small fw-bold text-muted d-block mb-1"
-  }, "Room Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fs-2 fw-black text-dark tracking-widest mb-3 d-block"
-  }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-white p-2 rounded border d-inline-block shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeCanvas, {
-    value: "https://game-temple.org/join?roomCode=".concat(roomCode),
-    size: 130,
-    level: "M",
-    includeMargin: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-muted small d-block mt-1 fw-semibold",
-    style: {
-      fontSize: '0.75rem'
-    }
-  }, "Scan to Join Match"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    bg: "warning",
-    text: "dark",
-    className: "p-2 w-100 fs-6"
-  }, "Waiting for opponent to join..."))));
+  }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "outline-secondary",
+    size: "sm",
+    className: "border-0 bg-white shadow-sm px-2",
+    onClick: handleCopyLink,
+    title: "Copy Join Link"
+  }, copied ? '✅' : '📋')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bg-white p-3 rounded-3 d-inline-block shadow-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
+    value: "".concat(window.location.origin, "/join?roomCode=").concat(roomCode),
+    size: 140
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small fw-semibold mb-0 mt-2"
+  }, "Scan to Join Match"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "p-2 rounded-3 bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center gap-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    animation: "grow",
+    size: "sm",
+    variant: "primary"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Waiting for opponent to join...")))));
 }
 
 /***/ }),
@@ -4685,7 +4725,16 @@ function TictactoeGameScreen(_ref) {
       roomCode: roomCode
     });
   };
-  var handleLeaveRoom = function handleLeaveRoom() {
+
+  // Inside TictactoeGameScreen.jsx or TTTLobby.jsx
+  var handleLeaveGame = function handleLeaveGame() {
+    console.log("CLIENT: Emitting leaveRoom for:", roomCode);
+
+    // Ensure roomCode is defined here!
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.tictactoeSocket.emit('leaveRoom', {
+      roomCode: roomCode === null || roomCode === void 0 ? void 0 : roomCode.toUpperCase().trim(),
+      playerName: playerName
+    });
     navigate('/');
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4866,6 +4915,12 @@ function TictactoeManager() {
     _useState6 = _slicedToArray(_useState5, 2),
     errorMessage = _useState6[0],
     setErrorMessage = _useState6[1];
+
+  // 🚪 State to track when an opponent leaves or disconnects
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    opponentLeftMessage = _useState8[0],
+    setOpponentLeftMessage = _useState8[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!roomCode) {
       setErrorMessage('No room code provided!');
@@ -4878,7 +4933,6 @@ function TictactoeManager() {
         playerName: playerName,
         playerRole: playerRole
       });
-      // 👈 Included playerRole in socket payload
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.tictactoeSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
@@ -4901,6 +4955,15 @@ function TictactoeManager() {
         setRoomStatus(data.status);
       }
     });
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.tictactoeSocket.on('playerLeft', function (data) {
+      var leaverName = (data === null || data === void 0 ? void 0 : data.playerName) || 'Your opponent';
+      // Redirect to Home with Toast payload in history state
+      navigate('/', {
+        state: {
+          toastMessage: "".concat(leaverName, " has left the room.")
+        }
+      });
+    });
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.tictactoeSocket.on('roomNotFound', function () {
       setErrorMessage('Room not found or expired.');
       setRoomStatus('error');
@@ -4918,6 +4981,32 @@ function TictactoeManager() {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.tictactoeSocket.off('errorMsg');
     };
   }, [roomCode, playerName, playerRole]);
+
+  // 🚪 Opponent Left Screen
+  if (roomStatus === 'ended') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "page-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Card, {
+      className: "main-card"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Card.Header, {
+      className: "main-card-header"
+    }, "Game Over"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Card.Body, {
+      className: "p-4 text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "fs-1 mb-2"
+    }, "\uD83D\uDEAA"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+      className: "fw-bold text-dark mb-2"
+    }, "Match Ended"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted small mb-4"
+    }, opponentLeftMessage), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Button, {
+      variant: "primary",
+      size: "lg",
+      className: "w-100 fw-bold shadow-sm",
+      onClick: function onClick() {
+        return navigate('/');
+      }
+    }, "Return to Home"))));
+  }
   if (roomStatus === 'loading') {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "d-flex justify-content-center align-items-center",
@@ -5713,16 +5802,6 @@ module.exports = __webpack_require__.p + "eaadce188e228c1070a4.png";
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "f10f724602e4f1f3630e.png";
-
-/***/ }),
-
-/***/ "./src/assets/logos/HourGlass.gif":
-/*!****************************************!*\
-  !*** ./src/assets/logos/HourGlass.gif ***!
-  \****************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-module.exports = __webpack_require__.p + "7e6af87e7c42ff614657.gif";
 
 /***/ }),
 
