@@ -173,7 +173,7 @@ export default function TictactoeGameScreen({ roomCode, roomData, playerRole, pl
                         <Button variant='outline-primary' className='w-100 fw-bold py-2' onClick={handleReset}>
                             Play Again
                         </Button>
-                        <Button variant="primary" className='w-100 fw-bold py-2' onClick={handleLeaveRoom}>
+                        <Button variant="primary" className='w-100 fw-bold py-2' onClick={handleLeaveGame}>
                             Leave Room
                         </Button>
                     </div>

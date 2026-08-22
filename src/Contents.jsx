@@ -17,6 +17,7 @@ import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
+import TriviaCreateScreen from './features/Trivia/TriviaCreateButton.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
 
 export default function Contents() {
@@ -33,6 +34,7 @@ export default function Contents() {
             <Route path="/tictactoe" element={<TicTacToe />} />
             <Route path="/tictactoe-create" element={<TicTacToeCreateScreen />} /> 
             <Route path="/TriviaWaitingRoom" element={<TriviaWaitingRoom />} />
+            <Route path="/trivia-create" element={<TriviaCreateScreen />} />
             
             {/* Flashcard & Tools Routes */}
             <Route path="/flashcards" element={<Flashcards />} />

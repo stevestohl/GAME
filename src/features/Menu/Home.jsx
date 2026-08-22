@@ -6,7 +6,7 @@ import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 
 // Helper functions for existing room creation routines
-import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
+// import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
 import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
@@ -17,15 +17,18 @@ export default function Home() {
     // Loading states
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [isUnderConstruction, setIsUnderConstruction] = useState(false);
+    
+    // 🍞 Read directly from location.state on initial load
     const [toastMsg, setToastMsg] = useState(location.state?.toastMessage || '');
     
     // 🥷 Burglar Animation States
     const [burglarActive, setBurglarActive] = useState(false);
     const [isStolen, setIsStolen] = useState(false);
 
-    // 1. Clear history state after reading toast message
+    // 1. Sync toast state & clear browser history state silently (prevents re-triggering on F5)
     useEffect(() => {
         if (location.state?.toastMessage) {
+            setToastMsg(location.state.toastMessage);
             window.history.replaceState({}, document.title);
         }
     }, [location]);
@@ -46,8 +49,16 @@ export default function Home() {
 
     return (
         <div className="page-container">
-            {/* 🍞 Floating Toast Notification */}
-            <ToastContainer position="top-center" className="p-3 position-fixed" style={{ zIndex: 9999 }}>
+            {/* 🍞 Floating Toast Notification (Explicit Viewport Positioning) */}
+            <ToastContainer 
+                style={{ 
+                    position: 'fixed', 
+                    top: '20px', 
+                    left: '50%', 
+                    transform: 'translateX(-50%)', 
+                    zIndex: 99999 
+                }}
+            >
                 <Toast 
                     show={!!toastMsg} 
                     onClose={() => setToastMsg('')} 
@@ -55,7 +66,7 @@ export default function Home() {
                     autohide 
                     bg="dark"
                 >
-                    <Toast.Body className="fw-bold text-white text-center">
+                    <Toast.Body className="fw-bold text-white text-center px-4 py-2">
                         👋 {toastMsg}
                     </Toast.Body>
                 </Toast>
@@ -131,7 +142,7 @@ export default function Home() {
                                         variant="primary" 
                                         className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
                                         disabled={isCreatingRoom}
-                                        onClick={() => handleCreateTriviaRoom(null, navigate, setIsCreatingRoom)}
+                                        onClick={() => navigate('/trivia-create')}
                                     >
                                         Trivia <br />
                                         ❔❔

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getRandomFunnyName } from '../../funnyNames.js';
 import { tictactoeSocket as socket } from '../../socket.js';
 
-
+ // This is the socket connection logic needed in the create screen form below
 export const handleCreateTttRoom = (playerName, navigate, setIsCreating) => {
     if (!socket) {
         console.error("Socket instance is undefined! Check import path in socket.js");
@@ -33,6 +33,8 @@ export const handleCreateTttRoom = (playerName, navigate, setIsCreating) => {
     });
 };
 
+
+    // This is the create screen form 
 export default function TicTacToeCreateScreen() {
     const navigate = useNavigate();
     const [hostName, setHostName] = useState('');

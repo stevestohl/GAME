@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Spinner, Alert } from 'react-bootstrap';
+import { Container, Spinner, Alert, Card, Button } from 'react-bootstrap';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { tictactoeSocket as socket } from '../../socket.js';
 
@@ -73,6 +73,7 @@ export default function TictactoeManager() {
         return () => {
             socket.off('connect', emitJoin);
             socket.off('roomUpdate');
+            socket.off('playerLeft');
             socket.off('roomNotFound');
             socket.off('errorMsg');
         };
