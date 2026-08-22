@@ -98,31 +98,31 @@ export default function TicTacToeCreateScreen() {
                             </InputGroup>
                         </Form.Group>
 
-                        <Button 
-                            variant="primary" 
-                            size="lg" 
-                            className="w-100 fw-bold shadow-sm py-2 mb-2" 
-                            type="submit"
-                            disabled={isCreating}
-                        >
-                            {isCreating ? (
-                                <>
-                                    <Spinner animation="border" size="sm" className="me-2" />
-                                    Creating Room...
-                                </>
-                            ) : (
-                                'Create Room'
-                            )}
-                        </Button>
+                    <div className='d-flex gap-2'>
+                            <Button 
+                                variant="outline-secondary" 
+                                className="w-50 fw-bold"
+                                onClick={() => navigate('/')}
+                            >
+                                Back
+                            </Button>
 
-                        <Button 
-                            variant="outline-secondary" 
-                            size="sm" 
-                            className="w-100 mt-2"
-                            onClick={() => navigate('/')}
-                        >
-                            Cancel
-                        </Button>
+                            <Button 
+                                variant="primary" 
+                                className="w-50 fw-bold"
+                                type="submit"
+                                disabled={isCreating}
+                            >
+                                {isCreating ? (
+                                    <>
+                                        <Spinner animation="border" size="sm" className="me-2" />
+                                        Creating Room...
+                                    </>
+                                ) : (
+                                    'Create Room'
+                                )}
+                            </Button>
+                        </div>
                     </Form>
                 </Card.Body>
             </Card>

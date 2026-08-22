@@ -4519,6 +4519,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+// This is the socket connection logic needed in the create screen form below
 var handleCreateTttRoom = function handleCreateTttRoom(playerName, navigate, setIsCreating) {
   if (!_socket_js__WEBPACK_IMPORTED_MODULE_2__.tictactoeSocket) {
     console.error("Socket instance is undefined! Check import path in socket.js");
@@ -4545,6 +4547,8 @@ var handleCreateTttRoom = function handleCreateTttRoom(playerName, navigate, set
     navigate("/tictactoe?room=".concat(roomCode, "&role=host&name=").concat(encodeURIComponent(playerName || 'Host')));
   });
 };
+
+// This is the create screen form 
 function TicTacToeCreateScreen() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
@@ -4608,24 +4612,24 @@ function TicTacToeCreateScreen() {
     onClick: handleRandomizeName,
     title: "Generate Random Name",
     className: "px-3 fs-5"
-  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex gap-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    variant: "outline-secondary",
+    className: "w-50 fw-bold",
+    onClick: function onClick() {
+      return navigate('/');
+    }
+  }, "Back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     variant: "primary",
-    size: "lg",
-    className: "w-100 fw-bold shadow-sm py-2 mb-2",
+    className: "w-50 fw-bold",
     type: "submit",
     disabled: isCreating
   }, isCreating ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     animation: "border",
     size: "sm",
     className: "me-2"
-  }), "Creating Room...") : 'Create Room'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    variant: "outline-secondary",
-    size: "sm",
-    className: "w-100 mt-2",
-    onClick: function onClick() {
-      return navigate('/');
-    }
-  }, "Cancel")))));
+  }), "Creating Room...") : 'Create Room'))))));
 }
 
 /***/ }),
