@@ -4,7 +4,7 @@ import { QRCodeCanvas } from 'qrcode.react';
 import { triviaSocket as socket } from '../../socket.js';
 import BlueBerries from '../../assets/logos/Prompt2Blueberries.gif';
 
-export default function TriviaWaitingRoom({ roomCode, role, players, socketId }) {
+export default function TriviaWaitingRoom({ roomCode, role, players = [], socketId }) {
     const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
     const handleStartGame = () => {

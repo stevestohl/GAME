@@ -33,7 +33,7 @@ export default function TriviaManager() {
         if (!sessionToken) {
             sessionToken = crypto.randomUUID(); 
             localStorage.setItem('templeSessionToken', sessionToken);
-            
+        }
         if (!socket.connected) {
             socket.connect();
         }
