@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
 /* harmony import */ var _features_Trivia_TriviaWaitingRoom_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./features/Trivia/TriviaWaitingRoom.jsx */ "./src/features/Trivia/TriviaWaitingRoom.jsx");
 /* harmony import */ var _features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
-/* harmony import */ var _features_Trivia_TriviaMananger_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Trivia/TriviaMananger.jsx */ "./src/features/Trivia/TriviaMananger.jsx");
+/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
 /* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
 
 
@@ -74,10 +74,10 @@ function Contents() {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/TriviaWaitingRoom",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaMananger_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/trivia",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaMananger_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/trivia-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
@@ -5586,10 +5586,10 @@ function GameOverScreen(_ref) {
 
 /***/ }),
 
-/***/ "./src/features/Trivia/TriviaMananger.jsx":
-/*!************************************************!*\
-  !*** ./src/features/Trivia/TriviaMananger.jsx ***!
-  \************************************************/
+/***/ "./src/features/Trivia/TriviaManager.jsx":
+/*!***********************************************!*\
+  !*** ./src/features/Trivia/TriviaManager.jsx ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

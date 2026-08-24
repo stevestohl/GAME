@@ -18,7 +18,7 @@ import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 import TriviaCreateScreen from './features/Trivia/TriviaCreateButton.jsx'
-import TriviaManager from './features/Trivia/TriviaMananger.jsx'
+import TriviaManager from './features/Trivia/TriviaManager.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
 
 export default function Contents() {

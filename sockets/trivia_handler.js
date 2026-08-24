@@ -20,7 +20,8 @@ const createRoomLogic = (socket, roomsObject) => {
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
-        players: [{ id: socket.id, name: 'Host / Creator', score: 0 }]
+        players: []
+        // players: [{ id: socket.id, name: 'Host / Creator', score: 0 }]
     };
     
     return { 
