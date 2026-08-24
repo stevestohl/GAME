@@ -62,6 +62,7 @@ export default function UniversalJoinScreen() {
                 targetRoute = `/tictactoe?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;
             case 'R':
+                // FIXED: Now properly passes role and name just like the other games
                 targetRoute = `/trivia?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;
             default:
@@ -108,21 +109,35 @@ export default function UniversalJoinScreen() {
                     {error && <Alert variant="danger">{error}</Alert>}
 
                     <Form onSubmit={handleJoin}>
-                        <Form.Group className='mb-3 text-start'>
-                            <Form.Label className='fw-bold text-secondary small'>Room Code</Form.Label>
-                            <Form.Control 
-                                size="lg"
-                                type="text" 
-                                placeholder="4-Letter Code" 
-                                value={roomCode}
-                                onChange={(e) => setRoomCode(e.target.value.toUpperCase().trim())}
-                                maxLength={4}
-                                className='text-center fw-bold fs-4'
-                                style={{ letterSpacing: '4px' }}
-                                disabled={!!urlRoomCode}
-                                required
-                            />
-                        </Form.Group>
+                    
+                    {/* Room Code entry */}
+                    <Form.Group className='mb-3 text-start'>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <Form.Label className='fw-bold text-secondary small mb-0'>Room Code</Form.Label>
+                            {urlRoomCode && (
+                                <span className="text-success small fw-bold">
+                                    ✅ Room Verified & Locked
+                                </span>
+                            )}
+                        </div>
+                        <Form.Control 
+                            size="lg"
+                            type="text" 
+                            placeholder="4-Letter Code" 
+                            value={roomCode}
+                            onChange={(e) => setRoomCode(e.target.value.toUpperCase().trim())}
+                            maxLength={4}
+                            className='text-center fw-bold fs-4 bg-light text-success' 
+                            style={{ letterSpacing: '4px' }}
+                            disabled={!!urlRoomCode}
+                            required
+                        />
+                        {urlRoomCode && (
+                            <Form.Text className="text-muted text-center d-block mt-1">
+                                You're joining room <strong>{urlRoomCode.toUpperCase()}</strong>. Just pick your name and jump in!
+                            </Form.Text>
+                        )}
+                    </Form.Group>
 
                         <Form.Group className='mb-4 text-start'>              
                             <Form.Label className='fw-bold text-secondary small'>Your Name</Form.Label>

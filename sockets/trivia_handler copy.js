@@ -20,7 +20,8 @@ const createRoomLogic = (socket, roomsObject) => {
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
-        players: [{ id: socket.id, name: 'Host / Creator', score: 0 }]
+        players: []
+        // players: [{ id: socket.id, name: 'Host / Creator', score: 0 }]
     };
     
     return { 
@@ -46,28 +47,51 @@ export default function registerTriviaNamespace(namespace) {
         });
 
         // --- Event: Room Joining ---
-        socket.on('joinRoom', ({ roomCode, playerName }) => {
+        socket.on('joinRoom', ({ roomCode, playerName, sessionToken }) => {
             if (!roomCode) return socket.emit('errorMsg', 'Room code is missing.');
             
             const code = roomCode.trim().toUpperCase();
             const currentRoom = activeRooms[code];
-            
+            socket.data = { roomCode: code };
+
             if (currentRoom) {
                 socket.join(code);
-                
-                const playerExists = currentRoom.players.some(p => p.id === socket.id);
-                
-                if (!playerExists) {
+                const cleanName = (playerName || 'Anonymous').trim();
+
+                // 1. 🔍 Look for an existing player by SESSION TOKEN first
+                const existingPlayer = currentRoom.players.find(p => p.sessionToken === sessionToken);
+
+                if (existingPlayer) {
+                    existingPlayer.id = socket.id;
+                    existingPlayer.name = cleanName; 
+                    console.log(`♻️ Player reconnected: ${cleanName}`);
+                    if (currentRoom.phase) {
+                        socket.emit('roomStateUpdated', currentRoom);
+                    }
+                } else {
+                    // 2. 🛑 It's a new session. Check if the requested name is already taken!
+                    const nameTaken = currentRoom.players.some(
+                        p => p.name.toLowerCase() === cleanName.toLowerCase()
+                    );
+
+                    if (nameTaken) {
+                        return socket.emit('nameTaken', { 
+                            roomCode: code,
+                            message: 'That name is already taken in this room. Please pick another!' 
+                        });
+                    }
+
+                    // 3. 🆕 Add brand new player with their session token
                     currentRoom.players.push({ 
                         id: socket.id, 
-                        name: playerName || 'Anonymous', 
-                        score: 0 
+                        name: cleanName, 
+                        score: 0,
+                        sessionToken: sessionToken // Save the token for future reconnects!
                     });
-                } else {
-                    const index = currentRoom.players.findIndex(p => p.id === socket.id);
-                    currentRoom.players[index].name = playerName || 'Anonymous';
+                    console.log(`👋 New player joined: ${cleanName}`);
                 }
                 
+                // Sync the room for everyone
                 namespace.to(code).emit('roomUpdated', { 
                     roomCode: code, 
                     players: currentRoom.players 
@@ -76,6 +100,8 @@ export default function registerTriviaNamespace(namespace) {
                 socket.emit('errorMsg', 'Trivia room not found.');
             }
         });
+
+
 
         // --- Event: Start Game ---
         socket.on('startGame', async ({ roomCode }) => {
@@ -125,6 +151,7 @@ export default function registerTriviaNamespace(namespace) {
                 console.log(`❌ Failed 'nextRound': Room ${code} not found in activeRooms.`);
                 socket.emit('errorMsg', 'Cannot start round. Room not found.');
             }
+        }
         });
 
         // --- Event: Player Answer Submissions ---
@@ -189,78 +216,92 @@ export default function registerTriviaNamespace(namespace) {
         });
 
         // --- Event: Disconnect Cleanup ---
-        socket.on('disconnect', () => {
-            console.log(`Trivia user disconnected: ${socket.id}`);
-        });
+socket.on('disconnect', () => {
+    console.log(`Trivia user disconnected: ${socket.id}`);
+    const code = socket.data?.roomCode;
+    
+    if (code && activeRooms[code]) {
+        const currentRoom = activeRooms[code];
+        
+        // Optional: You could remove them from the array entirely, 
+        // OR just check if the remaining active players have all answered:
+        const remainingPlayers = currentRoom.players.filter(p => p.id !== socket.id);
+        const totalAnswers = Object.keys(currentRoom.playerAnswers).length;
+        
+        if (currentRoom.phase === 'QUESTION' && totalAnswers >= remainingPlayers.length) {
+            console.log(`🏁 A player dropped, but everyone else answered. Advancing to SCOREBOARD.`);
+            currentRoom.phase = 'SCOREBOARD';
+            namespace.to(code).emit('roomStateUpdated', currentRoom);
+        }
     }); 
 }
 
 // ============================================================
 // 2. Auxiliary Trivia Engine Class (Named Export)
 // ============================================================
-export class TriviaHandler {
-    constructor(questions) {
-        this.questions = questions; 
-        this.resetGame();
-    }
+// export class TriviaHandler {
+//     constructor(questions) {
+//         this.questions = questions; 
+//         this.resetGame();
+//     }
 
-    resetGame() {
-        this.currentState = {
-            currentQuestionIndex: 0,
-            score: 0,
-            isGameOver: false,
-            history: [] 
-        };
-        return this.currentState;
-    }
+//     resetGame() {
+//         this.currentState = {
+//             currentQuestionIndex: 0,
+//             score: 0,
+//             isGameOver: false,
+//             history: [] 
+//         };
+//         return this.currentState;
+//     }
 
-    getCurrentQuestion() {
-        if (this.currentState.isGameOver) return null;
-        return this.questions[this.currentState.currentQuestionIndex];
-    }
+//     getCurrentQuestion() {
+//         if (this.currentState.isGameOver) return null;
+//         return this.questions[this.currentState.currentQuestionIndex];
+//     }
 
-    submitAnswer(answer) {
-        if (this.currentState.isGameOver) {
-            throw new Error("Game is already over. Please restart.");
-        }
+//     submitAnswer(answer) {
+//         if (this.currentState.isGameOver) {
+//             throw new Error("Game is already over. Please restart.");
+//         }
 
-        const currentQuestion = this.getCurrentQuestion();
-        const isCorrect = currentQuestion.correctAnswer === answer;
+//         const currentQuestion = this.getCurrentQuestion();
+//         const isCorrect = currentQuestion.correctAnswer === answer;
 
-        if (isCorrect) {
-            this.currentState.score += 1;
-        }
+//         if (isCorrect) {
+//             this.currentState.score += 1;
+//         }
 
-        this.currentState.history.push({
-            questionIndex: this.currentState.currentQuestionIndex,
-            selectedAnswer: answer,
-            isCorrect: isCorrect
-        });
+//         this.currentState.history.push({
+//             questionIndex: this.currentState.currentQuestionIndex,
+//             selectedAnswer: answer,
+//             isCorrect: isCorrect
+//         });
 
-        const result = {
-            isCorrect,
-            correctAnswer: currentQuestion.correctAnswer,
-            explanation: currentQuestion.explanation || null
-        };
+//         const result = {
+//             isCorrect,
+//             correctAnswer: currentQuestion.correctAnswer,
+//             explanation: currentQuestion.explanation || null
+//         };
 
-        this.advanceTurn();
-        return result;
-    }
+//         this.advanceTurn();
+//         return result;
+//     }
 
-    advanceTurn() {
-        this.currentState.currentQuestionIndex += 1;
+//     advanceTurn() {
+//         this.currentState.currentQuestionIndex += 1;
         
-        if (this.currentState.currentQuestionIndex >= this.questions.length) {
-            this.currentState.isGameOver = true;
-        }
-    }
+//         if (this.currentState.currentQuestionIndex >= this.questions.length) {
+//             this.currentState.isGameOver = true;
+//         }
+//     }
 
-    getGameSummary() {
-        return {
-            score: this.currentState.score,
-            totalQuestions: this.questions.length,
-            percentage: ((this.currentState.score / this.questions.length) * 100).toFixed(1) + '%',
-            history: this.currentState.history
-        };
-    }
-}
+//     getGameSummary() {
+//         return {
+//             score: this.currentState.score,
+//             totalQuestions: this.questions.length,
+//             percentage: ((this.currentState.score / this.questions.length) * 100).toFixed(1) + '%',
+//             history: this.currentState.history
+//         };
+//     }
+// }

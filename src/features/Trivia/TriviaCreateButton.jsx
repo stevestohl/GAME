@@ -35,7 +35,7 @@ export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom) 
 
     socket.once('roomCreated', ({ roomCode }) => {
         console.log(`Trivia room created successfully! Code: ${roomCode}`);
-        navigate(`/TriviaWaitingRoom?room=${roomCode}&role=host&name=${encodeURIComponent(cleanName)}`);
+        navigate(`/trivia?room=${roomCode}&role=host&name=${encodeURIComponent(cleanName)}`);
     });
 }
 

@@ -16,7 +16,7 @@ import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
 import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
-import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
+// import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 import TriviaCreateScreen from './features/Trivia/TriviaCreateButton.jsx'
 import TriviaManager from './features/Trivia/TriviaManager.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
@@ -34,7 +34,6 @@ export default function Contents() {
             {/* Direct routing to game board */}
             <Route path="/tictactoe" element={<TicTacToe />} />
             <Route path="/tictactoe-create" element={<TicTacToeCreateScreen />} /> 
-            <Route path="/TriviaWaitingRoom" element={<TriviaManager />} />
             <Route path="/trivia" element={<TriviaManager />} />
             <Route path="/trivia-create" element={<TriviaCreateScreen />} />
             
