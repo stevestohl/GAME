@@ -145,7 +145,13 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'rules':
-            return <div className="mt-5 text-center"><h4>[Rules Component Here]</h4></div>;
+            return (
+                <Container className="mt-5 pt-4 text-center">
+                    <h1 className="text-primary fw-bold mb-3">Welcome to Couch Cast!</h1>
+                    <h4 className="text-muted fw-normal">Keep your eyes on the TV to learn how to play.</h4>
+                    <Spinner animation="grow" variant="warning" className="mt-5" />
+                </Container>
+            );
 
         case 'prompt_selection':
             return <div className="mt-5 text-center"><h4>[Prompt Selection Component Here]</h4></div>;

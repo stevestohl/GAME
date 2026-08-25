@@ -8,6 +8,7 @@ import CouchCastWritingTV from './CouchCastWritingTV.jsx';
 import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
 import CouchCastWinnerRevealTV from './CouchCastWinnerRevealTV.jsx';
 import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
+import CouchCastRules from './CouchCastRules.jsx';
 
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
@@ -115,7 +116,11 @@ export default function CouchCastManager() {
                 );
 
             case 'rules':
-                return <div><h3>[TV View: Read Rules on Phone]</h3></div>;
+                return (
+                    <CouchCastRules
+                        roomCode={roomData.roomCode}
+                    />
+                );
 
             case 'prompt_selection':
                 return <div><h3>[TV View: Timer & Judge is picking...]</h3></div>;
