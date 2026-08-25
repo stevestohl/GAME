@@ -2,18 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from "../../socket";
 
-// Phase Components
+// TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
 import CouchCastWritingTV from './CouchCastWritingTV.jsx';
 import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
-import CouchCastWinerRevealTV from './CouchCastWinnerRevealTV.jsx'
-//import CouchCastRulesTV from './CouchCastRulesTV.jsx';
+import CouchCastWinnerRevealTV from './CouchCastWinnerRevealTV.jsx';
 import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
-//import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
+
+// Player Controller Component
+import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
 
 export default function CouchCastManager() {
-    // --- STATE MANAGEMENT ---
-    const [gameState, setGameState] = useState('creating'); // Start by creating!
+    // Grab the room code, player name, and role from the URL!
+    const searchParams = new URLSearchParams(window.location.search);
+    const urlRoomCode = searchParams.get('room');
+    const urlPlayerName = searchParams.get('name') || 'Caster';
+    const urlRole = searchParams.get('role'); // 👈 Check if this is a mobile player
+
+    // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
+    if (urlRole === 'guest') {
+        return <CouchCastPlayerSetup roomCode={urlRoomCode} playerName={urlPlayerName} />;
+    }
+
+    // --- TV STATE MANAGEMENT ---
+    const [gameState, setGameState] = useState('creating');
     const [roomData, setRoomData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     
@@ -23,14 +35,8 @@ export default function CouchCastManager() {
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
 
-    // Grab the room code and player name from the URL!
-    const searchParams = new URLSearchParams(window.location.search);
-    const urlRoomCode = searchParams.get('room');
-    const urlPlayerName = searchParams.get('name') || 'Caster';
-
-    // --- SOCKET LISTENERS ---
+    // --- SOCKET LISTENERS (TV ONLY) ---
     useEffect(() => {
-        // 1. Join the existing room using the URL code instead of creating a new one
         if (urlRoomCode) {
              socket.emit('joinRoom', { roomCode: urlRoomCode, playerName: urlPlayerName });
         } else {
@@ -86,7 +92,7 @@ export default function CouchCastManager() {
         };
     }, [urlRoomCode, urlPlayerName]);
 
-    // --- RENDER LOGIC ---
+    // --- TV RENDER LOGIC ---
     const renderGamePhase = () => {
         if (gameState === 'creating' || !roomData) {
             return (
@@ -125,7 +131,6 @@ export default function CouchCastManager() {
                 );
 
             case 'judging':
-            // Find the Judge's name to display
                 const judgeName = roomData.players[roomData.hostId]?.name || 'The Judge';
                 return (
                     <CouchCastJudgingTV 
@@ -137,13 +142,13 @@ export default function CouchCastManager() {
 
             case 'winner_reveal':
                 return (
-                        <CouchCastWinnerRevealTV 
-                            currentPrompt={currentPrompt} 
-                            winner={roundResults?.winner} 
-                            nextHostName={roundResults?.nextHostName} 
-                            isGameOver={roundResults?.isGameOver} 
-                        />
-                    );
+                    <CouchCastWinnerRevealTV 
+                        currentPrompt={currentPrompt} 
+                        winner={roundResults?.winner} 
+                        nextHostName={roundResults?.nextHostName} 
+                        isGameOver={roundResults?.isGameOver} 
+                    />
+                );
 
             case 'scoreboard':
                 return <CouchCastScoreboardTV players={playersArray} />;

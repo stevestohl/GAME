@@ -13,7 +13,7 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
     const hostName = hostPlayer ? hostPlayer.name : "the first player";
 
     // The URL players will navigate to when they scan the code
-    const joinUrl = `https://game-temple.org/couchcast-setup?roomCode=${roomCode}`;
+    const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
     return(
         <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: '80vh'}}>

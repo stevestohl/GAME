@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Spinner, Alert, Card, Button } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
-// 🎮 Import your mobile screens as you build them!
+// 🎮 Import your mobile screens
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
 // import CouchCastRules from './CouchCastRules';
 // import CouchCastPromptSelection from './CouchCastPromptSelection';
@@ -15,17 +15,17 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [roundResults, setRoundResults] = useState(null);
 
     useEffect(() => {
-        // 1. Generate or grab a persistent Player ID for your backend's reconnection logic
+        // 1. Generate or grab a persistent Player ID for backend reconnection
         let pId = localStorage.getItem('templePlayerId');
         if (!pId) {
             pId = 'player_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('templePlayerId', pId);
         }
 
-        // 2. Emit the join event to your backend socket handler
+        // 2. Emit join event
         socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
 
-        // 3. Listen for state synchronization from the server
+        // 3. Socket listeners
         const handleSync = (payload) => {
             setGameState(payload.gameState);
             setRoomData(payload.roomData);
@@ -59,7 +59,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         socket.on('errorMsg', handleError);
         socket.on('round_ended', handleRoundEnded);
 
-        // FIX: Cleanup listeners on unmount
         return () => {
             socket.off('sync_game_state', handleSync);
             socket.off('room_updated', handleRoomUpdate);
@@ -68,7 +67,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         };
     }, [roomCode, playerName]);
 
-    // Added function so the VIP Host can start the game from their phone
     const handleStartGame = () => {
         socket.emit('showRules', { roomCode });
     };
@@ -100,8 +98,10 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
 
     // --- Helper Variables for Game Logic ---
     const isHost = playerData.isPlayerHost;
-    const isJudge = socket.id === roomData.hostId;
-    const judgeName = roomData.players[roomData.hostId]?.name || 'The Judge';
+    
+    // Find host name dynamically from roomData
+    const hostPlayer = roomData.hostId ? roomData.players[roomData.hostId] : null;
+    const hostName = hostPlayer ? hostPlayer.name : 'the host';
 
     // 3. The Switchboard (Mobile UI Navigation)
     switch (gameState) {
@@ -111,19 +111,23 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
                     <Card className="text-center shadow-sm w-100 border-0" style={{ maxWidth: '400px', backgroundColor: '#f8f9fa' }}>
                         <Card.Body className="p-4">
                             <h2 className="text-primary fw-bold mb-3">You're In!</h2>
-                            <p className="fs-5 text-muted mb-4">Look up at the TV.</p>
+                            <p className="fs-6 text-muted mb-4">Look up at the TV.</p>
                             
-                            {/* FIX: Gave the VIP Host the power to start the game! */}
                             {isHost ? (
                                 <div className="p-3 border border-warning rounded bg-white shadow-sm">
-                                    <p className="fw-bold text-dark mb-3">👑 You are the VIP Host</p>
-                                    <Button variant="primary" size="lg" className="w-100 fw-bold py-2" onClick={handleStartGame}>
-                                        All In (Start Game)
+                                    <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
+                                    <Button 
+                                        variant="success" 
+                                        size="lg" 
+                                        className="w-100 fw-bold py-3 fs-5 shadow-sm" 
+                                        onClick={handleStartGame}
+                                    >
+                                        All in!
                                     </Button>
                                 </div>
                             ) : (
-                                <div className="text-muted small py-2 border border-dashed rounded bg-light">
-                                    Waiting for the VIP Host to start the game...
+                                <div className="p-3 border border-dashed rounded bg-light text-muted fs-6">
+                                    Waiting for <strong>{hostName}</strong> to start the game...
                                 </div>
                             )}
                         </Card.Body>
@@ -133,47 +137,18 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
 
         case 'rules':
             return <div className="mt-5 text-center"><h4>[Rules Component Here]</h4></div>;
-            // return <CouchCastRules roomCode={roomCode} isHost={isHost} />
 
         case 'prompt_selection':
             return <div className="mt-5 text-center"><h4>[Prompt Selection Component Here]</h4></div>;
-            // return <CouchCastPromptSelection isCastScreen={false} isJudge={isJudge} judgeName={judgeName} roomCode={roomCode} prompts={roomData.promptOptions} />
 
         case 'writing':
             return <div className="mt-5 text-center"><h4>[Writing Component Here]</h4></div>;
-            /* return (
-                <CouchCastWriting 
-                    roomCode={roomCode} 
-                    isJudge={isJudge} 
-                    currentPrompt={roomData.currentPrompt} 
-                    hasSubmitted={playerData.hasSubmitted}
-                    hasWriteInCard={!playerData.hasUsedWriteIn} 
-                />
-            ); */
 
         case 'judging':
              return <div className="mt-5 text-center"><h4>[Judging Component Here]</h4></div>;
-             /* return (
-                    <CouchCastJudging 
-                        roomCode={roomCode} 
-                        isJudge={isJudge} 
-                        currentPrompt={roomData.currentPrompt} 
-                        submissions={roomData.submissions} 
-                    />
-            ); */
 
         case 'winner_reveal':
              return <div className="mt-5 text-center"><h4>[Winner Reveal Component Here]</h4></div>;
-             /* return (
-                <CouchCastWinnerReveal 
-                    roomCode={roomCode} 
-                    isJudge={isJudge} 
-                    winner={roundResults?.winner} 
-                    nextHostName={roundResults?.nextHostName} 
-                    isGameOver={roundResults?.isGameOver} 
-                    isWinner={playerData.id === roundResults?.winner?.id} 
-                />
-            ); */
 
         case 'scoreboard':
             return (

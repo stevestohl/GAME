@@ -381,7 +381,7 @@ function CouchCastLobby(_ref) {
   var hostName = hostPlayer ? hostPlayer.name : "the first player";
 
   // The URL players will navigate to when they scan the code
-  var joinUrl = "https://game-temple.org/couchcast-setup?roomCode=".concat(roomCode);
+  var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-1",
     style: {
@@ -451,15 +451,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
 /* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
 /* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
 /* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
 /* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -470,21 +471,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-// Phase Components
+// TV Phase Components
 
 
 
 
-//import CouchCastRulesTV from './CouchCastRulesTV.jsx';
 
-//import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
+
+// Player Controller Component
 
 function CouchCastManager() {
-  // --- STATE MANAGEMENT ---
+  // Grab the room code, player name, and role from the URL!
+  var searchParams = new URLSearchParams(window.location.search);
+  var urlRoomCode = searchParams.get('room');
+  var urlPlayerName = searchParams.get('name') || 'Caster';
+  var urlRole = searchParams.get('role'); // 👈 Check if this is a mobile player
+
+  // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
+  if (urlRole === 'guest') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      roomCode: urlRoomCode,
+      playerName: urlPlayerName
+    });
+  }
+
+  // --- TV STATE MANAGEMENT ---
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('creating'),
     _useState2 = _slicedToArray(_useState, 2),
     gameState = _useState2[0],
-    setGameState = _useState2[1]; // Start by creating!
+    setGameState = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState4 = _slicedToArray(_useState3, 2),
     roomData = _useState4[0],
@@ -512,14 +527,8 @@ function CouchCastManager() {
     roundResults = _useState14[0],
     setRoundResults = _useState14[1];
 
-  // Grab the room code and player name from the URL!
-  var searchParams = new URLSearchParams(window.location.search);
-  var urlRoomCode = searchParams.get('room');
-  var urlPlayerName = searchParams.get('name') || 'Caster';
-
-  // --- SOCKET LISTENERS ---
+  // --- SOCKET LISTENERS (TV ONLY) ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // 1. Join the existing room using the URL code instead of creating a new one
     if (urlRoomCode) {
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
         roomCode: urlRoomCode,
@@ -573,13 +582,13 @@ function CouchCastManager() {
     };
   }, [urlRoomCode, urlPlayerName]);
 
-  // --- RENDER LOGIC ---
+  // --- TV RENDER LOGIC ---
   var renderGamePhase = function renderGamePhase() {
     var _roomData$players$roo;
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "text-center mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
         animation: "border",
         variant: "primary"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -605,7 +614,6 @@ function CouchCastManager() {
           hostId: roomData.hostId
         });
       case 'judging':
-        // Find the Judge's name to display
         var judgeName = ((_roomData$players$roo = roomData.players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name) || 'The Judge';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
           currentPrompt: currentPrompt,
@@ -613,7 +621,7 @@ function CouchCastManager() {
           judgeName: judgeName
         });
       case 'winner_reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CouchCastWinnerRevealTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
           currentPrompt: currentPrompt,
           winner: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winner,
           nextHostName: roundResults === null || roundResults === void 0 ? void 0 : roundResults.nextHostName,
@@ -627,16 +635,321 @@ function CouchCastManager() {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     fluid: true,
     className: "p-0"
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
       zIndex: 999
     }
   }, errorMessage), renderGamePhase());
+}
+
+/***/ }),
+
+/***/ "./src/features/CouchCast/CouchCastPlayerSetup.jsx":
+/*!*********************************************************!*\
+  !*** ./src/features/CouchCast/CouchCastPlayerSetup.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CouchCastPlayerSetup)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CouchCastScoreboard.jsx */ "./src/features/CouchCast/CouchCastScoreboard.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+// 🎮 Import your mobile screens
+
+// import CouchCastRules from './CouchCastRules';
+// import CouchCastPromptSelection from './CouchCastPromptSelection';
+
+function CouchCastPlayerSetup(_ref) {
+  var roomCode = _ref.roomCode,
+    playerName = _ref.playerName;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('joining'),
+    _useState2 = _slicedToArray(_useState, 2),
+    gameState = _useState2[0],
+    setGameState = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    roomData = _useState4[0],
+    setRoomData = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    playerData = _useState6[0],
+    setPlayerData = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    error = _useState8[0],
+    setError = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    roundResults = _useState10[0],
+    setRoundResults = _useState10[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // 1. Generate or grab a persistent Player ID for backend reconnection
+    var pId = localStorage.getItem('templePlayerId');
+    if (!pId) {
+      pId = 'player_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('templePlayerId', pId);
+    }
+
+    // 2. Emit join event
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
+      roomCode: roomCode,
+      playerName: playerName,
+      playerId: pId
+    });
+
+    // 3. Socket listeners
+    var handleSync = function handleSync(payload) {
+      setGameState(payload.gameState);
+      setRoomData(payload.roomData);
+      setPlayerData(payload.playerStatus);
+    };
+    var handleRoomUpdate = function handleRoomUpdate(room) {
+      setRoomData(room);
+      setGameState(room.gameState);
+      if (room.players[_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.id]) {
+        setPlayerData(room.players[_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.id]);
+      }
+    };
+    var handleError = function handleError(msg) {
+      setError(msg);
+      setGameState('error');
+    };
+    var handleRoundEnded = function handleRoundEnded(data) {
+      setGameState(data.gameState);
+      setRoundResults({
+        winner: data.winner,
+        nextHostName: data.nextHostName,
+        isGameOver: data.isGameOver
+      });
+    };
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('sync_game_state', handleSync);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('room_updated', handleRoomUpdate);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('errorMsg', handleError);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('round_ended', handleRoundEnded);
+    return function () {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('sync_game_state', handleSync);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('room_updated', handleRoomUpdate);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('errorMsg', handleError);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('round_ended', handleRoundEnded);
+    };
+  }, [roomCode, playerName]);
+  var handleStartGame = function handleStartGame() {
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('showRules', {
+      roomCode: roomCode
+    });
+  };
+
+  // ==========================================
+  // RENDER VIEWS BASED ON GAME STATE
+  // ==========================================
+
+  // 1. Error State
+  if (gameState === 'error') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "mt-5 text-center d-flex justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      variant: "danger",
+      className: "fw-bold shadow-sm",
+      style: {
+        maxWidth: '400px'
+      }
+    }, error));
+  }
+
+  // 2. Loading State 
+  if (gameState === 'joining' || !roomData || !playerData) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "mt-5 text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      animation: "border",
+      variant: "primary",
+      style: {
+        width: '3rem',
+        height: '3rem'
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+      className: "mt-3 text-muted"
+    }, "Connecting to room ", roomCode, "..."));
+  }
+
+  // --- Helper Variables for Game Logic ---
+  var isHost = playerData.isPlayerHost;
+
+  // Find host name dynamically from roomData
+  var hostPlayer = roomData.hostId ? roomData.players[roomData.hostId] : null;
+  var hostName = hostPlayer ? hostPlayer.name : 'the host';
+
+  // 3. The Switchboard (Mobile UI Navigation)
+  switch (gameState) {
+    case 'lobby':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "mt-5 d-flex justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        className: "text-center shadow-sm w-100 border-0",
+        style: {
+          maxWidth: '400px',
+          backgroundColor: '#f8f9fa'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+        className: "p-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+        className: "text-primary fw-bold mb-3"
+      }, "You're In!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fs-6 text-muted mb-4"
+      }, "Look up at the TV."), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-3 border border-warning rounded bg-white shadow-sm"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fw-bold text-dark mb-3"
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        variant: "success",
+        size: "lg",
+        className: "w-100 fw-bold py-3 fs-5 shadow-sm",
+        onClick: handleStartGame
+      }, "All in!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-3 border border-dashed rounded bg-light text-muted fs-6"
+      }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."))));
+    case 'rules':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mt-5 text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "[Rules Component Here]"));
+    case 'prompt_selection':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mt-5 text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "[Prompt Selection Component Here]"));
+    case 'writing':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mt-5 text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "[Writing Component Here]"));
+    case 'judging':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mt-5 text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "[Judging Component Here]"));
+    case 'winner_reveal':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mt-5 text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "[Winner Reveal Component Here]"));
+    case 'scoreboard':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        playerData: playerData,
+        players: Object.values(roomData.players)
+      });
+    default:
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "mt-5 text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        animation: "grow",
+        variant: "warning"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+        className: "mt-3 text-muted"
+      }, "Wait for it..."));
+  }
+}
+
+/***/ }),
+
+/***/ "./src/features/CouchCast/CouchCastScoreboard.jsx":
+/*!********************************************************!*\
+  !*** ./src/features/CouchCast/CouchCastScoreboard.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CouchCastScoreboard)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+
+
+
+function CouchCastScoreboard(_ref) {
+  var playerData = _ref.playerData,
+    players = _ref.players;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+
+  // Determine the player's final rank
+  var rankedPlayers = players.filter(function (p) {
+    return !p.isCaster;
+  }).sort(function (a, b) {
+    return b.score - a.score;
+  });
+  var myRank = rankedPlayers.findIndex(function (p) {
+    return p.id === playerData.id;
+  }) + 1;
+  var isWinner = myRank === 1;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-4 d-flex justify-content-center pb-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "shadow-sm w-100 text-center border-0 bg-light",
+    style: {
+      maxWidth: '420px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
+    className: "bg-dark text-white py-3 border-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "mb-0 fw-bold tracking-widest text-uppercase"
+  }, "Game Over")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "p-5"
+  }, isWinner ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "display-1 mb-2"
+  }, "\uD83C\uDFC6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold text-success"
+  }, "Ultimate Champion!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted fw-bold"
+  }, "You destroyed the competition.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "display-3 mb-2"
+  }, "\uD83D\uDC4F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold text-primary"
+  }, "Good Effort."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted"
+  }, "But not good enough to win.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "p-3 bg-white border rounded shadow-sm mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fs-5 text-muted fw-bold text-uppercase mb-1"
+  }, "Your Final Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "display-4 fw-bold text-dark"
+  }, playerData.score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mt-2 text-secondary fw-semibold"
+  }, "Rank: #", myRank, " out of ", rankedPlayers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "primary",
+    size: "lg",
+    className: "w-100 fw-bold py-3 shadow-sm",
+    onClick: function onClick() {
+      return navigate('/home');
+    } // Sends them back to your main menu
+  }, "Return to Hub"))));
 }
 
 /***/ }),
