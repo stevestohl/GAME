@@ -47,6 +47,7 @@ export default function Contents() {
             <Route path="/prompt2" element={<Prompt2GameManager />} />
             <Route path="/prompt2-create" element={<Prompt2CreateScreen />} />
             <Route path="/CouchCast" element={<CouchCastManager />} />
+            <Route path="/couchcast-setup" element={<CouchCastManager />} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}
             <Route path="/play" element={<CouchCastManager />} />
