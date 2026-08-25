@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Spinner, Alert, Card } from 'react-bootstrap';
+import { Container, Spinner, Alert, Card, Button } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
 // 🎮 Import your mobile screens as you build them!
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
-import CouchCastRules from './CouchCastRules';
-import CouchCastPromptSelection from './CouchCastPromptSelection';
+// import CouchCastRules from './CouchCastRules';
+// import CouchCastPromptSelection from './CouchCastPromptSelection';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -45,35 +45,39 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             setGameState('error');
         };
 
-        socket.on('sync_game_state', handleSync);
-        socket.on('room_updated', handleRoomUpdate);
-        socket.on('errorMsg', handleError);
-        // Add this inside the useEffect:
-        socket.on('round_ended', (data) => {
+        const handleRoundEnded = (data) => {
             setGameState(data.gameState);
             setRoundResults({
                 winner: data.winner,
                 nextHostName: data.nextHostName,
                 isGameOver: data.isGameOver
             });
-        });
+        };
 
-        // Don't forget to clean it up in the return statement!
-        socket.off('round_ended');
+        socket.on('sync_game_state', handleSync);
+        socket.on('room_updated', handleRoomUpdate);
+        socket.on('errorMsg', handleError);
+        socket.on('round_ended', handleRoundEnded);
 
-        // Cleanup listeners on unmount
+        // FIX: Cleanup listeners on unmount
         return () => {
             socket.off('sync_game_state', handleSync);
             socket.off('room_updated', handleRoomUpdate);
             socket.off('errorMsg', handleError);
+            socket.off('round_ended', handleRoundEnded); 
         };
     }, [roomCode, playerName]);
+
+    // Added function so the VIP Host can start the game from their phone
+    const handleStartGame = () => {
+        socket.emit('showRules', { roomCode });
+    };
 
     // ==========================================
     // RENDER VIEWS BASED ON GAME STATE
     // ==========================================
     
-    // 1. Error State (e.g., room code didn't exist)
+    // 1. Error State
     if (gameState === 'error') {
         return (
             <Container className="mt-5 text-center d-flex justify-content-center">
@@ -84,7 +88,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         );
     }
 
-    // 2. Loading State (Connecting to server)
+    // 2. Loading State 
     if (gameState === 'joining' || !roomData || !playerData) {
         return (
             <Container className="mt-5 text-center">
@@ -105,12 +109,21 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             return (
                 <Container className="mt-5 d-flex justify-content-center">
                     <Card className="text-center shadow-sm w-100 border-0" style={{ maxWidth: '400px', backgroundColor: '#f8f9fa' }}>
-                        <Card.Body className="p-5">
+                        <Card.Body className="p-4">
                             <h2 className="text-primary fw-bold mb-3">You're In!</h2>
                             <p className="fs-5 text-muted mb-4">Look up at the TV.</p>
-                            {isHost && (
-                                <div className="p-2 border border-warning rounded bg-white text-dark fw-bold">
-                                    👑 You are the VIP Host
+                            
+                            {/* FIX: Gave the VIP Host the power to start the game! */}
+                            {isHost ? (
+                                <div className="p-3 border border-warning rounded bg-white shadow-sm">
+                                    <p className="fw-bold text-dark mb-3">👑 You are the VIP Host</p>
+                                    <Button variant="primary" size="lg" className="w-100 fw-bold py-2" onClick={handleStartGame}>
+                                        All In (Start Game)
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div className="text-muted small py-2 border border-dashed rounded bg-light">
+                                    Waiting for the VIP Host to start the game...
                                 </div>
                             )}
                         </Card.Body>
@@ -119,17 +132,16 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'rules':
-            // Render the component we built earlier!
-            return <div className="mt-5 text-center"><h4>[Rules Component Here]</h4></div>
+            return <div className="mt-5 text-center"><h4>[Rules Component Here]</h4></div>;
             // return <CouchCastRules roomCode={roomCode} isHost={isHost} />
 
         case 'prompt_selection':
-            // Render the component we built earlier!
-            return <div className="mt-5 text-center"><h4>[Prompt Selection Component Here]</h4></div>
+            return <div className="mt-5 text-center"><h4>[Prompt Selection Component Here]</h4></div>;
             // return <CouchCastPromptSelection isCastScreen={false} isJudge={isJudge} judgeName={judgeName} roomCode={roomCode} prompts={roomData.promptOptions} />
 
         case 'writing':
-            return (
+            return <div className="mt-5 text-center"><h4>[Writing Component Here]</h4></div>;
+            /* return (
                 <CouchCastWriting 
                     roomCode={roomCode} 
                     isJudge={isJudge} 
@@ -137,38 +149,39 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
                     hasSubmitted={playerData.hasSubmitted}
                     hasWriteInCard={!playerData.hasUsedWriteIn} 
                 />
-            );
+            ); */
 
         case 'judging':
-            return (
+             return <div className="mt-5 text-center"><h4>[Judging Component Here]</h4></div>;
+             /* return (
                     <CouchCastJudging 
                         roomCode={roomCode} 
                         isJudge={isJudge} 
                         currentPrompt={roomData.currentPrompt} 
-                        // We pass the anonymous submissions so the judge has buttons to click!
                         submissions={roomData.submissions} 
                     />
-            );
+            ); */
 
         case 'winner_reveal':
-            return (
+             return <div className="mt-5 text-center"><h4>[Winner Reveal Component Here]</h4></div>;
+             /* return (
                 <CouchCastWinnerReveal 
                     roomCode={roomCode} 
-                    isJudge={isJudge} // This automatically points to the NEXT judge!
+                    isJudge={isJudge} 
                     winner={roundResults?.winner} 
                     nextHostName={roundResults?.nextHostName} 
                     isGameOver={roundResults?.isGameOver} 
                     isWinner={playerData.id === roundResults?.winner?.id} 
                 />
-            );
+            ); */
+
         case 'scoreboard':
             return (
-                    <CouchCastScoreboard 
-                        playerData={playerData} 
-                        players={Object.values(roomData.players)} 
-                    />
-                );
-
+                <CouchCastScoreboard 
+                    playerData={playerData} 
+                    players={Object.values(roomData.players)} 
+                />
+            );
 
         default:
             return (

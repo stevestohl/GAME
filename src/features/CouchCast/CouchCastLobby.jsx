@@ -1,24 +1,19 @@
 import React from "react";
-import { Card, Badge, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { couchCastSocket as socket } from "../../socket";
-import { QRCodeSVG } from 'qrcode.react'; // Import the SVG renderer
+import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { QRCodeSVG } from 'qrcode.react'; 
 
-export default function CouchCastLobby({ roomCode, players = [], isHost }) {
-
-    const handleShowRules = () => {
-        console.log("[Lobby] Clicked 'All in!' - Emitting showRules event for room:", roomCode);
-        socket.emit('showRules', { roomCode });
-    };
+// Removed `isHost` from props, as the TV is never the player-host
+export default function CouchCastLobby({ roomCode, players = [] }) {
 
     // Filter out the Caster so they don't show up in the player list
     const activePlayers = players.filter(player => !player.isCaster);
     
-    // Find the player designated as the host to display their name
+    // Find the player designated as the host (the first person who joined)
     const hostPlayer = activePlayers.find(player => player.isPlayerHost);
-    const hostName = hostPlayer ? hostPlayer.name : "the host";
+    const hostName = hostPlayer ? hostPlayer.name : "the first player";
 
     // The URL players will navigate to when they scan the code
-    const joinUrl = `https://game-temple.org/play?roomCode=${roomCode}`;
+    const joinUrl = `https://game-temple.org/couchcast-setup?roomCode=${roomCode}`;
 
     return(
         <div className="d-flex justify-content-center align-items-center p-1" style={{ minHeight: '80vh'}}>
@@ -39,12 +34,11 @@ export default function CouchCastLobby({ roomCode, players = [], isHost }) {
                             <QRCodeSVG 
                                 value={joinUrl} 
                                 size={180} 
-                                fgColor="#014eb6" // Your custom hex color!
-                                level="H"         // High error correction so it scans easily
+                                fgColor="#014eb6" 
+                                level="H"         
                                 includeMargin={false}
                             />
                         </div>
-                        {/* Display the room code for players who can't scan */}
                         <div className="mt-3 fs-2 fw-bold" style={{ color: '#014eb6', letterSpacing: '0.15em' }}>
                             {roomCode}
                         </div>
@@ -63,20 +57,12 @@ export default function CouchCastLobby({ roomCode, players = [], isHost }) {
                         ))}
                     </ListGroup>
 
-                    {isHost ? (
-                        <Button
-                            variant="primary"
-                            className="w-100 fw-bold py-2"
-                            disabled={activePlayers.length < 1}
-                            onClick={handleShowRules}
-                        >
-                            {activePlayers.length < 1 ? 'Waiting for Players' : 'All In'}
-                        </Button>
-                    ) : (
-                        <div className="text-muted small py-2 border border-dashed rounded bg-light">
-                            Waiting for {hostName} to show the rules...
-                        </div>
-                    )}
+                    {/* The Caster screen just waits. No buttons here! */}
+                    <div className="text-muted fw-bold py-3 border border-dashed rounded bg-light fs-5">
+                        {activePlayers.length < 1 
+                            ? "Waiting for players to join..." 
+                            : `Waiting for ${hostName} to start the game...`}
+                    </div>
                 </Card.Body>
             </Card>
         </div>

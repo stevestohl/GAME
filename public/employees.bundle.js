@@ -352,54 +352,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-/* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 
 
 
- // Import the SVG renderer
 
+// Removed `isHost` from props, as the TV is never the player-host
 function CouchCastLobby(_ref) {
   var roomCode = _ref.roomCode,
     _ref$players = _ref.players,
-    players = _ref$players === void 0 ? [] : _ref$players,
-    isHost = _ref.isHost;
-  var handleShowRules = function handleShowRules() {
-    console.log("[Lobby] Clicked 'All in!' - Emitting showRules event for room:", roomCode);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('showRules', {
-      roomCode: roomCode
-    });
-  };
-
+    players = _ref$players === void 0 ? [] : _ref$players;
   // Filter out the Caster so they don't show up in the player list
   var activePlayers = players.filter(function (player) {
     return !player.isCaster;
   });
 
-  // Find the player designated as the host to display their name
+  // Find the player designated as the host (the first person who joined)
   var hostPlayer = activePlayers.find(function (player) {
     return player.isPlayerHost;
   });
-  var hostName = hostPlayer ? hostPlayer.name : "the host";
+  var hostName = hostPlayer ? hostPlayer.name : "the first player";
 
   // The URL players will navigate to when they scan the code
-  var joinUrl = "https://game-temple.org/play?roomCode=".concat(roomCode);
+  var joinUrl = "https://game-temple.org/couchcast-setup?roomCode=".concat(roomCode);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-1",
     style: {
       minHeight: '80vh'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "shadow-sm w-100",
     style: {
       maxWidth: '450px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     as: "h5",
     className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-wideset text-uppercase fs-6",
     style: {
@@ -407,21 +397,19 @@ function CouchCastLobby(_ref) {
       color: '#f1f2f5',
       letterSpacing: '0.2em'
     }
-  }, "COUCH CAST ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, "COUCH CAST ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
     className: "fs-4 fw-bold text-dark mb-3"
   }, "Scan to join the game!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-4 d-flex flex-column align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "p-3 bg-white rounded shadow-sm d-inline-block border"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_2__.QRCodeSVG, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
     value: joinUrl,
     size: 180,
-    fgColor: "#014eb6" // Your custom hex color!
-    ,
-    level: "H" // High error correction so it scans easily
-    ,
+    fgColor: "#014eb6",
+    level: "H",
     includeMargin: false
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mt-3 fs-2 fw-bold",
@@ -431,24 +419,19 @@ function CouchCastLobby(_ref) {
     }
   }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "text-start mb-2 fw-semibold"
-  }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "mb-4 text-start"
   }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       key: player.id,
       className: "d-flex justify-content-between align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       bg: "primary",
       className: "rounded-pill"
     }, "Host"));
-  })), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    variant: "primary",
-    className: "w-100 fw-bold py-2",
-    disabled: activePlayers.length < 1,
-    onClick: handleShowRules
-  }, activePlayers.length < 1 ? 'Waiting for Players' : 'All In') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted small py-2 border border-dashed rounded bg-light"
-  }, "Waiting for ", hostName, " to show the rules..."))));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted fw-bold py-3 border border-dashed rounded bg-light fs-5"
+  }, activePlayers.length < 1 ? "Waiting for players to join..." : "Waiting for ".concat(hostName, " to start the game...")))));
 }
 
 /***/ }),
@@ -605,10 +588,8 @@ function CouchCastManager() {
       case 'lobby':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
           roomCode: roomData.roomCode,
-          players: playersArray,
-          isHost: false // TV is never the host!
+          players: playersArray
         });
-
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "[TV View: Read Rules on Phone]"));
       case 'prompt_selection':
@@ -3028,12 +3009,11 @@ function Home() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     variant: "primary",
     className: "fw-bold w-100 py-2 shadow-sm",
-    disabled: isCreatingRoom
-    // onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
-    ,
+    disabled: isCreatingRoom,
     onClick: function onClick() {
-      return setIsUnderConstruction(true);
+      return (0,_CouchCast_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_4__.handleCreateCouchCast)(null, navigate, setIsCreatingRoom);
     }
+    // onClick={() => setIsUnderConstruction(true)}
   }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "\uD83D\uDECB\uFE0F\uD83D\uDECB\uFE0F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 12
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {

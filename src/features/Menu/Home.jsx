@@ -114,8 +114,8 @@ export default function Home() {
                                 variant='primary'
                                 className='fw-bold w-100 py-2 shadow-sm'
                                 disabled={isCreatingRoom}
-                                // onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
-                                onClick={() => setIsUnderConstruction(true)}
+                                onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
+                                // onClick={() => setIsUnderConstruction(true)}
                             >
                                 Couch Cast<br/>
                                 🛋️🛋️

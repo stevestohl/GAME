@@ -6,7 +6,7 @@ import { couchCastSocket as socket } from "../../socket";
 import CouchCastLobby from './CouchCastLobby.jsx';
 import CouchCastWritingTV from './CouchCastWritingTV.jsx';
 import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
-import CouchCastWinerREvealTV from './CouchCastWinnerRevealTV.jsx'
+import CouchCastWinerRevealTV from './CouchCastWinnerRevealTV.jsx'
 //import CouchCastRulesTV from './CouchCastRulesTV.jsx';
 import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
 //import CouchCastPromptSelectionTV from './CouchCastPromptSelectionTV.jsx';
@@ -105,7 +105,6 @@ export default function CouchCastManager() {
                     <CouchCastLobby 
                         roomCode={roomData.roomCode} 
                         players={playersArray} 
-                        isHost={false} // TV is never the host!
                     />
                 );
 
