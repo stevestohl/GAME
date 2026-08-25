@@ -95,7 +95,7 @@ function Contents() {
     path: "/prompt2-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
-    path: "/CouchCast",
+    path: "/couchcast",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/couchcast-setup",
@@ -713,13 +713,25 @@ function CouchCastPlayerSetup(_ref) {
       pId = 'player_' + Math.random().toString(36).substr(2, 9);
       localStorage.setItem('templePlayerId', pId);
     }
-
-    // 2. Emit join event
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
-      roomCode: roomCode,
-      playerName: playerName,
-      playerId: pId
+    if (!_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.connected) {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.connect();
+    }
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('connect', function () {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
+        roomCode: roomCode,
+        playerName: playerName,
+        playerId: pId
+      });
     });
+
+    // (If the socket was already connected before this component mounted, emit immediately)
+    if (_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.connected) {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
+        roomCode: roomCode,
+        playerName: playerName,
+        playerId: pId
+      });
+    }
 
     // 3. Socket listeners
     var handleSync = function handleSync(payload) {

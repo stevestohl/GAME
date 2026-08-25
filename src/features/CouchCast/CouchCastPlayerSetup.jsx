@@ -21,9 +21,18 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             pId = 'player_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('templePlayerId', pId);
         }
+        if (!socket.connected) {
+                    socket.connect();
+                }
+        socket.on('connect', () => {
+                    socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
+                });
 
-        // 2. Emit join event
-        socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
+
+        // (If the socket was already connected before this component mounted, emit immediately)
+        if (socket.connected) {
+             socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
+        }
 
         // 3. Socket listeners
         const handleSync = (payload) => {
