@@ -13,6 +13,7 @@ import BarHome from './features/Menu/BarHome.jsx'
 
 // --- Game Imports ---
 import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
+import Prompt2CreateScreen from './features/Prompt2/Prompt2CreateButton.jsx'
 import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
@@ -44,6 +45,7 @@ export default function Contents() {
 
             {/* Manager Routes */}
             <Route path="/prompt2" element={<Prompt2GameManager />} />
+            <Route path="/prompt2-create" element={<Prompt2CreateScreen />} />
             <Route path="/CouchCast" element={<CouchCastManager />} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { Card, Form, Button, Alert, InputGroup } from 'react-bootstrap';
+import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import { Card, Form, Button, Alert, InputGroup, Toast, ToastContainer } from 'react-bootstrap';
 import { getRandomFunnyName } from '../../funnyNames.js';
 
 export default function UniversalJoinScreen() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const location = useLocation();
     
-    // Grab the room code from the QR URL if present
-    const urlRoomCode = searchParams.get('roomCode');
+    const [toastMsg, setToastMsg] = useState(location.state?.toastMessage || '');
+    // Accepts 'room' or 'roomCode' from URL parameters
+    const urlRoomCode = searchParams.get('room') || searchParams.get('roomCode');
 
     const [roomCode, setRoomCode] = useState(urlRoomCode || '');
     const [playerName, setPlayerName] = useState('');
@@ -16,14 +18,24 @@ export default function UniversalJoinScreen() {
 
     useEffect(() => {
         const savedName = localStorage.getItem('templePlayerName');
-        // Populate saved name, or generate a random funny name default
         setPlayerName(savedName || getRandomFunnyName());
     }, []);
 
-    // 🎲 Dice button handler
+    useEffect(() => {
+        if (urlRoomCode) {
+            setRoomCode(urlRoomCode.toUpperCase().trim());
+        }
+    }, [urlRoomCode]);
+
+    useEffect(() => {
+        if (location.state?.toastMessage) {
+            setToastMsg(location.state.toastMessage);
+            window.history.replaceState({}, document.title);
+        }
+    }, [location]);
+
     const handleRandomizeName = () => {
-        const randomName = getRandomFunnyName();
-        setPlayerName(randomName);
+        setPlayerName(getRandomFunnyName());
     };
 
     const handleJoin = (e) => {
@@ -36,7 +48,6 @@ export default function UniversalJoinScreen() {
             return;
         }
 
-        // 🎯 Prefix Routing Logic
         const prefix = code.charAt(0);
         let targetRoute = '';
 
@@ -50,48 +61,83 @@ export default function UniversalJoinScreen() {
             case 'T':
                 targetRoute = `/tictactoe?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;
+            case 'R':
+                // FIXED: Now properly routes to the TriviaManager with guest credentials
+                targetRoute = `/trivia?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                break;
             default:
                 setError(`Hmm, we don't recognize a game starting with '${prefix}'. Check the TV!`);
                 return; 
         }
 
-        // Save name preference and navigate to the separate game page
         localStorage.setItem('templePlayerName', playerName.trim());
         navigate(targetRoute);
     };
 
     return (
         <div className="page-container">
+
+            {/* Floating Toast Notification */}
+            <ToastContainer 
+                style={{ 
+                    position: 'fixed', 
+                    top: '20px', 
+                    left: '50%', 
+                    transform: 'translateX(-50%)', 
+                    zIndex: 99999 
+                }}
+            >
+                <Toast show={!!toastMsg} onClose={() => setToastMsg('')} delay={4000} autohide bg="danger">
+                    <Toast.Body className="fw-bold text-white text-center px-4 py-2">
+                        ⚠️ {toastMsg}
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
+
             <Card className='main-card'>
                 <Card.Header className='main-card-header'>
                     Join a Room
                 </Card.Header>
                 <Card.Body className='p-4 text-center'>
                     <div className='mb-4'>
-                        <h2 className='fw-bold text-primary mb-1'>Have a Room Code?</h2>
-                        <h2 className='fw-bold text-primary mb-1'>Enter it Here!</h2>
-                        {/* <h2 className='text-muted small'>Have a Room Code?</h2> */}
-                        {/* <h2 className='text-muted small'>Enter it Here!</h2> */}
+                        <h2 className='fw-bold text-primary mb-1'>
+                            {urlRoomCode ? `Joining Room ${urlRoomCode.toUpperCase()}` : 'Have a Room Code?'}
+                        </h2>
+                        {!urlRoomCode && <h2 className='fw-bold text-primary mb-1'>Enter it Here!</h2>}
                     </div>
 
                     {error && <Alert variant="danger">{error}</Alert>}
 
                     <Form onSubmit={handleJoin}>
-                        <Form.Group className='mb-3 text-start'>
-                            <Form.Label className='fw-bold text-secondary small'>Room Code</Form.Label>
-                            <Form.Control 
-                                size="lg"
-                                type="text" 
-                                placeholder="4-Letter Code" 
-                                value={roomCode}
-                                onChange={(e) => setRoomCode(e.target.value.toUpperCase().trim())}
-                                maxLength={4}
-                                className='text-center fw-bold fs-4'
-                                style={{ letterSpacing: '4px' }}
-                                disabled={!!urlRoomCode}
-                                required
-                            />
-                        </Form.Group>
+                    
+                    {/* Room Code entry */}
+                    <Form.Group className='mb-3 text-start'>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <Form.Label className='fw-bold text-secondary small mb-0'>Room Code</Form.Label>
+                            {urlRoomCode && (
+                                <span className="text-success small fw-bold">
+                                    ✅ Room Verified & Locked
+                                </span>
+                            )}
+                        </div>
+                        <Form.Control 
+                            size="lg"
+                            type="text" 
+                            placeholder="4-Letter Code" 
+                            value={roomCode}
+                            onChange={(e) => setRoomCode(e.target.value.toUpperCase().trim())}
+                            maxLength={4}
+                            className={`text-center fw-bold fs-4 ${urlRoomCode ? 'bg-light text-success' : ''}`}
+                            style={{ letterSpacing: '4px' }}
+                            disabled={!!urlRoomCode}
+                            required
+                        />
+                        {urlRoomCode && (
+                            <Form.Text className="text-muted text-center d-block mt-1">
+                                You're joining room <strong>{urlRoomCode.toUpperCase()}</strong>. Just pick your name and jump in!
+                            </Form.Text>
+                        )}
+                    </Form.Group>
 
                         <Form.Group className='mb-4 text-start'>              
                             <Form.Label className='fw-bold text-secondary small'>Your Name</Form.Label>

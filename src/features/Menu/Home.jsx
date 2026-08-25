@@ -7,7 +7,7 @@ import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 
 // Helper functions for existing room creation routines
 // import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
-import { handleCreatePrompt2Room } from '../Prompt2/Prompt2CreateButton.jsx';
+import Prompt2CreateScreen from '../Prompt2/Prompt2CreateButton.jsx';
 import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
 export default function Home() {
@@ -114,7 +114,8 @@ export default function Home() {
                                 variant='primary'
                                 className='fw-bold w-100 py-2 shadow-sm'
                                 disabled={isCreatingRoom}
-                                onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
+                                // onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
+                                onClick={() => setIsUnderConstruction(true)}
                             >
                                 Couch Cast<br/>
                                 🛋️🛋️
@@ -155,7 +156,7 @@ export default function Home() {
                                         variant="primary"
                                         className="fw-bold w-100 h-100 py-2 shadow-sm text-white"
                                         disabled={isCreatingRoom}
-                                        onClick={() => handleCreatePrompt2Room(null, navigate, setIsCreatingRoom)}
+                                        onClick={() => navigate('/prompt2-create')}
                                     >
                                         Prompt <br/> 2
                                     </Button>

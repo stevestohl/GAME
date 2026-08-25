@@ -22,7 +22,7 @@ export default function Prompt2PromptSelectionScreen({
       
       // 2. Point to localhost for local dev, or the working Render backend for production
       const backendBase = isLocal 
-        ? 'http://localhost:5000' 
+        ? 'http://localhost:5005' 
         : 'https://game-temple-backend.onrender.com';
 
       setIsLoading(true);
