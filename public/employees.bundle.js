@@ -586,7 +586,7 @@ function CouchCastManager() {
 
   // --- TV RENDER LOGIC ---
   var renderGamePhase = function renderGamePhase() {
-    var _roomData$players$roo;
+    var _roomData$players$roo, _roomData$players$roo2;
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "text-center mt-5"
@@ -609,7 +609,12 @@ function CouchCastManager() {
           roomCode: roomData.roomCode
         });
       case 'prompt_selection':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "[TV View: Timer & Judge is picking...]"));
+        var pickerName = ((_roomData$players$roo = roomData.players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name) || 'The Judge';
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CouchCastPromptSelection, {
+          isCastScreen: true,
+          judgeName: pickerName,
+          roomCode: roomData.roomCode
+        });
       case 'writing':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
           currentPrompt: currentPrompt,
@@ -618,7 +623,7 @@ function CouchCastManager() {
           hostId: roomData.hostId
         });
       case 'judging':
-        var judgeName = ((_roomData$players$roo = roomData.players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name) || 'The Judge';
+        var judgeName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
           currentPrompt: currentPrompt,
           submissions: submissions,
@@ -665,13 +670,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CouchCastScoreboard.jsx */ "./src/features/CouchCast/CouchCastScoreboard.jsx");
+/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -684,8 +690,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // 🎮 Import your mobile screens
 
-// import CouchCastRules from './CouchCastRules';
-// import CouchCastPromptSelection from './CouchCastPromptSelection';
+ // 🚨 UNCOMMENTED & IMPORTED
 
 function CouchCastPlayerSetup(_ref) {
   var roomCode = _ref.roomCode,
@@ -717,6 +722,8 @@ function CouchCastPlayerSetup(_ref) {
       pId = 'player_' + Math.random().toString(36).substr(2, 9);
       localStorage.setItem('templePlayerId', pId);
     }
+
+    // 🚨 Connection logic is here!
     if (!_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.connected) {
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.connect();
     }
@@ -785,9 +792,9 @@ function CouchCastPlayerSetup(_ref) {
 
   // 1. Error State
   if (gameState === 'error') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "mt-5 text-center d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       variant: "danger",
       className: "fw-bold shadow-sm",
       style: {
@@ -798,9 +805,9 @@ function CouchCastPlayerSetup(_ref) {
 
   // 2. Loading State 
   if (gameState === 'joining' || !roomData || !playerData) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "mt-5 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       animation: "border",
       variant: "primary",
       style: {
@@ -822,15 +829,15 @@ function CouchCastPlayerSetup(_ref) {
   // 3. The Switchboard (Mobile UI Navigation)
   switch (gameState) {
     case 'lobby':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: "mt-5 d-flex justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: "text-center shadow-sm w-100 border-0",
         style: {
           maxWidth: '400px',
           backgroundColor: '#f8f9fa'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
         className: "p-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "text-primary fw-bold mb-3"
@@ -840,7 +847,7 @@ function CouchCastPlayerSetup(_ref) {
         className: "p-3 border border-warning rounded bg-white shadow-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "fw-bold text-dark mb-3"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
         variant: "success",
         size: "lg",
         className: "w-100 fw-bold py-3 fs-5 shadow-sm",
@@ -849,21 +856,25 @@ function CouchCastPlayerSetup(_ref) {
         className: "p-3 border border-dashed rounded bg-light text-muted fs-6"
       }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."))));
     case 'rules':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: "mt-5 pt-4 text-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "text-primary fw-bold mb-3"
       }, "Welcome to Couch Cast!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
         className: "text-muted fw-normal"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
         animation: "grow",
         variant: "warning",
         className: "mt-5"
       }));
     case 'prompt_selection':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "[Prompt Selection Component Here]"));
+      // 🚨 REFACTORED: Now uses the new props structure
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        isJudge: isHost,
+        judgeName: hostName,
+        roomCode: roomCode,
+        prompts: roomData.promptOptions
+      });
     case 'writing':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "mt-5 text-center"
@@ -882,15 +893,187 @@ function CouchCastPlayerSetup(_ref) {
         players: Object.values(roomData.players)
       });
     default:
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: "mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
         animation: "grow",
         variant: "warning"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
         className: "mt-3 text-muted"
       }, "Wait for it..."));
   }
+}
+
+/***/ }),
+
+/***/ "./src/features/CouchCast/CouchCastPromptSelection.jsx":
+/*!*************************************************************!*\
+  !*** ./src/features/CouchCast/CouchCastPromptSelection.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CouchCastPromptSelection)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+function CouchCastPromptSelection(_ref) {
+  var isCastScreen = _ref.isCastScreen,
+    isJudge = _ref.isJudge,
+    judgeName = _ref.judgeName,
+    roomCode = _ref.roomCode,
+    _ref$prompts = _ref.prompts,
+    prompts = _ref$prompts === void 0 ? ["What's the worst thing to say at a funeral?", "Name a sequel that shouldn't exist.", "What's hiding under my bed?"] : _ref$prompts;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(20),
+    _useState2 = _slicedToArray(_useState, 2),
+    timeLeft = _useState2[0],
+    setTimeLeft = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedPrompt = _useState4[0],
+    setSelectedPrompt = _useState4[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!isCastScreen) return;
+    if (timeLeft === 0) {
+      return;
+    }
+    var timer = setInterval(function () {
+      setTimeLeft(function (prev) {
+        return prev - 1;
+      });
+    }, 1000);
+    return function () {
+      return clearInterval(timer);
+    };
+  }, [timeLeft, isCastScreen]);
+  var handlePromptSubmit = function handlePromptSubmit() {
+    if (!selectedPrompt) return;
+    console.log("Sending selected prompt for room: ".concat(roomCode));
+    // FIXED: Emit 'select_prompt' to match the Node.js backend listener
+    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('select_prompt', {
+      roomCode: roomCode,
+      selectedPrompt: selectedPrompt
+    });
+  };
+
+  // Helper function to handle both dummy strings and MongoDB objects safely
+  var getPromptText = function getPromptText(p) {
+    if (!p) return "";
+    if (typeof p === 'string') return p;
+    // Adjust 'p.prompt' to 'p.text' if your Prompt2 DB schema uses a different key!
+    return p.prompt || p.text || "Unknown Prompt";
+  };
+
+  // ==========================================
+  // 1. CAST SCREEN (The TV / Shared Display)
+  // ==========================================
+  if (isCastScreen) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      className: "mt-5 d-flex flex-column align-items-center text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "display-5 fw-bold text-primary mb-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "text-warning"
+    }, judgeName), " is picking the poison..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "shadow-sm w-100 p-4",
+      style: {
+        maxWidth: '600px'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "display-1 fw-bold text-secondary mb-3"
+    }, timeLeft), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      animated: true,
+      now: timeLeft / 20 * 100,
+      variant: timeLeft <= 5 ? 'danger' : 'info',
+      style: {
+        height: '20px'
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mt-3 text-muted fs-5"
+    }, "Seconds remaining to set the vibe!")));
+  }
+
+  // ==========================================
+  // 2. JUDGE SCREEN (The Host selecting)
+  // ==========================================
+  if (isJudge) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      className: "mt-4 d-flex justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "shadow-sm w-100",
+      style: {
+        maxWidth: '420px'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+      className: "text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+      className: "fw-bold mb-3 fs-4 text-primary"
+    }, "Set the Vibe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted mb-4"
+    }, "Pick 1 of the 3 prompts below."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex flex-column mb-4",
+      style: {
+        gap: '10px'
+      }
+    }, prompts.map(function (promptObj, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        key: index,
+        variant: selectedPrompt === promptObj ? 'primary' : 'outline-secondary',
+        className: "text-start p-3 text-wrap",
+        onClick: function onClick() {
+          return setSelectedPrompt(promptObj);
+        }
+      }, getPromptText(promptObj));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      variant: selectedPrompt ? 'success' : 'secondary',
+      size: "lg",
+      className: "w-100 fw-bold",
+      disabled: !selectedPrompt,
+      onClick: handlePromptSubmit
+    }, selectedPrompt ? "Make 'Em Write!" : "Select a Prompt"))));
+  }
+
+  // ==========================================
+  // 3. PLAYER SCREEN (Waiting for the Judge)
+  // ==========================================
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-5 d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "shadow-sm w-100 border-warning",
+    style: {
+      maxWidth: '420px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "text-center p-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    animation: "grow",
+    variant: "warning",
+    className: "mb-4",
+    style: {
+      width: '3rem',
+      height: '3rem'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    className: "fw-bold fs-4 text-dark mb-2"
+  }, "Hold Your Horses..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+    className: "text-muted fs-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, judgeName), " is currently judging their options. Prepare your best answers!"))));
 }
 
 /***/ }),

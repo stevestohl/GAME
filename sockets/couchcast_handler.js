@@ -176,11 +176,16 @@ export default function registerCCNamespace(CCNS) {
         // --- Event: Start Prompt Selection (from Rules) ---
         socket.on('startPromptSelection', async ({ roomCode }) => {
             const room = activeCCRooms[roomCode];
-            if (room && socket.id === room.hostId) {
+            
+            // Allow EITHER the Host or the Caster (TV) to start this phase
+            if (room && (socket.id === room.hostId || room.players[socket.id]?.isCaster)) {
                 try {
                     room.gameState = 'prompt_selection';
                     const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
-                    socket.emit('prompt_options', { prompts: randomPrompts });
+                    
+                    // Store the prompts in the room state so the mobile host can access them
+                    room.promptOptions = randomPrompts;
+                    
                     CCNS.to(roomCode).emit('room_updated', room);
                 } catch (err) { console.error(err); }
             }

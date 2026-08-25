@@ -123,7 +123,14 @@ export default function CouchCastManager() {
                 );
 
             case 'prompt_selection':
-                return <div><h3>[TV View: Timer & Judge is picking...]</h3></div>;
+                const pickerName = roomData.players[roomData.hostId]?.name || 'The Judge';
+                return (
+                    <CouchCastPromptSelection 
+                        isCastScreen={true} 
+                        judgeName={pickerName} 
+                        roomCode={roomData.roomCode} 
+                    />
+                );
 
             case 'writing':
                 return (

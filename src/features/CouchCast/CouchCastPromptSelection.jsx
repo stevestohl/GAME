@@ -11,17 +11,15 @@ export default function CouchCastPromptSelection({
         "What's the worst thing to say at a funeral?",
         "Name a sequel that shouldn't exist.",
         "What's hiding under my bed?"
-    ] // Defaulting with dummy data for testing
+    ] 
 }) {
     const [timeLeft, setTimeLeft] = useState(20);
     const [selectedPrompt, setSelectedPrompt] = useState(null);
 
-    // Local timer countdown for the Cast screen
     useEffect(() => {
-        if (!isCastScreen) return; // Only the main screen needs to run the visual timer
+        if (!isCastScreen) return; 
 
         if (timeLeft === 0) {
-            // Optional: Auto-select a random prompt or trigger a timeout event here
             return;
         }
 
@@ -36,7 +34,16 @@ export default function CouchCastPromptSelection({
         if (!selectedPrompt) return;
         
         console.log(`Sending selected prompt for room: ${roomCode}`);
-        socket.emit('promptSelected', { roomCode, prompt: selectedPrompt });
+        // FIXED: Emit 'select_prompt' to match the Node.js backend listener
+        socket.emit('select_prompt', { roomCode, selectedPrompt: selectedPrompt });
+    };
+
+    // Helper function to handle both dummy strings and MongoDB objects safely
+    const getPromptText = (p) => {
+        if (!p) return "";
+        if (typeof p === 'string') return p;
+        // Adjust 'p.prompt' to 'p.text' if your Prompt2 DB schema uses a different key!
+        return p.prompt || p.text || "Unknown Prompt"; 
     };
 
     // ==========================================
@@ -81,14 +88,15 @@ export default function CouchCastPromptSelection({
                         <p className='text-muted mb-4'>Pick 1 of the 3 prompts below.</p>
 
                         <div className='d-flex flex-column mb-4' style={{ gap: '10px' }}>
-                            {prompts.map((prompt, index) => (
+                            {prompts.map((promptObj, index) => (
                                 <Button
                                     key={index}
-                                    variant={selectedPrompt === prompt ? 'primary' : 'outline-secondary'}
+                                    variant={selectedPrompt === promptObj ? 'primary' : 'outline-secondary'}
                                     className='text-start p-3 text-wrap'
-                                    onClick={() => setSelectedPrompt(prompt)}
+                                    onClick={() => setSelectedPrompt(promptObj)}
                                 >
-                                    {prompt}
+                                    {/* FIXED: Safely render the text whether it's a string or an object */}
+                                    {getPromptText(promptObj)}
                                 </Button>
                             ))}
                         </div>

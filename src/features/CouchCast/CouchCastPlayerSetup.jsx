@@ -4,8 +4,7 @@ import { couchCastSocket as socket } from '../../socket';
 
 // 🎮 Import your mobile screens
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
-// import CouchCastRules from './CouchCastRules';
-// import CouchCastPromptSelection from './CouchCastPromptSelection';
+import CouchCastPromptSelection from './CouchCastPromptSelection.jsx'; // 🚨 UNCOMMENTED & IMPORTED
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -21,13 +20,15 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             pId = 'player_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('templePlayerId', pId);
         }
+        
+        // 🚨 Connection logic is here!
         if (!socket.connected) {
-                    socket.connect();
-                }
+            socket.connect();
+        }
+        
         socket.on('connect', () => {
-                    socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
-                });
-
+            socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
+        });
 
         // (If the socket was already connected before this component mounted, emit immediately)
         if (socket.connected) {
@@ -154,7 +155,15 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'prompt_selection':
-            return <div className="mt-5 text-center"><h4>[Prompt Selection Component Here]</h4></div>;
+            // 🚨 REFACTORED: Now uses the new props structure
+            return (
+                <CouchCastPromptSelection 
+                    isJudge={isHost} 
+                    judgeName={hostName} 
+                    roomCode={roomCode} 
+                    prompts={roomData.promptOptions} 
+                />
+            );
 
         case 'writing':
             return <div className="mt-5 text-center"><h4>[Writing Component Here]</h4></div>;
