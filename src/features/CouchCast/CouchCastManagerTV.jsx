@@ -129,6 +129,7 @@ export default function CouchCastManager() {
                         isCastScreen={true} 
                         judgeName={pickerName} 
                         roomCode={roomData.roomCode} 
+                        prompts={roomData.promptOptions}
                     />
                 );
 

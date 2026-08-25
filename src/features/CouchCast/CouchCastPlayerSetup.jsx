@@ -5,6 +5,7 @@ import { couchCastSocket as socket } from '../../socket';
 // 🎮 Import your mobile screens
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
 import CouchCastPromptSelection from './CouchCastPromptSelection.jsx'; // 🚨 UNCOMMENTED & IMPORTED
+import CouchCastWritingPlayer from './CouchCastWritingPlayer.jsx';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -166,7 +167,15 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'writing':
-            return <div className="mt-5 text-center"><h4>[Writing Component Here]</h4></div>;
+            return (
+                <CouchCastWritingPlayer 
+                    roomCode={roomCode}
+                    currentPrompt={roomData.currentPrompt}
+                    endTime={roomData.endTime}
+                    isJudge={isHost}
+                    hasSubmitted={playerData.hasSubmitted}
+                />
+            );
 
         case 'judging':
              return <div className="mt-5 text-center"><h4>[Judging Component Here]</h4></div>;
