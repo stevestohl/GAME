@@ -864,10 +864,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/index.mjs");
 /* harmony import */ var _CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CouchCastScoreboard.jsx */ "./src/features/CouchCast/CouchCastScoreboard.jsx");
@@ -919,7 +920,10 @@ function CouchCastPlayerSetup(_ref) {
     _useState12 = _slicedToArray(_useState11, 2),
     submissions = _useState12[0],
     setSubmissions = _useState12[1]; // 👈 Added state to hold the anonymous answers for the judge
-
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState14 = _slicedToArray(_useState13, 2),
+    retryName = _useState14[0],
+    setRetryName = _useState14[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // 1. Generate or grab a persistent Player ID for backend reconnection
     var pId = localStorage.getItem('templePlayerId');
@@ -936,12 +940,7 @@ function CouchCastPlayerSetup(_ref) {
       });
       // Stop the spinner and let them know there's an error
       setError(errorMessage);
-      setGameState('error');
-
-      // Optional: Bounce them back to the home page to pick a new name
-      setTimeout(function () {
-        window.location.href = "/"; // Change to your actual join route if different
-      }, 3000);
+      setGameState('name_retry');
     };
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('joinError', handleJoinError);
 
@@ -1018,10 +1017,55 @@ function CouchCastPlayerSetup(_ref) {
   // RENDER VIEWS BASED ON GAME STATE
   // ==========================================
 
+  // The Retry Screen
+  if (gameState === 'name_retry') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      className: "mt-5 d-flex justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      className: "text-center shadow-sm w-100 border-0",
+      style: {
+        maxWidth: '400px',
+        backgroundColor: '#f8f9fa'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+      className: "p-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      variant: "warning",
+      className: "fw-bold shadow-sm"
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+      className: "mb-3 text-dark"
+    }, "Try a different name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Control, {
+      type: "text",
+      placeholder: "New Player Name",
+      value: retryName,
+      onChange: function onChange(e) {
+        return setRetryName(e.target.value);
+      },
+      className: "mb-4 text-center fs-5 shadow-sm",
+      autoFocus: true
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      variant: "primary",
+      size: "lg",
+      className: "w-100 fw-bold shadow-sm",
+      disabled: !retryName.trim() // Prevents joining with a blank name
+      ,
+      onClick: function onClick() {
+        // Put the spinner back on
+        setGameState('joining');
+
+        // Fire the exact same join event, but with the NEW name
+        _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
+          roomCode: roomCode,
+          playerName: retryName.trim(),
+          playerId: localStorage.getItem('templePlayerId')
+        });
+      }
+    }, "Join Room"))));
+  }
   if (gameState === 'error') {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       className: "mt-5 text-center d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       variant: "danger",
       className: "fw-bold shadow-sm",
       style: {
@@ -1032,7 +1076,7 @@ function CouchCastPlayerSetup(_ref) {
   if (gameState === 'joining' || !roomData || !playerData) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       className: "mt-5 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       animation: "border",
       variant: "primary",
       style: {
@@ -1050,13 +1094,13 @@ function CouchCastPlayerSetup(_ref) {
     case 'lobby':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: "mt-5 d-flex justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
         className: "text-center shadow-sm w-100 border-0",
         style: {
           maxWidth: '400px',
           backgroundColor: '#f8f9fa'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
         className: "p-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "text-primary fw-bold mb-3"
@@ -1081,7 +1125,7 @@ function CouchCastPlayerSetup(_ref) {
         className: "text-primary fw-bold mb-3"
       }, "Welcome to Couch Cast!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
         className: "text-muted fw-normal"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         animation: "grow",
         variant: "warning",
         className: "mt-5"
@@ -1114,12 +1158,12 @@ function CouchCastPlayerSetup(_ref) {
       var didIWin = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner = roundResults.winner) === null || _roundResults$winner === void 0 ? void 0 : _roundResults$winner.id) === playerData.id;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: "mt-5 d-flex justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
         className: "text-center shadow-sm w-100 border-0 ".concat(didIWin ? 'bg-success text-white' : 'bg-light'),
         style: {
           maxWidth: '400px'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
         className: "p-5"
       }, didIWin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "display-1 mb-3"
@@ -1145,7 +1189,7 @@ function CouchCastPlayerSetup(_ref) {
     default:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: "mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         animation: "grow",
         variant: "warning"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
@@ -1790,9 +1834,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-// Temporary dummy deck to test the UI!
-var DUMMY_HAND = ["A suspicious puddle.", "My browser history.", "Unpaid parking tickets.", "A flock of angry seagulls.", "An infinite loop.", "Whatever is behind you right now."];
 function CouchCastWritingPlayer(_ref) {
   var roomCode = _ref.roomCode,
     currentPrompt = _ref.currentPrompt,
@@ -1816,7 +1857,13 @@ function CouchCastWritingPlayer(_ref) {
     isWriteInMode = _useState8[0],
     setIsWriteInMode = _useState8[1];
 
-  // Sync timer perfectly with the backend's absolute endTime
+  // NEW: State to hold the real database cards
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    playerHand = _useState10[0],
+    setPlayerHand = _useState10[1];
+
+  // Timer Sync
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!endTime) return;
     var updateTime = function updateTime() {
@@ -1829,6 +1876,19 @@ function CouchCastWritingPlayer(_ref) {
       return clearInterval(timer);
     };
   }, [endTime]);
+
+  // NEW: Fetch hand from the backend
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!isJudge && !hasSubmitted) {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('request_hand');
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('receive_hand', function (data) {
+        setPlayerHand(data.hand);
+      });
+    }
+    return function () {
+      return _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('receive_hand');
+    };
+  }, [isJudge, hasSubmitted]);
   var getPromptText = function getPromptText(p) {
     if (!p) return "";
     if (typeof p === 'string') return p;
@@ -1841,12 +1901,10 @@ function CouchCastWritingPlayer(_ref) {
       finalAnswer = writeIn.trim();
       usedWriteIn = true;
     } else if (selectedCard) {
-      finalAnswer = selectedCard;
+      finalAnswer = selectedCard; // selectedCard is already a string here
     } else {
-      return; // Safety catch
+      return;
     }
-
-    // Emit exactly what your couchcast_handler.js is listening for
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('submit_answer', {
       roomCode: roomCode,
       answer: finalAnswer,
@@ -1929,16 +1987,24 @@ function CouchCastWritingPlayer(_ref) {
     className: "fw-bold fs-5 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-info')
   }, "\u23F1\uFE0F ", timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-column gap-2 mb-4"
-  }, DUMMY_HAND.map(function (card, idx) {
+  }, playerHand.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center py-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    animation: "border",
+    variant: "secondary"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted mt-2 mb-0"
+  }, "Drawing cards...")) : playerHand.map(function (card) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      key: idx,
-      variant: selectedCard === card && !isWriteInMode ? 'primary' : 'outline-secondary',
+      key: card._id // Use Mongo's _id for the key
+      ,
+      variant: selectedCard === card.text && !isWriteInMode ? 'primary' : 'outline-secondary',
       className: "text-start p-3 text-wrap fw-bold shadow-sm bg-white",
       onClick: function onClick() {
-        setSelectedCard(card);
+        setSelectedCard(card.text); // Save the text string
         setIsWriteInMode(false);
       }
-    }, card);
+    }, card.text);
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "shadow-sm mt-2 transition-all ".concat(isWriteInMode ? 'border-primary border-3' : 'border-0'),
     onClick: function onClick() {

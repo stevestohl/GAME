@@ -199,6 +199,20 @@ export default function registerCCNamespace(CCNS) {
             }
         });
 
+        // --- Event: Player Requests Their Hand ---
+        socket.on('request_hand', async () => {
+            try {
+                const randomResponses = await Prompt2Model.aggregate([
+                    { $match: { type: 'response' } }, 
+                    { $sample: { size: 6 } }
+                ]);
+                
+                socket.emit('receive_hand', { hand: randomResponses });
+            } catch (err) {
+                console.error("Error drawing hand:", err);
+            }
+        });
+
         // --- Event: Show Rules ---
         socket.on('showRules', ({ roomCode }) => {
             const room = activeCCRooms[roomCode];
@@ -217,7 +231,10 @@ export default function registerCCNamespace(CCNS) {
             if (room && (socket.id === room.hostId || room.players[socket.id]?.isCaster)) {
                 try {
                     room.gameState = 'prompt_selection';
-                    const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                    const randomPrompts = await Prompt2Model.aggregate([
+                        { $match: { type: 'prompt' } },
+                        { $sample: { size: 3 } }
+                    ]);
                     
                     // Store the prompts in the room state so the mobile host can access them
                     room.promptOptions = randomPrompts;
@@ -371,7 +388,10 @@ export default function registerCCNamespace(CCNS) {
                         });
 
                         try {
-                            const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                            const randomPrompts = await Prompt2Model.aggregate([
+                                { $match: { type: 'prompt' } },
+                                { $sample: { size: 3 } }
+                            ]);
                             CCNS.to(roomCode).emit('prompt_options', { prompts: randomPrompts });
                         } catch (err) {
                             console.error(err);
@@ -400,7 +420,10 @@ export default function registerCCNamespace(CCNS) {
                         }
                     });
                     
-                    const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                    const randomPrompts = await Prompt2Model.aggregate([
+                        { $match: { type: 'prompt' } },
+                        { $sample: { size: 3 } }
+                    ]);
                     
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));

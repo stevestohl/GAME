@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Spinner, Alert, Card, Button } from 'react-bootstrap';
+import { Container, Spinner, Alert, Card, Button, Form } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 import { toast } from 'react-toastify'
 
@@ -17,6 +17,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     
     const [roundResults, setRoundResults] = useState(null);
     const [submissions, setSubmissions] = useState([]); // 👈 Added state to hold the anonymous answers for the judge
+    const [retryName, setRetryName] = useState('');
 
 useEffect(() => {
         // 1. Generate or grab a persistent Player ID for backend reconnection
@@ -34,12 +35,7 @@ useEffect(() => {
             });
             // Stop the spinner and let them know there's an error
             setError(errorMessage);
-            setGameState('error');
-            
-            // Optional: Bounce them back to the home page to pick a new name
-            setTimeout(() => {
-                window.location.href = "/"; // Change to your actual join route if different
-            }, 3000);
+            setGameState('name_retry');
         };
         
         socket.on('joinError', handleJoinError);
@@ -115,7 +111,52 @@ useEffect(() => {
     // ==========================================
     // RENDER VIEWS BASED ON GAME STATE
     // ==========================================
-    
+
+    // The Retry Screen
+    if (gameState === 'name_retry') {
+        return (
+            <Container className="mt-5 d-flex justify-content-center">
+                <Card className="text-center shadow-sm w-100 border-0" style={{ maxWidth: '400px', backgroundColor: '#f8f9fa' }}>
+                    <Card.Body className="p-4">
+                        <Alert variant="warning" className="fw-bold shadow-sm">
+                            {error}
+                        </Alert>
+                        <h5 className="mb-3 text-dark">Try a different name:</h5>
+                        
+                        <Form.Control 
+                            type="text" 
+                            placeholder="New Player Name" 
+                            value={retryName} 
+                            onChange={(e) => setRetryName(e.target.value)}
+                            className="mb-4 text-center fs-5 shadow-sm"
+                            autoFocus
+                        />
+                        
+                        <Button 
+                            variant="primary" 
+                            size="lg" 
+                            className="w-100 fw-bold shadow-sm"
+                            disabled={!retryName.trim()} // Prevents joining with a blank name
+                            onClick={() => {
+                                // Put the spinner back on
+                                setGameState('joining'); 
+                                
+                                // Fire the exact same join event, but with the NEW name
+                                socket.emit('joinRoom', { 
+                                    roomCode: roomCode, 
+                                    playerName: retryName.trim(), 
+                                    playerId: localStorage.getItem('templePlayerId') 
+                                });
+                            }}
+                        >
+                            Join Room
+                        </Button>
+                    </Card.Body>
+                </Card>
+            </Container>
+        );
+    }
+
     if (gameState === 'error') {
         return (
             <Container className="mt-5 text-center d-flex justify-content-center">

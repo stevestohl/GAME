@@ -2,23 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Form, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
-// Temporary dummy deck to test the UI!
-const DUMMY_HAND = [
-    "A suspicious puddle.",
-    "My browser history.",
-    "Unpaid parking tickets.",
-    "A flock of angry seagulls.",
-    "An infinite loop.",
-    "Whatever is behind you right now."
-];
-
 export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTime, isJudge, hasSubmitted }) {
     const [timeLeft, setTimeLeft] = useState(60);
     const [selectedCard, setSelectedCard] = useState(null);
     const [writeIn, setWriteIn] = useState("");
     const [isWriteInMode, setIsWriteInMode] = useState(false);
+    
+    // NEW: State to hold the real database cards
+    const [playerHand, setPlayerHand] = useState([]);
 
-    // Sync timer perfectly with the backend's absolute endTime
+    // Timer Sync
     useEffect(() => {
         if (!endTime) return;
         const updateTime = () => {
@@ -29,6 +22,19 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
         const timer = setInterval(updateTime, 1000);
         return () => clearInterval(timer);
     }, [endTime]);
+
+    // NEW: Fetch hand from the backend
+    useEffect(() => {
+        if (!isJudge && !hasSubmitted) {
+            socket.emit('request_hand');
+            
+            socket.on('receive_hand', (data) => {
+                setPlayerHand(data.hand);
+            });
+        }
+        
+        return () => socket.off('receive_hand');
+    }, [isJudge, hasSubmitted]);
 
     const getPromptText = (p) => {
         if (!p) return "";
@@ -44,12 +50,11 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
             finalAnswer = writeIn.trim();
             usedWriteIn = true;
         } else if (selectedCard) {
-            finalAnswer = selectedCard;
+            finalAnswer = selectedCard; // selectedCard is already a string here
         } else {
-            return; // Safety catch
+            return;
         }
 
-        // Emit exactly what your couchcast_handler.js is listening for
         socket.emit('submit_answer', { roomCode, answer: finalAnswer, usedWriteIn });
     };
 
@@ -108,20 +113,27 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                     </div>
 
                     <div className="d-flex flex-column gap-2 mb-4">
-                        {/* Render the dummy hand */}
-                        {DUMMY_HAND.map((card, idx) => (
-                            <Button
-                                key={idx}
-                                variant={selectedCard === card && !isWriteInMode ? 'primary' : 'outline-secondary'}
-                                className="text-start p-3 text-wrap fw-bold shadow-sm bg-white"
-                                onClick={() => {
-                                    setSelectedCard(card);
-                                    setIsWriteInMode(false);
-                                }}
-                            >
-                                {card}
-                            </Button>
-                        ))}
+                        {/* Render real cards, with a loading state just in case */}
+                        {playerHand.length === 0 ? (
+                            <div className="text-center py-4">
+                                <Spinner animation="border" variant="secondary" />
+                                <p className="text-muted mt-2 mb-0">Drawing cards...</p>
+                            </div>
+                        ) : (
+                            playerHand.map((card) => (
+                                <Button
+                                    key={card._id} // Use Mongo's _id for the key
+                                    variant={selectedCard === card.text && !isWriteInMode ? 'primary' : 'outline-secondary'}
+                                    className="text-start p-3 text-wrap fw-bold shadow-sm bg-white"
+                                    onClick={() => {
+                                        setSelectedCard(card.text); // Save the text string
+                                        setIsWriteInMode(false);
+                                    }}
+                                >
+                                    {card.text}
+                                </Button>
+                            ))
+                        )}
                         
                         {/* Custom Write-In Option */}
                         <Card 
