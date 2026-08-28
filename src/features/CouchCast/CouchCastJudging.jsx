@@ -2,15 +2,28 @@ import React, { useState } from 'react';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
-export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, submissions = [] }) {
+export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, submissions =[] }) {
     // Local state for the Judge to highlight their favorite answer before submitting
     const [selectedWinnerId, setSelectedWinnerId] = useState(null);
+    
+    // NEW: State to handle the dramatic pause and disable the UI
+    const [isLockingIn, setIsLockingIn] = useState(false); 
 
     const handlePickWinner = () => {
-        if (!selectedWinnerId) return;
+        // Prevent double-clicks if they mash the button
+        if (!selectedWinnerId || isLockingIn) return;
         
-        console.log(`[CouchCast] Judge picked winner ${selectedWinnerId} for room ${roomCode}`);
-        socket.emit('pick_winner', { roomCode, winningPlayerId: selectedWinnerId });
+        // 1. Instantly lock the judge's UI
+        setIsLockingIn(true);
+        
+        // 2. Start the suspense timer (e.g., 2.5 seconds)
+        setTimeout(() => {
+            console.log(`[CouchCast] Judge picked winner ${selectedWinnerId} for room ${roomCode}`);
+            socket.emit('pick_winner', { roomCode, winningPlayerId: selectedWinnerId });
+            
+            // Note: You don't necessarily need to reset isLockingIn to false here
+            // because the server will emit a new game state and unmount this component anyway!
+        }, 2500); 
     };
 
     // ==========================================
@@ -45,7 +58,7 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, sub
                         You Are The Judge
                     </div>
                     <div className="fs-5 fw-bold">
-                        {currentPrompt}
+                        {currentPrompt?.text || currentPrompt}
                     </div>
                 </Card.Header>
                 
@@ -66,21 +79,32 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, sub
                                     variant={selectedWinnerId === sub.playerId ? 'warning' : 'outline-dark'}
                                     className="text-start p-3 fw-semibold text-wrap shadow-sm"
                                     onClick={() => setSelectedWinnerId(sub.playerId)}
+                                    // NEW: Prevent changing the selection once the dramatic pause starts
+                                    disabled={isLockingIn} 
                                 >
                                     {sub.answer}
                                 </Button>
                             ))
                         )}
                     </div>
-
                     <Button 
-                        variant="success" 
+                        // NEW: Change the button color to info while loading for visual feedback
+                        variant={isLockingIn ? "info" : "success"} 
                         size="lg" 
                         className="w-100 fw-bold py-3 shadow" 
-                        disabled={!selectedWinnerId}
+                        // NEW: Keep button disabled if no winner is picked OR if we are locking in
+                        disabled={!selectedWinnerId || isLockingIn}
                         onClick={handlePickWinner}
                     >
-                        Crown the Winner! 👑
+                        {/* NEW: Conditional rendering for the button text */}
+                        {isLockingIn ? (
+                            <>
+                                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
+                                Locking it in...
+                            </>
+                        ) : (
+                            'Crown the Winner! 👑'
+                        )}
                     </Button>
                 </Card.Body>
             </Card>

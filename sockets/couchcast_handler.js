@@ -82,6 +82,9 @@ export default function registerCCNamespace(CCNS) {
             }))
             .sort(() => Math.random() - 0.5);
 
+            // Save compliled submissions to room state
+            room.promptSubmissions = anonymousSubmissions;
+
         CCNS.to(roomCode).emit('start_judging', {
             gameState: room.gameState,
             submissions: anonymousSubmissions
@@ -265,8 +268,8 @@ export default function registerCCNamespace(CCNS) {
         socket.on('reveal_choices', ({ roomCode }) => {
             const room = activeCCRooms[roomCode];
             if (room && socket.id === room.hostId) {
-                room.gameState = 'judging'; 
-                CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+                // FIX: Let the helper function compile the answers and handle the state change safely
+                advanceToJudging(roomCode); 
             }
         });
 

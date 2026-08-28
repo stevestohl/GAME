@@ -321,13 +321,30 @@ function CouchCastJudging(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     selectedWinnerId = _useState2[0],
     setSelectedWinnerId = _useState2[1];
+
+  // NEW: State to handle the dramatic pause and disable the UI
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isLockingIn = _useState4[0],
+    setIsLockingIn = _useState4[1];
   var handlePickWinner = function handlePickWinner() {
-    if (!selectedWinnerId) return;
-    console.log("[CouchCast] Judge picked winner ".concat(selectedWinnerId, " for room ").concat(roomCode));
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('pick_winner', {
-      roomCode: roomCode,
-      winningPlayerId: selectedWinnerId
-    });
+    // Prevent double-clicks if they mash the button
+    if (!selectedWinnerId || isLockingIn) return;
+
+    // 1. Instantly lock the judge's UI
+    setIsLockingIn(true);
+
+    // 2. Start the suspense timer (e.g., 2.5 seconds)
+    setTimeout(function () {
+      console.log("[CouchCast] Judge picked winner ".concat(selectedWinnerId, " for room ").concat(roomCode));
+      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('pick_winner', {
+        roomCode: roomCode,
+        winningPlayerId: selectedWinnerId
+      });
+
+      // Note: You don't necessarily need to reset isLockingIn to false here
+      // because the server will emit a new game state and unmount this component anyway!
+    }, 2500);
   };
 
   // ==========================================
@@ -377,7 +394,7 @@ function CouchCastJudging(_ref) {
     }
   }, "You Are The Judge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fs-5 fw-bold"
-  }, currentPrompt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+  }, (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-center text-muted fw-bold mb-3"
   }, "Read the answers on the TV, then pick your favorite!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-column gap-2 mb-4"
@@ -391,14 +408,28 @@ function CouchCastJudging(_ref) {
       onClick: function onClick() {
         return setSelectedWinnerId(sub.playerId);
       }
+      // NEW: Prevent changing the selection once the dramatic pause starts
+      ,
+      disabled: isLockingIn
     }, sub.answer);
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    variant: "success",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"]
+  // NEW: Change the button color to info while loading for visual feedback
+  , {
+    variant: isLockingIn ? "info" : "success",
     size: "lg",
-    className: "w-100 fw-bold py-3 shadow",
-    disabled: !selectedWinnerId,
+    className: "w-100 fw-bold py-3 shadow"
+    // NEW: Keep button disabled if no winner is picked OR if we are locking in
+    ,
+    disabled: !selectedWinnerId || isLockingIn,
     onClick: handlePickWinner
-  }, "Crown the Winner! \uD83D\uDC51"))));
+  }, isLockingIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    as: "span",
+    animation: "border",
+    size: "sm",
+    role: "status",
+    "aria-hidden": "true",
+    className: "me-2"
+  }), "Locking it in...") : 'Crown the Winner! 👑'))));
 }
 
 /***/ }),
