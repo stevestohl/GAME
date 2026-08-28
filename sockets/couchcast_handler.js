@@ -106,13 +106,13 @@ export default function registerCCNamespace(CCNS) {
             const code = roomCode.trim().toUpperCase();
             const currentRoom = activeCCRooms[code];
             // Cancel the destruct timer if someone comes back!
-            if (currentRoom.destroyTimer) {
-                clearTimeout(currentRoom.destroyTimer);
-                currentRoom.destroyTimer = null;
-            }
+
             if (currentRoom) {
                 socket.join(code);
-                
+                if (currentRoom.destroyTimer) {
+                    clearTimeout(currentRoom.destroyTimer);
+                    currentRoom.destroyTimer = null;
+                }                
                 const syncPayload = {
                     gameState: currentRoom.gameState, 
                     roomData: getSafeRoom(currentRoom),
