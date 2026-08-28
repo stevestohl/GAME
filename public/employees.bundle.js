@@ -434,7 +434,7 @@ function CouchCastJudgingTV(_ref) {
     style: {
       maxWidth: '900px'
     }
-  }, "\"", currentPrompt, "\""), !winningSubmission ?
+  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), !winningSubmission ?
   /*#__PURE__*/
   /* --- STATE 1: WAITING FOR JUDGE --- */
   react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -1687,7 +1687,7 @@ function CouchCastWinnerRevealTV(_ref) {
     className: "p-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
     className: "text-secondary mb-4 fst-italic"
-  }, "\"", currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "display-3 fw-bold text-primary mb-4 px-3"
   }, "\"", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "w-50 mx-auto opacity-25"

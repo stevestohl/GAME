@@ -11,9 +11,8 @@ export default function CouchCastJudgingTV({
         <Container className="mt-5 d-flex flex-column align-items-center pb-5">
             {/* The Prompt Header */}
             <h1 className="display-4 fw-bold text-white text-center bg-dark p-4 rounded shadow mb-4 w-100" style={{ maxWidth: '900px' }}>
-                "{currentPrompt}"
+                "{currentPrompt?.text || currentPrompt}"
             </h1>
-
             {/* CONDITIONAL RENDER: Are we deciding, or revealing? */}
             {!winningSubmission ? (
                 /* --- STATE 1: WAITING FOR JUDGE --- */

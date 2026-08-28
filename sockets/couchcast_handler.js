@@ -4,7 +4,7 @@ import Prompt2Model from "../models/Prompt2.js"
 // HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
 const getSafeRoom = (room) => {
     if (!room) return null;
-    const { timerId, ...safeRoom } = room;
+    const { timerId, destroyTimer, ...safeRoom } = room;
     return safeRoom;
 };
 

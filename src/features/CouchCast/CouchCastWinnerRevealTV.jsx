@@ -60,7 +60,10 @@ export default function CouchCastWinnerRevealTV({
 
                 <Card className="shadow-lg w-100 mb-4 border-0 animate-pop-in" style={{ maxWidth: '800px', backgroundColor: '#fdfdfd' }}>
                     <Card.Body className="p-5">
-                        <h4 className="text-secondary mb-4 fst-italic">"{currentPrompt}"</h4>
+
+                        <h4 className="text-secondary mb-4 fst-italic">
+                            "{currentPrompt?.text || currentPrompt}"
+                        </h4>
                         
                         <h1 className="display-3 fw-bold text-primary mb-4 px-3">
                             "{winningSubmission?.answer}"
