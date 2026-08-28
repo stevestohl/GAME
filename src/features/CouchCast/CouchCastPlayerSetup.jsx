@@ -4,15 +4,18 @@ import { couchCastSocket as socket } from '../../socket';
 
 // 🎮 Import your mobile screens
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
-import CouchCastPromptSelection from './CouchCastPromptSelection.jsx'; // 🚨 UNCOMMENTED & IMPORTED
+import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 import CouchCastWritingPlayer from './CouchCastWritingPlayer.jsx';
+import CouchCastJudging from './CouchCastJudging.jsx'; // 👈 IMPORTED OUR JUDGING COMPONENT
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
     const [roomData, setRoomData] = useState(null);
     const [playerData, setPlayerData] = useState(null);
     const [error, setError] = useState('');
+    
     const [roundResults, setRoundResults] = useState(null);
+    const [submissions, setSubmissions] = useState([]); // 👈 Added state to hold the anonymous answers for the judge
 
     useEffect(() => {
         // 1. Generate or grab a persistent Player ID for backend reconnection
@@ -22,7 +25,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             localStorage.setItem('templePlayerId', pId);
         }
         
-        // 🚨 Connection logic is here!
+        // 🚨 Connection logic
         if (!socket.connected) {
             socket.connect();
         }
@@ -31,7 +34,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
         });
 
-        // (If the socket was already connected before this component mounted, emit immediately)
         if (socket.connected) {
              socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
         }
@@ -41,6 +43,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             setGameState(payload.gameState);
             setRoomData(payload.roomData);
             setPlayerData(payload.playerStatus);
+            if (payload.submissions) setSubmissions(payload.submissions);
         };
 
         const handleRoomUpdate = (room) => {
@@ -56,6 +59,12 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             setGameState('error');
         };
 
+        // 👈 Added listener for when judging starts
+        const handleStartJudging = (data) => {
+            setGameState(data.gameState);
+            setSubmissions(data.submissions);
+        };
+
         const handleRoundEnded = (data) => {
             setGameState(data.gameState);
             setRoundResults({
@@ -68,12 +77,14 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         socket.on('sync_game_state', handleSync);
         socket.on('room_updated', handleRoomUpdate);
         socket.on('errorMsg', handleError);
+        socket.on('start_judging', handleStartJudging); // 👈 Listening here
         socket.on('round_ended', handleRoundEnded);
 
         return () => {
             socket.off('sync_game_state', handleSync);
             socket.off('room_updated', handleRoomUpdate);
             socket.off('errorMsg', handleError);
+            socket.off('start_judging', handleStartJudging);
             socket.off('round_ended', handleRoundEnded); 
         };
     }, [roomCode, playerName]);
@@ -86,7 +97,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     // RENDER VIEWS BASED ON GAME STATE
     // ==========================================
     
-    // 1. Error State
     if (gameState === 'error') {
         return (
             <Container className="mt-5 text-center d-flex justify-content-center">
@@ -97,7 +107,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         );
     }
 
-    // 2. Loading State 
     if (gameState === 'joining' || !roomData || !playerData) {
         return (
             <Container className="mt-5 text-center">
@@ -107,14 +116,10 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         );
     }
 
-    // --- Helper Variables for Game Logic ---
     const isHost = playerData.isPlayerHost;
-    
-    // Find host name dynamically from roomData
     const hostPlayer = roomData.hostId ? roomData.players[roomData.hostId] : null;
     const hostName = hostPlayer ? hostPlayer.name : 'the host';
 
-    // 3. The Switchboard (Mobile UI Navigation)
     switch (gameState) {
         case 'lobby':
             return (
@@ -127,12 +132,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
                             {isHost ? (
                                 <div className="p-3 border border-warning rounded bg-white shadow-sm">
                                     <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
-                                    <Button 
-                                        variant="success" 
-                                        size="lg" 
-                                        className="w-100 fw-bold py-3 fs-5 shadow-sm" 
-                                        onClick={handleStartGame}
-                                    >
+                                    <Button variant="success" size="lg" className="w-100 fw-bold py-3 fs-5 shadow-sm" onClick={handleStartGame}>
                                         All in!
                                     </Button>
                                 </div>
@@ -156,7 +156,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'prompt_selection':
-            // 🚨 REFACTORED: Now uses the new props structure
             return (
                 <CouchCastPromptSelection 
                     isJudge={isHost} 
@@ -178,16 +177,52 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             );
 
         case 'judging':
-             return <div className="mt-5 text-center"><h4>[Judging Component Here]</h4></div>;
+             // 👈 WIRED UP THE JUDGE CONTROLLER
+             return (
+                 <CouchCastJudging 
+                     roomCode={roomCode} 
+                     isJudge={isHost} 
+                     currentPrompt={roomData.currentPrompt} 
+                     submissions={submissions} 
+                 />
+             );
 
         case 'winner_reveal':
-             return <div className="mt-5 text-center"><h4>[Winner Reveal Component Here]</h4></div>;
+             // 👈 NEW VIEW: Passive phone screen while TV shows fireworks
+             const didIWin = roundResults?.winner?.id === playerData.id;
+             
+             return (
+                 <Container className="mt-5 d-flex justify-content-center">
+                     <Card className={`text-center shadow-sm w-100 border-0 ${didIWin ? 'bg-success text-white' : 'bg-light'}`} style={{ maxWidth: '400px' }}>
+                         <Card.Body className="p-5">
+                             {didIWin ? (
+                                 <>
+                                     <h1 className="display-1 mb-3">🏆</h1>
+                                     <h2 className="fw-bold">You Won!</h2>
+                                     <p className="fs-5">The judge loved your answer.</p>
+                                 </>
+                             ) : (
+                                 <>
+                                     <h1 className="display-1 mb-3">👀</h1>
+                                     <h3 className="fw-bold text-dark">Look at the TV!</h3>
+                                     <p className="text-muted">
+                                         {roundResults?.winner?.name || 'Someone'} won this round.
+                                     </p>
+                                 </>
+                             )}
+                         </Card.Body>
+                     </Card>
+                 </Container>
+             );
 
         case 'scoreboard':
+            // The players just wait here passively. The backend timer will automatically 
+            // kick everyone back to 'prompt_selection' after a few seconds!
             return (
                 <CouchCastScoreboard 
                     playerData={playerData} 
                     players={Object.values(roomData.players)} 
+                    isGameOver={roundResults?.isGameOver}
                 />
             );
 

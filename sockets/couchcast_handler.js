@@ -1,6 +1,13 @@
 // Couch-Cast will share the same database and model as Prompt2
 import Prompt2Model from "../models/Prompt2.js"
 
+// HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
+const getSafeRoom = (room) => {
+    if (!room) return null;
+    const { timerId, ...safeRoom } = room;
+    return safeRoom;
+};
+
 const activeCCRooms = {};
 
 // Set your writing phase time limit here (e.g., 60 seconds)
@@ -79,7 +86,7 @@ export default function registerCCNamespace(CCNS) {
             gameState: room.gameState,
             submissions: anonymousSubmissions
         });
-        CCNS.to(roomCode).emit('room_updated', room);
+        CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
     };
 
     CCNS.on('connection', (socket) => {
@@ -98,13 +105,17 @@ export default function registerCCNamespace(CCNS) {
             if(!roomCode) return;
             const code = roomCode.trim().toUpperCase();
             const currentRoom = activeCCRooms[code];
-        
+            // Cancel the destruct timer if someone comes back!
+            if (currentRoom.destroyTimer) {
+                clearTimeout(currentRoom.destroyTimer);
+                currentRoom.destroyTimer = null;
+            }
             if (currentRoom) {
                 socket.join(code);
                 
                 const syncPayload = {
                     gameState: currentRoom.gameState, 
-                    roomData: currentRoom,
+                    roomData: getSafeRoom(currentRoom),
                     currentPrompt: currentRoom.currentPrompt || null,
                     promptOptions: currentRoom.promptOptions || null, 
                     submissions: currentRoom.promptSubmissions || null,
@@ -157,7 +168,7 @@ export default function registerCCNamespace(CCNS) {
                     }
                 }
                 
-                CCNS.to(code).emit('room_updated', currentRoom);
+                CCNS.to(code).emit('room_updated', getSafeRoom(currentRoom));
             } else {
                 socket.emit('errorMsg', 'Room not found!');
             }
@@ -169,7 +180,7 @@ export default function registerCCNamespace(CCNS) {
             if (room && (socket.id === room.hostId || room.players[socket.id]?.isPlayerHost)) {
                 room.hostId = socket.id; 
                 room.gameState = 'rules';
-                CCNS.to(roomCode).emit('room_updated', room);
+                CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
             }
         });
 
@@ -186,7 +197,10 @@ export default function registerCCNamespace(CCNS) {
                     // Store the prompts in the room state so the mobile host can access them
                     room.promptOptions = randomPrompts;
                     
-                    CCNS.to(roomCode).emit('room_updated', room);
+                    CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+                    // // Explicitly broadcast the 3 prompts to the room so the TV and Judge receive them
+                    // CCNS.to(roomCode).emit('prompt_options', { prompts: randomPrompts });
+                    
                 } catch (err) { console.error(err); }
             }
         });
@@ -216,7 +230,7 @@ export default function registerCCNamespace(CCNS) {
                     prompt: room.currentPrompt,
                     endTime: room.endTime 
                 });
-                CCNS.to(roomCode).emit('room_updated', room);
+                CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
             }
         });
 
@@ -243,7 +257,7 @@ export default function registerCCNamespace(CCNS) {
                 if (allSubmitted && activeRegularPlayers.length > 0) {
                     advanceToJudging(roomCode);
                 } else {
-                    CCNS.to(roomCode).emit('room_updated', room);
+                    CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
                 }
             }
         });
@@ -252,7 +266,7 @@ export default function registerCCNamespace(CCNS) {
             const room = activeCCRooms[roomCode];
             if (room && socket.id === room.hostId) {
                 room.gameState = 'judging'; 
-                CCNS.to(roomCode).emit('room_updated', room);
+                CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
             }
         });
 
@@ -261,6 +275,16 @@ export default function registerCCNamespace(CCNS) {
             const room = activeCCRooms[roomCode];
             if (!room || socket.id !== room.hostId) return;
 
+            // 1. Identify winner and update score
+            const winningPlayer = room.players[winningPlayerId];
+            let winningAnswerText = "Unknown Answer";
+
+            if (winningPlayer) {
+                winningPlayer.score += 100; 
+                winningAnswerText = winningPlayer.currentAnswer; 
+            }
+
+            // 2. Host Rotation Logic 
             const eligiblePlayers = Object.values(room.players)
                 .filter(p => !p.isCaster)
                 .sort((a, b) => a.joinOrder - b.joinOrder); 
@@ -273,33 +297,69 @@ export default function registerCCNamespace(CCNS) {
             const nextHostId = playerIds[room.currentHostIndex];
             const nextHost = room.players[nextHostId];
 
-            if (room.players[winningPlayerId]) {
-                room.players[winningPlayerId].score += 100; 
-            }
-
-            const isGameOver = room.currentRound >= 3;
-
-            if (isGameOver) {
-                room.gameState = 'scoreboard';
-            } else {
-                room.gameState = 'winner_reveal';
-                room.currentRound += 1; 
-            }
-
             Object.values(room.players).forEach(player => {
                 player.isPlayerHost = (player.id === nextHostId);
             });
             room.hostId = nextHostId; 
 
+            // 3. Set state to REVEAL the funny answer
+            const isGameOver = room.currentRound >= 3;
+            room.gameState = 'winner_reveal'; 
+
+            // Send the reveal data to the TV
             CCNS.to(roomCode).emit('round_ended', {
                 gameState: room.gameState,
-                winner: room.players[winningPlayerId],
+                winner: winningPlayer,
+                winningSubmission: {
+                    playerName: winningPlayer?.name || "Anonymous",
+                    answer: winningAnswerText
+                },
                 nextHostName: nextHost.name,
                 isGameOver: isGameOver 
             });
-            CCNS.to(roomCode).emit('room_updated', room);
-        });
+            CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
 
+
+            // ==========================================
+            // THE AUTOMATIC TV TIMERS
+            // ==========================================
+            
+            // TIMER 1: After 10 seconds of laughing at the winner... show the Scoreboard!
+            setTimeout(() => {
+                room.gameState = 'scoreboard';
+                CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+
+                // TIMER 2: If the game IS NOT over, wait 7 more seconds on the scoreboard, 
+                // then start the next round automatically.
+                if (!isGameOver) {
+                    setTimeout(async () => {
+                        room.gameState = 'prompt_selection';
+                        room.currentRound += 1; 
+                        room.endTime = null; 
+                        
+                        // Reset submissions for the new round
+                        Object.values(room.players).forEach(p => {
+                            if (!p.isCaster && p.id !== room.hostId) {
+                                p.hasSubmitted = false;
+                                p.currentAnswer = "";
+                            }
+                        });
+
+                        try {
+                            const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                            CCNS.to(roomCode).emit('prompt_options', { prompts: randomPrompts });
+                        } catch (err) {
+                            console.error(err);
+                        }
+                        
+                        CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+
+                    }, 7000); // 7 seconds looking at the scoreboard
+                } 
+                // If the game IS over, we just stay on the scoreboard permanently!
+                
+            }, 10000); // 10 seconds looking at the winning answer (add fireworks here on the frontend!)
+        });
         // --- Event: Host Starts the Next Round ---
         socket.on('nextRound', async ({ roomCode }) => {
             const room = activeCCRooms[roomCode];
@@ -318,7 +378,7 @@ export default function registerCCNamespace(CCNS) {
                     const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
                     
                     socket.emit('prompt_options', { prompts: randomPrompts });
-                    CCNS.to(roomCode).emit('room_updated', room);
+                    CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
                     
                 } catch (err) {
                     console.error("Error starting next round:", err);
@@ -345,6 +405,18 @@ export default function registerCCNamespace(CCNS) {
             disconnectedPlayer.isConnected = false;
             console.log(`[Disconnect] ${disconnectedPlayer.name} left room ${foundRoomCode}`);
         
+            // 1. If TV disconnects, don't break the game, but start a self-destruct timer
+            const activePlayers = Object.values(room.players).filter(p => p.isConnected);
+            
+            if (activePlayers.length === 0) {
+                console.log(`[Room Cleanup] Room ${foundRoomCode} is empty. Setting 5-min destroy timer.`);
+                room.destroyTimer = setTimeout(() => {
+                    console.log(`[Room Cleanup] Destroying abandoned room ${foundRoomCode}`);
+                    delete activeCCRooms[foundRoomCode];
+                }, 5 * 60 * 1000); // 5 minutes
+            }
+
+            // 2. Writing Phase: Did this player's exit mean everyone else is ready?
             if (room.gameState === 'writing' && !disconnectedPlayer.isCaster && socket.id !== room.hostId) {
                 const activeRegularPlayers = Object.keys(room.players).filter(
                     id => id !== room.hostId && !room.players[id].isCaster && room.players[id].isConnected
@@ -355,6 +427,7 @@ export default function registerCCNamespace(CCNS) {
                 }
             }
         
+            // 3. Host Migration: If the Judge left, give the crown to someone else
             if (socket.id === room.hostId) {
                 const connectedPlayers = Object.values(room.players)
                     .filter(p => !p.isCaster && p.isConnected)
@@ -372,7 +445,7 @@ export default function registerCCNamespace(CCNS) {
                 }
             }
         
-            CCNS.to(foundRoomCode).emit('room_updated', room);
+            CCNS.to(foundRoomCode).emit('room_updated', getSafeRoom(room));
         });
     });
 }

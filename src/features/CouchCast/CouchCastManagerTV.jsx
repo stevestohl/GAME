@@ -9,6 +9,7 @@ import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
 import CouchCastWinnerRevealTV from './CouchCastWinnerRevealTV.jsx';
 import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
 import CouchCastRules from './CouchCastRules.jsx';
+import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
@@ -18,7 +19,7 @@ export default function CouchCastManager() {
     const searchParams = new URLSearchParams(window.location.search);
     const urlRoomCode = searchParams.get('room');
     const urlPlayerName = searchParams.get('name') || 'Caster';
-    const urlRole = searchParams.get('role'); // 👈 Check if this is a mobile player
+    const urlRole = searchParams.get('role'); 
 
     // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
     if (urlRole === 'guest') {
@@ -73,6 +74,7 @@ export default function CouchCastManager() {
             setGameState(data.gameState);
             setRoundResults({
                 winner: data.winner,
+                winningSubmission: data.winningSubmission, // 👈 WE ADDED THIS
                 nextHostName: data.nextHostName,
                 isGameOver: data.isGameOver
             });
@@ -99,7 +101,7 @@ export default function CouchCastManager() {
             return (
                 <div className="text-center mt-5">
                     <Spinner animation="border" variant="primary" />
-                    <h3 className="mt-3">Powering up the TV...</h3>
+                    <h3 className="mt-3 text-white">Powering up the TV...</h3>
                 </div>
             );
         }
@@ -158,21 +160,27 @@ export default function CouchCastManager() {
                     <CouchCastWinnerRevealTV 
                         currentPrompt={currentPrompt} 
                         winner={roundResults?.winner} 
+                        winningSubmission={roundResults?.winningSubmission} // 👈 AND PASSED IT HERE
                         nextHostName={roundResults?.nextHostName} 
                         isGameOver={roundResults?.isGameOver} 
                     />
                 );
 
             case 'scoreboard':
-                return <CouchCastScoreboardTV players={playersArray} />;
+                return (
+                    <CouchCastScoreboardTV 
+                        players={playersArray} 
+                        isGameOver={roundResults?.isGameOver} // 👈 Also passed isGameOver here!
+                    />
+                );
 
             default:
-                return <div><h3>Unknown Game State: {gameState}</h3></div>;
+                return <div><h3 className="text-white">Unknown Game State: {gameState}</h3></div>;
         }
     };
 
     return (
-        <Container fluid className="p-0">
+        <Container fluid className="p-0" style={{ minHeight: '100vh', backgroundColor: '#121212' }}>
             {errorMessage && (
                 <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 999 }}>
                     {errorMessage}
