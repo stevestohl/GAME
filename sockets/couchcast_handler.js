@@ -108,14 +108,38 @@ export default function registerCCNamespace(CCNS) {
             if(!roomCode) return;
             const code = roomCode.trim().toUpperCase();
             const currentRoom = activeCCRooms[code];
-            // Cancel the destruct timer if someone comes back!
 
             if (currentRoom) {
+                // 1. Check if this is an existing player trying to reconnect
+                const existingPlayerKey = Object.keys(currentRoom.players).find(
+                    (key) => currentRoom.players[key].playerId === playerId
+                );
+
+                // 2. NEW: Name Uniqueness Check (Only for brand-new players)
+                if (!existingPlayerKey) {
+                    const requestedName = (playerName || 'Anonymous').trim();
+                    const normalizedName = requestedName.toLowerCase();
+                    
+                    const isNameTaken = Object.values(currentRoom.players).some(
+                        (p) => p.name.trim().toLowerCase() === normalizedName
+                    );
+
+                    if (isNameTaken) {
+                        // Reject the join request and send error to trigger frontend toast
+                        return socket.emit('joinError', 'That name is already taken in this room. Pick another!');
+                    }
+                }
+
+                // 3. Name is safe (or it's a reconnecting player). Let them join the socket room!
                 socket.join(code);
+                
+                // Cancel the destruct timer if someone comes back!
                 if (currentRoom.destroyTimer) {
                     clearTimeout(currentRoom.destroyTimer);
                     currentRoom.destroyTimer = null;
                 }                
+                
+                // Sync State
                 const syncPayload = {
                     gameState: currentRoom.gameState, 
                     roomData: getSafeRoom(currentRoom),
@@ -123,16 +147,13 @@ export default function registerCCNamespace(CCNS) {
                     promptOptions: currentRoom.promptOptions || null, 
                     submissions: currentRoom.promptSubmissions || null,
                     roundResults: currentRoom.roundResults || null,
-                    playerStatus: currentRoom.players[socket.id] || null,
+                    playerStatus: currentRoom.players[existingPlayerKey || socket.id] || null, // Updated to use correct player status
                     endTime: currentRoom.endTime || null 
                 };
                 
                 socket.emit('sync_game_state', syncPayload);
                 
-                const existingPlayerKey = Object.keys(currentRoom.players).find(
-                    (key) => currentRoom.players[key].playerId === playerId
-                );
-                
+                // 4. Handle Reconnect vs New Player state mapping
                 if (existingPlayerKey){
                     console.log(`[Reconnection] Player ${playerName} reconnected.`);
                     const playerData = currentRoom.players[existingPlayerKey];
@@ -148,7 +169,7 @@ export default function registerCCNamespace(CCNS) {
 
                 } else {
                     console.log(`[New Player] ${playerName} joined.`);
-                    const isFirstActualPlayer = Object.keys(currentRoom.players).length === 1;
+                    const isFirstActualPlayer = Object.keys(currentRoom.players).length === 1; // 1 because of the Caster
                     
                     currentRoom.players[socket.id] = {
                         playerId: playerId,
@@ -173,7 +194,8 @@ export default function registerCCNamespace(CCNS) {
                 
                 CCNS.to(code).emit('room_updated', getSafeRoom(currentRoom));
             } else {
-                socket.emit('errorMsg', 'Room not found!');
+                // Using joinError here as well so the frontend can handle both with a toast!
+                socket.emit('joinError', 'Room not found!'); 
             }
         });
 

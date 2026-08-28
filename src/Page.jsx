@@ -6,38 +6,33 @@ import logo from './assets/logos/temple.jpg'
 import martini from './assets/logos/MartiniLogo.jpg'
 import './styles/cards.css'
 
+// 👈 Imports are perfect here!
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function NavBar() {
-
     return (
-            <Navbar 
-                variant="light" 
-                className='justify-content-center py-0 position-relative'
-                style={{ backgroundColor:"#e3f2fd" }}>
-                    <Navbar.Brand href="/home">
+        <Navbar 
+            variant="light" 
+            className='justify-content-center py-0 position-relative'
+            style={{ backgroundColor:"#e3f2fd" }}>
+                <Navbar.Brand href="/home">
+                    <img
+                        src={logo}
+                        alt="Game-temple Logo"
+                        style={{ maxWidth: "40px", height: "auto", mixBlendMode:"multiply"}}
+                    />
+                </Navbar.Brand>
+            <Nav>
+                <Nav.Link href="/barhome" className='py-0'>
                         <img
-                            src={logo}
-                            alt="Game-temple Logo"
-                            style={{ maxWidth: "40px", height: "auto", mixBlendMode:"multiply"}}
+                            src={martini}
+                            alt="Martini Logo"
+                            style={{ maxWidth: "30px", height: "auto", mixBlendMode: "multiply" }}
                         />
-                    </Navbar.Brand>
-                <Nav>
-                    <Nav.Link href="/barhome" className='py-0'>
-                            <img
-                                src={martini}
-                                alt="Martini Logo"
-                                style={{ maxWidth: "30px", height: "auto", mixBlendMode: "multiply" }}
-                            />
-                    </Nav.Link>
-                    {/* <Nav.Link end href="/flashcards">Flashcards</Nav.Link>
-                    <Nav.Link end href="/flashcardsList">Flascard List</Nav.Link>
-                    <Nav.Link end href="/flashcardGame">Flashcard Game</Nav.Link> */}
-                    {/* <Nav.Link end href="/tictactoe">Tic-Tac-Toe</Nav.Link> */}
-                    {/* <Nav.Link end href="/report">Reports</Nav.Link> */}
-                    {/* <Nav.Link end href="/employees">All Employees</Nav.Link> */}
-                </Nav>
-
-
-            </Navbar>
+                </Nav.Link>
+            </Nav>
+        </Navbar>
     )
 }
 
@@ -45,11 +40,11 @@ export default function Page() {
 
     const pageStyle = {
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",        // Forces image to fill the screen without stretching out of proportion
-        backgroundPosition: "center",    // Centers the image horizontally and vertically
-        backgroundRepeat: "no-repeat",   // Prevents the image from repeating like a tile grid
-        backgroundAttachment: "fixed",  // Keeps the image pinned in place while content scrolls past
-        minHeight: "100vh",             // Ensures the background covers at least 100% of the screen height
+        backgroundSize: "cover",        
+        backgroundPosition: "center",    
+        backgroundRepeat: "no-repeat",   
+        backgroundAttachment: "fixed",  
+        minHeight: "100vh",             
         width: "100%",
         mixBlendMode:"multiply",
     }
@@ -58,6 +53,8 @@ export default function Page() {
         <div style={pageStyle}>
             <NavBar />
             <Contents />
+            
+            <ToastContainer />
         </div>
     )
 }

@@ -80,7 +80,7 @@ export default function CouchCastManager() {
             });
         });
 
-        socket.on('errorMsg', (msg) => {
+        socket.on('joinError', (msg) => {
             setErrorMessage(msg);
             setTimeout(() => setErrorMessage(""), 5000);
         });

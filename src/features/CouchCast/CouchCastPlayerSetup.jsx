@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Spinner, Alert, Card, Button } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
+import { toast } from 'react-toastify'
 
 // 🎮 Import your mobile screens
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
@@ -17,13 +18,31 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [roundResults, setRoundResults] = useState(null);
     const [submissions, setSubmissions] = useState([]); // 👈 Added state to hold the anonymous answers for the judge
 
-    useEffect(() => {
+useEffect(() => {
         // 1. Generate or grab a persistent Player ID for backend reconnection
         let pId = localStorage.getItem('templePlayerId');
         if (!pId) {
             pId = 'player_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('templePlayerId', pId);
         }
+        
+        // 2. NEW LISTENER FOR THE TOAST!
+        const handleJoinError = (errorMessage) => {
+            toast.error(errorMessage, {
+                position: "top-center",
+                autoClose: 4000
+            });
+            // Stop the spinner and let them know there's an error
+            setError(errorMessage);
+            setGameState('error');
+            
+            // Optional: Bounce them back to the home page to pick a new name
+            setTimeout(() => {
+                window.location.href = "/"; // Change to your actual join route if different
+            }, 3000);
+        };
+        
+        socket.on('joinError', handleJoinError);
         
         // 🚨 Connection logic
         if (!socket.connected) {
@@ -59,7 +78,6 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
             setGameState('error');
         };
 
-        // 👈 Added listener for when judging starts
         const handleStartJudging = (data) => {
             setGameState(data.gameState);
             setSubmissions(data.submissions);
@@ -77,10 +95,11 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
         socket.on('sync_game_state', handleSync);
         socket.on('room_updated', handleRoomUpdate);
         socket.on('errorMsg', handleError);
-        socket.on('start_judging', handleStartJudging); // 👈 Listening here
+        socket.on('start_judging', handleStartJudging);
         socket.on('round_ended', handleRoundEnded);
 
         return () => {
+            socket.off('joinError', handleJoinError); // 👈 Cleaned up here!
             socket.off('sync_game_state', handleSync);
             socket.off('room_updated', handleRoomUpdate);
             socket.off('errorMsg', handleError);
