@@ -41,7 +41,7 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
             100% { background-position: 0% 50%; }
           }
           .shining-border-wrapper {
-            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #001040);
+            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);
             background-size: 400% 400%;
             animation: borderShine 6s ease infinite;
             padding: 5px; /* Adjust this to make the border thicker or thinner */
@@ -62,7 +62,7 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
         {/* The wrapper that handles the animated background border */}
         <div className="shining-border-wrapper shadow-lg w-100 d-flex" style={{ maxWidth: '900px' }}>
           
-          <Card className="border-0 w-100" style={{ borderRadius: 'calc(0.5rem - 5px)' }}>
+          <Card className="border-0 w-100 h-100" style={{ borderRadius: 'calc(0.5rem - 5px)' }}>
             <Card.Header
               as='h5'
               className="d-flex align-items-center justify-content-center border-0 py-3 fw-bold text-uppercase fs-5 m-0"

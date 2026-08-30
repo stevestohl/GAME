@@ -38,15 +38,18 @@ function NavBar() {
 
 export default function Page() {
 
-    const pageStyle = {
+const pageStyle = {
         backgroundImage: `url(${backgroundImage})`,
+        /* Add a background color to blend the image with (adjust to your liking!) */
+        backgroundColor: "#e0e0e0", 
         backgroundSize: "cover",        
         backgroundPosition: "center",    
         backgroundRepeat: "no-repeat",   
         backgroundAttachment: "fixed",  
         minHeight: "100vh",             
         width: "100%",
-        mixBlendMode:"multiply",
+        /* Use backgroundBlendMode instead of mixBlendMode */
+        backgroundBlendMode: "multiply", 
     }
 
     return (

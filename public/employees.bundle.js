@@ -191,13 +191,16 @@ function NavBar() {
 function Page() {
   var pageStyle = {
     backgroundImage: "url(".concat(_assets_logos_background_jpg__WEBPACK_IMPORTED_MODULE_2__, ")"),
+    /* Add a background color to blend the image with (adjust to your liking!) */
+    backgroundColor: "#e0e0e0",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     minHeight: "100vh",
     width: "100%",
-    mixBlendMode: "multiply"
+    /* Use backgroundBlendMode instead of mixBlendMode */
+    backgroundBlendMode: "multiply"
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: pageStyle
@@ -618,7 +621,7 @@ function CouchCastLobby(_ref) {
 
   // The URL players will navigate to when they scan the code
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n          @keyframes borderShine {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n          }\n          .shining-border-wrapper {\n            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #001040);\n            background-size: 400% 400%;\n            animation: borderShine 6s ease infinite;\n            padding: 5px; /* Adjust this to make the border thicker or thinner */\n            border-radius: 0.5rem; /* Matches Bootstrap card rounding */\n          }\n          .custom-scrollbar::-webkit-scrollbar {\n            width: 8px;\n          }\n          .custom-scrollbar::-webkit-scrollbar-thumb {\n            background-color: #014eb6;\n            border-radius: 4px;\n          }\n        "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n          @keyframes borderShine {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n          }\n          .shining-border-wrapper {\n            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n            background-size: 400% 400%;\n            animation: borderShine 6s ease infinite;\n            padding: 5px; /* Adjust this to make the border thicker or thinner */\n            border-radius: 0.5rem; /* Matches Bootstrap card rounding */\n          }\n          .custom-scrollbar::-webkit-scrollbar {\n            width: 8px;\n          }\n          .custom-scrollbar::-webkit-scrollbar-thumb {\n            background-color: #014eb6;\n            border-radius: 4px;\n          }\n        "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-3",
     style: {
       minHeight: '80vh'
@@ -629,7 +632,7 @@ function CouchCastLobby(_ref) {
       maxWidth: '900px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "border-0 w-100",
+    className: "border-0 w-100 h-100",
     style: {
       borderRadius: 'calc(0.5rem - 5px)'
     }
@@ -919,8 +922,7 @@ function CouchCastManager() {
     fluid: true,
     className: "p-0",
     style: {
-      minHeight: '100vh',
-      backgroundColor: '#121212'
+      minHeight: '100vh'
     }
   }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     variant: "danger",

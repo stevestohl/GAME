@@ -187,7 +187,7 @@ export default function CouchCastManager() {
     };
 
     return (
-        <Container fluid className="p-0" style={{ minHeight: '100vh', backgroundColor: '#121212' }}>
+        <Container fluid className="p-0" style={{ minHeight: '100vh'}}>
             {errorMessage && (
                 <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 999 }}>
                     {errorMessage}
