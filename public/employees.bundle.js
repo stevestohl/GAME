@@ -621,77 +621,98 @@ function CouchCastLobby(_ref) {
 
   // The URL players will navigate to when they scan the code
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n          @keyframes borderShine {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n          }\n          .shining-border-wrapper {\n            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n            background-size: 400% 400%;\n            animation: borderShine 6s ease infinite;\n            padding: 5px; /* Adjust this to make the border thicker or thinner */\n            border-radius: 0.5rem; /* Matches Bootstrap card rounding */\n          }\n          .custom-scrollbar::-webkit-scrollbar {\n            width: 8px;\n          }\n          .custom-scrollbar::-webkit-scrollbar-thumb {\n            background-color: #014eb6;\n            border-radius: 4px;\n          }\n        "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-center align-items-center p-3",
-    style: {
-      minHeight: '80vh'
-    }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n          /* Fullscreen overlay to hide navbars and prevent scrolling */\n          .fullscreen-lobby {\n            position: fixed;\n            top: 0;\n            left: 0;\n            width: 100vw;\n            height: 100dvh; \n            z-index: 9999;\n            background-color: #f8f9fa; \n            overflow: hidden; \n          }\n          @keyframes borderShine {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n          }\n          .shining-border-wrapper {\n            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n            background-size: 400% 400%;\n            animation: borderShine 6s ease infinite;\n            /* Changed from 5px to 2px for a thinner border */\n            padding: 2px;\n            border-radius: 0.5rem;\n            box-sizing: border-box; /* Forces padding to be calculated inward */\n          }\n          .custom-scrollbar::-webkit-scrollbar {\n            width: 6px;\n          }\n          .custom-scrollbar::-webkit-scrollbar-thumb {\n            background-color: #014eb6;\n            border-radius: 4px;\n          }\n        "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-lobby d-flex justify-content-center align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper shadow-lg w-100 d-flex",
+    className: "shining-border-wrapper shadow-lg w-100 d-flex flex-column",
     style: {
-      maxWidth: '900px'
+      maxWidth: '900px',
+      maxHeight: '100%'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "border-0 w-100 h-100",
+    className: "border-0 w-100 flex-grow-1 d-flex flex-column m-0",
     style: {
-      borderRadius: 'calc(0.5rem - 5px)'
+      borderRadius: 'calc(0.5rem - 2px)',
+      overflow: 'hidden'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-3 fw-bold text-uppercase fs-5 m-0",
+    className: "d-flex align-items-center justify-content-center border-0 py-2 py-md-3 fw-bold text-uppercase fs-6 fs-md-5 m-0 text-center flex-shrink-0",
     style: {
       backgroundColor: '#014eb6',
       color: '#f1f2f5',
-      letterSpacing: '0.2em',
-      borderTopLeftRadius: 'calc(0.5rem - 5px)',
-      borderTopRightRadius: 'calc(0.5rem - 5px)'
+      letterSpacing: '0.2em'
     }
   }, "Couch Cast Room Created"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "p-4"
+    className: "p-2 p-md-4 d-flex flex-column",
+    style: {
+      minHeight: 0
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "row h-100"
+    className: "row h-100 g-0",
+    style: {
+      minHeight: 0
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-md-6 d-flex flex-column align-items-center justify-content-center mb-4 mb-md-0 border-md-end"
+    className: "col-6 d-flex flex-column align-items-center justify-content-center border-end pe-2 pe-md-4 h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
-    className: "fs-4 fw-bold text-dark mb-4"
-  }, "Scan to join the game!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "p-3 bg-white rounded shadow-sm d-inline-block border"
+    className: "fs-6 fs-md-4 fw-bold text-dark mb-2 mb-md-4 text-center"
+  }, "Scan to join!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "p-2 p-md-3 bg-white rounded shadow-sm d-inline-flex justify-content-center align-items-center border flex-shrink-1",
+    style: {
+      maxWidth: '250px',
+      maxHeight: '55%'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
     value: joinUrl,
-    size: 220,
+    style: {
+      width: '100%',
+      height: '100%',
+      maxWidth: '220px',
+      maxHeight: '100%'
+    },
     fgColor: "#014eb6",
     level: "H",
     includeMargin: false
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-4 fs-1 fw-bold",
+    className: "mt-2 mt-md-4 fs-3 fs-md-1 fw-bold flex-shrink-0",
     style: {
       color: '#014eb6',
       letterSpacing: '0.15em'
     }
   }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-md-6 d-flex flex-column px-md-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-    className: "text-start mb-3 fw-semibold"
-  }, "Players Joined (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "mb-4 text-start flex-grow-1 custom-scrollbar overflow-auto",
+    className: "col-6 d-flex flex-column ps-2 ps-md-4 h-100",
     style: {
-      maxHeight: '300px'
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "text-start mb-2 mb-md-3 fw-semibold fs-6 fs-md-5 flex-shrink-0"
+  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "mb-2 mb-md-4 text-start flex-grow-1 custom-scrollbar overflow-auto",
+    style: {
+      minHeight: 0
     }
   }, activePlayers.map(function (player) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       key: player.id,
-      className: "d-flex justify-content-between align-items-center border-0 border-bottom"
+      className: "d-flex justify-content-between align-items-center border-0 border-bottom px-1 px-md-3 py-1 py-md-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fs-5"
+      className: "fs-6 fs-md-5 text-truncate",
+      style: {
+        maxWidth: '70%'
+      }
     }, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       bg: "primary",
-      className: "rounded-pill px-3 py-2"
+      className: "rounded-pill px-2 py-1 px-md-3 py-md-2",
+      style: {
+        fontSize: '0.7em'
+      }
     }, "Host"));
   }), activePlayers.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted fst-italic mt-2"
+    className: "text-muted fst-italic mt-2 fs-6"
   }, "No players yet...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted fw-bold py-3 px-2 border border-2 border-dashed rounded bg-light fs-5 text-center mt-auto"
-  }, activePlayers.length < 1 ? "Waiting for players to join..." : "Waiting for ".concat(hostName, " to start the game...")))))))));
+    className: "text-muted fw-bold py-1 px-1 py-md-3 px-md-2 border border-2 border-dashed rounded bg-light fs-6 fs-md-5 text-center flex-shrink-0"
+  }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "...")))))))));
 }
 
 /***/ }),
@@ -1567,58 +1588,61 @@ function CouchCastRules(_ref) {
       roomCode: roomCode
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "page-container align-items-center"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    /* Fullscreen overlay to hide navbars and prevent scrolling */\n                    .fullscreen-rules {\n                        position: fixed;\n                        top: 0;\n                        left: 0;\n                        width: 100vw;\n                        height: 100dvh; /* dvh accounts for mobile browser address bars */\n                        z-index: 9999;\n                        background-color: #f8f9fa; /* Match Bootstrap's bg-light */\n                        overflow: hidden; /* Hard lock to prevent scrolling */\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-rules d-flex justify-content-center align-items-center p-2 p-md-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shadow-lg w-100 d-flex",
+    className: "shadow-lg w-100 d-flex h-100",
     style: {
-      maxWidth: '900px'
+      maxWidth: '900px',
+      maxHeight: '100%'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "border-0 w-100 m-0",
+    className: "border-0 w-100 m-0 d-flex flex-column h-100",
     style: {
       borderRadius: '0.5rem',
       overflow: 'hidden'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     as: "h5",
-    className: "main-card-header m-0"
+    className: "main-card-header m-0 flex-shrink-0 text-center py-2 py-md-3 fs-6 fs-md-5"
   }, "COUCH CAST RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "row g-0"
+    className: "row g-0 flex-grow-1",
+    style: {
+      minHeight: 0
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-md-5 d-flex flex-column justify-content-center align-items-center bg-light p-4 p-md-5 border-end"
+    className: "col-4 d-flex flex-column justify-content-between align-items-center bg-light p-2 p-md-5 border-end h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold text-primary mb-4 text-center"
+    className: "fw-bold text-primary mb-2 mb-md-4 text-center fs-5 fs-md-2 mt-2 mt-md-0"
   }, "How to Play"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center mb-4"
+    className: "text-center mb-2 mb-md-4 flex-grow-1 d-flex flex-column justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted fw-bold mb-1 text-uppercase",
     style: {
-      letterSpacing: '0.1em'
+      letterSpacing: '0.1em',
+      fontSize: '0.7em'
     }
   }, "Game Starts In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-2 fw-bold text-danger"
+    className: "display-6 display-md-2 fw-bold text-danger"
   }, timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "outline-secondary",
     size: "sm",
-    className: "w-100 fw-bold mt-auto",
-    onClick: handleNext
-  }, "\u23ED\uFE0F Skip Timer (Dev)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-md-7 d-flex flex-column justify-content-center p-4 p-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
-    className: "ps-4 mb-0 fs-5 text-secondary",
+    className: "w-100 fw-bold mt-auto py-1 py-md-2",
     style: {
-      gap: '24px',
-      display: 'flex',
-      flexDirection: 'column'
-    }
+      fontSize: '0.75em'
+    },
+    onClick: handleNext
+  }, "\u23ED\uFE0F Skip (Dev)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "col-8 d-flex flex-column justify-content-center p-2 p-md-5 h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
+    className: "ps-3 ps-md-4 mb-0 fs-6 fs-md-5 text-secondary d-flex flex-column justify-content-evenly h-100 py-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
   }, "Host Picks the Prompt:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "One player is chosen as the Host each round. They get to pick ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 out of 3 random prompts"), " to set the vibe."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
   }, "Players Respond:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The other players look at their hand of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "7 options"), " (6 pre-drawn cards + 1 custom \"Write-In\") and submit their funniest answer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
-  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions anonymously and crowns the winner of the round!")))))));
+  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions anonymously and crowns the winner of the round!"))))))));
 }
 
 /***/ }),
