@@ -583,14 +583,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-// Removed `isHost` from props, as the TV is never the player-host
 function CouchCastLobby(_ref) {
   var roomCode = _ref.roomCode,
     _ref$players = _ref.players,
     players = _ref$players === void 0 ? [] : _ref$players;
-  // Import Annoying Lobby Music
-  var bgMusic = new Audio('/audio/LobbyMusic.mp3');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // Create the audio object inside the effect so it only happens once
     var bgMusic = new Audio('/audio/LobbyMusic.mp3');
@@ -607,7 +603,7 @@ function CouchCastLobby(_ref) {
       bgMusic.pause();
       bgMusic.currentTime = 0;
     };
-  }, []); // The empty array [] is crucial! It means "only run this once"
+  }, []);
 
   // Filter out the Caster so they don't show up in the player list
   var activePlayers = players.filter(function (player) {
@@ -622,59 +618,77 @@ function CouchCastLobby(_ref) {
 
   // The URL players will navigate to when they scan the code
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-center align-items-center p-1",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n          @keyframes borderShine {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n          }\n          .shining-border-wrapper {\n            background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #001040);\n            background-size: 400% 400%;\n            animation: borderShine 6s ease infinite;\n            padding: 5px; /* Adjust this to make the border thicker or thinner */\n            border-radius: 0.5rem; /* Matches Bootstrap card rounding */\n          }\n          .custom-scrollbar::-webkit-scrollbar {\n            width: 8px;\n          }\n          .custom-scrollbar::-webkit-scrollbar-thumb {\n            background-color: #014eb6;\n            border-radius: 4px;\n          }\n        "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-center align-items-center p-3",
     style: {
       minHeight: '80vh'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "shadow-sm w-100",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper shadow-lg w-100 d-flex",
     style: {
-      maxWidth: '450px'
+      maxWidth: '900px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "border-0 w-100",
+    style: {
+      borderRadius: 'calc(0.5rem - 5px)'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     as: "h5",
-    className: "d-flex align-items-center justify-content-center border-0 py-2 fw-black tracking-wideset text-uppercase fs-6",
+    className: "d-flex align-items-center justify-content-center border-0 py-3 fw-bold text-uppercase fs-5 m-0",
     style: {
       backgroundColor: '#014eb6',
       color: '#f1f2f5',
-      letterSpacing: '0.2em'
+      letterSpacing: '0.2em',
+      borderTopLeftRadius: 'calc(0.5rem - 5px)',
+      borderTopRightRadius: 'calc(0.5rem - 5px)'
     }
-  }, "COUCH CAST ROOM CREATED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
-    className: "fs-4 fw-bold text-dark mb-3"
-  }, "Scan to join the game!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "my-4 d-flex flex-column align-items-center"
+  }, "Couch Cast Room Created"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "p-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "row h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "col-md-6 d-flex flex-column align-items-center justify-content-center mb-4 mb-md-0 border-md-end"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "fs-4 fw-bold text-dark mb-4"
+  }, "Scan to join the game!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "p-3 bg-white rounded shadow-sm d-inline-block border"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
     value: joinUrl,
-    size: 180,
+    size: 220,
     fgColor: "#014eb6",
     level: "H",
     includeMargin: false
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-3 fs-2 fw-bold",
+    className: "mt-4 fs-1 fw-bold",
     style: {
       color: '#014eb6',
       letterSpacing: '0.15em'
     }
-  }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-    className: "text-start mb-2 fw-semibold"
-  }, "Players Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "mb-4 text-start"
+  }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "col-md-6 d-flex flex-column px-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "text-start mb-3 fw-semibold"
+  }, "Players Joined (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "mb-4 text-start flex-grow-1 custom-scrollbar overflow-auto",
+    style: {
+      maxHeight: '300px'
+    }
   }, activePlayers.map(function (player) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       key: player.id,
-      className: "d-flex justify-content-between align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: "d-flex justify-content-between align-items-center border-0 border-bottom"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "fs-5"
+    }, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       bg: "primary",
-      className: "rounded-pill"
+      className: "rounded-pill px-3 py-2"
     }, "Host"));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-muted fw-bold py-3 border border-dashed rounded bg-light fs-5"
-  }, activePlayers.length < 1 ? "Waiting for players to join..." : "Waiting for ".concat(hostName, " to start the game...")))));
+  }), activePlayers.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted fst-italic mt-2"
+  }, "No players yet...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-muted fw-bold py-3 px-2 border border-2 border-dashed rounded bg-light fs-5 text-center mt-auto"
+  }, activePlayers.length < 1 ? "Waiting for players to join..." : "Waiting for ".concat(hostName, " to start the game...")))))))));
 }
 
 /***/ }),
