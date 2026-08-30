@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from "../../socket";
 
+// Lock Screen to keep phone screen awake
+import useWakeLock from '../../hooks/useWakeLock.js';
+
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
 import CouchCastWritingTV from './CouchCastWritingTV.jsx';
@@ -15,6 +18,9 @@ import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
 
 export default function CouchCastManager() {
+
+    useWakeLock()    
+    
     // Grab the room code, player name, and role from the URL!
     const searchParams = new URLSearchParams(window.location.search);
     const urlRoomCode = searchParams.get('room');
@@ -36,6 +42,7 @@ export default function CouchCastManager() {
     const [currentPrompt, setCurrentPrompt] = useState(null);
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
+
 
     // --- SOCKET LISTENERS (TV ONLY) ---
     useEffect(() => {

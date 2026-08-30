@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 
 // Removed `isHost` from props, as the TV is never the player-host
 export default function CouchCastLobby({ roomCode, players = [] }) {
+    // Import Annoying Lobby Music
+    const bgMusic = new Audio('/audio/LobbyMusic.mp3');
 
+    useEffect(() => {
+        // Create the audio object inside the effect so it only happens once
+        const bgMusic = new Audio('/audio/LobbyMusic.mp3');
+        bgMusic.loop = true;
+        bgMusic.volume = 0.4; // 40% volume
+
+        // Play it!
+        bgMusic.play().catch(err => console.warn("Audio autoplay blocked:", err));
+
+        // Cleanup: Stop the music when the game starts and this component unmounts
+        return () => {
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+        };
+    }, []); // The empty array [] is crucial! It means "only run this once"
+    
     // Filter out the Caster so they don't show up in the player list
     const activePlayers = players.filter(player => !player.isCaster);
     

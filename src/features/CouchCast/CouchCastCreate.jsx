@@ -1,11 +1,24 @@
-// CouchCastCreate.jsx
-
-// Correctly importing the specific CouchCast namespace socket
 import { couchCastSocket } from "../../socket";
+
+// Helper function to lock fullscreen and landscape
+const lockCasterScreen = async () => {
+    try {
+        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+            await document.documentElement.requestFullscreen();
+        }
+        if (window.screen.orientation && window.screen.orientation.lock) {
+            await window.screen.orientation.lock('landscape');
+        }
+    } catch (err) {
+        console.warn("Screen lock bypassed (likely an unsupported device or iOS Safari):", err.message);
+    }
+};
 
 export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
     const cleanName = 'Caster';
     console.log(`Request Couch Cast Room creation from ${cleanName}`);
+
+    lockCasterScreen()
 
     if (setIsCreatingRoom) setIsCreatingRoom(true);
 
