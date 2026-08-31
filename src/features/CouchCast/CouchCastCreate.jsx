@@ -1,16 +1,13 @@
 import { couchCastSocket } from "../../socket";
 
-// Helper function to lock fullscreen and landscape
-const lockCasterScreen = async () => {
+// Helper function to request fullscreen (Orientation lock removed)
+const enterFullscreen = async () => {
     try {
         if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
             await document.documentElement.requestFullscreen();
         }
-        if (window.screen.orientation && window.screen.orientation.lock) {
-            await window.screen.orientation.lock('landscape');
-        }
     } catch (err) {
-        console.warn("Screen lock bypassed (likely an unsupported device or iOS Safari):", err.message);
+        console.warn("Fullscreen bypassed (likely an unsupported device or iOS Safari):", err.message);
     }
 };
 
@@ -18,7 +15,8 @@ export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
     const cleanName = 'Caster';
     console.log(`Request Couch Cast Room creation from ${cleanName}`);
 
-    lockCasterScreen()
+    // Trigger fullscreen without locking orientation or scroll
+    enterFullscreen();
 
     if (setIsCreatingRoom) setIsCreatingRoom(true);
 
@@ -38,7 +36,14 @@ export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
     couchCastSocket.once('roomCreated', ({ roomCode }) => {
         clearTimeout(timeout); // Stops timeout on success
         console.log(`CouchCast room created successfully! Code: ${roomCode}`);
+        
         if (setIsCreatingRoom) setIsCreatingRoom(false);
+
+        // 👈 ADDED: Strip away Bootstrap modal scroll locks before React Router takes us away
+        document.body.style.overflow = 'unset';
+        document.body.classList.remove('modal-open');
+        document.body.style.paddingRight = '';
+
         navigate(`/couchcast?room=${roomCode}&role=caster&name=${encodeURIComponent(cleanName)}`);
     });
 

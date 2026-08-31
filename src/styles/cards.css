@@ -5,6 +5,7 @@
   align-items: flex-start;
   padding: 0.25rem;
   overflow-x: hidden;
+  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */
   
   /* Fallback for standard viewports */
   min-height: calc(100vh - 56px);
@@ -99,43 +100,58 @@
 }
 
 /* -------------------------------- */
-/* Fullscreen overlay to hide navbars and prevent scrolling */
+/* 📱 STICKY SCROLL HACK FOR MOBILE  */
+/* -------------------------------- */
+
+/* 1. The tall wrapper that allows the phone to scroll */
 .fullscreen-gameplay-container {
-  position: fixed;
+  position: fixed; /* 👈 Glues the container to the screen */
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100dvh; 
-  z-index: 9999;
+  width: 100%;
+  height: 100dvh; /* 👈 Strict height using dynamic viewport */
   background-color: #f8f9fa; 
-  overflow: hidden; 
+  z-index: 9999;
+  overflow: hidden; /* 👈 Kills all exterior scrolling */
+  display: flex; /* 👈 Forces children to respect the height limit */
+  flex-direction: column;
+}
+/* 2. The sticky game board that stays perfectly framed */
+.fullscreen-gameplay {
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Perfectly fills the visible space */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem; /* equivalent to Bootstrap's p-3 */
-  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */
+  padding: 1rem; 
+  box-sizing: border-box; 
+  overflow: hidden; 
 }
+
+/* -------------------------------- */
+/* CARD STYLING & ANIMATIONS        */
+/* -------------------------------- */
 
 @keyframes borderShine {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
 .shining-border-wrapper {
   background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);
   background-size: 400% 400%;
   animation: borderShine 6s ease infinite;
   padding: 5px;
   border-radius: .5rem;
-  box-sizing: border-box; /* Forces padding to be calculated inward */
-
+  box-sizing: border-box; 
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); /* shadow-lg */
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); 
 }
-/* -------------------------------- */
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
@@ -151,36 +167,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */
-  margin: 0;
-  border-radius: calc(0.5rem - 2px);
-  overflow: hidden;
-}
-
-/* Fullscreen overlay to hide navbars and prevent scrolling */
-.fullscreen-gameplay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh; 
-  z-index: 9999;
-  background-color: #f8f9fa; 
-  overflow: hidden; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem; /* equivalent to Bootstrap's p-3 */
-  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */
-}
-
-.fullscreen-gameplay-card {
-  border: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */
+  flex-grow: 1; 
   margin: 0;
   border-radius: calc(0.5rem - 2px);
   overflow: hidden;
@@ -195,11 +182,11 @@
   padding-bottom: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 1.5rem; /* equivalent to fs-4 */
+  font-size: 1.5rem; 
   margin: 0;
   text-align: center;
   flex-shrink: 0;
-  background-color: #014eb6 !important; /* 👈 ADDED !important to override Bootstrap */
-  color: #f1f2f5 !important; /* 👈 ADDED !important */
+  background-color: #014eb6 !important; 
+  color: #f1f2f5 !important; 
   letter-spacing: 0.2em;
 }

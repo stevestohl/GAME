@@ -248,8 +248,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-// Helper function to lock fullscreen and landscape
-var lockCasterScreen = /*#__PURE__*/function () {
+// Helper function to request fullscreen (Orientation lock removed)
+var enterFullscreen = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
@@ -263,34 +263,29 @@ var lockCasterScreen = /*#__PURE__*/function () {
             _context.next = 4;
             return document.documentElement.requestFullscreen();
           case 4:
-            if (!(window.screen.orientation && window.screen.orientation.lock)) {
-              _context.next = 7;
-              break;
-            }
-            _context.next = 7;
-            return window.screen.orientation.lock('landscape');
-          case 7:
-            _context.next = 12;
+            _context.next = 9;
             break;
-          case 9:
-            _context.prev = 9;
+          case 6:
+            _context.prev = 6;
             _context.t0 = _context["catch"](0);
-            console.warn("Screen lock bypassed (likely an unsupported device or iOS Safari):", _context.t0.message);
-          case 12:
+            console.warn("Fullscreen bypassed (likely an unsupported device or iOS Safari):", _context.t0.message);
+          case 9:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 6]]);
   }));
-  return function lockCasterScreen() {
+  return function enterFullscreen() {
     return _ref.apply(this, arguments);
   };
 }();
 function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
   var cleanName = 'Caster';
   console.log("Request Couch Cast Room creation from ".concat(cleanName));
-  lockCasterScreen();
+
+  // Trigger fullscreen without locking orientation or scroll
+  enterFullscreen();
   if (setIsCreatingRoom) setIsCreatingRoom(true);
 
   // Set the timeout
@@ -312,6 +307,11 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
     clearTimeout(timeout); // Stops timeout on success
     console.log("CouchCast room created successfully! Code: ".concat(roomCode));
     if (setIsCreatingRoom) setIsCreatingRoom(false);
+
+    // 👈 ADDED: Strip away Bootstrap modal scroll locks before React Router takes us away
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
     navigate("/couchcast?room=".concat(roomCode, "&role=caster&name=").concat(encodeURIComponent(cleanName)));
   });
 
@@ -591,6 +591,10 @@ function CouchCastLobby(_ref) {
     _ref$players = _ref.players,
     players = _ref$players === void 0 ? [] : _ref$players;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Wait a brief moment for rendering, then scroll down by 1 pixel
+    var timer = setTimeout(function () {
+      window.scrollTo(0, 1);
+    }, 100);
     var bgMusic = new Audio('/audio/LobbyMusic.mp3');
     bgMusic.loop = true;
     bgMusic.volume = 0.4;
@@ -602,6 +606,18 @@ function CouchCastLobby(_ref) {
       bgMusic.currentTime = 0;
     };
   }, []);
+  // Function to request fullscreen on the entire document
+  // const toggleFullScreen = () => {
+  //   if (!document.fullscreenElement) {
+  //     document.documentElement.requestFullscreen().catch(err => {
+  //       console.warn(`Error attempting to enable fullscreen: ${err.message}`);
+  //     });
+  //   } else {
+  //     if (document.exitFullscreen) {
+  //       document.exitFullscreen();
+  //     }
+  //   }
+  // };
   var activePlayers = players.filter(function (player) {
     return !player.isCaster;
   });
@@ -610,7 +626,7 @@ function CouchCastLobby(_ref) {
   });
   var hostName = hostPlayer ? hostPlayer.name : "the first player";
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fullscreen-gameplay-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
@@ -685,7 +701,7 @@ function CouchCastLobby(_ref) {
     className: "text-muted fst-italic mt-2 fs-5"
   }, "No players yet...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted fw-bold p-3 border border-2 border-dashed rounded bg-light fs-5 text-center flex-shrink-0"
-  }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "...")))))))));
+  }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "..."))))))));
 }
 
 /***/ }),
@@ -1539,6 +1555,8 @@ function CouchCastRules(_ref) {
 
   // Run the countdown timer
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Hide background scrollbar
+    document.body.style.overflow = 'hidden';
     // When timer hits 0, auto-advance!
     if (timeLeft <= 0) {
       handleNext();
@@ -1561,33 +1579,23 @@ function CouchCastRules(_ref) {
       roomCode: roomCode
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    /* Fullscreen overlay to hide navbars and prevent scrolling */\n                    .fullscreen-rules {\n                        position: fixed;\n                        top: 0;\n                        left: 0;\n                        width: 100vw;\n                        height: 100dvh; /* dvh accounts for mobile browser address bars */\n                        z-index: 9999;\n                        background-color: #f8f9fa; /* Match Bootstrap's bg-light */\n                        overflow: hidden; /* Hard lock to prevent scrolling */\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-rules d-flex justify-content-center align-items-center p-2 p-md-3"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shadow-lg w-100 d-flex h-100",
-    style: {
-      maxWidth: '900px',
-      maxHeight: '100%'
-    }
+    className: "shining-border-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "border-0 w-100 m-0 d-flex flex-column h-100",
-    style: {
-      borderRadius: '0.5rem',
-      overflow: 'hidden'
-    }
+    className: "fullscreen-gameplay-card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     as: "h5",
-    className: "main-card-header m-0 flex-shrink-0 text-center py-2 py-md-3 fs-6 fs-md-5"
-  }, "COUCH CAST RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-card-header"
+  }, "HOW TO PLAY COUCH CAST!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "row g-0 flex-grow-1",
     style: {
       minHeight: 0
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "col-4 d-flex flex-column justify-content-between align-items-center bg-light p-2 p-md-5 border-end h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold text-primary mb-2 mb-md-4 text-center fs-5 fs-md-2 mt-2 mt-md-0"
-  }, "How to Play"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-center mb-2 mb-md-4 flex-grow-1 d-flex flex-column justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted fw-bold mb-1 text-uppercase",
@@ -1615,7 +1623,7 @@ function CouchCastRules(_ref) {
     className: "text-dark"
   }, "Players Respond:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The other players look at their hand of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "7 options"), " (6 pre-drawn cards + 1 custom \"Write-In\") and submit their funniest answer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
-  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions anonymously and crowns the winner of the round!"))))))));
+  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions anonymously and crowns the winner of the round!")))))));
 }
 
 /***/ }),
@@ -4342,6 +4350,14 @@ function Home() {
     return function () {
       return clearTimeout(initialTimer);
     };
+  }, []);
+
+  // 3. Global Scroll Unlock Safety Net
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Strip away any leftover Bootstrap modal locks if we navigated backward or unmounted too fast
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = ''; // Bootstrap sometimes adds padding to replace the scrollbar
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
@@ -7444,7 +7460,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* Fullscreen overlay to hide navbars and prevent scrolling */\n.fullscreen-gameplay-container {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100dvh; \n  z-index: 9999;\n  background-color: #f8f9fa; \n  overflow: hidden; \n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; /* equivalent to Bootstrap's p-3 */\n  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */\n}\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n.shining-border-wrapper {\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  padding: 5px;\n  border-radius: .5rem;\n  box-sizing: border-box; /* Forces padding to be calculated inward */\n\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); /* shadow-lg */\n}\n/* -------------------------------- */\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */\n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* Fullscreen overlay to hide navbars and prevent scrolling */\n.fullscreen-gameplay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100dvh; \n  z-index: 9999;\n  background-color: #f8f9fa; \n  overflow: hidden; \n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; /* equivalent to Bootstrap's p-3 */\n  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */\n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n.fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; /* equivalent to fs-4 */\n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; /* 👈 ADDED !important to override Bootstrap */\n  color: #f1f2f5 !important; /* 👈 ADDED !important */\n  letter-spacing: 0.2em;\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* Fullscreen overlay to hide navbars and prevent scrolling */\n.fullscreen-gameplay-container {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100dvh; \n  z-index: 9999;\n  background-color: #f8f9fa; \n  overflow: hidden; \n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; /* equivalent to Bootstrap's p-3 */\n  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */\n}\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n.shining-border-wrapper {\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  padding: 5px;\n  border-radius: .5rem;\n  box-sizing: border-box; /* Forces padding to be calculated inward */\n\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); /* shadow-lg */\n}\n/* -------------------------------- */\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */\n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* Fullscreen overlay to hide navbars and prevent scrolling */\n.fullscreen-gameplay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100dvh; \n  z-index: 9999;\n  background-color: #f8f9fa; \n  overflow: hidden; \n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; /* equivalent to Bootstrap's p-3 */\n  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */\n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n.fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; /* equivalent to fs-4 */\n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; /* 👈 ADDED !important to override Bootstrap */\n  color: #f1f2f5 !important; /* 👈 ADDED !important */\n  letter-spacing: 0.2em;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; /* 👈 Glues the container to the screen */\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100dvh; /* 👈 Strict height using dynamic viewport */\n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; /* 👈 Kills all exterior scrolling */\n  display: flex; /* 👈 Forces children to respect the height limit */\n  flex-direction: column;\n}\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n.shining-border-wrapper {\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  padding: 5px;\n  border-radius: .5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n.fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; /* 👈 Glues the container to the screen */\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100dvh; /* 👈 Strict height using dynamic viewport */\n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; /* 👈 Kills all exterior scrolling */\n  display: flex; /* 👈 Forces children to respect the height limit */\n  flex-direction: column;\n}\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n.shining-border-wrapper {\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  padding: 5px;\n  border-radius: .5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n.fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

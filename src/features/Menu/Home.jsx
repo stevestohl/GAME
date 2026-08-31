@@ -47,6 +47,14 @@ export default function Home() {
         return () => clearTimeout(initialTimer);
     }, []);
 
+    // 3. Global Scroll Unlock Safety Net
+    useEffect(() => {
+        // Strip away any leftover Bootstrap modal locks if we navigated backward or unmounted too fast
+        document.body.style.overflow = 'unset';
+        document.body.classList.remove('modal-open');
+        document.body.style.paddingRight = ''; // Bootstrap sometimes adds padding to replace the scrollbar
+    }, []);
+    
     return (
         <div className="page-container">
             {/* 🍞 Floating Toast Notification (Explicit Viewport Positioning) */}
