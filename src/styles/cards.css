@@ -97,3 +97,36 @@
 .burglar-rtl.active {
   animation: burglarHeistRTL 3s ease-in-out forwards;
 }
+
+/* Fullscreen overlay to hide navbars and prevent scrolling */
+.fullscreen-lobby {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh; 
+  z-index: 9999;
+  background-color: #f8f9fa; 
+  overflow: hidden; 
+}
+@keyframes borderShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.shining-border-wrapper {
+  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);
+  background-size: 400% 400%;
+  animation: borderShine 6s ease infinite;
+  /* Changed from 5px to 2px for a thinner border */
+  padding: 5px;
+  border-radius: .5rem;
+  box-sizing: border-box; /* Forces padding to be calculated inward */
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #014eb6;
+  border-radius: 4px;
+}
