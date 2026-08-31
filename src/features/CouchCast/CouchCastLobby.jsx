@@ -38,7 +38,6 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
-  const bgImageSrc = typeof CCBackground === 'string' ? CCBackground : CCBackground?.src;
 
   return (
     <div 
@@ -67,24 +66,39 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
         </div>
       )}
 
-      {/* Added pb-5 and an explicit paddingBottom style to lift the cards higher off the floor */}
-      <div className="d-flex flex-column h-100 p-4 pb-5 w-100" style={{ paddingBottom: '3rem' }}>
+      {/* Tightened overall padding to preserve vertical space */}
+      <div className="d-flex flex-column h-100 p-3 pb-4 w-100" style={{ paddingBottom: '2rem' }}>
         
-        <h2 className="text-center text-white fw-bold mb-4 flex-shrink-0" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)', letterSpacing: '2px' }}>
+        {/* Main title uses clamp() to shrink gracefully on short viewports */}
+        <h2 
+          className="text-center text-white fw-bold mb-2 flex-shrink-0" 
+          style={{ 
+            fontSize: 'clamp(1.1rem, 2.5vh, 1.8rem)', 
+            textShadow: '2px 2px 8px rgba(0,0,0,0.8)', 
+            letterSpacing: '2px' 
+          }}
+        >
           Couch Cast Room Created
         </h2>
 
-        {/* Changed from h-100 to flex-grow-1 so it respects the bottom padding perfectly */}
-        <div className="row flex-grow-1 g-4" style={{ minHeight: 0 }}>
+        <div className="row flex-grow-1 g-3" style={{ minHeight: 0 }}>
           
           {/* --- LEFT COLUMN: QR CODE FLOATING CARD --- */}
           <div className="col-6 d-flex flex-column h-100">
             <div className="shining-border-wrapper">
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
-                <Card.Body className="d-flex flex-column align-items-center justify-content-center p-4">
-                  <Card.Title className="fs-3 fw-bold text-dark mb-4 text-center">Scan to join!</Card.Title>
+                <Card.Body className="d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden">
                   
-                  <div className="p-3 bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 w-75" style={{ minHeight: 0 }}>
+                  {/* Flexible title */}
+                  <Card.Title 
+                    className="fw-bold text-dark mb-1 text-center flex-shrink-0"
+                    style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)' }}
+                  >
+                    Scan to join!
+                  </Card.Title>
+                  
+                  {/* QR code container bound dynamically by available height */}
+                  <div className="bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2" style={{ minHeight: 0, aspectRatio: '1/1', maxHeight: '60vh' }}>
                     <QRCodeSVG 
                       value={joinUrl} 
                       style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
@@ -94,7 +108,15 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
                     />
                   </div>
                   
-                  <div className="mt-4 display-4 fw-bold flex-shrink-0" style={{ color: '#014eb6', letterSpacing: '0.15em' }}>
+                  {/* Room code font scales dynamically so it never breaks layout */}
+                  <div 
+                    className="fw-bold flex-shrink-0 mt-1" 
+                    style={{ 
+                      color: '#014eb6', 
+                      letterSpacing: '0.15em',
+                      fontSize: 'clamp(1.2rem, 3.2vh, 2.2rem)' 
+                    }}
+                  >
                     {roomCode}
                   </div>
                 </Card.Body>
@@ -106,24 +128,35 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
           <div className="col-6 d-flex flex-column h-100">
             <div className="shining-border-wrapper">
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
-                <Card.Body className="d-flex flex-column p-4">
-                  <h5 className="text-start mb-3 fw-semibold fs-4 flex-shrink-0 text-dark">Players ({activePlayers.length}):</h5>
+                <Card.Body className="d-flex flex-column p-3 p-md-4">
+                  <h5 
+                    className="text-start mb-2 fw-semibold flex-shrink-0 text-dark"
+                    style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)' }}
+                  >
+                    Players ({activePlayers.length}):
+                  </h5>
                   
-                  <ListGroup className="mb-3 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0" style={{ minHeight: 0 }}>
+                  <ListGroup className="mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0" style={{ minHeight: 0 }}>
                     {activePlayers.map((player) => (
-                      <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-3 py-2 bg-transparent text-dark">
-                        <span className="fs-4 text-truncate fw-bold" style={{ maxWidth: '70%' }}>{player.name}</span>
+                      <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
+                        <span className="text-truncate fw-bold" style={{ maxWidth: '70%', fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>{player.name}</span>
                         {player.isPlayerHost && (
-                          <Badge bg="primary" className="rounded-pill px-3 py-2 fs-6 shadow-sm">Host</Badge>
+                          <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)' }}>Host</Badge>
                         )}
                       </ListGroupItem>
                     ))}
                     {activePlayers.length === 0 && (
-                      <div className="text-secondary fst-italic mt-2 fs-5">No players yet...</div>
+                      <div className="text-secondary fst-italic mt-1" style={{ fontSize: 'clamp(0.8rem, 1.8vh, 1.1rem)' }}>No players yet...</div>
                     )}
                   </ListGroup>
 
-                  <div className="text-dark fw-bold p-3 border border-2 border-primary border-dashed rounded fs-5 text-center flex-shrink-0 shadow-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
+                  <div 
+                    className="text-dark fw-bold p-2 border border-2 border-primary border-dashed rounded text-center flex-shrink-0 shadow-sm" 
+                    style={{ 
+                      backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                      fontSize: 'clamp(0.75rem, 1.8vh, 1.1rem)' 
+                    }}
+                  >
                     {activePlayers.length < 1 
                       ? "Waiting for players..." 
                       : `Waiting for ${hostName}...`}
