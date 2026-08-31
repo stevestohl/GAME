@@ -98,8 +98,9 @@
   animation: burglarHeistRTL 3s ease-in-out forwards;
 }
 
+/* -------------------------------- */
 /* Fullscreen overlay to hide navbars and prevent scrolling */
-.fullscreen-lobby {
+.fullscreen-gameplay-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -108,7 +109,13 @@
   z-index: 9999;
   background-color: #f8f9fa; 
   overflow: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem; /* equivalent to Bootstrap's p-3 */
+  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */
 }
+
 @keyframes borderShine {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -118,15 +125,81 @@
   background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);
   background-size: 400% 400%;
   animation: borderShine 6s ease infinite;
-  /* Changed from 5px to 2px for a thinner border */
   padding: 5px;
   border-radius: .5rem;
   box-sizing: border-box; /* Forces padding to be calculated inward */
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); /* shadow-lg */
 }
+/* -------------------------------- */
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #014eb6;
   border-radius: 4px;
+}
+
+.fullscreen-gameplay-card {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */
+  margin: 0;
+  border-radius: calc(0.5rem - 2px);
+  overflow: hidden;
+}
+
+/* Fullscreen overlay to hide navbars and prevent scrolling */
+.fullscreen-gameplay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh; 
+  z-index: 9999;
+  background-color: #f8f9fa; 
+  overflow: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem; /* equivalent to Bootstrap's p-3 */
+  box-sizing: border-box; /* 👈 ADDED: Keeps padding inside the 100dvh to prevent vertical overflow */
+}
+
+.fullscreen-gameplay-card {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* 👈 ADDED: Forces the card to stretch fully to the bottom, hiding the extra background */
+  margin: 0;
+  border-radius: calc(0.5rem - 2px);
+  overflow: hidden;
+}
+
+.fullscreen-gameplay-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.5rem; /* equivalent to fs-4 */
+  margin: 0;
+  text-align: center;
+  flex-shrink: 0;
+  background-color: #014eb6 !important; /* 👈 ADDED !important to override Bootstrap */
+  color: #f1f2f5 !important; /* 👈 ADDED !important */
+  letter-spacing: 0.2em;
 }

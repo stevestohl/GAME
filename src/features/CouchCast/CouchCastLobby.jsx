@@ -24,17 +24,13 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
 
   return (
     <>
-      <div className="fullscreen-lobby d-flex justify-content-center align-items-center p-3">
-        
-        {/* Removed maxWidth: '900px' so it can expand wider on large cast screens */}
-        <div className="shining-border-wrapper shadow-lg w-100 h-100 d-flex flex-column">
+      <div className="fullscreen-gameplay-container">
+        <div className="shining-border-wrapper">
           
-          <Card className="border-0 w-100 h-100 d-flex flex-column m-0" style={{ borderRadius: 'calc(0.5rem - 2px)', overflow: 'hidden' }}>
-            
+          <Card className="fullscreen-gameplay-card">
             <Card.Header
               as='h5'
-              className="d-flex align-items-center justify-content-center border-0 py-3 fw-bold text-uppercase fs-4 m-0 text-center flex-shrink-0"
-              style={{ backgroundColor: '#014eb6', color: '#f1f2f5', letterSpacing: '0.2em' }}>
+              className="fullscreen-gameplay-card-header">
               Couch Cast Room Created
             </Card.Header>
 
@@ -91,6 +87,6 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
           </Card>
         </div>
       </div>
-    </>
+      </>
   );
 }
