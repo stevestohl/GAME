@@ -1935,17 +1935,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 
 
 function CouchCastScoreboardTV(_ref) {
   var players = _ref.players,
     isGameOver = _ref.isGameOver;
-  // 👈 ADDED isGameOver prop
   // Filter out the Caster and sort the rest by score (highest to lowest)
   var rankedPlayers = players.filter(function (p) {
     return !p.isCaster;
@@ -1953,56 +1951,100 @@ function CouchCastScoreboardTV(_ref) {
     return b.score - a.score;
   });
   var leader = rankedPlayers[0];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "mt-5 d-flex flex-column align-items-center pb-5 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-warning fw-bold mb-2 text-uppercase",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container d-flex flex-column h-100 p-4 w-100 align-items-center justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 text-center flex-shrink-0",
     style: {
-      letterSpacing: '2px'
+      maxWidth: '800px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "text-warning fw-bold mb-2 text-uppercase fs-3",
+    style: {
+      letterSpacing: '2px',
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
     }
   }, isGameOver ? 'Final Standings' : 'Current Scores'), leader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-4"
+    className: "mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-1 mb-2"
-  }, "\uD83D\uDC51"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "display-4 fw-bold text-white mb-0"
-  }, isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "shadow-lg w-100 border-0",
+    className: "display-3 mb-1",
     style: {
-      maxWidth: '700px',
-      backgroundColor: '#fdfdfd'
+      filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "p-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "\uD83D\uDC51"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "fw-bold text-white mb-0",
+    style: {
+      fontSize: 'clamp(1.5rem, 3.5vh, 2.5rem)',
+      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
+    }
+  }, isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 flex-grow-1 d-flex align-items-center justify-content-center my-3",
+    style: {
+      maxWidth: '750px',
+      maxHeight: '58vh'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg w-100 border-0 h-100 overflow-hidden",
+    style: {
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      backdropFilter: 'blur(12px)',
+      borderRadius: '15px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-0 overflow-auto h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     variant: "flush",
-    className: "rounded"
+    className: "h-100 bg-transparent"
   }, rankedPlayers.map(function (player, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
+    var isLeader = index === 0;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
       key: player.id,
-      className: "d-flex justify-content-between align-items-center p-4 ".concat(index === 0 ? 'bg-primary text-white' : '')
+      className: "d-flex justify-content-between align-items-center p-3 p-md-4 border-0",
+      style: {
+        backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.1)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
+        transition: 'background-color 0.2s ease-in-out'
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex align-items-center"
+      className: "d-flex align-items-center text-start"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "m-0 me-4 fw-bold ".concat(index === 0 ? 'text-warning' : 'text-muted')
+      className: "m-0 me-3 me-md-4 fw-bold ".concat(isLeader ? 'text-primary' : 'text-white-50'),
+      style: {
+        fontSize: 'clamp(1.2rem, 2.5vh, 1.8rem)'
+      }
     }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "m-0 fw-bold"
-    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      bg: index === 0 ? 'warning' : 'secondary',
-      text: index === 0 ? 'dark' : 'light',
-      className: "fs-4 rounded-pill px-4 shadow-sm"
+      className: "m-0 fw-bold text-truncate ".concat(isLeader ? 'text-dark' : 'text-white'),
+      style: {
+        fontSize: 'clamp(1.2rem, 2.5vh, 1.8rem)',
+        maxWidth: '300px',
+        textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
+      }
+    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      bg: isLeader ? 'warning' : 'light',
+      text: "dark",
+      className: "fs-5 rounded-pill px-3 px-md-4 py-2 shadow-sm fw-bold"
     }, player.score, " pts"));
-  })))), isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-light mt-4 opacity-75"
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-shrink-0 text-center w-100 mt-2"
+  }, isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-white fw-semibold m-0",
+    style: {
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
+      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
+    }
   }, "Thanks for playing! Close the room to start a new game.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-4 d-flex align-items-center justify-content-center text-light opacity-75"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "d-flex align-items-center justify-content-center text-white opacity-90"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     animation: "border",
     size: "sm",
-    className: "me-2"
+    className: "me-2 text-warning"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "m-0"
-  }, "Next round starting soon...")));
+    className: "m-0 fw-semibold",
+    style: {
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
+      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
+    }
+  }, "Next round starting soon..."))));
 }
 
 /***/ }),
