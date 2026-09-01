@@ -492,11 +492,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function CouchCastJudgingTV(_ref) {
@@ -504,64 +509,118 @@ function CouchCastJudgingTV(_ref) {
     submissions = _ref.submissions,
     judgeName = _ref.judgeName,
     winningSubmission = _ref.winningSubmission;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "mt-5 d-flex flex-column align-items-center pb-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "display-4 fw-bold text-white text-center bg-dark p-4 rounded shadow mb-4 w-100",
+  // Add state to track device orientation for the overlay
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
+    _useState2 = _slicedToArray(_useState, 2),
+    isPortrait = _useState2[0],
+    setIsPortrait = _useState2[1];
+
+  // Listen for screen rotation
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleResize = function handleResize() {
+      return setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return function () {
+      return window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "landscape-overlay"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 24 24",
+    className: "rotate-device-icon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold mb-3"
+  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5"
+  }, "Couch Cast is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 p-3 pb-4 w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header text-center mb-3 text-wrap text-break px-3",
     style: {
-      maxWidth: '900px'
+      fontSize: 'clamp(1.5rem, 4vh, 2.5rem)'
     }
-  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), !winningSubmission ?
+  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column flex-grow-1 overflow-auto align-items-center w-100"
+  }, !winningSubmission ?
   /*#__PURE__*/
   /* --- STATE 1: WAITING FOR JUDGE --- */
-  react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    className: "text-warning fw-bold mb-4"
-  }, judgeName, " is deciding the winner! Read them aloud:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "w-100 justify-content-center",
+  react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 d-flex flex-column align-items-center h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-white fw-bold mb-3 text-center",
     style: {
-      maxWidth: '1000px'
+      textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
     }
+  }, judgeName, " is deciding the winner! Read them aloud:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "w-100 justify-content-center m-0 px-2 flex-grow-1 overflow-auto"
   }, submissions && submissions.length > 0 ? submissions.map(function (sub, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
       md: 6,
       lg: 4,
       key: index,
-      className: "mb-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "shadow-lg h-100 border-0",
+      className: "mb-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "shining-border-wrapper h-100"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "fullscreen-gameplay-card h-100",
       style: {
-        minHeight: '150px'
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        backdropFilter: 'blur(10px)'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-      className: "d-flex align-items-center justify-content-center p-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+      className: "d-flex align-items-center justify-content-center p-3 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "text-center fw-bold text-primary m-0"
-    }, sub.answer))));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-danger"
+      className: "fw-bold text-dark m-0",
+      style: {
+        fontSize: 'clamp(1.1rem, 2.5vh, 1.5rem)'
+      }
+    }, sub.answer)))));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+    className: "text-white fw-bold text-center mt-5"
   }, "No one submitted anything! How embarrassing."))) :
   /*#__PURE__*/
   /* --- STATE 2: THE WINNER REVEAL --- */
   react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center mt-4 w-100",
+    className: "d-flex flex-column align-items-center justify-content-center h-100 w-100",
     style: {
       maxWidth: '800px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-success fw-bold mb-4"
-  }, "WINNER!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "shadow-lg border-0 border-success border-5",
+    className: "fw-bold mb-3",
     style: {
-      minHeight: '200px'
+      color: '#ffd700',
+      textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
+      fontSize: 'clamp(2rem, 5vh, 3.5rem)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-    className: "d-flex flex-column align-items-center justify-content-center p-5 bg-light"
+  }, "WINNER!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "fullscreen-gameplay-card",
+    style: {
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      backdropFilter: 'blur(15px)',
+      border: '3px solid #198754'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "d-flex flex-column align-items-center justify-content-center p-4 p-md-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-center fw-bold text-dark mb-4 display-5"
-  }, "\"", winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "text-center fw-bold text-dark mb-4 display-5",
+    style: {
+      fontSize: 'clamp(1.8rem, 4vh, 3rem)'
+    }
+  }, "\"", winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     bg: "success",
-    className: "fs-3 p-3 shadow"
-  }, "Submitted by: ", winningSubmission.playerName)))));
+    className: "fs-3 p-3 shadow-sm rounded-pill",
+    style: {
+      fontSize: 'clamp(1.2rem, 3vh, 1.5rem)'
+    }
+  }, "Submitted by: ", winningSubmission.playerName))))))));
 }
 
 /***/ }),
@@ -1375,7 +1434,6 @@ function CouchCastPromptSelection(_ref) {
     roomCode = _ref.roomCode,
     _ref$prompts = _ref.prompts,
     prompts = _ref$prompts === void 0 ? [] : _ref$prompts;
-  // 🚨 Set timer to 15 seconds
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(15),
     _useState2 = _slicedToArray(_useState, 2),
     timeLeft = _useState2[0],
@@ -1384,18 +1442,16 @@ function CouchCastPromptSelection(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     selectedPrompt = _useState4[0],
     setSelectedPrompt = _useState4[1];
-
-  // 🚨 State for the TV roulette highlight
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState6 = _slicedToArray(_useState5, 2),
     highlightIndex = _useState6[0],
     setHighlightIndex = _useState6[1];
-
-  // Track device orientation for the TV (just in case they cast from a tablet/phone)
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
     _useState8 = _slicedToArray(_useState7, 2),
     isPortrait = _useState8[0],
     setIsPortrait = _useState8[1];
+
+  // Track device orientation for the TV display
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var handleResize = function handleResize() {
       return setIsPortrait(window.innerHeight > window.innerWidth);
@@ -1413,15 +1469,15 @@ function CouchCastPromptSelection(_ref) {
     return p.prompt || p.text || "Unknown Prompt";
   };
 
-  // --- LOGIC: The Countdown & Auto-Pick ---
+  // --- LOGIC: The Countdown & Auto-Pick / Auto-Submit ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (timeLeft <= 0) {
-      // If time runs out, the JUDGE automatically picks a random prompt
-      if (isJudge && !selectedPrompt && prompts.length > 0) {
-        var randomPick = prompts[Math.floor(Math.random() * prompts.length)];
+      if (isJudge && prompts.length > 0) {
+        // Submit their chosen prompt if they picked one, otherwise pick randomly
+        var promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
         _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('select_prompt', {
           roomCode: roomCode,
-          selectedPrompt: randomPick
+          selectedPrompt: promptToSubmit
         });
       }
       return;
@@ -1439,8 +1495,6 @@ function CouchCastPromptSelection(_ref) {
   // --- LOGIC: The TV Juggling Effect ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isCastScreen || timeLeft <= 0 || prompts.length === 0) return;
-
-    // Change the highlighted card every 250ms
     var roulette = setInterval(function () {
       setHighlightIndex(function (prev) {
         return (prev + 1) % prompts.length;
@@ -1506,7 +1560,6 @@ function CouchCastPromptSelection(_ref) {
         className: "d-flex flex-column h-100 transition-all",
         style: {
           flex: '1 1 0',
-          // Ensures all 3 cards are exactly equal width
           transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
           transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
           opacity: isHighlighted ? 1 : 0.7
@@ -1712,13 +1765,45 @@ function CouchCastRules(_ref) {
   }, "How To Play Couch Cast!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-row flex-grow-1 gap-3 overflow-hidden"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "col-8 d-flex flex-column h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "fullscreen-gameplay-card h-100",
+    style: {
+      backgroundColor: 'rgba(255, 255, 255, 0.6)',
+      backdropFilter: 'blur(10px)'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "d-flex flex-column p-3 p-md-4 h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+    className: "fw-bold text-dark mb-3 text-center flex-shrink-0 border-bottom border-secondary pb-2",
+    style: {
+      fontSize: 'clamp(1.2rem, 3vh, 1.8rem)'
+    }
+  }, "RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column justify-content-center flex-grow-1 px-2 px-md-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
+    className: "mb-0 text-secondary d-flex flex-column",
+    style: {
+      fontWeight: '500',
+      fontSize: 'clamp(0.85rem, 2.8vh, 1.3rem)',
+      gap: '1rem'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Host Picks the Prompt:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Each round, one player is the Host and picks ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 of 3 prompts"), " to set the vibe."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Contestants Respond:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Players pick from ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "7 responses"), " to submit their funniest answer. You get 1 custom \"Write-In\" per game, so make it count!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions and crowns the winner of the round!"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "col-4 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
@@ -1738,41 +1823,7 @@ function CouchCastRules(_ref) {
       fontSize: '0.9rem'
     },
     onClick: handleNext
-  }, "\u23ED\uFE0F Skip"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-8 d-flex flex-column h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "fullscreen-gameplay-card h-100",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-      backdropFilter: 'blur(10px)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "d-flex flex-column p-3 p-md-4 h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
-    className: "fw-bold text-dark mb-3 text-center flex-shrink-0 border-bottom border-secondary pb-2",
-    style: {
-      fontSize: 'clamp(1.2rem, 3vh, 1.8rem)'
-    }
-  }, "RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column justify-content-center flex-grow-1 h-100 px-2 px-md-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
-    className: "mb-0 fs-6 fs-md-5 text-secondary d-flex flex-column justify-content-evenly h-100",
-    style: {
-      fontWeight: '500'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-    className: "mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-    className: "text-dark"
-  }, "Host Picks the Prompt:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "One player is chosen as the Host each round. They get to pick ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 out of 3 random prompts"), " to set the vibe."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-    className: "mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-    className: "text-dark"
-  }, "Players Respond:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The other players look at their hand of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "7 options"), " (6 pre-drawn cards + 1 custom \"Write-In\") and submit their funniest answer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-    className: "text-dark"
-  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions anonymously and crowns the winner of the round!"))))))))));
+  }, "\u23ED\uFE0F Skip"))))))));
 }
 
 /***/ }),
@@ -1968,8 +2019,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var react_confetti__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-confetti */ "./node_modules/react-confetti/dist/react-confetti.mjs");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1986,7 +2037,7 @@ function CouchCastWinnerRevealTV(_ref) {
     winningSubmission = _ref.winningSubmission,
     nextHostName = _ref.nextHostName,
     isGameOver = _ref.isGameOver;
-  // We need to track the window size so the confetti covers the whole TV screen
+  // Track both the window size (for confetti) and device orientation (for overlay)
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       width: window.innerWidth,
       height: window.innerHeight
@@ -1994,76 +2045,133 @@ function CouchCastWinnerRevealTV(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     windowDimensions = _useState2[0],
     setWindowDimensions = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isPortrait = _useState4[0],
+    setIsPortrait = _useState4[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var handleResize = function handleResize() {
       setWindowDimensions({
         width: window.innerWidth,
         height: window.innerHeight
       });
+      setIsPortrait(window.innerHeight > window.innerWidth);
     };
     window.addEventListener('resize', handleResize);
     return function () {
       return window.removeEventListener('resize', handleResize);
     };
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_confetti__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "landscape-overlay"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 24 24",
+    className: "rotate-device-icon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold mb-3"
+  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5"
+  }, "Couch Cast is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_confetti__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: windowDimensions.width,
     height: windowDimensions.height,
-    numberOfPieces: 600 // Big explosion!
-    ,
-    recycle: false // Stops generating new pieces so they fall away nicely
-    ,
+    numberOfPieces: 600,
+    recycle: false,
     gravity: 0.15,
-    initialVelocityY: 20 // Shoots them up like fireworks
-    ,
+    initialVelocityY: 20,
     style: {
       position: 'fixed',
       top: 0,
       left: 0,
-      zIndex: 9999
-    } // Ensures it's on top of everything
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-5 d-flex flex-column align-items-center pb-5 text-center",
+      zIndex: 9999,
+      pointerEvents: 'none'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    @keyframes popIn {\n                        0% { transform: scale(0.8); opacity: 0; }\n                        80% { transform: scale(1.05); opacity: 1; }\n                        100% { transform: scale(1); opacity: 1; }\n                    }\n                    .animate-pop-in {\n                        animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 p-3 pb-4 w-100 align-items-center justify-content-center text-center",
     style: {
       zIndex: 10
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-warning fw-bold mb-3 text-uppercase",
+    className: "fw-bold mb-3 text-uppercase",
     style: {
-      letterSpacing: '4px'
+      color: '#ffd700',
+      letterSpacing: '4px',
+      textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
+      fontSize: 'clamp(1.5rem, 4vh, 2.5rem)'
     }
-  }, "And the winner is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                        @keyframes popIn {\n                            0% { transform: scale(0.8); opacity: 0; }\n                            80% { transform: scale(1.05); opacity: 1; }\n                            100% { transform: scale(1); opacity: 1; }\n                        }\n                        .animate-pop-in {\n                            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;\n                        }\n                    "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-lg w-100 mb-4 border-0 animate-pop-in",
+  }, "And the winner is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper animate-pop-in w-100 mb-4",
     style: {
-      maxWidth: '800px',
-      backgroundColor: '#fdfdfd'
+      maxWidth: '900px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "p-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "fullscreen-gameplay-card",
+    style: {
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      backdropFilter: 'blur(15px)',
+      border: '3px solid #198754'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "p-4 p-md-5 d-flex flex-column align-items-center text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-secondary mb-4 fst-italic"
-  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "display-3 fw-bold text-primary mb-4 px-3"
-  }, "\"", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
-    className: "w-50 mx-auto opacity-25"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-6 fw-bold text-success mt-4"
-  }, "\uD83C\uDF89 ", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.playerName, " \uD83C\uDF89"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-3 fs-4 fw-bold text-muted"
-  }, "Total Score: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-dark"
-  }, winner === null || winner === void 0 ? void 0 : winner.score)))), isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-danger text-white p-4 rounded-pill shadow-lg mt-3 px-5 animate-pop-in",
+    className: "mb-4 fst-italic text-dark",
     style: {
-      animationDelay: '2s'
+      fontSize: 'clamp(1.2rem, 3vh, 1.8rem)'
     }
+  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "fw-bold text-dark mb-4 px-3",
+    style: {
+      fontSize: 'clamp(1.8rem, 5vh, 3.5rem)'
+    }
+  }, "\"", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "w-75 mx-auto opacity-50 mb-4 border-secondary"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    bg: "success",
+    className: "p-3 shadow-sm rounded-pill mb-3",
+    style: {
+      fontSize: 'clamp(1.2rem, 3vh, 2rem)'
+    }
+  }, "\uD83C\uDF89 ", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.playerName, " \uD83C\uDF89"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fs-4 fw-bold text-dark mt-2",
+    style: {
+      fontSize: 'clamp(1.1rem, 2.5vh, 1.5rem)'
+    }
+  }, "Total Score: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-success fs-3"
+  }, winner === null || winner === void 0 ? void 0 : winner.score))))), isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper animate-pop-in mt-2",
+    style: {
+      animationDelay: '1.5s'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "fullscreen-gameplay-card",
+    style: {
+      backgroundColor: 'rgba(220, 53, 69, 0.8)',
+      backdropFilter: 'blur(10px)'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+    className: "py-2 px-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    className: "m-0 fw-bold"
-  }, "Game Over! Calculating final scores...")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-light mt-3"
+    className: "text-white m-0 fw-bold",
+    style: {
+      fontSize: 'clamp(1.2rem, 3vh, 1.8rem)'
+    }
+  }, "Game Over! Calculating final scores...")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-white fw-bold mt-2 animate-pop-in",
+    style: {
+      textShadow: '1px 1px 3px rgba(0,0,0,0.5)',
+      fontSize: 'clamp(1.1rem, 3vh, 1.8rem)',
+      animationDelay: '1.5s',
+      opacity: 0
+    }
   }, "Get ready! ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-warning fw-bold"
-  }, nextHostName), " is the next Judge.")));
+    style: {
+      color: '#ffd700'
+    }
+  }, nextHostName), " is the next Host.")));
 }
 
 /***/ }),
@@ -2311,12 +2419,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -2329,15 +2436,24 @@ function CouchCastWritingTV(_ref) {
   var currentPrompt = _ref.currentPrompt,
     endTime = _ref.endTime,
     players = _ref.players,
-    hostId = _ref.hostId;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(60),
+    hostId = _ref.hostId,
+    _ref$defaultDuration = _ref.defaultDuration,
+    defaultDuration = _ref$defaultDuration === void 0 ? 60 : _ref$defaultDuration;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(defaultDuration),
     _useState2 = _slicedToArray(_useState, 2),
     timeLeft = _useState2[0],
     setTimeLeft = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(defaultDuration),
+    _useState4 = _slicedToArray(_useState3, 2),
+    totalTime = _useState4[0],
+    setTotalTime = _useState4[1];
 
-  // Sync timer perfectly with the backend's absolute endTime
+  // Sync timer perfectly with the backend's absolute endTime and compute total duration
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!endTime) return;
+    var initialRemaining = Math.floor((endTime - Date.now()) / 1000);
+    var calculatedTotal = initialRemaining > 0 ? initialRemaining : defaultDuration;
+    setTotalTime(calculatedTotal);
     var updateTime = function updateTime() {
       var remaining = Math.floor((endTime - Date.now()) / 1000);
       setTimeLeft(remaining > 0 ? remaining : 0);
@@ -2347,7 +2463,7 @@ function CouchCastWritingTV(_ref) {
     return function () {
       return clearInterval(timer);
     };
-  }, [endTime]);
+  }, [endTime, defaultDuration]);
   var getPromptText = function getPromptText(p) {
     if (!p) return "";
     if (typeof p === 'string') return p;
@@ -2358,66 +2474,97 @@ function CouchCastWritingTV(_ref) {
   var activeWriters = players.filter(function (p) {
     return p.id !== hostId && !p.isCaster;
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "mt-5 pt-3 text-center px-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-secondary fw-bold mb-3"
-  }, "The Prompt is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "shadow bg-primary text-white mb-5 mx-auto",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container d-flex flex-column h-100 p-4 w-100 align-items-center justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 text-center flex-shrink-0",
     style: {
-      maxWidth: '900px',
-      borderWidth: '0'
+      maxWidth: '900px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "p-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "text-warning fw-bold mb-3 fs-3"
+  }, "The Prompt is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg border-0 bg-white bg-opacity-25 text-white mb-4",
+    style: {
+      backdropFilter: 'blur(10px)',
+      borderRadius: '15px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-4 p-md-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "display-4 fw-bold m-0"
-  }, getPromptText(currentPrompt)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mx-auto mb-5",
+    className: "fw-bold m-0",
+    style: {
+      fontSize: 'clamp(1.5rem, 4vh, 2.8rem)',
+      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
+    }
+  }, getPromptText(currentPrompt))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 my-2 px-3 flex-shrink-0",
     style: {
       maxWidth: '800px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-between mb-2"
+    className: "d-flex justify-content-between align-items-center mb-2 px-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fw-bold text-muted fs-5"
+    className: "fw-bold text-white fs-5",
+    style: {
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
+    }
   }, "Time Remaining"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fw-bold fs-4 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-primary')
-  }, timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "fw-bold fs-3 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-white'),
+    style: {
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
+    }
+  }, timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     animated: true,
-    now: timeLeft / 60 * 100,
-    variant: timeLeft <= 10 ? 'danger' : 'info',
+    now: timeLeft / totalTime * 100,
+    variant: timeLeft <= 10 ? 'danger' : 'light',
     style: {
-      height: '20px'
+      height: '20px',
+      backgroundColor: 'rgba(255,255,255,0.2)',
+      backdropFilter: 'blur(5px)',
+      borderRadius: '10px'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "justify-content-center g-4",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 flex-grow-1 d-flex align-items-center justify-content-center my-3",
     style: {
-      maxWidth: '1000px',
-      margin: '0 auto'
+      maxWidth: '1000px'
     }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "justify-content-center g-3 w-100"
   }, activeWriters.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      xs: 4,
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      xs: 6,
       md: 3,
       key: player.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      className: "shadow-sm h-100 transition-all ".concat(player.hasSubmitted ? 'bg-success text-white border-success' : 'bg-light text-muted border-light'),
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      className: "shadow-sm h-100 border-0 transition-all ".concat(player.hasSubmitted ? 'bg-success text-white' : 'text-white'),
       style: {
-        transform: player.hasSubmitted ? 'scale(1.05)' : 'scale(1)'
+        backgroundColor: player.hasSubmitted ? 'rgba(25, 135, 84, 0.85)' : 'rgba(255, 255, 255, 0.15)',
+        backdropFilter: 'blur(10px)',
+        transform: player.hasSubmitted ? 'scale(1.03)' : 'scale(1)',
+        transition: 'transform 0.2s ease-in-out, background-color 0.2s ease-in-out',
+        borderRadius: '12px',
+        minHeight: '120px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-      className: "d-flex flex-column align-items-center justify-content-center p-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+      className: "d-flex flex-column align-items-center justify-content-center p-3 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-      className: "fw-bold mb-3"
+      className: "fw-bold mb-3 text-truncate w-100",
+      style: {
+        textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
+      }
     }, player.name), player.hasSubmitted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "display-6 m-0"
-    }, "\u2705") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "fs-3 m-0"
+    }, "\u2705") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex align-items-center gap-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       animation: "grow",
-      variant: "secondary",
+      variant: "light",
       size: "sm"
-    }))));
-  })));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", {
+      className: "text-white-50 fw-semibold"
+    }, "Writing...")))));
+  }))));
 }
 
 /***/ }),

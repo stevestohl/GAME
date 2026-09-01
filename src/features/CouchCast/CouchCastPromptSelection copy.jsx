@@ -16,6 +16,15 @@ export default function CouchCastPromptSelection({
     // 🚨 State for the TV roulette highlight
     const [highlightIndex, setHighlightIndex] = useState(0);
 
+    // Track device orientation for the TV (just in case they cast from a tablet/phone)
+    const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setIsPortrait(window.innerHeight > window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     // Helper to safely extract text from MongoDB objects
     const getPromptText = (p) => {
         if (!p) return "";
@@ -27,7 +36,6 @@ export default function CouchCastPromptSelection({
     useEffect(() => {
         if (timeLeft <= 0) {
             // If time runs out, the JUDGE automatically picks a random prompt
-            // (We let the Judge do it so the backend correctly authenticates the host)
             if (isJudge && !selectedPrompt && prompts.length > 0) {
                 const randomPick = prompts[Math.floor(Math.random() * prompts.length)];
                 socket.emit('select_prompt', { roomCode, selectedPrompt: randomPick });
@@ -63,55 +71,102 @@ export default function CouchCastPromptSelection({
     // 1. CAST SCREEN (The TV / Shared Display)
     // ==========================================
     if (isCastScreen) {
-        if (prompts.length === 0) return <Spinner animation="border" variant="primary" className="mt-5" />;
+        if (prompts.length === 0) {
+            return (
+                <div className="fullscreen-gameplay-container d-flex justify-content-center align-items-center">
+                    <Spinner animation="border" variant="light" style={{ width: '4rem', height: '4rem' }} />
+                </div>
+            );
+        }
 
         return (
-            <Container fluid className='mt-5 d-flex flex-column align-items-center text-center px-5'>
-                <h1 className='display-5 fw-bold text-primary mb-5'>
-                    <span className="text-warning">{judgeName}</span> is picking the poison...
-                </h1>
-                
-                {/* 🚨 The 3 Juggling Cards */}
-                <div className="d-flex justify-content-center align-items-stretch gap-4 w-100 mb-5" style={{ maxWidth: '1200px' }}>
-                    {prompts.map((p, idx) => {
-                        const isHighlighted = highlightIndex === idx;
-                        return (
-                            <Card 
-                                key={idx} 
-                                className={`shadow-sm transition-all ${isHighlighted ? 'border-primary bg-primary text-white' : 'border-light bg-light text-muted'}`}
-                                style={{ 
-                                    flex: '1', 
-                                    transform: isHighlighted ? 'scale(1.08)' : 'scale(0.95)',
-                                    transition: 'transform 0.15s ease-in-out, background-color 0.15s',
-                                    borderWidth: isHighlighted ? '4px' : '1px'
-                                }}
-                            >
-                                <Card.Body className="d-flex align-items-center justify-content-center p-4">
-                                    <h3 className="fw-bold m-0">{getPromptText(p)}</h3>
-                                </Card.Body>
-                            </Card>
-                        );
-                    })}
-                </div>
-                
-                {/* Timer Bar */}
-                <div className='w-100' style={{ maxWidth: '600px' }}>
-                    <div className='display-4 fw-bold text-secondary mb-3'>
-                        {timeLeft}
+            <div className="fullscreen-gameplay-container">
+                {/* --- LANDSCAPE REMINDER OVERLAY --- */}
+                {isPortrait && (
+                    <div className="landscape-overlay">
+                        <svg viewBox="0 0 24 24" className="rotate-device-icon">
+                            <path d="M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z" />
+                        </svg>
+                        <h2 className="fw-bold mb-3 text-white">Rotate Your TV/Device</h2>
+                        <p className="fs-5 text-white">Couch Cast is best experienced in landscape mode!</p>
                     </div>
-                    <ProgressBar 
-                        animated 
-                        now={(timeLeft / 15) * 100} 
-                        variant={timeLeft <= 5 ? 'danger' : 'info'} 
-                        style={{ height: '20px' }}
-                    />
+                )}
+
+                <div className="d-flex flex-column h-100 p-3 pb-4 w-100 align-items-center justify-content-between">
+                    
+                    {/* Header */}
+                    <h2 className="fullscreen-gameplay-header text-center mt-2 mb-4 flex-shrink-0">
+                        <span className="text-warning">{judgeName}</span> is picking the poison...
+                    </h2>
+                    
+                    {/* 🚨 The 3 Juggling Cards */}
+                    <div className="d-flex flex-row justify-content-center align-items-stretch w-100 gap-3 gap-md-4 px-2 px-md-5" style={{ flexGrow: 1, maxHeight: '55vh' }}>
+                        {prompts.map((p, idx) => {
+                            const isHighlighted = highlightIndex === idx;
+                            return (
+                                <div 
+                                    key={idx} 
+                                    className="d-flex flex-column h-100 transition-all"
+                                    style={{ 
+                                        flex: '1 1 0', // Ensures all 3 cards are exactly equal width
+                                        transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
+                                        transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
+                                        opacity: isHighlighted ? 1 : 0.7
+                                    }}
+                                >
+                                    {/* The glowing border only wraps the active card! */}
+                                    <div className={`h-100 w-100 ${isHighlighted ? 'shining-border-wrapper' : ''}`}>
+                                        <Card 
+                                            className="fullscreen-gameplay-card h-100 w-100 border-0" 
+                                            style={{ 
+                                                backgroundColor: isHighlighted ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.25)', 
+                                                backdropFilter: 'blur(10px)',
+                                                transition: 'background-color 0.2s ease-in-out'
+                                            }}
+                                        >
+                                            <Card.Body className="d-flex align-items-center justify-content-center p-3 p-md-4 text-center">
+                                                <h3 
+                                                    className={`fw-bold m-0 ${isHighlighted ? 'text-dark' : 'text-white'}`} 
+                                                    style={{ 
+                                                        fontSize: 'clamp(1.2rem, 3vh, 2.2rem)',
+                                                        textShadow: isHighlighted ? 'none' : '1px 1px 5px rgba(0,0,0,0.8)'
+                                                    }}
+                                                >
+                                                    {getPromptText(p)}
+                                                </h3>
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    
+                    {/* Timer Bar */}
+                    <div className="w-100 mt-4 px-3 flex-shrink-0" style={{ maxWidth: '800px' }}>
+                        <div className="display-3 fw-bold text-center text-white mb-2" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
+                            {timeLeft}s
+                        </div>
+                        <ProgressBar 
+                            animated 
+                            now={(timeLeft / 15) * 100} 
+                            variant={timeLeft <= 5 ? 'danger' : 'light'} 
+                            style={{ 
+                                height: '20px', 
+                                backgroundColor: 'rgba(255,255,255,0.2)', 
+                                backdropFilter: 'blur(5px)',
+                                borderRadius: '10px' 
+                            }}
+                        />
+                    </div>
+
                 </div>
-            </Container>
+            </div>
         );
     }
 
     // ==========================================
-    // 2. JUDGE SCREEN (The Host selecting)
+    // 2. JUDGE SCREEN (The Host selecting on Mobile)
     // ==========================================
     if (isJudge) {
         return (
@@ -157,7 +212,7 @@ export default function CouchCastPromptSelection({
     }
 
     // ==========================================
-    // 3. PLAYER SCREEN (Waiting for the Judge)
+    // 3. PLAYER SCREEN (Waiting on Mobile)
     // ==========================================
     return (
         <Container className='mt-5 d-flex justify-content-center'>

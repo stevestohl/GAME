@@ -9,16 +9,12 @@ export default function CouchCastPromptSelection({
     roomCode,
     prompts = [] 
 }) {
-    // 🚨 Set timer to 15 seconds
     const [timeLeft, setTimeLeft] = useState(15);
     const [selectedPrompt, setSelectedPrompt] = useState(null);
-    
-    // 🚨 State for the TV roulette highlight
     const [highlightIndex, setHighlightIndex] = useState(0);
-
-    // Track device orientation for the TV (just in case they cast from a tablet/phone)
     const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
 
+    // Track device orientation for the TV display
     useEffect(() => {
         const handleResize = () => setIsPortrait(window.innerHeight > window.innerWidth);
         window.addEventListener('resize', handleResize);
@@ -32,13 +28,13 @@ export default function CouchCastPromptSelection({
         return p.prompt || p.text || "Unknown Prompt"; 
     };
 
-    // --- LOGIC: The Countdown & Auto-Pick ---
+    // --- LOGIC: The Countdown & Auto-Pick / Auto-Submit ---
     useEffect(() => {
         if (timeLeft <= 0) {
-            // If time runs out, the JUDGE automatically picks a random prompt
-            if (isJudge && !selectedPrompt && prompts.length > 0) {
-                const randomPick = prompts[Math.floor(Math.random() * prompts.length)];
-                socket.emit('select_prompt', { roomCode, selectedPrompt: randomPick });
+            if (isJudge && prompts.length > 0) {
+                // Submit their chosen prompt if they picked one, otherwise pick randomly
+                const promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
+                socket.emit('select_prompt', { roomCode, selectedPrompt: promptToSubmit });
             }
             return;
         }
@@ -54,7 +50,6 @@ export default function CouchCastPromptSelection({
     useEffect(() => {
         if (!isCastScreen || timeLeft <= 0 || prompts.length === 0) return;
 
-        // Change the highlighted card every 250ms
         const roulette = setInterval(() => {
             setHighlightIndex((prev) => (prev + 1) % prompts.length);
         }, 250);
@@ -99,7 +94,7 @@ export default function CouchCastPromptSelection({
                         <span className="text-warning">{judgeName}</span> is picking the poison...
                     </h2>
                     
-                    {/* 🚨 The 3 Juggling Cards */}
+                    {/* The 3 Juggling Cards */}
                     <div className="d-flex flex-row justify-content-center align-items-stretch w-100 gap-3 gap-md-4 px-2 px-md-5" style={{ flexGrow: 1, maxHeight: '55vh' }}>
                         {prompts.map((p, idx) => {
                             const isHighlighted = highlightIndex === idx;
@@ -108,13 +103,12 @@ export default function CouchCastPromptSelection({
                                     key={idx} 
                                     className="d-flex flex-column h-100 transition-all"
                                     style={{ 
-                                        flex: '1 1 0', // Ensures all 3 cards are exactly equal width
+                                        flex: '1 1 0', 
                                         transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
                                         transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
                                         opacity: isHighlighted ? 1 : 0.7
                                     }}
                                 >
-                                    {/* The glowing border only wraps the active card! */}
                                     <div className={`h-100 w-100 ${isHighlighted ? 'shining-border-wrapper' : ''}`}>
                                         <Card 
                                             className="fullscreen-gameplay-card h-100 w-100 border-0" 
@@ -178,7 +172,6 @@ export default function CouchCastPromptSelection({
                         </Card.Title>
                         <p className='text-muted mb-3'>Pick 1 of the 3 prompts below.</p>
 
-                        {/* Mobile Timer */}
                         <h4 className={`fw-bold mb-4 ${timeLeft <= 5 ? 'text-danger' : 'text-info'}`}>
                             ⏱️ {timeLeft}s
                         </h4>

@@ -57,10 +57,46 @@ export default function CouchCastRules({ roomCode }) {
                 {/* --- TWO COLUMN ROW STARTS HERE --- */}
                 <div className="d-flex flex-row flex-grow-1 gap-3 overflow-hidden">
                     
-                    {/* LEFT COLUMN: TIMER (Takes up ~33% width) */}
+                    {/* LEFT COLUMN: RULES (Takes up ~66% width) */}
+                    <div className="col-8 d-flex flex-column h-100">
+                        <div className="shining-border-wrapper h-100">
+                            <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
+                                <Card.Body className="d-flex flex-column p-3 p-md-4 h-100">
+                                    
+                                    <Card.Title 
+                                        className="fw-bold text-dark mb-3 text-center flex-shrink-0 border-bottom border-secondary pb-2"
+                                        style={{ fontSize: 'clamp(1.2rem, 3vh, 1.8rem)' }}
+                                    >
+                                        RULES
+                                    </Card.Title>
+                                    
+                                    {/* Wrapping div centers the list without forcing it to stretch vertically */}
+                                    <div className="d-flex flex-column justify-content-center flex-grow-1 px-2 px-md-3">
+                                        <ol className="mb-0 text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.85rem, 2.8vh, 1.3rem)', gap: '1rem' }}>
+                                            <li>
+                                                <strong className="text-dark">Host Picks the Prompt:</strong><br/>
+                                                Each round, one player is the Host and picks <strong>1 of 3 prompts</strong> to set the vibe.
+                                            </li>
+                                            <li>
+                                                <strong className="text-dark">Contestants Respond:</strong><br/>
+                                                Players pick from <strong>7 responses</strong> to submit their funniest answer. You get 1 custom "Write-In" per game, so make it count!
+                                            </li>
+                                            <li>
+                                                <strong className="text-dark">Host Judges the Winner:</strong><br/>
+                                                The Host reads all the submissions and crowns the winner of the round!
+                                            </li>
+                                        </ol>
+                                    </div>
+
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    </div>
+
+                    {/* RIGHT COLUMN: TIMER (Takes up ~33% width) */}
                     <div className="col-4 d-flex flex-column h-100">
                         <div className="shining-border-wrapper h-100">
-                            <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
+                            <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
                                 <Card.Body className="d-flex flex-column align-items-center justify-content-between p-3">
                                     
                                     <Card.Title 
@@ -85,41 +121,6 @@ export default function CouchCastRules({ roomCode }) {
                                     >
                                         ⏭️ Skip
                                     </Button>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    </div>
-
-                    {/* RIGHT COLUMN: RULES (Takes up ~66% width) */}
-                    <div className="col-8 d-flex flex-column h-100">
-                        <div className="shining-border-wrapper h-100">
-                            <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
-                                <Card.Body className="d-flex flex-column p-3 p-md-4 h-100">
-                                    
-                                    <Card.Title 
-                                        className="fw-bold text-dark mb-3 text-center flex-shrink-0 border-bottom border-secondary pb-2"
-                                        style={{ fontSize: 'clamp(1.2rem, 3vh, 1.8rem)' }}
-                                    >
-                                        RULES
-                                    </Card.Title>
-                                    
-                                    <div className="d-flex flex-column justify-content-center flex-grow-1 h-100 px-2 px-md-4">
-                                        <ol className="mb-0 fs-6 fs-md-5 text-secondary d-flex flex-column justify-content-evenly h-100" style={{ fontWeight: '500' }}>
-                                            <li className="mb-2">
-                                                <strong className="text-dark">Host Picks the Prompt:</strong><br/>
-                                                One player is chosen as the Host each round. They get to pick <strong>1 out of 3 random prompts</strong> to set the vibe.
-                                            </li>
-                                            <li className="mb-2">
-                                                <strong className="text-dark">Players Respond:</strong><br/>
-                                                The other players look at their hand of <strong>7 options</strong> (6 pre-drawn cards + 1 custom "Write-In") and submit their funniest answer.
-                                            </li>
-                                            <li>
-                                                <strong className="text-dark">Host Judges the Winner:</strong><br/>
-                                                The Host reads all the submissions anonymously and crowns the winner of the round!
-                                            </li>
-                                        </ol>
-                                    </div>
-
                                 </Card.Body>
                             </Card>
                         </div>
