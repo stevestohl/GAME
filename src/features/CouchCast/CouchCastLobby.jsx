@@ -40,47 +40,26 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
 
 
   return (
-    <div 
-      className="fullscreen-gameplay-container"
-      style={{
-        backgroundImage: `url('/CouchCastBackground.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width: '100vw'
-      }}
-    >
-      {/* --- LANDSCAPE REMINDER OVERLAY --- */}
-      {isPortrait && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0, 15, 40, 0.95)', color: 'white', zIndex: 9999,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          padding: '20px', textAlign: 'center', backdropFilter: 'blur(5px)'
-        }}>
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="white" style={{ marginBottom: '20px', transform: 'rotate(-90deg)', transition: 'transform 1s ease-in-out' }}>
-            <path d="M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z" />
-          </svg>
-          <h2 className="fw-bold mb-3">Rotate Your Device</h2>
-          <p className="fs-5">Couch Cast is best experienced in landscape mode!</p>
-        </div>
-      )}
+ <div className="fullscreen-gameplay-container">
+  
+  {/* --- LANDSCAPE REMINDER OVERLAY --- */}
+  {isPortrait && (
+    <div className="landscape-overlay">
+      <svg viewBox="0 0 24 24" className="rotate-device-icon">
+        <path d="M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z" />
+      </svg>
+      <h2 className="fw-bold mb-3">Rotate Your Device</h2>
+      <p className="fs-5">Couch Cast is best experienced in landscape mode!</p>
+    </div>
+  )}
 
-      {/* Tightened overall padding to preserve vertical space */}
-      <div className="d-flex flex-column h-100 p-3 pb-4 w-100" style={{ paddingBottom: '2rem' }}>
-        
-        {/* Main title uses clamp() to shrink gracefully on short viewports */}
-        <h2 
-          className="text-center text-white fw-bold mb-2 flex-shrink-0" 
-          style={{ 
-            fontSize: 'clamp(1.1rem, 2.5vh, 1.8rem)', 
-            textShadow: '2px 2px 8px rgba(0,0,0,0.8)', 
-            letterSpacing: '2px' 
-          }}
-        >
-          Couch Cast Room Created
-        </h2>
-
+  {/* Tightened overall padding. Removed the conflicting inline paddingBottom */}
+  <div className="d-flex flex-column h-100 p-3 pb-4 w-100">
+    
+    {/* Main title uses clamp() to shrink gracefully on short viewports */}
+    <h2 className="fullscreen-gameplay-header">
+      Couch Cast Room Created
+    </h2>
         <div className="row flex-grow-1 g-3" style={{ minHeight: 0 }}>
           
           {/* --- LEFT COLUMN: QR CODE FLOATING CARD --- */}
@@ -112,7 +91,7 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
                   <div 
                     className="fw-bold flex-shrink-0 mt-1" 
                     style={{ 
-                      color: '#014eb6', 
+                      color: '#ffffff', 
                       letterSpacing: '0.15em',
                       fontSize: 'clamp(1.2rem, 3.2vh, 2.2rem)' 
                     }}
