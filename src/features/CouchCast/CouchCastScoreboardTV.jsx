@@ -48,7 +48,7 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                 <div className="shining-border-wrapper" style={{ borderRadius: '15px' }}>
                     <Card className="border-0 text-white w-100 frosted-glass-panel" style={{ borderRadius: '10px' }}>
                         <Card.Body className="p-3">
-                            <h2 className="text-warning fw-bold mb-1 text-uppercase fs-4" style={{ letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
+                            <h2 className="text-primary fw-bold mb-1 text-uppercase fs-4" style={{ letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
                                 {isGameOver ? 'Final Standings' : 'Current Scores'}
                             </h2>
                             
@@ -75,7 +75,6 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                                 return (
                                     <ListGroup.Item 
                                         key={player.id} 
-                                        {/* Reduced padding here so more rows fit on screen */}
                                         className="d-flex justify-content-between align-items-center p-2 p-md-3 border-0"
                                         style={{ 
                                             backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.1)',
@@ -115,7 +114,7 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                     </h4>
                 ) : (
                     <div className="d-flex align-items-center justify-content-center text-white opacity-90">
-                        <Spinner animation="border" size="sm" className="me-2 text-warning" />
+                        <Spinner animation="border" size="sm" className="me-2 text-primary" />
                         <h4 className="m-0 fw-semibold" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)', fontSize: 'clamp(1rem, 2vh, 1.3rem)' }}>
                             Next round starting soon...
                         </h4>

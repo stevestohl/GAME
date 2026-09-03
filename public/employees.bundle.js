@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/Contents.jsx":
@@ -7,7 +8,6 @@
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Contents)
@@ -132,7 +132,6 @@ function Contents() {
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Page)
@@ -216,7 +215,6 @@ function Page() {
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -239,7 +237,6 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "handleCreateCouchCast": () => (/* binding */ handleCreateCouchCast)
@@ -339,7 +336,6 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastJudging)
@@ -490,7 +486,6 @@ function CouchCastJudging(_ref) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastJudgingTV)
@@ -636,7 +631,6 @@ function CouchCastJudgingTV(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastLobby)
@@ -824,7 +818,6 @@ function CouchCastLobby(_ref) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastManager)
@@ -1064,7 +1057,6 @@ function CouchCastManager() {
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastPlayerSetup)
@@ -1414,7 +1406,6 @@ function CouchCastPlayerSetup(_ref) {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastPromptSelection)
@@ -1691,7 +1682,6 @@ function CouchCastPromptSelection(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastRules)
@@ -1844,7 +1834,6 @@ function CouchCastRules(_ref) {
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastScoreboard)
@@ -1938,9 +1927,176 @@ function CouchCastScoreboard(_ref) {
 /*!**********************************************************!*\
   !*** ./src/features/CouchCast/CouchCastScoreboardTV.jsx ***!
   \**********************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/steve/github/GAME/src/features/CouchCast/CouchCastScoreboardTV.jsx: Unexpected token, expected \"...\" (78:94)\n\n\u001b[0m \u001b[90m 76 |\u001b[39m                                     \u001b[33m<\u001b[39m\u001b[33mListGroup\u001b[39m\u001b[33m.\u001b[39m\u001b[33mItem\u001b[39m \u001b[0m\n\u001b[0m \u001b[90m 77 |\u001b[39m                                         key\u001b[33m=\u001b[39m{player\u001b[33m.\u001b[39mid} \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 78 |\u001b[39m                                         {\u001b[90m/* Reduced padding here so more rows fit on screen */\u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 79 |\u001b[39m                                         className\u001b[33m=\u001b[39m\u001b[32m\"d-flex justify-content-between align-items-center p-2 p-md-3 border-0\"\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 80 |\u001b[39m                                         style\u001b[33m=\u001b[39m{{ \u001b[0m\n\u001b[0m \u001b[90m 81 |\u001b[39m                                             backgroundColor\u001b[33m:\u001b[39m isLeader \u001b[33m?\u001b[39m \u001b[32m'rgba(255, 255, 255, 0.9)'\u001b[39m \u001b[33m:\u001b[39m \u001b[32m'rgba(255, 255, 255, 0.1)'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at instantiate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:67:32)\n    at constructor (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:364:12)\n    at JSXParserMixin.raise (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:3364:19)\n    at JSXParserMixin.unexpected (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:3397:16)\n    at JSXParserMixin.expect (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:3760:28)\n    at JSXParserMixin.jsxParseAttribute (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7106:12)\n    at JSXParserMixin.jsxParseOpeningElementAfterName (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7129:28)\n    at JSXParserMixin.jsxParseOpeningElementAt (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7124:17)\n    at JSXParserMixin.jsxParseElementAt (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7150:33)\n    at JSXParserMixin.jsxParseElement (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7220:17)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7233:19)\n    at JSXParserMixin.parseExprSubscripts (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11171:23)\n    at JSXParserMixin.parseUpdate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11153:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11127:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10956:61)\n    at JSXParserMixin.parseExprOps (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10962:23)\n    at JSXParserMixin.parseMaybeConditional (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10937:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10895:21)\n    at /Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10863:39\n    at JSXParserMixin.allowInAnd (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12640:12)\n    at JSXParserMixin.parseMaybeAssignAllowIn (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10863:17)\n    at JSXParserMixin.parseParenAndDistinguishExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11817:28)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11446:23)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7238:20)\n    at JSXParserMixin.parseExprSubscripts (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11171:23)\n    at JSXParserMixin.parseUpdate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11153:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11127:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10956:61)\n    at JSXParserMixin.parseExprOps (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10962:23)\n    at JSXParserMixin.parseMaybeConditional (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10937:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10895:21)\n    at JSXParserMixin.parseExpressionBase (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10845:23)\n    at /Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10840:39\n    at JSXParserMixin.allowInAnd (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12635:16)\n    at JSXParserMixin.parseExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10840:17)\n    at JSXParserMixin.parseReturnStatement (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13296:28)\n    at JSXParserMixin.parseStatementContent (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12954:21)\n    at JSXParserMixin.parseStatement (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12917:17)\n    at JSXParserMixin.parseBlockOrModuleBlockBody (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13497:25)\n    at JSXParserMixin.parseBlockBody (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13489:10)\n    at JSXParserMixin.parseBlock (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13477:10)\n    at JSXParserMixin.parseFunctionBody (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12287:24)\n    at JSXParserMixin.parseArrowExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12260:10)\n    at JSXParserMixin.parseParenAndDistinguishExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11829:12)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11446:23)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7238:20)\n    at JSXParserMixin.parseExprSubscripts (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11171:23)\n    at JSXParserMixin.parseUpdate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11153:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11127:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10956:61)");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CouchCastScoreboardTV)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function CouchCastScoreboardTV(_ref) {
+  var players = _ref.players,
+    isGameOver = _ref.isGameOver;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isPortrait = _useState2[0],
+    setIsPortrait = _useState2[1];
+
+  // Filter out the Caster and sort the rest by score (highest to lowest)
+  var rankedPlayers = players.filter(function (p) {
+    return !p.isCaster;
+  }).sort(function (a, b) {
+    return b.score - a.score;
+  });
+  var leader = rankedPlayers[0];
+
+  // Detect if the device is in portrait mode
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var checkOrientation = function checkOrientation() {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    // Check immediately on mount
+    checkOrientation();
+
+    // Listen for resizes or orientation changes
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    return function () {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "landscape-overlay"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 24 24",
+    className: "rotate-device-icon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold mb-3"
+  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5"
+  }, "Couch Cast is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 text-center flex-shrink-0 mb-2 px-3",
+    style: {
+      maxWidth: '800px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper",
+    style: {
+      borderRadius: '15px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "border-0 text-white w-100 frosted-glass-panel",
+    style: {
+      borderRadius: '10px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "text-primary fw-bold mb-1 text-uppercase fs-4",
+    style: {
+      letterSpacing: '2px',
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
+    }
+  }, isGameOver ? 'Final Standings' : 'Current Scores'), leader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fs-1 mb-1",
+    style: {
+      filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))'
+    }
+  }, "\uD83D\uDC51"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "fw-bold text-white mb-0",
+    style: {
+      fontSize: 'clamp(1.2rem, 3.5vh, 2.2rem)',
+      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
+    }
+  }, isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-100 flex-grow-1 d-flex flex-column align-items-center my-2 px-3 pb-2",
+    style: {
+      maxWidth: '750px',
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "shadow-lg w-100 border-0 h-100 d-flex flex-column frosted-glass-panel",
+    style: {
+      borderRadius: '15px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    className: "p-0 overflow-auto custom-scrollbar h-100",
+    style: {
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "flush",
+    className: "h-100 bg-transparent"
+  }, rankedPlayers.map(function (player, index) {
+    var isLeader = index === 0;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+      key: player.id,
+      className: "d-flex justify-content-between align-items-center p-2 p-md-3 border-0",
+      style: {
+        backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.1)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
+        transition: 'background-color 0.2s ease-in-out'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "d-flex align-items-center text-start"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "m-0 me-3 me-md-4 fw-bold ".concat(isLeader ? 'text-primary' : 'text-white-50'),
+      style: {
+        fontSize: 'clamp(1.2rem, 2.5vh, 1.8rem)'
+      }
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "m-0 fw-bold text-truncate ".concat(isLeader ? 'text-dark' : 'text-white'),
+      style: {
+        fontSize: 'clamp(1.2rem, 2.5vh, 1.8rem)',
+        maxWidth: '300px',
+        textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
+      }
+    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      bg: isLeader ? 'primary' : 'light',
+      text: "dark",
+      className: "fs-5 rounded-pill px-3 px-md-4 py-2 shadow-sm fw-bold"
+    }, player.score, " pts"));
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-shrink-0 text-center w-100 mt-1 mb-2"
+  }, isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-white fw-semibold m-0",
+    style: {
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
+      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
+    }
+  }, "Thanks for playing! Close the room to start a new game.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex align-items-center justify-content-center text-white opacity-90"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    animation: "border",
+    size: "sm",
+    className: "me-2 text-primary"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "m-0 fw-semibold",
+    style: {
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
+      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
+    }
+  }, "Next round starting soon..."))));
+}
 
 /***/ }),
 
@@ -1950,7 +2106,6 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastWinnerRevealTV)
@@ -2120,7 +2275,6 @@ function CouchCastWinnerRevealTV(_ref) {
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastWritingPlayer)
@@ -2352,7 +2506,6 @@ function CouchCastWritingPlayer(_ref) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastWritingTV)
@@ -2559,7 +2712,6 @@ function CouchCastWritingTV(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeAdd)
@@ -2700,7 +2852,6 @@ var EmployeeAdd = /*#__PURE__*/function (_React$Component) {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeEdit)
@@ -2929,7 +3080,6 @@ var EmployeeEdit = /*#__PURE__*/function (_React$Component) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeFilter)
@@ -2966,7 +3116,6 @@ function EmployeeFilter() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeList)
@@ -3131,7 +3280,6 @@ var EmployeeList = /*#__PURE__*/function (_React$Component) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeReport)
@@ -3155,7 +3303,6 @@ function EmployeeReport() {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardAdd)
@@ -3300,7 +3447,6 @@ function FlashcardAdd(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardEdit)
@@ -3469,7 +3615,6 @@ function FlashcardEdit(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardGame)
@@ -3832,7 +3977,6 @@ function FlashcardGame() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Flashcards)
@@ -4029,7 +4173,6 @@ function Flashcards() {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardsList)
@@ -4433,7 +4576,6 @@ function FlashcardsList() {
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BarHome)
@@ -4555,7 +4697,6 @@ function BarHome() {
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Home)
@@ -4807,7 +4948,6 @@ function Home() {
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ UniversalJoinScreen)
@@ -5013,7 +5153,6 @@ function UniversalJoinScreen() {
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2CreateScreen)
@@ -5175,7 +5314,6 @@ function Prompt2CreateScreen() {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2GameManager)
@@ -5441,7 +5579,6 @@ function Prompt2GameManager() {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2JudgingScreen)
@@ -5515,7 +5652,6 @@ function Prompt2JudgingScreen(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2Lobby)
@@ -5635,7 +5771,6 @@ function Prompt2Lobby(_ref) {
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2PromptSelectionScreen)
@@ -5838,7 +5973,6 @@ function Prompt2PromptSelectionScreen(_ref) {
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2ResponseSelectionScreen)
@@ -6077,7 +6211,6 @@ function Prompt2ResponseSelectionScreen(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ RoundWinnerScreen)
@@ -6131,7 +6264,6 @@ function RoundWinnerScreen(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2RulesScreen)
@@ -6191,7 +6323,6 @@ function Prompt2RulesScreen(_ref) {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2Scoreboard)
@@ -6262,7 +6393,6 @@ function Prompt2Scoreboard(_ref) {
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TicTacToeLobby)
@@ -6357,7 +6487,6 @@ function TicTacToeLobby(_ref) {
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TicTacToeCreateScreen),
@@ -6505,7 +6634,6 @@ function TicTacToeCreateScreen() {
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TictactoeGameScreen)
@@ -6748,7 +6876,6 @@ function TictactoeGameScreen(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TictactoeManager)
@@ -6946,7 +7073,6 @@ function TictactoeManager() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ QuestionScreen)
@@ -7040,7 +7166,6 @@ function QuestionScreen(_ref) {
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ RulesScreen)
@@ -7104,7 +7229,6 @@ function RulesScreen(_ref) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ScoreboardScreen)
@@ -7195,7 +7319,6 @@ function ScoreboardScreen(_ref) {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaCreateScreen),
@@ -7357,7 +7480,6 @@ function TriviaCreateScreen() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ GameOverScreen)
@@ -7459,7 +7581,6 @@ function GameOverScreen(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaManager)
@@ -7641,7 +7762,6 @@ function TriviaManager() {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaWaitingRoom)
@@ -7760,7 +7880,6 @@ function TriviaWaitingRoom(_ref) {
   \********************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7787,7 +7906,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7840,7 +7958,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "eaadce188e228c1070a4.png";
 
 /***/ }),
@@ -7851,7 +7968,6 @@ module.exports = __webpack_require__.p + "eaadce188e228c1070a4.png";
   \**************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "f10f724602e4f1f3630e.png";
 
 /***/ }),
@@ -7862,7 +7978,6 @@ module.exports = __webpack_require__.p + "f10f724602e4f1f3630e.png";
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
 
 /***/ }),
@@ -7873,7 +7988,6 @@ module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "dad1b0ee3a5c252adfc7.png";
 
 /***/ }),
@@ -7884,7 +7998,6 @@ module.exports = __webpack_require__.p + "dad1b0ee3a5c252adfc7.png";
   \*************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "bd8002f46102dac80ef0.gif";
 
 /***/ }),
@@ -7895,7 +8008,6 @@ module.exports = __webpack_require__.p + "bd8002f46102dac80ef0.gif";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
 
 /***/ }),
@@ -7906,7 +8018,6 @@ module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
 
 /***/ }),
@@ -7917,7 +8028,6 @@ module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
 
 /***/ }),
@@ -7928,7 +8038,6 @@ module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
   \*************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
 
 /***/ }),
@@ -7939,7 +8048,6 @@ module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
   \***************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "funnyNames": () => (/* binding */ funnyNames),
@@ -7969,7 +8077,6 @@ function getRandomFunnyName() {
   \**********************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ useWakeLock)
@@ -8066,7 +8173,6 @@ function useWakeLock() {
   \***********************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "couchCastSocket": () => (/* binding */ couchCastSocket),
