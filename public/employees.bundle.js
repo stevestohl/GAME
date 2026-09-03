@@ -1939,11 +1939,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function CouchCastScoreboardTV(_ref) {
   var players = _ref.players,
     isGameOver = _ref.isGameOver;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isPortrait = _useState2[0],
+    setIsPortrait = _useState2[1];
+
   // Filter out the Caster and sort the rest by score (highest to lowest)
   var rankedPlayers = players.filter(function (p) {
     return !p.isCaster;
@@ -1951,9 +1962,38 @@ function CouchCastScoreboardTV(_ref) {
     return b.score - a.score;
   });
   var leader = rankedPlayers[0];
+
+  // Detect if the device is in portrait mode
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var checkOrientation = function checkOrientation() {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    // Check immediately on mount
+    checkOrientation();
+
+    // Listen for resizes or orientation changes
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    return function () {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container d-flex flex-column h-100 p-4 w-100 align-items-center justify-content-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "landscape-overlay"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 24 24",
+    className: "rotate-device-icon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold mb-3"
+  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5"
+  }, "Couch Cast is best experienced in landscape mode!")), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-100 text-center flex-shrink-0",
     style: {
       maxWidth: '800px'
@@ -1991,7 +2031,7 @@ function CouchCastScoreboardTV(_ref) {
       borderRadius: '15px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
-    className: "p-0 overflow-auto h-100"
+    className: "p-0 overflow-auto h-100 custom-scrollbar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     variant: "flush",
     className: "h-100 bg-transparent"
@@ -2020,7 +2060,7 @@ function CouchCastScoreboardTV(_ref) {
         textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
       }
     }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      bg: isLeader ? 'warning' : 'light',
+      bg: isLeader ? 'primary' : 'light',
       text: "dark",
       className: "fs-5 rounded-pill px-3 px-md-4 py-2 shadow-sm fw-bold"
     }, player.score, " pts"));
@@ -2489,6 +2529,10 @@ function CouchCastWritingTV(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     totalTime = _useState4[0],
     setTotalTime = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isPortrait = _useState6[0],
+    setIsPortrait = _useState6[1];
 
   // Sync timer perfectly with the backend's absolute endTime and compute total duration
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -2506,6 +2550,24 @@ function CouchCastWritingTV(_ref) {
       return clearInterval(timer);
     };
   }, [endTime, defaultDuration]);
+
+  // Detect if the device is in portrait mode
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var checkOrientation = function checkOrientation() {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    // Check immediately on mount
+    checkOrientation();
+
+    // Listen for resizes or orientation changes
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    return function () {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
   var getPromptText = function getPromptText(p) {
     if (!p) return "";
     if (typeof p === 'string') return p;
@@ -2517,8 +2579,19 @@ function CouchCastWritingTV(_ref) {
     return p.id !== hostId && !p.isCaster;
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container d-flex flex-column h-100 p-4 w-100 align-items-center justify-content-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "landscape-overlay"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 24 24",
+    className: "rotate-device-icon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fw-bold mb-3"
+  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5"
+  }, "Couch Cast is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-100 text-center flex-shrink-0",
     style: {
       maxWidth: '900px'

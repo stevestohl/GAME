@@ -4,6 +4,7 @@ import { Card, Row, Col, ProgressBar, Spinner } from 'react-bootstrap';
 export default function CouchCastWritingTV({ currentPrompt, endTime, players, hostId, defaultDuration = 60 }) {
     const [timeLeft, setTimeLeft] = useState(defaultDuration);
     const [totalTime, setTotalTime] = useState(defaultDuration);
+    const [isPortrait, setIsPortrait] = useState(false);
 
     // Sync timer perfectly with the backend's absolute endTime and compute total duration
     useEffect(() => {
@@ -24,6 +25,25 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
         return () => clearInterval(timer);
     }, [endTime, defaultDuration]);
 
+    // Detect if the device is in portrait mode
+    useEffect(() => {
+        const checkOrientation = () => {
+            setIsPortrait(window.innerHeight > window.innerWidth);
+        };
+        
+        // Check immediately on mount
+        checkOrientation();
+        
+        // Listen for resizes or orientation changes
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('orientationchange', checkOrientation);
+        
+        return () => {
+            window.removeEventListener('resize', checkOrientation);
+            window.removeEventListener('orientationchange', checkOrientation);
+        };
+    }, []);
+
     const getPromptText = (p) => {
         if (!p) return "";
         if (typeof p === 'string') return p;
@@ -34,8 +54,17 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
     const activeWriters = players.filter(p => p.id !== hostId && !p.isCaster);
 
     return (
-        <div className="fullscreen-gameplay-container d-flex flex-column h-100 p-4 w-100 align-items-center justify-content-between">
-            
+        <div className="fullscreen-gameplay-container">
+            {/* --- LANDSCAPE REMINDER OVERLAY --- */}
+            {isPortrait && (
+                <div className="landscape-overlay">
+                <svg viewBox="0 0 24 24" className="rotate-device-icon">
+                    <path d="M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z" />
+                </svg>
+                <h2 className="fw-bold mb-3">Rotate Your Device</h2>
+                <p className="fs-5">Couch Cast is best experienced in landscape mode!</p>
+            </div>
+    )}            
             {/* Header / Prompt Section */}
             <div className="w-100 text-center flex-shrink-0" style={{ maxWidth: '900px' }}>
                 <h2 className="text-warning fw-bold mb-3 fs-3">The Prompt is...</h2>
