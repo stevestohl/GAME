@@ -41,36 +41,42 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                     <h2 className="fw-bold mb-3">Rotate Your Device</h2>
                     <p className="fs-5">Couch Cast is best experienced in landscape mode!</p>
                 </div>
-            )} {/* <--- FIXED: Added the missing closing bracket here! */}
+            )}
             
-            {/* Header & Leader Banner */}
-            <div className="w-100 text-center flex-shrink-0" style={{ maxWidth: '800px' }}>
-                <h2 className="text-warning fw-bold mb-2 text-uppercase fs-3" style={{ letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
-                    {isGameOver ? 'Final Standings' : 'Current Scores'}
-                </h2>
-                
-                {leader && (
-                    <div className="mb-2">
-                        <div className="display-3 mb-1" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))' }}>👑</div>
-                        <h1 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.5rem, 3.5vh, 2.5rem)', textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
-                            {isGameOver ? `${leader.name} Wins the Game!` : `${leader.name} is in the lead!`}
-                        </h1>
-                    </div>
-                )}
+            {/* Header & Leader Banner - Now with Simmering Border & Frosted Glass */}
+            <div className="w-100 text-center flex-shrink-0 mb-2 px-3" style={{ maxWidth: '800px' }}>
+                <div className="shining-border-wrapper" style={{ borderRadius: '15px' }}>
+                    <Card className="border-0 text-white w-100 frosted-glass-panel" style={{ borderRadius: '10px' }}>
+                        <Card.Body className="p-3">
+                            <h2 className="text-warning fw-bold mb-1 text-uppercase fs-4" style={{ letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
+                                {isGameOver ? 'Final Standings' : 'Current Scores'}
+                            </h2>
+                            
+                            {leader && (
+                                <div>
+                                    <div className="fs-1 mb-1" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))' }}>👑</div>
+                                    <h1 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.2rem, 3.5vh, 2.2rem)', textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
+                                        {isGameOver ? `${leader.name} Wins the Game!` : `${leader.name} is in the lead!`}
+                                    </h1>
+                                </div>
+                            )}
+                        </Card.Body>
+                    </Card>
+                </div>
             </div>
 
-            {/* Scoreboard List Card */}
-            <div className="w-100 flex-grow-1 d-flex align-items-center justify-content-center my-3" style={{ maxWidth: '750px', maxHeight: '58vh' }}>
-                <Card className="shadow-lg w-100 border-0 h-100 overflow-hidden" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(12px)', borderRadius: '15px' }}>
-                    {/* Added custom-scrollbar here */}
-                    <Card.Body className="p-0 overflow-auto h-100 custom-scrollbar">
+            {/* Scoreboard List Card - Added minHeight: 0 and flex-column to enforce scrolling */}
+            <div className="w-100 flex-grow-1 d-flex flex-column align-items-center my-2 px-3 pb-2" style={{ maxWidth: '750px', minHeight: 0 }}>
+                <Card className="shadow-lg w-100 border-0 h-100 d-flex flex-column frosted-glass-panel" style={{ borderRadius: '15px' }}>
+                    <Card.Body className="p-0 overflow-auto custom-scrollbar h-100" style={{ minHeight: 0 }}>
                         <ListGroup variant="flush" className="h-100 bg-transparent">
                             {rankedPlayers.map((player, index) => {
                                 const isLeader = index === 0;
                                 return (
                                     <ListGroup.Item 
                                         key={player.id} 
-                                        className="d-flex justify-content-between align-items-center p-3 p-md-4 border-0"
+                                        {/* Reduced padding here so more rows fit on screen */}
+                                        className="d-flex justify-content-between align-items-center p-2 p-md-3 border-0"
                                         style={{ 
                                             backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.1)',
                                             borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
@@ -102,7 +108,7 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
             </div>
 
             {/* Footer Section */}
-            <div className="flex-shrink-0 text-center w-100 mt-2">
+            <div className="flex-shrink-0 text-center w-100 mt-1 mb-2">
                 {isGameOver ? (
                     <h4 className="text-white fw-semibold m-0" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)', fontSize: 'clamp(1rem, 2vh, 1.3rem)' }}>
                         Thanks for playing! Close the room to start a new game.

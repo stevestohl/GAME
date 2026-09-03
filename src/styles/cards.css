@@ -105,16 +105,23 @@
 
 /* 1. The tall wrapper that allows the phone to scroll */
 .fullscreen-gameplay-container {
-  position: fixed; /* 👈 Glues the container to the screen */
+  position: fixed; 
   top: 0;
   left: 0;
-  width: 100%; /* 👈 Use this one! */
-  height: 100dvh; /* 👈 Strict height using dynamic viewport */
+  width: 100%; 
+  height: 100dvh; 
   background-color: #f8f9fa; 
   z-index: 9999;
-  overflow: hidden; /* 👈 Kills all exterior scrolling */
-  display: flex; /* 👈 Forces children to respect the height limit */
+  overflow: hidden; 
+  
+  /* --- The Flexbox Uniformity Rules --- */
+  display: flex; 
   flex-direction: column;
+  align-items: center;      /* <-- Replaces align-items-center */
+  padding-top: 1rem;        /* <-- Replaces py-3 */
+  padding-bottom: 1rem;     /* <-- Replaces py-3 */
+  
+  /* Background */
   background-image: url('https://game-temple.org/CouchCastBackground.jpg');
   background-size: cover;
   background-position: center;
@@ -269,3 +276,15 @@
   30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */
   100% { transform: rotate(0deg); }
 }
+
+
+/* Add this to Cards.css to use on any page! */
+.frosted-glass-panel {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+}
+
+

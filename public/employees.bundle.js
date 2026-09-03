@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/Contents.jsx":
@@ -8,6 +7,7 @@
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Contents)
@@ -132,6 +132,7 @@ function Contents() {
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Page)
@@ -215,6 +216,7 @@ function Page() {
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -237,6 +239,7 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "handleCreateCouchCast": () => (/* binding */ handleCreateCouchCast)
@@ -336,6 +339,7 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastJudging)
@@ -486,6 +490,7 @@ function CouchCastJudging(_ref) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastJudgingTV)
@@ -631,6 +636,7 @@ function CouchCastJudgingTV(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastLobby)
@@ -818,6 +824,7 @@ function CouchCastLobby(_ref) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastManager)
@@ -1057,6 +1064,7 @@ function CouchCastManager() {
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastPlayerSetup)
@@ -1406,6 +1414,7 @@ function CouchCastPlayerSetup(_ref) {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastPromptSelection)
@@ -1682,6 +1691,7 @@ function CouchCastPromptSelection(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastRules)
@@ -1834,6 +1844,7 @@ function CouchCastRules(_ref) {
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastScoreboard)
@@ -1927,165 +1938,9 @@ function CouchCastScoreboard(_ref) {
 /*!**********************************************************!*\
   !*** ./src/features/CouchCast/CouchCastScoreboardTV.jsx ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ CouchCastScoreboardTV)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-function CouchCastScoreboardTV(_ref) {
-  var players = _ref.players,
-    isGameOver = _ref.isGameOver;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isPortrait = _useState2[0],
-    setIsPortrait = _useState2[1];
-
-  // Filter out the Caster and sort the rest by score (highest to lowest)
-  var rankedPlayers = players.filter(function (p) {
-    return !p.isCaster;
-  }).sort(function (a, b) {
-    return b.score - a.score;
-  });
-  var leader = rankedPlayers[0];
-
-  // Detect if the device is in portrait mode
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var checkOrientation = function checkOrientation() {
-      setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-
-    // Check immediately on mount
-    checkOrientation();
-
-    // Listen for resizes or orientation changes
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', checkOrientation);
-    return function () {
-      window.removeEventListener('resize', checkOrientation);
-      window.removeEventListener('orientationchange', checkOrientation);
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast is best experienced in landscape mode!")), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 text-center flex-shrink-0",
-    style: {
-      maxWidth: '800px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-warning fw-bold mb-2 text-uppercase fs-3",
-    style: {
-      letterSpacing: '2px',
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
-    }
-  }, isGameOver ? 'Final Standings' : 'Current Scores'), leader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-3 mb-1",
-    style: {
-      filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))'
-    }
-  }, "\uD83D\uDC51"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "fw-bold text-white mb-0",
-    style: {
-      fontSize: 'clamp(1.5rem, 3.5vh, 2.5rem)',
-      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
-    }
-  }, isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 flex-grow-1 d-flex align-items-center justify-content-center my-3",
-    style: {
-      maxWidth: '750px',
-      maxHeight: '58vh'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "shadow-lg w-100 border-0 h-100 overflow-hidden",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      backdropFilter: 'blur(12px)',
-      borderRadius: '15px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
-    className: "p-0 overflow-auto h-100 custom-scrollbar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    variant: "flush",
-    className: "h-100 bg-transparent"
-  }, rankedPlayers.map(function (player, index) {
-    var isLeader = index === 0;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
-      key: player.id,
-      className: "d-flex justify-content-between align-items-center p-3 p-md-4 border-0",
-      style: {
-        backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.1)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
-        transition: 'background-color 0.2s ease-in-out'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex align-items-center text-start"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "m-0 me-3 me-md-4 fw-bold ".concat(isLeader ? 'text-primary' : 'text-white-50'),
-      style: {
-        fontSize: 'clamp(1.2rem, 2.5vh, 1.8rem)'
-      }
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "m-0 fw-bold text-truncate ".concat(isLeader ? 'text-dark' : 'text-white'),
-      style: {
-        fontSize: 'clamp(1.2rem, 2.5vh, 1.8rem)',
-        maxWidth: '300px',
-        textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
-      }
-    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      bg: isLeader ? 'primary' : 'light',
-      text: "dark",
-      className: "fs-5 rounded-pill px-3 px-md-4 py-2 shadow-sm fw-bold"
-    }, player.score, " pts"));
-  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex-shrink-0 text-center w-100 mt-2"
-  }, isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-white fw-semibold m-0",
-    style: {
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
-      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
-    }
-  }, "Thanks for playing! Close the room to start a new game.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex align-items-center justify-content-center text-white opacity-90"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    animation: "border",
-    size: "sm",
-    className: "me-2 text-warning"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "m-0 fw-semibold",
-    style: {
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
-      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
-    }
-  }, "Next round starting soon..."))));
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/steve/github/GAME/src/features/CouchCast/CouchCastScoreboardTV.jsx: Unexpected token, expected \"...\" (78:94)\n\n\u001b[0m \u001b[90m 76 |\u001b[39m                                     \u001b[33m<\u001b[39m\u001b[33mListGroup\u001b[39m\u001b[33m.\u001b[39m\u001b[33mItem\u001b[39m \u001b[0m\n\u001b[0m \u001b[90m 77 |\u001b[39m                                         key\u001b[33m=\u001b[39m{player\u001b[33m.\u001b[39mid} \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 78 |\u001b[39m                                         {\u001b[90m/* Reduced padding here so more rows fit on screen */\u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 79 |\u001b[39m                                         className\u001b[33m=\u001b[39m\u001b[32m\"d-flex justify-content-between align-items-center p-2 p-md-3 border-0\"\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 80 |\u001b[39m                                         style\u001b[33m=\u001b[39m{{ \u001b[0m\n\u001b[0m \u001b[90m 81 |\u001b[39m                                             backgroundColor\u001b[33m:\u001b[39m isLeader \u001b[33m?\u001b[39m \u001b[32m'rgba(255, 255, 255, 0.9)'\u001b[39m \u001b[33m:\u001b[39m \u001b[32m'rgba(255, 255, 255, 0.1)'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at instantiate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:67:32)\n    at constructor (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:364:12)\n    at JSXParserMixin.raise (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:3364:19)\n    at JSXParserMixin.unexpected (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:3397:16)\n    at JSXParserMixin.expect (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:3760:28)\n    at JSXParserMixin.jsxParseAttribute (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7106:12)\n    at JSXParserMixin.jsxParseOpeningElementAfterName (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7129:28)\n    at JSXParserMixin.jsxParseOpeningElementAt (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7124:17)\n    at JSXParserMixin.jsxParseElementAt (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7150:33)\n    at JSXParserMixin.jsxParseElement (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7220:17)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7233:19)\n    at JSXParserMixin.parseExprSubscripts (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11171:23)\n    at JSXParserMixin.parseUpdate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11153:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11127:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10956:61)\n    at JSXParserMixin.parseExprOps (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10962:23)\n    at JSXParserMixin.parseMaybeConditional (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10937:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10895:21)\n    at /Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10863:39\n    at JSXParserMixin.allowInAnd (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12640:12)\n    at JSXParserMixin.parseMaybeAssignAllowIn (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10863:17)\n    at JSXParserMixin.parseParenAndDistinguishExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11817:28)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11446:23)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7238:20)\n    at JSXParserMixin.parseExprSubscripts (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11171:23)\n    at JSXParserMixin.parseUpdate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11153:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11127:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10956:61)\n    at JSXParserMixin.parseExprOps (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10962:23)\n    at JSXParserMixin.parseMaybeConditional (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10937:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10895:21)\n    at JSXParserMixin.parseExpressionBase (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10845:23)\n    at /Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10840:39\n    at JSXParserMixin.allowInAnd (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12635:16)\n    at JSXParserMixin.parseExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10840:17)\n    at JSXParserMixin.parseReturnStatement (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13296:28)\n    at JSXParserMixin.parseStatementContent (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12954:21)\n    at JSXParserMixin.parseStatement (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12917:17)\n    at JSXParserMixin.parseBlockOrModuleBlockBody (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13497:25)\n    at JSXParserMixin.parseBlockBody (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13489:10)\n    at JSXParserMixin.parseBlock (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:13477:10)\n    at JSXParserMixin.parseFunctionBody (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12287:24)\n    at JSXParserMixin.parseArrowExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:12260:10)\n    at JSXParserMixin.parseParenAndDistinguishExpression (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11829:12)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11446:23)\n    at JSXParserMixin.parseExprAtom (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:7238:20)\n    at JSXParserMixin.parseExprSubscripts (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11171:23)\n    at JSXParserMixin.parseUpdate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11153:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:11127:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/steve/github/GAME/node_modules/@babel/parser/lib/index.js:10956:61)");
 
 /***/ }),
 
@@ -2095,6 +1950,7 @@ function CouchCastScoreboardTV(_ref) {
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastWinnerRevealTV)
@@ -2264,6 +2120,7 @@ function CouchCastWinnerRevealTV(_ref) {
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastWritingPlayer)
@@ -2495,6 +2352,7 @@ function CouchCastWritingPlayer(_ref) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CouchCastWritingTV)
@@ -2592,33 +2450,41 @@ function CouchCastWritingTV(_ref) {
   }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "fs-5"
   }, "Couch Cast is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 text-center flex-shrink-0",
+    className: "w-100 text-center flex-shrink-0 mb-2 px-3",
     style: {
       maxWidth: '900px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-warning fw-bold mb-3 fs-3"
-  }, "The Prompt is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "shadow-lg border-0 bg-white bg-opacity-25 text-white mb-4",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper",
     style: {
-      backdropFilter: 'blur(10px)',
       borderRadius: '15px'
     }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "border-0 text-white w-100 frosted-glass-panel",
+    style: {
+      borderRadius: '10px'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
-    className: "p-4 p-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "p-3 p-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "text-primary fw-bold mb-2 fs-4 text-uppercase",
+    style: {
+      letterSpacing: '2px',
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
+    }
+  }, "The Prompt is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "fw-bold m-0",
     style: {
-      fontSize: 'clamp(1.5rem, 4vh, 2.8rem)',
+      fontSize: 'clamp(1.2rem, 3.5vh, 2.2rem)',
       textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
     }
-  }, getPromptText(currentPrompt))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, getPromptText(currentPrompt)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-100 my-2 px-3 flex-shrink-0",
     style: {
       maxWidth: '800px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-between align-items-center mb-2 px-1"
+    className: "d-flex justify-content-between align-items-center mb-1 px-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "fw-bold text-white fs-5",
     style: {
@@ -2637,41 +2503,44 @@ function CouchCastWritingTV(_ref) {
       height: '20px',
       backgroundColor: 'rgba(255,255,255,0.2)',
       backdropFilter: 'blur(5px)',
-      borderRadius: '10px'
+      borderRadius: '10px',
+      border: '1px solid rgba(255,255,255,0.2)'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 flex-grow-1 d-flex align-items-center justify-content-center my-3",
+    className: "w-100 flex-grow-1 overflow-auto custom-scrollbar my-2 px-3 pb-2 d-flex justify-content-center align-items-start",
     style: {
-      maxWidth: '1000px'
+      maxWidth: '1000px',
+      minHeight: 0
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "justify-content-center g-3 w-100"
+    className: "justify-content-center g-2 w-100 m-0"
   }, activeWriters.map(function (player) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       xs: 6,
       md: 3,
       key: player.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      className: "shadow-sm h-100 border-0 transition-all ".concat(player.hasSubmitted ? 'bg-success text-white' : 'text-white'),
+      className: "shadow-sm h-100 border-0 transition-all frosted-glass-panel ".concat(player.hasSubmitted ? 'bg-success bg-opacity-75 text-white' : 'text-white'),
       style: {
-        backgroundColor: player.hasSubmitted ? 'rgba(25, 135, 84, 0.85)' : 'rgba(255, 255, 255, 0.15)',
-        backdropFilter: 'blur(10px)',
         transform: player.hasSubmitted ? 'scale(1.03)' : 'scale(1)',
         transition: 'transform 0.2s ease-in-out, background-color 0.2s ease-in-out',
         borderRadius: '12px',
-        minHeight: '120px'
+        minHeight: '80px' // 2. Reduced from 110px
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
-      className: "d-flex flex-column align-items-center justify-content-center p-3 text-center"
+      className: "d-flex flex-column align-items-center justify-content-center p-2 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-      className: "fw-bold mb-3 text-truncate w-100",
+      className: "fw-bold mb-1 text-truncate w-100 fs-5",
       style: {
         textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
       }
     }, player.name), player.hasSubmitted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fs-3 m-0"
+      className: "fs-4 m-0",
+      style: {
+        filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))'
+      }
     }, "\u2705") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex align-items-center gap-2"
+      className: "d-flex align-items-center gap-2 mt-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       animation: "grow",
       variant: "light",
@@ -2690,6 +2559,7 @@ function CouchCastWritingTV(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeAdd)
@@ -2830,6 +2700,7 @@ var EmployeeAdd = /*#__PURE__*/function (_React$Component) {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeEdit)
@@ -3058,6 +2929,7 @@ var EmployeeEdit = /*#__PURE__*/function (_React$Component) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeFilter)
@@ -3094,6 +2966,7 @@ function EmployeeFilter() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeList)
@@ -3258,6 +3131,7 @@ var EmployeeList = /*#__PURE__*/function (_React$Component) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ EmployeeReport)
@@ -3281,6 +3155,7 @@ function EmployeeReport() {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardAdd)
@@ -3425,6 +3300,7 @@ function FlashcardAdd(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardEdit)
@@ -3593,6 +3469,7 @@ function FlashcardEdit(_ref) {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardGame)
@@ -3955,6 +3832,7 @@ function FlashcardGame() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Flashcards)
@@ -4151,6 +4029,7 @@ function Flashcards() {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FlashcardsList)
@@ -4554,6 +4433,7 @@ function FlashcardsList() {
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BarHome)
@@ -4675,6 +4555,7 @@ function BarHome() {
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Home)
@@ -4926,6 +4807,7 @@ function Home() {
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ UniversalJoinScreen)
@@ -5131,6 +5013,7 @@ function UniversalJoinScreen() {
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2CreateScreen)
@@ -5292,6 +5175,7 @@ function Prompt2CreateScreen() {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2GameManager)
@@ -5557,6 +5441,7 @@ function Prompt2GameManager() {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2JudgingScreen)
@@ -5630,6 +5515,7 @@ function Prompt2JudgingScreen(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2Lobby)
@@ -5749,6 +5635,7 @@ function Prompt2Lobby(_ref) {
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2PromptSelectionScreen)
@@ -5951,6 +5838,7 @@ function Prompt2PromptSelectionScreen(_ref) {
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2ResponseSelectionScreen)
@@ -6189,6 +6077,7 @@ function Prompt2ResponseSelectionScreen(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ RoundWinnerScreen)
@@ -6242,6 +6131,7 @@ function RoundWinnerScreen(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2RulesScreen)
@@ -6301,6 +6191,7 @@ function Prompt2RulesScreen(_ref) {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Prompt2Scoreboard)
@@ -6371,6 +6262,7 @@ function Prompt2Scoreboard(_ref) {
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TicTacToeLobby)
@@ -6465,6 +6357,7 @@ function TicTacToeLobby(_ref) {
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TicTacToeCreateScreen),
@@ -6612,6 +6505,7 @@ function TicTacToeCreateScreen() {
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TictactoeGameScreen)
@@ -6854,6 +6748,7 @@ function TictactoeGameScreen(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TictactoeManager)
@@ -7051,6 +6946,7 @@ function TictactoeManager() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ QuestionScreen)
@@ -7144,6 +7040,7 @@ function QuestionScreen(_ref) {
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ RulesScreen)
@@ -7207,6 +7104,7 @@ function RulesScreen(_ref) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ScoreboardScreen)
@@ -7297,6 +7195,7 @@ function ScoreboardScreen(_ref) {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaCreateScreen),
@@ -7458,6 +7357,7 @@ function TriviaCreateScreen() {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ GameOverScreen)
@@ -7559,6 +7459,7 @@ function GameOverScreen(_ref) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaManager)
@@ -7740,6 +7641,7 @@ function TriviaManager() {
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TriviaWaitingRoom)
@@ -7858,6 +7760,7 @@ function TriviaWaitingRoom(_ref) {
   \********************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7871,7 +7774,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; /* 👈 Glues the container to the screen */\n  top: 0;\n  left: 0;\n  width: 100%; /* 👈 Use this one! */\n  height: 100dvh; /* 👈 Strict height using dynamic viewport */\n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; /* 👈 Kills all exterior scrolling */\n  display: flex; /* 👈 Forces children to respect the height limit */\n  flex-direction: column;\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"AAAA,mCAAmC;AACnC;EACE,aAAa;EACb,uBAAuB;EACvB,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,sBAAsB,EAAE,qEAAqE;;EAE7F,oCAAoC;EACpC,8BAA8B;;EAE9B,kEAAkE;EAClE,+BAA+B;AACjC;;AAEA,6BAA6B;AAC7B;EACE,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,kBAAkB;EAClB,uBAAuB;EACvB,uDAAuD;AACzD;;AAEA,+BAA+B;AAC/B;EACE,oCAAoC;EACpC,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,uBAAuB;EACvB,8BAA8B;EAC9B,iCAAiC;EACjC,gBAAgB;EAChB,qBAAqB;EACrB,yBAAyB;EACzB,0BAA0B;AAC5B;;AAEA,4BAA4B;AAC5B;EACE,cAAc;AAChB;;AAEA,uDAAuD;AACvD,uDAAuD;AACvD,uDAAuD;;AAEvD;EACE,uBAAuB;EACvB,6BAA6B;EAC7B,WAAW;AACb;;AAEA,0DAA0D;AAC1D;EACE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,0CAA0C,EAAE,UAAU,EAAE;EAC/D,OAAO,0CAA0C,EAAE,UAAU,EAAE;EAC/D,OAAO,4CAA4C,EAAE,UAAU,EAAE;EACjE,OAAO,4CAA4C,EAAE,UAAU,EAAE;AACnE;;AAEA,+DAA+D;AAC/D;EACE,OAAO,iCAAiC,EAAE,UAAU,EAAE;EACtD,OAAO,+BAA+B,EAAE,UAAU,EAAE;EACpD,OAAO,+BAA+B,EAAE,UAAU,EAAE;EACpD,OAAO,kCAAkC,EAAE,UAAU,EAAE;EACvD,OAAO,kCAAkC,EAAE,UAAU,EAAE;AACzD;;AAEA,2CAA2C;AAC3C;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,kDAAkD;AACpD;;AAEA,0CAA0C;AAC1C;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,kDAAkD;AACpD;;AAEA,qCAAqC;AACrC,sCAAsC;AACtC,qCAAqC;;AAErC,wDAAwD;AACxD;EACE,eAAe,EAAE,yCAAyC;EAC1D,MAAM;EACN,OAAO;EACP,WAAW,EAAE,qBAAqB;EAClC,cAAc,EAAE,4CAA4C;EAC5D,yBAAyB;EACzB,aAAa;EACb,gBAAgB,EAAE,oCAAoC;EACtD,aAAa,EAAE,mDAAmD;EAClE,sBAAsB;EACtB,wEAAwE;EACxE,sBAAsB;EACtB,2BAA2B;EAC3B,4BAA4B;AAC9B;;AAEA,yDAAyD;AACzD;EACE,gBAAgB;EAChB,MAAM;EACN,aAAa,EAAE,sCAAsC;EACrD,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;AAClB;;AAEA,qCAAqC;AACrC,qCAAqC;AACrC,qCAAqC;;AAErC;EACE,KAAK,2BAA2B,EAAE;EAClC,MAAM,6BAA6B,EAAE;EACrC,OAAO,2BAA2B,EAAE;AACtC;;AAEA,uDAAuD;AACvD;EACE,kBAAkB;EAClB,YAAY,EAAE,8BAA8B;EAC5C,qBAAqB;EACrB,sBAAsB;EACtB,WAAW;EACX,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,4CAA4C;EAC5C,UAAU,EAAE,iCAAiC;AAC/C;AACA,0EAA0E;AAC1E;EACE,WAAW;EACX,kBAAkB;EAClB,QAAQ,EAAE,kCAAkC;EAC5C,sBAAsB,EAAE,4BAA4B;EACpD,YAAY,EAAE,sDAAsD;;EAEpE,2BAA2B;EAC3B,uEAAuE;EACvE,0BAA0B;EAC1B,uCAAuC;;EAEvC,mFAAmF;EACnF;;6BAE2B;EAC3B,2BAA2B;EAC3B,uBAAuB;;EAEvB,WAAW,EAAE,qCAAqC;EAClD,oBAAoB,EAAE,8CAA8C;AACtE;;AAEA;EACE,UAAU;AACZ;AACA;EACE,yBAAyB;EACzB,kBAAkB;AACpB;;AAEA;EACE,SAAS;EACT,WAAW;EACX,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,YAAY;EACZ,SAAS;EACT,iCAAiC;EACjC,gBAAgB;AAClB;;AAEA;;;;;;;;;;;;;;;;GAgBG;;AAEH;AACA,4BAA4B;EAC1B,uCAAuC;EACvC,2CAA2C;EAC3C,mBAAmB;;EAEnB,8BAA8B;EAC9B,kBAAkB;EAClB,YAAY;EACZ,iBAAiB;EACjB,qBAAqB,EAAE,iCAAiC;EACxD,cAAc;AAChB;;;AAGA,iCAAiC;AACjC;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,uCAAuC;EACvC,YAAY;EACZ,cAAc,EAAE,qCAAqC;EACrD,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,aAAa;EACb,kBAAkB;EAClB,0BAA0B;AAC5B;;AAEA,4BAA4B;AAC5B;EACE,WAAW;EACX,YAAY;EACZ,WAAW;EACX,mBAAmB;EACnB,8CAA8C;EAC9C,6CAA6C;AAC/C;;AAEA,iDAAiD;AACjD;EACE,KAAK,uBAAuB,EAAE;EAC9B,WAAW,yBAAyB,EAAE,EAAE,yCAAyC;EACjF,OAAO,uBAAuB,EAAE;AAClC","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; /* 👈 Glues the container to the screen */\n  top: 0;\n  left: 0;\n  width: 100%; /* 👈 Use this one! */\n  height: 100dvh; /* 👈 Strict height using dynamic viewport */\n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; /* 👈 Kills all exterior scrolling */\n  display: flex; /* 👈 Forces children to respect the height limit */\n  flex-direction: column;\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n  \n  /* Background */\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 56px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 56px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: #014eb6 !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n  \n  /* Background */\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7884,6 +7787,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7936,6 +7840,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "eaadce188e228c1070a4.png";
 
 /***/ }),
@@ -7946,6 +7851,7 @@ module.exports = __webpack_require__.p + "eaadce188e228c1070a4.png";
   \**************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "f10f724602e4f1f3630e.png";
 
 /***/ }),
@@ -7956,6 +7862,7 @@ module.exports = __webpack_require__.p + "f10f724602e4f1f3630e.png";
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
 
 /***/ }),
@@ -7966,6 +7873,7 @@ module.exports = __webpack_require__.p + "7f66e46716ec6b0af16f.jpg";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "dad1b0ee3a5c252adfc7.png";
 
 /***/ }),
@@ -7976,6 +7884,7 @@ module.exports = __webpack_require__.p + "dad1b0ee3a5c252adfc7.png";
   \*************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "bd8002f46102dac80ef0.gif";
 
 /***/ }),
@@ -7986,6 +7895,7 @@ module.exports = __webpack_require__.p + "bd8002f46102dac80ef0.gif";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
 
 /***/ }),
@@ -7996,6 +7906,7 @@ module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
 
 /***/ }),
@@ -8006,6 +7917,7 @@ module.exports = __webpack_require__.p + "04cb48e407c1ac01c31f.jpg";
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
 
 /***/ }),
@@ -8016,6 +7928,7 @@ module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
   \*************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
 
 /***/ }),
@@ -8026,6 +7939,7 @@ module.exports = __webpack_require__.p + "d989b26bd9bf9b335ac8.jpg";
   \***************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "funnyNames": () => (/* binding */ funnyNames),
@@ -8055,6 +7969,7 @@ function getRandomFunnyName() {
   \**********************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ useWakeLock)
@@ -8151,6 +8066,7 @@ function useWakeLock() {
   \***********************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "couchCastSocket": () => (/* binding */ couchCastSocket),
