@@ -1546,7 +1546,7 @@ function CouchCastPromptSelection(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
       className: "fullscreen-gameplay-header text-center mt-2 mb-4 flex-shrink-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-warning"
+      className: "text-primary"
     }, judgeName), " is picking the poison..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "d-flex flex-row justify-content-center align-items-stretch w-100 gap-3 gap-md-4 px-2 px-md-5",
       style: {
@@ -1562,10 +1562,10 @@ function CouchCastPromptSelection(_ref) {
           flex: '1 1 0',
           transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
           transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
-          opacity: isHighlighted ? 1 : 0.7
+          opacity: isHighlighted ? 1 : 0.6
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "h-100 w-100 ".concat(isHighlighted ? 'shining-border-wrapper' : '')
+        className: "h-100 w-100 shining-border-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
         className: "fullscreen-gameplay-card h-100 w-100 border-0",
         style: {

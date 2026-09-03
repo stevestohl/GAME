@@ -91,7 +91,7 @@ export default function CouchCastPromptSelection({
                     
                     {/* Header */}
                     <h2 className="fullscreen-gameplay-header text-center mt-2 mb-4 flex-shrink-0">
-                        <span className="text-warning">{judgeName}</span> is picking the poison...
+                        <span className="text-primary">{judgeName}</span> is picking the poison...
                     </h2>
                     
                     {/* The 3 Juggling Cards */}
@@ -106,10 +106,11 @@ export default function CouchCastPromptSelection({
                                         flex: '1 1 0', 
                                         transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
                                         transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
-                                        opacity: isHighlighted ? 1 : 0.7
+                                        opacity: isHighlighted ? 1 : 0.6
                                     }}
                                 >
-                                    <div className={`h-100 w-100 ${isHighlighted ? 'shining-border-wrapper' : ''}`}>
+                                    {/* Wrapper is now always present to maintain strict layout boundaries */}
+                                    <div className="h-100 w-100 shining-border-wrapper">
                                         <Card 
                                             className="fullscreen-gameplay-card h-100 w-100 border-0" 
                                             style={{ 
