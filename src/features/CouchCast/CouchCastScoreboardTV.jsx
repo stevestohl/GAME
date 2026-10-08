@@ -5,9 +5,10 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
     const [isPortrait, setIsPortrait] = useState(false);
     
     // Filter out the Caster and sort the rest by score (highest to lowest)
-    const rankedPlayers = players
-        .filter(p => !p.isCaster)
-        .sort((a, b) => b.score - a.score);
+    // To this (add the fallback):
+    const rankedPlayers = (players || [])
+        .filter(p => !p?.isCaster)
+        .sort((a, b) => (b?.score || 0) - (a?.score || 0));
 
     const leader = rankedPlayers[0];
 

@@ -50,7 +50,7 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
     };
 
     // Filter out the TV (Caster) and the Judge (Host) so we only map the writers
-    const activeWriters = players.filter(p => p.id !== hostId && !p.isCaster);
+    const activeWriters = (players || []).filter(p => p?.id !== hostId && !p?.isCaster)
 
     return (
         <div className="fullscreen-gameplay-container">
