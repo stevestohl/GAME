@@ -101,8 +101,9 @@ export default function Home() {
     // Join button: the picture fills the whole button edge to edge
     const imgBtnClass = 'glass-btn w-100 h-100 p-0 overflow-hidden shadow-sm border-0';
 
-    // Game buttons: sized by their own width so they stay square (no h-100)
-    const gameImgBtnClass = 'glass-btn w-100 p-0 overflow-hidden shadow-sm border-0 align-self-start';
+    // Game buttons: sized by their own width so they stay square (no h-100),
+    // and vertically centered next to the description
+    const gameImgBtnClass = 'glass-btn w-100 p-0 overflow-hidden shadow-sm border-0 align-self-center';
     const squareStyle = { aspectRatio: '1 / 1' };
 
     const imgStyle = { objectFit: 'cover', display: 'block' };

@@ -5297,8 +5297,9 @@ function Home() {
   // Join button: the picture fills the whole button edge to edge
   var imgBtnClass = 'glass-btn w-100 h-100 p-0 overflow-hidden shadow-sm border-0';
 
-  // Game buttons: sized by their own width so they stay square (no h-100)
-  var gameImgBtnClass = 'glass-btn w-100 p-0 overflow-hidden shadow-sm border-0 align-self-start';
+  // Game buttons: sized by their own width so they stay square (no h-100),
+  // and vertically centered next to the description
+  var gameImgBtnClass = 'glass-btn w-100 p-0 overflow-hidden shadow-sm border-0 align-self-center';
   var squareStyle = {
     aspectRatio: '1 / 1'
   };
