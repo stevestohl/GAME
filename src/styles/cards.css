@@ -8,10 +8,10 @@
   box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */
   
   /* Fallback for standard viewports */
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 64px);
   
   /* Modern dynamic viewport height (accounts for mobile URL bars) */
-  min-height: calc(100dvh - 56px);
+  min-height: calc(100dvh - 64px);
 }
 
 /* Standardized Card Layout */
@@ -26,7 +26,7 @@
 
 /* Custom Card Header styling */
 .main-card-header {
-  background-color: #014eb6 !important;
+  background-color: var(--gt-blue-600) !important;
   color: #f1f2f5 !important;
   display: flex;
   align-items: center;
@@ -288,3 +288,416 @@
 }
 
 
+/* ✨ Glass shimmer for game buttons */
+.glass-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Static gloss: brighter top half, like light hitting glass */
+.glass-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.08) 48%,
+        rgba(255, 255, 255, 0) 52%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Moving shimmer band */
+.glass-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(25deg);
+    animation: glass-shimmer 4s ease-in-out infinite;
+    animation-delay: var(--shimmer-delay, 0s);
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes glass-shimmer {
+    0%   { left: -75%; }
+    30%  { left: 130%; }   /* sweep takes ~1.2s… */
+    100% { left: 130%; }   /* …then rests until the next pass */
+}
+
+/* Speed up the sweep on hover */
+.glass-btn:hover::after {
+    animation-duration: 1.5s;
+}
+
+/* No shimmer on disabled buttons */
+.glass-btn:disabled::after {
+    animation: none;
+    display: none;
+}
+
+/* Respect users who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+    .glass-btn::after { animation: none; display: none; }
+}
+
+/* =========================================================
+   GAME TEMPLE THEME
+   Palette is pulled from the "Join Room" button blue.
+   ========================================================= */
+:root {
+    --gt-blue-200: #b9c7f6;
+    --gt-blue-300: #93a7f0;
+    --gt-blue-400: #6f88e6;
+    --gt-blue-500: #4a66d8;
+    --gt-blue-600: #3a53c4;
+    --gt-blue-800: #22348f;
+    --gt-navy:     #141f57;
+    --gt-ice:      #bfe6ff;
+    --gt-gold:     #ffd36e;
+}
+
+/* =========================================================
+   🌌 ANIMATED BACKGROUND
+   ========================================================= */
+.gt-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;               /* sits behind everything */
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);
+}
+
+/* Soft drifting light */
+.gt-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+    will-change: transform;
+}
+.gt-blob.b1 {
+    width: 55vmax; height: 55vmax;
+    top: -20vmax; left: -15vmax;
+    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);
+    animation: gt-blob-a 46s ease-in-out infinite alternate;
+}
+.gt-blob.b2 {
+    width: 45vmax; height: 45vmax;
+    bottom: -18vmax; right: -12vmax;
+    background: radial-gradient(circle, var(--gt-ice), transparent 65%);
+    opacity: 0.35;
+    animation: gt-blob-b 58s ease-in-out infinite alternate;
+}
+.gt-blob.b3 {
+    width: 35vmax; height: 35vmax;
+    top: 35%; left: 40%;
+    background: radial-gradient(circle, #7f6cf0, transparent 65%);
+    opacity: 0.3;
+    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;
+}
+@keyframes gt-blob-a {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(12vw, 10vh) scale(1.15); }
+}
+@keyframes gt-blob-b {
+    0%   { transform: translate(0, 0) scale(1.1); }
+    100% { transform: translate(-14vw, -8vh) scale(0.95); }
+}
+
+/* Floating outlined icons */
+.gt-floater {
+    position: absolute;
+    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;
+    will-change: transform;
+}
+.gt-floater-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: none;
+    stroke: var(--gt-ice);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.22;
+    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));
+}
+.gt-floater-svg .gt-icon-dot {
+    fill: var(--gt-ice);
+    stroke: none;
+}
+@keyframes gt-drift {
+    0%   { transform: translate(0, 0)        rotate(var(--rot)); }
+    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }
+    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }
+}
+
+/* Darken the edges slightly so the white card pops */
+.gt-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 16, 50, 0.45) 100%);
+}
+
+/* =========================================================
+   🧭 NAV BAR
+   ========================================================= */
+.gt-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);
+}
+.gt-nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    height: 64px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.gt-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+}
+.gt-brand-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);
+}
+.gt-brand-mark .gt-nav-icon {
+    width: 22px;
+    height: 22px;
+    stroke: #fff;
+}
+.gt-brand-text {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    color: #fff;
+}
+.gt-brand-text span {
+    font-weight: 400;
+    margin-left: 2px;
+    color: var(--gt-blue-200);
+}
+
+.gt-nav-pills {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(10, 16, 50, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.gt-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+}
+.gt-pill:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+.gt-pill.active {
+    color: #fff;
+    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);
+}
+.gt-nav-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* Small phones: icons only in the pills */
+@media (max-width: 420px) {
+    .gt-pill-label { display: none; }
+    .gt-pill { padding: 8px 12px; }
+}
+
+/* =========================================================
+   🏛️ HERO LOGO
+   ========================================================= */
+.gt-hero {
+    max-width: 100%;
+    margin: 0 auto;
+    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));
+}
+.gt-hero svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gt-stop-top    { stop-color: var(--gt-blue-300); }
+.gt-stop-bottom { stop-color: var(--gt-blue-500); }
+.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }
+.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }
+
+.gt-hero-bg    { fill: url(#gtHeroBg); }
+.gt-hero-gloss { fill: url(#gtHeroGloss); }
+.gt-hero-sweep {
+    fill: rgba(255, 255, 255, 0.28);
+    transform: rotate(20deg);
+    animation: gt-sweep 6s ease-in-out infinite;
+}
+@keyframes gt-sweep {
+    0%, 55% { transform: translateX(0) rotate(20deg); }
+    80%, 100% { transform: translateX(420px) rotate(20deg); }
+}
+
+.gt-line {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3.2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+.gt-fill-white { fill: #fff; }
+
+/* Spinning star in the roof */
+.gt-medallion {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: gt-spin 9s linear infinite;
+}
+@keyframes gt-spin { to { transform: rotate(360deg); } }
+
+/* Dice */
+.gt-die-face { fill: #fff; }
+.gt-pip      { fill: var(--gt-blue-500); }
+.gt-die {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+}
+.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }
+.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }
+@keyframes gt-roll {
+    0%   { transform: translateY(0) rotate(0deg); }
+    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */
+    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */
+    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */
+    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */
+    74%, 100% { transform: translateY(0) rotate(-180deg); }
+}
+.gt-die-shadow {
+    fill: rgba(20, 31, 87, 0.35);
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }
+.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }
+@keyframes gt-shadow {
+    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }
+    35%                    { transform: scale(0.5); opacity: 0.4; }
+    66%                    { transform: scale(0.85); opacity: 0.8; }
+}
+
+/* Floating card */
+.gt-card {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: gt-wiggle 4s ease-in-out infinite;
+}
+.gt-card-face { fill: #fff; }
+.gt-heart     { fill: #ff6b8a; }
+@keyframes gt-wiggle {
+    0%, 100% { transform: translateY(0) rotate(10deg); }
+    50%      { transform: translateY(-7px) rotate(-6deg); }
+}
+
+/* Floating pawn */
+.gt-pawn {
+    animation: gt-bob 3.6s ease-in-out 0.6s infinite;
+}
+@keyframes gt-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+/* Sparkles */
+.gt-sparkle {
+    fill: #fff;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: gt-twinkle 2.4s ease-in-out infinite;
+}
+.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }
+.gt-sparkle.k3 { animation-delay: 1.1s; }
+.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }
+.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }
+@keyframes gt-twinkle {
+    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }
+    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }
+}
+
+/* Confetti */
+.gt-confetti {
+    fill: rgba(255, 255, 255, 0.85);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: gt-rise 5s linear infinite;
+}
+.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }
+.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }
+.gt-confetti.c4 { animation-delay: 2.5s; }
+.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }
+.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }
+@keyframes gt-rise {
+    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }
+}
+
+/* =========================================================
+   Respect "reduce motion"
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    .gt-bg *,
+    .gt-hero * {
+        animation: none !important;
+    }
+}

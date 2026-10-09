@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner, Toast, ToastContainer } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
 import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
+import prompt2Img from '../../assets/logos/Prompt_2_Button.jpeg';
+import tttImg from '../../assets/logos/Tic_Tac_Toe_Button.jpeg';
+import triviaImg from '../../assets/logos/Trivia_Button.jpeg';
+import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
+import HeroLogo from './HeroLogo.jsx';
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -90,7 +95,11 @@ export default function Home() {
     }, []);
 
     // Shared button styling: fills the full height of its card row
-    const gameBtnClass = 'fw-bold w-100 h-100 py-3 shadow-sm text-white d-flex flex-column align-items-center justify-content-center';
+    const gameBtnClass = 'glass-btn fw-bold w-100 h-100 py-3 shadow-sm text-white d-flex flex-column align-items-center justify-content-center';
+
+    // Image buttons: the picture fills the whole button edge to edge
+    const imgBtnClass = 'glass-btn w-100 h-100 p-0 overflow-hidden shadow-sm border-0';
+    const imgStyle = { objectFit: 'cover', display: 'block' };
 
     return (
         <div className="page-container">
@@ -123,12 +132,8 @@ export default function Home() {
                 </Card.Header>
 
                 <Card.Body className='p-3'>
-                    <div className="my-1 bg-white p-2 rounded-3 d-inline-block shadow-lg">
-                        <img
-                            className='temple-logo'
-                            src="https://game-temple.org/Game_Temple_Animated.gif?v=2"
-                            alt="Animated Game-Temple Logo"
-                        />
+                    <div className="my-1">
+                        <HeroLogo size={260} />
                     </div>
 
                     <Row className="g-2 mt-2">
@@ -136,11 +141,13 @@ export default function Home() {
                         <Col xs={12}>
                             <Button
                                 variant='primary'
-                                className='fw-bold w-100 py-2 shadow-sm'
+                                className={imgBtnClass}
                                 disabled={isCreatingRoom}
                                 onClick={() => navigate('/join')}
+                                aria-label="Join a room"
+                                style={{ '--shimmer-delay': '0s' }}
                             >
-                                Join a Room
+                                <img src={joinImg} alt="Join a Room" className="w-100 h-100" style={imgStyle} />
                             </Button>
                         </Col>
 
@@ -164,23 +171,75 @@ export default function Home() {
                                 >
                                     <Button
                                         variant="primary"
-                                        className="w-100 h-100 p-0 overflow-hidden shadow-sm border-0"
+                                        className={imgBtnClass}
                                         disabled={isCreatingRoom}
                                         onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
                                         aria-label="Create a Couch Cast room"
+                                        style={{ '--shimmer-delay': '0.4s' }}
                                     >
-                                        <img
-                                            src={couchCastImg}
-                                            alt="Couch Cast"
-                                            className="w-100 h-100"
-                                            style={{ objectFit: 'cover', display: 'block' }}
-                                        />
+                                        <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={imgStyle} />
                                     </Button>
                                 </GameRow>
 
-                                {/* 🥷 THE BURGLAR ZONE — button left, text right */}
+                                {/* ❔ Trivia — button left, text right */}
                                 <GameRow
                                     flip
+                                    title="Trivia"
+                                    players="2+ players"
+                                    description="Put your knowledge to the test. Everyone answers the same questions on their own device, and the best scores rise to the top of the leaderboard."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={imgBtnClass}
+                                        disabled={isCreatingRoom}
+                                        onClick={() => navigate('/trivia-create')}
+                                        aria-label="Create a Trivia room"
+                                        style={{ '--shimmer-delay': '0.8s' }}
+                                    >
+                                        <img src={triviaImg} alt="Trivia" className="w-100 h-100" style={imgStyle} />
+                                    </Button>
+                                </GameRow>
+
+                                {/* Prompt 2 — text left, button right */}
+                                <GameRow
+                                    title="Prompt 2"
+                                    players="3+ players"
+                                    description="All the fun of Couch Cast, no TV required. A rotating judge reads a prompt, everyone plays their best card, and the whole game runs right on your phones."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={imgBtnClass}
+                                        disabled={isCreatingRoom}
+                                        onClick={() => navigate('/prompt2-create')}
+                                        aria-label="Create a Prompt 2 room"
+                                        style={{ '--shimmer-delay': '1.2s' }}
+                                    >
+                                        <img src={prompt2Img} alt="Prompt 2" className="w-100 h-100" style={imgStyle} />
+                                    </Button>
+                                </GameRow>
+
+                                {/* ❌⭕ Tic-Tac-Toe — button left, text right */}
+                                <GameRow
+                                    flip
+                                    title="Tic-Tac-Toe"
+                                    players="2 players"
+                                    description="The timeless classic, head to head. Take turns on your own devices — first to get three in a row wins."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={imgBtnClass}
+                                        disabled={isCreatingRoom}
+                                        onClick={() => navigate('/tictactoe-create')}
+                                        aria-label="Create a Tic-Tac-Toe room"
+                                        style={{ '--shimmer-delay': '1.6s' }}
+                                    >
+                                        <img src={tttImg} alt="Tic-Tac-Toe" className="w-100 h-100" style={imgStyle} />
+                                    </Button>
+                                </GameRow>
+
+                                {/* 🥷 THE BURGLAR ZONE — temporarily disabled */}
+                                {/*
+                                <GameRow
                                     title="???"
                                     description="A brand-new game is waiting right here... if you can grab it fast enough."
                                 >
@@ -193,7 +252,7 @@ export default function Home() {
                                     </div>
 
                                     {!isStolen ? (
-                                        <Button variant="primary" className={gameBtnClass}>
+                                        <Button variant="primary" className={gameBtnClass} style={{ '--shimmer-delay': '1.6s' }}>
                                             Button
                                             <span>🔘🔘</span>
                                         </Button>
@@ -204,58 +263,7 @@ export default function Home() {
                                         </div>
                                     )}
                                 </GameRow>
-
-                                {/* ❔ Trivia — text left, button right */}
-                                <GameRow
-                                    title="Trivia"
-                                    players="2+ players"
-                                    description="Put your knowledge to the test. Everyone answers the same questions on their own device, and the best scores rise to the top of the leaderboard."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameBtnClass}
-                                        disabled={isCreatingRoom}
-                                        onClick={() => navigate('/trivia-create')}
-                                    >
-                                        Trivia
-                                        <span>❔❔</span>
-                                    </Button>
-                                </GameRow>
-
-                                {/* Prompt 2 — button left, text right */}
-                                <GameRow
-                                    flip
-                                    title="Prompt 2"
-                                    players="3+ players"
-                                    description="All the fun of Couch Cast, no TV required. A rotating judge reads a prompt, everyone plays their best card, and the whole game runs right on your phones."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameBtnClass}
-                                        disabled={isCreatingRoom}
-                                        onClick={() => navigate('/prompt2-create')}
-                                    >
-                                        Prompt
-                                        <span>2</span>
-                                    </Button>
-                                </GameRow>
-
-                                {/* ❌⭕ Tic-Tac-Toe — text left, button right (last) */}
-                                <GameRow
-                                    title="Tic-Tac-Toe"
-                                    players="2 players"
-                                    description="The timeless classic, head to head. Take turns on your own devices — first to get three in a row wins."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameBtnClass}
-                                        disabled={isCreatingRoom}
-                                        onClick={() => navigate('/tictactoe-create')}
-                                    >
-                                        Tic-Tac-Toe
-                                        <span>X O</span>
-                                    </Button>
-                                </GameRow>
+                                */}
                             </Row>
                         </Col>
                     </Row>
