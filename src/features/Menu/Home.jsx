@@ -17,7 +17,7 @@ import Prompt2CreateScreen from '../Prompt2/Prompt2CreateButton.jsx';
 import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
 /**
- * One game "row": a light card with a description on one side and a full-height
+ * One game "row": a light card with a description on one side and a square
  * button on the other. `flip` swaps the sides so rows alternate down the page.
  */
 function GameRow({ title, players, description, flip, children }) {
@@ -40,8 +40,9 @@ function GameRow({ title, players, description, flip, children }) {
     return (
         <Col xs={12}>
             <Card className="bg-light border-0 shadow-sm">
-                <Card.Body className="p-2">
-                    <Row className="g-2 align-items-stretch">
+                {/* Tighter padding inside each game card */}
+                <Card.Body className="p-1">
+                    <Row className="g-1 align-items-stretch">
                         {flip ? <>{action}{info}</> : <>{info}{action}</>}
                     </Row>
                 </Card.Body>
@@ -97,8 +98,13 @@ export default function Home() {
     // Shared button styling: fills the full height of its card row
     const gameBtnClass = 'glass-btn fw-bold w-100 h-100 py-3 shadow-sm text-white d-flex flex-column align-items-center justify-content-center';
 
-    // Image buttons: the picture fills the whole button edge to edge
+    // Join button: the picture fills the whole button edge to edge
     const imgBtnClass = 'glass-btn w-100 h-100 p-0 overflow-hidden shadow-sm border-0';
+
+    // Game buttons: sized by their own width so they stay square (no h-100)
+    const gameImgBtnClass = 'glass-btn w-100 p-0 overflow-hidden shadow-sm border-0 align-self-start';
+    const squareStyle = { aspectRatio: '1 / 1' };
+
     const imgStyle = { objectFit: 'cover', display: 'block' };
 
     return (
@@ -131,7 +137,8 @@ export default function Home() {
                     GAME-TEMPLE.ORG
                 </Card.Header>
 
-                <Card.Body className='p-3'>
+                {/* Tighter padding between the main white card and the inner content */}
+                <Card.Body className='p-2'>
                     <div className="my-1">
                         <HeroLogo size={260} />
                     </div>
@@ -171,11 +178,11 @@ export default function Home() {
                                 >
                                     <Button
                                         variant="primary"
-                                        className={imgBtnClass}
+                                        className={gameImgBtnClass}
                                         disabled={isCreatingRoom}
                                         onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
                                         aria-label="Create a Couch Cast room"
-                                        style={{ '--shimmer-delay': '0.4s' }}
+                                        style={{ '--shimmer-delay': '0.4s', ...squareStyle }}
                                     >
                                         <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={imgStyle} />
                                     </Button>
@@ -190,11 +197,11 @@ export default function Home() {
                                 >
                                     <Button
                                         variant="primary"
-                                        className={imgBtnClass}
+                                        className={gameImgBtnClass}
                                         disabled={isCreatingRoom}
                                         onClick={() => navigate('/trivia-create')}
                                         aria-label="Create a Trivia room"
-                                        style={{ '--shimmer-delay': '0.8s' }}
+                                        style={{ '--shimmer-delay': '0.8s', ...squareStyle }}
                                     >
                                         <img src={triviaImg} alt="Trivia" className="w-100 h-100" style={imgStyle} />
                                     </Button>
@@ -208,11 +215,11 @@ export default function Home() {
                                 >
                                     <Button
                                         variant="primary"
-                                        className={imgBtnClass}
+                                        className={gameImgBtnClass}
                                         disabled={isCreatingRoom}
                                         onClick={() => navigate('/prompt2-create')}
                                         aria-label="Create a Prompt 2 room"
-                                        style={{ '--shimmer-delay': '1.2s' }}
+                                        style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
                                     >
                                         <img src={prompt2Img} alt="Prompt 2" className="w-100 h-100" style={imgStyle} />
                                     </Button>
@@ -227,11 +234,11 @@ export default function Home() {
                                 >
                                     <Button
                                         variant="primary"
-                                        className={imgBtnClass}
+                                        className={gameImgBtnClass}
                                         disabled={isCreatingRoom}
                                         onClick={() => navigate('/tictactoe-create')}
                                         aria-label="Create a Tic-Tac-Toe room"
-                                        style={{ '--shimmer-delay': '1.6s' }}
+                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
                                     >
                                         <img src={tttImg} alt="Tic-Tac-Toe" className="w-100 h-100" style={imgStyle} />
                                     </Button>

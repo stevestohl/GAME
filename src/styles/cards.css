@@ -371,7 +371,11 @@
 }
 
 /* =========================================================
-   🌌 ANIMATED BACKGROUND
+   🌌 ANIMATED BACKGROUND  (2x speed)
+   Replace the existing "ANIMATED BACKGROUND" section with this.
+   Only the animation durations changed:
+     blobs:     46s/58s/64s  ->  23s/29s/32s
+     floaters:  var(--dur, 40s)  ->  half of whatever --dur is
    ========================================================= */
 .gt-bg {
     position: fixed;
@@ -395,21 +399,21 @@
     width: 55vmax; height: 55vmax;
     top: -20vmax; left: -15vmax;
     background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);
-    animation: gt-blob-a 46s ease-in-out infinite alternate;
+    animation: gt-blob-a 23s ease-in-out infinite alternate;
 }
 .gt-blob.b2 {
     width: 45vmax; height: 45vmax;
     bottom: -18vmax; right: -12vmax;
     background: radial-gradient(circle, var(--gt-ice), transparent 65%);
     opacity: 0.35;
-    animation: gt-blob-b 58s ease-in-out infinite alternate;
+    animation: gt-blob-b 29s ease-in-out infinite alternate;
 }
 .gt-blob.b3 {
     width: 35vmax; height: 35vmax;
     top: 35%; left: 40%;
     background: radial-gradient(circle, #7f6cf0, transparent 65%);
     opacity: 0.3;
-    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;
+    animation: gt-blob-a 32s ease-in-out infinite alternate-reverse;
 }
 @keyframes gt-blob-a {
     0%   { transform: translate(0, 0) scale(1); }
@@ -420,10 +424,11 @@
     100% { transform: translate(-14vw, -8vh) scale(0.95); }
 }
 
-/* Floating outlined icons */
+/* Floating outlined icons
+   calc(... / 2) halves the duration even if a --dur is set inline on each icon */
 .gt-floater {
     position: absolute;
-    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;
+    animation: gt-drift calc(var(--dur, 40s) / 2) ease-in-out var(--delay, 0s) infinite alternate;
     will-change: transform;
 }
 .gt-floater-svg {
