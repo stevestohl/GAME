@@ -99,6 +99,49 @@
   animation: burglarHeistRTL 3s ease-in-out forwards;
 }
 
+/* Home Page Burglar #2: steals the tile behind "OR / Create New Room" */
+.burglar-divider {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+}
+.burglar-divider.active {
+  animation: burglarHeistDivider 3s ease-in-out forwards;
+}
+/* Shorter run than the others so he stays on the white card */
+@keyframes burglarHeistDivider {
+  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }
+  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }
+  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }
+  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }
+  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }
+  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }
+  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }
+}
+
+/* 🎁 The loot: blue tile behind "OR / Create New Room" */
+.gt-loot {
+  display: inline-block;
+  line-height: 1.25;
+  padding: 0.45rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  color: #fff;
+  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+/* After the heist: just a dashed outline where the tile used to be */
+.gt-loot.stolen {
+  color: #aaa;
+  background: transparent;
+  box-shadow: none;
+  border: 2px dashed #ccc;
+}
+
 /* -------------------------------- */
 /* 📱 STICKY SCROLL HACK FOR MOBILE  */
 /* -------------------------------- */
@@ -371,11 +414,7 @@
 }
 
 /* =========================================================
-   🌌 ANIMATED BACKGROUND  (2x speed)
-   Replace the existing "ANIMATED BACKGROUND" section with this.
-   Only the animation durations changed:
-     blobs:     46s/58s/64s  ->  23s/29s/32s
-     floaters:  var(--dur, 40s)  ->  half of whatever --dur is
+   🌌 ANIMATED BACKGROUND
    ========================================================= */
 .gt-bg {
     position: fixed;
@@ -399,21 +438,21 @@
     width: 55vmax; height: 55vmax;
     top: -20vmax; left: -15vmax;
     background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);
-    animation: gt-blob-a 23s ease-in-out infinite alternate;
+    animation: gt-blob-a 46s ease-in-out infinite alternate;
 }
 .gt-blob.b2 {
     width: 45vmax; height: 45vmax;
     bottom: -18vmax; right: -12vmax;
     background: radial-gradient(circle, var(--gt-ice), transparent 65%);
     opacity: 0.35;
-    animation: gt-blob-b 29s ease-in-out infinite alternate;
+    animation: gt-blob-b 58s ease-in-out infinite alternate;
 }
 .gt-blob.b3 {
     width: 35vmax; height: 35vmax;
     top: 35%; left: 40%;
     background: radial-gradient(circle, #7f6cf0, transparent 65%);
     opacity: 0.3;
-    animation: gt-blob-a 32s ease-in-out infinite alternate-reverse;
+    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;
 }
 @keyframes gt-blob-a {
     0%   { transform: translate(0, 0) scale(1); }
@@ -424,11 +463,10 @@
     100% { transform: translate(-14vw, -8vh) scale(0.95); }
 }
 
-/* Floating outlined icons
-   calc(... / 2) halves the duration even if a --dur is set inline on each icon */
+/* Floating outlined icons */
 .gt-floater {
     position: absolute;
-    animation: gt-drift calc(var(--dur, 40s) / 2) ease-in-out var(--delay, 0s) infinite alternate;
+    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;
     will-change: transform;
 }
 .gt-floater-svg {

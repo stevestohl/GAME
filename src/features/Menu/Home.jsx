@@ -95,9 +95,6 @@ export default function Home() {
         document.body.style.paddingRight = '';
     }, []);
 
-    // Shared button styling: fills the full height of its card row
-    const gameBtnClass = 'glass-btn fw-bold w-100 h-100 py-3 shadow-sm text-white d-flex flex-column align-items-center justify-content-center';
-
     // Join button: the picture fills the whole button edge to edge
     const imgBtnClass = 'glass-btn w-100 h-100 p-0 overflow-hidden shadow-sm border-0';
 
@@ -159,13 +156,23 @@ export default function Home() {
                             </Button>
                         </Col>
 
-                        <Col xs={12} className="d-flex align-items-center mb-1">
+                        {/* OR / Create New Room — 🥷 the burglar steals the tile behind this text */}
+                        <Col xs={12} className="d-flex align-items-center mb-1 position-relative">
                             <hr className="flex-grow-1 my-0 opacity-25" />
-                            <span className="mx-2 text-muted small fw-bold text-center">
+                            <span className={`gt-loot mx-2 small fw-bold text-center ${isStolen ? 'stolen' : ''}`}>
                                 OR <br />
                                 Create New Room
                             </span>
                             <hr className="flex-grow-1 my-0 opacity-25" />
+
+                            <div className={`burglar-divider ${burglarActive ? 'active' : ''}`}>
+                                <img
+                                    src={isStolen ? burglarWithButton : burglarEmpty}
+                                    alt=""
+                                    aria-hidden="true"
+                                    style={{ width: '60px', height: 'auto', mixBlendMode: 'multiply' }}
+                                />
+                            </div>
                         </Col>
 
                         {/* 🎮 Game cards — tighter spacing between rows */}
@@ -244,34 +251,6 @@ export default function Home() {
                                         <img src={tttImg} alt="Tic-Tac-Toe" className="w-100 h-100" style={imgStyle} />
                                     </Button>
                                 </GameRow>
-
-                                {/* 🥷 THE BURGLAR ZONE — temporarily disabled */}
-                                {/*
-                                <GameRow
-                                    title="???"
-                                    description="A brand-new game is waiting right here... if you can grab it fast enough."
-                                >
-                                    <div className={`burglar-ltr ${burglarActive ? 'active' : ''}`}>
-                                        <img
-                                            src={isStolen ? burglarWithButton : burglarEmpty}
-                                            alt="Button Burglar"
-                                            style={{ width: '60px', height: 'auto', mixBlendMode: 'multiply' }}
-                                        />
-                                    </div>
-
-                                    {!isStolen ? (
-                                        <Button variant="primary" className={gameBtnClass} style={{ '--shimmer-delay': '1.6s' }}>
-                                            Button
-                                            <span>🔘🔘</span>
-                                        </Button>
-                                    ) : (
-                                        <div className="w-100 h-100 py-3 rounded d-flex flex-column justify-content-center align-items-center stolen-slot fw-bold small">
-                                            <span>Stolen!</span>
-                                            <span className="fs-5">💨</span>
-                                        </div>
-                                    )}
-                                </GameRow>
-                                */}
                             </Row>
                         </Col>
                     </Row>
