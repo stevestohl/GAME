@@ -1,8 +1,8 @@
-import Prompt2Model from "../models/Prompt2.js";
+import { drawCards, normalizeExpansion } from "../db/drawCards.js";
 
 const activePrompt2Rooms = {}; 
 
-const createRoomLogic = (socket, roomsObject, playerName) => {
+const createRoomLogic = (socket, roomsObject, playerName, expansion) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let randomLetters = '';
     for (let i = 0; i < 3; i++) {
@@ -14,6 +14,7 @@ const createRoomLogic = (socket, roomsObject, playerName) => {
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
         gameState: 'lobby',
+        expansion: expansion,
         hostId: socket.id,
         currentHostIndex: 0,
         currentRound:1,
@@ -42,7 +43,7 @@ export default function registerPrompt2Namespace(promptNS) {
     // ---- Event: Room Creation ------
     socket.on('createRoom', (data) => {
         const nameToUse = data.playerName || 'Host';
-        const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse);
+        const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse, normalizeExpansion(data.expansion));
         
     socket.join(roomCode); 
     socket.emit('roomcreated', { roomCode, players });
@@ -126,7 +127,7 @@ export default function registerPrompt2Namespace(promptNS) {
             if (room && socket.id === room.hostId) {
                 try {
                     room.gameState = 'prompt_selection';
-                    const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                    const randomPrompts = await drawCards('prompt', room.expansion, 3);
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     promptNS.to(roomCode).emit('room_updated', room);
                 } catch (err) { console.error(err); }
@@ -243,7 +244,7 @@ export default function registerPrompt2Namespace(promptNS) {
                         p.currentAnswer = "";
                     });
 
-                    const randomPrompts = await Prompt2Model.aggregate([{ $sample: { size: 3 } }]);
+                    const randomPrompts = await drawCards('prompt', room.expansion, 3);
                     
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     promptNS.to(roomCode).emit('room_updated', room);

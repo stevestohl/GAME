@@ -155,6 +155,7 @@ socket.on('room_updated', (data) => {
             return (
                 <Prompt2PromptSelection 
                     isHost={isHost} 
+                    expansion={roomData?.expansion}
                     onSelectPrompt={handleSelectPrompt} 
                 />
             );
@@ -167,6 +168,7 @@ socket.on('room_updated', (data) => {
             return (
                 <Prompt2ResponseSelectionScreen 
                     isHost={isHost} 
+                    expansion={roomData?.expansion}
                     // Extract the text safely if it exists, otherwise pass the raw string
                     promptText={currentPrompt?.text || currentPrompt || "Loading prompt..."} 
                     submittedCount={submittedCount}

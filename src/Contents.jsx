@@ -15,6 +15,7 @@ import BarHome from './features/Menu/BarHome.jsx'
 import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
 import Prompt2CreateScreen from './features/Prompt2/Prompt2CreateButton.jsx'
 import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
+import CouchCastDeckSelect from './features/CouchCast/CouchCastDeckSelect.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
@@ -48,6 +49,7 @@ export default function Contents() {
             <Route path="/prompt2-create" element={<Prompt2CreateScreen />} />
             <Route path="/couchcast" element={<CouchCastManager />} />
             <Route path="/couchcast-setup" element={<CouchCastManager />} />
+            <Route path="/couchcast-decks" element={<CouchCastDeckSelect />} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}
             <Route path="/play" element={<CouchCastManager />} />

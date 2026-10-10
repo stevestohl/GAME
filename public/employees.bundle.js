@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./features/Employee/EmployeeList.jsx */ "./src/features/Employee/EmployeeList.jsx");
 /* harmony import */ var _features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./features/Employee/EmployeeReport.jsx */ "./src/features/Employee/EmployeeReport.jsx");
 /* harmony import */ var _features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features/Employee/EmployeeEdit.jsx */ "./src/features/Employee/EmployeeEdit.jsx");
@@ -26,11 +26,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _features_Prompt2_Prompt2GameManager_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./features/Prompt2/Prompt2GameManager.jsx */ "./src/features/Prompt2/Prompt2GameManager.jsx");
 /* harmony import */ var _features_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./features/Prompt2/Prompt2CreateButton.jsx */ "./src/features/Prompt2/Prompt2CreateButton.jsx");
 /* harmony import */ var _features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./features/CouchCast/CouchCastManagerTV.jsx */ "./src/features/CouchCast/CouchCastManagerTV.jsx");
-/* harmony import */ var _features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./features/TicTacToe/TictactoeManager.jsx */ "./src/features/TicTacToe/TictactoeManager.jsx");
-/* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
-/* harmony import */ var _features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
-/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
-/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
+/* harmony import */ var _features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./features/CouchCast/CouchCastDeckSelect.jsx */ "./src/features/CouchCast/CouchCastDeckSelect.jsx");
+/* harmony import */ var _features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./features/TicTacToe/TictactoeManager.jsx */ "./src/features/TicTacToe/TictactoeManager.jsx");
+/* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
+/* harmony import */ var _features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
+/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
+/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
 
 
 
@@ -50,6 +51,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 
 
@@ -58,67 +60,70 @@ function Contents() {
   var NotFound = function NotFound() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Page Not Found");
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/home",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_Home_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/barhome",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_BarHome_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/join",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/tictactoe",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/tictactoe-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/trivia",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/trivia-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/flashcards",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/flashcardsList",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/flashcardGame",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/prompt2",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2GameManager_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/prompt2-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/couchcast",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/couchcast-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+    path: "/couchcast-decks",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/play",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/employees",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/edit/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/report",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "/",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Navigate, {
       replace: true,
       to: "/home"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
     path: "*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NotFound, null)
   }));
@@ -238,8 +243,9 @@ var enterFullscreen = /*#__PURE__*/function () {
   };
 }();
 function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
+  var expansion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'core';
   var cleanName = 'Caster';
-  console.log("Request Couch Cast Room creation from ".concat(cleanName));
+  console.log("Request Couch Cast Room creation from ".concat(cleanName, " (deck: ").concat(expansion, ")"));
 
   // Trigger fullscreen without locking orientation or scroll
   enterFullscreen();
@@ -253,7 +259,8 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
   }, 60000);
   var emitCreate = function emitCreate() {
     _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.emit('createRoom', {
-      playerName: cleanName
+      playerName: cleanName,
+      expansion: expansion
     });
   };
 
@@ -283,6 +290,145 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
       emitCreate();
     });
   }
+}
+
+/***/ }),
+
+/***/ "./src/features/CouchCast/CouchCastDeckSelect.jsx":
+/*!********************************************************!*\
+  !*** ./src/features/CouchCast/CouchCastDeckSelect.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CouchCastDeckSelect)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Couch_Cast_Button.jpg */ "./src/assets/logos/Couch_Cast_Button.jpg");
+/* harmony import */ var _CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CouchCastCreate.jsx */ "./src/features/CouchCast/CouchCastCreate.jsx");
+/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
+/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+/**
+ * 🛋️ Couch Cast deck selection.
+ * Sits between the home page button and the game: shows what Couch Cast is,
+ * then lets the caster pick which card deck (expansion) the room will use.
+ */
+function CouchCastDeckSelect() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isCreatingRoom = _useState2[0],
+    setIsCreatingRoom = _useState2[1];
+
+  // Global Scroll Unlock Safety Net (same as Home)
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "page-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "main-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
+    className: "main-card-header"
+  }, "Couch Cast"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+    className: "p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "bg-light border-0 shadow-sm m-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+    className: "p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: "g-2 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    xs: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__,
+    alt: "Couch Cast",
+    className: "w-100 rounded shadow-sm",
+    style: {
+      aspectRatio: '1 / 1',
+      objectFit: 'cover',
+      display: 'block'
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    xs: 8,
+    className: "text-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fw-bold mb-1"
+  }, "Couch Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-muted fw-normal small ms-2"
+  }, "3+ players")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "small text-secondary lh-sm"
+  }, "An Apples to Apples\u2013style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone. Cast one extra device to the TV as the main screen."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex align-items-center my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-2 small fw-bold text-muted text-uppercase"
+  }, "Choose Your Deck"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: "g-2"
+  }, _cardDecks_js__WEBPACK_IMPORTED_MODULE_3__.CARD_DECKS.map(function (deck, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      xs: 6,
+      key: deck.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      deck: deck,
+      index: i,
+      disabled: isCreatingRoom,
+      onClick: function onClick() {
+        return (0,_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_2__.handleCreateCouchCast)(null, navigate, setIsCreatingRoom, deck.id);
+      },
+      ariaLabel: "Create a Couch Cast room with the ".concat(deck.title, " deck")
+    }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    variant: "outline-secondary",
+    className: "w-100 fw-bold mt-3",
+    disabled: isCreatingRoom,
+    onClick: function onClick() {
+      return navigate('/home');
+    }
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    show: isCreatingRoom,
+    backdrop: "static",
+    keyboard: false,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+    className: "d-flex flex-column align-items-center justify-content-center p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    animation: "border",
+    variant: "primary",
+    className: "mb-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "fw-bold text-dark"
+  }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small mb-0"
+  }, "Waking up game server..."))));
 }
 
 /***/ }),
@@ -4852,6 +4998,131 @@ function BarHome() {
 
 /***/ }),
 
+/***/ "./src/features/Menu/DeckCard.jsx":
+/*!****************************************!*\
+  !*** ./src/features/Menu/DeckCard.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DeckCard)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * 🃏 One card deck (expansion), drawn as a tall glass playing card.
+ * Used on the Couch Cast deck page and the Prompt 2 create screen.
+ *
+ * Pass `selected` (true/false) to use it as a pick-one toggle;
+ * leave it undefined for a plain "tap to go" button.
+ */
+
+// Glass artwork, keyed by the deck's `icon` in cardDecks.js
+var ICONS = {
+  // Two fanned cards with a sparkle
+  core: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    transform: "rotate(14 50 82)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: "28",
+    y: "16",
+    width: "44",
+    height: "62",
+    rx: "8",
+    className: "deck-glass"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    transform: "rotate(-9 50 82)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: "28",
+    y: "16",
+    width: "44",
+    height: "62",
+    rx: "8",
+    className: "deck-glass"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M35 34 V27 a4 4 0 0 1 4 -4 H47",
+    className: "deck-shine"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 31 Q52 45 66 47 Q52 49 50 63 Q48 49 34 47 Q48 45 50 31 Z",
+    className: "deck-solid"
+  }))),
+  // Jack-o'-lantern
+  halloween: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M46 27 q1 -13 12 -16 l4 6 q-7 3 -7 10 z",
+    className: "deck-glass"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "33",
+    cy: "58",
+    rx: "21",
+    ry: "27",
+    className: "deck-glass"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "67",
+    cy: "58",
+    rx: "21",
+    ry: "27",
+    className: "deck-glass"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "50",
+    cy: "58",
+    rx: "19",
+    ry: "30",
+    className: "deck-glass"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M19 48 q4 -13 13 -16",
+    className: "deck-shine"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M30 52 l9 -11 l6 12 z",
+    className: "deck-solid"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M70 52 l-9 -11 l-6 12 z",
+    className: "deck-solid"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 55 l-4 7 h8 z",
+    className: "deck-solid"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M29 66 l7 4 l5 -5 l9 6 l9 -6 l5 5 l7 -4 q-5 16 -21 16 q-16 0 -21 -16 z",
+    className: "deck-solid"
+  }))
+};
+function DeckCard(_ref) {
+  var deck = _ref.deck,
+    _ref$index = _ref.index,
+    index = _ref$index === void 0 ? 0 : _ref$index,
+    selected = _ref.selected,
+    disabled = _ref.disabled,
+    onClick = _ref.onClick,
+    ariaLabel = _ref.ariaLabel;
+  var isToggle = selected !== undefined;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "button",
+    className: "glass-btn cc-deck-card ".concat(selected ? 'selected' : ''),
+    disabled: disabled,
+    onClick: onClick,
+    "aria-label": ariaLabel || "".concat(deck.title, " deck"),
+    "aria-pressed": isToggle ? selected : undefined,
+    style: {
+      '--deck-from': deck.colors[0],
+      '--deck-to': deck.colors[1],
+      '--shimmer-delay': "".concat(index * 0.4, "s")
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "cc-deck-tag"
+  }, selected ? '✓ Selected' : deck.tag), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 100 100",
+    className: "cc-deck-icon",
+    "aria-hidden": "true"
+  }, ICONS[deck.icon] || ICONS.core), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "cc-deck-title"
+  }, deck.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "cc-deck-desc"
+  }, deck.description));
+}
+
+/***/ }),
+
 /***/ "./src/features/Menu/HeroLogo.jsx":
 /*!****************************************!*\
   !*** ./src/features/Menu/HeroLogo.jsx ***!
@@ -5150,15 +5421,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Couch_Cast_Button.jpg */ "./src/assets/logos/Couch_Cast_Button.jpg");
 /* harmony import */ var _assets_logos_Prompt_2_Button_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/logos/Prompt_2_Button.jpeg */ "./src/assets/logos/Prompt_2_Button.jpeg");
 /* harmony import */ var _assets_logos_Tic_Tac_Toe_Button_jpeg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/logos/Tic_Tac_Toe_Button.jpeg */ "./src/assets/logos/Tic_Tac_Toe_Button.jpeg");
@@ -5168,7 +5439,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
 /* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
 /* harmony import */ var _Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Prompt2/Prompt2CreateButton.jsx */ "./src/features/Prompt2/Prompt2CreateButton.jsx");
-/* harmony import */ var _CouchCast_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastCreate.jsx */ "./src/features/CouchCast/CouchCastCreate.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -5194,7 +5464,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 
 
-
 /**
  * One game "row": a light card with a description on one side and a square
  * button on the other. `flip` swaps the sides so rows alternate down the page.
@@ -5205,7 +5474,7 @@ function GameRow(_ref) {
     description = _ref.description,
     flip = _ref.flip,
     children = _ref.children;
-  var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 7,
     className: "d-flex flex-column justify-content-center text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -5215,24 +5484,24 @@ function GameRow(_ref) {
   }, players)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "small text-secondary lh-sm"
   }, description));
-  var action = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  var action = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 5,
     className: "d-flex position-relative overflow-visible"
   }, children);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "bg-light border-0 shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "p-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "g-1 align-items-stretch"
   }, flip ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, action, info) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, info, action)))));
 }
 function Home() {
   var _location$state;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useLocation)();
 
   // Loading states
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -5306,7 +5575,7 @@ function Home() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     style: {
       position: 'fixed',
       top: '20px',
@@ -5314,7 +5583,7 @@ function Home() {
       transform: 'translateX(-50%)',
       zIndex: 99999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     show: !!toastMsg,
     onClose: function onClose() {
       return setToastMsg('');
@@ -5322,23 +5591,23 @@ function Home() {
     delay: 4000,
     autohide: true,
     bg: "dark"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Body, {
     className: "fw-bold text-white text-center px-4 py-2"
-  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Header, {
     className: "main-card-header"
-  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HeroLogo_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
     size: 260
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "g-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: imgBtnClass,
     disabled: isCreatingRoom,
@@ -5354,7 +5623,7 @@ function Home() {
     alt: "Join a Room",
     className: "w-100 h-100",
     style: imgStyle
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 12,
     className: "d-flex align-items-center mb-1 position-relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -5374,22 +5643,22 @@ function Home() {
       height: 'auto',
       mixBlendMode: 'multiply'
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "g-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameRow, {
     title: "Couch Cast",
     players: "3+ players",
     description: "An Apples to Apples\u2013style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone. Cast one extra device to the TV as the main screen."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
     onClick: function onClick() {
-      return (0,_CouchCast_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_10__.handleCreateCouchCast)(null, navigate, setIsCreatingRoom);
+      return navigate('/couchcast-decks');
     },
-    "aria-label": "Create a Couch Cast room",
+    "aria-label": "Choose a Couch Cast deck",
     style: _objectSpread({
       '--shimmer-delay': '0.4s'
     }, squareStyle)
@@ -5403,7 +5672,7 @@ function Home() {
     title: "Trivia",
     players: "2+ players",
     description: "Put your knowledge to the test. Everyone answers the same questions on their own device, and the best scores rise to the top of the leaderboard."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -5423,7 +5692,7 @@ function Home() {
     title: "Prompt 2",
     players: "3+ players",
     description: "All the fun of Couch Cast, no TV required. A rotating judge reads a prompt, everyone plays their best card, and the whole game runs right on your phones."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -5444,7 +5713,7 @@ function Home() {
     title: "Tic-Tac-Toe",
     players: "2 players",
     description: "The timeless classic, head to head. Take turns on your own devices \u2014 first to get three in a row wins."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -5460,14 +5729,14 @@ function Home() {
     alt: "Tic-Tac-Toe",
     className: "w-100 h-100",
     style: imgStyle
-  })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -5475,19 +5744,19 @@ function Home() {
     className: "fw-bold text-dark"
   }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted small mb-0"
-  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     show: isUnderConstruction,
     onHide: function onHide() {
       return setIsUnderConstruction(false);
     },
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "fw-bold mb-3"
   }, "\uD83D\uDEA7 Under Construction \uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted medium mb-4"
-  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     onClick: function onClick() {
       return setIsUnderConstruction(false);
@@ -5810,14 +6079,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
+/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
+/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -5830,8 +6103,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // Check this path based on your folder structure
  // Check this path based on your folder structure
 
+
 function Prompt2CreateScreen() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
     playerName = _useState2[0],
@@ -5840,6 +6114,10 @@ function Prompt2CreateScreen() {
     _useState4 = _slicedToArray(_useState3, 2),
     isCreatingRoom = _useState4[0],
     setIsCreatingRoom = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('core'),
+    _useState6 = _slicedToArray(_useState5, 2),
+    expansion = _useState6[0],
+    setExpansion = _useState6[1];
 
   // Pull saved name on mount
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -5852,7 +6130,7 @@ function Prompt2CreateScreen() {
   var handleCreateRoom = function handleCreateRoom(e) {
     e.preventDefault();
     var cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
-    console.log("Request Prompt2 Room creation for ".concat(cleanName));
+    console.log("Request Prompt2 Room creation for ".concat(cleanName, " (deck: ").concat(expansion, ")"));
     setIsCreatingRoom(true);
     localStorage.setItem('templePlayerName', cleanName);
 
@@ -5866,7 +6144,8 @@ function Prompt2CreateScreen() {
     // 2. Helper to emit the create event
     var emitCreate = function emitCreate() {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.prompt2Socket.emit('createRoom', {
-        playerName: cleanName
+        playerName: cleanName,
+        expansion: expansion
       });
     };
 
@@ -5896,11 +6175,11 @@ function Prompt2CreateScreen() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
     className: "main-card-header"
-  }, "Host Prompt2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, "Host Prompt2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mb-4"
@@ -5908,13 +6187,13 @@ function Prompt2CreateScreen() {
     className: "fw-bold text-primary mb-1"
   }, "Ready to Play?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted"
-  }, "Pick your host name and generate a room code.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "Pick your host name and generate a room code.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     onSubmit: handleCreateRoom
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
     className: "mb-4 text-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Label, {
     className: "fw-bold text-secondary small"
-  }, "Host Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+  }, "Host Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
     size: "lg",
     type: "text",
     placeholder: "Enter your nickname",
@@ -5926,27 +6205,47 @@ function Prompt2CreateScreen() {
     className: "text-center fw-bold",
     required: true,
     disabled: isCreatingRoom
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     variant: "outline-primary",
     type: "button",
     onClick: handleRandomizeName,
     title: "Generate Random Name",
     className: "px-3 fs-5",
     disabled: isCreatingRoom
-  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+    className: "mb-4 text-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Label, {
+    className: "fw-bold text-secondary small"
+  }, "Card Deck"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "g-2"
+  }, _cardDecks_js__WEBPACK_IMPORTED_MODULE_3__.CARD_DECKS.map(function (deck, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      xs: 6,
+      key: deck.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      deck: deck,
+      index: i,
+      selected: expansion === deck.id,
+      disabled: isCreatingRoom,
+      onClick: function onClick() {
+        return setExpansion(deck.id);
+      },
+      ariaLabel: "Play with the ".concat(deck.title, " deck")
+    }));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     variant: "primary",
     size: "lg",
     className: "w-100 fw-bold shadow-sm mb-2",
     type: "submit",
     disabled: isCreatingRoom
-  }, isCreatingRoom ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, isCreatingRoom ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     as: "span",
     animation: "border",
     size: "sm",
     role: "status",
     "aria-hidden": "true",
     className: "me-2"
-  }), "Creating Room...") : 'Create Room'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), "Creating Room...") : 'Create Room'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     variant: "outline-secondary",
     size: "sm",
     className: "w-100 mt-2",
@@ -6174,6 +6473,7 @@ function Prompt2GameManager() {
     case 'prompt_selection':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2PromptSelectionScreen_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         isHost: isHost,
+        expansion: roomData === null || roomData === void 0 ? void 0 : roomData.expansion,
         onSelectPrompt: handleSelectPrompt
       });
     case 'writing':
@@ -6185,7 +6485,8 @@ function Prompt2GameManager() {
         return p.hasSubmitted;
       }).length;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Prompt2ResponseSelectionScreen__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        isHost: isHost
+        isHost: isHost,
+        expansion: roomData === null || roomData === void 0 ? void 0 : roomData.expansion
         // Extract the text safely if it exists, otherwise pass the raw string
         ,
         promptText: (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt || "Loading prompt...",
@@ -6442,10 +6743,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /**
  * Prompt2PromptSelectionScreen
  * @param {boolean} isHost - Determines if the current player is the host.
+ * @param {string} expansion - The card deck this room is playing with.
  * @param {function} onSelectPrompt - Callback function triggered when the host selects a card.
  */
 function Prompt2PromptSelectionScreen(_ref) {
   var isHost = _ref.isHost,
+    _ref$expansion = _ref.expansion,
+    expansion = _ref$expansion === void 0 ? 'core' : _ref$expansion,
     onSelectPrompt = _ref.onSelectPrompt;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -6471,7 +6775,7 @@ function Prompt2PromptSelectionScreen(_ref) {
       setIsLoading(true);
 
       // Fixed 3: Fetch using the dynamically resolved backend base string variable
-      fetch("".concat(backendBase, "/api/prompt2host")).then(function (res) {
+      fetch("".concat(backendBase, "/api/prompt2host?expansion=").concat(encodeURIComponent(expansion))).then(function (res) {
         if (!res.ok) {
           throw new Error("Failed to fetch cards: Status ".concat(res.status));
         }
@@ -6489,7 +6793,7 @@ function Prompt2PromptSelectionScreen(_ref) {
         setIsLoading(false);
       });
     }
-  }, [isHost]);
+  }, [isHost, expansion]);
 
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)
@@ -6648,6 +6952,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Prompt2ResponseSelectionScreen(_ref) {
   var isHost = _ref.isHost,
+    _ref$expansion = _ref.expansion,
+    expansion = _ref$expansion === void 0 ? 'core' : _ref$expansion,
     _ref$promptText = _ref.promptText,
     promptText = _ref$promptText === void 0 ? "Default Prompt: What is the meaning of life?" : _ref$promptText,
     _ref$submittedCount = _ref.submittedCount,
@@ -6696,7 +7002,7 @@ function Prompt2ResponseSelectionScreen(_ref) {
                 _context.prev = 0;
                 setLoading(true);
                 _context.next = 4;
-                return fetch("".concat(backendBase, "/api/prompt2players"));
+                return fetch("".concat(backendBase, "/api/prompt2players?expansion=").concat(encodeURIComponent(expansion)));
               case 4:
                 response = _context.sent;
                 if (response.ok) {
@@ -6733,7 +7039,7 @@ function Prompt2ResponseSelectionScreen(_ref) {
       };
     }();
     fetchResponses();
-  }, [isHost]);
+  }, [isHost, expansion]);
 
   // Handle Player Submission
   var handleSubmit = function handleSubmit() {
@@ -8544,7 +8850,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n  \n  /* Background */\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, #7f6cf0, transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 16, 50, 0.45) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n  \n  /* Background */\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, #7f6cf0, transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 16, 50, 0.45) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n  \n  /* Background */\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, #7f6cf0, transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 16, 50, 0.45) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  background-color: #f8f9fa; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n  \n  /* Background */\n  background-image: url('https://game-temple.org/CouchCastBackground.jpg');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, #7f6cf0, transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 16, 50, 0.45) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8710,6 +9016,38 @@ module.exports = __webpack_require__.p + "6ec00e8e5e59c3bf9f5d.png";
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "23cf9ee11e00eddfeeaa.gif";
+
+/***/ }),
+
+/***/ "./src/cardDecks.js":
+/*!**************************!*\
+  !*** ./src/cardDecks.js ***!
+  \**************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CARD_DECKS": () => (/* binding */ CARD_DECKS)
+/* harmony export */ });
+// 🃏 Card decks shared by Couch Cast and Prompt 2.
+// `id` must match the `expansion` field on the cards in the prompt2 collection.
+// `icon` picks the glass artwork in features/Menu/DeckCard.jsx.
+// To add a deck: add its cards to Mongo with a new expansion value, then add an entry here.
+var CARD_DECKS = [{
+  id: 'core',
+  title: 'Core Deck',
+  tag: 'The Original',
+  icon: 'core',
+  description: 'The classic mix of prompts and responses. Great for any crowd.',
+  colors: ['#93a7f0', '#3a53c4']
+}, {
+  id: 'halloween',
+  title: 'Halloween',
+  tag: 'Seasonal',
+  icon: 'halloween',
+  description: 'Spooky, silly and a little bit haunted. Perfect for fright night.',
+  colors: ['#ff9a3d', '#5b2a86']
+}];
 
 /***/ }),
 

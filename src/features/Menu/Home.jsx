@@ -14,7 +14,6 @@ import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 // Helper functions for existing room creation routines
 // import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import Prompt2CreateScreen from '../Prompt2/Prompt2CreateButton.jsx';
-import { handleCreateCouchCast } from '../CouchCast/CouchCastCreate.jsx';
 
 /**
  * One game "row": a light card with a description on one side and a square
@@ -188,8 +187,8 @@ export default function Home() {
                                         variant="primary"
                                         className={gameImgBtnClass}
                                         disabled={isCreatingRoom}
-                                        onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom)}
-                                        aria-label="Create a Couch Cast room"
+                                        onClick={() => navigate('/couchcast-decks')}
+                                        aria-label="Choose a Couch Cast deck"
                                         style={{ '--shimmer-delay': '0.4s', ...squareStyle }}
                                     >
                                         <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={imgStyle} />

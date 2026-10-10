@@ -4,10 +4,12 @@ import { Card, Badge, Row, Col } from 'react-bootstrap';
 /**
  * Prompt2PromptSelectionScreen
  * @param {boolean} isHost - Determines if the current player is the host.
+ * @param {string} expansion - The card deck this room is playing with.
  * @param {function} onSelectPrompt - Callback function triggered when the host selects a card.
  */
 export default function Prompt2PromptSelectionScreen({
   isHost,
+  expansion = 'core',
   onSelectPrompt
 }) {
   const [options, setOptions] = useState([]);
@@ -28,7 +30,7 @@ export default function Prompt2PromptSelectionScreen({
       setIsLoading(true);
       
       // Fixed 3: Fetch using the dynamically resolved backend base string variable
-      fetch(`${backendBase}/api/prompt2host`)
+      fetch(`${backendBase}/api/prompt2host?expansion=${encodeURIComponent(expansion)}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(`Failed to fetch cards: Status ${res.status}`);
@@ -50,7 +52,7 @@ export default function Prompt2PromptSelectionScreen({
           setIsLoading(false);
         });
     }
-  }, [isHost]);
+  }, [isHost, expansion]);
 
   // ----------------------------------------------------
   // PLAYER VIEW (Non-Host)

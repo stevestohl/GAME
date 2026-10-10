@@ -1,4 +1,5 @@
 import Prompt2Model from "../models/Prompt2.js";
+import { drawCards } from "../db/drawCards.js";
 
 // ==========================================
 // HTTP REST API Controllers Only
@@ -26,13 +27,11 @@ export const getAllPrompt2Cards = async (req, res) => {
 
 /**
  * Gets 3 random prompt-type cards for the host selection screen
+ * (?expansion=halloween picks the deck; defaults to core)
  */
 export const getRandomPromptsForHost = async (req, res) => {
     try {
-        const randomPrompts = await Prompt2Model.aggregate([
-            { $match: { type: 'prompt' } },
-            { $sample: { size: 3 } }
-        ]);
+        const randomPrompts = await drawCards('prompt', req.query.expansion, 3);
 
         res.status(200).json({
             success: true,
@@ -51,13 +50,11 @@ export const getRandomPromptsForHost = async (req, res) => {
 
 /**
  * Gets 7 random response-type cards for a player's starting hand
+ * (?expansion=halloween picks the deck; defaults to core)
  */
 export const getRandomResponsesForPlayers = async (req, res) => {
     try {
-        const randomResponses = await Prompt2Model.aggregate([
-            { $match: { type: 'response' } },
-            { $sample: { size: 7 } }
-        ]);
+        const randomResponses = await drawCards('response', req.query.expansion, 7);
 
         res.status(200).json({
             success: true,

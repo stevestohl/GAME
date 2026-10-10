@@ -397,6 +397,91 @@
     .glass-btn::after { animation: none; display: none; }
 }
 
+/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */
+.cc-deck-card {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.75rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 1rem;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cc-deck-card:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);
+}
+.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }
+.cc-deck-card:focus-visible {
+    outline: 3px solid var(--gt-gold);
+    outline-offset: 2px;
+}
+.cc-deck-card:disabled { opacity: 0.6; }
+
+/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */
+.cc-deck-card[aria-pressed="false"] { opacity: 0.6; filter: saturate(0.7); }
+.cc-deck-card.selected,
+.cc-deck-card.selected:hover:not(:disabled) {
+    border-color: var(--gt-gold);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);
+}
+
+.cc-deck-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.cc-deck-icon {
+    width: 58%;
+    max-width: 110px;
+    aspect-ratio: 1 / 1;
+    overflow: visible;
+    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));
+}
+/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */
+.cc-deck-icon .deck-glass {
+    fill: rgba(255, 255, 255, 0.24);
+    stroke: rgba(255, 255, 255, 0.92);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+}
+.cc-deck-icon .deck-shine {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+.cc-deck-icon .deck-solid {
+    fill: #fff;
+    stroke: #fff;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+}
+.cc-deck-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.cc-deck-desc {
+    font-size: 0.72rem;
+    line-height: 1.25;
+    opacity: 0.92;
+}
+
 /* =========================================================
    GAME TEMPLE THEME
    Palette is pulled from the "Join Room" button blue.

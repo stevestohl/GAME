@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Form, Button, InputGroup, Spinner } from 'react-bootstrap';
+import { Card, Form, Button, InputGroup, Spinner, Row, Col } from 'react-bootstrap';
 import { prompt2Socket } from '../../socket.js'; // Check this path based on your folder structure
 import { getRandomFunnyName } from '../../funnyNames.js'; // Check this path based on your folder structure
+import { CARD_DECKS } from '../../cardDecks.js';
+import DeckCard from '../Menu/DeckCard.jsx';
 
 export default function Prompt2CreateScreen() {
     const navigate = useNavigate();
     const [playerName, setPlayerName] = useState('');
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
+    const [expansion, setExpansion] = useState('core');
 
     // Pull saved name on mount
     useEffect(() => {
@@ -23,7 +26,7 @@ export default function Prompt2CreateScreen() {
         e.preventDefault();
         
         const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
-        console.log(`Request Prompt2 Room creation for ${cleanName}`);
+        console.log(`Request Prompt2 Room creation for ${cleanName} (deck: ${expansion})`);
         
         setIsCreatingRoom(true);
         localStorage.setItem('templePlayerName', cleanName);
@@ -37,7 +40,7 @@ export default function Prompt2CreateScreen() {
 
         // 2. Helper to emit the create event
         const emitCreate = () => {
-            prompt2Socket.emit('createRoom', { playerName: cleanName });
+            prompt2Socket.emit('createRoom', { playerName: cleanName, expansion });
         };
 
         // 3. Setup the Success Listener
@@ -103,6 +106,25 @@ export default function Prompt2CreateScreen() {
                                     🎲
                                 </Button>
                             </InputGroup>
+                        </Form.Group>
+
+                        {/* 🃏 Card deck (expansion) */}
+                        <Form.Group className='mb-4 text-start'>
+                            <Form.Label className='fw-bold text-secondary small'>Card Deck</Form.Label>
+                            <Row className="g-2">
+                                {CARD_DECKS.map((deck, i) => (
+                                    <Col xs={6} key={deck.id}>
+                                        <DeckCard
+                                            deck={deck}
+                                            index={i}
+                                            selected={expansion === deck.id}
+                                            disabled={isCreatingRoom}
+                                            onClick={() => setExpansion(deck.id)}
+                                            ariaLabel={`Play with the ${deck.title} deck`}
+                                        />
+                                    </Col>
+                                ))}
+                            </Row>
                         </Form.Group>
 
                         <Button 

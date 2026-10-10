@@ -1,5 +1,5 @@
 // Couch-Cast will share the same database and model as Prompt2
-import Prompt2Model from "../models/Prompt2.js"
+import { drawCards, normalizeExpansion } from "../db/drawCards.js"
 
 // HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
 const getSafeRoom = (room) => {
@@ -13,7 +13,12 @@ const activeCCRooms = {};
 // Set your writing phase time limit here (e.g., 60 seconds)
 const WRITING_TIME_LIMIT = 60 * 1000; 
 
-const createRoomLogic = (socket, roomsObject, playerName) => {
+// HELPER: Finds the room a socket is playing in
+const findRoomBySocket = (socketId) => {
+    return Object.values(activeCCRooms).find(room => room.players[socketId]);
+};
+
+const createRoomLogic = (socket, roomsObject, playerName, expansion) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let randomLetters = '';
     
@@ -27,6 +32,7 @@ const createRoomLogic = (socket, roomsObject, playerName) => {
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
         gameState: 'lobby',
+        expansion: expansion,
         casterId: socket.id,
         hostId: null, 
         currentHostIndex: 1,
@@ -98,7 +104,8 @@ export default function registerCCNamespace(CCNS) {
         // ----------Event: Room Creation-----------
         socket.on('createRoom', (data) => {
             const nameToUse = data.playerName || 'Caster';
-            const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse);
+            const expansion = normalizeExpansion(data.expansion);
+            const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse, expansion);
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
         });
@@ -202,10 +209,8 @@ export default function registerCCNamespace(CCNS) {
         // --- Event: Player Requests Their Hand ---
         socket.on('request_hand', async () => {
             try {
-                const randomResponses = await Prompt2Model.aggregate([
-                    { $match: { type: 'response' } }, 
-                    { $sample: { size: 6 } }
-                ]);
+                const room = findRoomBySocket(socket.id);
+                const randomResponses = await drawCards('response', room?.expansion, 6);
                 
                 socket.emit('receive_hand', { hand: randomResponses });
             } catch (err) {
@@ -231,10 +236,7 @@ export default function registerCCNamespace(CCNS) {
             if (room && (socket.id === room.hostId || room.players[socket.id]?.isCaster)) {
                 try {
                     room.gameState = 'prompt_selection';
-                    const randomPrompts = await Prompt2Model.aggregate([
-                        { $match: { type: 'prompt' } },
-                        { $sample: { size: 3 } }
-                    ]);
+                    const randomPrompts = await drawCards('prompt', room.expansion, 3);
                     
                     // Store the prompts in the room state so the mobile host can access them
                     room.promptOptions = randomPrompts;
@@ -388,10 +390,7 @@ export default function registerCCNamespace(CCNS) {
                         });
 
                         try {
-                            const randomPrompts = await Prompt2Model.aggregate([
-                                { $match: { type: 'prompt' } },
-                                { $sample: { size: 3 } }
-                            ]);
+                            const randomPrompts = await drawCards('prompt', room.expansion, 3);
                             CCNS.to(roomCode).emit('prompt_options', { prompts: randomPrompts });
                         } catch (err) {
                             console.error(err);
@@ -420,10 +419,7 @@ export default function registerCCNamespace(CCNS) {
                         }
                     });
                     
-                    const randomPrompts = await Prompt2Model.aggregate([
-                        { $match: { type: 'prompt' } },
-                        { $sample: { size: 3 } }
-                    ]);
+                    const randomPrompts = await drawCards('prompt', room.expansion, 3);
                     
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));

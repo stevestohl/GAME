@@ -3,6 +3,7 @@ import { Card, Badge, Button, ProgressBar } from 'react-bootstrap';
 
 export default function Prompt2ResponseSelectionScreen({
   isHost,
+  expansion = 'core',
   promptText = "Default Prompt: What is the meaning of life?",
   submittedCount = 0,
   totalPlayers = 4,
@@ -31,7 +32,7 @@ export default function Prompt2ResponseSelectionScreen({
     const fetchResponses = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${backendBase}/api/prompt2players`);
+        const response = await fetch(`${backendBase}/api/prompt2players?expansion=${encodeURIComponent(expansion)}`);
         if (!response.ok) {
           throw new Error('Failed to fetch responses from server.');
         }
@@ -47,7 +48,7 @@ export default function Prompt2ResponseSelectionScreen({
     };
 
     fetchResponses();
-  }, [isHost]);
+  }, [isHost, expansion]);
 
   // Handle Player Submission
   const handleSubmit = () => {

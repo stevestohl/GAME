@@ -11,9 +11,9 @@ const enterFullscreen = async () => {
     }
 };
 
-export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
+export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom, expansion = 'core') {
     const cleanName = 'Caster';
-    console.log(`Request Couch Cast Room creation from ${cleanName}`);
+    console.log(`Request Couch Cast Room creation from ${cleanName} (deck: ${expansion})`);
 
     // Trigger fullscreen without locking orientation or scroll
     enterFullscreen();
@@ -28,7 +28,7 @@ export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
     }, 60000);
 
     const emitCreate = () => {
-        couchCastSocket.emit('createRoom', { playerName: cleanName });
+        couchCastSocket.emit('createRoom', { playerName: cleanName, expansion });
     };
 
     // Sets up the Success Listener
