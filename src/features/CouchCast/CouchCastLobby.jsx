@@ -60,6 +60,19 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
     <h2 className="fullscreen-gameplay-header">
       Couch Cast Room Created
     </h2>
+
+    {/* 📺 Step one: get this screen onto the TV */}
+    <div className="cc-cast-now">
+      <svg viewBox="0 0 100 100" className="cc-cast-now-icon" aria-hidden="true">
+        <path d="M8 34 V26 a8 8 0 0 1 8 -8 H84 a8 8 0 0 1 8 8 V70 a8 8 0 0 1 -8 8 H56" />
+        <circle cx="12" cy="76" r="4" className="cc-cast-now-dot" />
+        <path d="M8 60 a18 18 0 0 1 18 18" />
+        <path d="M8 46 a32 32 0 0 1 32 32" />
+      </svg>
+      <span>
+        <strong>Cast now to screen!</strong> Mirror this device to your TV, then everyone scans the code to join.
+      </span>
+    </div>
         <div className="row flex-grow-1 g-3" style={{ minHeight: 0 }}>
           
           {/* --- LEFT COLUMN: QR CODE FLOATING CARD --- */}

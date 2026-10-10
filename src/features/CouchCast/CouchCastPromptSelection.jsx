@@ -32,7 +32,8 @@ export default function CouchCastPromptSelection({
     useEffect(() => {
         if (timeLeft <= 0) {
             if (isJudge && prompts.length > 0) {
-                // Submit their chosen prompt if they picked one, otherwise pick randomly
+                // Time's up: pick randomly if the judge never tapped one.
+                // If they did tap and we're still here, the pick didn't land, so send it again.
                 const promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
                 socket.emit('select_prompt', { roomCode, selectedPrompt: promptToSubmit });
             }
@@ -46,20 +47,28 @@ export default function CouchCastPromptSelection({
         return () => clearInterval(timer);
     }, [timeLeft, isJudge, prompts, roomCode, selectedPrompt]);
 
+    // How long the TV spotlight rests on each prompt before moving to the next (ms)
+    const HIGHLIGHT_MS = 1500;
+
     // --- LOGIC: The TV Juggling Effect ---
+    // Depends on "is the clock running", not the seconds themselves,
+    // so the spotlight timer isn't restarted on every tick
+    const isCounting = timeLeft > 0;
     useEffect(() => {
-        if (!isCastScreen || timeLeft <= 0 || prompts.length === 0) return;
+        if (!isCastScreen || !isCounting || prompts.length === 0) return;
 
         const roulette = setInterval(() => {
             setHighlightIndex((prev) => (prev + 1) % prompts.length);
-        }, 250);
+        }, HIGHLIGHT_MS);
 
         return () => clearInterval(roulette);
-    }, [isCastScreen, timeLeft, prompts.length]);
+    }, [isCastScreen, isCounting, prompts.length]);
 
-    const handlePromptSubmit = () => {
-        if (!selectedPrompt) return;
-        socket.emit('select_prompt', { roomCode, selectedPrompt });
+    // Tapping a prompt picks it straight away (no separate submit button)
+    const handlePromptPick = (promptObj) => {
+        if (selectedPrompt) return;
+        setSelectedPrompt(promptObj);
+        socket.emit('select_prompt', { roomCode, selectedPrompt: promptObj });
     };
 
     // ==========================================
@@ -91,7 +100,7 @@ export default function CouchCastPromptSelection({
                     
                     {/* Header */}
                     <h2 className="fullscreen-gameplay-header text-center mt-2 mb-4 flex-shrink-0">
-                        <span className="text-primary">{judgeName}</span> is picking the poison...
+                        <span style={{ color: 'var(--gt-gold)' }}>{judgeName}</span> is picking the poison...
                     </h2>
                     
                     {/* The 3 Juggling Cards */}
@@ -105,7 +114,7 @@ export default function CouchCastPromptSelection({
                                     style={{ 
                                         flex: '1 1 0', 
                                         transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
-                                        transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
+                                        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
                                         opacity: isHighlighted ? 1 : 0.6
                                     }}
                                 >
@@ -116,7 +125,7 @@ export default function CouchCastPromptSelection({
                                             style={{ 
                                                 backgroundColor: isHighlighted ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.25)', 
                                                 backdropFilter: 'blur(10px)',
-                                                transition: 'background-color 0.2s ease-in-out'
+                                                transition: 'background-color 0.5s ease-in-out'
                                             }}
                                         >
                                             <Card.Body className="d-flex align-items-center justify-content-center p-3 p-md-4 text-center">
@@ -171,34 +180,25 @@ export default function CouchCastPromptSelection({
                         <Card.Title className='fw-bold mb-3 fs-4 text-primary'>
                             Set the Vibe
                         </Card.Title>
-                        <p className='text-muted mb-3'>Pick 1 of the 3 prompts below.</p>
+                        <p className='text-muted mb-3'>Tap 1 of the 3 prompts below to pick it.</p>
 
                         <h4 className={`fw-bold mb-4 ${timeLeft <= 5 ? 'text-danger' : 'text-info'}`}>
                             ⏱️ {timeLeft}s
                         </h4>
 
-                        <div className='d-flex flex-column mb-4' style={{ gap: '10px' }}>
+                        <div className='d-flex flex-column' style={{ gap: '10px' }}>
                             {prompts.map((promptObj, index) => (
                                 <Button
                                     key={index}
                                     variant={selectedPrompt === promptObj ? 'primary' : 'outline-secondary'}
                                     className='text-start p-3 text-wrap'
-                                    onClick={() => setSelectedPrompt(promptObj)}
+                                    disabled={!!selectedPrompt && selectedPrompt !== promptObj}
+                                    onClick={() => handlePromptPick(promptObj)}
                                 >
                                     {getPromptText(promptObj)}
                                 </Button>
                             ))}
                         </div>
-
-                        <Button 
-                            variant={selectedPrompt ? 'success' : 'secondary'} 
-                            size='lg' 
-                            className='w-100 fw-bold' 
-                            disabled={!selectedPrompt}
-                            onClick={handlePromptSubmit}
-                        >
-                            {selectedPrompt ? "Make 'Em Write!" : "Select a Prompt"}
-                        </Button>
                     </Card.Body>
                 </Card>
             </Container>

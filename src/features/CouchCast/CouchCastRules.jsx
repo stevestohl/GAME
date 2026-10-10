@@ -55,10 +55,10 @@ export default function CouchCastRules({ roomCode }) {
                 </h2>
 
                 {/* --- TWO COLUMN ROW STARTS HERE --- */}
-                <div className="d-flex flex-row flex-grow-1 gap-3 overflow-hidden">
+                <div className="d-flex flex-row flex-grow-1 gap-3" style={{ minHeight: 0 }}>
                     
                     {/* LEFT COLUMN: RULES (Takes up ~66% width) */}
-                    <div className="col-8 d-flex flex-column h-100">
+                    <div className="d-flex flex-column h-100" style={{ flex: '2 1 0', minWidth: 0 }}>
                         <div className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
                                 <Card.Body className="d-flex flex-column p-3 p-md-4 h-100">
@@ -94,7 +94,7 @@ export default function CouchCastRules({ roomCode }) {
                     </div>
 
                     {/* RIGHT COLUMN: TIMER (Takes up ~33% width) */}
-                    <div className="col-4 d-flex flex-column h-100">
+                    <div className="d-flex flex-column h-100" style={{ flex: '1 1 0', minWidth: 0 }}>
                         <div className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
                                 <Card.Body className="d-flex flex-column align-items-center justify-content-between p-3">

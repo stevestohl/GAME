@@ -5,10 +5,28 @@ export default function CouchCastJudgingTV({
     currentPrompt, 
     submissions, 
     judgeName, 
+    endTime,
     winningSubmission 
 }) {
     // Add state to track device orientation for the overlay
     const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
+
+    // Countdown to the judge's deadline (after it, a random answer wins)
+    const [timeLeft, setTimeLeft] = useState(null);
+
+    useEffect(() => {
+        if (!endTime) {
+            setTimeLeft(null);
+            return;
+        }
+        const updateTime = () => {
+            const remaining = Math.floor((endTime - Date.now()) / 1000);
+            setTimeLeft(remaining > 0 ? remaining : 0);
+        };
+        updateTime();
+        const timer = setInterval(updateTime, 1000);
+        return () => clearInterval(timer);
+    }, [endTime]);
 
     // Listen for screen rotation
     useEffect(() => {
@@ -43,7 +61,12 @@ export default function CouchCastJudgingTV({
                         /* --- STATE 1: WAITING FOR JUDGE --- */
                         <div className="w-100 d-flex flex-column align-items-center h-100">
                             <h4 className="text-white fw-bold mb-3 text-center" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-                                {judgeName} is deciding the winner! Read them aloud:
+                                {submissions && submissions.length > 0
+                                    ? `${judgeName} is deciding the winner! Read them aloud:`
+                                    : 'Time is up!'}
+                                {timeLeft !== null && (
+                                    <span className={`ms-3 ${timeLeft <= 10 ? 'text-danger' : ''}`}>⏱️ {timeLeft}s</span>
+                                )}
                             </h4>
                             
                             <Row className="w-100 justify-content-center m-0 px-2 flex-grow-1 overflow-auto">
@@ -62,7 +85,7 @@ export default function CouchCastJudgingTV({
                                         </Col>
                                     ))
                                 ) : (
-                                    <h3 className="text-white fw-bold text-center mt-5">No one submitted anything! How embarrassing.</h3>
+                                    <h3 className="text-white fw-bold text-center mt-5">No one submitted anything! How embarrassing.<br />On to the next round...</h3>
                                 )}
                             </Row>
                         </div>

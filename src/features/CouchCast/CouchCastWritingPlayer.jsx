@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, Button, Form, Spinner } from 'react-bootstrap';
+import { Container, Card, Button, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
 export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTime, isJudge, hasSubmitted }) {
     const [timeLeft, setTimeLeft] = useState(60);
-    const [selectedCard, setSelectedCard] = useState(null);
     const [writeIn, setWriteIn] = useState("");
-    const [isWriteInMode, setIsWriteInMode] = useState(false);
     
     // NEW: State to hold the real database cards
     const [playerHand, setPlayerHand] = useState([]);
@@ -42,20 +40,17 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
         return p.prompt || p.text || "Unknown Prompt";
     };
 
-    const handleSubmit = () => {
-        let finalAnswer = "";
-        let usedWriteIn = false;
+    // Tapping a card plays it straight away
+    const handlePlayCard = (cardText) => {
+        socket.emit('submit_answer', { roomCode, answer: cardText, usedWriteIn: false });
+    };
 
-        if (isWriteInMode && writeIn.trim()) {
-            finalAnswer = writeIn.trim();
-            usedWriteIn = true;
-        } else if (selectedCard) {
-            finalAnswer = selectedCard; // selectedCard is already a string here
-        } else {
-            return;
-        }
-
-        socket.emit('submit_answer', { roomCode, answer: finalAnswer, usedWriteIn });
+    // The write-in is the only answer that needs a send button
+    const handleSendWriteIn = (e) => {
+        e.preventDefault();
+        const answer = writeIn.trim();
+        if (!answer) return;
+        socket.emit('submit_answer', { roomCode, answer, usedWriteIn: true });
     };
 
     // ==========================================
@@ -97,8 +92,6 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
     // ==========================================
     // 3. PLAYER VIEW (Currently Writing)
     // ==========================================
-    const canSubmit = (isWriteInMode && writeIn.trim().length > 0) || (!isWriteInMode && selectedCard);
-
     return (
         <Container className="mt-4 pb-4 d-flex justify-content-center">
             <Card className="shadow-sm w-100 border-0" style={{ maxWidth: '450px' }}>
@@ -108,11 +101,11 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                 
                 <Card.Body className="p-4 bg-light">
                     <div className="d-flex justify-content-between align-items-center mb-3">
-                        <span className="fw-bold text-muted text-uppercase small">Pick your answer:</span>
+                        <span className="fw-bold text-muted text-uppercase small">Tap your answer:</span>
                         <span className={`fw-bold fs-5 ${timeLeft <= 10 ? 'text-danger' : 'text-info'}`}>⏱️ {timeLeft}s</span>
                     </div>
 
-                    <div className="d-flex flex-column gap-2 mb-4">
+                    <div className="d-flex flex-column gap-2">
                         {/* Render real cards, with a loading state just in case */}
                         {playerHand.length === 0 ? (
                             <div className="text-center py-4">
@@ -123,47 +116,43 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                             playerHand.map((card) => (
                                 <Button
                                     key={card._id} // Use Mongo's _id for the key
-                                    variant={selectedCard === card.text && !isWriteInMode ? 'primary' : 'outline-secondary'}
+                                    variant="outline-secondary"
                                     className="text-start p-3 text-wrap fw-bold shadow-sm bg-white"
-                                    onClick={() => {
-                                        setSelectedCard(card.text); // Save the text string
-                                        setIsWriteInMode(false);
-                                    }}
+                                    onClick={() => handlePlayCard(card.text)}
                                 >
                                     {card.text}
                                 </Button>
                             ))
                         )}
                         
-                        {/* Custom Write-In Option */}
-                        <Card 
-                            className={`shadow-sm mt-2 transition-all ${isWriteInMode ? 'border-primary border-3' : 'border-0'}`}
-                            onClick={() => setIsWriteInMode(true)}
-                            style={{ cursor: 'pointer' }}
-                        >
+                        {/* Custom Write-In Option: type it, then hit send */}
+                        <Card className="shadow-sm mt-2 border-0">
                             <Card.Body className="p-2">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="✍️ Custom Write-In..."
-                                    value={writeIn}
-                                    onChange={(e) => setWriteIn(e.target.value)}
-                                    onFocus={() => setIsWriteInMode(true)}
-                                    className="fw-bold border-0 shadow-none fs-5 py-2"
-                                    maxLength={60}
-                                />
+                                <Form onSubmit={handleSendWriteIn}>
+                                    <InputGroup>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="✍️ Custom Write-In..."
+                                            value={writeIn}
+                                            onChange={(e) => setWriteIn(e.target.value)}
+                                            className="fw-bold border-0 shadow-none fs-5 py-2"
+                                            maxLength={60}
+                                            aria-label="Custom write-in answer"
+                                        />
+                                        <Button
+                                            type="submit"
+                                            variant={writeIn.trim() ? 'success' : 'secondary'}
+                                            className="fw-bold px-3 rounded"
+                                            disabled={!writeIn.trim()}
+                                            aria-label="Send write-in answer"
+                                        >
+                                            Send
+                                        </Button>
+                                    </InputGroup>
+                                </Form>
                             </Card.Body>
                         </Card>
                     </div>
-
-                    <Button
-                        variant={canSubmit ? 'success' : 'secondary'}
-                        size="lg"
-                        className="w-100 fw-bold py-3 shadow-sm"
-                        onClick={handleSubmit}
-                        disabled={!canSubmit}
-                    >
-                        {canSubmit ? "Lock it in!" : "Select an Answer"}
-                    </Button>
                 </Card.Body>
             </Card>
         </Container>

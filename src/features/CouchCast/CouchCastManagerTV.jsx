@@ -4,6 +4,7 @@ import { couchCastSocket as socket } from "../../socket";
 
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
+import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
@@ -43,6 +44,9 @@ export default function CouchCastManager() {
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
 
+    // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
+    useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
+
 
     // --- SOCKET LISTENERS (TV ONLY) ---
     useEffect(() => {
@@ -64,6 +68,7 @@ export default function CouchCastManager() {
         socket.on('room_updated', (room) => {
             setRoomData(room);
             setGameState(room.gameState);
+            if (room.currentPrompt) setCurrentPrompt(room.currentPrompt);
         });
 
         socket.on('writing_phase_started', (data) => {
@@ -159,6 +164,7 @@ export default function CouchCastManager() {
                         currentPrompt={currentPrompt} 
                         submissions={submissions} 
                         judgeName={judgeName} 
+                        endTime={roomData.endTime}
                     />
                 );
 

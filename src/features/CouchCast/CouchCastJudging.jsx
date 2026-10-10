@@ -1,13 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
-export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, submissions =[] }) {
+export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, endTime, submissions =[] }) {
     // Local state for the Judge to highlight their favorite answer before submitting
     const [selectedWinnerId, setSelectedWinnerId] = useState(null);
     
     // NEW: State to handle the dramatic pause and disable the UI
     const [isLockingIn, setIsLockingIn] = useState(false); 
+
+    // Countdown to the server's deadline (after it, a random answer wins)
+    const [timeLeft, setTimeLeft] = useState(null);
+
+    useEffect(() => {
+        if (!endTime) return;
+        const updateTime = () => {
+            const remaining = Math.floor((endTime - Date.now()) / 1000);
+            setTimeLeft(remaining > 0 ? remaining : 0);
+        };
+        updateTime();
+        const timer = setInterval(updateTime, 1000);
+        return () => clearInterval(timer);
+    }, [endTime]);
+
+    // Out of time with an answer highlighted but not crowned yet: send that one in
+    useEffect(() => {
+        if (isJudge && timeLeft === 0 && selectedWinnerId && !isLockingIn) {
+            setIsLockingIn(true);
+            socket.emit('pick_winner', { roomCode, winningPlayerId: selectedWinnerId });
+        }
+    }, [isJudge, timeLeft, selectedWinnerId, isLockingIn, roomCode]);
 
     const handlePickWinner = () => {
         // Prevent double-clicks if they mash the button
@@ -66,6 +88,13 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, sub
                     <p className="text-center text-muted fw-bold mb-3">
                         Read the answers on the TV, then pick your favorite!
                     </p>
+
+                    {timeLeft !== null && submissions.length > 0 && (
+                        <div className="text-center mb-3">
+                            <h4 className={`fw-bold mb-1 ${timeLeft <= 10 ? 'text-danger' : 'text-info'}`}>⏱️ {timeLeft}s</h4>
+                            <div className="small text-muted">No pick in time? A random answer wins.</div>
+                        </div>
+                    )}
                     
                     <div className="d-flex flex-column gap-2 mb-4">
                         {submissions.length === 0 ? (

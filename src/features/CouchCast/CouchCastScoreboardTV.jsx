@@ -49,7 +49,7 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                 <div className="shining-border-wrapper" style={{ borderRadius: '15px' }}>
                     <Card className="border-0 text-white w-100 frosted-glass-panel" style={{ borderRadius: '10px' }}>
                         <Card.Body className="p-3">
-                            <h2 className="text-primary fw-bold mb-1 text-uppercase fs-4" style={{ letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
+                            <h2 className="fw-bold mb-1 text-uppercase fs-4" style={{ color: 'var(--gt-gold)', letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
                                 {isGameOver ? 'Final Standings' : 'Current Scores'}
                             </h2>
                             

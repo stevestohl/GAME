@@ -71,7 +71,7 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
                 <div className="shining-border-wrapper" style={{ borderRadius: '15px' }}>
                     <Card className="border-0 text-white w-100 frosted-glass-panel" style={{ borderRadius: '10px' }}>
                         <Card.Body className="p-3 p-md-4">
-                            <h2 className="text-primary fw-bold mb-2 fs-4 text-uppercase" style={{ letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
+                            <h2 className="fw-bold mb-2 fs-4 text-uppercase" style={{ color: 'var(--gt-gold)', letterSpacing: '2px', textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
                                 The Prompt is...
                             </h2>
                             <h1 className="fw-bold m-0" style={{ fontSize: 'clamp(1.2rem, 3.5vh, 2.2rem)', textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>

@@ -8,10 +8,14 @@ import CouchCastScoreboard from './CouchCastScoreboard.jsx';
 import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 import CouchCastWritingPlayer from './CouchCastWritingPlayer.jsx';
 import CouchCastJudging from './CouchCastJudging.jsx'; // 👈 IMPORTED OUR JUDGING COMPONENT
+import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
     const [roomData, setRoomData] = useState(null);
+
+    // 🎨 Background matches the room's card deck
+    useSetBackgroundTheme(couchCastTheme(roomData?.expansion));
     const [playerData, setPlayerData] = useState(null);
     const [error, setError] = useState('');
     
@@ -243,6 +247,7 @@ useEffect(() => {
                      roomCode={roomCode} 
                      isJudge={isHost} 
                      currentPrompt={roomData.currentPrompt} 
+                     endTime={roomData.endTime}
                      submissions={submissions} 
                  />
              );
