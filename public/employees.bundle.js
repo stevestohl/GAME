@@ -9562,37 +9562,83 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 // src/hooks/useWakeLock.js
 
+
+/**
+ * Keeps the screen awake for as long as the calling component is on screen.
+ *
+ * The browser drops a wake lock on its own whenever the page is hidden
+ * (switching apps, the "start casting" system dialog, locking the phone...)
+ * and it can refuse one outright (battery saver, page not visible yet).
+ * So one request on mount isn't enough: this keeps asking again whenever
+ * the lock is lost or the page comes back.
+ */
 function useWakeLock() {
-  var wakeLockRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!('wakeLock' in navigator)) {
+      console.warn('Wake Lock is not supported on this browser - the screen may sleep.');
+      return;
+    }
+    var wakeLock = null;
+    var isRequesting = false;
+    var isActive = true; // false once the component has unmounted
+
     var requestWakeLock = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var lock;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!('wakeLock' in navigator)) {
-                  _context.next = 11;
+                if (!(!isActive || isRequesting || wakeLock && !wakeLock.released)) {
+                  _context.next = 2;
                   break;
                 }
-                _context.prev = 1;
-                _context.next = 4;
-                return navigator.wakeLock.request('screen');
+                return _context.abrupt("return");
+              case 2:
+                if (!(document.visibilityState !== 'visible')) {
+                  _context.next = 4;
+                  break;
+                }
+                return _context.abrupt("return");
               case 4:
-                wakeLockRef.current = _context.sent;
-                console.log('Wake Lock active - screen will not sleep!');
-                _context.next = 11;
-                break;
+                isRequesting = true;
+                _context.prev = 5;
+                _context.next = 8;
+                return navigator.wakeLock.request('screen');
               case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
-                console.error("Wake Lock error: ".concat(_context.t0.message));
-              case 11:
+                lock = _context.sent;
+                if (isActive) {
+                  _context.next = 12;
+                  break;
+                }
+                lock.release();
+                return _context.abrupt("return");
+              case 12:
+                wakeLock = lock;
+                console.log('Wake Lock active - screen will not sleep!');
+
+                // The browser took it away: grab it again as soon as we're allowed to
+                lock.addEventListener('release', function () {
+                  if (wakeLock === lock) wakeLock = null;
+                  requestWakeLock();
+                });
+                _context.next = 20;
+                break;
+              case 17:
+                _context.prev = 17;
+                _context.t0 = _context["catch"](5);
+                // Refused for now; the listeners below will try again
+                console.warn("Wake Lock error: ".concat(_context.t0.message));
+              case 20:
+                _context.prev = 20;
+                isRequesting = false;
+                return _context.finish(20);
+              case 23:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[5, 17, 20, 23]]);
       }));
       return function requestWakeLock() {
         return _ref.apply(this, arguments);
@@ -9602,38 +9648,25 @@ function useWakeLock() {
     // Fire immediately on mount
     requestWakeLock();
 
-    // Re-fire if they switch tabs and come back
-    var handleVisibilityChange = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                if (!(document.visibilityState === 'visible' && wakeLockRef.current === null)) {
-                  _context2.next = 3;
-                  break;
-                }
-                _context2.next = 3;
-                return requestWakeLock();
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-      return function handleVisibilityChange() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    // Try again whenever the page comes back, changes fullscreen, or gets touched.
+    // (A tap is the fallback for browsers that refused the first request.)
+    document.addEventListener('visibilitychange', requestWakeLock);
+    document.addEventListener('fullscreenchange', requestWakeLock);
+    document.addEventListener('pointerdown', requestWakeLock);
+    window.addEventListener('focus', requestWakeLock);
+    window.addEventListener('pageshow', requestWakeLock);
 
     // Cleanup: Release lock when component unmounts (game ends/leaves)
     return function () {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      if (wakeLockRef.current) {
-        wakeLockRef.current.release();
-        wakeLockRef.current = null;
+      isActive = false;
+      document.removeEventListener('visibilitychange', requestWakeLock);
+      document.removeEventListener('fullscreenchange', requestWakeLock);
+      document.removeEventListener('pointerdown', requestWakeLock);
+      window.removeEventListener('focus', requestWakeLock);
+      window.removeEventListener('pageshow', requestWakeLock);
+      if (wakeLock) {
+        wakeLock.release();
+        wakeLock = null;
       }
     };
   }, []);
