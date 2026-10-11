@@ -1,9 +1,13 @@
 import express from 'express'
-import {} from 'dotenv/config'
+import dotenv from 'dotenv'
 import routes from './routes/routes.js'
 import path from 'path'
 import cors from 'cors'
 import { fileURLToPath } from 'url' // 🎣 Required for absolute pathing in ES Modules
+
+// .env is loaded first; .env.local is for secrets (API keys) and is never committed
+dotenv.config()
+dotenv.config({ path: '.env.local' })
 
 const app = express()
 

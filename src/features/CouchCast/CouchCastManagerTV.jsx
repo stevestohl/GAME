@@ -5,6 +5,7 @@ import { couchCastSocket as socket } from "../../socket";
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
+import { speak, stopVoice } from '../../voice.js';
 
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
@@ -57,6 +58,40 @@ export default function CouchCastManager() {
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
+
+    // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
+    const round = roomData?.currentRound;
+    let voiceMoment = null;
+    if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
+    else if (gameState === 'judging' && submissions?.length > 0) voiceMoment = `answers-${round}`;
+    else if (gameState === 'winner_reveal' && roundResults?.winningSubmission) voiceMoment = `winner-${round}`;
+    else if (gameState === 'scoreboard' && roundResults?.isGameOver) voiceMoment = 'game-over';
+
+    useEffect(() => {
+        // The screen changed: stop whatever was being said
+        stopVoice();
+        if (!voiceMoment || !roomData) return;
+
+        const code = roomData.roomCode;
+        const promptText = currentPrompt?.text || currentPrompt;
+
+        if (voiceMoment.startsWith('prompt')) {
+            speak(`The prompt is: ${promptText}`, code);
+        } else if (voiceMoment.startsWith('answers')) {
+            speak(["Time's up! Here are your answers.", ...submissions.map((sub) => sub.answer)], code);
+        } else if (voiceMoment.startsWith('winner')) {
+            const { playerName, answer } = roundResults.winningSubmission;
+            speak(`And the winner is... ${answer} That one came from ${playerName}!`, code);
+        } else if (voiceMoment === 'game-over') {
+            const champion = Object.values(roomData.players)
+                .filter((p) => !p.isCaster)
+                .sort((a, b) => (b.score || 0) - (a.score || 0))[0];
+            if (champion) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
+        }
+    }, [voiceMoment]);
+
+    // Leaving the game: stop talking
+    useEffect(() => stopVoice, []);
 
 
     // --- SOCKET LISTENERS (TV ONLY) ---

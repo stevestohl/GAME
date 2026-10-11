@@ -25,6 +25,9 @@ const TOTAL_ROUNDS = 3;
 // How long the TV shows "No one submitted anything!" before the next round starts
 const NO_SUBMISSIONS_DELAY = 5 * 1000;
 
+// Lets the HTTP side (voice-overs) check that a room is real and still open
+export const getCouchCastRoom = (roomCode) => activeCCRooms[roomCode] || null;
+
 // HELPER: Finds the room a socket is playing in
 const findRoomBySocket = (socketId) => {
     return Object.values(activeCCRooms).find(room => room.players[socketId]);

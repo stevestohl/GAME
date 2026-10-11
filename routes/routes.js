@@ -4,6 +4,8 @@ import {getAllEmployees, getEmployee, createEmployee,
     updateEmployee, deleteEmployee } from '../controllers/employees_controller.js'
 import { getAllPrompt2Cards, getRandomPromptsForHost, getRandomResponsesForPlayers } from '../controllers/prompt2_controller.js'
 
+import { speakLine } from '../controllers/tts_controller.js'
+
 import {getAllDrinks, 
     getDrink, updateDrink, deleteDrink, createDrink} from '../controllers/drinks_controller.js'
 
@@ -22,6 +24,10 @@ router.route('/prompt2host')
 
 router.route('/prompt2players')
     .get(getRandomResponsesForPlayers)
+
+// Couch Cast voice-overs (text-to-speech)
+router.route('/tts')
+    .post(speakLine)
 
 router.route('/employees/:id')
     .get(getEmployee)
