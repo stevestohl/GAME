@@ -103,6 +103,20 @@ export function unlockVoice() {
     player.play().catch(() => {});
 }
 
+// Is the browser currently letting this page make sound?
+// False after a page refresh, until someone taps the screen (see unlockVoice).
+export async function canPlaySound() {
+    if (isPlaying) return true;
+    try {
+        player.src = SILENCE;
+        await player.play();
+        return true;
+    } catch (err) {
+        // NotAllowedError = "needs a tap first". Anything else isn't about permission.
+        return err.name !== 'NotAllowedError';
+    }
+}
+
 // Fetch lines ahead of time so they start the moment they're needed
 export function preloadVoice(lines, roomCode) {
     [].concat(lines).map(toSpokenText).filter(Boolean).forEach((text) => {

@@ -344,6 +344,29 @@
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
+/* 🔇 "Tap to turn sound back on" (only shown on the TV after a page refresh) */
+.cc-sound-button {
+  position: fixed;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid var(--gt-gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 3vh, 1.2rem);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  animation: cc-cast-pulse 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-sound-button { animation: none; }
+}
+
 /* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */
 .cc-room-code {
   position: fixed;

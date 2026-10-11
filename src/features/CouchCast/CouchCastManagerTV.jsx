@@ -5,7 +5,8 @@ import { couchCastSocket as socket } from "../../socket";
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
-import { speak, stopVoice, preloadVoice } from '../../voice.js';
+import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
+import { startLobbyMusic } from './lobbyMusic.js';
 
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
@@ -115,19 +116,51 @@ export default function CouchCastManager() {
         if (gameState === 'rules' && judgeName && lobbyRoomCode) preloadVoice(vibeLine(judgeName), lobbyRoomCode);
     }, [gameState, judgeName, lobbyRoomCode]);
 
+    // 🔇 After a page refresh the browser mutes us until someone taps the screen.
+    // When that happens, show a button that switches the narrator and music back on.
+    const [isSoundLocked, setIsSoundLocked] = useState(false);
+
+    useEffect(() => {
+        let isCurrent = true;
+        canPlaySound().then((allowed) => {
+            if (isCurrent) setIsSoundLocked(!allowed);
+        });
+        return () => { isCurrent = false; };
+    }, []);
+
+    const handleTurnSoundOn = () => {
+        unlockVoice();
+        if (gameState === 'lobby') startLobbyMusic();
+        setIsSoundLocked(false);
+    };
+
     // Leaving the game: stop talking
     useEffect(() => stopVoice, []);
 
 
     // --- SOCKET LISTENERS (TV ONLY) ---
     useEffect(() => {
+        // (Re)join our room on every connection: first load, a page refresh,
+        // and any time the network drops and the socket comes back with a new ID.
+        const joinMyRoom = () => {
+            socket.emit('joinRoom', { roomCode: urlRoomCode, playerName: urlPlayerName });
+        };
+
         if (urlRoomCode) {
-             socket.emit('joinRoom', { roomCode: urlRoomCode, playerName: urlPlayerName });
+            socket.on('connect', joinMyRoom);
+            if (socket.connected) {
+                joinMyRoom();
+            } else {
+                // After a page refresh nothing has opened the connection yet
+                socket.connect();
+            }
         } else {
              setErrorMessage("No room code found in the URL!");
         }
 
         socket.on('sync_game_state', (payload) => {
+            // Only this screen's own room gets to drive it
+            if (payload.roomData?.roomCode !== urlRoomCode) return;
             setGameState(payload.gameState);
             setRoomData(payload.roomData);
             setEndTime(payload.endTime);
@@ -137,6 +170,7 @@ export default function CouchCastManager() {
         });
 
         socket.on('room_updated', (room) => {
+            if (room.roomCode !== urlRoomCode) return;
             setRoomData(room);
             setGameState(room.gameState);
             if (room.currentPrompt) setCurrentPrompt(room.currentPrompt);
@@ -169,6 +203,7 @@ export default function CouchCastManager() {
         });
 
         return () => {
+            socket.off('connect', joinMyRoom);
             socket.off('sync_game_state');
             socket.off('room_updated');
             socket.off('writing_phase_started');
@@ -182,8 +217,8 @@ export default function CouchCastManager() {
     const renderGamePhase = () => {
         if (gameState === 'creating' || !roomData) {
             return (
-                <div className="text-center mt-5">
-                    <Spinner animation="border" variant="primary" />
+                <div className="fullscreen-gameplay-container justify-content-center">
+                    <Spinner animation="border" variant="light" />
                     <h3 className="mt-3 text-white">Powering up the TV...</h3>
                 </div>
             );
@@ -266,12 +301,18 @@ export default function CouchCastManager() {
     return (
         <Container fluid className="p-0" style={{ minHeight: '100vh'}}>
             {errorMessage && (
-                <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 999 }}>
+                <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 10002 }}>
                     {errorMessage}
                 </Alert>
             )}
             
             {renderGamePhase()}
+
+            {isSoundLocked && (
+                <button type="button" className="cc-sound-button" onClick={handleTurnSoundOn}>
+                    🔇 Tap to turn sound back on
+                </button>
+            )}
 
             {/* Room code stays in the corner of every TV screen so latecomers can still join */}
             {roomData?.roomCode && (

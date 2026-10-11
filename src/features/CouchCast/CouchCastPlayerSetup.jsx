@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Spinner, Alert, Card, Button, Form } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 
 // 🎮 Import your mobile screens
 import CouchCastScoreboard from './CouchCastScoreboard.jsx';
@@ -13,6 +14,7 @@ import { playChime } from '../../chime.js';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
+    const navigate = useNavigate();
     const [roomData, setRoomData] = useState(null);
 
     // 🎨 Background matches the room's card deck
@@ -93,6 +95,12 @@ useEffect(() => {
             });
         };
 
+        // The TV started a different game: this one is over
+        const handleRoomClosed = ({ message }) => {
+            navigate('/home', { state: { toastMessage: message || 'That game has ended.' } });
+        };
+
+        socket.on('room_closed', handleRoomClosed);
         socket.on('sync_game_state', handleSync);
         socket.on('room_updated', handleRoomUpdate);
         socket.on('errorMsg', handleError);
@@ -102,6 +110,7 @@ useEffect(() => {
         return () => {
             socket.off('joinError', handleJoinError); // 👈 Cleaned up here!
             socket.off('sync_game_state', handleSync);
+            socket.off('room_closed', handleRoomClosed);
             socket.off('room_updated', handleRoomUpdate);
             socket.off('errorMsg', handleError);
             socket.off('start_judging', handleStartJudging);

@@ -225,6 +225,7 @@ export default function registerCCNamespace(CCNS) {
         
         // TIMER 1: After 10 seconds of laughing at the winner... show the Scoreboard!
         setTimeout(() => {
+            if (activeCCRooms[roomCode] !== room) return; // room was closed in the meantime
             room.gameState = 'scoreboard';
             CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
 
@@ -232,6 +233,7 @@ export default function registerCCNamespace(CCNS) {
             // then start the next round automatically.
             if (!isGameOver) {
                 setTimeout(() => {
+                    if (activeCCRooms[roomCode] !== room) return;
                     startNextRound(roomCode);
                 }, 7000); // 7 seconds looking at the scoreboard
             } 
@@ -264,6 +266,92 @@ export default function registerCCNamespace(CCNS) {
         startNextRound(roomCode);
     };
 
+    // --- HELPER: A player's phone (or the TV) dropped out of a room ---
+    // Used for lost connections and for players who leave to join another game.
+    const playerLeftRoom = (socketId, roomCode) => {
+        const room = activeCCRooms[roomCode];
+        const disconnectedPlayer = room?.players[socketId];
+        if (!room || !disconnectedPlayer) return;
+        
+        disconnectedPlayer.isConnected = false;
+        console.log(`[Disconnect] ${disconnectedPlayer.name} left room ${roomCode}`);
+    
+        // 1. If TV disconnects, don't break the game, but start a self-destruct timer
+        const activePlayers = Object.values(room.players).filter(p => p.isConnected);
+        
+        if (activePlayers.length === 0) {
+            console.log(`[Room Cleanup] Room ${roomCode} is empty. Setting 5-min destroy timer.`);
+            room.destroyTimer = setTimeout(() => {
+                console.log(`[Room Cleanup] Destroying abandoned room ${roomCode}`);
+                delete activeCCRooms[roomCode];
+            }, 5 * 60 * 1000); // 5 minutes
+        }
+
+        // 2. Writing Phase: Did this player's exit mean everyone else is ready?
+        if (room.gameState === 'writing' && !disconnectedPlayer.isCaster && socketId !== room.hostId) {
+            const activeRegularPlayers = Object.keys(room.players).filter(
+                id => id !== room.hostId && !room.players[id].isCaster && room.players[id].isConnected
+            );
+            
+            if (activeRegularPlayers.length > 0 && activeRegularPlayers.every(id => room.players[id].hasSubmitted)) {
+                advanceToJudging(roomCode);
+            }
+        }
+    
+        // 3. Host Migration: If the Judge left, give the crown to someone else
+        if (socketId === room.hostId) {
+            const connectedPlayers = Object.values(room.players)
+                .filter(p => !p.isCaster && p.isConnected)
+                .sort((a, b) => a.joinOrder - b.joinOrder);
+                
+            if (connectedPlayers.length > 0) {
+                const newHost = connectedPlayers[0];
+                room.hostId = newHost.id;
+                
+                Object.values(room.players).forEach(p => {
+                    p.isPlayerHost = (p.id === newHost.id);
+                });
+                
+                console.log(`[Host Migration] Host disconnected. ${newHost.name} is the new host.`);
+            }
+        }
+
+        CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+    };
+
+    // --- HELPER: End a game for everyone still in it ---
+    const closeRoom = (roomCode, message) => {
+        const room = activeCCRooms[roomCode];
+        if (!room) return;
+
+        if (room.timerId) clearTimeout(room.timerId);
+        if (room.destroyTimer) clearTimeout(room.destroyTimer);
+
+        console.log(`[Room Closed] ${roomCode}: ${message}`);
+        CCNS.to(roomCode).emit('room_closed', { roomCode, message });
+        CCNS.in(roomCode).socketsLeave(roomCode);
+        delete activeCCRooms[roomCode];
+    };
+
+    // --- HELPER: One device, one game ---
+    // Before a device starts or joins a game, take it out of any other game it was in.
+    // Without this it keeps receiving the old game's screens and the two fight for the display.
+    // If that device was the old game's TV, the old game is over: nobody can see it any more.
+    const leaveOtherRooms = (socket, exceptCode) => {
+        Object.keys(activeCCRooms).forEach((code) => {
+            if (code === exceptCode) return;
+            const player = activeCCRooms[code].players[socket.id];
+            if (!player) return;
+
+            socket.leave(code);
+            if (player.isCaster) {
+                closeRoom(code, 'The host ended that game.');
+            } else {
+                playerLeftRoom(socket.id, code);
+            }
+        });
+    };
+
     CCNS.on('connection', (socket) => {
         console.log(`[CastCouch Socket]\n Player Connected: ${socket.id}`);
 
@@ -271,6 +359,7 @@ export default function registerCCNamespace(CCNS) {
         socket.on('createRoom', (data) => {
             const nameToUse = data.playerName || 'Caster';
             const expansion = normalizeExpansion(data.expansion);
+            leaveOtherRooms(socket);
             const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse, expansion);
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
@@ -283,6 +372,8 @@ export default function registerCCNamespace(CCNS) {
             const currentRoom = activeCCRooms[code];
 
             if (currentRoom) {
+                leaveOtherRooms(socket, code);
+
                 // 1. Check if this is an existing player trying to reconnect.
                 // The saved ID lives in the browser, so every tab/window of one browser shares it:
                 // the name has to match too, or a second tab would take over the first tab's seat.
@@ -517,66 +608,19 @@ export default function registerCCNamespace(CCNS) {
             }
         });
 
+        // --- Event: Leave Room (player backed out to the menu) ---
+        socket.on('leaveRoom', ({ roomCode } = {}) => {
+            const code = (roomCode || '').trim().toUpperCase();
+            if (!activeCCRooms[code]?.players[socket.id]) return;
+            socket.leave(code);
+            playerLeftRoom(socket.id, code);
+        });
+
         // --- Event: Handle Disconnection ---
         socket.on('disconnect', () => {
-            let foundRoomCode = null;
-            let disconnectedPlayer = null;
-            
-            for (const code in activeCCRooms) {
-                if (activeCCRooms[code].players[socket.id]) {
-                    foundRoomCode = code;
-                    disconnectedPlayer = activeCCRooms[code].players[socket.id];
-                    break;
-                }
-            }
-        
-            if (!foundRoomCode || !disconnectedPlayer) return;
-            const room = activeCCRooms[foundRoomCode];
-            
-            disconnectedPlayer.isConnected = false;
-            console.log(`[Disconnect] ${disconnectedPlayer.name} left room ${foundRoomCode}`);
-        
-            // 1. If TV disconnects, don't break the game, but start a self-destruct timer
-            const activePlayers = Object.values(room.players).filter(p => p.isConnected);
-            
-            if (activePlayers.length === 0) {
-                console.log(`[Room Cleanup] Room ${foundRoomCode} is empty. Setting 5-min destroy timer.`);
-                room.destroyTimer = setTimeout(() => {
-                    console.log(`[Room Cleanup] Destroying abandoned room ${foundRoomCode}`);
-                    delete activeCCRooms[foundRoomCode];
-                }, 5 * 60 * 1000); // 5 minutes
-            }
-
-            // 2. Writing Phase: Did this player's exit mean everyone else is ready?
-            if (room.gameState === 'writing' && !disconnectedPlayer.isCaster && socket.id !== room.hostId) {
-                const activeRegularPlayers = Object.keys(room.players).filter(
-                    id => id !== room.hostId && !room.players[id].isCaster && room.players[id].isConnected
-                );
-                
-                if (activeRegularPlayers.length > 0 && activeRegularPlayers.every(id => room.players[id].hasSubmitted)) {
-                    advanceToJudging(foundRoomCode);
-                }
-            }
-        
-            // 3. Host Migration: If the Judge left, give the crown to someone else
-            if (socket.id === room.hostId) {
-                const connectedPlayers = Object.values(room.players)
-                    .filter(p => !p.isCaster && p.isConnected)
-                    .sort((a, b) => a.joinOrder - b.joinOrder);
-                    
-                if (connectedPlayers.length > 0) {
-                    const newHost = connectedPlayers[0];
-                    room.hostId = newHost.id;
-                    
-                    Object.values(room.players).forEach(p => {
-                        p.isPlayerHost = (p.id === newHost.id);
-                    });
-                    
-                    console.log(`[Host Migration] Host disconnected. ${newHost.name} is the new host.`);
-                }
-            }
-        
-            CCNS.to(foundRoomCode).emit('room_updated', getSafeRoom(room));
+            Object.keys(activeCCRooms)
+                .filter(code => activeCCRooms[code].players[socket.id])
+                .forEach(code => playerLeftRoom(socket.id, code));
         });
     });
 }
