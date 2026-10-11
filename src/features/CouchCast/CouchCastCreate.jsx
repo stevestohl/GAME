@@ -1,4 +1,6 @@
 import { couchCastSocket } from "../../socket";
+import { unlockVoice } from "../../voice.js";
+import { startLobbyMusic, stopLobbyMusic } from "./lobbyMusic.js";
 
 // Helper function to request fullscreen (Orientation lock removed)
 const enterFullscreen = async () => {
@@ -18,11 +20,16 @@ export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom, e
     // Trigger fullscreen without locking orientation or scroll
     enterFullscreen();
 
+    // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
+    unlockVoice();
+    startLobbyMusic();
+
     if (setIsCreatingRoom) setIsCreatingRoom(true);
 
     // Set the timeout
     const timeout = setTimeout(() => {
         setIsCreatingRoom(false);
+        stopLobbyMusic();
         alert("The server is taking too long to wake up. Please try again.");
         couchCastSocket.off('roomCreated');
     }, 60000);

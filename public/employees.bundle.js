@@ -204,10 +204,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "handleCreateCouchCast": () => (/* binding */ handleCreateCouchCast)
 /* harmony export */ });
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 // Helper function to request fullscreen (Orientation lock removed)
@@ -249,11 +253,16 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
 
   // Trigger fullscreen without locking orientation or scroll
   enterFullscreen();
+
+  // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
+  (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
+  (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
   if (setIsCreatingRoom) setIsCreatingRoom(true);
 
   // Set the timeout
   var timeout = setTimeout(function () {
     setIsCreatingRoom(false);
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
     alert("The server is taking too long to wake up. Please try again.");
     _socket__WEBPACK_IMPORTED_MODULE_0__.couchCastSocket.off('roomCreated');
   }, 60000);
@@ -306,17 +315,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Couch_Cast_Button.jpg */ "./src/assets/logos/Couch_Cast_Button.jpg");
 /* harmony import */ var _CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CouchCastCreate.jsx */ "./src/features/CouchCast/CouchCastCreate.jsx");
-/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
-/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
+/* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
+/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -331,13 +341,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 /**
  * 🛋️ Couch Cast deck selection.
  * Sits between the home page button and the game: shows what Couch Cast is,
  * then lets the caster pick which card deck (expansion) the room will use.
  */
 function CouchCastDeckSelect() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isCreatingRoom = _useState2[0],
@@ -349,21 +360,26 @@ function CouchCastDeckSelect() {
     document.body.classList.remove('modal-open');
     document.body.style.paddingRight = '';
   }, []);
+
+  // Start downloading the lobby music now, so it plays the moment a deck is tapped
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, {
     className: "main-card-header"
-  }, "Couch Cast"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
-    className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    className: "bg-light border-0 shadow-sm m-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+  }, "Couch Cast"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
     className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    className: "g-2 align-items-center"
+    className: "bg-light border-0 shadow-sm m-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+    className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    className: "g-2 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     xs: 4
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__,
@@ -374,7 +390,7 @@ function CouchCastDeckSelect() {
       objectFit: 'cover',
       display: 'block'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     xs: 8,
     className: "text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -391,13 +407,13 @@ function CouchCastDeckSelect() {
     className: "mx-2 small fw-bold text-muted text-uppercase"
   }, "Choose Your Deck"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     className: "g-2"
-  }, _cardDecks_js__WEBPACK_IMPORTED_MODULE_3__.CARD_DECKS.map(function (deck, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, _cardDecks_js__WEBPACK_IMPORTED_MODULE_4__.CARD_DECKS.map(function (deck, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       xs: 6,
       key: deck.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
       deck: deck,
       index: i,
       disabled: isCreatingRoom,
@@ -406,21 +422,21 @@ function CouchCastDeckSelect() {
       },
       ariaLabel: "Create a Couch Cast room with the ".concat(deck.title, " deck")
     }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "outline-secondary",
     className: "w-100 fw-bold mt-3",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return navigate('/home');
     }
-  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -756,17 +772,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
+/* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -790,15 +808,11 @@ function CouchCastLobby(_ref) {
     var timer = setTimeout(function () {
       window.scrollTo(0, 1);
     }, 100);
-    var bgMusic = new Audio('/audio/LobbyMusic.mp3');
-    bgMusic.loop = true;
-    bgMusic.volume = 0.4;
-    bgMusic.play()["catch"](function (err) {
-      return console.warn("Audio autoplay blocked:", err);
-    });
+
+    // Usually already playing (started by the tap that created the room); this covers a refresh
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
     return function () {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
+      (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
       window.removeEventListener('resize', checkOrientation);
       clearTimeout(timer);
     };
@@ -854,18 +868,18 @@ function CouchCastLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden",
     style: {
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
@@ -900,13 +914,13 @@ function CouchCastLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
     className: "d-flex flex-column",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1.5rem)',
@@ -917,13 +931,13 @@ function CouchCastLobby(_ref) {
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)'
     }
-  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0",
     style: {
       minHeight: 0
     }
   }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: player.id,
       className: "d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -932,7 +946,7 @@ function CouchCastLobby(_ref) {
         maxWidth: '70%',
         fontSize: 'clamp(0.85rem, 2vh, 1.2rem)'
       }
-    }, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       bg: "primary",
       className: "rounded-pill px-2 py-1 shadow-sm",
       style: {
@@ -1014,7 +1028,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Player Controller Component
 
+
+// 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
+// and they give the changing part of each announcement a moment to load behind them.
+var VOICE_PROMPT_INTRO = "The prompt is...";
+var VOICE_ANSWERS_INTRO = "Time's up! Here are your answers.";
+var VOICE_WINNER_INTRO = "And the winner is...";
+var vibeLine = function vibeLine(name) {
+  return "".concat(name, " is setting the vibe.");
+};
 function CouchCastManager() {
+  var _roomData$players, _roomData$players$roo;
   (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
   // Grab the room code, player name, and role from the URL!
@@ -1070,25 +1094,30 @@ function CouchCastManager() {
 
   // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
   var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
+  var judgeName = roomData === null || roomData === void 0 ? void 0 : (_roomData$players = roomData.players) === null || _roomData$players === void 0 ? void 0 : (_roomData$players$roo = _roomData$players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name;
   var voiceMoment = null;
-  if (gameState === 'writing' && currentPrompt) voiceMoment = "prompt-".concat(round);else if (gameState === 'judging' && (submissions === null || submissions === void 0 ? void 0 : submissions.length) > 0) voiceMoment = "answers-".concat(round);else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';
+  if (gameState === 'prompt_selection' && judgeName) voiceMoment = "picking-".concat(round);else if (gameState === 'writing' && currentPrompt) voiceMoment = "prompt-".concat(round);else if (gameState === 'judging' && (submissions === null || submissions === void 0 ? void 0 : submissions.length) > 0) voiceMoment = "answers-".concat(round);else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // The screen changed: stop whatever was being said
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
     if (!voiceMoment || !roomData) return;
     var code = roomData.roomCode;
     var promptText = (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt;
-    if (voiceMoment.startsWith('prompt')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("The prompt is: ".concat(promptText), code);
+    if (voiceMoment.startsWith('picking')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(vibeLine(judgeName), code);
+    } else if (voiceMoment.startsWith('prompt')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_PROMPT_INTRO, promptText], code);
     } else if (voiceMoment.startsWith('answers')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(["Time's up! Here are your answers."].concat(_toConsumableArray(submissions.map(function (sub) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_ANSWERS_INTRO].concat(_toConsumableArray(submissions.map(function (sub) {
         return sub.answer;
       }))), code);
     } else if (voiceMoment.startsWith('winner')) {
       var _roundResults$winning = roundResults.winningSubmission,
         playerName = _roundResults$winning.playerName,
         answer = _roundResults$winning.answer;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("And the winner is... ".concat(answer, " That one came from ").concat(playerName, "!"), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_WINNER_INTRO, "".concat(answer, " That one came from ").concat(playerName, "!")], code);
+      // Get the next judge's line ready while the confetti falls
+      if (!roundResults.isGameOver && roundResults.nextHostName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(vibeLine(roundResults.nextHostName), code);
     } else if (voiceMoment === 'game-over') {
       var champion = Object.values(roomData.players).filter(function (p) {
         return !p.isCaster;
@@ -1098,6 +1127,18 @@ function CouchCastManager() {
       if (champion) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("That's the game! ".concat(champion.name, " wins with ").concat(champion.score, " points. Thanks for playing!"), code);
     }
   }, [voiceMoment]);
+
+  // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
+  var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!lobbyRoomCode) return;
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_10__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_ANSWERS_INTRO, VOICE_WINNER_INTRO]), lobbyRoomCode);
+  }, [lobbyRoomCode]);
+
+  // The first judge is known once the rules are showing: get their line ready too
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (gameState === 'rules' && judgeName && lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(vibeLine(judgeName), lobbyRoomCode);
+  }, [gameState, judgeName, lobbyRoomCode]);
 
   // Leaving the game: stop talking
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -1164,7 +1205,7 @@ function CouchCastManager() {
 
   // --- TV RENDER LOGIC ---
   var renderGamePhase = function renderGamePhase() {
-    var _roomData$players$roo, _roomData$players$roo2;
+    var _roomData$players$roo2, _roomData$players$roo3;
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "text-center mt-5"
@@ -1187,7 +1228,7 @@ function CouchCastManager() {
           roomCode: roomData.roomCode
         });
       case 'prompt_selection':
-        var pickerName = ((_roomData$players$roo = roomData.players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name) || 'The Judge';
+        var pickerName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           isCastScreen: true,
           judgeName: pickerName,
@@ -1202,11 +1243,11 @@ function CouchCastManager() {
           hostId: roomData.hostId
         });
       case 'judging':
-        var judgeName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
+        var _judgeName = ((_roomData$players$roo3 = roomData.players[roomData.hostId]) === null || _roomData$players$roo3 === void 0 ? void 0 : _roomData$players$roo3.name) || 'The Judge';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           currentPrompt: currentPrompt,
           submissions: submissions,
-          judgeName: judgeName,
+          judgeName: _judgeName,
           endTime: roomData.endTime
         });
       case 'winner_reveal':
@@ -1910,13 +1951,15 @@ function CouchCastPromptSelection(_ref) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RULES_NARRATION": () => (/* binding */ RULES_NARRATION),
 /* harmony export */   "default": () => (/* binding */ CouchCastRules)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1926,6 +1969,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+// 🎙️ What the host voice says while the rules are on screen
+var RULES_NARRATION = ["Welcome to Couch Cast! An Apples to Apples style party game, with a rotating judge.", "Here's how it works. Each round, the judge picks one of three prompts to set the vibe. Everyone else taps their funniest answer from the cards on their phone. You also get one custom write-in per game, so make it count.", "Then the judge crowns the winner. Let's get started!"];
+
+// If the voice stalls, start the game anyway this many seconds after the countdown ends
+var NARRATION_GRACE_SECONDS = 20;
 function CouchCastRules(_ref) {
   var roomCode = _ref.roomCode;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(30),
@@ -1950,9 +2000,33 @@ function CouchCastRules(_ref) {
     };
   }, []);
 
-  // Run the countdown timer
+  // True while the host voice is still reading the rules
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isNarrating = _useState6[0],
+    setIsNarrating = _useState6[1];
+  var hasStarted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+
+  // Read the rules aloud. When the voice finishes, the game starts straight away;
+  // with no voice available, the countdown below runs the show as before.
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (timeLeft <= 0) {
+    var isCurrent = true;
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.speak)(RULES_NARRATION, roomCode).then(function (wasSpoken) {
+      if (!isCurrent) return;
+      setIsNarrating(false);
+      if (wasSpoken) setTimeout(function () {
+        return isCurrent && handleNext();
+      }, 800);
+    });
+    return function () {
+      isCurrent = false;
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.stopVoice)();
+    };
+  }, [roomCode]);
+
+  // Run the countdown timer (it waits at zero for the voice to finish its sentence)
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (timeLeft <= 0 && (!isNarrating || timeLeft <= -NARRATION_GRACE_SECONDS)) {
       handleNext();
       return;
     }
@@ -1964,8 +2038,10 @@ function CouchCastRules(_ref) {
     return function () {
       return clearInterval(timerId);
     };
-  }, [timeLeft, roomCode]);
+  }, [timeLeft, roomCode, isNarrating]);
   var handleNext = function handleNext() {
+    if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
+    hasStarted.current = true;
     console.log("Sending startPromptSelection event for room: ".concat(roomCode));
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('startPromptSelection', {
       roomCode: roomCode
@@ -2001,19 +2077,19 @@ function CouchCastRules(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
     className: "d-flex flex-column h-100",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1.5rem)',
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
     className: "fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary",
     style: {
       fontSize: 'clamp(1rem, 3.5vh, 1.8rem)',
@@ -2047,19 +2123,19 @@ function CouchCastRules(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1rem)',
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
@@ -2070,7 +2146,7 @@ function CouchCastRules(_ref) {
       fontSize: 'clamp(2.5rem, 18vh, 6rem)',
       lineHeight: 1
     }
-  }, timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "light",
     size: "sm",
     className: "w-100 fw-bold mt-auto py-2 shadow-sm",
@@ -9588,6 +9664,44 @@ function playChime() {
 
 /***/ }),
 
+/***/ "./src/features/CouchCast/lobbyMusic.js":
+/*!**********************************************!*\
+  !*** ./src/features/CouchCast/lobbyMusic.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "preloadLobbyMusic": () => (/* binding */ preloadLobbyMusic),
+/* harmony export */   "startLobbyMusic": () => (/* binding */ startLobbyMusic),
+/* harmony export */   "stopLobbyMusic": () => (/* binding */ stopLobbyMusic)
+/* harmony export */ });
+// 🎵 The Couch Cast lobby music: one shared player.
+// It's started by the tap that creates the room (browsers only allow sound after a tap),
+// so it's already playing by the time the lobby appears.
+var lobbyMusic = new Audio('/audio/LobbyMusic.mp3');
+lobbyMusic.loop = true;
+lobbyMusic.volume = 0.4;
+lobbyMusic.preload = 'none'; // don't download it for visitors who never open Couch Cast
+
+// Called on the deck page: start downloading so it's ready by the time a deck is tapped
+function preloadLobbyMusic() {
+  lobbyMusic.preload = 'auto';
+  lobbyMusic.load();
+}
+function startLobbyMusic() {
+  if (!lobbyMusic.paused) return;
+  lobbyMusic.play()["catch"](function (err) {
+    return console.warn('Audio autoplay blocked:', err.message);
+  });
+}
+function stopLobbyMusic() {
+  lobbyMusic.pause();
+  lobbyMusic.currentTime = 0;
+}
+
+/***/ }),
+
 /***/ "./src/features/Menu/backgroundTheme.js":
 /*!**********************************************!*\
   !*** ./src/features/Menu/backgroundTheme.js ***!
@@ -9870,10 +9984,18 @@ var couchCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".co
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "preloadVoice": () => (/* binding */ preloadVoice),
 /* harmony export */   "speak": () => (/* binding */ speak),
-/* harmony export */   "stopVoice": () => (/* binding */ stopVoice)
+/* harmony export */   "stopVoice": () => (/* binding */ stopVoice),
+/* harmony export */   "unlockVoice": () => (/* binding */ unlockVoice)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -9883,20 +10005,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 var backendBase = isLocal ? 'http://localhost:5005' : 'https://game-temple-backend.onrender.com';
-var queue = []; // lines waiting to be spoken: { audioPromise }
-var currentAudio = null; // the line being spoken right now
+
+// One audio player for every line. Phones only let a page make sound after a tap,
+// and that permission sticks to the player that was started by the tap (see unlockVoice).
+var player = new Audio();
+var SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+var queue = []; // lines waiting to be spoken: { audioPromise, keep, done }
+var currentDone = null; // tells speak() how the current line ended
 var isPlaying = false;
 var session = 0; // bumped by stopVoice() so stale lines never start
 
+// Lines fetched ahead of time (text -> Promise of an audio URL), so they start instantly
+var preloaded = new Map();
+var MAX_PRELOADED = 60;
+var wait = function wait(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+};
 var fetchAudio = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(text, roomCode) {
-    var response;
+    var attempt,
+      response,
+      detail,
+      _args = arguments;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            attempt = _args.length > 2 && _args[2] !== undefined ? _args[2] : 1;
+            _context.prev = 1;
+            _context.next = 4;
             return fetch("".concat(backendBase, "/api/tts"), {
               method: 'POST',
               headers: {
@@ -9907,31 +10046,57 @@ var fetchAudio = /*#__PURE__*/function () {
                 roomCode: roomCode
               })
             });
-          case 3:
+          case 4:
             response = _context.sent;
             if (response.ok) {
-              _context.next = 6;
+              _context.next = 15;
               break;
             }
+            _context.next = 8;
+            return response.json()["catch"](function () {
+              return {};
+            });
+          case 8:
+            detail = _context.sent;
+            console.warn("Voice-over failed (".concat(response.status, "): ").concat(detail.message || 'no details', " \u2014 \"").concat(text.slice(0, 40), "\""));
+            // The voice service hiccuped: one more go. Anything else (no key, limit reached) won't change.
+            if (!(response.status >= 500 && response.status !== 503 && attempt === 1)) {
+              _context.next = 14;
+              break;
+            }
+            _context.next = 13;
+            return wait(400);
+          case 13:
+            return _context.abrupt("return", fetchAudio(text, roomCode, 2));
+          case 14:
             return _context.abrupt("return", null);
-          case 6:
+          case 15:
             _context.t0 = URL;
-            _context.next = 9;
+            _context.next = 18;
             return response.blob();
-          case 9:
+          case 18:
             _context.t1 = _context.sent;
             return _context.abrupt("return", _context.t0.createObjectURL.call(_context.t0, _context.t1));
-          case 13:
-            _context.prev = 13;
-            _context.t2 = _context["catch"](0);
-            console.warn('Voice-over unavailable:', _context.t2.message);
+          case 22:
+            _context.prev = 22;
+            _context.t2 = _context["catch"](1);
+            console.warn("Voice-over unavailable: ".concat(_context.t2.message));
+            if (!(attempt === 1)) {
+              _context.next = 29;
+              break;
+            }
+            _context.next = 28;
+            return wait(400);
+          case 28:
+            return _context.abrupt("return", fetchAudio(text, roomCode, 2));
+          case 29:
             return _context.abrupt("return", null);
-          case 17:
+          case 30:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 13]]);
+    }, _callee, null, [[1, 22]]);
   }));
   return function fetchAudio(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -9939,7 +10104,7 @@ var fetchAudio = /*#__PURE__*/function () {
 }();
 var playNext = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-    var next, mySession, url, finish;
+    var next, mySession, url, release, finish;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -9963,34 +10128,47 @@ var playNext = /*#__PURE__*/function () {
             return next.audioPromise;
           case 9:
             url = _context2.sent;
+            release = function release() {
+              if (url && !next.keep) URL.revokeObjectURL(url);
+            }; // stopVoice() was called while this line was loading
             if (!(mySession !== session)) {
-              _context2.next = 13;
+              _context2.next = 15;
               break;
             }
-            if (url) URL.revokeObjectURL(url);
+            release();
+            next.done(false);
             return _context2.abrupt("return");
-          case 13:
-            finish = function finish() {
-              if (url) URL.revokeObjectURL(url);
+          case 15:
+            // wasSpoken: true only if the line played all the way through
+            finish = function finish(wasSpoken) {
+              player.onended = null;
+              player.onerror = null;
+              release();
+              next.done(wasSpoken);
               if (mySession !== session) return;
-              currentAudio = null;
+              currentDone = null;
               isPlaying = false;
               playNext();
             };
             if (url) {
-              _context2.next = 16;
+              _context2.next = 18;
               break;
             }
-            return _context2.abrupt("return", finish());
-          case 16:
-            currentAudio = new Audio(url);
-            currentAudio.onended = finish;
-            currentAudio.onerror = finish;
-            currentAudio.play()["catch"](function (err) {
-              console.warn('Voice-over blocked:', err.message);
-              finish();
+            return _context2.abrupt("return", finish(false));
+          case 18:
+            currentDone = next.done;
+            player.onended = function () {
+              return finish(true);
+            };
+            player.onerror = function () {
+              return finish(false);
+            };
+            player.src = url;
+            player.play()["catch"](function (err) {
+              console.warn("Voice-over blocked by the browser: ".concat(err.message));
+              finish(false);
             });
-          case 20:
+          case 23:
           case "end":
             return _context2.stop();
         }
@@ -10007,24 +10185,72 @@ var toSpokenText = function toSpokenText(text) {
   return String(text || '').replace(/_{2,}/g, 'blank').replace(/\s+/g, ' ').trim();
 };
 
-// Say one or more lines, in order, after anything already queued
-function speak(lines, roomCode) {
+// Call this from a tap/click (e.g. the button that starts the game) so the
+// browser lets the narrator speak later without another tap.
+function unlockVoice() {
+  if (isPlaying) return;
+  player.src = SILENCE;
+  player.play()["catch"](function () {});
+}
+
+// Fetch lines ahead of time so they start the moment they're needed
+function preloadVoice(lines, roomCode) {
   [].concat(lines).map(toSpokenText).filter(Boolean).forEach(function (text) {
-    // Start loading straight away so there's no gap between lines
-    queue.push({
-      audioPromise: fetchAudio(text, roomCode)
+    if (preloaded.has(text)) return;
+
+    // Full: drop the oldest line
+    if (preloaded.size >= MAX_PRELOADED) {
+      var _preloaded$entries$ne = _slicedToArray(preloaded.entries().next().value, 2),
+        oldestText = _preloaded$entries$ne[0],
+        oldestPromise = _preloaded$entries$ne[1];
+      preloaded["delete"](oldestText);
+      oldestPromise.then(function (url) {
+        return url && URL.revokeObjectURL(url);
+      });
+    }
+    var audioPromise = fetchAudio(text, roomCode);
+    preloaded.set(text, audioPromise);
+    // A failed line isn't kept, so it gets another chance when it's actually spoken
+    audioPromise.then(function (url) {
+      if (!url && preloaded.get(text) === audioPromise) preloaded["delete"](text);
+    });
+  });
+}
+
+// Say one or more lines, in order, after anything already queued.
+// Resolves when they're finished: true if every line was actually spoken,
+// false if the voice is unavailable or it was cut off by stopVoice().
+function speak(lines, roomCode) {
+  var results = [].concat(lines).map(toSpokenText).filter(Boolean).map(function (text) {
+    return new Promise(function (resolve) {
+      var ready = preloaded.get(text);
+      // Start loading straight away so there's no gap between lines
+      queue.push({
+        audioPromise: ready || fetchAudio(text, roomCode),
+        keep: !!ready,
+        done: resolve
+      });
     });
   });
   playNext();
+  return Promise.all(results).then(function (spoken) {
+    return spoken.length > 0 && spoken.every(Boolean);
+  });
 }
 
 // Cut off the current line and forget anything queued (used when the screen changes)
 function stopVoice() {
   session += 1;
+  queue.forEach(function (line) {
+    return line.done(false);
+  });
   queue = [];
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio = null;
+  player.onended = null;
+  player.onerror = null;
+  player.pause();
+  if (currentDone) {
+    currentDone(false);
+    currentDone = null;
   }
   isPlaying = false;
 }

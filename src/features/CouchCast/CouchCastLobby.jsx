@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
+import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 
 export default function CouchCastLobby({ roomCode, players = [] }) {
   const [isPortrait, setIsPortrait] = useState(false);
@@ -19,15 +20,11 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
       window.scrollTo(0, 1);
     }, 100);
     
-    const bgMusic = new Audio('/audio/LobbyMusic.mp3');
-    bgMusic.loop = true;
-    bgMusic.volume = 0.4; 
-
-    bgMusic.play().catch(err => console.warn("Audio autoplay blocked:", err));
+    // Usually already playing (started by the tap that created the room); this covers a refresh
+    startLobbyMusic();
 
     return () => {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
+      stopLobbyMusic();
       window.removeEventListener('resize', checkOrientation);
       clearTimeout(timer);
     };

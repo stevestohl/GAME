@@ -5,7 +5,7 @@ import { couchCastSocket as socket } from "../../socket";
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
-import { speak, stopVoice } from '../../voice.js';
+import { speak, stopVoice, preloadVoice } from '../../voice.js';
 
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
@@ -13,11 +13,18 @@ import CouchCastWritingTV from './CouchCastWritingTV.jsx';
 import CouchCastJudgingTV from './CouchCastJudgingTV.jsx';
 import CouchCastWinnerRevealTV from './CouchCastWinnerRevealTV.jsx';
 import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
-import CouchCastRules from './CouchCastRules.jsx';
+import CouchCastRules, { RULES_NARRATION } from './CouchCastRules.jsx';
 import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
+
+// 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
+// and they give the changing part of each announcement a moment to load behind them.
+const VOICE_PROMPT_INTRO = "The prompt is...";
+const VOICE_ANSWERS_INTRO = "Time's up! Here are your answers.";
+const VOICE_WINNER_INTRO = "And the winner is...";
+const vibeLine = (name) => `${name} is setting the vibe.`;
 
 export default function CouchCastManager() {
 
@@ -61,8 +68,10 @@ export default function CouchCastManager() {
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
     const round = roomData?.currentRound;
+    const judgeName = roomData?.players?.[roomData.hostId]?.name;
     let voiceMoment = null;
-    if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
+    if (gameState === 'prompt_selection' && judgeName) voiceMoment = `picking-${round}`;
+    else if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
     else if (gameState === 'judging' && submissions?.length > 0) voiceMoment = `answers-${round}`;
     else if (gameState === 'winner_reveal' && roundResults?.winningSubmission) voiceMoment = `winner-${round}`;
     else if (gameState === 'scoreboard' && roundResults?.isGameOver) voiceMoment = 'game-over';
@@ -75,13 +84,17 @@ export default function CouchCastManager() {
         const code = roomData.roomCode;
         const promptText = currentPrompt?.text || currentPrompt;
 
-        if (voiceMoment.startsWith('prompt')) {
-            speak(`The prompt is: ${promptText}`, code);
+        if (voiceMoment.startsWith('picking')) {
+            speak(vibeLine(judgeName), code);
+        } else if (voiceMoment.startsWith('prompt')) {
+            speak([VOICE_PROMPT_INTRO, promptText], code);
         } else if (voiceMoment.startsWith('answers')) {
-            speak(["Time's up! Here are your answers.", ...submissions.map((sub) => sub.answer)], code);
+            speak([VOICE_ANSWERS_INTRO, ...submissions.map((sub) => sub.answer)], code);
         } else if (voiceMoment.startsWith('winner')) {
             const { playerName, answer } = roundResults.winningSubmission;
-            speak(`And the winner is... ${answer} That one came from ${playerName}!`, code);
+            speak([VOICE_WINNER_INTRO, `${answer} That one came from ${playerName}!`], code);
+            // Get the next judge's line ready while the confetti falls
+            if (!roundResults.isGameOver && roundResults.nextHostName) preloadVoice(vibeLine(roundResults.nextHostName), code);
         } else if (voiceMoment === 'game-over') {
             const champion = Object.values(roomData.players)
                 .filter((p) => !p.isCaster)
@@ -89,6 +102,18 @@ export default function CouchCastManager() {
             if (champion) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
         }
     }, [voiceMoment]);
+
+    // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
+    const lobbyRoomCode = roomData?.roomCode;
+    useEffect(() => {
+        if (!lobbyRoomCode) return;
+        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_ANSWERS_INTRO, VOICE_WINNER_INTRO], lobbyRoomCode);
+    }, [lobbyRoomCode]);
+
+    // The first judge is known once the rules are showing: get their line ready too
+    useEffect(() => {
+        if (gameState === 'rules' && judgeName && lobbyRoomCode) preloadVoice(vibeLine(judgeName), lobbyRoomCode);
+    }, [gameState, judgeName, lobbyRoomCode]);
 
     // Leaving the game: stop talking
     useEffect(() => stopVoice, []);

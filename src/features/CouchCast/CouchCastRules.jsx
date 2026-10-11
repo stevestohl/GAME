@@ -1,6 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
+import { speak, stopVoice } from '../../voice.js';
+
+// 🎙️ What the host voice says while the rules are on screen
+export const RULES_NARRATION = [
+    "Welcome to Couch Cast! An Apples to Apples style party game, with a rotating judge.",
+    "Here's how it works. Each round, the judge picks one of three prompts to set the vibe. Everyone else taps their funniest answer from the cards on their phone. You also get one custom write-in per game, so make it count.",
+    "Then the judge crowns the winner. Let's get started!",
+];
+
+// If the voice stalls, start the game anyway this many seconds after the countdown ends
+const NARRATION_GRACE_SECONDS = 20;
 
 export default function CouchCastRules({ roomCode }) {
     const [timeLeft, setTimeLeft] = useState(30);
@@ -15,9 +26,30 @@ export default function CouchCastRules({ roomCode }) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Run the countdown timer
+    // True while the host voice is still reading the rules
+    const [isNarrating, setIsNarrating] = useState(true);
+    const hasStarted = useRef(false);
+
+    // Read the rules aloud. When the voice finishes, the game starts straight away;
+    // with no voice available, the countdown below runs the show as before.
     useEffect(() => {
-        if (timeLeft <= 0) {
+        let isCurrent = true;
+
+        speak(RULES_NARRATION, roomCode).then((wasSpoken) => {
+            if (!isCurrent) return;
+            setIsNarrating(false);
+            if (wasSpoken) setTimeout(() => isCurrent && handleNext(), 800);
+        });
+
+        return () => {
+            isCurrent = false;
+            stopVoice();
+        };
+    }, [roomCode]);
+
+    // Run the countdown timer (it waits at zero for the voice to finish its sentence)
+    useEffect(() => {
+        if (timeLeft <= 0 && (!isNarrating || timeLeft <= -NARRATION_GRACE_SECONDS)) {
             handleNext();
             return;
         }
@@ -27,9 +59,11 @@ export default function CouchCastRules({ roomCode }) {
         }, 1000);
 
         return () => clearInterval(timerId);
-    }, [timeLeft, roomCode]);
+    }, [timeLeft, roomCode, isNarrating]);
 
     const handleNext = () => {
+        if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
+        hasStarted.current = true;
         console.log(`Sending startPromptSelection event for room: ${roomCode}`);
         socket.emit('startPromptSelection', { roomCode });
     };
@@ -108,7 +142,7 @@ export default function CouchCastRules({ roomCode }) {
                                     
                                     {/* Timer Text */}
                                     <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 6rem)', lineHeight: 1 }}>
-                                        {timeLeft}s
+                                        {Math.max(timeLeft, 0)}s
                                     </div>
                                     
                                     {/* Developer Skip Button */}

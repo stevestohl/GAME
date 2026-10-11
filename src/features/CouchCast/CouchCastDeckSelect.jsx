@@ -3,6 +3,7 @@ import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import { handleCreateCouchCast } from './CouchCastCreate.jsx';
+import { preloadLobbyMusic } from './lobbyMusic.js';
 import { CARD_DECKS } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
 
@@ -20,6 +21,11 @@ export default function CouchCastDeckSelect() {
         document.body.style.overflow = 'unset';
         document.body.classList.remove('modal-open');
         document.body.style.paddingRight = '';
+    }, []);
+
+    // Start downloading the lobby music now, so it plays the moment a deck is tapped
+    useEffect(() => {
+        preloadLobbyMusic();
     }, []);
 
     return (
