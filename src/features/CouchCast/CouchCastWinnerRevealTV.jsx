@@ -62,30 +62,32 @@ export default function CouchCastWinnerRevealTV({
 
             <div className="d-flex flex-column h-100 p-3 pb-4 w-100 align-items-center justify-content-center text-center" style={{ zIndex: 10 }}>
                 
-                <h2 className="fw-bold mb-3 text-uppercase" style={{ color: '#ffd700', letterSpacing: '4px', textShadow: '2px 2px 4px rgba(0,0,0,0.6)', fontSize: 'clamp(1.5rem, 4vh, 2.5rem)' }}>
+                <h2 className="fw-bold text-uppercase flex-shrink-0" style={{ color: '#ffd700', letterSpacing: '4px', textShadow: '2px 2px 4px rgba(0,0,0,0.6)', fontSize: 'clamp(1.1rem, 5vh, 2.5rem)', marginBottom: '2vh' }}>
                     And the winner is...
                 </h2>
                 
-                <div className="shining-border-wrapper animate-pop-in w-100 mb-4" style={{ maxWidth: '900px' }}>
-                    <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(15px)', border: '3px solid #198754' }}>
-                        <Card.Body className="p-4 p-md-5 d-flex flex-column align-items-center text-center">
+                {/* height: auto + minHeight: 0 lets the card shrink to fit short screens instead of spilling off */}
+                <div className="shining-border-wrapper animate-pop-in w-100" style={{ maxWidth: '900px', height: 'auto', minHeight: 0, marginBottom: '2vh' }}>
+                    <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(15px)', border: '3px solid #198754', minHeight: 0 }}>
+                        <Card.Body className="d-flex flex-column align-items-center justify-content-center text-center" style={{ padding: 'clamp(0.5rem, 3.5vh, 3rem)', minHeight: 0 }}>
                             
-                            <h4 className="mb-4 fst-italic text-dark" style={{ fontSize: 'clamp(1.2rem, 3vh, 1.8rem)' }}>
+                            <h4 className="fst-italic text-dark" style={{ fontSize: 'clamp(0.8rem, 3.6vh, 1.8rem)', marginBottom: '2vh' }}>
                                 "{currentPrompt?.text || currentPrompt}"
                             </h4>
                             
-                            <h1 className="fw-bold text-dark mb-4 px-3" style={{ fontSize: 'clamp(1.8rem, 5vh, 3.5rem)' }}>
+                            {/* Long answers get smaller type so they still fit */}
+                            <h1 className="fw-bold text-dark px-3" style={{ fontSize: (winningSubmission?.answer || '').length > 45 ? 'clamp(1rem, 5vh, 2.6rem)' : 'clamp(1.2rem, 7vh, 3.5rem)', lineHeight: 1.15, marginBottom: '2vh' }}>
                                 "{winningSubmission?.answer}"
                             </h1>
                             
-                            <hr className="w-75 mx-auto opacity-50 mb-4 border-secondary" />
+                            <hr className="w-75 mx-auto opacity-50 border-secondary flex-shrink-0" style={{ marginTop: 0, marginBottom: '2vh' }} />
                             
-                            <Badge bg="success" className="p-3 shadow-sm rounded-pill mb-3" style={{ fontSize: 'clamp(1.2rem, 3vh, 2rem)' }}>
+                            <Badge bg="success" className="shadow-sm rounded-pill flex-shrink-0" style={{ fontSize: 'clamp(0.9rem, 4vh, 2rem)', padding: '1.5vh 3vh', marginBottom: '1.5vh' }}>
                                 🎉 {winningSubmission?.playerName} 🎉
                             </Badge>
                             
-                            <div className="fs-4 fw-bold text-dark mt-2" style={{ fontSize: 'clamp(1.1rem, 2.5vh, 1.5rem)' }}>
-                                Total Score: <span className="text-success fs-3">{winner?.score}</span>
+                            <div className="fw-bold text-dark flex-shrink-0" style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.5rem)' }}>
+                                Total Score: <span className="text-success">{winner?.score}</span>
                             </div>
                             
                         </Card.Body>
@@ -93,15 +95,15 @@ export default function CouchCastWinnerRevealTV({
                 </div>
 
                 {isGameOver ? (
-                    <div className="shining-border-wrapper animate-pop-in mt-2" style={{ animationDelay: '1.5s' }}>
+                    <div className="shining-border-wrapper animate-pop-in flex-shrink-0" style={{ animationDelay: '1.5s', height: 'auto', width: 'auto' }}>
                         <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(220, 53, 69, 0.8)', backdropFilter: 'blur(10px)' }}>
                             <Card.Body className="py-2 px-4">
-                                <h3 className="text-white m-0 fw-bold" style={{ fontSize: 'clamp(1.2rem, 3vh, 1.8rem)' }}>Game Over! Calculating final scores...</h3>
+                                <h3 className="text-white m-0 fw-bold" style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)' }}>Game Over! Calculating final scores...</h3>
                             </Card.Body>
                         </Card>
                     </div>
                 ) : (
-                    <h4 className="text-white fw-bold mt-2 animate-pop-in" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)', fontSize: 'clamp(1.1rem, 3vh, 1.8rem)', animationDelay: '1.5s', opacity: 0 }}>
+                    <h4 className="text-white fw-bold m-0 flex-shrink-0 animate-pop-in" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)', fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)', animationDelay: '1.5s', opacity: 0 }}>
                         Get ready! <span style={{ color: '#ffd700' }}>{nextHostName}</span> is the next Host.
                     </h4>
                 )}

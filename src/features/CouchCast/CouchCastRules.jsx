@@ -50,7 +50,7 @@ export default function CouchCastRules({ roomCode }) {
             <div className="d-flex flex-column h-100 p-3 pb-4 w-100">
                 
                 {/* Main Header */}
-                <h2 className="fullscreen-gameplay-header text-center mb-3">
+                <h2 className="fullscreen-gameplay-header text-center">
                     How To Play Couch Cast!
                 </h2>
 
@@ -61,25 +61,25 @@ export default function CouchCastRules({ roomCode }) {
                     <div className="d-flex flex-column h-100" style={{ flex: '2 1 0', minWidth: 0 }}>
                         <div className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
-                                <Card.Body className="d-flex flex-column p-3 p-md-4 h-100">
+                                <Card.Body className="d-flex flex-column h-100" style={{ padding: 'clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
                                     
                                     <Card.Title 
-                                        className="fw-bold text-dark mb-3 text-center flex-shrink-0 border-bottom border-secondary pb-2"
-                                        style={{ fontSize: 'clamp(1.2rem, 3vh, 1.8rem)' }}
+                                        className="fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary"
+                                        style={{ fontSize: 'clamp(1rem, 3.5vh, 1.8rem)', paddingBottom: '0.6vh', marginBottom: '1.5vh' }}
                                     >
                                         RULES
                                     </Card.Title>
                                     
                                     {/* Wrapping div centers the list without forcing it to stretch vertically */}
-                                    <div className="d-flex flex-column justify-content-center flex-grow-1 px-2 px-md-3">
-                                        <ol className="mb-0 text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.85rem, 2.8vh, 1.3rem)', gap: '1rem' }}>
+                                    <div className="d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar" style={{ minHeight: 0 }}>
+                                        <ol className="my-auto text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)', lineHeight: 1.3, gap: 'clamp(0.3rem, 2vh, 1rem)' }}>
                                             <li>
                                                 <strong className="text-dark">Host Picks the Prompt:</strong><br/>
                                                 Each round, one player is the Host and picks <strong>1 of 3 prompts</strong> to set the vibe.
                                             </li>
                                             <li>
                                                 <strong className="text-dark">Contestants Respond:</strong><br/>
-                                                Players pick from <strong>7 responses</strong> to submit their funniest answer. You get 1 custom "Write-In" per game, so make it count!
+                                                Players pick from <strong>6 responses</strong> to submit their funniest answer. You get 1 custom "Write-In" per game, so make it count!
                                             </li>
                                             <li>
                                                 <strong className="text-dark">Host Judges the Winner:</strong><br/>
@@ -97,7 +97,7 @@ export default function CouchCastRules({ roomCode }) {
                     <div className="d-flex flex-column h-100" style={{ flex: '1 1 0', minWidth: 0 }}>
                         <div className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
-                                <Card.Body className="d-flex flex-column align-items-center justify-content-between p-3">
+                                <Card.Body className="d-flex flex-column align-items-center justify-content-between" style={{ padding: 'clamp(0.5rem, 3vh, 1rem)', minHeight: 0 }}>
                                     
                                     <Card.Title 
                                         className="fw-bold text-dark mb-1 text-center flex-shrink-0"
@@ -107,7 +107,7 @@ export default function CouchCastRules({ roomCode }) {
                                     </Card.Title>
                                     
                                     {/* Timer Text */}
-                                    <div className="display-1 fw-bold text-danger text-center">
+                                    <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 6rem)', lineHeight: 1 }}>
                                         {timeLeft}s
                                     </div>
                                     

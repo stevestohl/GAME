@@ -3,11 +3,8 @@ import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
 export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, endTime, submissions =[] }) {
-    // Local state for the Judge to highlight their favorite answer before submitting
+    // The answer the Judge tapped (one tap crowns it, so this also locks the screen)
     const [selectedWinnerId, setSelectedWinnerId] = useState(null);
-    
-    // NEW: State to handle the dramatic pause and disable the UI
-    const [isLockingIn, setIsLockingIn] = useState(false); 
 
     // Countdown to the server's deadline (after it, a random answer wins)
     const [timeLeft, setTimeLeft] = useState(null);
@@ -23,29 +20,12 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, end
         return () => clearInterval(timer);
     }, [endTime]);
 
-    // Out of time with an answer highlighted but not crowned yet: send that one in
-    useEffect(() => {
-        if (isJudge && timeLeft === 0 && selectedWinnerId && !isLockingIn) {
-            setIsLockingIn(true);
-            socket.emit('pick_winner', { roomCode, winningPlayerId: selectedWinnerId });
-        }
-    }, [isJudge, timeLeft, selectedWinnerId, isLockingIn, roomCode]);
-
-    const handlePickWinner = () => {
-        // Prevent double-clicks if they mash the button
-        if (!selectedWinnerId || isLockingIn) return;
-        
-        // 1. Instantly lock the judge's UI
-        setIsLockingIn(true);
-        
-        // 2. Start the suspense timer (e.g., 2.5 seconds)
-        setTimeout(() => {
-            console.log(`[CouchCast] Judge picked winner ${selectedWinnerId} for room ${roomCode}`);
-            socket.emit('pick_winner', { roomCode, winningPlayerId: selectedWinnerId });
-            
-            // Note: You don't necessarily need to reset isLockingIn to false here
-            // because the server will emit a new game state and unmount this component anyway!
-        }, 2500); 
+    // One tap picks the winner straight away (no separate "crown" button)
+    const handlePickWinner = (playerId) => {
+        if (selectedWinnerId) return; // Prevent double-taps
+        setSelectedWinnerId(playerId);
+        console.log(`[CouchCast] Judge picked winner ${playerId} for room ${roomCode}`);
+        socket.emit('pick_winner', { roomCode, winningPlayerId: playerId });
     };
 
     // ==========================================
@@ -86,7 +66,7 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, end
                 
                 <Card.Body>
                     <p className="text-center text-muted fw-bold mb-3">
-                        Read the answers on the TV, then pick your favorite!
+                        Read the answers on the TV, then tap your favorite to crown it!
                     </p>
 
                     {timeLeft !== null && submissions.length > 0 && (
@@ -96,7 +76,7 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, end
                         </div>
                     )}
                     
-                    <div className="d-flex flex-column gap-2 mb-4">
+                    <div className="d-flex flex-column gap-2">
                         {submissions.length === 0 ? (
                             <div className="text-center text-danger fw-bold my-4">
                                 No one submitted an answer! 
@@ -107,34 +87,14 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, end
                                     key={index}
                                     variant={selectedWinnerId === sub.playerId ? 'warning' : 'outline-dark'}
                                     className="text-start p-3 fw-semibold text-wrap shadow-sm"
-                                    onClick={() => setSelectedWinnerId(sub.playerId)}
-                                    // NEW: Prevent changing the selection once the dramatic pause starts
-                                    disabled={isLockingIn} 
+                                    onClick={() => handlePickWinner(sub.playerId)}
+                                    disabled={!!selectedWinnerId && selectedWinnerId !== sub.playerId}
                                 >
                                     {sub.answer}
                                 </Button>
                             ))
                         )}
                     </div>
-                    <Button 
-                        // NEW: Change the button color to info while loading for visual feedback
-                        variant={isLockingIn ? "info" : "success"} 
-                        size="lg" 
-                        className="w-100 fw-bold py-3 shadow" 
-                        // NEW: Keep button disabled if no winner is picked OR if we are locking in
-                        disabled={!selectedWinnerId || isLockingIn}
-                        onClick={handlePickWinner}
-                    >
-                        {/* NEW: Conditional rendering for the button text */}
-                        {isLockingIn ? (
-                            <>
-                                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
-                                Locking it in...
-                            </>
-                        ) : (
-                            'Crown the Winner! 👑'
-                        )}
-                    </Button>
                 </Card.Body>
             </Card>
         </Container>

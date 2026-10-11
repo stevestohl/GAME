@@ -9,6 +9,7 @@ import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 import CouchCastWritingPlayer from './CouchCastWritingPlayer.jsx';
 import CouchCastJudging from './CouchCastJudging.jsx'; // 👈 IMPORTED OUR JUDGING COMPONENT
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
+import { playChime } from '../../chime.js';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -107,6 +108,21 @@ useEffect(() => {
             socket.off('round_ended', handleRoundEnded); 
         };
     }, [roomCode, playerName]);
+
+    // 🔔 Chime when it becomes this player's turn to do something
+    const myTurn = (() => {
+        if (!roomData || !playerData) return null;
+        const amJudge = playerData.isPlayerHost;
+        if (gameState === 'prompt_selection') return amJudge ? 'pick-prompt' : null;
+        if (gameState === 'writing') return !amJudge && !playerData.hasSubmitted ? 'answer' : null;
+        if (gameState === 'judging') return amJudge && submissions.length > 0 ? 'crown-winner' : null;
+        return null;
+    })();
+    const turnKey = myTurn ? `${myTurn}-${roomData.currentRound}` : null;
+
+    useEffect(() => {
+        if (turnKey) playChime();
+    }, [turnKey]);
 
     const handleStartGame = () => {
         socket.emit('showRules', { roomCode });

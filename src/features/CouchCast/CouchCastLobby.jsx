@@ -73,13 +73,13 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
         <strong>Cast now to screen!</strong> Mirror this device to your TV, then everyone scans the code to join.
       </span>
     </div>
-        <div className="row flex-grow-1 g-3" style={{ minHeight: 0 }}>
+        <div className="row flex-grow-1 gx-3 gy-0" style={{ minHeight: 0 }}>
           
           {/* --- LEFT COLUMN: QR CODE FLOATING CARD --- */}
           <div className="col-6 d-flex flex-column h-100">
             <div className="shining-border-wrapper">
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
-                <Card.Body className="d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden">
+                <Card.Body className="d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden" style={{ minHeight: 0 }}>
                   
                   {/* Flexible title */}
                   <Card.Title 
@@ -120,7 +120,7 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
           <div className="col-6 d-flex flex-column h-100">
             <div className="shining-border-wrapper">
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
-                <Card.Body className="d-flex flex-column p-3 p-md-4">
+                <Card.Body className="d-flex flex-column" style={{ padding: 'clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
                   <h5 
                     className="text-start mb-2 fw-semibold flex-shrink-0 text-dark"
                     style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)' }}
@@ -158,6 +158,11 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
             </div>
           </div>
           
+        </div>
+
+        {/* 🔋 Battery saver lets the screen go to sleep mid-game */}
+        <div className="cc-lobby-tip">
+          🔋 For the best experience, turn off Battery Saver / Low Power Mode on this device so the screen stays awake.
         </div>
       </div>
     </div>

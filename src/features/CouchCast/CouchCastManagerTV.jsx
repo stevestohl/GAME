@@ -30,7 +30,18 @@ export default function CouchCastManager() {
 
     // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
     if (urlRole === 'guest') {
-        return <CouchCastPlayerSetup roomCode={urlRoomCode} playerName={urlPlayerName} />;
+        return (
+            <>
+                <CouchCastPlayerSetup roomCode={urlRoomCode} playerName={urlPlayerName} />
+
+                {/* Same room code pill as the TV, so players can read it out to latecomers */}
+                {urlRoomCode && (
+                    <div className="cc-room-code">
+                        Room <strong>{urlRoomCode.toUpperCase()}</strong>
+                    </div>
+                )}
+            </>
+        );
     }
 
     // --- TV STATE MANAGEMENT ---
@@ -201,6 +212,13 @@ export default function CouchCastManager() {
             )}
             
             {renderGamePhase()}
+
+            {/* Room code stays in the corner of every TV screen so latecomers can still join */}
+            {roomData?.roomCode && (
+                <div className="cc-room-code">
+                    Room <strong>{roomData.roomCode}</strong>
+                </div>
+            )}
         </Container>
     );
 }

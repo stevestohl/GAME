@@ -16,8 +16,8 @@ const WRITING_TIME_LIMIT = 60 * 1000;
 // How long the judge has to crown a winner before one is picked at random
 const JUDGING_TIME_LIMIT = 30 * 1000;
 
-// Extra moment after the clock hits zero, so a pick the judge is locking in still counts
-const JUDGING_GRACE = 3 * 1000;
+// Extra moment after the clock hits zero, so a last-second tap from the judge still counts
+const JUDGING_GRACE = 1 * 1000;
 
 // How many rounds make a game
 const TOTAL_ROUNDS = 3;

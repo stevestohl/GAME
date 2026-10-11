@@ -332,6 +332,41 @@
   .cc-cast-now-icon { animation: none; }
 }
 
+/* 🔋 Small tip line under the lobby cards */
+.cc-lobby-tip {
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+  padding-right: 7rem;   /* keeps clear of the room code in the corner */
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.65rem, 2.2vh, 1rem);
+  line-height: 1.2;
+  text-align: left;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */
+.cc-room-code {
+  position: fixed;
+  right: 0.75rem;
+  bottom: 0.5rem;
+  z-index: 9999;          /* same layer as the TV screens, drawn after them */
+  padding: 0.15rem 0.75rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: clamp(0.7rem, 2.4vh, 1.1rem);
+  letter-spacing: 0.05em;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+.cc-room-code strong {
+  color: var(--gt-gold);
+  letter-spacing: 0.15em;
+  margin-left: 0.25rem;
+}
+
 /* The full-screen blur overlay */
 .landscape-overlay {
   position: fixed;
