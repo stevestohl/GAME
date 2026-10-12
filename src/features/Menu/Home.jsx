@@ -7,6 +7,7 @@ import tttImg from '../../assets/logos/Tic_Tac_Toe_Button.jpeg';
 import triviaImg from '../../assets/logos/Trivia_Button.jpeg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import HeroLogo from './HeroLogo.jsx';
+import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -195,9 +196,27 @@ export default function Home() {
                                     </Button>
                                 </GameRow>
 
-                                {/* ❔ Trivia — button left, text right */}
+                                {/* 📺❔ Trivia Cast — button left, text right */}
                                 <GameRow
                                     flip
+                                    title="Trivia Cast"
+                                    players="2+ players"
+                                    description="Trivia night on the big screen. Questions show on the TV and everyone answers on their phone. Cast one extra device to the TV as the main screen."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        disabled={isCreatingRoom}
+                                        onClick={() => navigate('/triviacast-decks')}
+                                        aria-label="Set up a Trivia Cast game"
+                                        style={{ '--shimmer-delay': '0.8s', ...squareStyle }}
+                                    >
+                                        <TriviaCastTile />
+                                    </Button>
+                                </GameRow>
+
+                                {/* ❔ Trivia — text left, button right */}
+                                <GameRow
                                     title="Trivia"
                                     players="2+ players"
                                     description="Put your knowledge to the test. Everyone answers the same questions on their own device, and the best scores rise to the top of the leaderboard."
@@ -208,14 +227,15 @@ export default function Home() {
                                         disabled={isCreatingRoom}
                                         onClick={() => navigate('/trivia-create')}
                                         aria-label="Create a Trivia room"
-                                        style={{ '--shimmer-delay': '0.8s', ...squareStyle }}
+                                        style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
                                     >
                                         <img src={triviaImg} alt="Trivia" className="w-100 h-100" style={imgStyle} />
                                     </Button>
                                 </GameRow>
 
-                                {/* Prompt 2 — text left, button right */}
+                                {/* Prompt 2 — button left, text right */}
                                 <GameRow
+                                    flip
                                     title="Prompt 2"
                                     players="3+ players"
                                     description="All the fun of Couch Cast, no TV required. A rotating judge reads a prompt, everyone plays their best card, and the whole game runs right on your phones."
@@ -226,15 +246,14 @@ export default function Home() {
                                         disabled={isCreatingRoom}
                                         onClick={() => navigate('/prompt2-create')}
                                         aria-label="Create a Prompt 2 room"
-                                        style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
+                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
                                     >
                                         <img src={prompt2Img} alt="Prompt 2" className="w-100 h-100" style={imgStyle} />
                                     </Button>
                                 </GameRow>
 
-                                {/* ❌⭕ Tic-Tac-Toe — button left, text right */}
+                                {/* ❌⭕ Tic-Tac-Toe — text left, button right */}
                                 <GameRow
-                                    flip
                                     title="Tic-Tac-Toe"
                                     players="2 players"
                                     description="The timeless classic, head to head. Take turns on your own devices — first to get three in a row wins."
@@ -245,7 +264,7 @@ export default function Home() {
                                         disabled={isCreatingRoom}
                                         onClick={() => navigate('/tictactoe-create')}
                                         aria-label="Create a Tic-Tac-Toe room"
-                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
+                                        style={{ '--shimmer-delay': '2s', ...squareStyle }}
                                     >
                                         <img src={tttImg} alt="Tic-Tac-Toe" className="w-100 h-100" style={imgStyle} />
                                     </Button>

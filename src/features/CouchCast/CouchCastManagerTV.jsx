@@ -23,7 +23,6 @@ import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
 const VOICE_PROMPT_INTRO = "The prompt is...";
-const VOICE_ANSWERS_INTRO = "Time's up! Here are your answers.";
 const VOICE_WINNER_INTRO = "And the winner is...";
 const vibeLine = (name) => `${name} is setting the vibe.`;
 
@@ -73,7 +72,7 @@ export default function CouchCastManager() {
     let voiceMoment = null;
     if (gameState === 'prompt_selection' && judgeName) voiceMoment = `picking-${round}`;
     else if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
-    else if (gameState === 'judging' && submissions?.length > 0) voiceMoment = `answers-${round}`;
+    // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
     else if (gameState === 'winner_reveal' && roundResults?.winningSubmission) voiceMoment = `winner-${round}`;
     else if (gameState === 'scoreboard' && roundResults?.isGameOver) voiceMoment = 'game-over';
 
@@ -89,8 +88,6 @@ export default function CouchCastManager() {
             speak(vibeLine(judgeName), code);
         } else if (voiceMoment.startsWith('prompt')) {
             speak([VOICE_PROMPT_INTRO, promptText], code);
-        } else if (voiceMoment.startsWith('answers')) {
-            speak([VOICE_ANSWERS_INTRO, ...submissions.map((sub) => sub.answer)], code);
         } else if (voiceMoment.startsWith('winner')) {
             const { playerName, answer } = roundResults.winningSubmission;
             speak([VOICE_WINNER_INTRO, `${answer} That one came from ${playerName}!`], code);
@@ -108,7 +105,7 @@ export default function CouchCastManager() {
     const lobbyRoomCode = roomData?.roomCode;
     useEffect(() => {
         if (!lobbyRoomCode) return;
-        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_ANSWERS_INTRO, VOICE_WINNER_INTRO], lobbyRoomCode);
+        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // The first judge is known once the rules are showing: get their line ready too

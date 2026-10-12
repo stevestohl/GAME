@@ -97,6 +97,44 @@ const ICONS = {
         </>
     ),
 
+    // ❔ Trivia
+    question: (
+        <>
+            <path d="M32 36 a18 18 0 1 1 27 15.5 q-9 5.5 -9 16" />
+            <circle cx="50" cy="84" r="5" className="gt-icon-dot" />
+        </>
+    ),
+    bulb: (
+        <>
+            <path d="M50 8 a27 27 0 0 0 -17 48 q5 5 5 12 h24 q0 -7 5 -12 a27 27 0 0 0 -17 -48 z" />
+            <path d="M40 78 H60 M43 88 H57" />
+        </>
+    ),
+
+    // 🐾 Animals
+    paw: (
+        <>
+            <ellipse cx="24" cy="46" rx="9" ry="12" transform="rotate(-18 24 46)" />
+            <ellipse cx="41" cy="27" rx="9" ry="12" transform="rotate(-6 41 27)" />
+            <ellipse cx="60" cy="27" rx="9" ry="12" transform="rotate(6 60 27)" />
+            <ellipse cx="77" cy="46" rx="9" ry="12" transform="rotate(18 77 46)" />
+            <path d="M50 48 c-14 0 -25 13 -25 25 c0 9 7 14 14 14 c5 0 7 -3 11 -3 c4 0 6 3 11 3 c7 0 14 -5 14 -14 c0 -12 -11 -25 -25 -25 z" />
+        </>
+    ),
+    fish: (
+        <>
+            <path d="M8 50 q28 -30 58 0 q-30 30 -58 0 z" />
+            <path d="M66 50 L92 30 V70 Z" />
+            <circle cx="28" cy="45" r="4" className="gt-icon-dot" />
+        </>
+    ),
+    leaf: (
+        <>
+            <path d="M18 84 q-4 -56 64 -66 q-4 64 -64 66 z" />
+            <path d="M18 84 L60 42" />
+        </>
+    ),
+
     // 🎃 Halloween
     pumpkin: (
         <>
@@ -165,11 +203,35 @@ const HALLOWEEN_FLOATERS = [
     { icon: 'bat',     top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 10 },
 ];
 
+const TRIVIA_FLOATERS = [
+    { icon: 'question',   top: '12%', left: '4%',  size: 170, dur: 38, delay: 0,   rot: -12 },
+    { icon: 'castScreen', top: '60%', left: '78%', size: 190, dur: 44, delay: -8,  rot: 12 },
+    { icon: 'bulb',       top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: 10 },
+    { icon: 'phone',      top: '8%',  left: '82%', size: 130, dur: 48, delay: -20, rot: -14 },
+    { icon: 'star',       top: '42%', left: '91%', size: 60,  dur: 30, delay: -5,  rot: 0 },
+    { icon: 'bubble',     top: '38%', left: '-1%', size: 110, dur: 42, delay: -26, rot: 6 },
+    { icon: 'question',   top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: 16 },
+    { icon: 'bulb',       top: '4%',  left: '44%', size: 70,  dur: 34, delay: -18, rot: -10 },
+];
+
+const ANIMALS_FLOATERS = [
+    { icon: 'paw',  top: '12%', left: '4%',  size: 170, dur: 38, delay: 0,   rot: -14 },
+    { icon: 'fish', top: '60%', left: '78%', size: 190, dur: 44, delay: -8,  rot: 8 },
+    { icon: 'leaf', top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: 10 },
+    { icon: 'paw',  top: '8%',  left: '82%', size: 130, dur: 48, delay: -20, rot: 20 },
+    { icon: 'star', top: '42%', left: '91%', size: 60,  dur: 30, delay: -5,  rot: 0 },
+    { icon: 'fish', top: '38%', left: '-1%', size: 110, dur: 42, delay: -26, rot: -6 },
+    { icon: 'leaf', top: '84%', left: '44%', size: 100, dur: 40, delay: -12, rot: -16 },
+    { icon: 'paw',  top: '4%',  left: '44%', size: 70,  dur: 34, delay: -18, rot: 10 },
+];
+
 // Each theme = which icons float around. Colours live in cards.css (.gt-bg.theme-*).
 const THEMES = {
     home: FLOATERS,
     couchcast: COUCHCAST_FLOATERS,
     halloween: HALLOWEEN_FLOATERS,
+    trivia: TRIVIA_FLOATERS,
+    animals: ANIMALS_FLOATERS,
 };
 
 export default function AnimatedBackground() {

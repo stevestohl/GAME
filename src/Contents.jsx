@@ -21,6 +21,8 @@ import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.js
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 import TriviaCreateScreen from './features/Trivia/TriviaCreateButton.jsx'
 import TriviaManager from './features/Trivia/TriviaManager.jsx'
+import TriviaCastManager from './features/TriviaCast/TriviaCastManager.jsx'
+import TriviaCastDeckSelect from './features/TriviaCast/TriviaCastDeckSelect.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
 
 export default function Contents() {
@@ -50,6 +52,8 @@ export default function Contents() {
             <Route path="/couchcast" element={<CouchCastManager />} />
             <Route path="/couchcast-setup" element={<CouchCastManager />} />
             <Route path="/couchcast-decks" element={<CouchCastDeckSelect />} />
+            <Route path="/triviacast" element={<TriviaCastManager />} />
+            <Route path="/triviacast-decks" element={<TriviaCastDeckSelect />} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}
             <Route path="/play" element={<CouchCastManager />} />

@@ -3,7 +3,7 @@ import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 
-export default function CouchCastLobby({ roomCode, players = [] }) {
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' }) {
   const [isPortrait, setIsPortrait] = useState(false);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function CouchCastLobby({ roomCode, players = [] }) {
     
     {/* Main title uses clamp() to shrink gracefully on short viewports */}
     <h2 className="fullscreen-gameplay-header">
-      Couch Cast Room Created
+      {title}
     </h2>
 
     {/* 📺 Step one: get this screen onto the TV */}

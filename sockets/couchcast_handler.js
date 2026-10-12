@@ -1,10 +1,13 @@
 // Couch-Cast will share the same database and model as Prompt2
+import { randomUUID } from "crypto"
 import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js"
+import { recordPromptRound } from "../db/recordPromptRound.js"
 
 // HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
 const getSafeRoom = (room) => {
     if (!room) return null;
-    const { timerId, destroyTimer, ...safeRoom } = room;
+    // `hands` (the cards each player was dealt) stays on the server too: it's only for the saved stats
+    const { timerId, destroyTimer, hands, ...safeRoom } = room;
     return safeRoom;
 };
 
@@ -46,9 +49,11 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
+        gameId: randomUUID(),   // ties this game's saved answers together
         gameState: 'lobby',
         expansion: expansion,
         totalRounds: totalRounds,
+        hands: {},
         casterId: socket.id,
         hostId: null, 
         currentHostIndex: 1,
@@ -117,7 +122,7 @@ export default function registerCCNamespace(CCNS) {
             room.timerId = setTimeout(() => {
                 const randomPick = anonymousSubmissions[Math.floor(Math.random() * anonymousSubmissions.length)];
                 console.log(`[Judging Timeout] Room ${roomCode}: picking a random winner.`);
-                crownWinner(roomCode, randomPick.playerId);
+                crownWinner(roomCode, randomPick.playerId, 'random');
             }, JUDGING_TIME_LIMIT + JUDGING_GRACE);
         }
 
@@ -178,8 +183,23 @@ export default function registerCCNamespace(CCNS) {
         CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
     };
 
+    // --- HELPER: Save this round's answers for later analysis (promptanswers collection) ---
+    const saveRound = (room, winningPlayerId, pickedBy) => {
+        recordPromptRound({
+            game: 'couchcast',
+            room,
+            judge: room.players[room.hostId],
+            players: Object.values(room.players).filter(p => !p.isCaster && p.id !== room.hostId),
+            winningPlayerId,
+            pickedBy,
+            timeLimitMs: WRITING_TIME_LIMIT,
+            pointsForWin: 100,
+            hands: room.hands,
+        });
+    };
+
     // --- HELPER: Crown the round's winner (picked by the judge, or at random when time runs out) ---
-    const crownWinner = (roomCode, winningPlayerId) => {
+    const crownWinner = (roomCode, winningPlayerId, pickedBy = 'judge') => {
         const room = activeCCRooms[roomCode];
         // Only one winner per round: ignore anything after judging has ended
         if (!room || room.gameState !== 'judging') return;
@@ -198,6 +218,9 @@ export default function registerCCNamespace(CCNS) {
             winningPlayer.score += 100; 
             winningAnswerText = winningPlayer.currentAnswer; 
         }
+
+        // 📊 Save the round before the judge's seat moves on
+        saveRound(room, winningPlayerId, pickedBy);
 
         // 2. Host Rotation Logic 
         const nextHost = rotateHost(room);
@@ -248,6 +271,7 @@ export default function registerCCNamespace(CCNS) {
         const room = activeCCRooms[roomCode];
         if (!room || room.gameState !== 'judging') return;
 
+        saveRound(room, null, 'none');
         const nextHost = rotateHost(room);
 
         // The skipped round still counts, so an idle room can't play forever
@@ -473,6 +497,7 @@ export default function registerCCNamespace(CCNS) {
             try {
                 const room = findRoomBySocket(socket.id);
                 const randomResponses = await drawCards('response', room?.expansion, 6);
+                if (room) room.hands[socket.id] = randomResponses;   // for the saved stats
                 
                 socket.emit('receive_hand', { hand: randomResponses });
             } catch (err) {
@@ -523,9 +548,13 @@ export default function registerCCNamespace(CCNS) {
                         p.hasSubmitted = false;
                         p.currentAnswer = "";
                     }
+                    p.answeredAt = null;
+                    p.currentIsWriteIn = false;
                 });
 
-                room.endTime = Date.now() + WRITING_TIME_LIMIT;
+                room.hands = {};
+                room.writingStartedAt = Date.now();
+                room.endTime = room.writingStartedAt + WRITING_TIME_LIMIT;
 
                 room.timerId = setTimeout(() => {
                     advanceToJudging(roomCode);
@@ -548,6 +577,8 @@ export default function registerCCNamespace(CCNS) {
             if (player && socket.id !== room.hostId && !player.isCaster) {
                 player.currentAnswer = answer;
                 player.hasSubmitted = true;
+                player.answeredAt = Date.now();
+                player.currentIsWriteIn = !!usedWriteIn;
 
                 // Flags writin answer as used
                 if (usedWriteIn) {

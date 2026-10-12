@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./features/Employee/EmployeeList.jsx */ "./src/features/Employee/EmployeeList.jsx");
 /* harmony import */ var _features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./features/Employee/EmployeeReport.jsx */ "./src/features/Employee/EmployeeReport.jsx");
 /* harmony import */ var _features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features/Employee/EmployeeEdit.jsx */ "./src/features/Employee/EmployeeEdit.jsx");
@@ -31,7 +31,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
 /* harmony import */ var _features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
 /* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
-/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
+/* harmony import */ var _features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastManager.jsx */ "./src/features/TriviaCast/TriviaCastManager.jsx");
+/* harmony import */ var _features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastDeckSelect.jsx */ "./src/features/TriviaCast/TriviaCastDeckSelect.jsx");
+/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
 
 
 
@@ -56,74 +58,82 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 function Contents() {
   var NotFound = function NotFound() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Page Not Found");
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/home",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_Home_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/barhome",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_BarHome_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/join",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/tictactoe",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/tictactoe-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/trivia",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/trivia-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/flashcards",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/flashcardsList",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/flashcardGame",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/prompt2",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2GameManager_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/prompt2-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/couchcast",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/couchcast-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/couchcast-decks",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
+    path: "/triviacast",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
+    path: "/triviacast-decks",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/play",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/employees",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/edit/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/report",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "/",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Navigate, {
       replace: true,
       to: "/home"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     path: "*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NotFound, null)
   }));
@@ -812,7 +822,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function CouchCastLobby(_ref) {
   var roomCode = _ref.roomCode,
     _ref$players = _ref.players,
-    players = _ref$players === void 0 ? [] : _ref$players;
+    players = _ref$players === void 0 ? [] : _ref$players,
+    _ref$title = _ref.title,
+    title = _ref$title === void 0 ? 'Couch Cast Room Created' : _ref$title;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isPortrait = _useState2[0],
@@ -863,7 +875,7 @@ function CouchCastLobby(_ref) {
     className: "d-flex flex-column h-100 p-3 pb-4 w-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fullscreen-gameplay-header"
-  }, "Couch Cast Room Created"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "cc-cast-now"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     viewBox: "0 0 100 100",
@@ -1055,7 +1067,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
 var VOICE_PROMPT_INTRO = "The prompt is...";
-var VOICE_ANSWERS_INTRO = "Time's up! Here are your answers.";
 var VOICE_WINNER_INTRO = "And the winner is...";
 var vibeLine = function vibeLine(name) {
   return "".concat(name, " is setting the vibe.");
@@ -1119,7 +1130,9 @@ function CouchCastManager() {
   var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
   var judgeName = roomData === null || roomData === void 0 ? void 0 : (_roomData$players = roomData.players) === null || _roomData$players === void 0 ? void 0 : (_roomData$players$roo = _roomData$players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name;
   var voiceMoment = null;
-  if (gameState === 'prompt_selection' && judgeName) voiceMoment = "picking-".concat(round);else if (gameState === 'writing' && currentPrompt) voiceMoment = "prompt-".concat(round);else if (gameState === 'judging' && (submissions === null || submissions === void 0 ? void 0 : submissions.length) > 0) voiceMoment = "answers-".concat(round);else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';
+  if (gameState === 'prompt_selection' && judgeName) voiceMoment = "picking-".concat(round);else if (gameState === 'writing' && currentPrompt) voiceMoment = "prompt-".concat(round);
+  // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
+  else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // The screen changed: stop whatever was being said
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
@@ -1130,10 +1143,6 @@ function CouchCastManager() {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(vibeLine(judgeName), code);
     } else if (voiceMoment.startsWith('prompt')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_PROMPT_INTRO, promptText], code);
-    } else if (voiceMoment.startsWith('answers')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_ANSWERS_INTRO].concat(_toConsumableArray(submissions.map(function (sub) {
-        return sub.answer;
-      }))), code);
     } else if (voiceMoment.startsWith('winner')) {
       var _roundResults$winning = roundResults.winningSubmission,
         playerName = _roundResults$winning.playerName,
@@ -1155,7 +1164,7 @@ function CouchCastManager() {
   var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!lobbyRoomCode) return;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_11__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_ANSWERS_INTRO, VOICE_WINNER_INTRO]), lobbyRoomCode);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_11__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO]), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // The first judge is known once the rules are showing: get their line ready too
@@ -2358,7 +2367,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function CouchCastScoreboardTV(_ref) {
   var players = _ref.players,
-    isGameOver = _ref.isGameOver;
+    isGameOver = _ref.isGameOver,
+    _ref$nextLabel = _ref.nextLabel,
+    nextLabel = _ref$nextLabel === void 0 ? 'Next round starting soon...' : _ref$nextLabel;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isPortrait = _useState2[0],
@@ -2441,7 +2452,7 @@ function CouchCastScoreboardTV(_ref) {
       fontSize: 'clamp(1rem, 4.5vh, 2.2rem)',
       textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
     }
-  }, "\uD83D\uDC51 ", isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, (leader.score || 0) === 0 ? isGameOver ? "It's a tie... nobody scored!" : 'No points on the board yet!' : "\uD83D\uDC51 ".concat(isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-100 flex-grow-1 px-3",
     style: {
       maxWidth: columnCount === 1 ? '750px' : '1100px',
@@ -2518,7 +2529,7 @@ function CouchCastScoreboardTV(_ref) {
       textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
       fontSize: 'clamp(1rem, 2vh, 1.3rem)'
     }
-  }, "Next round starting soon..."))));
+  }, nextLabel))));
 }
 
 /***/ }),
@@ -5192,6 +5203,63 @@ var ICONS = {
     r: "4",
     className: "gt-icon-dot"
   })),
+  // ❔ Trivia
+  question: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M32 36 a18 18 0 1 1 27 15.5 q-9 5.5 -9 16"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "84",
+    r: "5",
+    className: "gt-icon-dot"
+  })),
+  bulb: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 8 a27 27 0 0 0 -17 48 q5 5 5 12 h24 q0 -7 5 -12 a27 27 0 0 0 -17 -48 z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M40 78 H60 M43 88 H57"
+  })),
+  // 🐾 Animals
+  paw: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "24",
+    cy: "46",
+    rx: "9",
+    ry: "12",
+    transform: "rotate(-18 24 46)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "41",
+    cy: "27",
+    rx: "9",
+    ry: "12",
+    transform: "rotate(-6 41 27)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "60",
+    cy: "27",
+    rx: "9",
+    ry: "12",
+    transform: "rotate(6 60 27)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "77",
+    cy: "46",
+    rx: "9",
+    ry: "12",
+    transform: "rotate(18 77 46)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 48 c-14 0 -25 13 -25 25 c0 9 7 14 14 14 c5 0 7 -3 11 -3 c4 0 6 3 11 3 c7 0 14 -5 14 -14 c0 -12 -11 -25 -25 -25 z"
+  })),
+  fish: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M8 50 q28 -30 58 0 q-30 30 -58 0 z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M66 50 L92 30 V70 Z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "28",
+    cy: "45",
+    r: "4",
+    className: "gt-icon-dot"
+  })),
+  leaf: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M18 84 q-4 -56 64 -66 q-4 64 -64 66 z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M18 84 L60 42"
+  })),
   // 🎃 Halloween
   pumpkin: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     d: "M46 26 q1 -13 12 -16 l4 6 q-7 3 -7 10"
@@ -5455,12 +5523,144 @@ var HALLOWEEN_FLOATERS = [{
   delay: -18,
   rot: 10
 }];
+var TRIVIA_FLOATERS = [{
+  icon: 'question',
+  top: '12%',
+  left: '4%',
+  size: 170,
+  dur: 38,
+  delay: 0,
+  rot: -12
+}, {
+  icon: 'castScreen',
+  top: '60%',
+  left: '78%',
+  size: 190,
+  dur: 44,
+  delay: -8,
+  rot: 12
+}, {
+  icon: 'bulb',
+  top: '66%',
+  left: '5%',
+  size: 130,
+  dur: 36,
+  delay: -14,
+  rot: 10
+}, {
+  icon: 'phone',
+  top: '8%',
+  left: '82%',
+  size: 130,
+  dur: 48,
+  delay: -20,
+  rot: -14
+}, {
+  icon: 'star',
+  top: '42%',
+  left: '91%',
+  size: 60,
+  dur: 30,
+  delay: -5,
+  rot: 0
+}, {
+  icon: 'bubble',
+  top: '38%',
+  left: '-1%',
+  size: 110,
+  dur: 42,
+  delay: -26,
+  rot: 6
+}, {
+  icon: 'question',
+  top: '84%',
+  left: '44%',
+  size: 90,
+  dur: 40,
+  delay: -12,
+  rot: 16
+}, {
+  icon: 'bulb',
+  top: '4%',
+  left: '44%',
+  size: 70,
+  dur: 34,
+  delay: -18,
+  rot: -10
+}];
+var ANIMALS_FLOATERS = [{
+  icon: 'paw',
+  top: '12%',
+  left: '4%',
+  size: 170,
+  dur: 38,
+  delay: 0,
+  rot: -14
+}, {
+  icon: 'fish',
+  top: '60%',
+  left: '78%',
+  size: 190,
+  dur: 44,
+  delay: -8,
+  rot: 8
+}, {
+  icon: 'leaf',
+  top: '66%',
+  left: '5%',
+  size: 130,
+  dur: 36,
+  delay: -14,
+  rot: 10
+}, {
+  icon: 'paw',
+  top: '8%',
+  left: '82%',
+  size: 130,
+  dur: 48,
+  delay: -20,
+  rot: 20
+}, {
+  icon: 'star',
+  top: '42%',
+  left: '91%',
+  size: 60,
+  dur: 30,
+  delay: -5,
+  rot: 0
+}, {
+  icon: 'fish',
+  top: '38%',
+  left: '-1%',
+  size: 110,
+  dur: 42,
+  delay: -26,
+  rot: -6
+}, {
+  icon: 'leaf',
+  top: '84%',
+  left: '44%',
+  size: 100,
+  dur: 40,
+  delay: -12,
+  rot: -16
+}, {
+  icon: 'paw',
+  top: '4%',
+  left: '44%',
+  size: 70,
+  dur: 34,
+  delay: -18,
+  rot: 10
+}];
 
 // Each theme = which icons float around. Colours live in cards.css (.gt-bg.theme-*).
 var THEMES = {
   home: FLOATERS,
   couchcast: COUCHCAST_FLOATERS,
-  halloween: HALLOWEEN_FLOATERS
+  halloween: HALLOWEEN_FLOATERS,
+  trivia: TRIVIA_FLOATERS,
+  animals: ANIMALS_FLOATERS
 };
 function AnimatedBackground() {
   var _useBackgroundTheme = (0,_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_1__.useBackgroundTheme)(),
@@ -6094,24 +6294,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Couch_Cast_Button.jpg */ "./src/assets/logos/Couch_Cast_Button.jpg");
 /* harmony import */ var _assets_logos_Prompt_2_Button_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/logos/Prompt_2_Button.jpeg */ "./src/assets/logos/Prompt_2_Button.jpeg");
 /* harmony import */ var _assets_logos_Tic_Tac_Toe_Button_jpeg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/logos/Tic_Tac_Toe_Button.jpeg */ "./src/assets/logos/Tic_Tac_Toe_Button.jpeg");
 /* harmony import */ var _assets_logos_Trivia_Button_jpeg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/logos/Trivia_Button.jpeg */ "./src/assets/logos/Trivia_Button.jpeg");
 /* harmony import */ var _assets_logos_Join_Room_Button_jpeg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../assets/logos/Join_Room_Button.jpeg */ "./src/assets/logos/Join_Room_Button.jpeg");
 /* harmony import */ var _HeroLogo_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./HeroLogo.jsx */ "./src/features/Menu/HeroLogo.jsx");
-/* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
-/* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
-/* harmony import */ var _Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Prompt2/Prompt2CreateButton.jsx */ "./src/features/Prompt2/Prompt2CreateButton.jsx");
+/* harmony import */ var _TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../TriviaCast/TriviaCastTile.jsx */ "./src/features/TriviaCast/TriviaCastTile.jsx");
+/* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
+/* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
+/* harmony import */ var _Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Prompt2/Prompt2CreateButton.jsx */ "./src/features/Prompt2/Prompt2CreateButton.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -6121,6 +6322,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6147,7 +6349,7 @@ function GameRow(_ref) {
     description = _ref.description,
     flip = _ref.flip,
     children = _ref.children;
-  var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 7,
     className: "d-flex flex-column justify-content-center text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -6157,24 +6359,24 @@ function GameRow(_ref) {
   }, players)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "small text-secondary lh-sm"
   }, description));
-  var action = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  var action = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 5,
     className: "d-flex position-relative overflow-visible"
   }, children);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    className: "bg-light border-0 shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
-    className: "p-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    className: "bg-light border-0 shadow-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+    className: "p-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: "g-1 align-items-stretch"
   }, flip ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, action, info) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, info, action)))));
 }
 function Home() {
   var _location$state;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.useLocation)();
 
   // Loading states
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -6248,7 +6450,7 @@ function Home() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     style: {
       position: 'fixed',
       top: '20px',
@@ -6256,7 +6458,7 @@ function Home() {
       transform: 'translateX(-50%)',
       zIndex: 99999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     show: !!toastMsg,
     onClose: function onClose() {
       return setToastMsg('');
@@ -6264,23 +6466,23 @@ function Home() {
     delay: 4000,
     autohide: true,
     bg: "dark"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Body, {
     className: "fw-bold text-white text-center px-4 py-2"
-  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
     className: "main-card-header"
-  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
+  }, "GAME-TEMPLE.ORG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
     className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HeroLogo_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
     size: 260
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: "g-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     className: imgBtnClass,
     disabled: isCreatingRoom,
@@ -6296,7 +6498,7 @@ function Home() {
     alt: "Join a Room",
     className: "w-100 h-100",
     style: imgStyle
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12,
     className: "d-flex align-items-center mb-1 position-relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -6308,7 +6510,7 @@ function Home() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "burglar-divider ".concat(burglarActive ? 'active' : '')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: isStolen ? _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_8__ : _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_7__,
+    src: isStolen ? _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_9__ : _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_8__,
     alt: "",
     "aria-hidden": "true",
     style: {
@@ -6316,15 +6518,15 @@ function Home() {
       height: 'auto',
       mixBlendMode: 'multiply'
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: "g-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameRow, {
     title: "Couch Cast",
     players: "3+ players",
     description: "An Apples to Apples\u2013style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone. Cast one extra device to the TV as the main screen."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -6342,10 +6544,25 @@ function Home() {
     style: imgStyle
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameRow, {
     flip: true,
+    title: "Trivia Cast",
+    players: "2+ players",
+    description: "Trivia night on the big screen. Questions show on the TV and everyone answers on their phone. Cast one extra device to the TV as the main screen."
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    variant: "primary",
+    className: gameImgBtnClass,
+    disabled: isCreatingRoom,
+    onClick: function onClick() {
+      return navigate('/triviacast-decks');
+    },
+    "aria-label": "Set up a Trivia Cast game",
+    style: _objectSpread({
+      '--shimmer-delay': '0.8s'
+    }, squareStyle)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameRow, {
     title: "Trivia",
     players: "2+ players",
     description: "Put your knowledge to the test. Everyone answers the same questions on their own device, and the best scores rise to the top of the leaderboard."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -6354,7 +6571,7 @@ function Home() {
     },
     "aria-label": "Create a Trivia room",
     style: _objectSpread({
-      '--shimmer-delay': '0.8s'
+      '--shimmer-delay': '1.2s'
     }, squareStyle)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: _assets_logos_Trivia_Button_jpeg__WEBPACK_IMPORTED_MODULE_4__,
@@ -6362,10 +6579,11 @@ function Home() {
     className: "w-100 h-100",
     style: imgStyle
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameRow, {
+    flip: true,
     title: "Prompt 2",
     players: "3+ players",
     description: "All the fun of Couch Cast, no TV required. A rotating judge reads a prompt, everyone plays their best card, and the whole game runs right on your phones."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -6374,7 +6592,7 @@ function Home() {
     },
     "aria-label": "Create a Prompt 2 room",
     style: _objectSpread({
-      '--shimmer-delay': '1.2s'
+      '--shimmer-delay': '1.6s'
     }, squareStyle)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: _assets_logos_Prompt_2_Button_jpeg__WEBPACK_IMPORTED_MODULE_2__,
@@ -6382,11 +6600,10 @@ function Home() {
     className: "w-100 h-100",
     style: imgStyle
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameRow, {
-    flip: true,
     title: "Tic-Tac-Toe",
     players: "2 players",
     description: "The timeless classic, head to head. Take turns on your own devices \u2014 first to get three in a row wins."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     disabled: isCreatingRoom,
@@ -6395,21 +6612,21 @@ function Home() {
     },
     "aria-label": "Create a Tic-Tac-Toe room",
     style: _objectSpread({
-      '--shimmer-delay': '1.6s'
+      '--shimmer-delay': '2s'
     }, squareStyle)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: _assets_logos_Tic_Tac_Toe_Button_jpeg__WEBPACK_IMPORTED_MODULE_3__,
     alt: "Tic-Tac-Toe",
     className: "w-100 h-100",
     style: imgStyle
-  })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -6417,19 +6634,19 @@ function Home() {
     className: "fw-bold text-dark"
   }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted small mb-0"
-  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, "Waking up game server..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     show: isUnderConstruction,
     onHide: function onHide() {
       return setIsUnderConstruction(false);
     },
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
     className: "fw-bold mb-3"
   }, "\uD83D\uDEA7 Under Construction \uD83D\uDEA7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-muted medium mb-4"
-  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, "This game is currently being built. Check back soon!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     onClick: function onClick() {
       return setIsUnderConstruction(false);
@@ -6672,6 +6889,9 @@ function UniversalJoinScreen() {
     switch (prefix) {
       case 'C':
         targetRoute = "/couchcast?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        break;
+      case 'Q':
+        targetRoute = "/triviacast?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
         break;
       case 'P':
         targetRoute = "/prompt2?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
@@ -9639,6 +9859,1124 @@ function TriviaWaitingRoom(_ref) {
 
 /***/ }),
 
+/***/ "./src/features/TriviaCast/TriviaCastDeckSelect.jsx":
+/*!**********************************************************!*\
+  !*** ./src/features/TriviaCast/TriviaCastDeckSelect.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TriviaCastDeckSelect)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TriviaCastTile.jsx */ "./src/features/TriviaCast/TriviaCastTile.jsx");
+/* harmony import */ var _TriviaCastCreate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TriviaCastCreate.js */ "./src/features/TriviaCast/TriviaCastCreate.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
+/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
+/* harmony import */ var _Menu_RoundsPicker_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Menu/RoundsPicker.jsx */ "./src/features/Menu/RoundsPicker.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+/**
+ * 📺❔ Trivia Cast setup.
+ * Sits between the home page button and the game: says what Trivia Cast is,
+ * then the caster picks how many questions and which deck.
+ */
+function TriviaCastDeckSelect() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isCreatingRoom = _useState2[0],
+    setIsCreatingRoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_cardDecks_js__WEBPACK_IMPORTED_MODULE_4__.QUESTION_OPTIONS[0]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    totalRounds = _useState4[0],
+    setTotalRounds = _useState4[1];
+
+  // Global Scroll Unlock Safety Net (same as Home)
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
+  }, []);
+
+  // Start downloading the lobby music now, so it plays the moment a deck is tapped
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "page-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    className: "main-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Header, {
+    className: "main-card-header"
+  }, "Trivia Cast"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+    className: "p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    className: "bg-light border-0 shadow-sm m-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+    className: "p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    className: "g-2 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    xs: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "w-100 rounded shadow-sm"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    xs: 8,
+    className: "text-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fw-bold mb-1"
+  }, "Trivia Cast", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-muted fw-normal small ms-2"
+  }, "2+ players")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "small text-secondary lh-sm"
+  }, "Trivia night on the big screen. Questions show on the TV and everyone answers on their phone. Cast one extra device to the TV as the main screen."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex align-items-center my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-2 small fw-bold text-muted text-uppercase"
+  }, "How Many Questions?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_RoundsPicker_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    label: "Questions",
+    options: _cardDecks_js__WEBPACK_IMPORTED_MODULE_4__.QUESTION_OPTIONS,
+    value: totalRounds,
+    onChange: setTotalRounds,
+    disabled: isCreatingRoom
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex align-items-center mt-3 mb-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-2 small fw-bold text-muted text-uppercase"
+  }, "Then Tap a Deck to Start"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    className: "g-2"
+  }, _cardDecks_js__WEBPACK_IMPORTED_MODULE_4__.TRIVIA_DECKS.map(function (deck, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      xs: 4,
+      key: deck.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      compact: true,
+      deck: deck,
+      index: i,
+      disabled: isCreatingRoom,
+      onClick: function onClick() {
+        return (0,_TriviaCastCreate_js__WEBPACK_IMPORTED_MODULE_2__.handleCreateTriviaCast)(navigate, setIsCreatingRoom, deck.id, totalRounds);
+      },
+      ariaLabel: "Create a Trivia Cast room with the ".concat(deck.title, " questions")
+    }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    variant: "outline-secondary",
+    className: "w-100 fw-bold mt-3",
+    disabled: isCreatingRoom,
+    onClick: function onClick() {
+      return navigate('/home');
+    }
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    show: isCreatingRoom,
+    backdrop: "static",
+    keyboard: false,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+    className: "d-flex flex-column align-items-center justify-content-center p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    animation: "border",
+    variant: "primary",
+    className: "mb-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "fw-bold text-dark"
+  }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small mb-0"
+  }, "Waking up game server..."))));
+}
+
+/***/ }),
+
+/***/ "./src/features/TriviaCast/TriviaCastManager.jsx":
+/*!*******************************************************!*\
+  !*** ./src/features/TriviaCast/TriviaCastManager.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TriviaCastManager)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
+/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+// TV screens (the lobby and scoreboard are shared with Couch Cast)
+
+
+
+
+// Phone controller
+
+
+/**
+ * 📺❔ Trivia Cast. One address, two jobs:
+ *   role=caster -> the TV screen (this component)
+ *   role=guest  -> a player's phone (TriviaCastPlayer)
+ */
+function TriviaCastManager() {
+  (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  var searchParams = new URLSearchParams(window.location.search);
+  var urlRoomCode = (searchParams.get('room') || '').toUpperCase();
+  var urlPlayerName = searchParams.get('name') || 'Caster';
+  var urlRole = searchParams.get('role');
+  if (urlRole === 'guest') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      roomCode: urlRoomCode,
+      playerName: urlPlayerName
+    }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "cc-room-code"
+    }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, urlRoomCode)));
+  }
+
+  // --- TV STATE ---
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    room = _useState2[0],
+    setRoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    errorMessage = _useState4[0],
+    setErrorMessage = _useState4[1];
+  var gameState = room === null || room === void 0 ? void 0 : room.gameState;
+
+  // 🎨 Background follows the question deck, and covers the nav bar on the TV
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
+
+  // --- SOCKET LISTENERS ---
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // (Re)join our room on every connection: first load, a refresh, or a network blip
+    var joinMyRoom = function joinMyRoom() {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('joinRoom', {
+        roomCode: urlRoomCode,
+        playerName: urlPlayerName
+      });
+    };
+    var handleRoomUpdate = function handleRoomUpdate(update) {
+      if ((update === null || update === void 0 ? void 0 : update.roomCode) === urlRoomCode) setRoom(update);
+    };
+    var handleJoinError = function handleJoinError(msg) {
+      setErrorMessage(msg);
+      setTimeout(function () {
+        return setErrorMessage("");
+      }, 5000);
+    };
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('room_updated', handleRoomUpdate);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('joinError', handleJoinError);
+    if (urlRoomCode) {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('connect', joinMyRoom);
+      if (_socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.connected) joinMyRoom();else _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.connect();
+    } else {
+      setErrorMessage("No room code found in the URL!");
+    }
+    return function () {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('connect', joinMyRoom);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('room_updated', handleRoomUpdate);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('joinError', handleJoinError);
+    };
+  }, [urlRoomCode, urlPlayerName]);
+
+  // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
+  var voiceMoment = null;
+  if (gameState === 'question' && room.question) voiceMoment = "question-".concat(room.currentRound);else if (gameState === 'reveal' && room.correctAnswer) voiceMoment = "reveal-".concat(room.currentRound);else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
+    if (!voiceMoment || !room) return;
+    var code = room.roomCode;
+    if (voiceMoment.startsWith('question')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("Question ".concat(room.currentRound, ". ").concat(room.question.text), code);
+    } else if (voiceMoment.startsWith('reveal')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("The answer is: ".concat(room.correctAnswer, "."), code);
+    } else if (voiceMoment === 'game-over') {
+      var champion = Object.values(room.players).filter(function (p) {
+        return !p.isCaster;
+      }).sort(function (a, b) {
+        return (b.score || 0) - (a.score || 0);
+      })[0];
+      if (champion) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("That's the game! ".concat(champion.name, " wins with ").concat(champion.score, " points. Thanks for playing!"), code);
+    }
+  }, [voiceMoment]);
+
+  // Fetch the rules narration while everyone is still joining, so it starts instantly
+  var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
+  }, [lobbyRoomCode]);
+
+  // 🔇 After a page refresh the browser mutes us until someone taps the screen
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isSoundLocked = _useState6[0],
+    setIsSoundLocked = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var isCurrent = true;
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.canPlaySound)().then(function (allowed) {
+      if (isCurrent) setIsSoundLocked(!allowed);
+    });
+    return function () {
+      isCurrent = false;
+    };
+  }, []);
+  var handleTurnSoundOn = function handleTurnSoundOn() {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    setIsSoundLocked(false);
+  };
+
+  // Leaving the game: stop talking
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return _voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice;
+  }, []);
+
+  // --- TV RENDER ---
+  var renderGamePhase = function renderGamePhase() {
+    if (!room) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "fullscreen-gameplay-container justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        animation: "border",
+        variant: "light"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "mt-3 text-white"
+      }, "Powering up the TV..."));
+    }
+    var playersArray = Object.values(room.players);
+    switch (gameState) {
+      case 'lobby':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          title: "Trivia Cast Room Created",
+          roomCode: room.roomCode,
+          players: playersArray
+        });
+      case 'rules':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__.TriviaCastRulesTV, {
+          roomCode: room.roomCode
+        });
+      case 'question':
+      case 'reveal':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__.TriviaCastQuestionTV, {
+          room: room
+        });
+      case 'scoreboard':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          players: playersArray,
+          isGameOver: room.isGameOver,
+          nextLabel: "Next question coming up..."
+        });
+      default:
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "text-white"
+        }, "Unknown Game State: ", gameState));
+    }
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    fluid: true,
+    className: "p-0",
+    style: {
+      minHeight: '100vh'
+    }
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    variant: "danger",
+    className: "text-center m-2 position-absolute w-100",
+    style: {
+      zIndex: 10002
+    }
+  }, errorMessage), renderGamePhase(), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "button",
+    className: "cc-sound-button",
+    onClick: handleTurnSoundOn
+  }, "\uD83D\uDD07 Tap to turn sound back on"), (room === null || room === void 0 ? void 0 : room.roomCode) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cc-room-code"
+  }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, room.roomCode)));
+}
+
+/***/ }),
+
+/***/ "./src/features/TriviaCast/TriviaCastPlayer.jsx":
+/*!******************************************************!*\
+  !*** ./src/features/TriviaCast/TriviaCastPlayer.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TriviaCastPlayer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+/**
+ * 📱 A player's phone in Trivia Cast: the buzzer.
+ * The question lives on the TV; the phone shows the answer buttons and how you did.
+ */
+function TriviaCastPlayer(_ref) {
+  var _room$players, _room$question, _room$question2;
+  var roomCode = _ref.roomCode,
+    playerName = _ref.playerName;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    room = _useState2[0],
+    setRoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    error = _useState4[0],
+    setError = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    myPick = _useState6[0],
+    setMyPick = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    timeLeft = _useState8[0],
+    setTimeLeft = _useState8[1];
+
+  // 🎨 Background follows the question deck
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_2__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_2__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion));
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // A saved ID lets this phone get its seat back after a refresh or a dropped connection
+    var playerId = localStorage.getItem('templePlayerId');
+    if (!playerId) {
+      playerId = 'player_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('templePlayerId', playerId);
+    }
+    var joinMyRoom = function joinMyRoom() {
+      return _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('joinRoom', {
+        roomCode: roomCode,
+        playerName: playerName,
+        playerId: playerId
+      });
+    };
+    var handleRoomUpdate = function handleRoomUpdate(update) {
+      if ((update === null || update === void 0 ? void 0 : update.roomCode) === roomCode) setRoom(update);
+    };
+    var handleJoinError = function handleJoinError(message) {
+      return setError(message);
+    };
+    var handleRoomClosed = function handleRoomClosed(_ref2) {
+      var message = _ref2.message;
+      navigate('/home', {
+        state: {
+          toastMessage: message || 'That game has ended.'
+        }
+      });
+    };
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('connect', joinMyRoom);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('room_updated', handleRoomUpdate);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('joinError', handleJoinError);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.on('room_closed', handleRoomClosed);
+    if (_socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.connected) joinMyRoom();else _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.connect();
+    return function () {
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('connect', joinMyRoom);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('room_updated', handleRoomUpdate);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('joinError', handleJoinError);
+      _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.off('room_closed', handleRoomClosed);
+    };
+  }, [roomCode, playerName]);
+  var me = room === null || room === void 0 ? void 0 : (_room$players = room.players) === null || _room$players === void 0 ? void 0 : _room$players[_socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.id];
+  var gameState = room === null || room === void 0 ? void 0 : room.gameState;
+  var round = room === null || room === void 0 ? void 0 : room.currentRound;
+
+  // New question: clear the last pick and chime so nobody misses it
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (gameState === 'question') {
+      setMyPick(null);
+      (0,_chime_js__WEBPACK_IMPORTED_MODULE_3__.playChime)();
+    }
+  }, [gameState, round]);
+
+  // Countdown to the server's deadline
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!(room !== null && room !== void 0 && room.endTime)) {
+      setTimeLeft(null);
+      return;
+    }
+    var update = function update() {
+      return setTimeLeft(Math.max(0, Math.ceil((room.endTime - Date.now()) / 1000)));
+    };
+    update();
+    var timer = setInterval(update, 250);
+    return function () {
+      return clearInterval(timer);
+    };
+  }, [room === null || room === void 0 ? void 0 : room.endTime]);
+  var handleAnswer = function handleAnswer(option) {
+    if (myPick) return; // one answer per question
+    setMyPick(option);
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('submit_answer', {
+      roomCode: roomCode,
+      answer: option
+    });
+  };
+  var frame = function frame(title, body) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "page-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: "main-card"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Header, {
+      className: "main-card-header"
+    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+      className: "p-3"
+    }, body)));
+  };
+
+  // ---------- Couldn't join ----------
+  if (error) {
+    return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      variant: "warning",
+      className: "fw-bold"
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      variant: "primary",
+      className: "w-100 fw-bold",
+      onClick: function onClick() {
+        return navigate("/join?room=".concat(roomCode));
+      }
+    }, "Back to Join")));
+  }
+
+  // ---------- Connecting ----------
+  if (!room || !me) {
+    return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "py-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      animation: "border",
+      variant: "primary"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+      className: "mt-3 text-muted"
+    }, "Connecting to room ", roomCode, "...")));
+  }
+  var leader = room.players[room.hostId];
+  switch (gameState) {
+    case 'lobby':
+      return frame("You're In!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "text-muted mb-3"
+      }, "Look up at the TV."), me.isPlayerHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-3 border border-warning rounded bg-white shadow-sm"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fw-bold text-dark mb-3"
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        variant: "success",
+        size: "lg",
+        className: "w-100 fw-bold py-3",
+        onClick: function onClick() {
+          return _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('startGame', {
+            roomCode: roomCode
+          });
+        }
+      }, "Everyone's in!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-3 border border-dashed rounded bg-light text-muted"
+      }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, (leader === null || leader === void 0 ? void 0 : leader.name) || 'the room leader'), " to start the game...")));
+    case 'rules':
+      return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "py-3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "text-primary fw-bold mb-2"
+      }, "Get Ready!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "text-muted mb-3"
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        animation: "grow",
+        variant: "warning"
+      })));
+    case 'question':
+      if (me.hasAnswered || myPick) {
+        return frame("Question ".concat(room.currentRound, " of ").concat(room.totalRounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "py-3"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+          className: "display-3 mb-2"
+        }, "\uD83D\uDD12"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "fw-bold mb-2"
+        }, "Answer Locked!"), myPick && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "fs-5 fw-semibold text-primary mb-2"
+        }, myPick), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "text-muted mb-0"
+        }, "Waiting for everyone else...")));
+      }
+      return frame("Question ".concat(room.currentRound, " of ").concat(room.totalRounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "d-flex justify-content-between align-items-center mb-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "fw-bold text-muted text-uppercase small"
+      }, "Tap your answer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "fw-bold fs-5 ".concat(timeLeft !== null && timeLeft <= 5 ? 'text-danger' : 'text-info')
+      }, "\u23F1\uFE0F ", timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "fw-bold text-dark text-start mb-3"
+      }, (_room$question = room.question) === null || _room$question === void 0 ? void 0 : _room$question.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "d-flex flex-column gap-2"
+      }, (((_room$question2 = room.question) === null || _room$question2 === void 0 ? void 0 : _room$question2.options) || []).map(function (option, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          key: option,
+          type: "button",
+          className: "tc-answer-btn tc-answer-".concat(i % 4),
+          onClick: function onClick() {
+            return handleAnswer(option);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "tc-answer-letter"
+        }, LETTERS[i]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, option));
+      }))));
+    case 'reveal':
+      return frame("Question ".concat(room.currentRound, " of ").concat(room.totalRounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "py-2"
+      }, me.lastCorrect ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+        className: "display-3 mb-2"
+      }, "\u2705"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "fw-bold text-success mb-1"
+      }, "Correct!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fs-4 fw-bold text-success mb-2"
+      }, "+", me.lastPoints, " points")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+        className: "display-3 mb-2"
+      }, me.currentAnswer ? '❌' : '⏰'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "fw-bold text-danger mb-2"
+      }, me.currentAnswer ? 'Not quite!' : "Time's up!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-2 bg-light rounded border"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "small text-muted text-uppercase fw-bold"
+      }, "The answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "fw-bold text-dark fs-5"
+      }, room.correctAnswer))));
+    case 'scoreboard':
+      {
+        var ranked = Object.values(room.players).filter(function (p) {
+          return !p.isCaster;
+        }).sort(function (a, b) {
+          return (b.score || 0) - (a.score || 0);
+        });
+        var myRank = ranked.findIndex(function (p) {
+          return p.id === me.id;
+        }) + 1;
+        return frame(room.isGameOver ? 'Final Scores' : 'Scores', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "py-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+          className: "display-3 mb-2"
+        }, room.isGameOver && myRank === 1 ? '🏆' : '📊'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "fw-bold text-dark mb-1"
+        }, room.isGameOver && myRank === 1 ? 'You won!' : "You're #".concat(myRank, " of ").concat(ranked.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          bg: "primary",
+          className: "fs-5 rounded-pill px-3 py-2 mb-3"
+        }, me.score, " pts"), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          variant: "primary",
+          className: "w-100 fw-bold",
+          onClick: function onClick() {
+            return navigate('/home');
+          }
+        }, "Back to Home") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "text-muted mb-0"
+        }, "Next question coming up...")));
+      }
+    default:
+      return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        animation: "grow",
+        variant: "warning"
+      }));
+  }
+}
+
+/***/ }),
+
+/***/ "./src/features/TriviaCast/TriviaCastScreensTV.jsx":
+/*!*********************************************************!*\
+  !*** ./src/features/TriviaCast/TriviaCastScreensTV.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TRIVIA_CAST_RULES_NARRATION": () => (/* binding */ TRIVIA_CAST_RULES_NARRATION),
+/* harmony export */   "TriviaCastQuestionTV": () => (/* binding */ TriviaCastQuestionTV),
+/* harmony export */   "TriviaCastRulesTV": () => (/* binding */ TriviaCastRulesTV)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+// 🎙️ What the host voice says while the rules are on screen
+var TRIVIA_CAST_RULES_NARRATION = ["Welcome to Trivia Cast! The quiz show where the TV asks the questions, and your phone is the buzzer.", "Each question appears on the big screen with four possible answers. Tap your answer on your phone before the clock runs out. Every right answer scores one hundred points.", "Let's get started!"];
+
+// If the voice stalls, start the game anyway this many seconds after the countdown ends
+var NARRATION_GRACE_SECONDS = 20;
+var LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+// Counts down to a server timestamp, in whole seconds
+function useCountdown(endTime) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    timeLeft = _useState2[0],
+    setTimeLeft = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!endTime) {
+      setTimeLeft(null);
+      return;
+    }
+    var update = function update() {
+      return setTimeLeft(Math.max(0, Math.ceil((endTime - Date.now()) / 1000)));
+    };
+    update();
+    var timer = setInterval(update, 250);
+    return function () {
+      return clearInterval(timer);
+    };
+  }, [endTime]);
+  return timeLeft;
+}
+
+/**
+ * 📜 Rules screen (TV). The narrator reads the rules; when the voice finishes the game
+ * starts. With no voice available, the countdown runs the show.
+ */
+function TriviaCastRulesTV(_ref) {
+  var roomCode = _ref.roomCode;
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(30),
+    _useState4 = _slicedToArray(_useState3, 2),
+    timeLeft = _useState4[0],
+    setTimeLeft = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isNarrating = _useState6[0],
+    setIsNarrating = _useState6[1];
+  var hasStarted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  var handleNext = function handleNext() {
+    if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
+    hasStarted.current = true;
+    _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('startQuestions', {
+      roomCode: roomCode
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var isCurrent = true;
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.speak)(TRIVIA_CAST_RULES_NARRATION, roomCode).then(function (wasSpoken) {
+      if (!isCurrent) return;
+      setIsNarrating(false);
+      if (wasSpoken) setTimeout(function () {
+        return isCurrent && handleNext();
+      }, 800);
+    });
+    return function () {
+      isCurrent = false;
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.stopVoice)();
+    };
+  }, [roomCode]);
+
+  // The countdown waits at zero for the voice to finish its sentence
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (timeLeft <= 0 && (!isNarrating || timeLeft <= -NARRATION_GRACE_SECONDS)) {
+      handleNext();
+      return;
+    }
+    var timerId = setInterval(function () {
+      return setTimeLeft(function (prev) {
+        return prev - 1;
+      });
+    }, 1000);
+    return function () {
+      return clearInterval(timerId);
+    };
+  }, [timeLeft, roomCode, isNarrating]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 p-3 pb-4 w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header text-center"
+  }, "How To Play Trivia Cast!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-row flex-grow-1 gap-3",
+    style: {
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100",
+    style: {
+      flex: '2 1 0',
+      minWidth: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "fullscreen-gameplay-card h-100",
+    style: {
+      backgroundColor: 'rgba(255, 255, 255, 0.6)',
+      backdropFilter: 'blur(10px)'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "d-flex flex-column h-100",
+    style: {
+      padding: 'clamp(0.5rem, 3vh, 1.5rem)',
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    className: "fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary",
+    style: {
+      fontSize: 'clamp(1rem, 3.5vh, 1.8rem)',
+      paddingBottom: '0.6vh',
+      marginBottom: '1.5vh'
+    }
+  }, "RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar",
+    style: {
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
+    className: "my-auto text-secondary d-flex flex-column",
+    style: {
+      fontWeight: '500',
+      fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)',
+      lineHeight: 1.3,
+      gap: 'clamp(0.3rem, 2vh, 1rem)'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Watch the TV:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Each question appears on the big screen with ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "4 possible answers"), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Answer on Your Phone:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Tap your answer before the clock runs out. You can't change it!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Score Points:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Every right answer scores ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "100 points"), ". Most points at the end wins!"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100",
+    style: {
+      flex: '1 1 0',
+      minWidth: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper h-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "fullscreen-gameplay-card h-100",
+    style: {
+      backgroundColor: 'rgba(255, 255, 255, 0.6)',
+      backdropFilter: 'blur(10px)'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "d-flex flex-column align-items-center justify-content-between",
+    style: {
+      padding: 'clamp(0.5rem, 3vh, 1rem)',
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
+    style: {
+      fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
+    }
+  }, "GAME STARTS IN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fw-bold text-danger text-center",
+    style: {
+      fontSize: 'clamp(2.5rem, 18vh, 6rem)',
+      lineHeight: 1
+    }
+  }, Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "light",
+    size: "sm",
+    className: "w-100 fw-bold mt-auto py-2 shadow-sm",
+    style: {
+      fontSize: '0.9rem'
+    },
+    onClick: handleNext
+  }, "\u23ED\uFE0F Skip"))))))));
+}
+
+/**
+ * ❔ Question screen (TV). Shows the question and four answers with a countdown.
+ * When `correctAnswer` is given (the reveal), the right answer lights up green and
+ * the screen lists who got it.
+ */
+function TriviaCastQuestionTV(_ref2) {
+  var room = _ref2.room;
+  var timeLeft = useCountdown(room.endTime);
+  var question = room.question,
+    correctAnswer = room.correctAnswer;
+  var isReveal = !!correctAnswer;
+  var players = Object.values(room.players).filter(function (p) {
+    return !p.isCaster && p.isConnected;
+  });
+  var answeredCount = players.filter(function (p) {
+    return p.hasAnswered;
+  }).length;
+  var winners = players.filter(function (p) {
+    return p.lastCorrect;
+  }).sort(function (a, b) {
+    return b.lastPoints - a.lastPoints;
+  });
+
+  // The full answering time, taken from the first tick, so the bar starts full
+  var totalTime = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  if (!isReveal && timeLeft !== null && (totalTime.current === null || timeLeft > totalTime.current)) totalTime.current = timeLeft;
+  var barPercent = totalTime.current ? timeLeft / totalTime.current * 100 : 100;
+  if (!question) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 px-3 pb-4 w-100",
+    style: {
+      maxWidth: '1100px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header mb-0"
+  }, "Question ", room.currentRound, " of ", room.totalRounds, question.category && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tc-category"
+  }, question.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-shrink-0",
+    style: {
+      margin: '1.5vh 0'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "shining-border-wrapper",
+    style: {
+      height: 'auto',
+      borderRadius: '15px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "border-0 text-white w-100 frosted-glass-panel",
+    style: {
+      borderRadius: '10px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    className: "text-center",
+    style: {
+      padding: 'clamp(0.4rem, 2.5vh, 1.5rem) 1rem'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "fw-bold m-0",
+    style: {
+      fontSize: question.text.length > 90 ? 'clamp(0.95rem, 4.2vh, 2rem)' : 'clamp(1.1rem, 5.5vh, 2.6rem)',
+      lineHeight: 1.2,
+      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
+    }
+  }, question.text))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tc-options flex-grow-1",
+    style: {
+      minHeight: 0
+    }
+  }, question.options.map(function (option, i) {
+    var state = !isReveal ? '' : option === correctAnswer ? 'correct' : 'wrong';
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: option,
+      className: "tc-option ".concat(state)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "tc-option-letter"
+    }, LETTERS[i]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "tc-option-text"
+    }, option), state === 'correct' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "tc-option-tick"
+    }, "\u2705"));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-shrink-0",
+    style: {
+      marginTop: '1.5vh',
+      paddingRight: '7rem'
+    }
+  }, isReveal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tc-results"
+  }, winners.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fw-bold"
+  }, "Nobody got that one!") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fw-bold me-2"
+  }, "Got it:"), winners.map(function (p) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      key: p.id,
+      className: "tc-result-chip"
+    }, p.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "+", p.lastPoints));
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-between align-items-center mb-1 px-1 text-white fw-bold",
+    style: {
+      fontSize: 'clamp(0.8rem, 3.2vh, 1.4rem)',
+      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, answeredCount, " of ", players.length, " answered"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: timeLeft !== null && timeLeft <= 5 ? 'text-danger' : ''
+  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    now: barPercent,
+    variant: timeLeft !== null && timeLeft <= 5 ? 'danger' : 'light',
+    style: {
+      height: 'clamp(8px, 2vh, 18px)',
+      backgroundColor: 'rgba(255,255,255,0.2)',
+      borderRadius: '10px'
+    }
+  })))));
+}
+
+/***/ }),
+
+/***/ "./src/features/TriviaCast/TriviaCastTile.jsx":
+/*!****************************************************!*\
+  !*** ./src/features/TriviaCast/TriviaCastTile.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TriviaCastTile)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/**
+ * 📺❔ The Trivia Cast button artwork, drawn in code to match the other game tiles:
+ * a blue glass square with a white line icon (a TV with a question mark) and the name.
+ */
+function TriviaCastTile(_ref) {
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? 'w-100 h-100' : _ref$className,
+    style = _ref.style;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 200 200",
+    className: className,
+    style: _objectSpread({
+      display: 'block'
+    }, style),
+    role: "img",
+    "aria-label": "Trivia Cast"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("linearGradient", {
+    id: "tcTileBg",
+    x1: "0",
+    y1: "0",
+    x2: "0",
+    y2: "1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "0",
+    stopColor: "#5d7fe8"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "1",
+    stopColor: "#3550c8"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    width: "200",
+    height: "200",
+    fill: "url(#tcTileBg)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    fill: "none",
+    stroke: "#fff",
+    strokeWidth: "5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: "52",
+    y: "38",
+    width: "96",
+    height: "66",
+    rx: "9"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M100 104 V118 M80 118 H120"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M62 84 a10 10 0 0 1 10 10"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M62 72 a22 22 0 0 1 22 22"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M98 60 a11 11 0 1 1 17 9 q-5 3.5 -5 9"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "62",
+    cy: "94",
+    r: "3",
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "110",
+    cy: "89",
+    r: "3.5",
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: "100",
+    y: "160",
+    textAnchor: "middle",
+    fill: "#fff",
+    fontSize: "25",
+    fontWeight: "700",
+    fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+  }, "Trivia Cast"));
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/cards.css":
 /*!********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/cards.css ***!
@@ -9658,7 +10996,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10008,6 +11346,7 @@ function stopLobbyMusic() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "couchCastTheme": () => (/* binding */ couchCastTheme),
+/* harmony export */   "triviaCastTheme": () => (/* binding */ triviaCastTheme),
 /* harmony export */   "useBackgroundTheme": () => (/* binding */ useBackgroundTheme),
 /* harmony export */   "useSetBackgroundTheme": () => (/* binding */ useSetBackgroundTheme)
 /* harmony export */ });
@@ -10019,7 +11358,7 @@ __webpack_require__.r(__webpack_exports__);
  * The background is rendered once (in Page.jsx); any screen can re-theme it
  * with useSetBackgroundTheme() and it snaps back to 'home' when that screen leaves.
  *
- * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween')
+ * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'trivia', 'animals')
  * cover: true lifts the background above the nav bar (used by the fullscreen TV screens)
  */
 var DEFAULT_THEME = {
@@ -10068,6 +11407,113 @@ function useSetBackgroundTheme(theme) {
 // Couch Cast: each card deck (expansion) gets its own background
 function couchCastTheme(expansion) {
   return expansion === 'halloween' ? 'halloween' : 'couchcast';
+}
+
+// Trivia Cast: each question deck gets its own background
+function triviaCastTheme(expansion) {
+  if (expansion === 'halloween') return 'halloween';
+  if (expansion === 'animals') return 'animals';
+  return 'trivia';
+}
+
+/***/ }),
+
+/***/ "./src/features/TriviaCast/TriviaCastCreate.js":
+/*!*****************************************************!*\
+  !*** ./src/features/TriviaCast/TriviaCastCreate.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleCreateTriviaCast": () => (/* binding */ handleCreateTriviaCast)
+/* harmony export */ });
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+// Ask for fullscreen; phones that don't allow it (iOS Safari) just carry on
+var enterFullscreen = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            if (!(!document.fullscreenElement && document.documentElement.requestFullscreen)) {
+              _context.next = 4;
+              break;
+            }
+            _context.next = 4;
+            return document.documentElement.requestFullscreen();
+          case 4:
+            _context.next = 9;
+            break;
+          case 6:
+            _context.prev = 6;
+            _context.t0 = _context["catch"](0);
+            console.warn("Fullscreen bypassed:", _context.t0.message);
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 6]]);
+  }));
+  return function enterFullscreen() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+// Called from the tap on a deck: creates the room and opens the TV screen
+function handleCreateTriviaCast(navigate, setIsCreatingRoom) {
+  var expansion = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'core';
+  var totalRounds = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 5;
+  console.log("Request Trivia Cast room (deck: ".concat(expansion, ", questions: ").concat(totalRounds, ")"));
+
+  // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
+  enterFullscreen();
+  (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
+  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+  setIsCreatingRoom(true);
+  var timeout = setTimeout(function () {
+    setIsCreatingRoom(false);
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
+    alert("The server is taking too long to wake up. Please try again.");
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.off('roomCreated');
+  }, 60000);
+  var emitCreate = function emitCreate() {
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.emit('createRoom', {
+      playerName: 'Caster',
+      expansion: expansion,
+      totalRounds: totalRounds
+    });
+  };
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.off('roomCreated');
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.once('roomCreated', function (_ref2) {
+    var roomCode = _ref2.roomCode;
+    clearTimeout(timeout);
+    setIsCreatingRoom(false);
+
+    // Strip away Bootstrap modal scroll locks before React Router takes us away
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
+    navigate("/triviacast?room=".concat(roomCode, "&role=caster&name=Caster"));
+  });
+  if (_socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.connected) {
+    emitCreate();
+  } else {
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.connect();
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.once('connect', emitCreate);
+  }
 }
 
 /***/ }),
@@ -10242,6 +11688,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "prompt2Socket": () => (/* binding */ prompt2Socket),
 /* harmony export */   "tictactoeSocket": () => (/* binding */ tictactoeSocket),
+/* harmony export */   "triviaCastSocket": () => (/* binding */ triviaCastSocket),
 /* harmony export */   "triviaSocket": () => (/* binding */ triviaSocket)
 /* harmony export */ });
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
@@ -10266,6 +11713,10 @@ var prompt2Socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".conc
   autoConnect: false
 });
 var couchCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/couchcast"), {
+  transports: ['websocket', 'polling'],
+  autoConnect: false
+});
+var triviaCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/triviacast"), {
   transports: ['websocket', 'polling'],
   autoConnect: false
 });

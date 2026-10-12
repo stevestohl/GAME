@@ -226,6 +226,12 @@
   pointer-events: none; /* Allows clicks to pass through to the card */
 }
 
+/* 🐾 Animals deck: the shimmer runs green and gold */
+[data-gt-theme="animals"] .shining-border-wrapper::before {
+  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);
+  background-size: 400% 400%;
+}
+
 /* The card inside sits flush against the border (overrides the site-wide .card margin) */
 .shining-border-wrapper > .card {
   margin: 0;
@@ -343,6 +349,113 @@
   text-align: left;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
+
+/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */
+.fullscreen-gameplay-header .tc-category {
+  margin-left: 0.75rem;
+  padding: 0.1rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7em;
+  letter-spacing: 0.05em;
+  color: var(--gt-gold);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.tc-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: clamp(0.4rem, 2vh, 1rem);
+}
+.tc-option {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vh, 1rem);
+  min-height: 0;
+  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 4.5vh, 2rem);
+  line-height: 1.15;
+  text-align: left;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+.tc-option-letter {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  color: var(--gt-navy);
+  text-shadow: none;
+  background: #fff;
+}
+.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.tc-option-tick { flex-shrink: 0; }
+.tc-option.correct {
+  background: rgba(25, 150, 83, 0.92);
+  border-color: #b9f5cf;
+  transform: scale(1.02);
+}
+.tc-option.wrong { opacity: 0.4; }
+
+.tc-results {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  color: #fff;
+  font-size: clamp(0.8rem, 3.4vh, 1.4rem);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+.tc-result-chip {
+  padding: 0.1rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(25, 150, 83, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  text-shadow: none;
+}
+.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }
+
+/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */
+.tc-answer-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 0.9rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);
+  transition: transform 0.1s ease;
+}
+.tc-answer-btn:active { transform: scale(0.97); }
+.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }
+.tc-answer-letter {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }
+.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }
+.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }
+.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }
 
 /* 🔇 "Tap to turn sound back on" (only shown on the TV after a page refresh) */
 .cc-sound-button {
@@ -682,6 +795,18 @@
     --gt-ice:      #ffe9c2;
     --gt-bg-accent: #8a3fd0;
     --gt-bg-vignette: rgba(45, 12, 0, 0.5);
+}
+
+/* 🐾 Animals deck: same recipe, forest-green palette */
+.gt-bg.theme-animals {
+    --gt-navy:     #082a1e;
+    --gt-blue-800: #0f5239;
+    --gt-blue-500: #1c9562;
+    --gt-blue-400: #4fc48a;
+    --gt-blue-300: #8fe0b3;
+    --gt-ice:      #e3fff0;
+    --gt-bg-accent: #d6c14a;
+    --gt-bg-vignette: rgba(4, 28, 18, 0.5);
 }
 
 /* Soft drifting light */

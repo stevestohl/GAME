@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Badge, Spinner } from 'react-bootstrap';
 
-export default function CouchCastScoreboardTV({ players, isGameOver }) {
+export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel = 'Next round starting soon...' }) {
     const [isPortrait, setIsPortrait] = useState(false);
     
     // Filter out the Caster and sort the rest by score (highest to lowest)
@@ -59,7 +59,10 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                             
                             {leader && (
                                 <h1 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1rem, 4.5vh, 2.2rem)', textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
-                                    👑 {isGameOver ? `${leader.name} Wins the Game!` : `${leader.name} is in the lead!`}
+                                    {/* Nobody on the board yet: don't crown a leader with zero points */}
+                                    {(leader.score || 0) === 0
+                                        ? (isGameOver ? "It's a tie... nobody scored!" : 'No points on the board yet!')
+                                        : `👑 ${isGameOver ? `${leader.name} Wins the Game!` : `${leader.name} is in the lead!`}`}
                                 </h1>
                             )}
                         </Card.Body>
@@ -127,7 +130,7 @@ export default function CouchCastScoreboardTV({ players, isGameOver }) {
                     <div className="d-flex align-items-center justify-content-center text-white opacity-90">
                         <Spinner animation="border" size="sm" className="me-2 text-primary" />
                         <h4 className="m-0 fw-semibold" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)', fontSize: 'clamp(1rem, 2vh, 1.3rem)' }}>
-                            Next round starting soon...
+                            {nextLabel}
                         </h4>
                     </div>
                 )}

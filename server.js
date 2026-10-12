@@ -9,6 +9,7 @@ import registerTriviaNamespace from './sockets/trivia_handler.js';
 import registerTicTacToeNamespace from './sockets/tictactoe_handler.js';
 import registerPrompt2Namespace from './sockets/prompt2_handler.js';
 import registerCCNamespace from './sockets/couchcast_handler.js';
+import registerTriviaCastNamespace from './sockets/triviacast_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -46,6 +47,10 @@ console.log("Namespace '/prompt2' registered.");
 const CCNS = io.of('/couchcast');
 registerCCNamespace(CCNS); 
 console.log("Namespace '/couchcast' registered.");
+
+const TCNS = io.of('/triviacast');
+registerTriviaCastNamespace(TCNS);
+console.log("Namespace '/triviacast' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

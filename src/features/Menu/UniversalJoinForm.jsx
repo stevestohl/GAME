@@ -55,6 +55,9 @@ export default function UniversalJoinScreen() {
             case 'C':
                 targetRoute = `/couchcast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;
+            case 'Q':
+                targetRoute = `/triviacast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                break;
             case 'P':
                 targetRoute = `/prompt2?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;

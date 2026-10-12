@@ -1,4 +1,6 @@
+import { randomUUID } from "crypto";
 import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
+import { recordPromptRound } from "../db/recordPromptRound.js";
 
 const activePrompt2Rooms = {}; 
 
@@ -13,6 +15,7 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
+        gameId: randomUUID(),   // ties this game's saved answers together
         gameState: 'lobby',
         expansion: expansion,
         totalRounds: totalRounds,
@@ -141,9 +144,11 @@ export default function registerPrompt2Namespace(promptNS) {
             if (room && socket.id === room.hostId) {
                 room.gameState = 'writing';
                 room.currentPrompt = selectedPrompt;
+                room.writingStartedAt = Date.now();   // for response times in the saved stats
                 Object.values(room.players).forEach(p => {
                     p.hasSubmitted = false;
                     p.currentAnswer = "";
+                    p.answeredAt = null;
                 });
                 promptNS.to(roomCode).emit('writing_phase_started', {
                     gameState: room.gameState,
@@ -160,6 +165,7 @@ export default function registerPrompt2Namespace(promptNS) {
             if (player && socket.id !== room.hostId) {
                 player.currentAnswer = answer;
                 player.hasSubmitted = true;
+                player.answeredAt = Date.now();
                 
                 const regularPlayers = Object.keys(room.players).filter(id => id !== room.hostId);
                 const allSubmitted = regularPlayers.every(id => room.players[id].hasSubmitted);
@@ -193,6 +199,17 @@ export default function registerPrompt2Namespace(promptNS) {
         socket.on('pick_winner', ({ roomCode, winningPlayerId }) => {
             const room = activePrompt2Rooms[roomCode];
             if (!room || socket.id !== room.hostId) return;
+
+            // 📊 Save the round for later analysis (promptanswers collection), before the judge changes
+            recordPromptRound({
+                game: 'prompt2',
+                room,
+                judge: room.players[room.hostId],
+                players: Object.values(room.players).filter(p => p.id !== room.hostId),
+                winningPlayerId,
+                pickedBy: 'judge',
+                pointsForWin: 100,
+            });
 
             // 1. Calculate next host index
             const playerIds = Object.keys(room.players);

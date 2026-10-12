@@ -1,4 +1,5 @@
 import { getCouchCastRoom } from "../sockets/couchcast_handler.js";
+import { getTriviaCastRoom } from "../sockets/triviacast_handler.js";
 
 // ==========================================
 // 🎙️ Voice-overs (ElevenLabs text-to-speech)
@@ -72,8 +73,8 @@ export const speakLine = async (req, res) => {
             return res.status(400).json({ success: false, message: "Text is missing or too long." });
         }
 
-        // Only a live Couch Cast room can ask for speech
-        const room = getCouchCastRoom(roomCode);
+        // Only a live TV game (Couch Cast or Trivia Cast) can ask for speech
+        const room = getCouchCastRoom(roomCode) || getTriviaCastRoom(roomCode);
         if (!room) {
             return res.status(404).json({ success: false, message: "Room not found." });
         }

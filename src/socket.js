@@ -29,4 +29,8 @@ export const couchCastSocket = io(`${SOCKET_URL}/couchcast`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+export const triviaCastSocket = io(`${SOCKET_URL}/triviacast`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 export default socket;
