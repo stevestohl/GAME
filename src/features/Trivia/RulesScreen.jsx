@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 import { triviaSocket as socket } from '../../socket.js';
 
-export default function RulesScreen({ roomCode, isHost }) {
+export default function RulesScreen({ roomCode, isHost, totalQuestions = 5 }) {
     const handleNext = () => {
         console.log(`Sending nextRound event for room:${roomCode }`)
         socket.emit('nextRound', { roomCode });
@@ -25,10 +25,10 @@ export default function RulesScreen({ roomCode, isHost }) {
                     <Card.Text className="text-start fs-6 mb-4 p-3 bg-light rounded border">
                         <strong>How to play Temple-Trivia:</strong>
                         <br /><br />
-                        1. The game consists of <strong>3 rounds</strong>.<br />
-                        2. Read the question carefully.<br />
-                        3. You earn <strong>1 point</strong> per correct answer.<br />
-                        4. The scoreboard shifts instantly once everyone logs their vote!
+                        1. The game consists of <strong>{totalQuestions} {totalQuestions === 1 ? 'question' : 'questions'}</strong>.<br />
+                        2. Read each question carefully and tap your answer.<br />
+                        3. Every correct answer earns <strong>10 points</strong>.<br />
+                        4. The scores appear as soon as everyone has answered.
                     </Card.Text>
 
                     {isHost ? (

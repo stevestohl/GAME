@@ -94,7 +94,7 @@ export default function TriviaManager() {
     if (roomState) {
         switch (roomState.phase) {
             case 'RULES':
-                return <RulesScreen roomCode={roomCode} isHost={role === 'host'} />;
+                return <RulesScreen roomCode={roomCode} isHost={role === 'host'} totalQuestions={roomState.questions?.length} />;
             case 'QUESTION':
                 return (
                     <QuestionScreen 

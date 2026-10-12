@@ -1,4 +1,4 @@
-import Temple_Trivia from "../models/Temple_Trivia.js";
+import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 /**
  * trivia_handler.js
  * Manages game state, answer validation, and score tracking.
@@ -7,7 +7,10 @@ import Temple_Trivia from "../models/Temple_Trivia.js";
 // In-memory state storage for active Trivia rooms
 const activeRooms = {};
 
-const createRoomLogic = (socket, roomsObject) => {  
+// How many questions make a game when the host doesn't choose
+const DEFAULT_QUESTIONS = 5;
+
+const createRoomLogic = (socket, roomsObject, expansion, totalRounds) => {  
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
     let randomLetters = '';
     
@@ -20,6 +23,8 @@ const createRoomLogic = (socket, roomsObject) => {
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
+        expansion: expansion,       // which deck of questions
+        totalRounds: totalRounds,   // how many questions
         players: []
     };
     
@@ -37,8 +42,13 @@ export default function registerTriviaNamespace(namespace) {
         console.log(`Trivia User Connected: ${socket.id}`);
 
         // --- Event: Room Creation ---
-        socket.on('createRoom', () => {
-            const { roomCode, players } = createRoomLogic(socket, activeRooms);
+        socket.on('createRoom', (data = {}) => {
+            const { roomCode, players } = createRoomLogic(
+                socket,
+                activeRooms,
+                normalizeExpansion(data.expansion),
+                normalizeRounds(data.totalRounds, DEFAULT_QUESTIONS)
+            );
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
         });
@@ -108,8 +118,8 @@ export default function registerTriviaNamespace(namespace) {
             
             if (currentRoom) {
                 try {
-                    // Fetching data cleanly as pure JSON
-                    const dbQuestions = await Temple_Trivia.find({}).limit(3).lean();
+                    // A fresh random set from the room's deck, as many as the host asked for
+                    const dbQuestions = await drawTriviaQuestions(currentRoom.expansion, currentRoom.totalRounds || DEFAULT_QUESTIONS);
 
                     if (!dbQuestions || dbQuestions.length === 0) {
                         return socket.emit('errorMsg', 'No trivia questions found in the database.');

@@ -1,0 +1,3902 @@
+[
+  {
+    "question": "What is the capital city of Australia?",
+    "correct_answer": "Canberra",
+    "incorrect_answers": [
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which chemical element has the symbol 'Au'?",
+    "correct_answer": "Gold",
+    "incorrect_answers": [
+      "Silver",
+      "Copper",
+      "Aluminum"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the smallest planet in our solar system?",
+    "correct_answer": "Mercury",
+    "incorrect_answers": [
+      "Mars",
+      "Venus",
+      "Earth"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which TV series featured the coffee shop 'Central Perk'?",
+    "correct_answer": "Friends",
+    "incorrect_answers": [
+      "Seinfeld",
+      "Frasier",
+      "How I Met Your Mother"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which country is home to the ancient city of Petra?",
+    "correct_answer": "Jordan",
+    "incorrect_answers": [
+      "Egypt",
+      "Greece",
+      "Turkey"
+    ],
+    "category": "Geography",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In what year was the original iPhone released?",
+    "correct_answer": "2007",
+    "incorrect_answers": [
+      "2005",
+      "2008",
+      "2010"
+    ],
+    "category": "We're old now",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who painted the Mona Lisa?",
+    "correct_answer": "Leonardo da Vinci",
+    "incorrect_answers": [
+      "Michelangelo",
+      "Raphael",
+      "Vincent van Gogh"
+    ],
+    "category": "Art",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the largest ocean on Earth?",
+    "correct_answer": "Pacific Ocean",
+    "incorrect_answers": [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Arctic Ocean"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many strings does a standard guitar have?",
+    "correct_answer": "Six",
+    "incorrect_answers": [
+      "Four",
+      "Five",
+      "Seven"
+    ],
+    "category": "Music",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which planet is known as the Red Planet?",
+    "correct_answer": "Mars",
+    "incorrect_answers": [
+      "Jupiter",
+      "Venus",
+      "Saturn"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who wrote the play 'Romeo and Juliet'?",
+    "correct_answer": "William Shakespeare",
+    "incorrect_answers": [
+      "Charles Dickens",
+      "Jane Austen",
+      "Mark Twain"
+    ],
+    "category": "Literature",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the hardest natural substance on Earth?",
+    "correct_answer": "Diamond",
+    "incorrect_answers": [
+      "Quartz",
+      "Topaz",
+      "Granite"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which country gave the Statue of Liberty to the United States?",
+    "correct_answer": "France",
+    "incorrect_answers": [
+      "United Kingdom",
+      "Spain",
+      "Italy"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many players does each team have on the field in a soccer match?",
+    "correct_answer": "11",
+    "incorrect_answers": [
+      "9",
+      "10",
+      "12"
+    ],
+    "category": "Sports",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the tallest mountain in the world above sea level?",
+    "correct_answer": "Mount Everest",
+    "incorrect_answers": [
+      "K2",
+      "Mount Kilimanjaro",
+      "Denali"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which band released the song 'Bohemian Rhapsody'?",
+    "correct_answer": "Queen",
+    "incorrect_answers": [
+      "The Beatles",
+      "Led Zeppelin",
+      "The Rolling Stones"
+    ],
+    "category": "Music",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the largest organ of the human body?",
+    "correct_answer": "Skin",
+    "incorrect_answers": [
+      "Liver",
+      "Heart",
+      "Lungs"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In which city would you find the Colosseum?",
+    "correct_answer": "Rome",
+    "incorrect_answers": [
+      "Athens",
+      "Paris",
+      "Istanbul"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In what year did the Titanic sink?",
+    "correct_answer": "1912",
+    "incorrect_answers": [
+      "1905",
+      "1918",
+      "1923"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which element has the atomic number 1?",
+    "correct_answer": "Hydrogen",
+    "incorrect_answers": [
+      "Helium",
+      "Oxygen",
+      "Carbon"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the longest river in South America?",
+    "correct_answer": "Amazon",
+    "incorrect_answers": [
+      "Orinoco",
+      "Paraná",
+      "Magdalena"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which film series features the line 'May the Force be with you'?",
+    "correct_answer": "Star Wars",
+    "incorrect_answers": [
+      "Star Trek",
+      "The Matrix",
+      "Avatar"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many continents are there on Earth?",
+    "correct_answer": "Seven",
+    "incorrect_answers": [
+      "Five",
+      "Six",
+      "Eight"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the currency of Japan?",
+    "correct_answer": "Yen",
+    "incorrect_answers": [
+      "Won",
+      "Yuan",
+      "Baht"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who was the first person to walk on the Moon?",
+    "correct_answer": "Neil Armstrong",
+    "incorrect_answers": [
+      "Buzz Aldrin",
+      "Yuri Gagarin",
+      "John Glenn"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which pop star released the 2003 album 'In the Zone'?",
+    "correct_answer": "Britney Spears",
+    "incorrect_answers": [
+      "Christina Aguilera",
+      "Madonna",
+      "Janet Jackson"
+    ],
+    "category": "We're old now",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which streaming service released 'Stranger Things' in 2016?",
+    "correct_answer": "Netflix",
+    "incorrect_answers": [
+      "Hulu",
+      "Amazon Prime Video",
+      "HBO"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which group had a worldwide hit in 1997 with 'Barbie Girl'?",
+    "correct_answer": "Aqua",
+    "incorrect_answers": [
+      "Spice Girls",
+      "Ace of Base",
+      "Vengaboys"
+    ],
+    "category": "We're old now",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "correct_answer": "Ottawa",
+    "incorrect_answers": [
+      "Toronto",
+      "Vancouver",
+      "Montreal"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the largest country in South America?",
+    "correct_answer": "Brazil",
+    "incorrect_answers": [
+      "Argentina",
+      "Peru",
+      "Colombia"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the largest hot desert in the world?",
+    "correct_answer": "Sahara",
+    "incorrect_answers": [
+      "Gobi",
+      "Kalahari",
+      "Mojave"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of Japan?",
+    "correct_answer": "Tokyo",
+    "incorrect_answers": [
+      "Kyoto",
+      "Osaka",
+      "Seoul"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which U.S. state is the largest by area?",
+    "correct_answer": "Alaska",
+    "incorrect_answers": [
+      "Texas",
+      "California",
+      "Montana"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the longest river in Africa?",
+    "correct_answer": "Nile",
+    "incorrect_answers": [
+      "Congo",
+      "Niger",
+      "Zambezi"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "correct_answer": "Madrid",
+    "incorrect_answers": [
+      "Barcelona",
+      "Seville",
+      "Lisbon"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the smallest country in the world?",
+    "correct_answer": "Vatican City",
+    "incorrect_answers": [
+      "Monaco",
+      "San Marino",
+      "Liechtenstein"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "On which continent is Egypt?",
+    "correct_answer": "Africa",
+    "incorrect_answers": [
+      "Asia",
+      "Europe",
+      "South America"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Mount Fuji is in which country?",
+    "correct_answer": "Japan",
+    "incorrect_answers": [
+      "China",
+      "South Korea",
+      "Nepal"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which ocean lies between Africa and Australia?",
+    "correct_answer": "Indian Ocean",
+    "incorrect_answers": [
+      "Pacific Ocean",
+      "Atlantic Ocean",
+      "Arctic Ocean"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "correct_answer": "Cairo",
+    "incorrect_answers": [
+      "Alexandria",
+      "Giza",
+      "Luxor"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "The Grand Canyon is in which U.S. state?",
+    "correct_answer": "Arizona",
+    "incorrect_answers": [
+      "Nevada",
+      "Utah",
+      "Colorado"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "The Great Barrier Reef lies off the coast of which country?",
+    "correct_answer": "Australia",
+    "incorrect_answers": [
+      "Indonesia",
+      "Philippines",
+      "Mexico"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which river flows through London?",
+    "correct_answer": "Thames",
+    "incorrect_answers": [
+      "Seine",
+      "Danube",
+      "Rhine"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which river flows through Paris?",
+    "correct_answer": "Seine",
+    "incorrect_answers": [
+      "Thames",
+      "Loire",
+      "Rhône"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "correct_answer": "Brasília",
+    "incorrect_answers": [
+      "Rio de Janeiro",
+      "São Paulo",
+      "Salvador"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which is the largest of North America's Great Lakes?",
+    "correct_answer": "Lake Superior",
+    "incorrect_answers": [
+      "Lake Michigan",
+      "Lake Huron",
+      "Lake Erie"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In which country are the pyramids of Giza?",
+    "correct_answer": "Egypt",
+    "incorrect_answers": [
+      "Mexico",
+      "Sudan",
+      "Peru"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of South Korea?",
+    "correct_answer": "Seoul",
+    "incorrect_answers": [
+      "Busan",
+      "Pyongyang",
+      "Incheon"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which U.S. state is nicknamed the Sunshine State?",
+    "correct_answer": "Florida",
+    "incorrect_answers": [
+      "California",
+      "Hawaii",
+      "Arizona"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Istanbul is the largest city in which country?",
+    "correct_answer": "Turkey",
+    "incorrect_answers": [
+      "Greece",
+      "Iran",
+      "Bulgaria"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which mountain range contains Mount Everest?",
+    "correct_answer": "Himalayas",
+    "incorrect_answers": [
+      "Andes",
+      "Alps",
+      "Rocky Mountains"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "correct_answer": "Berlin",
+    "incorrect_answers": [
+      "Munich",
+      "Frankfurt",
+      "Hamburg"
+    ],
+    "category": "Geography",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which gas do plants absorb from the air to make food?",
+    "correct_answer": "Carbon dioxide",
+    "incorrect_answers": [
+      "Oxygen",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many bones are in the adult human body?",
+    "correct_answer": "206",
+    "incorrect_answers": [
+      "186",
+      "212",
+      "250"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the common name for H2O?",
+    "correct_answer": "Water",
+    "incorrect_answers": [
+      "Salt",
+      "Oxygen",
+      "Hydrogen peroxide"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the largest planet in our solar system?",
+    "correct_answer": "Jupiter",
+    "incorrect_answers": [
+      "Saturn",
+      "Neptune",
+      "Uranus"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What force pulls objects toward the center of the Earth?",
+    "correct_answer": "Gravity",
+    "incorrect_answers": [
+      "Magnetism",
+      "Friction",
+      "Inertia"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "At sea level, water boils at how many degrees Celsius?",
+    "correct_answer": "100",
+    "incorrect_answers": [
+      "90",
+      "120",
+      "212"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which blood type is known as the universal donor?",
+    "correct_answer": "O negative",
+    "incorrect_answers": [
+      "AB positive",
+      "A positive",
+      "B negative"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the center of an atom called?",
+    "correct_answer": "Nucleus",
+    "incorrect_answers": [
+      "Electron",
+      "Core",
+      "Shell"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which planet is famous for its large, bright rings?",
+    "correct_answer": "Saturn",
+    "incorrect_answers": [
+      "Jupiter",
+      "Uranus",
+      "Mars"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Traditionally, how many colors are in a rainbow?",
+    "correct_answer": "Seven",
+    "incorrect_answers": [
+      "Five",
+      "Six",
+      "Eight"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which organ pumps blood around the body?",
+    "correct_answer": "Heart",
+    "incorrect_answers": [
+      "Lungs",
+      "Liver",
+      "Kidneys"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which scientist developed the theory of general relativity?",
+    "correct_answer": "Albert Einstein",
+    "incorrect_answers": [
+      "Isaac Newton",
+      "Galileo Galilei",
+      "Stephen Hawking"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which part of a plant does most of its photosynthesis?",
+    "correct_answer": "Leaves",
+    "incorrect_answers": [
+      "Roots",
+      "Stem",
+      "Flowers"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Water freezes at how many degrees Fahrenheit?",
+    "correct_answer": "32",
+    "incorrect_answers": [
+      "0",
+      "100",
+      "212"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which vitamin does your body make when your skin is exposed to sunlight?",
+    "correct_answer": "Vitamin D",
+    "incorrect_answers": [
+      "Vitamin A",
+      "Vitamin C",
+      "Vitamin B12"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many planets are in our solar system?",
+    "correct_answer": "Eight",
+    "incorrect_answers": [
+      "Seven",
+      "Nine",
+      "Ten"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which metal is liquid at room temperature?",
+    "correct_answer": "Mercury",
+    "incorrect_answers": [
+      "Lead",
+      "Tin",
+      "Zinc"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the study of earthquakes called?",
+    "correct_answer": "Seismology",
+    "incorrect_answers": [
+      "Meteorology",
+      "Volcanology",
+      "Ecology"
+    ],
+    "category": "Science",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What does DNA stand for?",
+    "correct_answer": "Deoxyribonucleic acid",
+    "incorrect_answers": [
+      "Dinucleic acid",
+      "Deoxyribose nitrogen acid",
+      "Dynamic nucleic acid"
+    ],
+    "category": "Science",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which instrument measures temperature?",
+    "correct_answer": "Thermometer",
+    "incorrect_answers": [
+      "Barometer",
+      "Hygrometer",
+      "Altimeter"
+    ],
+    "category": "Science",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who was the first president of the United States?",
+    "correct_answer": "George Washington",
+    "incorrect_answers": [
+      "Thomas Jefferson",
+      "John Adams",
+      "Abraham Lincoln"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In what year did World War II end?",
+    "correct_answer": "1945",
+    "incorrect_answers": [
+      "1939",
+      "1942",
+      "1950"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which famous wall came down in 1989?",
+    "correct_answer": "The Berlin Wall",
+    "incorrect_answers": [
+      "The Great Wall of China",
+      "Hadrian's Wall",
+      "The Western Wall"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who was Britain's prime minister for most of World War II?",
+    "correct_answer": "Winston Churchill",
+    "incorrect_answers": [
+      "Neville Chamberlain",
+      "Clement Attlee",
+      "Margaret Thatcher"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which civilization built Machu Picchu?",
+    "correct_answer": "Inca",
+    "incorrect_answers": [
+      "Maya",
+      "Aztec",
+      "Olmec"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In what year did the United States declare its independence?",
+    "correct_answer": "1776",
+    "incorrect_answers": [
+      "1492",
+      "1789",
+      "1812"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which historical figure is known as the Maid of Orléans?",
+    "correct_answer": "Joan of Arc",
+    "incorrect_answers": [
+      "Marie Antoinette",
+      "Catherine de' Medici",
+      "Eleanor of Aquitaine"
+    ],
+    "category": "History",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What was the name of the ship that carried the Pilgrims to America in 1620?",
+    "correct_answer": "Mayflower",
+    "incorrect_answers": [
+      "Santa Maria",
+      "Endeavour",
+      "Discovery"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who discovered penicillin?",
+    "correct_answer": "Alexander Fleming",
+    "incorrect_answers": [
+      "Louis Pasteur",
+      "Marie Curie",
+      "Jonas Salk"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+    "correct_answer": "Amelia Earhart",
+    "incorrect_answers": [
+      "Bessie Coleman",
+      "Sally Ride",
+      "Harriet Quimby"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which U.S. president appears on the penny?",
+    "correct_answer": "Abraham Lincoln",
+    "incorrect_answers": [
+      "George Washington",
+      "Thomas Jefferson",
+      "Franklin D. Roosevelt"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In what year did humans first land on the Moon?",
+    "correct_answer": "1969",
+    "incorrect_answers": [
+      "1959",
+      "1965",
+      "1972"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which British queen reigned from 1837 to 1901?",
+    "correct_answer": "Victoria",
+    "incorrect_answers": [
+      "Elizabeth I",
+      "Anne",
+      "Mary II"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "The ancient Olympic Games began in which country?",
+    "correct_answer": "Greece",
+    "incorrect_answers": [
+      "Italy",
+      "Egypt",
+      "Turkey"
+    ],
+    "category": "History",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which school of witchcraft and wizardry does Harry Potter attend?",
+    "correct_answer": "Hogwarts",
+    "incorrect_answers": [
+      "Beauxbatons",
+      "Durmstrang",
+      "Ilvermorny"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who directed the 1993 film 'Jurassic Park'?",
+    "correct_answer": "Steven Spielberg",
+    "incorrect_answers": [
+      "James Cameron",
+      "George Lucas",
+      "Ridley Scott"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which animated film features a snowman named Olaf?",
+    "correct_answer": "Frozen",
+    "incorrect_answers": [
+      "Tangled",
+      "Moana",
+      "Brave"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which artist released the album 'Thriller'?",
+    "correct_answer": "Michael Jackson",
+    "incorrect_answers": [
+      "Prince",
+      "Stevie Wonder",
+      "Lionel Richie"
+    ],
+    "category": "Music",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In 'The Lion King', who is Simba's father?",
+    "correct_answer": "Mufasa",
+    "incorrect_answers": [
+      "Scar",
+      "Zazu",
+      "Rafiki"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which superhero is known as the Dark Knight?",
+    "correct_answer": "Batman",
+    "incorrect_answers": [
+      "Superman",
+      "Daredevil",
+      "Black Panther"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "John, Paul, George and Ringo were the members of which band?",
+    "correct_answer": "The Beatles",
+    "incorrect_answers": [
+      "The Rolling Stones",
+      "The Who",
+      "The Kinks"
+    ],
+    "category": "Music",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In the 1939 film 'The Wizard of Oz', what color are Dorothy's slippers?",
+    "correct_answer": "Ruby red",
+    "incorrect_answers": [
+      "Silver",
+      "Emerald green",
+      "Gold"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which TV show is set at the paper company Dunder Mifflin?",
+    "correct_answer": "The Office",
+    "incorrect_answers": [
+      "Parks and Recreation",
+      "30 Rock",
+      "Scrubs"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who played Jack Dawson in the 1997 film 'Titanic'?",
+    "correct_answer": "Leonardo DiCaprio",
+    "incorrect_answers": [
+      "Brad Pitt",
+      "Matt Damon",
+      "Johnny Depp"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which singer is known as the Queen of Pop?",
+    "correct_answer": "Madonna",
+    "incorrect_answers": [
+      "Cher",
+      "Whitney Houston",
+      "Mariah Carey"
+    ],
+    "category": "Music",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the name of the toy cowboy in 'Toy Story'?",
+    "correct_answer": "Woody",
+    "incorrect_answers": [
+      "Buzz",
+      "Jessie",
+      "Andy"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which TV series features the Stark and Lannister families?",
+    "correct_answer": "Game of Thrones",
+    "incorrect_answers": [
+      "The Witcher",
+      "Vikings",
+      "The Crown"
+    ],
+    "category": "Pop Culture",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which artist released the album 'Purple Rain'?",
+    "correct_answer": "Prince",
+    "incorrect_answers": [
+      "David Bowie",
+      "Michael Jackson",
+      "Rick James"
+    ],
+    "category": "Music",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which movie features a time machine built from a DeLorean?",
+    "correct_answer": "Back to the Future",
+    "incorrect_answers": [
+      "Blade Runner",
+      "The Terminator",
+      "Tron"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who is the lead singer of U2?",
+    "correct_answer": "Bono",
+    "incorrect_answers": [
+      "Sting",
+      "The Edge",
+      "Chris Martin"
+    ],
+    "category": "Music",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the name of the fictional African kingdom in 'Black Panther'?",
+    "correct_answer": "Wakanda",
+    "incorrect_answers": [
+      "Zamunda",
+      "Genovia",
+      "Asgard"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which home video game console did Nintendo release in North America in 1985?",
+    "correct_answer": "Nintendo Entertainment System",
+    "incorrect_answers": [
+      "Sega Genesis",
+      "Atari 2600",
+      "Game Boy"
+    ],
+    "category": "We're old now",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What did AOL famously announce when a new email arrived?",
+    "correct_answer": "You've got mail",
+    "incorrect_answers": [
+      "Welcome back",
+      "Hello there",
+      "Message waiting"
+    ],
+    "category": "We're old now",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which 1990s toy was a digital pet on a keychain that you had to feed and care for?",
+    "correct_answer": "Tamagotchi",
+    "incorrect_answers": [
+      "Furby",
+      "Polly Pocket",
+      "Beanie Baby"
+    ],
+    "category": "We're old now",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which company made the Walkman?",
+    "correct_answer": "Sony",
+    "incorrect_answers": [
+      "Panasonic",
+      "Philips",
+      "Toshiba"
+    ],
+    "category": "We're old now",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which boy band sang 'I Want It That Way'?",
+    "correct_answer": "Backstreet Boys",
+    "incorrect_answers": [
+      "NSYNC",
+      "98 Degrees",
+      "New Kids on the Block"
+    ],
+    "category": "We're old now",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which video rental chain was known for its blue and yellow ticket-shaped logo?",
+    "correct_answer": "Blockbuster",
+    "incorrect_answers": [
+      "Hollywood Video",
+      "Netflix",
+      "Redbox"
+    ],
+    "category": "We're old now",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many rings are on the Olympic flag?",
+    "correct_answer": "Five",
+    "incorrect_answers": [
+      "Four",
+      "Six",
+      "Seven"
+    ],
+    "category": "Sports",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which sport uses a shuttlecock?",
+    "correct_answer": "Badminton",
+    "incorrect_answers": [
+      "Tennis",
+      "Squash",
+      "Table tennis"
+    ],
+    "category": "Sports",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In which sport would you perform a slam dunk?",
+    "correct_answer": "Basketball",
+    "incorrect_answers": [
+      "Volleyball",
+      "Handball",
+      "Water polo"
+    ],
+    "category": "Sports",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many points is a touchdown worth in American football?",
+    "correct_answer": "Six",
+    "incorrect_answers": [
+      "Three",
+      "Five",
+      "Seven"
+    ],
+    "category": "Sports",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which country won the 2018 FIFA World Cup?",
+    "correct_answer": "France",
+    "incorrect_answers": [
+      "Croatia",
+      "Brazil",
+      "Germany"
+    ],
+    "category": "Sports",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many squares are on a chessboard?",
+    "correct_answer": "64",
+    "incorrect_answers": [
+      "36",
+      "48",
+      "81"
+    ],
+    "category": "Games",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In bowling, what is three strikes in a row called?",
+    "correct_answer": "A turkey",
+    "incorrect_answers": [
+      "An eagle",
+      "A hat trick",
+      "A triple"
+    ],
+    "category": "Sports",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which sport is played at Wimbledon?",
+    "correct_answer": "Tennis",
+    "incorrect_answers": [
+      "Cricket",
+      "Golf",
+      "Rugby"
+    ],
+    "category": "Sports",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many holes are played in a full round of golf?",
+    "correct_answer": "18",
+    "incorrect_answers": [
+      "9",
+      "12",
+      "21"
+    ],
+    "category": "Sports",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the highest score possible with three darts?",
+    "correct_answer": "180",
+    "incorrect_answers": [
+      "150",
+      "160",
+      "200"
+    ],
+    "category": "Sports",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the main ingredient in guacamole?",
+    "correct_answer": "Avocado",
+    "incorrect_answers": [
+      "Tomato",
+      "Lime",
+      "Green pea"
+    ],
+    "category": "Food",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which fruit is dried to make raisins?",
+    "correct_answer": "Grapes",
+    "incorrect_answers": [
+      "Plums",
+      "Figs",
+      "Dates"
+    ],
+    "category": "Food",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which nut is used to make marzipan?",
+    "correct_answer": "Almonds",
+    "incorrect_answers": [
+      "Cashews",
+      "Walnuts",
+      "Hazelnuts"
+    ],
+    "category": "Food",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which pasta is shaped like a bow tie?",
+    "correct_answer": "Farfalle",
+    "incorrect_answers": [
+      "Penne",
+      "Fusilli",
+      "Rigatoni"
+    ],
+    "category": "Food",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "In which country did pizza originate?",
+    "correct_answer": "Italy",
+    "incorrect_answers": [
+      "Greece",
+      "United States",
+      "France"
+    ],
+    "category": "Food",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many sides does a hexagon have?",
+    "correct_answer": "Six",
+    "incorrect_answers": [
+      "Five",
+      "Seven",
+      "Eight"
+    ],
+    "category": "Math",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What is the Roman numeral for 50?",
+    "correct_answer": "L",
+    "incorrect_answers": [
+      "X",
+      "C",
+      "V"
+    ],
+    "category": "Math",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "How many minutes are in a full day?",
+    "correct_answer": "1,440",
+    "incorrect_answers": [
+      "1,240",
+      "1,640",
+      "2,400"
+    ],
+    "category": "Math",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Which language has the most native speakers in the world?",
+    "correct_answer": "Mandarin Chinese",
+    "incorrect_answers": [
+      "English",
+      "Spanish",
+      "Hindi"
+    ],
+    "category": "Language",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "What does 'www' stand for in a web address?",
+    "correct_answer": "World Wide Web",
+    "incorrect_answers": [
+      "Wide World Web",
+      "Web World Wide",
+      "World Web Wide"
+    ],
+    "category": "Technology",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "Who co-founded Microsoft with Paul Allen?",
+    "correct_answer": "Bill Gates",
+    "incorrect_answers": [
+      "Steve Jobs",
+      "Steve Wozniak",
+      "Larry Ellison"
+    ],
+    "category": "Technology",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "core"
+  },
+  {
+    "question": "On which date is Halloween celebrated?",
+    "correct_answer": "October 31",
+    "incorrect_answers": [
+      "October 30",
+      "November 1",
+      "October 13"
+    ],
+    "category": "Traditions",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Halloween is believed to have grown out of which ancient Celtic festival?",
+    "correct_answer": "Samhain",
+    "incorrect_answers": [
+      "Beltane",
+      "Imbolc",
+      "Lughnasadh"
+    ],
+    "category": "History",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In Ireland, jack-o'-lanterns were originally carved from which vegetable?",
+    "correct_answer": "Turnips",
+    "incorrect_answers": [
+      "Pumpkins",
+      "Potatoes",
+      "Cabbages"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who wrote the novel 'Dracula'?",
+    "correct_answer": "Bram Stoker",
+    "incorrect_answers": [
+      "Mary Shelley",
+      "Edgar Allan Poe",
+      "H. P. Lovecraft"
+    ],
+    "category": "Literature",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who wrote the novel 'Frankenstein'?",
+    "correct_answer": "Mary Shelley",
+    "incorrect_answers": [
+      "Bram Stoker",
+      "Emily Brontë",
+      "Edgar Allan Poe"
+    ],
+    "category": "Literature",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In the film 'Hocus Pocus', what is the last name of the three witch sisters?",
+    "correct_answer": "Sanderson",
+    "incorrect_answers": [
+      "Salem",
+      "Blackwood",
+      "Halliwell"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who is the masked killer in the 'Halloween' film series?",
+    "correct_answer": "Michael Myers",
+    "incorrect_answers": [
+      "Jason Voorhees",
+      "Freddy Krueger",
+      "Ghostface"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Jack Skellington is the main character of which film?",
+    "correct_answer": "The Nightmare Before Christmas",
+    "incorrect_answers": [
+      "Corpse Bride",
+      "Coraline",
+      "Beetlejuice"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is a group of witches called?",
+    "correct_answer": "A coven",
+    "incorrect_answers": [
+      "A cauldron",
+      "A cluster",
+      "A clan"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "According to folklore, which food keeps vampires away?",
+    "correct_answer": "Garlic",
+    "incorrect_answers": [
+      "Onions",
+      "Pepper",
+      "Mint"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What phrase do children traditionally say when going door to door on Halloween?",
+    "correct_answer": "Trick or treat",
+    "incorrect_answers": [
+      "Boo to you",
+      "Candy please",
+      "Happy haunting"
+    ],
+    "category": "Traditions",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "According to legend, which creature transforms during a full moon?",
+    "correct_answer": "Werewolf",
+    "incorrect_answers": [
+      "Vampire",
+      "Zombie",
+      "Banshee"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Stephen King novel features Pennywise the clown?",
+    "correct_answer": "It",
+    "incorrect_answers": [
+      "The Shining",
+      "Carrie",
+      "Misery"
+    ],
+    "category": "Literature",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In which U.S. state did the Salem witch trials take place?",
+    "correct_answer": "Massachusetts",
+    "incorrect_answers": [
+      "Virginia",
+      "Pennsylvania",
+      "Connecticut"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What kind of animal is a tarantula?",
+    "correct_answer": "A spider",
+    "incorrect_answers": [
+      "A scorpion",
+      "A beetle",
+      "A lizard"
+    ],
+    "category": "Creepy Crawlies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In the 1984 film 'Ghostbusters', which giant figure stomps through New York at the end?",
+    "correct_answer": "The Stay Puft Marshmallow Man",
+    "incorrect_answers": [
+      "Slimer",
+      "The Michelin Man",
+      "A giant pumpkin"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the fear of spiders called?",
+    "correct_answer": "Arachnophobia",
+    "incorrect_answers": [
+      "Claustrophobia",
+      "Acrophobia",
+      "Ophidiophobia"
+    ],
+    "category": "Creepy Crawlies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Mexican holiday honoring loved ones who have died is celebrated on November 1 and 2?",
+    "correct_answer": "Día de los Muertos",
+    "incorrect_answers": [
+      "Cinco de Mayo",
+      "Las Posadas",
+      "Carnaval"
+    ],
+    "category": "Traditions",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'The Addams Family', what is the name of the disembodied hand?",
+    "correct_answer": "Thing",
+    "incorrect_answers": [
+      "Lurch",
+      "Cousin Itt",
+      "Fester"
+    ],
+    "category": "TV",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Halloween candy is known for its yellow, orange and white stripes?",
+    "correct_answer": "Candy corn",
+    "incorrect_answers": [
+      "Jelly beans",
+      "Gumdrops",
+      "Taffy"
+    ],
+    "category": "Candy",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Transylvania, the setting of 'Dracula', is a region of which country?",
+    "correct_answer": "Romania",
+    "incorrect_answers": [
+      "Hungary",
+      "Bulgaria",
+      "Austria"
+    ],
+    "category": "Geography",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'Beetlejuice', how many times must you say his name to summon him?",
+    "correct_answer": "Three",
+    "incorrect_answers": [
+      "Two",
+      "Five",
+      "Seven"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In the 'Scream' films, what is the masked killer known as?",
+    "correct_answer": "Ghostface",
+    "incorrect_answers": [
+      "Leatherface",
+      "Pinhead",
+      "Chucky"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Freddy Krueger is the villain of which film series?",
+    "correct_answer": "A Nightmare on Elm Street",
+    "incorrect_answers": [
+      "Friday the 13th",
+      "Halloween",
+      "Hellraiser"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What kind of mask is Jason Voorhees famous for wearing?",
+    "correct_answer": "A hockey mask",
+    "incorrect_answers": [
+      "A clown mask",
+      "A gas mask",
+      "A scarecrow mask"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the name of the camp in the 'Friday the 13th' films?",
+    "correct_answer": "Camp Crystal Lake",
+    "incorrect_answers": [
+      "Camp Arawak",
+      "Camp Blackfoot",
+      "Camp Walden"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the name of the hotel in 'The Shining'?",
+    "correct_answer": "The Overlook Hotel",
+    "incorrect_answers": [
+      "The Bates Motel",
+      "Hotel Transylvania",
+      "The Stanley Hotel"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who directed the 1960 film 'Psycho'?",
+    "correct_answer": "Alfred Hitchcock",
+    "incorrect_answers": [
+      "Stanley Kubrick",
+      "John Carpenter",
+      "Wes Craven"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the name of the killer doll in 'Child's Play'?",
+    "correct_answer": "Chucky",
+    "incorrect_answers": [
+      "Annabelle",
+      "Billy",
+      "Slappy"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'It's the Great Pumpkin, Charlie Brown', which character waits in the pumpkin patch all night?",
+    "correct_answer": "Linus",
+    "incorrect_answers": [
+      "Charlie Brown",
+      "Schroeder",
+      "Snoopy"
+    ],
+    "category": "TV",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'It's the Great Pumpkin, Charlie Brown', what does Charlie Brown get when he goes trick-or-treating?",
+    "correct_answer": "A rock",
+    "incorrect_answers": [
+      "An apple",
+      "A penny",
+      "Candy corn"
+    ],
+    "category": "TV",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In the 'Hotel Transylvania' films, which monster runs the hotel?",
+    "correct_answer": "Dracula",
+    "incorrect_answers": [
+      "Frankenstein",
+      "The Mummy",
+      "The Wolfman"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'Stranger Things', what is the dark alternate dimension called?",
+    "correct_answer": "The Upside Down",
+    "incorrect_answers": [
+      "The Other Side",
+      "The Shadow Realm",
+      "The Void"
+    ],
+    "category": "TV",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In the Netflix series 'Wednesday', which school does Wednesday Addams attend?",
+    "correct_answer": "Nevermore Academy",
+    "incorrect_answers": [
+      "Hogwarts",
+      "Monster High",
+      "Salem Academy"
+    ],
+    "category": "TV",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which film features the line 'Here's Johnny!'?",
+    "correct_answer": "The Shining",
+    "incorrect_answers": [
+      "Psycho",
+      "Misery",
+      "Poltergeist"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the name of the green ghost in 'Ghostbusters'?",
+    "correct_answer": "Slimer",
+    "incorrect_answers": [
+      "Casper",
+      "Zuul",
+      "Gozer"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Tim Burton film is about a man with scissors for hands?",
+    "correct_answer": "Edward Scissorhands",
+    "incorrect_answers": [
+      "Sweeney Todd",
+      "Sleepy Hollow",
+      "Frankenweenie"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who sang the 1962 novelty hit 'Monster Mash'?",
+    "correct_answer": "Bobby 'Boris' Pickett",
+    "incorrect_answers": [
+      "Vincent Price",
+      "Elvis Presley",
+      "Chuck Berry"
+    ],
+    "category": "Music",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which horror actor performs the spoken section of Michael Jackson's 'Thriller'?",
+    "correct_answer": "Vincent Price",
+    "incorrect_answers": [
+      "Christopher Lee",
+      "Boris Karloff",
+      "Bela Lugosi"
+    ],
+    "category": "Music",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'The Nightmare Before Christmas', what is the name of Jack's ghost dog?",
+    "correct_answer": "Zero",
+    "incorrect_answers": [
+      "Spot",
+      "Scraps",
+      "Boo"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'The Nightmare Before Christmas', what is the name of Jack Skellington's hometown?",
+    "correct_answer": "Halloween Town",
+    "incorrect_answers": [
+      "Sleepy Hollow",
+      "Pumpkin Patch",
+      "Ghost Town"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Disney Channel movie follows Marnie as she discovers her family are witches?",
+    "correct_answer": "Halloweentown",
+    "incorrect_answers": [
+      "Twitches",
+      "Hocus Pocus",
+      "Under Wraps"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who wrote 'The Legend of Sleepy Hollow'?",
+    "correct_answer": "Washington Irving",
+    "incorrect_answers": [
+      "Nathaniel Hawthorne",
+      "Edgar Allan Poe",
+      "Mark Twain"
+    ],
+    "category": "Literature",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which ghostly rider haunts Sleepy Hollow?",
+    "correct_answer": "The Headless Horseman",
+    "incorrect_answers": [
+      "The Pale Rider",
+      "The Hooded Monk",
+      "The Grey Lady"
+    ],
+    "category": "Literature",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Edgar Allan Poe poem features a bird that says 'Nevermore'?",
+    "correct_answer": "The Raven",
+    "incorrect_answers": [
+      "The Bells",
+      "Annabel Lee",
+      "Lenore"
+    ],
+    "category": "Literature",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which actor played Count Dracula in the classic 1931 film?",
+    "correct_answer": "Bela Lugosi",
+    "incorrect_answers": [
+      "Boris Karloff",
+      "Lon Chaney",
+      "Vincent Price"
+    ],
+    "category": "Movies",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which actor played the monster in the 1931 film 'Frankenstein'?",
+    "correct_answer": "Boris Karloff",
+    "incorrect_answers": [
+      "Bela Lugosi",
+      "Lon Chaney Jr.",
+      "Christopher Lee"
+    ],
+    "category": "Movies",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In Mary Shelley's novel, 'Frankenstein' is the name of whom?",
+    "correct_answer": "The scientist",
+    "incorrect_answers": [
+      "The monster",
+      "The castle",
+      "The assistant"
+    ],
+    "category": "Literature",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Who played the title role in the 1988 film 'Beetlejuice'?",
+    "correct_answer": "Michael Keaton",
+    "incorrect_answers": [
+      "Johnny Depp",
+      "Jim Carrey",
+      "Bill Murray"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the name of the van in 'Scooby-Doo'?",
+    "correct_answer": "The Mystery Machine",
+    "incorrect_answers": [
+      "The Ghost Wagon",
+      "The Spooky Van",
+      "The Clue Cruiser"
+    ],
+    "category": "TV",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the name of the talking black cat in 'Sabrina the Teenage Witch'?",
+    "correct_answer": "Salem",
+    "incorrect_answers": [
+      "Binx",
+      "Lucifer",
+      "Crookshanks"
+    ],
+    "category": "TV",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In 'Hocus Pocus', what is the name of the boy who was turned into a black cat?",
+    "correct_answer": "Thackery Binx",
+    "incorrect_answers": [
+      "Salem Saberhagen",
+      "Max Dennison",
+      "Billy Butcherson"
+    ],
+    "category": "Movies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the surname of the vampire family in 'Twilight'?",
+    "correct_answer": "Cullen",
+    "incorrect_answers": [
+      "Salvatore",
+      "Addams",
+      "Munster"
+    ],
+    "category": "Movies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Christian holy day falls on November 1, the day after Halloween?",
+    "correct_answer": "All Saints' Day",
+    "incorrect_answers": [
+      "Ash Wednesday",
+      "Epiphany",
+      "Candlemas"
+    ],
+    "category": "Traditions",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "The word 'Halloween' is a shortened form of what?",
+    "correct_answer": "All Hallows' Eve",
+    "incorrect_answers": [
+      "All Haunts' Evening",
+      "Hollow Evening",
+      "Hallowed Night"
+    ],
+    "category": "Traditions",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Halloween party game involves grabbing fruit from a tub of water with your teeth?",
+    "correct_answer": "Bobbing for apples",
+    "incorrect_answers": [
+      "Apple tossing",
+      "Apple rolling",
+      "Apple stacking"
+    ],
+    "category": "Traditions",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which two colors are most associated with Halloween?",
+    "correct_answer": "Orange and black",
+    "incorrect_answers": [
+      "Red and green",
+      "Purple and gold",
+      "Blue and white"
+    ],
+    "category": "Traditions",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "According to Irish legend, which character is the jack-o'-lantern named after?",
+    "correct_answer": "Stingy Jack",
+    "incorrect_answers": [
+      "Jumping Jack",
+      "Jack Frost",
+      "Jack Sprat"
+    ],
+    "category": "Folklore",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which U.S. state grows the most pumpkins?",
+    "correct_answer": "Illinois",
+    "incorrect_answers": [
+      "California",
+      "Ohio",
+      "Texas"
+    ],
+    "category": "Traditions",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the fear of Halloween called?",
+    "correct_answer": "Samhainophobia",
+    "incorrect_answers": [
+      "Phasmophobia",
+      "Nyctophobia",
+      "Triskaidekaphobia"
+    ],
+    "category": "Fears",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the fear of the number 13 called?",
+    "correct_answer": "Triskaidekaphobia",
+    "incorrect_answers": [
+      "Arachnophobia",
+      "Nyctophobia",
+      "Hemophobia"
+    ],
+    "category": "Fears",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the fear of the dark called?",
+    "correct_answer": "Nyctophobia",
+    "incorrect_answers": [
+      "Agoraphobia",
+      "Hydrophobia",
+      "Acrophobia"
+    ],
+    "category": "Fears",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which candy uses the slogan 'Taste the rainbow'?",
+    "correct_answer": "Skittles",
+    "incorrect_answers": [
+      "Starburst",
+      "M&M's",
+      "Nerds"
+    ],
+    "category": "Candy",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What are Reese's cups filled with?",
+    "correct_answer": "Peanut butter",
+    "incorrect_answers": [
+      "Caramel",
+      "Nougat",
+      "Marshmallow"
+    ],
+    "category": "Candy",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which candy bar's slogan invites you to 'break me off a piece'?",
+    "correct_answer": "Kit Kat",
+    "incorrect_answers": [
+      "Twix",
+      "Snickers",
+      "Milky Way"
+    ],
+    "category": "Candy",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In the classic commercial, which animal answers how many licks it takes to get to the center of a Tootsie Pop?",
+    "correct_answer": "The owl",
+    "incorrect_answers": [
+      "The fox",
+      "The cow",
+      "The rabbit"
+    ],
+    "category": "Candy",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Botanically speaking, what is a pumpkin?",
+    "correct_answer": "A fruit",
+    "incorrect_answers": [
+      "A vegetable",
+      "A root",
+      "A grain"
+    ],
+    "category": "Traditions",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "According to legend, what can't a vampire see in a mirror?",
+    "correct_answer": "Its reflection",
+    "incorrect_answers": [
+      "Its shadow",
+      "Its fangs",
+      "Its cape"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "According to legend, a bullet made of which metal can kill a werewolf?",
+    "correct_answer": "Silver",
+    "incorrect_answers": [
+      "Gold",
+      "Iron",
+      "Copper"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which monster is an ancient body wrapped in bandages?",
+    "correct_answer": "A mummy",
+    "incorrect_answers": [
+      "A zombie",
+      "A ghoul",
+      "A golem"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What do witches traditionally ride through the night sky?",
+    "correct_answer": "A broomstick",
+    "incorrect_answers": [
+      "A carpet",
+      "A cauldron",
+      "A wagon"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which animal is most often pictured as a witch's companion?",
+    "correct_answer": "A black cat",
+    "incorrect_answers": [
+      "A white rabbit",
+      "A red fox",
+      "A grey wolf"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "In Irish folklore, which wailing female spirit is said to warn of a death?",
+    "correct_answer": "A banshee",
+    "incorrect_answers": [
+      "A selkie",
+      "A leprechaun",
+      "A pooka"
+    ],
+    "category": "Folklore",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "According to legend, a stake made of what material is driven through a vampire's heart?",
+    "correct_answer": "Wood",
+    "incorrect_answers": [
+      "Iron",
+      "Bone",
+      "Glass"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the nickname of the monster said to live in a Scottish loch?",
+    "correct_answer": "Nessie",
+    "incorrect_answers": [
+      "The Kraken",
+      "Bigfoot",
+      "Chupacabra"
+    ],
+    "category": "Folklore",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which type of bat feeds on blood?",
+    "correct_answer": "Vampire bat",
+    "incorrect_answers": [
+      "Fruit bat",
+      "Brown bat",
+      "Horseshoe bat"
+    ],
+    "category": "Creepy Crawlies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Finish the witches' chant from Shakespeare: 'Double, double toil and ...'?",
+    "correct_answer": "Trouble",
+    "incorrect_answers": [
+      "Bubble",
+      "Rubble",
+      "Struggle"
+    ],
+    "category": "Literature",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "The German word 'poltergeist' translates roughly to what?",
+    "correct_answer": "Noisy ghost",
+    "incorrect_answers": [
+      "Angry spirit",
+      "House demon",
+      "Night walker"
+    ],
+    "category": "Folklore",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which Shakespeare play features three witches?",
+    "correct_answer": "Macbeth",
+    "incorrect_answers": [
+      "Hamlet",
+      "The Tempest",
+      "King Lear"
+    ],
+    "category": "Literature",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "Which historical ruler is said to have inspired the character of Count Dracula?",
+    "correct_answer": "Vlad the Impaler",
+    "incorrect_answers": [
+      "Ivan the Terrible",
+      "Attila the Hun",
+      "Rasputin"
+    ],
+    "category": "History",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "halloween"
+  },
+  {
+    "question": "What is the fastest land animal?",
+    "correct_answer": "Cheetah",
+    "incorrect_answers": [
+      "Lion",
+      "Pronghorn",
+      "Greyhound"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest animal on Earth?",
+    "correct_answer": "Blue whale",
+    "incorrect_answers": [
+      "African elephant",
+      "Whale shark",
+      "Giraffe"
+    ],
+    "category": "Ocean",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How many legs does a spider have?",
+    "correct_answer": "Eight",
+    "incorrect_answers": [
+      "Six",
+      "Ten",
+      "Twelve"
+    ],
+    "category": "Bugs",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of lions called?",
+    "correct_answer": "A pride",
+    "incorrect_answers": [
+      "A pack",
+      "A herd",
+      "A flock"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which is the only mammal capable of true flight?",
+    "correct_answer": "Bat",
+    "incorrect_answers": [
+      "Flying squirrel",
+      "Sugar glider",
+      "Colugo"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest living bird?",
+    "correct_answer": "Ostrich",
+    "incorrect_answers": [
+      "Emu",
+      "Albatross",
+      "Condor"
+    ],
+    "category": "Birds",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What do giant pandas mainly eat?",
+    "correct_answer": "Bamboo",
+    "incorrect_answers": [
+      "Eucalyptus",
+      "Fish",
+      "Berries"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How many hearts does an octopus have?",
+    "correct_answer": "Three",
+    "incorrect_answers": [
+      "One",
+      "Two",
+      "Four"
+    ],
+    "category": "Ocean",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a baby kangaroo called?",
+    "correct_answer": "A joey",
+    "incorrect_answers": [
+      "A cub",
+      "A kit",
+      "A calf"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the tallest animal in the world?",
+    "correct_answer": "Giraffe",
+    "incorrect_answers": [
+      "Elephant",
+      "Ostrich",
+      "Camel"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which bird is able to fly backwards?",
+    "correct_answer": "Hummingbird",
+    "incorrect_answers": [
+      "Kingfisher",
+      "Swallow",
+      "Sparrow"
+    ],
+    "category": "Birds",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of crows called?",
+    "correct_answer": "A murder",
+    "incorrect_answers": [
+      "A parliament",
+      "A gaggle",
+      "A colony"
+    ],
+    "category": "Birds",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which of these mammals lays eggs?",
+    "correct_answer": "Platypus",
+    "incorrect_answers": [
+      "Kangaroo",
+      "Armadillo",
+      "Bat"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest species of big cat?",
+    "correct_answer": "Tiger",
+    "incorrect_answers": [
+      "Lion",
+      "Jaguar",
+      "Leopard"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a female deer called?",
+    "correct_answer": "A doe",
+    "incorrect_answers": [
+      "A ewe",
+      "A sow",
+      "A mare"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which animal has fingerprints so similar to a human's that they can be confused?",
+    "correct_answer": "Koala",
+    "incorrect_answers": [
+      "Raccoon",
+      "Sloth",
+      "Kangaroo"
+    ],
+    "category": "Mammals",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest species of shark?",
+    "correct_answer": "Whale shark",
+    "incorrect_answers": [
+      "Great white shark",
+      "Tiger shark",
+      "Hammerhead shark"
+    ],
+    "category": "Ocean",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How many humps does a Bactrian camel have?",
+    "correct_answer": "Two",
+    "incorrect_answers": [
+      "One",
+      "Three",
+      "None"
+    ],
+    "category": "Mammals",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which bird is the fastest animal in the world when it dives?",
+    "correct_answer": "Peregrine falcon",
+    "incorrect_answers": [
+      "Golden eagle",
+      "Common swift",
+      "Osprey"
+    ],
+    "category": "Birds",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What color is a polar bear's skin?",
+    "correct_answer": "Black",
+    "incorrect_answers": [
+      "White",
+      "Pink",
+      "Gray"
+    ],
+    "category": "Mammals",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the national bird of the United States?",
+    "correct_answer": "Bald eagle",
+    "incorrect_answers": [
+      "Golden eagle",
+      "Wild turkey",
+      "Red-tailed hawk"
+    ],
+    "category": "Birds",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of fish swimming together called?",
+    "correct_answer": "A school",
+    "incorrect_answers": [
+      "A herd",
+      "A pack",
+      "A pride"
+    ],
+    "category": "Ocean",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest land animal?",
+    "correct_answer": "African elephant",
+    "incorrect_answers": [
+      "White rhinoceros",
+      "Hippopotamus",
+      "Giraffe"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a baby goat called?",
+    "correct_answer": "A kid",
+    "incorrect_answers": [
+      "A lamb",
+      "A calf",
+      "A fawn"
+    ],
+    "category": "Babies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a baby swan called?",
+    "correct_answer": "A cygnet",
+    "incorrect_answers": [
+      "A gosling",
+      "A duckling",
+      "A chick"
+    ],
+    "category": "Babies",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a young frog called before it grows legs?",
+    "correct_answer": "A tadpole",
+    "incorrect_answers": [
+      "A larva",
+      "A fry",
+      "A nymph"
+    ],
+    "category": "Babies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a male chicken called?",
+    "correct_answer": "A rooster",
+    "incorrect_answers": [
+      "A drake",
+      "A gander",
+      "A tom"
+    ],
+    "category": "Birds",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of wolves called?",
+    "correct_answer": "A pack",
+    "incorrect_answers": [
+      "A pride",
+      "A herd",
+      "A colony"
+    ],
+    "category": "Groups",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of dolphins called?",
+    "correct_answer": "A pod",
+    "incorrect_answers": [
+      "A flock",
+      "A troop",
+      "A swarm"
+    ],
+    "category": "Groups",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of geese on the ground called?",
+    "correct_answer": "A gaggle",
+    "incorrect_answers": [
+      "A murder",
+      "A parliament",
+      "A colony"
+    ],
+    "category": "Groups",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of owls called?",
+    "correct_answer": "A parliament",
+    "incorrect_answers": [
+      "A gaggle",
+      "A pride",
+      "A pod"
+    ],
+    "category": "Groups",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which African animal is known for its black and white stripes?",
+    "correct_answer": "Zebra",
+    "incorrect_answers": [
+      "Okapi",
+      "Tapir",
+      "Skunk"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest living primate?",
+    "correct_answer": "Gorilla",
+    "incorrect_answers": [
+      "Orangutan",
+      "Chimpanzee",
+      "Baboon"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which big cat is known for the male's mane?",
+    "correct_answer": "Lion",
+    "incorrect_answers": [
+      "Tiger",
+      "Cougar",
+      "Leopard"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What do koalas mainly eat?",
+    "correct_answer": "Eucalyptus leaves",
+    "incorrect_answers": [
+      "Bamboo",
+      "Acacia leaves",
+      "Grass"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Lemurs are found in the wild only on which island?",
+    "correct_answer": "Madagascar",
+    "incorrect_answers": [
+      "Borneo",
+      "New Zealand",
+      "Sri Lanka"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Kangaroos are native to which country?",
+    "correct_answer": "Australia",
+    "incorrect_answers": [
+      "South Africa",
+      "Brazil",
+      "India"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest species of bear?",
+    "correct_answer": "Polar bear",
+    "incorrect_answers": [
+      "American black bear",
+      "Giant panda",
+      "Sun bear"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which lizard is famous for changing color?",
+    "correct_answer": "Chameleon",
+    "incorrect_answers": [
+      "Iguana",
+      "Gecko",
+      "Skink"
+    ],
+    "category": "Reptiles",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which mammal is famous for being the slowest?",
+    "correct_answer": "Sloth",
+    "incorrect_answers": [
+      "Koala",
+      "Manatee",
+      "Hedgehog"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How many legs does an insect have?",
+    "correct_answer": "Six",
+    "incorrect_answers": [
+      "Four",
+      "Eight",
+      "Ten"
+    ],
+    "category": "Bugs",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the larva of a butterfly called?",
+    "correct_answer": "A caterpillar",
+    "incorrect_answers": [
+      "A maggot",
+      "A grub",
+      "A nymph"
+    ],
+    "category": "Bugs",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which insect's cocoon is used to make silk?",
+    "correct_answer": "Silkworm",
+    "incorrect_answers": [
+      "Honeybee",
+      "Cricket",
+      "Ladybug"
+    ],
+    "category": "Bugs",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which bird is a traditional symbol of peace?",
+    "correct_answer": "Dove",
+    "incorrect_answers": [
+      "Swan",
+      "Robin",
+      "Crane"
+    ],
+    "category": "Birds",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which bird is best known for mimicking human speech?",
+    "correct_answer": "Parrot",
+    "incorrect_answers": [
+      "Pigeon",
+      "Penguin",
+      "Pelican"
+    ],
+    "category": "Birds",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which flightless bird is a national symbol of New Zealand?",
+    "correct_answer": "Kiwi",
+    "incorrect_answers": [
+      "Emu",
+      "Dodo",
+      "Cassowary"
+    ],
+    "category": "Birds",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "In which hemisphere do nearly all wild penguins live?",
+    "correct_answer": "Southern",
+    "incorrect_answers": [
+      "Northern",
+      "Eastern",
+      "Western"
+    ],
+    "category": "Birds",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest species of penguin?",
+    "correct_answer": "Emperor penguin",
+    "incorrect_answers": [
+      "King penguin",
+      "Adélie penguin",
+      "Gentoo penguin"
+    ],
+    "category": "Birds",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "correct_answer": "Wandering albatross",
+    "incorrect_answers": [
+      "Andean condor",
+      "Bald eagle",
+      "Great white pelican"
+    ],
+    "category": "Birds",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which bird lays the largest eggs?",
+    "correct_answer": "Ostrich",
+    "incorrect_answers": [
+      "Emu",
+      "Swan",
+      "Eagle"
+    ],
+    "category": "Birds",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "About how far can an owl turn its head?",
+    "correct_answer": "270 degrees",
+    "incorrect_answers": [
+      "90 degrees",
+      "180 degrees",
+      "360 degrees"
+    ],
+    "category": "Birds",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a baby sheep called?",
+    "correct_answer": "A lamb",
+    "incorrect_answers": [
+      "A kid",
+      "A foal",
+      "A calf"
+    ],
+    "category": "Babies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a baby horse called?",
+    "correct_answer": "A foal",
+    "incorrect_answers": [
+      "A calf",
+      "A fawn",
+      "A pup"
+    ],
+    "category": "Babies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a baby bear called?",
+    "correct_answer": "A cub",
+    "incorrect_answers": [
+      "A pup",
+      "A kit",
+      "A joey"
+    ],
+    "category": "Babies",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is an adult female horse called?",
+    "correct_answer": "A mare",
+    "incorrect_answers": [
+      "A doe",
+      "A hen",
+      "A sow"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest living reptile?",
+    "correct_answer": "Saltwater crocodile",
+    "incorrect_answers": [
+      "Komodo dragon",
+      "Green anaconda",
+      "Leatherback turtle"
+    ],
+    "category": "Reptiles",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest living lizard?",
+    "correct_answer": "Komodo dragon",
+    "incorrect_answers": [
+      "Green iguana",
+      "Gila monster",
+      "Chameleon"
+    ],
+    "category": "Reptiles",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the longest species of snake?",
+    "correct_answer": "Reticulated python",
+    "incorrect_answers": [
+      "Green anaconda",
+      "King cobra",
+      "Boa constrictor"
+    ],
+    "category": "Reptiles",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the longest venomous snake?",
+    "correct_answer": "King cobra",
+    "incorrect_answers": [
+      "Black mamba",
+      "Rattlesnake",
+      "Taipan"
+    ],
+    "category": "Reptiles",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which of these animals is a marsupial?",
+    "correct_answer": "Opossum",
+    "incorrect_answers": [
+      "Raccoon",
+      "Otter",
+      "Beaver"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which dog breed is known for its white coat with black spots?",
+    "correct_answer": "Dalmatian",
+    "incorrect_answers": [
+      "Beagle",
+      "Great Dane",
+      "Boxer"
+    ],
+    "category": "Pets",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which is generally considered the smallest dog breed?",
+    "correct_answer": "Chihuahua",
+    "incorrect_answers": [
+      "Pomeranian",
+      "Yorkshire Terrier",
+      "Pug"
+    ],
+    "category": "Pets",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a group of kittens born together called?",
+    "correct_answer": "A litter",
+    "incorrect_answers": [
+      "A pack",
+      "A clutch",
+      "A brood"
+    ],
+    "category": "Pets",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "According to the saying, how many lives does a cat have?",
+    "correct_answer": "Nine",
+    "incorrect_answers": [
+      "Seven",
+      "Three",
+      "Thirteen"
+    ],
+    "category": "Pets",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which animal appears on the logo of the World Wildlife Fund (WWF)?",
+    "correct_answer": "Giant panda",
+    "incorrect_answers": [
+      "Tiger",
+      "Polar bear",
+      "Elephant"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What does a camel store in its hump?",
+    "correct_answer": "Fat",
+    "incorrect_answers": [
+      "Water",
+      "Milk",
+      "Air"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the largest rodent in the world?",
+    "correct_answer": "Capybara",
+    "incorrect_answers": [
+      "Beaver",
+      "Porcupine",
+      "Nutria"
+    ],
+    "category": "Mammals",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which animal is famous for building dams?",
+    "correct_answer": "Beaver",
+    "incorrect_answers": [
+      "Otter",
+      "Muskrat",
+      "Badger"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which sea creature typically has five arms and can regrow them?",
+    "correct_answer": "Starfish",
+    "incorrect_answers": [
+      "Octopus",
+      "Squid",
+      "Jellyfish"
+    ],
+    "category": "Ocean",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How many arms does an octopus have?",
+    "correct_answer": "Eight",
+    "incorrect_answers": [
+      "Six",
+      "Ten",
+      "Twelve"
+    ],
+    "category": "Ocean",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which fish puffs itself up into a ball when threatened?",
+    "correct_answer": "Pufferfish",
+    "incorrect_answers": [
+      "Clownfish",
+      "Swordfish",
+      "Catfish"
+    ],
+    "category": "Ocean",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What kind of fish is Nemo in 'Finding Nemo'?",
+    "correct_answer": "Clownfish",
+    "incorrect_answers": [
+      "Blue tang",
+      "Angelfish",
+      "Goldfish"
+    ],
+    "category": "Ocean",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "In seahorses, which parent carries the babies until they are born?",
+    "correct_answer": "The male",
+    "incorrect_answers": [
+      "The female",
+      "Both parents",
+      "Neither parent"
+    ],
+    "category": "Ocean",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which gentle marine mammal is nicknamed the 'sea cow'?",
+    "correct_answer": "Manatee",
+    "incorrect_answers": [
+      "Walrus",
+      "Seal",
+      "Narwhal"
+    ],
+    "category": "Ocean",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which whale is nicknamed the 'unicorn of the sea'?",
+    "correct_answer": "Narwhal",
+    "incorrect_answers": [
+      "Beluga",
+      "Orca",
+      "Humpback"
+    ],
+    "category": "Ocean",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "The killer whale, or orca, belongs to which family of animals?",
+    "correct_answer": "Dolphins",
+    "incorrect_answers": [
+      "Sharks",
+      "Seals",
+      "Fish"
+    ],
+    "category": "Ocean",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which black and white animal is known for spraying a foul smell?",
+    "correct_answer": "Skunk",
+    "incorrect_answers": [
+      "Badger",
+      "Raccoon",
+      "Weasel"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is a rhinoceros's horn made of?",
+    "correct_answer": "Keratin",
+    "incorrect_answers": [
+      "Bone",
+      "Ivory",
+      "Calcium"
+    ],
+    "category": "Mammals",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What material are elephant tusks made of?",
+    "correct_answer": "Ivory",
+    "incorrect_answers": [
+      "Keratin",
+      "Cartilage",
+      "Coral"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How many bones are in a giraffe's neck?",
+    "correct_answer": "Seven",
+    "incorrect_answers": [
+      "Fourteen",
+      "Twenty-one",
+      "Thirty"
+    ],
+    "category": "Mammals",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "How do honeybees tell each other where to find food?",
+    "correct_answer": "By dancing",
+    "incorrect_answers": [
+      "By singing",
+      "By clicking",
+      "By flashing"
+    ],
+    "category": "Bugs",
+    "difficulty": "medium",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Which insect lights up at night?",
+    "correct_answer": "Firefly",
+    "incorrect_answers": [
+      "Dragonfly",
+      "Mayfly",
+      "Cicada"
+    ],
+    "category": "Bugs",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is it called when an animal sleeps through the winter?",
+    "correct_answer": "Hibernation",
+    "incorrect_answers": [
+      "Migration",
+      "Molting",
+      "Grazing"
+    ],
+    "category": "Behavior",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is it called when animals travel long distances with the seasons?",
+    "correct_answer": "Migration",
+    "incorrect_answers": [
+      "Hibernation",
+      "Nesting",
+      "Molting"
+    ],
+    "category": "Behavior",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the smallest bird in the world?",
+    "correct_answer": "Bee hummingbird",
+    "incorrect_answers": [
+      "Wren",
+      "Goldcrest",
+      "Sparrow"
+    ],
+    "category": "Birds",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What type of animal is a frog?",
+    "correct_answer": "Amphibian",
+    "incorrect_answers": [
+      "Reptile",
+      "Fish",
+      "Mammal"
+    ],
+    "category": "Classification",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "correct_answer": "Unicorn",
+    "incorrect_answers": [
+      "Lion",
+      "Stag",
+      "Highland cow"
+    ],
+    "category": "Fun Facts",
+    "difficulty": "hard",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "Where do polar bears live in the wild?",
+    "correct_answer": "The Arctic",
+    "incorrect_answers": [
+      "Antarctica",
+      "The Andes",
+      "The Alps"
+    ],
+    "category": "Mammals",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What do you call an animal that eats only plants?",
+    "correct_answer": "Herbivore",
+    "incorrect_answers": [
+      "Carnivore",
+      "Omnivore",
+      "Insectivore"
+    ],
+    "category": "Classification",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  },
+  {
+    "question": "What word describes animals that are active at night?",
+    "correct_answer": "Nocturnal",
+    "incorrect_answers": [
+      "Diurnal",
+      "Dormant",
+      "Aquatic"
+    ],
+    "category": "Behavior",
+    "difficulty": "easy",
+    "points": 1,
+    "expansion": "animals"
+  }
+]

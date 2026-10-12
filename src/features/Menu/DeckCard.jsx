@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * 🃏 One card deck (expansion), drawn as a tall glass playing card.
- * Used on the Couch Cast deck page and the Prompt 2 create screen.
+ * Used on the Couch Cast deck page and the Prompt 2 and Trivia create screens.
  *
  * Pass `selected` (true/false) to use it as a pick-one toggle;
  * leave it undefined for a plain "tap to go" button.
@@ -37,15 +37,34 @@ const ICONS = {
             <path d="M29 66 l7 4 l5 -5 l9 6 l9 -6 l5 5 l7 -4 q-5 16 -21 16 q-16 0 -21 -16 z" className="deck-solid" />
         </>
     ),
+    // Speech bubble with a question mark
+    trivia: (
+        <>
+            <path d="M16 14 H84 a10 10 0 0 1 10 10 V62 a10 10 0 0 1 -10 10 H50 L30 90 V72 H16 a10 10 0 0 1 -10 -10 V24 a10 10 0 0 1 10 -10 z" className="deck-glass" />
+            <path d="M16 30 V26 a4 4 0 0 1 4 -4 H30" className="deck-shine" />
+            <path d="M39 36 a11 11 0 1 1 16 9.5 q-5 3 -5 9" className="deck-line" />
+            <circle cx="50" cy="63" r="3.5" className="deck-solid" />
+        </>
+    ),
+    // Paw print
+    animals: (
+        <>
+            <ellipse cx="24" cy="46" rx="9" ry="12" transform="rotate(-18 24 46)" className="deck-glass" />
+            <ellipse cx="41" cy="27" rx="9" ry="12" transform="rotate(-6 41 27)" className="deck-glass" />
+            <ellipse cx="60" cy="27" rx="9" ry="12" transform="rotate(6 60 27)" className="deck-glass" />
+            <ellipse cx="77" cy="46" rx="9" ry="12" transform="rotate(18 77 46)" className="deck-glass" />
+            <path d="M50 48 c-14 0 -25 13 -25 25 c0 9 7 14 14 14 c5 0 7 -3 11 -3 c4 0 6 3 11 3 c7 0 14 -5 14 -14 c0 -12 -11 -25 -25 -25 z" className="deck-solid" />
+        </>
+    ),
 };
 
-export default function DeckCard({ deck, index = 0, selected, disabled, onClick, ariaLabel }) {
+export default function DeckCard({ deck, index = 0, selected, disabled, onClick, ariaLabel, compact }) {
     const isToggle = selected !== undefined;
 
     return (
         <button
             type="button"
-            className={`glass-btn cc-deck-card ${selected ? 'selected' : ''}`}
+            className={`glass-btn cc-deck-card ${selected ? 'selected' : ''} ${compact ? 'compact' : ''}`}
             disabled={disabled}
             onClick={onClick}
             aria-label={ariaLabel || `${deck.title} deck`}

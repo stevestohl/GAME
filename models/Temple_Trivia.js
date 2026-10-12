@@ -13,6 +13,11 @@ const TriviaTempleSchema = new mongoose.Schema({
         type: [Array], 
         required: [true, 'Incorrect answers are required'] 
     },
+    // Which deck the question belongs to (core, halloween, animals...)
+    expansion: {
+        type: String,
+        default: 'core'
+    },
     category: {
         type: String,
         default: 'General' 

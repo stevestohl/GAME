@@ -1,8 +1,8 @@
-import { drawCards, normalizeExpansion } from "../db/drawCards.js";
+import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 
 const activePrompt2Rooms = {}; 
 
-const createRoomLogic = (socket, roomsObject, playerName, expansion) => {
+const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let randomLetters = '';
     for (let i = 0; i < 3; i++) {
@@ -15,6 +15,7 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion) => {
         roomCode: finalRoomCode,
         gameState: 'lobby',
         expansion: expansion,
+        totalRounds: totalRounds,
         hostId: socket.id,
         currentHostIndex: 0,
         currentRound:1,
@@ -43,7 +44,7 @@ export default function registerPrompt2Namespace(promptNS) {
     // ---- Event: Room Creation ------
     socket.on('createRoom', (data) => {
         const nameToUse = data.playerName || 'Host';
-        const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse, normalizeExpansion(data.expansion));
+        const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse, normalizeExpansion(data.expansion), normalizeRounds(data.totalRounds));
         
     socket.join(roomCode); 
     socket.emit('roomcreated', { roomCode, players });
@@ -204,8 +205,8 @@ export default function registerPrompt2Namespace(promptNS) {
                 room.players[winningPlayerId].score += 100; 
             }
 
-            // 3. Determine if game is over (Cap at 3 rounds)
-            const isGameOver = room.currentRound >= 3;
+            // 3. Determine if game is over (the host chose how many rounds)
+            const isGameOver = room.currentRound >= (room.totalRounds || 3);
 
             // 4. Update Game State
             if (isGameOver) {

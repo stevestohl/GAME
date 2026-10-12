@@ -503,6 +503,51 @@
     .glass-btn::after { animation: none; display: none; }
 }
 
+/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */
+.gt-rounds {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */
+    gap: 0.4rem;
+}
+.gt-rounds-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.4rem 0.25rem;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #fff;
+    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);
+    opacity: 0.55;
+    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.gt-rounds-pill.selected {
+    opacity: 1;
+    border-color: var(--gt-gold);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);
+}
+.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }
+.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }
+.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }
+.gt-rounds-label {
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */
+.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }
+.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }
+.cc-deck-card.compact .cc-deck-icon { width: 62%; }
+.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }
+.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }
+
 /* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */
 .cc-deck-card {
     width: 100%;
@@ -569,6 +614,13 @@
     stroke: rgba(255, 255, 255, 0.85);
     stroke-width: 2.5;
     stroke-linecap: round;
+}
+.cc-deck-icon .deck-line {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 .cc-deck-icon .deck-solid {
     fill: #fff;

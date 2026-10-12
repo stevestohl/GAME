@@ -1,0 +1,2402 @@
+[
+    {
+        "question": "What is the capital city of Australia?",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'?",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'?",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States?",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016?",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth?",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'?",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system?",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'?",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra?",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 2)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 2)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 2)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 2)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 2)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 2)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 2)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 2)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 2)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 2)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 3)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 3)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 3)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 3)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 3)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 3)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 3)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 3)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 3)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 3)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 4)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 4)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 4)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 4)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 4)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 4)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 4)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 4)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 4)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 4)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 5)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 5)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 5)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 5)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 5)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 5)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 5)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 5)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 5)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 5)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 6)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 6)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 6)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 6)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 6)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 6)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 6)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 6)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 6)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 6)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 7)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 7)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 7)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 7)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 7)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 7)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 7)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 7)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 7)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 7)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 8)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 8)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 8)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 8)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 8)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 8)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 8)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 8)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 8)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 8)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 9)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 9)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 9)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 9)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 9)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 9)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 9)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 9)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 9)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 9)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 10)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 10)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 10)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 10)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 10)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 10)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 10)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 10)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 10)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 10)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 11)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 11)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 11)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 11)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 11)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 11)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 11)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 11)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 11)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 11)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 12)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 12)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 12)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 12)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 12)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 12)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 12)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 12)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 12)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 12)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 13)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 13)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 13)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 13)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 13)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 13)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 13)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 13)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 13)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 13)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 14)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 14)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 14)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 14)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 14)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 14)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 14)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 14)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 14)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 14)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 15)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 15)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 15)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 15)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 15)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 15)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 15)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 15)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 15)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 15)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 16)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 16)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 16)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 16)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 16)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 16)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 16)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 16)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 16)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 16)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 17)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 17)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 17)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 17)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 17)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 17)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 17)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 17)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 17)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 17)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 18)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 18)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 18)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 18)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 18)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 18)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 18)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 18)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 18)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 18)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 19)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 19)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 19)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 19)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 19)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 19)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 19)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 19)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 19)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 19)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What is the capital city of Australia? (Round 20)",
+        "correct_answer": "Canberra",
+        "incorrect_answers": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which pop diva released the iconic 2000 album 'In the Zone'? (Round 20)",
+        "correct_answer": "Britney Spears",
+        "incorrect_answers": [
+            "Christina Aguilera",
+            "Madonna",
+            "Janet Jackson"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What chemical element has the symbol 'Au'? (Round 20)",
+        "correct_answer": "Gold",
+        "incorrect_answers": [
+            "Silver",
+            "Copper",
+            "Argon"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "In what year did the original iPhone launch in the United States? (Round 20)",
+        "correct_answer": "2007",
+        "incorrect_answers": [
+            "2005",
+            "2008",
+            "2009"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "Which streaming platform originally released 'Stranger Things' in 2016? (Round 20)",
+        "correct_answer": "Netflix",
+        "incorrect_answers": [
+            "Hulu",
+            "Amazon Prime",
+            "HBO Max"
+        ],
+        "category": "Science",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth? (Round 20)",
+        "correct_answer": "Diamond",
+        "incorrect_answers": [
+            "Titanium",
+            "Graphite",
+            "Quartz"
+        ],
+        "category": "Geography",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "Which artist sang the lead vocals on the 1997 global hit 'Barbie Girl'? (Round 20)",
+        "correct_answer": "Aqua",
+        "incorrect_answers": [
+            "Spice Girls",
+            "Ace of Base",
+            "Vengaboys"
+        ],
+        "category": "History",
+        "difficulty": "Medium",
+        "points": "2"
+    },
+    {
+        "question": "What is the smallest planet in our solar system? (Round 20)",
+        "correct_answer": "Mercury",
+        "incorrect_answers": [
+            "Mars",
+            "Venus",
+            "Pluto"
+        ],
+        "category": "Entertainment",
+        "difficulty": "Hard",
+        "points": "3"
+    },
+    {
+        "question": "Which television series featured the coffee shop named 'Central Perk'? (Round 20)",
+        "correct_answer": "Friends",
+        "incorrect_answers": [
+            "How I Met Your Mother",
+            "Seinfeld",
+            "The Office"
+        ],
+        "category": "We're old now",
+        "difficulty": "Easy",
+        "points": "1"
+    },
+    {
+        "question": "What country is home to the ancient city of Petra? (Round 20)",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Greece",
+            "Turkey"
+        ],
+        "category": "Pop Culture",
+        "difficulty": "Medium",
+        "points": "2"
+    }
+]

@@ -1,5 +1,5 @@
 // Couch-Cast will share the same database and model as Prompt2
-import { drawCards, normalizeExpansion } from "../db/drawCards.js"
+import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js"
 
 // HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
 const getSafeRoom = (room) => {
@@ -19,8 +19,8 @@ const JUDGING_TIME_LIMIT = 30 * 1000;
 // Extra moment after the clock hits zero, so a last-second tap from the judge still counts
 const JUDGING_GRACE = 1 * 1000;
 
-// How many rounds make a game
-const TOTAL_ROUNDS = 3;
+// How many rounds make a game when the caster doesn't choose
+const DEFAULT_ROUNDS = 3;
 
 // How long the TV shows "No one submitted anything!" before the next round starts
 const NO_SUBMISSIONS_DELAY = 5 * 1000;
@@ -33,7 +33,7 @@ const findRoomBySocket = (socketId) => {
     return Object.values(activeCCRooms).find(room => room.players[socketId]);
 };
 
-const createRoomLogic = (socket, roomsObject, playerName, expansion) => {
+const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let randomLetters = '';
     
@@ -48,6 +48,7 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion) => {
         roomCode: finalRoomCode,
         gameState: 'lobby',
         expansion: expansion,
+        totalRounds: totalRounds,
         casterId: socket.id,
         hostId: null, 
         currentHostIndex: 1,
@@ -202,7 +203,7 @@ export default function registerCCNamespace(CCNS) {
         const nextHost = rotateHost(room);
 
         // 3. Set state to REVEAL the funny answer
-        const isGameOver = room.currentRound >= TOTAL_ROUNDS;
+        const isGameOver = room.currentRound >= room.totalRounds;
         room.gameState = 'winner_reveal'; 
 
         // Send the reveal data to the TV
@@ -250,7 +251,7 @@ export default function registerCCNamespace(CCNS) {
         const nextHost = rotateHost(room);
 
         // The skipped round still counts, so an idle room can't play forever
-        if (room.currentRound >= TOTAL_ROUNDS) {
+        if (room.currentRound >= room.totalRounds) {
             room.gameState = 'scoreboard';
             CCNS.to(roomCode).emit('round_ended', {
                 gameState: room.gameState,
@@ -360,7 +361,7 @@ export default function registerCCNamespace(CCNS) {
             const nameToUse = data.playerName || 'Caster';
             const expansion = normalizeExpansion(data.expansion);
             leaveOtherRooms(socket);
-            const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse, expansion);
+            const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse, expansion, normalizeRounds(data.totalRounds, DEFAULT_ROUNDS));
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
         });

@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import { handleCreateCouchCast } from './CouchCastCreate.jsx';
 import { preloadLobbyMusic } from './lobbyMusic.js';
-import { CARD_DECKS } from '../../cardDecks.js';
+import { CARD_DECKS, ROUND_OPTIONS } from '../../cardDecks.js';
+import RoundsPicker from '../Menu/RoundsPicker.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
 
 /**
@@ -15,6 +16,7 @@ import DeckCard from '../Menu/DeckCard.jsx';
 export default function CouchCastDeckSelect() {
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
+    const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
 
     // Global Scroll Unlock Safety Net (same as Home)
     useEffect(() => {
@@ -63,7 +65,20 @@ export default function CouchCastDeckSelect() {
 
                     <div className="d-flex align-items-center my-2">
                         <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">Choose Your Deck</span>
+                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Many Rounds?</span>
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                    </div>
+
+                    <RoundsPicker
+                        options={ROUND_OPTIONS}
+                        value={totalRounds}
+                        onChange={setTotalRounds}
+                        disabled={isCreatingRoom}
+                    />
+
+                    <div className="d-flex align-items-center mt-3 mb-2">
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                        <span className="mx-2 small fw-bold text-muted text-uppercase">Then Tap a Deck to Start</span>
                         <hr className="flex-grow-1 my-0 opacity-25" />
                     </div>
 
@@ -75,7 +90,7 @@ export default function CouchCastDeckSelect() {
                                     deck={deck}
                                     index={i}
                                     disabled={isCreatingRoom}
-                                    onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom, deck.id)}
+                                    onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom, deck.id, totalRounds)}
                                     ariaLabel={`Create a Couch Cast room with the ${deck.title} deck`}
                                 />
                             </Col>

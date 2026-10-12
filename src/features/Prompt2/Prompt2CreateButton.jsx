@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Form, Button, InputGroup, Spinner, Row, Col } from 'react-bootstrap';
 import { prompt2Socket } from '../../socket.js'; // Check this path based on your folder structure
 import { getRandomFunnyName } from '../../funnyNames.js'; // Check this path based on your folder structure
-import { CARD_DECKS } from '../../cardDecks.js';
+import { CARD_DECKS, ROUND_OPTIONS } from '../../cardDecks.js';
+import RoundsPicker from '../Menu/RoundsPicker.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
 
 export default function Prompt2CreateScreen() {
@@ -11,6 +12,7 @@ export default function Prompt2CreateScreen() {
     const [playerName, setPlayerName] = useState('');
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [expansion, setExpansion] = useState('core');
+    const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
 
     // Pull saved name on mount
     useEffect(() => {
@@ -40,7 +42,7 @@ export default function Prompt2CreateScreen() {
 
         // 2. Helper to emit the create event
         const emitCreate = () => {
-            prompt2Socket.emit('createRoom', { playerName: cleanName, expansion });
+            prompt2Socket.emit('createRoom', { playerName: cleanName, expansion, totalRounds });
         };
 
         // 3. Setup the Success Listener
@@ -106,6 +108,17 @@ export default function Prompt2CreateScreen() {
                                     🎲
                                 </Button>
                             </InputGroup>
+                        </Form.Group>
+
+                        {/* 🔢 How many rounds */}
+                        <Form.Group className='mb-4 text-start'>
+                            <Form.Label className='fw-bold text-secondary small'>Rounds</Form.Label>
+                            <RoundsPicker
+                                options={ROUND_OPTIONS}
+                                value={totalRounds}
+                                onChange={setTotalRounds}
+                                disabled={isCreatingRoom}
+                            />
                         </Form.Group>
 
                         {/* 🃏 Card deck (expansion) */}
