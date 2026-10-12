@@ -108,6 +108,10 @@ export default function TriviaManager() {
                     <ScoreboardScreen 
                         roomCode={roomCode}
                         players={roomState.players}
+                        question={roomState.questions?.[roomState.currentRound]}
+                        playerAnswers={roomState.playerAnswers}
+                        questionNumber={(roomState.currentRound || 0) + 1}
+                        totalQuestions={roomState.questions?.length}
                         isHost={role === 'host'}
                     />
                 );

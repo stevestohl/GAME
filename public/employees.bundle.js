@@ -8949,7 +8949,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function ScoreboardScreen(_ref) {
   var roomCode = _ref.roomCode,
     players = _ref.players,
-    isHost = _ref.isHost;
+    isHost = _ref.isHost,
+    question = _ref.question,
+    _ref$playerAnswers = _ref.playerAnswers,
+    playerAnswers = _ref$playerAnswers === void 0 ? {} : _ref$playerAnswers,
+    questionNumber = _ref.questionNumber,
+    totalQuestions = _ref.totalQuestions;
   var handleNextRound = function handleNextRound() {
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.emit('advanceFromScoreboard', {
       roomCode: roomCode
@@ -8960,6 +8965,12 @@ function ScoreboardScreen(_ref) {
   var sortedPlayers = _toConsumableArray(players).sort(function (a, b) {
     return (b.score || 0) - (a.score || 0);
   });
+
+  // What was just asked, and how this player did
+  var correctAnswer = question === null || question === void 0 ? void 0 : question.correct_answer;
+  var myAnswer = playerAnswers[_socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id];
+  var iWasRight = myAnswer !== undefined && myAnswer === correctAnswer;
+  var isLastQuestion = totalQuestions ? questionNumber >= totalQuestions : false;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-center align-items-center p-1",
     style: {
@@ -8980,7 +8991,17 @@ function ScoreboardScreen(_ref) {
     }
   }, "TRIVIA-TEMPLE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
+  }, question && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-start p-3 mb-3 bg-light rounded border"
+  }, totalQuestions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "small fw-bold text-muted text-uppercase mb-1"
+  }, "Question ", questionNumber, " of ", totalQuestions), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fw-bold mb-2"
+  }, question.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fw-bold text-success"
+  }, "\u2705 ", correctAnswer), myAnswer !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "small mt-1 fw-semibold ".concat(iWasRight ? 'text-success' : 'text-danger')
+  }, iWasRight ? 'You got it right! +10 points' : "You answered: ".concat(myAnswer))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
     className: "fs-3 fw-bold mb-3 text-primary"
   }, "Scores"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "mb-4 text-start border border-secondary rounded shadow-inner"
@@ -8992,7 +9013,10 @@ function ScoreboardScreen(_ref) {
       className: "d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-muted me-2 small"
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, player.name), question && playerAnswers[player.id] !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "ms-2",
+      title: playerAnswers[player.id] === correctAnswer ? 'Correct' : 'Incorrect'
+    }, playerAnswers[player.id] === correctAnswer ? '✅' : '❌'), player.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.triviaSocket.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       bg: "info",
       className: "ms-2 text-white font-normal"
     }, "You")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -9003,9 +9027,9 @@ function ScoreboardScreen(_ref) {
     variant: "primary",
     className: "w-100 fw-bold py-2 shadow-sm",
     onClick: handleNextRound
-  }, "Advance Stage") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, isLastQuestion ? 'See Final Scores' : 'Next Question') : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-muted small py-2 border border-dashed rounded bg-light"
-  }, "\u23F3 Waiting for host to load the next round..."))));
+  }, "\u23F3 Waiting for the host to continue..."))));
 }
 
 /***/ }),
@@ -9348,7 +9372,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function TriviaManager() {
-  var _roomState$questions;
+  var _roomState$questions, _roomState$questions2, _roomState$questions3;
   var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
@@ -9469,6 +9493,10 @@ function TriviaManager() {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ScoreboardScreen_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
           roomCode: roomCode,
           players: roomState.players,
+          question: (_roomState$questions2 = roomState.questions) === null || _roomState$questions2 === void 0 ? void 0 : _roomState$questions2[roomState.currentRound],
+          playerAnswers: roomState.playerAnswers,
+          questionNumber: (roomState.currentRound || 0) + 1,
+          totalQuestions: (_roomState$questions3 = roomState.questions) === null || _roomState$questions3 === void 0 ? void 0 : _roomState$questions3.length,
           isHost: role === 'host'
         });
       case 'GAMEOVER':
