@@ -111,6 +111,21 @@ const ICONS = {
         </>
     ),
 
+    // 📝 Lists
+    pencil: (
+        <>
+            <path d="M22 78 L18 92 L32 88 L86 34 L76 24 Z" />
+            <path d="M68 32 L78 42" />
+        </>
+    ),
+    checklist: (
+        <>
+            <rect x="18" y="8" width="64" height="84" rx="10" />
+            <path d="M32 30 H68 M32 50 H68 M32 70 H56" />
+            <path d="M26 50 H74" className="gt-icon-dot" />
+        </>
+    ),
+
     // 🐾 Animals
     paw: (
         <>
@@ -225,6 +240,17 @@ const ANIMALS_FLOATERS = [
     { icon: 'paw',  top: '4%',  left: '44%', size: 70,  dur: 34, delay: -18, rot: 10 },
 ];
 
+const LISTS_FLOATERS = [
+    { icon: 'checklist',  top: '12%', left: '4%',  size: 170, dur: 38, delay: 0,   rot: -12 },
+    { icon: 'castScreen', top: '60%', left: '78%', size: 190, dur: 44, delay: -8,  rot: 12 },
+    { icon: 'pencil',     top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: 10 },
+    { icon: 'phone',      top: '8%',  left: '82%', size: 130, dur: 48, delay: -20, rot: -14 },
+    { icon: 'star',       top: '42%', left: '91%', size: 60,  dur: 30, delay: -5,  rot: 0 },
+    { icon: 'checklist',  top: '38%', left: '-1%', size: 110, dur: 42, delay: -26, rot: 6 },
+    { icon: 'pencil',     top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: 16 },
+    { icon: 'bubble',     top: '4%',  left: '44%', size: 70,  dur: 34, delay: -18, rot: -10 },
+];
+
 // Each theme = which icons float around. Colours live in cards.css (.gt-bg.theme-*).
 const THEMES = {
     home: FLOATERS,
@@ -232,6 +258,7 @@ const THEMES = {
     halloween: HALLOWEEN_FLOATERS,
     trivia: TRIVIA_FLOATERS,
     animals: ANIMALS_FLOATERS,
+    lists: LISTS_FLOATERS,
 };
 
 export default function AnimatedBackground() {

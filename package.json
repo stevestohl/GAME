@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "compile": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "seed:lists": "node db/seedListCategories.js"
   },
   "type": "module",
   "keywords": [],

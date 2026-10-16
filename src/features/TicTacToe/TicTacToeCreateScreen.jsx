@@ -106,7 +106,7 @@ export default function TicTacToeCreateScreen() {
                             <Button 
                                 variant="outline-secondary" 
                                 className="w-50 fw-bold"
-                                onClick={() => navigate('/')}
+                                onClick={() => navigate('/temple')}
                             >
                                 Back
                             </Button>

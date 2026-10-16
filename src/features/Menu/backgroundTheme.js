@@ -44,6 +44,11 @@ export function couchCastTheme(expansion) {
     return expansion === 'halloween' ? 'halloween' : 'couchcast';
 }
 
+// List Cast and Listopia: purple, or Halloween orange for the Halloween deck
+export function listsTheme(expansion) {
+    return expansion === 'halloween' ? 'halloween' : 'lists';
+}
+
 // Trivia Cast: each question deck gets its own background
 export function triviaCastTheme(expansion) {
     if (expansion === 'halloween') return 'halloween';

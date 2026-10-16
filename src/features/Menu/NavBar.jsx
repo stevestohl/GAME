@@ -6,7 +6,7 @@ import { NavLink, Link } from 'react-router-dom';
  * Brand on the left, pill-style section switcher on the right.
  * The active section lights up in the Join Room blue.
  *
- * Links: /home (games) and /barhome (bartending).
+ * Links: /home (Game-Cast, TV games), /temple (Game-Temple, phone-only games) and /barhome (bartending).
  */
 
 const TempleIcon = () => (
@@ -15,6 +15,14 @@ const TempleIcon = () => (
         <path d="M3 9.5 H21" />
         <path d="M6 12 V17 M10 12 V17 M14 12 V17 M18 12 V17" />
         <path d="M3.5 19.5 H20.5" />
+    </svg>
+);
+
+const CastIcon = () => (
+    <svg viewBox="0 0 24 24" className="gt-nav-icon" aria-hidden="true">
+        <path d="M3 8 V6 a2 2 0 0 1 2 -2 H19 a2 2 0 0 1 2 2 V16 a2 2 0 0 1 -2 2 H14" />
+        <path d="M3 13 a6 6 0 0 1 6 6" />
+        <path d="M3 17 a2 2 0 0 1 2 2" />
     </svg>
 );
 
@@ -27,7 +35,8 @@ const MartiniIcon = () => (
 );
 
 const LINKS = [
-    { to: '/home', label: 'Games', Icon: TempleIcon },
+    { to: '/home', label: 'Game-Cast', Icon: CastIcon },
+    { to: '/temple', label: 'Game-Temple', Icon: TempleIcon },
     { to: '/barhome', label: 'Bar Training', Icon: MartiniIcon },
 ];
 

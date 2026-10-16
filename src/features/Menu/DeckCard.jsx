@@ -46,6 +46,15 @@ const ICONS = {
             <circle cx="50" cy="63" r="3.5" className="deck-solid" />
         </>
     ),
+    // A list with one answer crossed out
+    list: (
+        <>
+            <rect x="22" y="10" width="56" height="80" rx="9" className="deck-glass" />
+            <path d="M29 22 V18 a4 4 0 0 1 4 -4 H43" className="deck-shine" />
+            <path d="M34 34 H66 M34 50 H66 M34 66 H56" className="deck-line" />
+            <path d="M28 50 H72" className="deck-line" style={{ stroke: '#ffcf4a' }} />
+        </>
+    ),
     // Paw print
     animals: (
         <>

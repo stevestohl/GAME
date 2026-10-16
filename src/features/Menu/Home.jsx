@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner, Toast, ToastContainer } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
-import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import prompt2Img from '../../assets/logos/Prompt_2_Button.jpeg';
 import tttImg from '../../assets/logos/Tic_Tac_Toe_Button.jpeg';
 import triviaImg from '../../assets/logos/Trivia_Button.jpeg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import HeroLogo from './HeroLogo.jsx';
-import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
+import GameRow from './GameRow.jsx';
+import { ListopiaTile } from '../Lists/ListTiles.jsx';
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -15,41 +15,6 @@ import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 // Helper functions for existing room creation routines
 // import { handleCreateTriviaRoom } from '../Trivia/TriviaCreateButton.jsx';
 import Prompt2CreateScreen from '../Prompt2/Prompt2CreateButton.jsx';
-
-/**
- * One game "row": a light card with a description on one side and a square
- * button on the other. `flip` swaps the sides so rows alternate down the page.
- */
-function GameRow({ title, players, description, flip, children }) {
-    const info = (
-        <Col xs={7} className="d-flex flex-column justify-content-center text-start">
-            <div className="fw-bold mb-1">
-                {title}
-                {players && <span className="text-muted fw-normal small ms-2">{players}</span>}
-            </div>
-            <div className="small text-secondary lh-sm">{description}</div>
-        </Col>
-    );
-
-    const action = (
-        <Col xs={5} className="d-flex position-relative overflow-visible">
-            {children}
-        </Col>
-    );
-
-    return (
-        <Col xs={12}>
-            <Card className="bg-light border-0 shadow-sm">
-                {/* Tighter padding inside each game card */}
-                <Card.Body className="p-1">
-                    <Row className="g-1 align-items-stretch">
-                        {flip ? <>{action}{info}</> : <>{info}{action}</>}
-                    </Row>
-                </Card.Body>
-            </Card>
-        </Col>
-    );
-}
 
 export default function Home() {
     const navigate = useNavigate();
@@ -132,7 +97,7 @@ export default function Home() {
 
             <Card className='main-card'>
                 <Card.Header className="main-card-header">
-                    GAME-TEMPLE.ORG
+                    GAME-TEMPLE
                 </Card.Header>
 
                 {/* Tighter padding between the main white card and the inner content */}
@@ -178,43 +143,6 @@ export default function Home() {
                         {/* 🎮 Game cards — tighter spacing between rows */}
                         <Col xs={12}>
                             <Row className="g-1">
-                                {/* 🛋️ Couch Cast — text left, button right */}
-                                <GameRow
-                                    title="Couch Cast"
-                                    players="3+ players"
-                                    description="An Apples to Apples–style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone. Cast one extra device to the TV as the main screen."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        disabled={isCreatingRoom}
-                                        onClick={() => navigate('/couchcast-decks')}
-                                        aria-label="Choose a Couch Cast deck"
-                                        style={{ '--shimmer-delay': '0.4s', ...squareStyle }}
-                                    >
-                                        <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={imgStyle} />
-                                    </Button>
-                                </GameRow>
-
-                                {/* 📺❔ Trivia Cast — button left, text right */}
-                                <GameRow
-                                    flip
-                                    title="Trivia Cast"
-                                    players="2+ players"
-                                    description="Trivia night on the big screen. Questions show on the TV and everyone answers on their phone. Cast one extra device to the TV as the main screen."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        disabled={isCreatingRoom}
-                                        onClick={() => navigate('/triviacast-decks')}
-                                        aria-label="Set up a Trivia Cast game"
-                                        style={{ '--shimmer-delay': '0.8s', ...squareStyle }}
-                                    >
-                                        <TriviaCastTile />
-                                    </Button>
-                                </GameRow>
-
                                 {/* ❔ Trivia — text left, button right */}
                                 <GameRow
                                     title="Trivia"
@@ -252,8 +180,27 @@ export default function Home() {
                                     </Button>
                                 </GameRow>
 
-                                {/* ❌⭕ Tic-Tac-Toe — text left, button right */}
+                                {/* 📱📝 Listopia — text left, button right */}
                                 <GameRow
+                                    title="Listopia"
+                                    players="3+ players"
+                                    description="All the fun of List Cast, no TV required. Write a list, watch the matches get crossed out, and vote on the rest, all on your phones."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        disabled={isCreatingRoom}
+                                        onClick={() => navigate('/listopia-create')}
+                                        aria-label="Create a Listopia room"
+                                        style={{ '--shimmer-delay': '1.8s', ...squareStyle }}
+                                    >
+                                        <ListopiaTile />
+                                    </Button>
+                                </GameRow>
+
+                                {/* ❌⭕ Tic-Tac-Toe — button left, text right */}
+                                <GameRow
+                                    flip
                                     title="Tic-Tac-Toe"
                                     players="2 players"
                                     description="The timeless classic, head to head. Take turns on your own devices — first to get three in a row wins."

@@ -51,6 +51,27 @@ export const TRIVIA_DECKS = [
     },
 ];
 
+// List Cast and Listopia (categories live in db/listCategories.js on the server)
+export const LIST_DECKS = [
+    {
+        id: 'core',
+        title: 'Core Lists',
+        tag: 'The Original',
+        icon: 'list',
+        description: 'Everyday lists for any crowd.',
+        colors: ['#93a7f0', '#3a53c4'],
+    },
+    {
+        id: 'halloween',
+        title: 'Halloween',
+        tag: 'Seasonal',
+        icon: 'halloween',
+        description: 'Monsters, candy and creepy places.',
+        colors: ['#ff9a3d', '#5b2a86'],
+    },
+];
+
 // How long a game can be. The first number in each list is the default.
 export const ROUND_OPTIONS = [3, 5, 7, 10];        // Couch Cast and Prompt 2: rounds
 export const QUESTION_OPTIONS = [5, 10, 15, 20];   // Trivia: questions
+export const LIST_ROUND_OPTIONS = [5, 7, 10];      // List Cast and Listopia: rounds

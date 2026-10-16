@@ -9,6 +9,7 @@ import FlashcardGame from './features/Flashcards/FlashcardGame.jsx'
 
 // --- Menu Imports ---
 import Home from './features/Menu/Home.jsx'
+import GameCastHome from './features/Menu/GameCastHome.jsx'
 import BarHome from './features/Menu/BarHome.jsx'
 
 // --- Game Imports ---
@@ -23,6 +24,10 @@ import TriviaCreateScreen from './features/Trivia/TriviaCreateButton.jsx'
 import TriviaManager from './features/Trivia/TriviaManager.jsx'
 import TriviaCastManager from './features/TriviaCast/TriviaCastManager.jsx'
 import TriviaCastDeckSelect from './features/TriviaCast/TriviaCastDeckSelect.jsx'
+import ListCastManager from './features/Lists/ListCastManager.jsx'
+import ListCastSetup from './features/Lists/ListCastSetup.jsx'
+import ListopiaManager from './features/Lists/ListopiaManager.jsx'
+import ListopiaCreate from './features/Lists/ListopiaCreate.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
 
 export default function Contents() {
@@ -31,7 +36,8 @@ export default function Contents() {
     return (
         <Routes>
             {/* Core Game-Temple Routes */}
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<GameCastHome />} />
+            <Route path="/temple" element={<Home />} />
             <Route path="/barhome" element={<BarHome />} />
             <Route path="/join" element={<UniversalJoinScreen />} />
             
@@ -54,6 +60,10 @@ export default function Contents() {
             <Route path="/couchcast-decks" element={<CouchCastDeckSelect />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />
             <Route path="/triviacast-decks" element={<TriviaCastDeckSelect />} />
+            <Route path="/listcast" element={<ListCastManager />} />
+            <Route path="/listcast-setup" element={<ListCastSetup />} />
+            <Route path="/listopia" element={<ListopiaManager />} />
+            <Route path="/listopia-create" element={<ListopiaCreate />} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}
             <Route path="/play" element={<CouchCastManager />} />

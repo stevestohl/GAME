@@ -58,6 +58,12 @@ export default function UniversalJoinScreen() {
             case 'Q':
                 targetRoute = `/triviacast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;
+            case 'L':
+                targetRoute = `/listcast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                break;
+            case 'O':
+                targetRoute = `/listopia?room=${code}&name=${encodeURIComponent(playerName.trim())}`;
+                break;
             case 'P':
                 targetRoute = `/prompt2?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;

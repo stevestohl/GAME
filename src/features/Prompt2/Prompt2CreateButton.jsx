@@ -161,7 +161,7 @@ export default function Prompt2CreateScreen() {
                             variant='outline-secondary' 
                             size='sm' 
                             className='w-100 mt-2'
-                            onClick={() => navigate('/')}
+                            onClick={() => navigate('/temple')}
                             disabled={isCreatingRoom}
                         >
                             Back to Home

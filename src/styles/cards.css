@@ -1139,3 +1139,124 @@
         box-shadow: none;
     }
 }
+
+/* =========================================================
+   📺 GAME-CAST: "How to play on your TV" steps
+   ========================================================= */
+.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }
+.gt-cast-steps-title {
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gt-blue-600, #3a53c4);
+    margin: 0.15rem 0 0.4rem;
+}
+.gt-cast-steps-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.gt-cast-step {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.4rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);
+}
+.gt-cast-step-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #5d7fe8, #3550c8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);
+}
+.gt-cast-step-icon svg {
+    width: 48px;
+    height: 40px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.gt-cast-step-num {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--gt-navy, #0b1a4a);
+    background: var(--gt-gold, #ffcf4a);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* 🎬 Game-Cast step icon animations */
+/* Each icon bobs gently, a little out of step with the others */
+.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }
+.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }
+.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }
+@keyframes gt-step-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-3px); }
+}
+
+/* Step 1 & 3: signal waves ripple out one after another */
+.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }
+.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }
+.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }
+@keyframes gt-wave-pulse {
+    0%, 100% { opacity: 0.25; }
+    35%, 60% { opacity: 1; }
+}
+.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }
+
+/* Step 2: the tiles light up in turn and the pointer taps the middle one */
+.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }
+.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }
+.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }
+@keyframes gt-tile-pick {
+    0%, 30%, 100% { fill: transparent; }
+    12%           { fill: rgba(255, 255, 255, 0.55); }
+}
+.gt-cast-step-icon .gt-pointer {
+    fill: #fff;
+    transform-box: fill-box;
+    transform-origin: top left;
+    animation: gt-pointer-tap 3s ease-in-out infinite;
+}
+@keyframes gt-pointer-tap {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    18%      { transform: translate(-2px, -6px) scale(0.85); }
+    26%      { transform: translate(0, 0) scale(1); }
+}
+
+/* Step 3: the TV glows softly, like it's on */
+.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }
+@keyframes gt-tv-glow {
+    0%, 100% { filter: none; }
+    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gt-cast-step-icon svg,
+    .gt-cast-step-icon .gt-wave,
+    .gt-cast-step-icon .gt-tile,
+    .gt-cast-step-icon .gt-pointer,
+    .gt-cast-step-icon .gt-cast-tv { animation: none; }
+    .gt-cast-step-icon .gt-wave { opacity: 1; }
+}

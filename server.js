@@ -10,6 +10,7 @@ import registerTicTacToeNamespace from './sockets/tictactoe_handler.js';
 import registerPrompt2Namespace from './sockets/prompt2_handler.js';
 import registerCCNamespace from './sockets/couchcast_handler.js';
 import registerTriviaCastNamespace from './sockets/triviacast_handler.js';
+import registerListsNamespace from './sockets/lists_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -51,6 +52,11 @@ console.log("Namespace '/couchcast' registered.");
 const TCNS = io.of('/triviacast');
 registerTriviaCastNamespace(TCNS);
 console.log("Namespace '/triviacast' registered.");
+
+// List Cast (TV) and Listopia (phones only) share one namespace
+const LNS = io.of('/lists');
+registerListsNamespace(LNS);
+console.log("Namespace '/lists' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

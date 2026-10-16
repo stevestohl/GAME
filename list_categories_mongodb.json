@@ -1,0 +1,482 @@
+[
+    {
+        "text": "Things in a junk drawer",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Pizza toppings",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you take on a road trip",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Breakfast foods",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that are yellow",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Board games",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Excuses for being late",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things at a birthday party",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Ice cream flavors",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things in a hospital",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Cartoon characters",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you find at the beach",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Sports that use a ball",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things with wheels",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Fast food chains",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you plug in",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Famous duos",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that fly",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things in a bathroom",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Halloween costumes",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Zoo animals",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you do on a rainy day",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Words that rhyme with \"cat\"",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Kitchen appliances",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that are cold",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Superheroes",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Jobs that need a uniform",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you find in a wallet",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Fruits",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that are sticky",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Camping gear",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things people collect",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Musical instruments",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things in a classroom",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Card games",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Reasons to call in sick",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that come in pairs",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Snacks at the movies",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that have buttons",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you see at a wedding",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Famous landmarks",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that make noise",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Dog breeds",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you shouldn't say on a first date",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Cocktails",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that are round",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Video games",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things in a toolbox",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you do at a sleepover",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Vegetables",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that smell good",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Breakfast cereals",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you find in a purse or backpack",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Holiday traditions",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that can be broken",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Bar snacks",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you do before bed",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Famous TV families",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that are hot",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you buy at a gas station",
+        "expansion": "core",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Halloween candy",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Monsters",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Scary movies",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things in a witch's cauldron",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you hear in a haunted house",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Costumes for couples",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that are orange",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Creepy places",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things a vampire hates",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you carve",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things in a graveyard",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Spooky sounds",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that glow in the dark",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Famous villains",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things that crawl",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things on a Halloween party menu",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Reasons to run away screaming",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things a zombie might say",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Last words in a horror movie",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    },
+    {
+        "text": "Things you find in an attic",
+        "expansion": "halloween",
+        "active": true,
+        "createdBy": "system"
+    }
+]

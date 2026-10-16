@@ -1,0 +1,237 @@
+/* =========================================================
+   📝 LIST CAST & LISTOPIA
+   ========================================================= */
+
+/* The category banner (TV and phone) */
+.ls-category {
+  color: #fff;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+.ls-category-label {
+  display: block;
+  color: var(--gt-gold);
+  font-size: 0.45em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.2em;
+}
+
+/* ---------- The board: one card per player ---------- */
+.ls-board {
+  display: grid;
+  gap: clamp(0.4rem, 1.6vh, 0.9rem);
+  width: 100%;
+  min-height: 0;
+  align-content: start;
+}
+.ls-board.tv { height: 100%; align-content: center; }
+
+.ls-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 14px;
+  padding: clamp(0.35rem, 1.4vh, 0.8rem) clamp(0.5rem, 1.6vh, 0.9rem);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  color: #1d2340;
+  text-align: left;
+}
+.ls-card.mine { outline: 3px solid var(--gt-gold); outline-offset: -1px; }
+
+.ls-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-weight: 800;
+  border-bottom: 2px solid rgba(29, 35, 64, 0.12);
+  padding-bottom: 0.2em;
+  margin-bottom: 0.3em;
+}
+.ls-card-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ls-card-points {
+  flex-shrink: 0;
+  padding: 0 0.55em;
+  border-radius: 999px;
+  color: #fff;
+  background: #1c9562;
+  animation: ls-pop 0.4s ease-out both;
+}
+.ls-card-points.zero { background: #8a8fa8; }
+
+.ls-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15em; }
+.ls-empty { color: #8a8fa8; font-style: italic; font-weight: 500; }
+
+.ls-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  min-width: 0;
+  padding: 0.12em 0.35em;
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+.ls-item-text {
+  position: relative;
+  flex: 0 1 auto;          /* only as wide as the words, so the strike line fits the answer */
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.ls-item-note {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 0.72em;
+  font-weight: 600;
+  color: #6b7090;
+  white-space: nowrap;
+}
+.ls-item-mark { flex-shrink: 0; }
+
+/* ❌ Crossed out (matched someone else, or written twice): a red line draws itself across */
+.ls-item.crossed { color: #8a8fa8; }
+.ls-item.crossed .ls-item-text::after {
+  content: '';
+  position: absolute;
+  left: -0.15em;
+  top: 52%;
+  height: 0.16em;
+  width: calc(100% + 0.3em);
+  border-radius: 2px;
+  background: #e0343c;
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+/* While the matches are being revealed, an answer only greys out when its line is drawn */
+.ls-item.crossed.animate {
+  color: inherit;
+  animation: ls-grey 0.45s ease-out forwards;
+  animation-delay: var(--strike-delay, 0s);
+}
+.ls-item.crossed.animate .ls-item-text::after {
+  transform: scaleX(0);
+  animation: ls-strike 0.45s ease-out forwards;
+  animation-delay: var(--strike-delay, 0s);
+}
+.ls-item.crossed.animate .ls-item-note {
+  opacity: 0;
+  animation: ls-fade-in 0.3s ease-out forwards;
+  animation-delay: var(--strike-delay, 0s);
+}
+
+/* 🗳️ Up for a vote */
+.ls-item.open { background: rgba(247, 186, 58, 0.22); }
+.ls-board.tv .ls-item.open.voting { animation: ls-glow 2s ease-in-out infinite; }
+
+/* Results */
+.ls-item.counts { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }
+.ls-item.voted-out { color: #a0303a; background: rgba(224, 52, 60, 0.1); }
+.ls-item.voted-out .ls-item-text { text-decoration: line-through; text-decoration-thickness: 0.12em; }
+
+/* 📱 Voting buttons on the phone */
+.ls-vote-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 2px solid #1c9562;
+  border-radius: 10px;
+  background: rgba(28, 149, 98, 0.1);
+  color: #0f6a44;
+  font-weight: 700;
+  text-align: left;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+.ls-vote-btn:active { transform: scale(0.98); }
+.ls-vote-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }
+.ls-vote-btn .ls-vote-state {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.ls-vote-btn.no {
+  border-color: #e0343c;
+  background: rgba(224, 52, 60, 0.1);
+  color: #a0303a;
+}
+.ls-vote-btn.no .ls-item-text { text-decoration: line-through; }
+
+/* ✏️ Phone list inputs */
+.ls-input-row { display: flex; align-items: center; gap: 0.5rem; }
+.ls-input-num {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-weight: 800;
+  color: #fff;
+  background: var(--ls-accent, #3a53c4);
+}
+
+/* 📺 TV: who's still writing */
+.ls-writers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.3rem, 1.4vh, 0.8rem);
+}
+.ls-writer {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0.9em;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 3vh, 1.4rem);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.ls-writer.done { background: rgba(28, 149, 98, 0.85); }
+.ls-writer-dots { display: inline-flex; gap: 0.18em; }
+.ls-writer-dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ls-writer-dot.filled { background: var(--gt-gold); }
+
+.ls-status-strip {
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 3vh, 1.35rem);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes ls-strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes ls-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ls-grey { to { color: #8a8fa8; } }
+@keyframes ls-pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes ls-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0); }
+  50% { box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.75); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-item.crossed.animate .ls-item-text::after { animation: none; transform: scaleX(1); }
+  .ls-item.crossed.animate .ls-item-note { animation: none; opacity: 1; }
+  .ls-item.crossed.animate { animation: none; color: #8a8fa8; }
+  .ls-board.tv .ls-item.open.voting { animation: none; }
+  .ls-card-points { animation: none; }
+}

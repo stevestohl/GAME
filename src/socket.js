@@ -33,4 +33,9 @@ export const triviaCastSocket = io(`${SOCKET_URL}/triviacast`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+// List Cast and Listopia
+export const listsSocket = io(`${SOCKET_URL}/lists`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 export default socket;
