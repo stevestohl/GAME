@@ -1044,23 +1044,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
-/* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
-/* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
-/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CouchCastRules.jsx */ "./src/features/CouchCast/CouchCastRules.jsx");
-/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
-/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
-/* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
+/* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
+/* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
+/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CouchCastRules.jsx */ "./src/features/CouchCast/CouchCastRules.jsx");
+/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
+/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
+/* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -1076,6 +1077,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 // Lock Screen to keep phone screen awake
+
 
 
 
@@ -1115,7 +1117,7 @@ function CouchCastManager() {
 
   // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1186,7 +1188,7 @@ function CouchCastManager() {
         playerName = _roundResults$winning.playerName,
         answer = _roundResults$winning.answer;
       // Read the whole card: the prompt with the winning answer in the blank
-      var _fillBlank = (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_14__.fillBlank)(currentPrompt, answer),
+      var _fillBlank = (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_15__.fillBlank)(currentPrompt, answer),
         sentence = _fillBlank.sentence;
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
       // Get the next judge's line ready while the confetti falls
@@ -1201,11 +1203,22 @@ function CouchCastManager() {
     }
   }, [voiceMoment]);
 
+  // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes.
+  // (The judge's pick is a 15-second clock on the screens; writing uses the server's clock.)
+  var promptPickEnd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return gameState === 'prompt_selection' ? Date.now() + 15 * 1000 : null;
+  }, [gameState, round]);
+  var isTimerPhase = gameState === 'prompt_selection' || gameState === 'writing';
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_6__.useTimerMusic)(isTimerPhase, {
+    endTime: gameState === 'writing' ? endTime : promptPickEnd,
+    key: "".concat(gameState, "-").concat(round)
+  });
+
   // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
   var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!lobbyRoomCode) return;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_11__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW), lobbyRoomCode);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_12__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // The first judge is known once the rules are showing: get their line ready too
@@ -1321,7 +1334,7 @@ function CouchCastManager() {
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -1331,24 +1344,24 @@ function CouchCastManager() {
     var playersArray = Object.values(roomData.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           roomCode: roomData.roomCode,
           players: playersArray
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
           roomCode: roomData.roomCode
         });
       case 'prompt_selection':
         var pickerName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
           isCastScreen: true,
           judgeName: pickerName,
           roomCode: roomData.roomCode,
           prompts: roomData.promptOptions
         });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
           currentPrompt: currentPrompt,
           endTime: endTime,
           players: playersArray,
@@ -1356,14 +1369,14 @@ function CouchCastManager() {
         });
       case 'judging':
         var _judgeName = ((_roomData$players$roo3 = roomData.players[roomData.hostId]) === null || _roomData$players$roo3 === void 0 ? void 0 : _roomData$players$roo3.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
           currentPrompt: currentPrompt,
           submissions: submissions,
           judgeName: _judgeName,
           endTime: roomData.endTime
         });
       case 'winner_reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           currentPrompt: currentPrompt,
           winner: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winner,
           winningSubmission: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winningSubmission // 👈 AND PASSED IT HERE
@@ -1372,7 +1385,7 @@ function CouchCastManager() {
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           players: playersArray,
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver // 👈 Also passed isGameOver here!
         });
@@ -1383,13 +1396,13 @@ function CouchCastManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -5104,12 +5117,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
  * 📋 Everyone's lists side by side, used by both List Cast (on the TV) and Listopia (on each phone).
  *
  * phase:
- *   'compare' -> matching answers get crossed out, one after another
- *   'voting'  -> answers that survived glow; on a phone, other players' answers become vote buttons
- *   'results' -> ✓ counts / ✗ voted out, with each player's points
+ *   'compare' -> the round card's rules play out one answer after another:
+ *                crossed-out answers get a red line, scoring matches (One-on-One, Threefold) light up green
+ *   'voting'  -> Forgotten Four: answers that survived glow; on a phone, other players' answers become vote buttons
+ *   'results' -> ✓ counts / ✗ voted out or no match, with each player's points
  *
  * variant: 'tv' (big grid that fills the screen) or 'phone' (one column, scrolls)
  */
+// Statuses that get a red line through them
+var CROSSED = new Set(['dup', 'matched', 'crowded']);
 function ListBoard(_ref) {
   var _ref$board = _ref.board,
     board = _ref$board === void 0 ? [] : _ref$board,
@@ -5121,35 +5137,53 @@ function ListBoard(_ref) {
     ballot = _ref.ballot,
     onToggleVote = _ref.onToggleVote,
     _ref$pointsPerItem = _ref.pointsPerItem,
-    pointsPerItem = _ref$pointsPerItem === void 0 ? 100 : _ref$pointsPerItem;
+    pointsPerItem = _ref$pointsPerItem === void 0 ? 100 : _ref$pointsPerItem,
+    _ref$listSize = _ref.listSize,
+    listSize = _ref$listSize === void 0 ? 5 : _ref$listSize;
   var isTV = variant === 'tv';
 
-  // Crossed-out answers draw their line one after another (finishing within ~7 seconds)
-  var crossedIds = [];
+  // Crossed-out answers draw their line (and matches light up) one after another, finishing within ~7 seconds
+  var revealIds = [];
   board.forEach(function (entry) {
     return entry.items.forEach(function (item) {
-      if (item.status !== 'open') crossedIds.push(item.id);
+      if (CROSSED.has(item.status) || item.status === 'scored') revealIds.push(item.id);
     });
   });
-  var step = Math.min(0.35, 6 / Math.max(1, crossedIds.length));
+  var step = Math.min(0.35, 6 / Math.max(1, revealIds.length));
   var strikeDelay = function strikeDelay(id) {
-    return "".concat((0.8 + crossedIds.indexOf(id) * step).toFixed(2), "s");
+    return "".concat((0.8 + revealIds.indexOf(id) * step).toFixed(2), "s");
   };
 
   // TV: more players = more columns and smaller text, so it all fits without scrolling
   var count = board.length;
   var columns = !isTV ? 1 : count <= 4 ? Math.max(count, 1) : count <= 6 ? 3 : count <= 8 ? 4 : count <= 10 ? 5 : 6;
   var tvFont = count <= 4 ? 'clamp(0.85rem, 3.6vh, 1.7rem)' : count <= 8 ? 'clamp(0.75rem, 2.9vh, 1.35rem)' : 'clamp(0.65rem, 2.3vh, 1.05rem)';
+  // One-on-One lists are twice as long: smaller text so ten answers still fit
+  if (isTV && listSize > 5) tvFont = count <= 4 ? 'clamp(0.7rem, 2.4vh, 1.2rem)' : 'clamp(0.6rem, 1.9vh, 0.95rem)';
   var renderItem = function renderItem(entry, item) {
     var isMine = entry.seat === mySeat;
-    var crossed = item.status !== 'open';
+    var crossed = CROSSED.has(item.status);
     var classes = ['ls-item'];
     var note = null;
     var mark = null;
+    var names = (item.matchedWith || []).join(', ');
     if (crossed) {
       classes.push('crossed');
       if (phase === 'compare') classes.push('animate');
-      note = item.status === 'dup' ? 'written twice' : "= ".concat(item.matchedWith.join(', '));
+      if (item.status === 'dup') note = 'written twice';else if (item.status === 'crowded') note = "too many: ".concat(names);else note = "= ".concat(names);
+    } else if (item.status === 'scored') {
+      classes.push('scored');
+      if (phase === 'compare') classes.push('animate');
+      mark = phase === 'results' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "ls-item-mark"
+      }, "\u2713") : null;
+      note = phase === 'results' ? "+".concat((item.points || 0) * pointsPerItem, " \xB7 ").concat(names) : "= ".concat(names);
+    } else if (item.status === 'unmatched') {
+      classes.push('unmatched');
+      if (phase === 'results') mark = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "ls-item-mark"
+      }, "\u2717");
+      note = 'no match';
     } else if (phase === 'voting') {
       classes.push('open', 'voting');
     } else if (phase === 'results') {
@@ -5158,7 +5192,7 @@ function ListBoard(_ref) {
         mark = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "ls-item-mark"
         }, "\u2713");
-        note = "+".concat(pointsPerItem);
+        note = "+".concat((item.points || 1) * pointsPerItem);
       } else {
         classes.push('voted-out');
         mark = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -5169,7 +5203,7 @@ function ListBoard(_ref) {
     }
 
     // 🗳️ Phone voting: other players' surviving answers are buttons
-    if (phase === 'voting' && !crossed && onToggleVote && !isMine) {
+    if (phase === 'voting' && item.status === 'open' && onToggleVote && !isMine) {
       var isNo = ballot === null || ballot === void 0 ? void 0 : ballot.has(item.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         key: item.id
@@ -5192,7 +5226,7 @@ function ListBoard(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       key: item.id,
       className: classes.join(' '),
-      style: crossed ? {
+      style: revealIds.includes(item.id) ? {
         '--strike-delay': strikeDelay(item.id)
       } : undefined
     }, mark, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -5237,6 +5271,133 @@ function ListBoard(_ref) {
 
 /***/ }),
 
+/***/ "./src/features/Lists/ListCards.jsx":
+/*!******************************************!*\
+  !*** ./src/features/Lists/ListCards.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ALL_CARD_ANNOUNCEMENTS": () => (/* binding */ ALL_CARD_ANNOUNCEMENTS),
+/* harmony export */   "CARD_LOOKS": () => (/* binding */ CARD_LOOKS),
+/* harmony export */   "CardChip": () => (/* binding */ CardChip),
+/* harmony export */   "RoundCard": () => (/* binding */ RoundCard),
+/* harmony export */   "cardAnnouncement": () => (/* binding */ cardAnnouncement),
+/* harmony export */   "cardWritingTip": () => (/* binding */ cardWritingTip)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_lists_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/lists.css */ "./src/styles/lists.css");
+
+
+
+/**
+ * 🃏 The three round cards for List Cast and Listopia (the rules live on the server in
+ * sockets/listMatching.js; the room sends each round's card as `room.card`).
+ *
+ *   One-on-One     -> list 10, match exactly ONE other player
+ *   Threefold      -> list 3,  match as many players as you can
+ *   Forgotten Four -> list 4,  match NOBODY
+ */
+var CARD_LOOKS = {
+  one_on_one: {
+    icon: '🤝',
+    className: 'one-on-one',
+    "short": 'Match exactly one player'
+  },
+  threefold: {
+    icon: '🎯',
+    className: 'threefold',
+    "short": 'Match as many as you can'
+  },
+  forgotten_four: {
+    icon: '👻',
+    className: 'forgotten-four',
+    "short": 'Match nobody'
+  }
+};
+var lookFor = function lookFor(card) {
+  return CARD_LOOKS[card === null || card === void 0 ? void 0 : card.id] || CARD_LOOKS.forgotten_four;
+};
+
+/** What the narrator says when a card is drawn (no round number, so all three can be fetched ahead of time) */
+var SPOKEN_NUMBERS = {
+  3: 'three',
+  4: 'four',
+  10: 'ten'
+};
+var cardAnnouncement = function cardAnnouncement(card) {
+  return card ? "".concat(card.name, "! List ").concat(SPOKEN_NUMBERS[card.listSize] || card.listSize, ". ").concat(card.goal.replace('ONE', 'one').replace('NOBODY', 'nobody'), ".") : '';
+};
+
+/** The three announcements, for preloading the narrator in the lobby */
+var ALL_CARD_ANNOUNCEMENTS = [cardAnnouncement({
+  name: 'One-on-One',
+  listSize: 10,
+  goal: 'Match exactly ONE other player'
+}), cardAnnouncement({
+  name: 'Threefold',
+  listSize: 3,
+  goal: 'Match as many players as you can'
+}), cardAnnouncement({
+  name: 'Forgotten Four',
+  listSize: 4,
+  goal: 'Match NOBODY'
+})];
+
+/** The tip under the answer boxes while writing */
+var cardWritingTip = function cardWritingTip(card) {
+  if ((card === null || card === void 0 ? void 0 : card.id) === 'one_on_one') return 'Think of what exactly ONE other player will write. Too popular and it gets crossed out!';
+  if ((card === null || card === void 0 ? void 0 : card.id) === 'threefold') return 'Go for the obvious! Every player who writes your answer scores you points.';
+  return 'Go for the unusual! Answers someone else also writes get crossed out.';
+};
+
+/** 🃏 The card itself: big on the TV reveal, medium on phones */
+function RoundCard(_ref) {
+  var card = _ref.card,
+    _ref$size = _ref.size,
+    size = _ref$size === void 0 ? 'md' : _ref$size,
+    _ref$pointsPerItem = _ref.pointsPerItem,
+    pointsPerItem = _ref$pointsPerItem === void 0 ? 100 : _ref$pointsPerItem;
+  if (!card) return null;
+  var look = lookFor(card);
+  var scoring = card.id === 'threefold' ? "+".concat(pointsPerItem, " for every player you match") : "+".concat(pointsPerItem, " per scoring answer");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard ".concat(look.className, " ").concat(size),
+    role: "group",
+    "aria-label": "".concat(card.name, " card")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard-corner",
+    "aria-hidden": "true"
+  }, card.listSize), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard-icon",
+    "aria-hidden": "true"
+  }, look.icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard-name"
+  }, card.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard-goal"
+  }, card.goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard-how"
+  }, card.howTo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-roundcard-points"
+  }, scoring));
+}
+
+/** A small pill naming the round's card, for the corner of the writing and board screens */
+function CardChip(_ref2) {
+  var card = _ref2.card;
+  if (!card) return null;
+  var look = lookFor(card);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "ls-card-chip ".concat(look.className)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    "aria-hidden": "true"
+  }, look.icon), " ", card.name, " \xB7 ", look["short"]);
+}
+
+/***/ }),
+
 /***/ "./src/features/Lists/ListCastManager.jsx":
 /*!************************************************!*\
   !*** ./src/features/Lists/ListCastManager.jsx ***!
@@ -5249,19 +5410,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
-/* harmony import */ var _ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ListScreensTV.jsx */ "./src/features/Lists/ListScreensTV.jsx");
-/* harmony import */ var _ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ListPlayer.jsx */ "./src/features/Lists/ListPlayer.jsx");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
+/* harmony import */ var _ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ListScreensTV.jsx */ "./src/features/Lists/ListScreensTV.jsx");
+/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
+/* harmony import */ var _ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ListPlayer.jsx */ "./src/features/Lists/ListPlayer.jsx");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -5276,7 +5443,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
+
 
 
 
@@ -5297,7 +5466,7 @@ function ListCastManager() {
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName,
       mode: "cast"
@@ -5361,13 +5530,15 @@ function ListCastTV(_ref) {
 
   // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
   var voiceMoment = null;
-  if (gameState === 'writing' && room.category) voiceMoment = "writing-".concat(room.currentRound);else if (gameState === 'voting') voiceMoment = "voting-".concat(room.currentRound);else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
+  if (gameState === 'card' && room.card) voiceMoment = "card-".concat(room.currentRound);else if (gameState === 'writing' && room.category) voiceMoment = "writing-".concat(room.currentRound);else if (gameState === 'voting') voiceMoment = "voting-".concat(room.currentRound);else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
     if (!voiceMoment || !room) return;
     var code = room.roomCode;
-    if (voiceMoment.startsWith('writing')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("Round ".concat(room.currentRound, ". ").concat(room.category, ". Go!"), code);
+    if (voiceMoment.startsWith('card')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)((0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_11__.cardAnnouncement)(room.card), code);
+    } else if (voiceMoment.startsWith('writing')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("".concat(room.category, ". Go!"), code);
     } else if (voiceMoment.startsWith('voting')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)('Time to vote! Does everything left really count?', code);
     } else if (voiceMoment === 'game-over') {
@@ -5380,10 +5551,16 @@ function ListCastTV(_ref) {
     }
   }, [voiceMoment]);
 
+  // ⏳ Tick-tock music while everyone writes their lists
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_6__.useTimerMusic)(gameState === 'writing', {
+    endTime: room === null || room === void 0 ? void 0 : room.endTime,
+    key: room === null || room === void 0 ? void 0 : room.currentRound
+  });
+
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__.LIST_CAST_RULES_NARRATION, lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_9__.LIST_CAST_RULES_NARRATION), _toConsumableArray(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_11__.ALL_CARD_ANNOUNCEMENTS)), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -5414,7 +5591,7 @@ function ListCastTV(_ref) {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -5424,29 +5601,33 @@ function ListCastTV(_ref) {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           title: "List Cast Room Created",
           roomCode: room.roomCode,
           players: playersArray
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__.ListCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_9__.ListCastRulesTV, {
           roomCode: room.roomCode,
           pointsPerItem: room.pointsPerItem,
           listSize: room.listSize
         });
+      case 'card':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.ListCardTV, {
+          room: room
+        });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__.ListWritingTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.ListWritingTV, {
           room: room
         });
       case 'compare':
       case 'voting':
       case 'results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__.ListBoardTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.ListBoardTV, {
           room: room
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
           players: playersArray,
           isGameOver: room.isGameOver,
           nextLabel: "Next list coming up..."
@@ -5457,13 +5638,13 @@ function ListCastTV(_ref) {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -5655,23 +5836,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
-/* harmony import */ var _useCountdown_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./useCountdown.js */ "./src/features/Lists/useCountdown.js");
-/* harmony import */ var _ListBoard_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
-/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
-/* harmony import */ var _styles_lists_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../styles/lists.css */ "./src/styles/lists.css");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _useCountdown_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./useCountdown.js */ "./src/features/Lists/useCountdown.js");
+/* harmony import */ var _ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
+/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
+/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
+/* harmony import */ var _styles_lists_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../styles/lists.css */ "./src/styles/lists.css");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -5682,6 +5865,8 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -5711,7 +5896,7 @@ function ListPlayer(_ref) {
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName,
     mode = _ref.mode;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useNavigate)();
   var isListopia = mode === 'phones';
   var gameName = isListopia ? 'Listopia' : 'List Cast';
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -5813,7 +5998,14 @@ function ListPlayer(_ref) {
   }, [roomCode, playerName]);
   var me = room === null || room === void 0 ? void 0 : (_room$players = room.players) === null || _room$players === void 0 ? void 0 : _room$players[_socket__WEBPACK_IMPORTED_MODULE_2__.listsSocket.id];
   var gameState = room === null || room === void 0 ? void 0 : room.gameState;
-  var timeLeft = (0,_useCountdown_js__WEBPACK_IMPORTED_MODULE_5__["default"])(room === null || room === void 0 ? void 0 : room.endTime);
+  var timeLeft = (0,_useCountdown_js__WEBPACK_IMPORTED_MODULE_6__["default"])(room === null || room === void 0 ? void 0 : room.endTime);
+
+  // ⏳ Listopia has no TV, so the room leader's phone plays the tick-tock music while everyone writes
+  // (one phone, so the room doesn't hear a dozen slightly-off clocks)
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_5__.useTimerMusic)(isListopia && !!(me !== null && me !== void 0 && me.isPlayerHost) && gameState === 'writing', {
+    endTime: room === null || room === void 0 ? void 0 : room.endTime,
+    key: room === null || room === void 0 ? void 0 : room.currentRound
+  });
 
   // The list is as long as the server says
   var listSize = (room === null || room === void 0 ? void 0 : room.listSize) || 5;
@@ -5901,11 +6093,11 @@ function ListPlayer(_ref) {
   var frame = function frame(title, body) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "page-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "main-card"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Header, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
       className: "main-card-header"
-    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
       className: "p-3"
     }, body)));
   };
@@ -5929,10 +6121,10 @@ function ListPlayer(_ref) {
 
   // ---------- Couldn't join ----------
   if (error) {
-    return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       variant: "warning",
       className: "fw-bold"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "primary",
       className: "w-100 fw-bold",
       onClick: function onClick() {
@@ -5945,7 +6137,7 @@ function ListPlayer(_ref) {
   if (!room || !me) {
     return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "py-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
       animation: "border",
       variant: "primary"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
@@ -5969,7 +6161,7 @@ function ListPlayer(_ref) {
           className: "p-3 border border-warning rounded bg-white shadow-sm"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "fw-bold text-dark mb-3"
-        }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
           variant: "success",
           size: "lg",
           className: "w-100 fw-bold py-3",
@@ -5999,7 +6191,7 @@ function ListPlayer(_ref) {
           style: {
             letterSpacing: '0.2em'
           }
-        }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           className: "d-inline-block shadow-sm border-0 p-2 mb-1"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
           value: joinUrl,
@@ -6011,18 +6203,18 @@ function ListPlayer(_ref) {
           className: "d-flex justify-content-between align-items-center mb-2"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
           className: "text-start mb-0 fw-bold"
-        }, "Players"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }, "Players"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
           bg: "secondary",
           className: "rounded-pill px-3"
-        }, connected.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        }, connected.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
           className: "mb-3 text-start shadow-sm"
         }, connected.map(function (p) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Item, {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Item, {
             key: p.id,
             className: "d-flex justify-content-between align-items-center py-2"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "fw-bold"
-          }, p.name, p.id === me.id ? ' (you)' : ''), p.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          }, p.name, p.id === me.id ? ' (you)' : ''), p.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
             bg: "primary",
             className: "rounded-pill"
           }, "Leader"));
@@ -6038,17 +6230,17 @@ function ListPlayer(_ref) {
           className: "text-primary fw-bold mb-2"
         }, "Get Ready!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "text-muted mb-3"
-        }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           animation: "grow",
           variant: "warning"
         })));
       }
       return frame('How to Play', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "text-start text-secondary mb-3"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_7__.ListRulesList, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__.ListRulesList, {
         pointsPerItem: room.pointsPerItem,
         listSize: room.listSize
-      })), me.isPlayerHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      })), me.isPlayerHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
         variant: "success",
         size: "lg",
         className: "w-100 fw-bold py-3",
@@ -6060,6 +6252,20 @@ function ListPlayer(_ref) {
       }, "Start Round 1!") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "p-3 border border-dashed rounded bg-light text-muted"
       }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, (leader === null || leader === void 0 ? void 0 : leader.name) || 'the room leader'), " to start round 1...")));
+
+    // ===================== CARD REVEAL =====================
+    case 'card':
+      return frame(roundTitle, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "py-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fw-bold text-muted text-uppercase small mb-2"
+      }, "This round's card"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.RoundCard, {
+        card: room.card,
+        size: "md",
+        pointsPerItem: room.pointsPerItem
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "text-muted mt-3 mb-0"
+      }, timeLeft !== null ? "The list is revealed in ".concat(timeLeft, "...") : 'Get ready...')));
 
     // ===================== WRITING =====================
     case 'writing':
@@ -6074,7 +6280,11 @@ function ListPlayer(_ref) {
             className: "display-4 mb-1"
           }, "\uD83D\uDD12"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
             className: "fw-bold mb-2"
-          }, "List Locked In!"), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
+          }, "List Locked In!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "mb-2"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.CardChip, {
+            card: room.card
+          })), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
             className: "text-start fw-semibold mb-3"
           }, myList.filter(function (item) {
             return item.trim();
@@ -6089,7 +6299,11 @@ function ListPlayer(_ref) {
         var filled = myList.filter(function (item) {
           return item.trim();
         }).length;
-        return frame(roundTitle, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, clock("Write up to ".concat(listSize, ":")), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        return frame(roundTitle, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, clock("Write up to ".concat(listSize, ":")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mb-2 text-start"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.CardChip, {
+          card: room.card
+        })), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "d-flex flex-column gap-2 mb-3"
         }, myList.map(function (item, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -6097,7 +6311,7 @@ function ListPlayer(_ref) {
             className: "ls-input-row"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "ls-input-num"
-          }, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Control, {
+          }, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Control, {
             ref: function ref(el) {
               inputRefs.current[i] = el;
             },
@@ -6119,7 +6333,7 @@ function ListPlayer(_ref) {
           }));
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "small text-muted mb-2"
-        }, "Tip: answers someone else also writes get crossed out!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, "Tip: ", (0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.cardWritingTip)(room.card)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
           variant: "primary",
           size: "lg",
           className: "w-100 fw-bold",
@@ -6135,20 +6349,37 @@ function ListPlayer(_ref) {
         var myEntry = (_room$board = room.board) === null || _room$board === void 0 ? void 0 : _room$board.find(function (e) {
           return e.seat === mySeat;
         });
-        var crossedCount = myEntry ? myEntry.items.filter(function (i) {
-          return i.status !== 'open';
-        }).length : 0;
+        var myItems = myEntry ? myEntry.items : [];
+        var crossedCount = myItems.filter(function (i) {
+          return ['dup', 'matched', 'crowded'].includes(i.status);
+        }).length;
+        var scoredCount = myItems.filter(function (i) {
+          return i.status === 'scored';
+        }).length;
+        var isForgottenFour = !room.card || room.card.id === 'forgotten_four';
+        var mySummary;
+        if (isForgottenFour) {
+          mySummary = crossedCount === 0 ? 'Nobody matched you. Nice!' : "".concat(crossedCount, " of yours got crossed out.");
+        } else if (scoredCount === 0) {
+          mySummary = 'No matches for you this time.';
+        } else {
+          mySummary = "".concat(scoredCount, " of yours matched!");
+        }
         return frame(roundTitle, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
           className: "fw-bold mb-1"
-        }, "Pencils down! \u270F\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        }, "Pencils down! \u270F\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mb-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.CardChip, {
+          card: room.card
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "text-muted mb-3"
-        }, isListopia ? 'Answers that match get crossed out...' : 'Watch the TV as matching answers get crossed out!'), isListopia ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }, isForgottenFour ? isListopia ? 'Answers that match get crossed out...' : 'Watch the TV as matching answers get crossed out!' : isListopia ? 'Finding the matches...' : 'Watch the TV to see who matched!'), isListopia ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: room.board || [],
           phase: "compare",
           variant: "phone",
           mySeat: mySeat,
           pointsPerItem: room.pointsPerItem
-        }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: myEntry ? [myEntry] : [],
           phase: "compare",
           variant: "phone",
@@ -6156,7 +6387,7 @@ function ListPlayer(_ref) {
           pointsPerItem: room.pointsPerItem
         }), myEntry && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "fw-bold mt-3 mb-0"
-        }, crossedCount === 0 ? 'Nobody matched you. Nice!' : "".concat(crossedCount, " of yours got crossed out.")))));
+        }, mySummary))));
       }
 
     // ===================== VOTING =====================
@@ -6178,10 +6409,10 @@ function ListPlayer(_ref) {
             className: "fw-bold mb-2"
           }, canVote ? 'Votes In!' : 'Voting...'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
             className: "text-muted mb-2"
-          }, canVote ? '' : "You joined mid-round, so you'll vote next round. ", votedCount, " of ", voters.length, " have voted."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+          }, canVote ? '' : "You joined mid-round, so you'll vote next round. ", votedCount, " of ", voters.length, " have voted."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
             now: voters.length ? votedCount / voters.length * 100 : 0,
             className: "mb-3"
-          }), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          }), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
             board: room.board || [],
             phase: "voting",
             variant: "phone",
@@ -6201,7 +6432,7 @@ function ListPlayer(_ref) {
           className: "text-start small text-secondary mb-3"
         }, "Everything counts unless you tap it. Tap any answer that ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "doesn't fit the list"), ' ', "or is ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "really the same as someone else's"), "."), othersOpen.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "fw-bold"
-        }, "Nothing of anyone else's to vote on this time.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }, "Nothing of anyone else's to vote on this time.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: board,
           phase: "voting",
           variant: "phone",
@@ -6214,7 +6445,7 @@ function ListPlayer(_ref) {
           style: {
             background: 'linear-gradient(transparent, #fff 30%)'
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
           variant: "success",
           size: "lg",
           className: "w-100 fw-bold",
@@ -6233,7 +6464,7 @@ function ListPlayer(_ref) {
           className: "display-5 mb-1"
         }, me.roundPoints > 0 ? '🎉' : '😬'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
           className: "fw-bold mb-1"
-        }, me.roundPoints > 0 ? "+".concat(me.roundPoints, " points!") : 'No points this round'), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }, me.roundPoints > 0 ? "+".concat(me.roundPoints, " points!") : 'No points this round'), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: isListopia ? room.board || [] : _myEntry ? [_myEntry] : [],
           phase: "results",
           variant: "phone",
@@ -6266,22 +6497,22 @@ function ListPlayer(_ref) {
           className: "display-4 mb-1"
         }, iWon ? '🏆' : '📊'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
           className: "fw-bold text-dark mb-1"
-        }, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
           bg: "primary",
           className: "fs-5 rounded-pill px-3 py-2 mb-3"
-        }, me.score, " pts"), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        }, me.score, " pts"), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
           className: "mb-3 text-start shadow-sm"
         }, ranked.map(function (p) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Item, {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Item, {
             key: p.id,
             className: "d-flex justify-content-between align-items-center py-2 ".concat(p.id === me.id ? 'fw-bold bg-light' : '')
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "text-muted me-2"
-          }, "#", rankOf(p)), rankOf(p) === 1 && p.score > 0 ? '👑 ' : '', p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          }, "#", rankOf(p)), rankOf(p) === 1 && p.score > 0 ? '👑 ' : '', p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
             bg: rankOf(p) === 1 ? 'primary' : 'secondary',
             className: "rounded-pill"
           }, p.score, " pts"));
-        })), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        })), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
           variant: "primary",
           className: "w-100 fw-bold",
           onClick: function onClick() {
@@ -6292,7 +6523,7 @@ function ListPlayer(_ref) {
         }, "Next list coming up...")));
       }
     default:
-      return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
         animation: "grow",
         variant: "warning"
       }));
@@ -6334,7 +6565,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 // 🎙️ What the host voice says while the List Cast rules are on screen
-var LIST_CAST_RULES_NARRATION = ["Welcome to List Cast! The game where great minds think alike, and that's a bad thing.", "Each round, a list appears on the TV. You have one minute to write up to five answers on your phone.", "Then we compare. Any answer that someone else also wrote gets crossed out. Only the answers nobody else thought of survive.", "Last, everyone votes on the survivors. If most players say an answer doesn't fit, it's out. Every answer left standing scores one hundred points.", "Let's get listing!"];
+var LIST_CAST_RULES_NARRATION = ["Welcome to List Cast! The game where it pays to know how your friends think.", "Each round starts with a card, then a list appears on the TV. Write your answers on your phone before the clock runs out.", "One on One: list ten, and score for every answer exactly one other player also wrote. If two or more wrote it, it's out.", "Threefold: list three, and score for every player who wrote the same answer as you.", "Forgotten Four: list four, and only answers nobody else thought of score. Then everyone votes on whether they really count.", "Let's get listing!"];
 
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
 var NARRATION_GRACE_SECONDS = 20;
@@ -6353,13 +6584,15 @@ function ListRulesList(_ref) {
     }, style)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
-  }, "Write a List:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Everyone gets the same category and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "60 seconds"), " to write up to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, listSize, " answers"), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+  }, "Draw a Card, Write a List:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Each round's card says how many to list and what scores. Everyone gets the same category and races the clock."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
-  }, "Be Original:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Any answer someone else also wrote is ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "crossed out automatically"), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+  }, "\uD83E\uDD1D One-on-One (list 10):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Score for each answer ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "exactly one"), " other player also wrote. Two or more? It's crossed out."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
-  }, "Vote:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Everyone votes on the answers that are left. If most players say one ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "doesn't count"), ", it's out."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+  }, "\uD83C\uDFAF Threefold (list 3):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Score for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "every player"), " who wrote the same answer as you."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
-  }, "Score:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Every answer still standing scores ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, pointsPerItem, " points"), ". Most points at the end wins!"));
+  }, "\uD83D\uDC7B Forgotten Four (list 4):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Only answers ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "nobody else"), " wrote score, and the group votes on whether they really count."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+    className: "text-dark"
+  }, "Score:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, pointsPerItem, " points"), " each time you score. Most points at the end wins!"));
 }
 
 /**
@@ -6370,7 +6603,7 @@ function ListCastRulesTV(_ref2) {
   var roomCode = _ref2.roomCode,
     pointsPerItem = _ref2.pointsPerItem,
     listSize = _ref2.listSize;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(35),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(40),
     _useState2 = _slicedToArray(_useState, 2),
     timeLeft = _useState2[0],
     setTimeLeft = _useState2[1];
@@ -6522,21 +6755,24 @@ function ListCastRulesTV(_ref2) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ListBoardTV": () => (/* binding */ ListBoardTV),
+/* harmony export */   "ListCardTV": () => (/* binding */ ListCardTV),
 /* harmony export */   "ListWritingTV": () => (/* binding */ ListWritingTV)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
 /* harmony import */ var _useCountdown_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useCountdown.js */ "./src/features/Lists/useCountdown.js");
 /* harmony import */ var _ListBoard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
-/* harmony import */ var _styles_lists_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/lists.css */ "./src/styles/lists.css");
+/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
+/* harmony import */ var _styles_lists_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../styles/lists.css */ "./src/styles/lists.css");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -6555,12 +6791,12 @@ function CategoryBanner(_ref) {
       height: 'auto',
       borderRadius: '15px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "border-0 text-white w-100 frosted-glass-panel",
     style: {
       borderRadius: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     style: {
       padding: 'clamp(0.3rem, 2vh, 1.2rem) 1rem'
     }
@@ -6584,7 +6820,7 @@ function useClockBar(_ref2) {
   var isLow = timeLeft !== null && timeLeft <= 10;
   return {
     timeLeft: timeLeft,
-    bar: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    bar: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       now: percent,
       variant: isLow ? 'danger' : 'light',
       style: {
@@ -6597,9 +6833,40 @@ function useClockBar(_ref2) {
   };
 }
 
-/** ✏️ Writing (TV): the category, the clock, and who's still writing (never what they wrote) */
-function ListWritingTV(_ref3) {
+/** 🃏 Card reveal (TV): this round's card, before the category and the clock */
+function ListCardTV(_ref3) {
   var room = _ref3.room;
+  var timeLeft = (0,_useCountdown_js__WEBPACK_IMPORTED_MODULE_1__["default"])(room.endTime);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 px-3 pb-4 w-100",
+    style: {
+      maxWidth: '1150px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header mb-0"
+  }, "Round ", room.currentRound, " of ", room.totalRounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-grow-1 d-flex flex-column justify-content-center align-items-center",
+    style: {
+      minHeight: 0,
+      gap: '3vh'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-status-strip text-center"
+  }, "This round's card is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_3__.RoundCard, {
+    card: room.card,
+    size: "lg",
+    pointsPerItem: room.pointsPerItem
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "ls-status-strip text-center"
+  }, "The list is revealed in ", timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "..."))));
+}
+
+/** ✏️ Writing (TV): the category, the clock, and who's still writing (never what they wrote) */
+function ListWritingTV(_ref4) {
+  var _room$card;
+  var room = _ref4.room;
   var _useClockBar = useClockBar({
       endTime: room.endTime
     }),
@@ -6630,11 +6897,15 @@ function ListWritingTV(_ref3) {
       minHeight: 0,
       gap: '3vh'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CategoryBanner, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center ls-status-strip"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_3__.CardChip, {
+    card: room.card
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CategoryBanner, {
     category: room.category || ''
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "ls-status-strip text-center"
-  }, "Write up to ", listSize, " answers on your phone. Don't match anyone!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "Write up to ", listSize, " answers on your phone. ", ((_room$card = room.card) === null || _room$card === void 0 ? void 0 : _room$card.goal) || "Don't match anyone", "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "ls-writers"
   }, players.map(function (p) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -6664,8 +6935,8 @@ function ListWritingTV(_ref3) {
 }
 
 /** 📋 Compare / voting / results (TV): everyone's lists, with matches crossed out */
-function ListBoardTV(_ref4) {
-  var room = _ref4.room;
+function ListBoardTV(_ref5) {
+  var room = _ref5.room;
   var phase = room.gameState;
   var _useClockBar2 = useClockBar({
       endTime: room.endTime
@@ -6680,22 +6951,24 @@ function ListBoardTV(_ref4) {
     return p.hasVoted;
   }).length;
   var board = room.board || [];
-  var crossed = board.reduce(function (n, e) {
-    return n + e.items.filter(function (i) {
-      return i.status !== 'open';
-    }).length;
-  }, 0);
-  var open = board.reduce(function (n, e) {
-    return n + e.items.filter(function (i) {
-      return i.status === 'open';
-    }).length;
-  }, 0);
-  var heading = phase === 'compare' ? 'Crossing out the matches...' : phase === 'voting' ? 'Vote on your phones!' : 'Round Results';
+  var countOf = function countOf(statuses) {
+    return board.reduce(function (n, e) {
+      return n + e.items.filter(function (i) {
+        return statuses.includes(i.status);
+      }).length;
+    }, 0);
+  };
+  var crossed = countOf(['dup', 'matched', 'crowded']);
+  var open = countOf(['open']);
+  var scored = countOf(['scored']);
+  var isForgottenFour = !room.card || room.card.id === 'forgotten_four';
+  var heading = phase === 'compare' ? isForgottenFour ? 'Crossing out the matches...' : 'Finding the matches...' : phase === 'voting' ? 'Vote on your phones!' : 'Round Results';
   var footer;
   if (phase === 'compare') {
+    var _CARD_LOOKS$room$card;
     footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "ls-status-strip"
-    }, crossed, " crossed out \xB7 ", open, " still standing");
+    }, isForgottenFour ? "".concat(crossed, " crossed out \xB7 ").concat(open, " still standing") : "".concat(((_CARD_LOOKS$room$card = _ListCards_jsx__WEBPACK_IMPORTED_MODULE_3__.CARD_LOOKS[room.card.id]) === null || _CARD_LOOKS$room$card === void 0 ? void 0 : _CARD_LOOKS$room$card.icon) || '', " ").concat(scored, " matched \xB7 ").concat(crossed, " crossed out"));
   } else if (phase === 'voting') {
     footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "d-flex justify-content-between align-items-center mb-1 px-1 ls-status-strip"
@@ -6728,7 +7001,9 @@ function ListBoardTV(_ref4) {
     className: "fullscreen-gameplay-header mb-0"
   }, heading, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "tc-category"
-  }, "Round ", room.currentRound, " of ", room.totalRounds)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "Round ", room.currentRound, " of ", room.totalRounds, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_3__.CardChip, {
+    card: room.card
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex-shrink-0",
     style: {
       margin: '1vh 0'
@@ -6745,7 +7020,8 @@ function ListBoardTV(_ref4) {
     board: board,
     phase: phase,
     variant: "tv",
-    pointsPerItem: room.pointsPerItem
+    pointsPerItem: room.pointsPerItem,
+    listSize: room.listSize
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex-shrink-0",
     style: {
@@ -12680,24 +12956,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
-/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
+/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -12726,7 +13004,7 @@ function TriviaCastManager() {
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -12802,10 +13080,16 @@ function TriviaCastManager() {
     }
   }, [voiceMoment]);
 
+  // ⏳ Tick-tock music while everyone answers
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_6__.useTimerMusic)(gameState === 'question', {
+    endTime: room === null || room === void 0 ? void 0 : room.endTime,
+    key: room === null || room === void 0 ? void 0 : room.currentRound
+  });
+
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -12838,7 +13122,7 @@ function TriviaCastManager() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -12848,22 +13132,22 @@ function TriviaCastManager() {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           title: "Trivia Cast Room Created",
           roomCode: room.roomCode,
           players: playersArray
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__.TriviaCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__.TriviaCastRulesTV, {
           roomCode: room.roomCode
         });
       case 'question':
       case 'reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_8__.TriviaCastQuestionTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__.TriviaCastQuestionTV, {
           room: room
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
           players: playersArray,
           isGameOver: room.isGameOver,
           nextLabel: "Next question coming up..."
@@ -12874,13 +13158,13 @@ function TriviaCastManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -13671,7 +13955,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* =========================================================\n   📝 LIST CAST & LISTOPIA\n   ========================================================= */\n\n/* The category banner (TV and phone) */\n.ls-category {\n  color: #fff;\n  font-weight: 800;\n  line-height: 1.15;\n  text-align: center;\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n}\n.ls-category-label {\n  display: block;\n  color: var(--gt-gold);\n  font-size: 0.45em;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  margin-bottom: 0.2em;\n}\n\n/* ---------- The board: one card per player ---------- */\n.ls-board {\n  display: grid;\n  gap: clamp(0.4rem, 1.6vh, 0.9rem);\n  width: 100%;\n  min-height: 0;\n  align-content: start;\n}\n.ls-board.tv { height: 100%; align-content: center; }\n\n.ls-card {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  border-radius: 14px;\n  padding: clamp(0.35rem, 1.4vh, 0.8rem) clamp(0.5rem, 1.6vh, 0.9rem);\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  color: #1d2340;\n  text-align: left;\n}\n.ls-card.mine { outline: 3px solid var(--gt-gold); outline-offset: -1px; }\n\n.ls-card-head {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.5rem;\n  font-weight: 800;\n  border-bottom: 2px solid rgba(29, 35, 64, 0.12);\n  padding-bottom: 0.2em;\n  margin-bottom: 0.3em;\n}\n.ls-card-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ls-card-points {\n  flex-shrink: 0;\n  padding: 0 0.55em;\n  border-radius: 999px;\n  color: #fff;\n  background: #1c9562;\n  animation: ls-pop 0.4s ease-out both;\n}\n.ls-card-points.zero { background: #8a8fa8; }\n\n.ls-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15em; }\n.ls-empty { color: #8a8fa8; font-style: italic; font-weight: 500; }\n\n.ls-item {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n  min-width: 0;\n  padding: 0.12em 0.35em;\n  border-radius: 8px;\n  font-weight: 700;\n  line-height: 1.2;\n  transition: background-color 0.3s ease, opacity 0.3s ease;\n}\n.ls-item-text {\n  position: relative;\n  flex: 0 1 auto;          /* only as wide as the words, so the strike line fits the answer */\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n.ls-item-note {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.72em;\n  font-weight: 600;\n  color: #6b7090;\n  white-space: nowrap;\n}\n.ls-item-mark { flex-shrink: 0; }\n\n/* ❌ Crossed out (matched someone else, or written twice): a red line draws itself across */\n.ls-item.crossed { color: #8a8fa8; }\n.ls-item.crossed .ls-item-text::after {\n  content: '';\n  position: absolute;\n  left: -0.15em;\n  top: 52%;\n  height: 0.16em;\n  width: calc(100% + 0.3em);\n  border-radius: 2px;\n  background: #e0343c;\n  transform-origin: left center;\n  transform: scaleX(1);\n}\n/* While the matches are being revealed, an answer only greys out when its line is drawn */\n.ls-item.crossed.animate {\n  color: inherit;\n  animation: ls-grey 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-text::after {\n  transform: scaleX(0);\n  animation: ls-strike 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-note {\n  opacity: 0;\n  animation: ls-fade-in 0.3s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n\n/* 🗳️ Up for a vote */\n.ls-item.open { background: rgba(247, 186, 58, 0.22); }\n.ls-board.tv .ls-item.open.voting { animation: ls-glow 2s ease-in-out infinite; }\n\n/* Results */\n.ls-item.counts { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n.ls-item.voted-out { color: #a0303a; background: rgba(224, 52, 60, 0.1); }\n.ls-item.voted-out .ls-item-text { text-decoration: line-through; text-decoration-thickness: 0.12em; }\n\n/* 📱 Voting buttons on the phone */\n.ls-vote-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  width: 100%;\n  padding: 0.55rem 0.7rem;\n  border: 2px solid #1c9562;\n  border-radius: 10px;\n  background: rgba(28, 149, 98, 0.1);\n  color: #0f6a44;\n  font-weight: 700;\n  text-align: left;\n  transition: transform 0.1s ease, background-color 0.2s ease;\n}\n.ls-vote-btn:active { transform: scale(0.98); }\n.ls-vote-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.ls-vote-btn .ls-vote-state {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.78rem;\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n}\n.ls-vote-btn.no {\n  border-color: #e0343c;\n  background: rgba(224, 52, 60, 0.1);\n  color: #a0303a;\n}\n.ls-vote-btn.no .ls-item-text { text-decoration: line-through; }\n\n/* ✏️ Phone list inputs */\n.ls-input-row { display: flex; align-items: center; gap: 0.5rem; }\n.ls-input-num {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  font-weight: 800;\n  color: #fff;\n  background: var(--ls-accent, #3a53c4);\n}\n\n/* 📺 TV: who's still writing */\n.ls-writers {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: clamp(0.3rem, 1.4vh, 0.8rem);\n}\n.ls-writer {\n  display: flex;\n  align-items: center;\n  gap: 0.5em;\n  padding: 0.25em 0.9em;\n  border-radius: 999px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.4rem);\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n}\n.ls-writer.done { background: rgba(28, 149, 98, 0.85); }\n.ls-writer-dots { display: inline-flex; gap: 0.18em; }\n.ls-writer-dot {\n  width: 0.5em;\n  height: 0.5em;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.3);\n}\n.ls-writer-dot.filled { background: var(--gt-gold); }\n\n.ls-status-strip {\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.35rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n\n@keyframes ls-strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }\n@keyframes ls-fade-in { from { opacity: 0; } to { opacity: 1; } }\n@keyframes ls-grey { to { color: #8a8fa8; } }\n@keyframes ls-pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }\n@keyframes ls-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0); }\n  50% { box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.75); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .ls-item.crossed.animate .ls-item-text::after { animation: none; transform: scaleX(1); }\n  .ls-item.crossed.animate .ls-item-note { animation: none; opacity: 1; }\n  .ls-item.crossed.animate { animation: none; color: #8a8fa8; }\n  .ls-board.tv .ls-item.open.voting { animation: none; }\n  .ls-card-points { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/lists.css"],"names":[],"mappings":"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","sourcesContent":["/* =========================================================\n   📝 LIST CAST & LISTOPIA\n   ========================================================= */\n\n/* The category banner (TV and phone) */\n.ls-category {\n  color: #fff;\n  font-weight: 800;\n  line-height: 1.15;\n  text-align: center;\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n}\n.ls-category-label {\n  display: block;\n  color: var(--gt-gold);\n  font-size: 0.45em;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  margin-bottom: 0.2em;\n}\n\n/* ---------- The board: one card per player ---------- */\n.ls-board {\n  display: grid;\n  gap: clamp(0.4rem, 1.6vh, 0.9rem);\n  width: 100%;\n  min-height: 0;\n  align-content: start;\n}\n.ls-board.tv { height: 100%; align-content: center; }\n\n.ls-card {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  border-radius: 14px;\n  padding: clamp(0.35rem, 1.4vh, 0.8rem) clamp(0.5rem, 1.6vh, 0.9rem);\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  color: #1d2340;\n  text-align: left;\n}\n.ls-card.mine { outline: 3px solid var(--gt-gold); outline-offset: -1px; }\n\n.ls-card-head {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.5rem;\n  font-weight: 800;\n  border-bottom: 2px solid rgba(29, 35, 64, 0.12);\n  padding-bottom: 0.2em;\n  margin-bottom: 0.3em;\n}\n.ls-card-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ls-card-points {\n  flex-shrink: 0;\n  padding: 0 0.55em;\n  border-radius: 999px;\n  color: #fff;\n  background: #1c9562;\n  animation: ls-pop 0.4s ease-out both;\n}\n.ls-card-points.zero { background: #8a8fa8; }\n\n.ls-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15em; }\n.ls-empty { color: #8a8fa8; font-style: italic; font-weight: 500; }\n\n.ls-item {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n  min-width: 0;\n  padding: 0.12em 0.35em;\n  border-radius: 8px;\n  font-weight: 700;\n  line-height: 1.2;\n  transition: background-color 0.3s ease, opacity 0.3s ease;\n}\n.ls-item-text {\n  position: relative;\n  flex: 0 1 auto;          /* only as wide as the words, so the strike line fits the answer */\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n.ls-item-note {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.72em;\n  font-weight: 600;\n  color: #6b7090;\n  white-space: nowrap;\n}\n.ls-item-mark { flex-shrink: 0; }\n\n/* ❌ Crossed out (matched someone else, or written twice): a red line draws itself across */\n.ls-item.crossed { color: #8a8fa8; }\n.ls-item.crossed .ls-item-text::after {\n  content: '';\n  position: absolute;\n  left: -0.15em;\n  top: 52%;\n  height: 0.16em;\n  width: calc(100% + 0.3em);\n  border-radius: 2px;\n  background: #e0343c;\n  transform-origin: left center;\n  transform: scaleX(1);\n}\n/* While the matches are being revealed, an answer only greys out when its line is drawn */\n.ls-item.crossed.animate {\n  color: inherit;\n  animation: ls-grey 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-text::after {\n  transform: scaleX(0);\n  animation: ls-strike 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-note {\n  opacity: 0;\n  animation: ls-fade-in 0.3s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n\n/* 🗳️ Up for a vote */\n.ls-item.open { background: rgba(247, 186, 58, 0.22); }\n.ls-board.tv .ls-item.open.voting { animation: ls-glow 2s ease-in-out infinite; }\n\n/* Results */\n.ls-item.counts { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n.ls-item.voted-out { color: #a0303a; background: rgba(224, 52, 60, 0.1); }\n.ls-item.voted-out .ls-item-text { text-decoration: line-through; text-decoration-thickness: 0.12em; }\n\n/* 📱 Voting buttons on the phone */\n.ls-vote-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  width: 100%;\n  padding: 0.55rem 0.7rem;\n  border: 2px solid #1c9562;\n  border-radius: 10px;\n  background: rgba(28, 149, 98, 0.1);\n  color: #0f6a44;\n  font-weight: 700;\n  text-align: left;\n  transition: transform 0.1s ease, background-color 0.2s ease;\n}\n.ls-vote-btn:active { transform: scale(0.98); }\n.ls-vote-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.ls-vote-btn .ls-vote-state {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.78rem;\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n}\n.ls-vote-btn.no {\n  border-color: #e0343c;\n  background: rgba(224, 52, 60, 0.1);\n  color: #a0303a;\n}\n.ls-vote-btn.no .ls-item-text { text-decoration: line-through; }\n\n/* ✏️ Phone list inputs */\n.ls-input-row { display: flex; align-items: center; gap: 0.5rem; }\n.ls-input-num {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  font-weight: 800;\n  color: #fff;\n  background: var(--ls-accent, #3a53c4);\n}\n\n/* 📺 TV: who's still writing */\n.ls-writers {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: clamp(0.3rem, 1.4vh, 0.8rem);\n}\n.ls-writer {\n  display: flex;\n  align-items: center;\n  gap: 0.5em;\n  padding: 0.25em 0.9em;\n  border-radius: 999px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.4rem);\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n}\n.ls-writer.done { background: rgba(28, 149, 98, 0.85); }\n.ls-writer-dots { display: inline-flex; gap: 0.18em; }\n.ls-writer-dot {\n  width: 0.5em;\n  height: 0.5em;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.3);\n}\n.ls-writer-dot.filled { background: var(--gt-gold); }\n\n.ls-status-strip {\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.35rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n\n@keyframes ls-strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }\n@keyframes ls-fade-in { from { opacity: 0; } to { opacity: 1; } }\n@keyframes ls-grey { to { color: #8a8fa8; } }\n@keyframes ls-pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }\n@keyframes ls-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0); }\n  50% { box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.75); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .ls-item.crossed.animate .ls-item-text::after { animation: none; transform: scaleX(1); }\n  .ls-item.crossed.animate .ls-item-note { animation: none; opacity: 1; }\n  .ls-item.crossed.animate { animation: none; color: #8a8fa8; }\n  .ls-board.tv .ls-item.open.voting { animation: none; }\n  .ls-card-points { animation: none; }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* =========================================================\n   📝 LIST CAST & LISTOPIA\n   ========================================================= */\n\n/* The category banner (TV and phone) */\n.ls-category {\n  color: #fff;\n  font-weight: 800;\n  line-height: 1.15;\n  text-align: center;\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n}\n.ls-category-label {\n  display: block;\n  color: var(--gt-gold);\n  font-size: 0.45em;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  margin-bottom: 0.2em;\n}\n\n/* ---------- The board: one card per player ---------- */\n.ls-board {\n  display: grid;\n  gap: clamp(0.4rem, 1.6vh, 0.9rem);\n  width: 100%;\n  min-height: 0;\n  align-content: start;\n}\n.ls-board.tv { height: 100%; align-content: center; }\n\n.ls-card {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  border-radius: 14px;\n  padding: clamp(0.35rem, 1.4vh, 0.8rem) clamp(0.5rem, 1.6vh, 0.9rem);\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  color: #1d2340;\n  text-align: left;\n}\n.ls-card.mine { outline: 3px solid var(--gt-gold); outline-offset: -1px; }\n\n.ls-card-head {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.5rem;\n  font-weight: 800;\n  border-bottom: 2px solid rgba(29, 35, 64, 0.12);\n  padding-bottom: 0.2em;\n  margin-bottom: 0.3em;\n}\n.ls-card-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ls-card-points {\n  flex-shrink: 0;\n  padding: 0 0.55em;\n  border-radius: 999px;\n  color: #fff;\n  background: #1c9562;\n  animation: ls-pop 0.4s ease-out both;\n}\n.ls-card-points.zero { background: #8a8fa8; }\n\n.ls-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15em; }\n.ls-empty { color: #8a8fa8; font-style: italic; font-weight: 500; }\n\n.ls-item {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n  min-width: 0;\n  padding: 0.12em 0.35em;\n  border-radius: 8px;\n  font-weight: 700;\n  line-height: 1.2;\n  transition: background-color 0.3s ease, opacity 0.3s ease;\n}\n.ls-item-text {\n  position: relative;\n  flex: 0 1 auto;          /* only as wide as the words, so the strike line fits the answer */\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n.ls-item-note {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.72em;\n  font-weight: 600;\n  color: #6b7090;\n  white-space: nowrap;\n}\n.ls-item-mark { flex-shrink: 0; }\n\n/* ❌ Crossed out (matched someone else, or written twice): a red line draws itself across */\n.ls-item.crossed { color: #8a8fa8; }\n.ls-item.crossed .ls-item-text::after {\n  content: '';\n  position: absolute;\n  left: -0.15em;\n  top: 52%;\n  height: 0.16em;\n  width: calc(100% + 0.3em);\n  border-radius: 2px;\n  background: #e0343c;\n  transform-origin: left center;\n  transform: scaleX(1);\n}\n/* While the matches are being revealed, an answer only greys out when its line is drawn */\n.ls-item.crossed.animate {\n  color: inherit;\n  animation: ls-grey 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-text::after {\n  transform: scaleX(0);\n  animation: ls-strike 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-note {\n  opacity: 0;\n  animation: ls-fade-in 0.3s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n\n/* 🗳️ Up for a vote */\n.ls-item.open { background: rgba(247, 186, 58, 0.22); }\n.ls-board.tv .ls-item.open.voting { animation: ls-glow 2s ease-in-out infinite; }\n\n/* Results */\n.ls-item.counts { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n.ls-item.voted-out { color: #a0303a; background: rgba(224, 52, 60, 0.1); }\n.ls-item.voted-out .ls-item-text { text-decoration: line-through; text-decoration-thickness: 0.12em; }\n\n/* 📱 Voting buttons on the phone */\n.ls-vote-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  width: 100%;\n  padding: 0.55rem 0.7rem;\n  border: 2px solid #1c9562;\n  border-radius: 10px;\n  background: rgba(28, 149, 98, 0.1);\n  color: #0f6a44;\n  font-weight: 700;\n  text-align: left;\n  transition: transform 0.1s ease, background-color 0.2s ease;\n}\n.ls-vote-btn:active { transform: scale(0.98); }\n.ls-vote-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.ls-vote-btn .ls-vote-state {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.78rem;\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n}\n.ls-vote-btn.no {\n  border-color: #e0343c;\n  background: rgba(224, 52, 60, 0.1);\n  color: #a0303a;\n}\n.ls-vote-btn.no .ls-item-text { text-decoration: line-through; }\n\n/* ✏️ Phone list inputs */\n.ls-input-row { display: flex; align-items: center; gap: 0.5rem; }\n.ls-input-num {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  font-weight: 800;\n  color: #fff;\n  background: var(--ls-accent, #3a53c4);\n}\n\n/* 📺 TV: who's still writing */\n.ls-writers {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: clamp(0.3rem, 1.4vh, 0.8rem);\n}\n.ls-writer {\n  display: flex;\n  align-items: center;\n  gap: 0.5em;\n  padding: 0.25em 0.9em;\n  border-radius: 999px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.4rem);\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n}\n.ls-writer.done { background: rgba(28, 149, 98, 0.85); }\n.ls-writer-dots { display: inline-flex; gap: 0.18em; }\n.ls-writer-dot {\n  width: 0.5em;\n  height: 0.5em;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.3);\n}\n.ls-writer-dot.filled { background: var(--gt-gold); }\n\n.ls-status-strip {\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.35rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n\n/* 🤝 Scored by matching (One-on-One, Threefold): it lights up green when revealed */\n.ls-item.scored { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n.ls-item.scored.animate {\n  background: transparent;\n  color: inherit;\n  animation: ls-light-up 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.scored.animate .ls-item-note {\n  opacity: 0;\n  animation: ls-fade-in 0.3s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n/* Nobody else wrote it (One-on-One, Threefold): no points, just faded */\n.ls-item.unmatched { color: #8a8fa8; font-style: italic; }\n\n/* ---------- 🃏 Round cards ---------- */\n.ls-roundcard {\n  --card-a: #3550c8;\n  --card-b: #5d7fe8;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n  gap: 0.35em;\n  width: min(100%, 26em);\n  margin: 0 auto;\n  padding: 1.4em 1.4em 1.2em;\n  border-radius: 1.1em;\n  color: #fff;\n  background: linear-gradient(160deg, var(--card-b), var(--card-a));\n  border: 0.35em solid rgba(255, 255, 255, 0.9);\n  box-shadow: 0 1em 2.5em rgba(0, 0, 0, 0.45);\n  animation: ls-card-flip 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;\n}\n.ls-roundcard.one-on-one { --card-a: #0d7a73; --card-b: #2fbfa8; }\n.ls-roundcard.threefold { --card-a: #6a2fb5; --card-b: #a26ce8; }\n.ls-roundcard.forgotten-four { --card-a: #b4285a; --card-b: #ec6b8f; }\n.ls-roundcard.lg { font-size: clamp(0.9rem, 3.1vh, 1.6rem); }\n.ls-roundcard.md { font-size: 1rem; }\n.ls-roundcard-corner {\n  position: absolute;\n  top: 0.45em;\n  left: 0.6em;\n  font-size: 1.6em;\n  font-weight: 900;\n  opacity: 0.85;\n}\n.ls-roundcard-icon { font-size: 3em; line-height: 1; }\n.ls-roundcard-name {\n  font-size: 2.1em;\n  font-weight: 900;\n  letter-spacing: 0.03em;\n  text-transform: uppercase;\n  line-height: 1.05;\n  text-shadow: 0 0.08em 0.25em rgba(0, 0, 0, 0.35);\n}\n.ls-roundcard-goal {\n  font-size: 1.25em;\n  font-weight: 800;\n  color: #fff6d6;\n}\n.ls-roundcard-how { font-weight: 600; line-height: 1.3; opacity: 0.95; }\n.ls-roundcard-points {\n  margin-top: 0.3em;\n  padding: 0.2em 0.8em;\n  border-radius: 999px;\n  background: rgba(0, 0, 0, 0.22);\n  font-weight: 800;\n  font-size: 0.9em;\n}\n\n/* A small pill naming the card on the writing / board screens */\n.ls-card-chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35em;\n  padding: 0.15em 0.75em;\n  border-radius: 999px;\n  color: #fff;\n  font-weight: 800;\n  font-size: 0.8em;\n  white-space: nowrap;\n  background: #3550c8;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n}\n.ls-card-chip.one-on-one { background: #0d7a73; }\n.ls-card-chip.threefold { background: #6a2fb5; }\n.ls-card-chip.forgotten-four { background: #b4285a; }\n\n@keyframes ls-strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }\n@keyframes ls-fade-in { from { opacity: 0; } to { opacity: 1; } }\n@keyframes ls-grey { to { color: #8a8fa8; } }\n@keyframes ls-pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }\n@keyframes ls-light-up { to { background: rgba(28, 149, 98, 0.16); color: #0f6a44; } }\n@keyframes ls-card-flip {\n  0% { transform: perspective(60em) rotateY(90deg) scale(0.8); opacity: 0; }\n  100% { transform: perspective(60em) rotateY(0) scale(1); opacity: 1; }\n}\n@keyframes ls-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0); }\n  50% { box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.75); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .ls-item.crossed.animate .ls-item-text::after { animation: none; transform: scaleX(1); }\n  .ls-item.crossed.animate .ls-item-note { animation: none; opacity: 1; }\n  .ls-item.crossed.animate { animation: none; color: #8a8fa8; }\n  .ls-board.tv .ls-item.open.voting { animation: none; }\n  .ls-card-points { animation: none; }\n  .ls-item.scored.animate { animation: none; background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n  .ls-item.scored.animate .ls-item-note { animation: none; opacity: 1; }\n  .ls-roundcard { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/lists.css"],"names":[],"mappings":"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","sourcesContent":["/* =========================================================\n   📝 LIST CAST & LISTOPIA\n   ========================================================= */\n\n/* The category banner (TV and phone) */\n.ls-category {\n  color: #fff;\n  font-weight: 800;\n  line-height: 1.15;\n  text-align: center;\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n}\n.ls-category-label {\n  display: block;\n  color: var(--gt-gold);\n  font-size: 0.45em;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  margin-bottom: 0.2em;\n}\n\n/* ---------- The board: one card per player ---------- */\n.ls-board {\n  display: grid;\n  gap: clamp(0.4rem, 1.6vh, 0.9rem);\n  width: 100%;\n  min-height: 0;\n  align-content: start;\n}\n.ls-board.tv { height: 100%; align-content: center; }\n\n.ls-card {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  border-radius: 14px;\n  padding: clamp(0.35rem, 1.4vh, 0.8rem) clamp(0.5rem, 1.6vh, 0.9rem);\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  color: #1d2340;\n  text-align: left;\n}\n.ls-card.mine { outline: 3px solid var(--gt-gold); outline-offset: -1px; }\n\n.ls-card-head {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.5rem;\n  font-weight: 800;\n  border-bottom: 2px solid rgba(29, 35, 64, 0.12);\n  padding-bottom: 0.2em;\n  margin-bottom: 0.3em;\n}\n.ls-card-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ls-card-points {\n  flex-shrink: 0;\n  padding: 0 0.55em;\n  border-radius: 999px;\n  color: #fff;\n  background: #1c9562;\n  animation: ls-pop 0.4s ease-out both;\n}\n.ls-card-points.zero { background: #8a8fa8; }\n\n.ls-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15em; }\n.ls-empty { color: #8a8fa8; font-style: italic; font-weight: 500; }\n\n.ls-item {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n  min-width: 0;\n  padding: 0.12em 0.35em;\n  border-radius: 8px;\n  font-weight: 700;\n  line-height: 1.2;\n  transition: background-color 0.3s ease, opacity 0.3s ease;\n}\n.ls-item-text {\n  position: relative;\n  flex: 0 1 auto;          /* only as wide as the words, so the strike line fits the answer */\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n.ls-item-note {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.72em;\n  font-weight: 600;\n  color: #6b7090;\n  white-space: nowrap;\n}\n.ls-item-mark { flex-shrink: 0; }\n\n/* ❌ Crossed out (matched someone else, or written twice): a red line draws itself across */\n.ls-item.crossed { color: #8a8fa8; }\n.ls-item.crossed .ls-item-text::after {\n  content: '';\n  position: absolute;\n  left: -0.15em;\n  top: 52%;\n  height: 0.16em;\n  width: calc(100% + 0.3em);\n  border-radius: 2px;\n  background: #e0343c;\n  transform-origin: left center;\n  transform: scaleX(1);\n}\n/* While the matches are being revealed, an answer only greys out when its line is drawn */\n.ls-item.crossed.animate {\n  color: inherit;\n  animation: ls-grey 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-text::after {\n  transform: scaleX(0);\n  animation: ls-strike 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.crossed.animate .ls-item-note {\n  opacity: 0;\n  animation: ls-fade-in 0.3s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n\n/* 🗳️ Up for a vote */\n.ls-item.open { background: rgba(247, 186, 58, 0.22); }\n.ls-board.tv .ls-item.open.voting { animation: ls-glow 2s ease-in-out infinite; }\n\n/* Results */\n.ls-item.counts { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n.ls-item.voted-out { color: #a0303a; background: rgba(224, 52, 60, 0.1); }\n.ls-item.voted-out .ls-item-text { text-decoration: line-through; text-decoration-thickness: 0.12em; }\n\n/* 📱 Voting buttons on the phone */\n.ls-vote-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  width: 100%;\n  padding: 0.55rem 0.7rem;\n  border: 2px solid #1c9562;\n  border-radius: 10px;\n  background: rgba(28, 149, 98, 0.1);\n  color: #0f6a44;\n  font-weight: 700;\n  text-align: left;\n  transition: transform 0.1s ease, background-color 0.2s ease;\n}\n.ls-vote-btn:active { transform: scale(0.98); }\n.ls-vote-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.ls-vote-btn .ls-vote-state {\n  flex-shrink: 0;\n  margin-left: auto;\n  font-size: 0.78rem;\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n}\n.ls-vote-btn.no {\n  border-color: #e0343c;\n  background: rgba(224, 52, 60, 0.1);\n  color: #a0303a;\n}\n.ls-vote-btn.no .ls-item-text { text-decoration: line-through; }\n\n/* ✏️ Phone list inputs */\n.ls-input-row { display: flex; align-items: center; gap: 0.5rem; }\n.ls-input-num {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  font-weight: 800;\n  color: #fff;\n  background: var(--ls-accent, #3a53c4);\n}\n\n/* 📺 TV: who's still writing */\n.ls-writers {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: clamp(0.3rem, 1.4vh, 0.8rem);\n}\n.ls-writer {\n  display: flex;\n  align-items: center;\n  gap: 0.5em;\n  padding: 0.25em 0.9em;\n  border-radius: 999px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.4rem);\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n}\n.ls-writer.done { background: rgba(28, 149, 98, 0.85); }\n.ls-writer-dots { display: inline-flex; gap: 0.18em; }\n.ls-writer-dot {\n  width: 0.5em;\n  height: 0.5em;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.3);\n}\n.ls-writer-dot.filled { background: var(--gt-gold); }\n\n.ls-status-strip {\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.35rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n\n/* 🤝 Scored by matching (One-on-One, Threefold): it lights up green when revealed */\n.ls-item.scored { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n.ls-item.scored.animate {\n  background: transparent;\n  color: inherit;\n  animation: ls-light-up 0.45s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n.ls-item.scored.animate .ls-item-note {\n  opacity: 0;\n  animation: ls-fade-in 0.3s ease-out forwards;\n  animation-delay: var(--strike-delay, 0s);\n}\n/* Nobody else wrote it (One-on-One, Threefold): no points, just faded */\n.ls-item.unmatched { color: #8a8fa8; font-style: italic; }\n\n/* ---------- 🃏 Round cards ---------- */\n.ls-roundcard {\n  --card-a: #3550c8;\n  --card-b: #5d7fe8;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n  gap: 0.35em;\n  width: min(100%, 26em);\n  margin: 0 auto;\n  padding: 1.4em 1.4em 1.2em;\n  border-radius: 1.1em;\n  color: #fff;\n  background: linear-gradient(160deg, var(--card-b), var(--card-a));\n  border: 0.35em solid rgba(255, 255, 255, 0.9);\n  box-shadow: 0 1em 2.5em rgba(0, 0, 0, 0.45);\n  animation: ls-card-flip 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;\n}\n.ls-roundcard.one-on-one { --card-a: #0d7a73; --card-b: #2fbfa8; }\n.ls-roundcard.threefold { --card-a: #6a2fb5; --card-b: #a26ce8; }\n.ls-roundcard.forgotten-four { --card-a: #b4285a; --card-b: #ec6b8f; }\n.ls-roundcard.lg { font-size: clamp(0.9rem, 3.1vh, 1.6rem); }\n.ls-roundcard.md { font-size: 1rem; }\n.ls-roundcard-corner {\n  position: absolute;\n  top: 0.45em;\n  left: 0.6em;\n  font-size: 1.6em;\n  font-weight: 900;\n  opacity: 0.85;\n}\n.ls-roundcard-icon { font-size: 3em; line-height: 1; }\n.ls-roundcard-name {\n  font-size: 2.1em;\n  font-weight: 900;\n  letter-spacing: 0.03em;\n  text-transform: uppercase;\n  line-height: 1.05;\n  text-shadow: 0 0.08em 0.25em rgba(0, 0, 0, 0.35);\n}\n.ls-roundcard-goal {\n  font-size: 1.25em;\n  font-weight: 800;\n  color: #fff6d6;\n}\n.ls-roundcard-how { font-weight: 600; line-height: 1.3; opacity: 0.95; }\n.ls-roundcard-points {\n  margin-top: 0.3em;\n  padding: 0.2em 0.8em;\n  border-radius: 999px;\n  background: rgba(0, 0, 0, 0.22);\n  font-weight: 800;\n  font-size: 0.9em;\n}\n\n/* A small pill naming the card on the writing / board screens */\n.ls-card-chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35em;\n  padding: 0.15em 0.75em;\n  border-radius: 999px;\n  color: #fff;\n  font-weight: 800;\n  font-size: 0.8em;\n  white-space: nowrap;\n  background: #3550c8;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n}\n.ls-card-chip.one-on-one { background: #0d7a73; }\n.ls-card-chip.threefold { background: #6a2fb5; }\n.ls-card-chip.forgotten-four { background: #b4285a; }\n\n@keyframes ls-strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }\n@keyframes ls-fade-in { from { opacity: 0; } to { opacity: 1; } }\n@keyframes ls-grey { to { color: #8a8fa8; } }\n@keyframes ls-pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }\n@keyframes ls-light-up { to { background: rgba(28, 149, 98, 0.16); color: #0f6a44; } }\n@keyframes ls-card-flip {\n  0% { transform: perspective(60em) rotateY(90deg) scale(0.8); opacity: 0; }\n  100% { transform: perspective(60em) rotateY(0) scale(1); opacity: 1; }\n}\n@keyframes ls-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0); }\n  50% { box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.75); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .ls-item.crossed.animate .ls-item-text::after { animation: none; transform: scaleX(1); }\n  .ls-item.crossed.animate .ls-item-note { animation: none; opacity: 1; }\n  .ls-item.crossed.animate { animation: none; color: #8a8fa8; }\n  .ls-board.tv .ls-item.open.voting { animation: none; }\n  .ls-card-points { animation: none; }\n  .ls-item.scored.animate { animation: none; background: rgba(28, 149, 98, 0.16); color: #0f6a44; }\n  .ls-item.scored.animate .ls-item-note { animation: none; opacity: 1; }\n  .ls-roundcard { animation: none; }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13985,12 +14269,15 @@ var LIST_ROUND_OPTIONS = [5, 7, 10]; // List Cast and Listopia: rounds
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getAudioContext": () => (/* binding */ getAudioContext),
 /* harmony export */   "playChime": () => (/* binding */ playChime)
 /* harmony export */ });
 // 🔔 A short two-note chime, made in the browser (no audio file needed).
 // Used to tell a player "it's your turn" on their phone.
 
 var audioContext = null;
+
+// Shared with the timer music (one audio context for the whole page)
 var getAudioContext = function getAudioContext() {
   var AudioContextClass = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextClass) return null;
@@ -14728,6 +15015,499 @@ var listsSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat
 
 /***/ }),
 
+/***/ "./src/timerMusic.js":
+/*!***************************!*\
+  !*** ./src/timerMusic.js ***!
+  \***************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TIMER_TRACKS": () => (/* binding */ TIMER_TRACKS),
+/* harmony export */   "setTimerMusicEndTime": () => (/* binding */ setTimerMusicEndTime),
+/* harmony export */   "startTimerMusic": () => (/* binding */ startTimerMusic),
+/* harmony export */   "stopTimerMusic": () => (/* binding */ stopTimerMusic),
+/* harmony export */   "useTimerMusic": () => (/* binding */ useTimerMusic)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chime.js */ "./src/chime.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./voice.js */ "./src/voice.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+// ⏳ Timer music: tick-tock / waiting music that plays while a clock is running
+// (picking a prompt, writing an answer, answering a trivia question, writing a list).
+//
+// All four tracks are made in the browser with the Web Audio API, like the chime, so there are
+// no audio files to download. Each time a timer starts, a track is picked at random (never the
+// same one twice in a row). In the last 10 seconds a hurry-up tick joins in, and in the last 5
+// it doubles up. While the narrator is speaking, the music dips so the voice stays clear.
+//
+//   useTimerMusic(isActive, { endTime, key })   <- the easy way, from a React screen
+//   startTimerMusic({ endTime, trackId }) / stopTimerMusic()
+
+
+
+
+var VOLUME = 1.1; // overall loudness of the music (about as loud as the lobby music)
+var DUCKED = 0.3; // how much of that is left while the narrator talks
+var HURRY_SECONDS = 10; // the hurry-up tick starts here...
+var PANIC_SECONDS = 5; // ...and doubles up here
+var LOOKAHEAD = 0.15; // schedule notes this far ahead (seconds)
+var SCHEDULER_MS = 25;
+var midi = function midi(note) {
+  return 440 * Math.pow(2, (note - 69) / 12);
+};
+
+// ---------------------------------------------------------------------------------------------
+// 🥁 Instruments: each one makes a short sound at time `t` into `out`
+// ---------------------------------------------------------------------------------------------
+var noiseBuffer = null;
+var getNoise = function getNoise(ctx) {
+  if (noiseBuffer && noiseBuffer.sampleRate === ctx.sampleRate) return noiseBuffer;
+  noiseBuffer = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+  var data = noiseBuffer.getChannelData(0);
+  for (var i = 0; i < data.length; i++) {
+    data[i] = Math.random() * 2 - 1;
+  }
+  return noiseBuffer;
+};
+var envelope = function envelope(ctx, t, peak, attack, decay) {
+  var gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, t);
+  gain.gain.exponentialRampToValueAtTime(Math.max(peak, 0.0002), t + attack);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t + attack + decay);
+  return gain;
+};
+var tone = function tone(ctx, out, t, _ref) {
+  var freq = _ref.freq,
+    _ref$type = _ref.type,
+    type = _ref$type === void 0 ? 'sine' : _ref$type,
+    _ref$vol = _ref.vol,
+    vol = _ref$vol === void 0 ? 0.2 : _ref$vol,
+    _ref$attack = _ref.attack,
+    attack = _ref$attack === void 0 ? 0.005 : _ref$attack,
+    _ref$decay = _ref.decay,
+    decay = _ref$decay === void 0 ? 0.3 : _ref$decay,
+    _ref$filter = _ref.filter,
+    filter = _ref$filter === void 0 ? null : _ref$filter,
+    _ref$detune = _ref.detune,
+    detune = _ref$detune === void 0 ? 0 : _ref$detune;
+  var osc = ctx.createOscillator();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, t);
+  if (detune) osc.detune.setValueAtTime(detune, t);
+  var gain = envelope(ctx, t, vol, attack, decay);
+  var node = osc;
+  if (filter) {
+    var lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.setValueAtTime(filter, t);
+    osc.connect(lp);
+    node = lp;
+  }
+  node.connect(gain);
+  gain.connect(out);
+  osc.start(t);
+  osc.stop(t + attack + decay + 0.05);
+};
+var noise = function noise(ctx, out, t, _ref2) {
+  var _ref2$vol = _ref2.vol,
+    vol = _ref2$vol === void 0 ? 0.1 : _ref2$vol,
+    _ref2$decay = _ref2.decay,
+    decay = _ref2$decay === void 0 ? 0.05 : _ref2$decay,
+    _ref2$type = _ref2.type,
+    type = _ref2$type === void 0 ? 'highpass' : _ref2$type,
+    _ref2$freq = _ref2.freq,
+    freq = _ref2$freq === void 0 ? 7000 : _ref2$freq,
+    _ref2$q = _ref2.q,
+    q = _ref2$q === void 0 ? 0.7 : _ref2$q;
+  var src = ctx.createBufferSource();
+  src.buffer = getNoise(ctx);
+  var filter = ctx.createBiquadFilter();
+  filter.type = type;
+  filter.frequency.setValueAtTime(freq, t);
+  filter.Q.setValueAtTime(q, t);
+  var gain = envelope(ctx, t, vol, 0.002, decay);
+  src.connect(filter);
+  filter.connect(gain);
+  gain.connect(out);
+  src.start(t, Math.random() * 0.5);
+  src.stop(t + decay + 0.05);
+};
+var inst = {
+  // A wooden clock "tick" (high) or "tock" (low)
+  tick: function tick(ctx, out, t) {
+    var freq = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 2000;
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.25;
+    noise(ctx, out, t, {
+      vol: vol * 2.5,
+      decay: 0.025,
+      type: 'bandpass',
+      freq: freq,
+      q: 2.5
+    });
+    tone(ctx, out, t, {
+      freq: freq,
+      vol: vol * 0.7,
+      decay: 0.035
+    });
+    tone(ctx, out, t, {
+      freq: freq * 0.5,
+      type: 'triangle',
+      vol: vol * 0.5,
+      decay: 0.02
+    });
+  },
+  hat: function hat(ctx, out, t) {
+    var vol = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0.05;
+    return noise(ctx, out, t, {
+      vol: vol,
+      decay: 0.04,
+      freq: 8000
+    });
+  },
+  brush: function brush(ctx, out, t) {
+    var vol = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0.04;
+    return noise(ctx, out, t, {
+      vol: vol,
+      decay: 0.12,
+      type: 'bandpass',
+      freq: 5000,
+      q: 0.6
+    });
+  },
+  kick: function kick(ctx, out, t) {
+    var vol = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0.5;
+    var osc = ctx.createOscillator();
+    osc.frequency.setValueAtTime(130, t);
+    osc.frequency.exponentialRampToValueAtTime(42, t + 0.14);
+    var gain = envelope(ctx, t, vol, 0.003, 0.22);
+    osc.connect(gain);
+    gain.connect(out);
+    osc.start(t);
+    osc.stop(t + 0.3);
+  },
+  bass: function bass(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.3;
+    var decay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0.35;
+    return tone(ctx, out, t, {
+      freq: midi(note),
+      type: 'triangle',
+      vol: vol,
+      attack: 0.01,
+      decay: decay,
+      filter: 900
+    });
+  },
+  pulse: function pulse(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.12;
+    var decay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0.18;
+    return tone(ctx, out, t, {
+      freq: midi(note),
+      type: 'sawtooth',
+      vol: vol,
+      attack: 0.005,
+      decay: decay,
+      filter: 700
+    });
+  },
+  marimba: function marimba(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.22;
+    tone(ctx, out, t, {
+      freq: midi(note),
+      vol: vol,
+      decay: 0.45
+    });
+    tone(ctx, out, t, {
+      freq: midi(note) * 4,
+      vol: vol * 0.25,
+      decay: 0.08
+    });
+  },
+  musicBox: function musicBox(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.1;
+    tone(ctx, out, t, {
+      freq: midi(note),
+      vol: vol,
+      decay: 0.9
+    });
+    tone(ctx, out, t, {
+      freq: midi(note) * 3,
+      vol: vol * 0.15,
+      decay: 0.3
+    });
+  },
+  keys: function keys(ctx, out, t, notes) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.07;
+    var decay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0.7;
+    return notes.forEach(function (n, i) {
+      tone(ctx, out, t, {
+        freq: midi(n),
+        vol: vol,
+        attack: 0.01,
+        decay: decay,
+        detune: i % 2 ? 4 : -4
+      });
+      tone(ctx, out, t, {
+        freq: midi(n) * 2,
+        type: 'triangle',
+        vol: vol * 0.2,
+        attack: 0.01,
+        decay: decay * 0.5
+      });
+    });
+  },
+  stab: function stab(ctx, out, t, notes) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.05;
+    return notes.forEach(function (n) {
+      return tone(ctx, out, t, {
+        freq: midi(n),
+        type: 'sawtooth',
+        vol: vol,
+        attack: 0.01,
+        decay: 0.25,
+        filter: 1600
+      });
+    });
+  },
+  bell: function bell(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.12;
+    tone(ctx, out, t, {
+      freq: midi(note),
+      vol: vol,
+      decay: 1.6
+    });
+    tone(ctx, out, t, {
+      freq: midi(note) * 2.76,
+      vol: vol * 0.3,
+      decay: 0.8
+    });
+  }
+};
+
+// ---------------------------------------------------------------------------------------------
+// 🎼 The four tracks. play() is called once per 16th note: `step` counts up forever from 0,
+// so step % 16 is the position in the bar and Math.floor(step / 16) is the bar number.
+// ---------------------------------------------------------------------------------------------
+var TIMER_TRACKS = [{
+  // The classic: a grandfather clock with a little music box drifting over it
+  id: 'grandfather-clock',
+  name: 'Grandfather Clock',
+  bpm: 100,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 8;
+    if (pos % 4 === 0) inst.tick(ctx, out, t, pos / 4 % 2 === 0 ? 2100 : 1400, 0.28);
+    var roots = [45, 41, 43, 40, 45, 41, 38, 40]; // A F G E A F D E
+    if (pos === 0) inst.bass(ctx, out, t, roots[bar], 0.22, 1.1);
+    if (pos === 8) inst.bass(ctx, out, t, roots[bar] + 7, 0.14, 0.9);
+    if (bar === 0 && pos === 0 && step > 0) inst.bell(ctx, out, t, 81, 0.08);
+    // A sparse music-box line every other bar
+    var tunes = {
+      1: [[0, 76], [6, 74], [12, 72]],
+      3: [[0, 71], [4, 72], [8, 74]],
+      5: [[0, 76], [6, 79], [12, 77]],
+      7: [[0, 76], [8, 71]]
+    };
+    (tunes[bar] || []).forEach(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        p = _ref4[0],
+        n = _ref4[1];
+      if (p === pos) inst.musicBox(ctx, out, t, n);
+    });
+  }
+}, {
+  // A cocktail-lounge shuffle: walking bass, brushes and soft electric piano
+  id: 'lounge-wait',
+  name: 'Lounge Wait',
+  bpm: 104,
+  swing: 0.33,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 4;
+    var walks = [[38, 41, 45, 48], [43, 47, 50, 49], [36, 40, 43, 45], [45, 44, 43, 40]]; // Dm7 G7 Cmaj7 A7
+    var chords = [[62, 65, 69, 72], [59, 65, 67, 71], [60, 64, 67, 71], [61, 64, 67, 69]];
+    if (pos % 4 === 0) inst.bass(ctx, out, t, walks[bar][pos / 4], 0.3, 0.32);
+    if (pos % 2 === 0) inst.brush(ctx, out, t, pos % 4 === 0 ? 0.035 : 0.05);
+    if (pos === 4 || pos === 12) inst.tick(ctx, out, t, 1700, 0.12);
+    if (pos === 4) inst.keys(ctx, out, t, chords[bar], 0.06, 0.6);
+    if (pos === 14) inst.keys(ctx, out, t, chords[bar], 0.05, 0.4);
+  }
+}, {
+  // Light and bouncy: a marimba noodling over a woodblock tick-tock
+  id: 'marimba-mull',
+  name: 'Marimba Mull',
+  bpm: 116,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 4;
+    var arps = [[60, 64, 67, 72, 67, 64, 67, 64], [57, 60, 64, 69, 64, 60, 64, 60], [53, 57, 60, 65, 60, 57, 60, 57], [55, 59, 62, 67, 62, 59, 62, 65]];
+    if (pos % 2 === 0) inst.marimba(ctx, out, t, arps[bar][pos / 2] + 12, pos === 0 ? 0.2 : 0.13);
+    if (pos % 4 === 0) inst.tick(ctx, out, t, pos / 4 % 2 === 0 ? 1900 : 1250, 0.2);
+    if (pos === 0 || pos === 8) inst.bass(ctx, out, t, [36, 33, 29, 31][bar] + 12, 0.25, 0.3);
+  }
+}, {
+  // Game-show tension: a pulsing bass, a heartbeat kick and a racing clock
+  id: 'countdown-pulse',
+  name: 'Countdown Pulse',
+  bpm: 120,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 4;
+    var roots = [45, 41, 38, 40]; // Am F Dm E
+    var stabs = [[69, 72, 76], [69, 72, 77], [69, 74, 77], [68, 71, 76]];
+    if (pos % 2 === 0) inst.pulse(ctx, out, t, roots[bar] + (pos % 8 === 6 ? 12 : 0), 0.11);
+    if (pos === 0 || pos === 8 || pos === 10) inst.kick(ctx, out, t, pos === 10 ? 0.3 : 0.45);
+    inst.tick(ctx, out, t, 2600, pos % 4 === 0 ? 0.08 : 0.035);
+    if (pos === 0 || pos === 6 || pos === 12) inst.stab(ctx, out, t, stabs[bar], 0.035);
+  }
+}];
+
+// ---------------------------------------------------------------------------------------------
+// ▶️ The player
+// ---------------------------------------------------------------------------------------------
+var current = null; // { track, master, step, nextTime, endTime, timer }
+var lastTrackId = null;
+var isDucked = false;
+var masterLevel = function masterLevel() {
+  return VOLUME * (isDucked ? DUCKED : 1);
+};
+
+// The narrator speaks -> dip the music; the narrator stops -> bring it back
+(0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.onVoiceChange)(function (speaking) {
+  isDucked = speaking;
+  if (!current) return;
+  var ctx = current.master.context;
+  current.master.gain.setTargetAtTime(masterLevel(), ctx.currentTime, speaking ? 0.08 : 0.4);
+});
+var pickTrack = function pickTrack(trackId) {
+  var chosen = TIMER_TRACKS.find(function (tr) {
+    return tr.id === trackId;
+  });
+  if (chosen) return chosen;
+  var choices = TIMER_TRACKS.filter(function (tr) {
+    return tr.id !== lastTrackId;
+  });
+  return choices[Math.floor(Math.random() * choices.length)];
+};
+var runScheduler = function runScheduler() {
+  var playing = current;
+  if (!playing) return;
+  var ctx = playing.master.context;
+  var track = playing.track;
+  var sixteenth = 60 / track.bpm / 4;
+
+  // A big pause (a sleeping tab, a busy phone): skip ahead instead of firing a pile of old notes
+  if (playing.nextTime < ctx.currentTime - 0.2) playing.nextTime = ctx.currentTime + 0.05;
+  while (playing.nextTime < ctx.currentTime + LOOKAHEAD) {
+    var step = playing.step;
+    // Swing pushes every second 8th note late
+    var swingDelay = track.swing && step % 4 === 2 ? sixteenth * track.swing : 0;
+    var t = playing.nextTime + swingDelay;
+    try {
+      track.play(ctx, playing.master, step, t);
+      playHurry(ctx, playing, step, t);
+    } catch (err) {
+      console.warn('Timer music hiccup:', err.message);
+    }
+    playing.step += 1;
+    playing.nextTime += sixteenth;
+  }
+};
+
+// ⏰ Hurry up! A bright tick on every 8th note in the last 10 seconds, every 16th in the last 5
+var playHurry = function playHurry(ctx, playing, step, t) {
+  if (!playing.endTime) return;
+  var secondsLeft = (playing.endTime - Date.now()) / 1000 - (t - ctx.currentTime);
+  if (secondsLeft <= 0 || secondsLeft > HURRY_SECONDS) return;
+  if (secondsLeft <= PANIC_SECONDS) inst.tick(ctx, playing.master, t, step % 2 === 0 ? 3200 : 2800, step % 4 === 0 ? 0.22 : 0.14);else if (step % 2 === 0) inst.tick(ctx, playing.master, t, 3000, step % 4 === 0 ? 0.18 : 0.11);
+};
+
+/**
+ * Start (or restart) the timer music.
+ * @param {object} options
+ * @param {number} [options.endTime]  when the clock runs out (ms since 1970, like Date.now()), for the hurry-up tick
+ * @param {string} [options.trackId]  pick a track instead of a random one (see TIMER_TRACKS)
+ */
+function startTimerMusic() {
+  var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    _ref5$endTime = _ref5.endTime,
+    endTime = _ref5$endTime === void 0 ? null : _ref5$endTime,
+    _ref5$trackId = _ref5.trackId,
+    trackId = _ref5$trackId === void 0 ? null : _ref5$trackId;
+  stopTimerMusic();
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+  var track = pickTrack(trackId);
+  lastTrackId = track.id;
+  var master = ctx.createGain();
+  master.gain.setValueAtTime(0.0001, ctx.currentTime);
+  master.gain.setTargetAtTime(masterLevel(), ctx.currentTime, 0.3); // a soft fade in
+  master.connect(ctx.destination);
+  current = {
+    track: track,
+    master: master,
+    step: 0,
+    nextTime: ctx.currentTime + 0.1,
+    endTime: endTime,
+    timer: null
+  };
+  current.timer = setInterval(runScheduler, SCHEDULER_MS);
+  runScheduler();
+}
+
+/** Move the finish line (e.g. the server's clock arrived after the music started) */
+function setTimerMusicEndTime(endTime) {
+  if (current) current.endTime = endTime || null;
+}
+
+/** Fade the music out and stop */
+function stopTimerMusic() {
+  if (!current) return;
+  var _current = current,
+    master = _current.master,
+    timer = _current.timer;
+  current = null;
+  clearInterval(timer);
+  var ctx = master.context;
+  master.gain.cancelScheduledValues(ctx.currentTime);
+  master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.12);
+  setTimeout(function () {
+    return master.disconnect();
+  }, 1500);
+}
+
+/**
+ * 🎣 React: play timer music while `isActive` is true.
+ * A new `key` (e.g. the round number) starts a fresh track; `endTime` drives the hurry-up tick.
+ */
+function useTimerMusic(isActive) {
+  var _ref6 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    _ref6$endTime = _ref6.endTime,
+    endTime = _ref6$endTime === void 0 ? null : _ref6$endTime,
+    _ref6$key = _ref6.key,
+    key = _ref6$key === void 0 ? null : _ref6$key;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!isActive) return undefined;
+    startTimerMusic({
+      endTime: endTime
+    });
+    return function () {
+      return stopTimerMusic();
+    };
+  }, [isActive, key]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isActive) setTimerMusicEndTime(endTime);
+  }, [isActive, endTime]);
+}
+
+/***/ }),
+
 /***/ "./src/voice.js":
 /*!**********************!*\
   !*** ./src/voice.js ***!
@@ -14737,6 +15517,7 @@ var listsSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "canPlaySound": () => (/* binding */ canPlaySound),
+/* harmony export */   "onVoiceChange": () => (/* binding */ onVoiceChange),
 /* harmony export */   "preloadVoice": () => (/* binding */ preloadVoice),
 /* harmony export */   "speak": () => (/* binding */ speak),
 /* harmony export */   "stopVoice": () => (/* binding */ stopVoice),
@@ -14763,6 +15544,33 @@ var backendBase = isLocal ? 'http://localhost:5005' : 'https://game-temple-backe
 // and that permission sticks to the player that was started by the tap (see unlockVoice).
 var player = new Audio();
 var SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+
+// 🎚️ Lets the timer music dip while the narrator talks (see timerMusic.js)
+var voiceListeners = new Set();
+var isSpeaking = false;
+var setSpeaking = function setSpeaking(speaking) {
+  if (speaking === isSpeaking) return;
+  isSpeaking = speaking;
+  voiceListeners.forEach(function (listener) {
+    return listener(speaking);
+  });
+};
+player.addEventListener('playing', function () {
+  return setSpeaking(player.src !== SILENCE);
+});
+['pause', 'ended', 'error', 'emptied'].forEach(function (eventName) {
+  return player.addEventListener(eventName, function () {
+    return setSpeaking(false);
+  });
+});
+
+/** Calls `listener(true)` when the narrator starts talking and `listener(false)` when it stops. Returns an unsubscribe. */
+function onVoiceChange(listener) {
+  voiceListeners.add(listener);
+  return function () {
+    return voiceListeners["delete"](listener);
+  };
+}
 var queue = []; // lines waiting to be spoken: { audioPromise, keep, done }
 var currentDone = null; // tells speak() how the current line ended
 var isPlaying = false;
