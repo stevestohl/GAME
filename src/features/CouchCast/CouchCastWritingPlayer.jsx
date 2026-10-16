@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
-export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTime, isJudge, hasSubmitted }) {
+export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTime, isJudge, hasSubmitted, hasUsedWriteIn }) {
     const [timeLeft, setTimeLeft] = useState(60);
     const [writeIn, setWriteIn] = useState("");
     
@@ -41,8 +41,8 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
     };
 
     // Tapping a card plays it straight away
-    const handlePlayCard = (cardText) => {
-        socket.emit('submit_answer', { roomCode, answer: cardText, usedWriteIn: false });
+    const handlePlayCard = (card) => {
+        socket.emit('submit_answer', { roomCode, answer: card.text, cardId: card._id, usedWriteIn: false });
     };
 
     // The write-in is the only answer that needs a send button
@@ -117,22 +117,24 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                                 <Button
                                     key={card._id} // Use Mongo's _id for the key
                                     variant="outline-secondary"
-                                    className="text-start p-3 text-wrap fw-bold shadow-sm bg-white"
-                                    onClick={() => handlePlayCard(card.text)}
+                                    className="text-start p-3 text-wrap fw-bold shadow-sm bg-white cc-tap-option"
+                                    onClick={() => handlePlayCard(card)}
                                 >
                                     {card.text}
                                 </Button>
                             ))
                         )}
                         
-                        {/* Custom Write-In Option: type it, then hit send */}
+                        {/* Custom Write-In Option: type it, then hit send. One per game:
+                            once it's used, the server deals a 7th card in its place. */}
+                        {!hasUsedWriteIn && (
                         <Card className="shadow-sm mt-2 border-0">
                             <Card.Body className="p-2">
                                 <Form onSubmit={handleSendWriteIn}>
                                     <InputGroup>
                                         <Form.Control
                                             type="text"
-                                            placeholder="✍️ Custom Write-In..."
+                                            placeholder="✍️ Write your own (1 per game)"
                                             value={writeIn}
                                             onChange={(e) => setWriteIn(e.target.value)}
                                             className="fw-bold border-0 shadow-none fs-5 py-2"
@@ -152,6 +154,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                                 </Form>
                             </Card.Body>
                         </Card>
+                        )}
                     </div>
                 </Card.Body>
             </Card>

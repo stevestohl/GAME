@@ -35,7 +35,7 @@ export default function CouchCastPromptSelection({
                 // Time's up: pick randomly if the judge never tapped one.
                 // If they did tap and we're still here, the pick didn't land, so send it again.
                 const promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
-                socket.emit('select_prompt', { roomCode, selectedPrompt: promptToSubmit });
+                socket.emit('select_prompt', { roomCode, selectedPrompt: promptToSubmit, autoPicked: !selectedPrompt });
             }
             return;
         }
@@ -46,6 +46,12 @@ export default function CouchCastPromptSelection({
 
         return () => clearInterval(timer);
     }, [timeLeft, isJudge, prompts, roomCode, selectedPrompt]);
+
+    // A tap from the screen before (e.g. "All in!") can leave the browser treating the
+    // button now under that finger as focused, which paints it grey as if it were picked
+    useEffect(() => {
+        if (!isCastScreen && document.activeElement instanceof HTMLElement) document.activeElement.blur();
+    }, [isCastScreen]);
 
     // How long the TV spotlight rests on each prompt before moving to the next (ms)
     const HIGHLIGHT_MS = 1500;
@@ -191,7 +197,7 @@ export default function CouchCastPromptSelection({
                                 <Button
                                     key={index}
                                     variant={selectedPrompt === promptObj ? 'primary' : 'outline-secondary'}
-                                    className='text-start p-3 text-wrap'
+                                    className='text-start p-3 text-wrap cc-tap-option'
                                     disabled={!!selectedPrompt && selectedPrompt !== promptObj}
                                     onClick={() => handlePromptPick(promptObj)}
                                 >

@@ -1127,3 +1127,15 @@
         animation: none !important;
     }
 }
+/* 📱 Couch Cast phone buttons: touch screens keep a button "hovered" after a tap, and the
+   button that appears under that finger on the next screen showed up grey as if picked.
+   Only a real pick (the selected variant) gets colour. */
+@media (hover: none) {
+    .cc-tap-option.btn:hover,
+    .cc-tap-option.btn:focus:not(:active) {
+        background-color: var(--bs-btn-bg);
+        color: var(--bs-btn-color);
+        border-color: var(--bs-btn-border-color);
+        box-shadow: none;
+    }
+}

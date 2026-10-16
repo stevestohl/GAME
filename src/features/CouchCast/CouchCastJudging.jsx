@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
-export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, endTime, submissions =[] }) {
+export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, endTime, submissions =[], expansion }) {
+    // Core deck uses the standard (primary) colours; the Halloween deck keeps its orange
+    const isSeasonal = expansion === 'halloween';
     // The answer the Judge tapped (one tap crowns it, so this also locks the screen)
     const [selectedWinnerId, setSelectedWinnerId] = useState(null);
 
@@ -54,8 +56,8 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, end
     // ==========================================
     return (
         <Container className="mt-4 d-flex justify-content-center pb-5">
-            <Card className="shadow-sm w-100 border-warning" style={{ maxWidth: '420px' }}>
-                <Card.Header className="bg-warning text-dark text-center py-3">
+            <Card className={`shadow-sm w-100 ${isSeasonal ? 'border-warning' : 'border-primary'}`} style={{ maxWidth: '420px' }}>
+                <Card.Header className={`text-center py-3 ${isSeasonal ? 'bg-warning text-dark' : 'bg-primary text-white'}`}>
                     <div className="small fw-bold text-uppercase opacity-75 mb-1" style={{ letterSpacing: '2px' }}>
                         You Are The Judge
                     </div>
@@ -86,7 +88,7 @@ export default function CouchCastJudging({ roomCode, isJudge, currentPrompt, end
                                 <Button
                                     key={index}
                                     variant={selectedWinnerId === sub.playerId ? 'warning' : 'outline-dark'}
-                                    className="text-start p-3 fw-semibold text-wrap shadow-sm"
+                                    className="text-start p-3 fw-semibold text-wrap shadow-sm cc-tap-option"
                                     onClick={() => handlePickWinner(sub.playerId)}
                                     disabled={!!selectedWinnerId && selectedWinnerId !== sub.playerId}
                                 >

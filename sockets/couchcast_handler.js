@@ -7,7 +7,8 @@ import { recordPromptRound } from "../db/recordPromptRound.js"
 const getSafeRoom = (room) => {
     if (!room) return null;
     // `hands` (the cards each player was dealt) stays on the server too: it's only for the saved stats
-    const { timerId, destroyTimer, hands, ...safeRoom } = room;
+    // `playedCards` (which card each player played, to be swapped out next round) is server-only too
+    const { timerId, destroyTimer, hands, playedCards, ...safeRoom } = room;
     return safeRoom;
 };
 
@@ -21,6 +22,18 @@ const JUDGING_TIME_LIMIT = 30 * 1000;
 
 // Extra moment after the clock hits zero, so a last-second tap from the judge still counts
 const JUDGING_GRACE = 1 * 1000;
+
+// How long the judge has to pick a prompt (the phone and TV count down 15s; the extra
+// moment lets the judge's own phone make the pick first). After that the server picks.
+const PROMPT_TIME_LIMIT = 15 * 1000;
+const PROMPT_GRACE = 3 * 1000;
+
+// Cards in each player's hand. With the write-in that's 7 choices; once a player
+// has used their one write-in, it's swapped for a 7th card so there are still 7.
+const HAND_SIZE = 6;
+
+// A hand being dealt right now (roomCode:socketId -> Promise), so a double request only deals once
+const handDeals = new Map();
 
 // How many rounds make a game when the caster doesn't choose
 const DEFAULT_ROUNDS = 3;
@@ -53,7 +66,8 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds
         gameState: 'lobby',
         expansion: expansion,
         totalRounds: totalRounds,
-        hands: {},
+        hands: {},         // socket id -> the cards in that player's hand (kept from round to round)
+        playedCards: {},   // socket id -> id of the card they played this round (replaced next round)
         casterId: socket.id,
         hostId: null, 
         currentHostIndex: 1,
@@ -155,6 +169,80 @@ export default function registerCCNamespace(CCNS) {
         return room.players[nextHostId];
     };
 
+    // --- HELPER: The judge has a limited time to pick a prompt; if their phone never
+    // makes a pick (asleep, locked, wandered off), pick one for them so the game keeps going ---
+    const startPromptTimer = (roomCode) => {
+        const room = activeCCRooms[roomCode];
+        if (!room) return;
+        if (room.timerId) clearTimeout(room.timerId);
+        room.timerId = setTimeout(() => {
+            room.timerId = null;
+            const options = room.promptOptions || [];
+            if (activeCCRooms[roomCode] !== room || room.gameState !== 'prompt_selection' || options.length === 0) return;
+            console.log(`[Prompt Timeout] Room ${roomCode}: picking a prompt for the judge.`);
+            startWriting(roomCode, options[Math.floor(Math.random() * options.length)], true);
+        }, PROMPT_TIME_LIMIT + PROMPT_GRACE);
+    };
+
+    // --- HELPER: A prompt was picked (by the judge, or for them): start the writing clock ---
+    const startWriting = (roomCode, selectedPrompt, autoPicked = false) => {
+        const room = activeCCRooms[roomCode];
+        if (!room || room.gameState !== 'prompt_selection') return;
+
+        if (room.timerId) clearTimeout(room.timerId);
+
+        room.gameState = 'writing';
+        room.currentPrompt = selectedPrompt;
+        room.promptAutoPicked = !!autoPicked;
+
+        Object.values(room.players).forEach(p => {
+            if (!p.isCaster && p.id !== room.hostId) {
+                p.hasSubmitted = false;
+                p.currentAnswer = "";
+            }
+            p.answeredAt = null;
+            p.currentIsWriteIn = false;
+        });
+
+        room.writingStartedAt = Date.now();
+        room.endTime = room.writingStartedAt + WRITING_TIME_LIMIT;
+
+        room.timerId = setTimeout(() => {
+            advanceToJudging(roomCode);
+        }, WRITING_TIME_LIMIT);
+
+        CCNS.to(roomCode).emit('writing_phase_started', {
+            gameState: room.gameState,
+            prompt: room.currentPrompt,
+            endTime: room.endTime,
+            autoPicked: room.promptAutoPicked
+        });
+        CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+    };
+
+    // --- HELPER: Deal a player's hand. Cards they kept stay; only the card they played
+    // last round is swapped for a fresh one (like a real card game) ---
+    const dealHand = async (room, socketId) => {
+        let hand = room.hands[socketId] || [];
+        const played = room.playedCards[socketId];
+        if (played) {
+            hand = hand.filter((card) => String(card._id) !== played);
+            delete room.playedCards[socketId];
+        }
+
+        const handSize = HAND_SIZE + (room.players[socketId]?.hasUsedWriteIn ? 1 : 0);
+        const needed = handSize - hand.length;
+        if (needed > 0) {
+            // Don't deal a card that's already in someone's hand
+            const inPlay = Object.values(room.hands).flat().map((card) => card._id).filter(Boolean);
+            const fresh = await drawCards('response', room.expansion, needed, inPlay);
+            hand = [...hand, ...fresh];
+        }
+
+        room.hands[socketId] = hand;
+        return hand;
+    };
+
     // --- HELPER: Start the next round with 3 fresh prompts ---
     const startNextRound = async (roomCode) => {
         const room = activeCCRooms[roomCode];
@@ -176,6 +264,7 @@ export default function registerCCNamespace(CCNS) {
             const randomPrompts = await drawCards('prompt', room.expansion, 3);
             room.promptOptions = randomPrompts;
             CCNS.to(roomCode).emit('prompt_options', { prompts: randomPrompts });
+            startPromptTimer(roomCode);
         } catch (err) {
             console.error(err);
         }
@@ -229,16 +318,19 @@ export default function registerCCNamespace(CCNS) {
         const isGameOver = room.currentRound >= room.totalRounds;
         room.gameState = 'winner_reveal'; 
 
-        // Send the reveal data to the TV
-        CCNS.to(roomCode).emit('round_ended', {
-            gameState: room.gameState,
+        // Send the reveal data to the TV and the phones (kept on the room so a phone that reconnects still sees it)
+        room.roundResults = {
             winner: winningPlayer,
             winningSubmission: {
                 playerName: winningPlayer?.name || "Anonymous",
                 answer: winningAnswerText
             },
             nextHostName: nextHost.name,
-            isGameOver: isGameOver 
+            isGameOver: isGameOver
+        };
+        CCNS.to(roomCode).emit('round_ended', {
+            gameState: room.gameState,
+            ...room.roundResults
         });
         CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
 
@@ -456,6 +548,16 @@ export default function registerCCNamespace(CCNS) {
                     if (currentRoom.hostId === existingPlayerKey) {
                         currentRoom.hostId = socket.id;
                     }
+
+                    // Their hand comes with them
+                    if (currentRoom.hands[existingPlayerKey]) {
+                        currentRoom.hands[socket.id] = currentRoom.hands[existingPlayerKey];
+                        delete currentRoom.hands[existingPlayerKey];
+                    }
+                    if (currentRoom.playedCards[existingPlayerKey]) {
+                        currentRoom.playedCards[socket.id] = currentRoom.playedCards[existingPlayerKey];
+                        delete currentRoom.playedCards[existingPlayerKey];
+                    }
                     
                     delete currentRoom.players[existingPlayerKey];
                     currentRoom.players[socket.id] = playerData;
@@ -496,10 +598,15 @@ export default function registerCCNamespace(CCNS) {
         socket.on('request_hand', async () => {
             try {
                 const room = findRoomBySocket(socket.id);
-                const randomResponses = await drawCards('response', room?.expansion, 6);
-                if (room) room.hands[socket.id] = randomResponses;   // for the saved stats
-                
-                socket.emit('receive_hand', { hand: randomResponses });
+                if (!room) return;
+
+                const key = `${room.roomCode}:${socket.id}`;
+                if (!handDeals.has(key)) {
+                    handDeals.set(key, dealHand(room, socket.id).finally(() => handDeals.delete(key)));
+                }
+                const hand = await handDeals.get(key);
+
+                socket.emit('receive_hand', { hand });
             } catch (err) {
                 console.error("Error drawing hand:", err);
             }
@@ -527,6 +634,7 @@ export default function registerCCNamespace(CCNS) {
                     
                     // Store the prompts in the room state so the mobile host can access them
                     room.promptOptions = randomPrompts;
+                    startPromptTimer(roomCode);
                     
                     CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
                     // // Explicitly broadcast the 3 prompts to the room so the TV and Judge receive them
@@ -537,44 +645,30 @@ export default function registerCCNamespace(CCNS) {
         });
 
         // --- Event: Host Selects Prompt -> STARTS TIMER ---
-        socket.on('select_prompt', ({ roomCode, selectedPrompt }) => {
+        // autoPicked: the judge's clock ran out and their phone picked at random
+        socket.on('select_prompt', ({ roomCode, selectedPrompt, autoPicked }) => {
             const room = activeCCRooms[roomCode];
             if (room && socket.id === room.hostId) {
-                room.gameState = 'writing';
-                room.currentPrompt = selectedPrompt;
-                
-                Object.values(room.players).forEach(p => {
-                    if (!p.isCaster && p.id !== room.hostId) {
-                        p.hasSubmitted = false;
-                        p.currentAnswer = "";
-                    }
-                    p.answeredAt = null;
-                    p.currentIsWriteIn = false;
-                });
-
-                room.hands = {};
-                room.writingStartedAt = Date.now();
-                room.endTime = room.writingStartedAt + WRITING_TIME_LIMIT;
-
-                room.timerId = setTimeout(() => {
-                    advanceToJudging(roomCode);
-                }, WRITING_TIME_LIMIT);
-
-                CCNS.to(roomCode).emit('writing_phase_started', {
-                    gameState: room.gameState,
-                    prompt: room.currentPrompt,
-                    endTime: room.endTime 
-                });
-                CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+                startWriting(roomCode, selectedPrompt, autoPicked);
             }
         });
 
         // --- Event: Player Submits Their Answer ---
-        socket.on('submit_answer', ({ roomCode, answer, usedWriteIn }) => { // 👈 Catch it here
+        socket.on('submit_answer', ({ roomCode, answer, usedWriteIn, cardId }) => { // 👈 Catch it here
             const room = activeCCRooms[roomCode];
             const player = room?.players[socket.id];
             
-            if (player && socket.id !== room.hostId && !player.isCaster) {
+            if (player && socket.id !== room.hostId && !player.isCaster && room.gameState === 'writing') {
+                // One write-in per game
+                if (usedWriteIn && player.hasUsedWriteIn) return;
+
+                // A played card leaves the hand and is replaced next round (a write-in costs no card)
+                if (!usedWriteIn) {
+                    const hand = room.hands[socket.id] || [];
+                    const card = hand.find((c) => String(c._id) === String(cardId)) || hand.find((c) => c.text === answer);
+                    if (card) room.playedCards[socket.id] = String(card._id);
+                }
+
                 player.currentAnswer = answer;
                 player.hasSubmitted = true;
                 player.answeredAt = Date.now();
@@ -630,6 +724,8 @@ export default function registerCCNamespace(CCNS) {
                     });
                     
                     const randomPrompts = await drawCards('prompt', room.expansion, 3);
+                    room.promptOptions = randomPrompts;
+                    startPromptTimer(roomCode);
                     
                     socket.emit('prompt_options', { prompts: randomPrompts });
                     CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));

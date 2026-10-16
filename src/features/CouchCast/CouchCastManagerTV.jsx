@@ -19,12 +19,15 @@ import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
+import { fillBlank } from './fillBlank.js';
 
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
 const VOICE_PROMPT_INTRO = "The prompt is...";
 const VOICE_WINNER_INTRO = "And the winner is...";
 const vibeLine = (name) => `${name} is setting the vibe.`;
+// When the judge runs out of time and a prompt is picked for them
+const VOICE_TOO_SLOW = ["Too slow!", "I'm just gonna pick for you."];
 
 export default function CouchCastManager() {
 
@@ -62,6 +65,7 @@ export default function CouchCastManager() {
     const [currentPrompt, setCurrentPrompt] = useState(null);
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
+    const [promptAutoPicked, setPromptAutoPicked] = useState(false);
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
@@ -87,10 +91,16 @@ export default function CouchCastManager() {
         if (voiceMoment.startsWith('picking')) {
             speak(vibeLine(judgeName), code);
         } else if (voiceMoment.startsWith('prompt')) {
-            speak([VOICE_PROMPT_INTRO, promptText], code);
+            // The judge never picked: the narrator teases them before reading the prompt
+            const lines = promptAutoPicked
+                ? [VOICE_TOO_SLOW[Math.floor(Math.random() * VOICE_TOO_SLOW.length)], VOICE_PROMPT_INTRO, promptText]
+                : [VOICE_PROMPT_INTRO, promptText];
+            speak(lines, code);
         } else if (voiceMoment.startsWith('winner')) {
             const { playerName, answer } = roundResults.winningSubmission;
-            speak([VOICE_WINNER_INTRO, `${answer} That one came from ${playerName}!`], code);
+            // Read the whole card: the prompt with the winning answer in the blank
+            const { sentence } = fillBlank(currentPrompt, answer);
+            speak([VOICE_WINNER_INTRO, `${sentence} That one came from ${playerName}!`], code);
             // Get the next judge's line ready while the confetti falls
             if (!roundResults.isGameOver && roundResults.nextHostName) preloadVoice(vibeLine(roundResults.nextHostName), code);
         } else if (voiceMoment === 'game-over') {
@@ -105,7 +115,7 @@ export default function CouchCastManager() {
     const lobbyRoomCode = roomData?.roomCode;
     useEffect(() => {
         if (!lobbyRoomCode) return;
-        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], lobbyRoomCode);
+        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO, ...VOICE_TOO_SLOW], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // The first judge is known once the rules are showing: get their line ready too
@@ -164,6 +174,7 @@ export default function CouchCastManager() {
             setCurrentPrompt(payload.currentPrompt);
             setSubmissions(payload.submissions);
             setRoundResults(payload.roundResults);
+            setPromptAutoPicked(!!payload.roomData?.promptAutoPicked);
         });
 
         socket.on('room_updated', (room) => {
@@ -177,6 +188,7 @@ export default function CouchCastManager() {
             setGameState(data.gameState);
             setCurrentPrompt(data.prompt);
             setEndTime(data.endTime);
+            setPromptAutoPicked(!!data.autoPicked);
         });
 
         socket.on('start_judging', (data) => {

@@ -10,21 +10,23 @@ export const normalizeExpansion = (expansion) => {
 
 // Draws random cards from a deck (expansion): that deck's cards first,
 // then tops up from the core deck if it runs short (small or not yet loaded).
-export const drawCards = async (type, expansion, size) => {
+// excludeIds: cards that must not come up (e.g. ones already sitting in someone's hand).
+export const drawCards = async (type, expansion, size, excludeIds = []) => {
     // Core also matches older cards saved without an expansion field
     const coreMatch = { $in: ['core', null] };
     const deck = normalizeExpansion(expansion);
     const isCore = deck === 'core';
+    const notThese = excludeIds.length ? { _id: { $nin: excludeIds } } : {};
 
     const cards = await Prompt2Model.aggregate([
-        { $match: { type, expansion: isCore ? coreMatch : deck } },
+        { $match: { type, expansion: isCore ? coreMatch : deck, ...notThese } },
         { $sample: { size } }
     ]);
 
     if (isCore || cards.length >= size) return cards;
 
     const extras = await Prompt2Model.aggregate([
-        { $match: { type, expansion: coreMatch } },
+        { $match: { type, expansion: coreMatch, ...notThese, _id: { $nin: [...excludeIds, ...cards.map((c) => c._id)] } } },
         { $sample: { size: size - cards.length } }
     ]);
     return [...cards, ...extras];
