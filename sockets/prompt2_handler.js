@@ -1,17 +1,21 @@
 import { randomUUID } from "crypto";
 import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import { recordPromptRound } from "../db/recordPromptRound.js";
+import { startRoomJanitor } from "./roomJanitor.js";
 
 const activePrompt2Rooms = {}; 
 
 const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let randomLetters = '';
-    for (let i = 0; i < 3; i++) {
-        const randomIndex = Math.floor(Math.random() * alphabet.length);
-        randomLetters += alphabet.charAt(randomIndex);
-    }
-    const finalRoomCode = `P${randomLetters}`;
+    let finalRoomCode;
+    do {   // never hand out a code that's already being played
+        let randomLetters = '';
+        for (let i = 0; i < 3; i++) {
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            randomLetters += alphabet.charAt(randomIndex);
+        }
+        finalRoomCode = `P${randomLetters}`;
+    } while (roomsObject[finalRoomCode]);
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
@@ -41,6 +45,14 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds
 };
 
 export default function registerPrompt2Namespace(promptNS) {
+    // 🧹 Close rooms that are empty, finished or idle
+    startRoomJanitor({
+        label: 'Prompt 2',
+        namespace: promptNS,
+        rooms: activePrompt2Rooms,
+        isFinished: (room) => room.gameState === 'scoreboard',
+    });
+
     promptNS.on('connection', (socket) => {
         console.log(`[Prompt2 Socket] Player connected: ${socket.id}`);
 

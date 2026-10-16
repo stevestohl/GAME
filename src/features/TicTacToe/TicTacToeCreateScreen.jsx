@@ -3,6 +3,7 @@ import { Card, Form, Button, Spinner, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { getRandomFunnyName } from '../../funnyNames.js';
 import { tictactoeSocket as socket } from '../../socket.js';
+import useRoomClosed from '../../hooks/useRoomClosed.js';
 
  // This is the socket connection logic needed in the create screen form below
 export const handleCreateTttRoom = (playerName, navigate, setIsCreating) => {
@@ -36,6 +37,9 @@ export const handleCreateTttRoom = (playerName, navigate, setIsCreating) => {
 
     // This is the create screen form 
 export default function TicTacToeCreateScreen() {
+    // Back to the menu if the server closes this room
+    useRoomClosed(socket);
+
     const navigate = useNavigate();
     const [hostName, setHostName] = useState('');
     const [isCreating, setIsCreating] = useState(false);

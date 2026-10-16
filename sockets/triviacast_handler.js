@@ -4,6 +4,7 @@
 import { randomUUID } from "crypto";
 import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import TriviaAnswer from "../models/TriviaAnswer.js";
+import { startRoomJanitor } from "./roomJanitor.js";
 
 const activeTCRooms = {};
 
@@ -263,6 +264,23 @@ export default function registerTriviaCastNamespace(TCNS) {
             else playerLeftRoom(socket.id, code);
         });
     };
+
+    // 🧹 Close rooms that are empty, finished or idle
+
+    startRoomJanitor({
+
+        label: 'Trivia Cast',
+
+        namespace: TCNS,
+
+        rooms: activeTCRooms,
+
+        isFinished: (room) => room.gameState === 'scoreboard' && !!room.isGameOver,
+
+        closeRoom,
+
+    });
+
 
     TCNS.on('connection', (socket) => {
         console.log(`[Trivia Cast] Connected: ${socket.id}`);

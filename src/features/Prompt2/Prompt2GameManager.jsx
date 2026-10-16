@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { prompt2Socket as socket } from '../../socket.js'; 
+import useRoomClosed from '../../hooks/useRoomClosed.js';
 import Prompt2Lobby from './Prompt2Lobby';
 import Prompt2RulesScreen from './Prompt2RulesScreen.jsx';
 import Prompt2PromptSelection from './Prompt2PromptSelectionScreen.jsx';
@@ -10,6 +11,9 @@ import Prompt2Scoreboard from './Prompt2Scoreboard.jsx';
 import RoundWinnerScreen from './Prompt2RoundWinner.jsx';
 
 export default function Prompt2GameManager() {
+    // Back to the menu if the server closes this room
+    useRoomClosed(socket);
+
     const [searchParams] = useSearchParams();
     const name = searchParams.get('name') || 'Anonymous';
     const [roomCode, setRoomCode] = useState(searchParams.get('room') || '');

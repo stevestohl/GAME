@@ -1,4 +1,5 @@
 import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
+import { startRoomJanitor } from "./roomJanitor.js";
 /**
  * trivia_handler.js
  * Manages game state, answer validation, and score tracking.
@@ -12,14 +13,15 @@ const DEFAULT_QUESTIONS = 5;
 
 const createRoomLogic = (socket, roomsObject, expansion, totalRounds) => {  
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-    let randomLetters = '';
-    
-    for (let i = 0; i < 3; i++) {
-        const randomIndex = Math.floor(Math.random() * alphabet.length);
-        randomLetters += alphabet.charAt(randomIndex);
-    }
-    
-    const finalRoomCode = `R${randomLetters}`;
+    let finalRoomCode;
+    do {   // never hand out a code that's already being played
+        let randomLetters = '';
+        for (let i = 0; i < 3; i++) {
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            randomLetters += alphabet.charAt(randomIndex);
+        }
+        finalRoomCode = `R${randomLetters}`;
+    } while (roomsObject[finalRoomCode]);
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
@@ -38,6 +40,9 @@ const createRoomLogic = (socket, roomsObject, expansion, totalRounds) => {
 // 1. Primary Real-Time Namespace Handler (Default Export)
 // ============================================================
 export default function registerTriviaNamespace(namespace) {
+    // 🧹 Close rooms that are empty or idle
+    startRoomJanitor({ label: 'Trivia', namespace, rooms: activeRooms });
+
     namespace.on('connection', (socket) => {
         console.log(`Trivia User Connected: ${socket.id}`);
 

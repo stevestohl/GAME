@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Spinner, Alert } from 'react-bootstrap';
 import { triviaSocket as socket } from '../../socket.js';
+import useRoomClosed from '../../hooks/useRoomClosed.js';
 
 import TriviaWaitingRoom from './TriviaWaitingRoom.jsx';
 import RulesScreen from './RulesScreen.jsx';
@@ -10,6 +11,9 @@ import ScoreboardScreen from './ScoreboardScreen.jsx';
 import GameOverScreen from './TriviaGameOver.jsx';
 
 export default function TriviaManager() {
+    // Back to the menu if the server closes this room
+    useRoomClosed(socket);
+
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 

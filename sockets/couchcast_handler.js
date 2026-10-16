@@ -2,6 +2,7 @@
 import { randomUUID } from "crypto"
 import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js"
 import { recordPromptRound } from "../db/recordPromptRound.js"
+import { startRoomJanitor } from "./roomJanitor.js";
 
 // HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
 const getSafeRoom = (room) => {
@@ -51,14 +52,15 @@ const findRoomBySocket = (socketId) => {
 
 const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let randomLetters = '';
-    
-    for (let i = 0; i < 3; i++) {
-        const randomIndex = Math.floor(Math.random() * alphabet.length);
-        randomLetters += alphabet.charAt(randomIndex);
-    }
-    
-    const finalRoomCode = `C${randomLetters}`;
+    let finalRoomCode;
+    do {   // never hand out a code that's already being played
+        let randomLetters = '';
+        for (let i = 0; i < 3; i++) {
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            randomLetters += alphabet.charAt(randomIndex);
+        }
+        finalRoomCode = `C${randomLetters}`;
+    } while (roomsObject[finalRoomCode]);
     
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
@@ -468,6 +470,15 @@ export default function registerCCNamespace(CCNS) {
             }
         });
     };
+
+    // 🧹 Close rooms that are empty, finished or idle
+    startRoomJanitor({
+        label: 'Couch Cast',
+        namespace: CCNS,
+        rooms: activeCCRooms,
+        isFinished: (room) => room.gameState === 'scoreboard' && room.currentRound >= room.totalRounds,
+        closeRoom,
+    });
 
     CCNS.on('connection', (socket) => {
         console.log(`[CastCouch Socket]\n Player Connected: ${socket.id}`);

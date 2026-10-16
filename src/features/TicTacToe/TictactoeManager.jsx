@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Container, Spinner, Alert, Card, Button } from 'react-bootstrap';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { tictactoeSocket as socket } from '../../socket.js';
+import useRoomClosed from '../../hooks/useRoomClosed.js';
 
 import TTTLobby from './TTTLobby.jsx';
 import TictactoeGameScreen from './TictactoeGameScreen.jsx';
 
 export default function TictactoeManager() {
+    // Back to the menu if the server closes this room
+    useRoomClosed(socket);
+
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 

@@ -1,17 +1,24 @@
+import { startRoomJanitor } from "./roomJanitor.js";
 // In-memory state storage for Tic-Tac-Toe game rooms
 const activeTictactoeRooms = {};
 
 const generateTttRoomCode = () => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-  let code = '';
-  for (let i = 0; i < 3; i++) {
-    const randomIndex = Math.floor(Math.random() * alphabet.length);
-    code += alphabet.charAt(randomIndex);
-  }
-  return `T${code}`;
+  let code;
+  do {   // never hand out a code that's already being played
+    code = 'T';
+    for (let i = 0; i < 3; i++) {
+      const randomIndex = Math.floor(Math.random() * alphabet.length);
+      code += alphabet.charAt(randomIndex);
+    }
+  } while (activeTictactoeRooms[code]);
+  return code;
 };
 
 export default function registerTicTacToeNamespace(namespace) {
+  // 🧹 Close rooms that are empty or idle
+  startRoomJanitor({ label: 'Tic-Tac-Toe', namespace, rooms: activeTictactoeRooms });
+
   namespace.on('connection', (socket) => {
     console.log("SERVER: A client reached the Tic-Tac-Toe engine!");
     
