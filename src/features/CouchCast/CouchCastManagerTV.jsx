@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from "../../socket";
 
@@ -7,6 +7,7 @@ import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic } from './lobbyMusic.js';
+import { useTimerMusic } from '../../timerMusic.js';
 
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
@@ -110,6 +111,15 @@ export default function CouchCastManager() {
             if (champion) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
         }
     }, [voiceMoment]);
+
+    // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes.
+    // (The judge's pick is a 15-second clock on the screens; writing uses the server's clock.)
+    const promptPickEnd = useMemo(() => (gameState === 'prompt_selection' ? Date.now() + 15 * 1000 : null), [gameState, round]);
+    const isTimerPhase = gameState === 'prompt_selection' || gameState === 'writing';
+    useTimerMusic(isTimerPhase, {
+        endTime: gameState === 'writing' ? endTime : promptPickEnd,
+        key: `${gameState}-${round}`,
+    });
 
     // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
     const lobbyRoomCode = roomData?.roomCode;

@@ -5,10 +5,11 @@ import { speak, stopVoice } from '../../voice.js';
 
 // 🎙️ What the host voice says while the List Cast rules are on screen
 export const LIST_CAST_RULES_NARRATION = [
-    "Welcome to List Cast! The game where great minds think alike, and that's a bad thing.",
-    "Each round, a list appears on the TV. You have one minute to write up to five answers on your phone.",
-    "Then we compare. Any answer that someone else also wrote gets crossed out. Only the answers nobody else thought of survive.",
-    "Last, everyone votes on the survivors. If most players say an answer doesn't fit, it's out. Every answer left standing scores one hundred points.",
+    "Welcome to List Cast! The game where it pays to know how your friends think.",
+    "Each round starts with a card, then a list appears on the TV. Write your answers on your phone before the clock runs out.",
+    "One on One: list ten, and score for every answer exactly one other player also wrote. If two or more wrote it, it's out.",
+    "Threefold: list three, and score for every player who wrote the same answer as you.",
+    "Forgotten Four: list four, and only answers nobody else thought of score. Then everyone votes on whether they really count.",
     "Let's get listing!",
 ];
 
@@ -20,20 +21,24 @@ export function ListRulesList({ pointsPerItem = 100, listSize = 5, style }) {
     return (
         <ol className="d-flex flex-column mb-0" style={{ gap: '0.6em', ...style }}>
             <li>
-                <strong className="text-dark">Write a List:</strong><br />
-                Everyone gets the same category and <strong>60 seconds</strong> to write up to <strong>{listSize} answers</strong>.
+                <strong className="text-dark">Draw a Card, Write a List:</strong><br />
+                Each round's card says how many to list and what scores. Everyone gets the same category and races the clock.
             </li>
             <li>
-                <strong className="text-dark">Be Original:</strong><br />
-                Any answer someone else also wrote is <strong>crossed out automatically</strong>.
+                <strong className="text-dark">🤝 One-on-One (list 10):</strong><br />
+                Score for each answer <strong>exactly one</strong> other player also wrote. Two or more? It's crossed out.
             </li>
             <li>
-                <strong className="text-dark">Vote:</strong><br />
-                Everyone votes on the answers that are left. If most players say one <strong>doesn't count</strong>, it's out.
+                <strong className="text-dark">🎯 Threefold (list 3):</strong><br />
+                Score for <strong>every player</strong> who wrote the same answer as you.
+            </li>
+            <li>
+                <strong className="text-dark">👻 Forgotten Four (list 4):</strong><br />
+                Only answers <strong>nobody else</strong> wrote score, and the group votes on whether they really count.
             </li>
             <li>
                 <strong className="text-dark">Score:</strong><br />
-                Every answer still standing scores <strong>{pointsPerItem} points</strong>. Most points at the end wins!
+                <strong>{pointsPerItem} points</strong> each time you score. Most points at the end wins!
             </li>
         </ol>
     );
@@ -44,7 +49,7 @@ export function ListRulesList({ pointsPerItem = 100, listSize = 5, style }) {
  * round starts. With no voice available, the countdown runs the show.
  */
 export function ListCastRulesTV({ roomCode, pointsPerItem, listSize }) {
-    const [timeLeft, setTimeLeft] = useState(35);
+    const [timeLeft, setTimeLeft] = useState(40);
     const [isNarrating, setIsNarrating] = useState(true);
     const hasStarted = useRef(false);
 

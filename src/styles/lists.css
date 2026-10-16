@@ -219,10 +219,106 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
+/* 🤝 Scored by matching (One-on-One, Threefold): it lights up green when revealed */
+.ls-item.scored { background: rgba(28, 149, 98, 0.16); color: #0f6a44; }
+.ls-item.scored.animate {
+  background: transparent;
+  color: inherit;
+  animation: ls-light-up 0.45s ease-out forwards;
+  animation-delay: var(--strike-delay, 0s);
+}
+.ls-item.scored.animate .ls-item-note {
+  opacity: 0;
+  animation: ls-fade-in 0.3s ease-out forwards;
+  animation-delay: var(--strike-delay, 0s);
+}
+/* Nobody else wrote it (One-on-One, Threefold): no points, just faded */
+.ls-item.unmatched { color: #8a8fa8; font-style: italic; }
+
+/* ---------- 🃏 Round cards ---------- */
+.ls-roundcard {
+  --card-a: #3550c8;
+  --card-b: #5d7fe8;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35em;
+  width: min(100%, 26em);
+  margin: 0 auto;
+  padding: 1.4em 1.4em 1.2em;
+  border-radius: 1.1em;
+  color: #fff;
+  background: linear-gradient(160deg, var(--card-b), var(--card-a));
+  border: 0.35em solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1em 2.5em rgba(0, 0, 0, 0.45);
+  animation: ls-card-flip 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.ls-roundcard.one-on-one { --card-a: #0d7a73; --card-b: #2fbfa8; }
+.ls-roundcard.threefold { --card-a: #6a2fb5; --card-b: #a26ce8; }
+.ls-roundcard.forgotten-four { --card-a: #b4285a; --card-b: #ec6b8f; }
+.ls-roundcard.lg { font-size: clamp(0.9rem, 3.1vh, 1.6rem); }
+.ls-roundcard.md { font-size: 1rem; }
+.ls-roundcard-corner {
+  position: absolute;
+  top: 0.45em;
+  left: 0.6em;
+  font-size: 1.6em;
+  font-weight: 900;
+  opacity: 0.85;
+}
+.ls-roundcard-icon { font-size: 3em; line-height: 1; }
+.ls-roundcard-name {
+  font-size: 2.1em;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 0 0.08em 0.25em rgba(0, 0, 0, 0.35);
+}
+.ls-roundcard-goal {
+  font-size: 1.25em;
+  font-weight: 800;
+  color: #fff6d6;
+}
+.ls-roundcard-how { font-weight: 600; line-height: 1.3; opacity: 0.95; }
+.ls-roundcard-points {
+  margin-top: 0.3em;
+  padding: 0.2em 0.8em;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  font-weight: 800;
+  font-size: 0.9em;
+}
+
+/* A small pill naming the card on the writing / board screens */
+.ls-card-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15em 0.75em;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8em;
+  white-space: nowrap;
+  background: #3550c8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.ls-card-chip.one-on-one { background: #0d7a73; }
+.ls-card-chip.threefold { background: #6a2fb5; }
+.ls-card-chip.forgotten-four { background: #b4285a; }
+
 @keyframes ls-strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes ls-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes ls-grey { to { color: #8a8fa8; } }
 @keyframes ls-pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes ls-light-up { to { background: rgba(28, 149, 98, 0.16); color: #0f6a44; } }
+@keyframes ls-card-flip {
+  0% { transform: perspective(60em) rotateY(90deg) scale(0.8); opacity: 0; }
+  100% { transform: perspective(60em) rotateY(0) scale(1); opacity: 1; }
+}
 @keyframes ls-glow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0); }
   50% { box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.75); }
@@ -234,4 +330,7 @@
   .ls-item.crossed.animate { animation: none; color: #8a8fa8; }
   .ls-board.tv .ls-item.open.voting { animation: none; }
   .ls-card-points { animation: none; }
+  .ls-item.scored.animate { animation: none; background: rgba(28, 149, 98, 0.16); color: #0f6a44; }
+  .ls-item.scored.animate .ls-item-note { animation: none; opacity: 1; }
+  .ls-roundcard { animation: none; }
 }

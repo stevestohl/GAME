@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Card, ProgressBar } from 'react-bootstrap';
 import useCountdown from './useCountdown.js';
 import ListBoard from './ListBoard.jsx';
+import { RoundCard, CardChip, CARD_LOOKS } from './ListCards.jsx';
 import '../../styles/lists.css';
 
 // The category in a frosted banner across the top of the TV
@@ -40,6 +41,25 @@ function useClockBar({ endTime }) {
     ), isLow };
 }
 
+/** 🃏 Card reveal (TV): this round's card, before the category and the clock */
+export function ListCardTV({ room }) {
+    const timeLeft = useCountdown(room.endTime);
+    return (
+        <div className="fullscreen-gameplay-container">
+            <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: '1150px' }}>
+                <h2 className="fullscreen-gameplay-header mb-0">Round {room.currentRound} of {room.totalRounds}</h2>
+                <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center" style={{ minHeight: 0, gap: '3vh' }}>
+                    <div className="ls-status-strip text-center">This round's card is...</div>
+                    <RoundCard card={room.card} size="lg" pointsPerItem={room.pointsPerItem} />
+                    <div className="ls-status-strip text-center">
+                        The list is revealed in {timeLeft ?? ''}...
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 /** ✏️ Writing (TV): the category, the clock, and who's still writing (never what they wrote) */
 export function ListWritingTV({ room }) {
     const { timeLeft, bar, isLow } = useClockBar({ endTime: room.endTime });
@@ -53,9 +73,10 @@ export function ListWritingTV({ room }) {
                 <h2 className="fullscreen-gameplay-header mb-0">Round {room.currentRound} of {room.totalRounds}</h2>
 
                 <div className="flex-grow-1 d-flex flex-column justify-content-center" style={{ minHeight: 0, gap: '3vh' }}>
+                    <div className="text-center ls-status-strip"><CardChip card={room.card} /></div>
                     <CategoryBanner category={room.category || ''} />
                     <div className="ls-status-strip text-center">
-                        Write up to {listSize} answers on your phone. Don't match anyone!
+                        Write up to {listSize} answers on your phone. {room.card?.goal || "Don't match anyone"}!
                     </div>
                     <div className="ls-writers">
                         {players.map((p) => (
@@ -92,14 +113,25 @@ export function ListBoardTV({ room }) {
     const votedCount = voters.filter((p) => p.hasVoted).length;
 
     const board = room.board || [];
-    const crossed = board.reduce((n, e) => n + e.items.filter((i) => i.status !== 'open').length, 0);
-    const open = board.reduce((n, e) => n + e.items.filter((i) => i.status === 'open').length, 0);
+    const countOf = (statuses) => board.reduce((n, e) => n + e.items.filter((i) => statuses.includes(i.status)).length, 0);
+    const crossed = countOf(['dup', 'matched', 'crowded']);
+    const open = countOf(['open']);
+    const scored = countOf(['scored']);
+    const isForgottenFour = !room.card || room.card.id === 'forgotten_four';
 
-    const heading = phase === 'compare' ? 'Crossing out the matches...' : phase === 'voting' ? 'Vote on your phones!' : 'Round Results';
+    const heading = phase === 'compare'
+        ? (isForgottenFour ? 'Crossing out the matches...' : 'Finding the matches...')
+        : phase === 'voting' ? 'Vote on your phones!' : 'Round Results';
 
     let footer;
     if (phase === 'compare') {
-        footer = <div className="ls-status-strip">{crossed} crossed out · {open} still standing</div>;
+        footer = (
+            <div className="ls-status-strip">
+                {isForgottenFour
+                    ? `${crossed} crossed out · ${open} still standing`
+                    : `${CARD_LOOKS[room.card.id]?.icon || ''} ${scored} matched · ${crossed} crossed out`}
+            </div>
+        );
     } else if (phase === 'voting') {
         footer = (
             <>
@@ -124,7 +156,7 @@ export function ListBoardTV({ room }) {
             <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: '1400px' }}>
                 <h2 className="fullscreen-gameplay-header mb-0">
                     {heading}
-                    <span className="tc-category">Round {room.currentRound} of {room.totalRounds}</span>
+                    <span className="tc-category">Round {room.currentRound} of {room.totalRounds} <CardChip card={room.card} /></span>
                 </h2>
 
                 <div className="flex-shrink-0" style={{ margin: '1vh 0' }}>
@@ -132,7 +164,7 @@ export function ListBoardTV({ room }) {
                 </div>
 
                 <div className="flex-grow-1" style={{ minHeight: 0 }}>
-                    <ListBoard board={board} phase={phase} variant="tv" pointsPerItem={room.pointsPerItem} />
+                    <ListBoard board={board} phase={phase} variant="tv" pointsPerItem={room.pointsPerItem} listSize={room.listSize} />
                 </div>
 
                 <div className="flex-shrink-0" style={{ marginTop: '1vh', paddingRight: '7rem' }}>

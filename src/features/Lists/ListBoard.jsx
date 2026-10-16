@@ -5,46 +5,64 @@ import '../../styles/lists.css';
  * 📋 Everyone's lists side by side, used by both List Cast (on the TV) and Listopia (on each phone).
  *
  * phase:
- *   'compare' -> matching answers get crossed out, one after another
- *   'voting'  -> answers that survived glow; on a phone, other players' answers become vote buttons
- *   'results' -> ✓ counts / ✗ voted out, with each player's points
+ *   'compare' -> the round card's rules play out one answer after another:
+ *                crossed-out answers get a red line, scoring matches (One-on-One, Threefold) light up green
+ *   'voting'  -> Forgotten Four: answers that survived glow; on a phone, other players' answers become vote buttons
+ *   'results' -> ✓ counts / ✗ voted out or no match, with each player's points
  *
  * variant: 'tv' (big grid that fills the screen) or 'phone' (one column, scrolls)
  */
-export default function ListBoard({ board = [], phase, variant = 'phone', mySeat = null, ballot, onToggleVote, pointsPerItem = 100 }) {
+// Statuses that get a red line through them
+const CROSSED = new Set(['dup', 'matched', 'crowded']);
+
+export default function ListBoard({ board = [], phase, variant = 'phone', mySeat = null, ballot, onToggleVote, pointsPerItem = 100, listSize = 5 }) {
     const isTV = variant === 'tv';
 
-    // Crossed-out answers draw their line one after another (finishing within ~7 seconds)
-    const crossedIds = [];
+    // Crossed-out answers draw their line (and matches light up) one after another, finishing within ~7 seconds
+    const revealIds = [];
     board.forEach((entry) => entry.items.forEach((item) => {
-        if (item.status !== 'open') crossedIds.push(item.id);
+        if (CROSSED.has(item.status) || item.status === 'scored') revealIds.push(item.id);
     }));
-    const step = Math.min(0.35, 6 / Math.max(1, crossedIds.length));
-    const strikeDelay = (id) => `${(0.8 + crossedIds.indexOf(id) * step).toFixed(2)}s`;
+    const step = Math.min(0.35, 6 / Math.max(1, revealIds.length));
+    const strikeDelay = (id) => `${(0.8 + revealIds.indexOf(id) * step).toFixed(2)}s`;
 
     // TV: more players = more columns and smaller text, so it all fits without scrolling
     const count = board.length;
     const columns = !isTV ? 1 : count <= 4 ? Math.max(count, 1) : count <= 6 ? 3 : count <= 8 ? 4 : count <= 10 ? 5 : 6;
-    const tvFont = count <= 4 ? 'clamp(0.85rem, 3.6vh, 1.7rem)' : count <= 8 ? 'clamp(0.75rem, 2.9vh, 1.35rem)' : 'clamp(0.65rem, 2.3vh, 1.05rem)';
+    let tvFont = count <= 4 ? 'clamp(0.85rem, 3.6vh, 1.7rem)' : count <= 8 ? 'clamp(0.75rem, 2.9vh, 1.35rem)' : 'clamp(0.65rem, 2.3vh, 1.05rem)';
+    // One-on-One lists are twice as long: smaller text so ten answers still fit
+    if (isTV && listSize > 5) tvFont = count <= 4 ? 'clamp(0.7rem, 2.4vh, 1.2rem)' : 'clamp(0.6rem, 1.9vh, 0.95rem)';
 
     const renderItem = (entry, item) => {
         const isMine = entry.seat === mySeat;
-        const crossed = item.status !== 'open';
+        const crossed = CROSSED.has(item.status);
         const classes = ['ls-item'];
         let note = null;
         let mark = null;
+        const names = (item.matchedWith || []).join(', ');
 
         if (crossed) {
             classes.push('crossed');
             if (phase === 'compare') classes.push('animate');
-            note = item.status === 'dup' ? 'written twice' : `= ${item.matchedWith.join(', ')}`;
+            if (item.status === 'dup') note = 'written twice';
+            else if (item.status === 'crowded') note = `too many: ${names}`;
+            else note = `= ${names}`;
+        } else if (item.status === 'scored') {
+            classes.push('scored');
+            if (phase === 'compare') classes.push('animate');
+            mark = phase === 'results' ? <span className="ls-item-mark">✓</span> : null;
+            note = phase === 'results' ? `+${(item.points || 0) * pointsPerItem} · ${names}` : `= ${names}`;
+        } else if (item.status === 'unmatched') {
+            classes.push('unmatched');
+            if (phase === 'results') mark = <span className="ls-item-mark">✗</span>;
+            note = 'no match';
         } else if (phase === 'voting') {
             classes.push('open', 'voting');
         } else if (phase === 'results') {
             if (item.counts) {
                 classes.push('counts');
                 mark = <span className="ls-item-mark">✓</span>;
-                note = `+${pointsPerItem}`;
+                note = `+${(item.points || 1) * pointsPerItem}`;
             } else {
                 classes.push('voted-out');
                 mark = <span className="ls-item-mark">✗</span>;
@@ -53,7 +71,7 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
         }
 
         // 🗳️ Phone voting: other players' surviving answers are buttons
-        if (phase === 'voting' && !crossed && onToggleVote && !isMine) {
+        if (phase === 'voting' && item.status === 'open' && onToggleVote && !isMine) {
             const isNo = ballot?.has(item.id);
             return (
                 <li key={item.id}>
@@ -73,7 +91,7 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
         }
 
         return (
-            <li key={item.id} className={classes.join(' ')} style={crossed ? { '--strike-delay': strikeDelay(item.id) } : undefined}>
+            <li key={item.id} className={classes.join(' ')} style={revealIds.includes(item.id) ? { '--strike-delay': strikeDelay(item.id) } : undefined}>
                 {mark}
                 <span className="ls-item-text">{item.text}</span>
                 {note && <span className="ls-item-note">{note}</span>}

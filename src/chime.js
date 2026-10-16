@@ -3,7 +3,8 @@
 
 let audioContext = null;
 
-const getAudioContext = () => {
+// Shared with the timer music (one audio context for the whole page)
+export const getAudioContext = () => {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if (!AudioContextClass) return null;
     if (!audioContext) audioContext = new AudioContextClass();

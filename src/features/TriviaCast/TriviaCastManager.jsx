@@ -6,6 +6,7 @@ import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { useTimerMusic } from '../../timerMusic.js';
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
@@ -107,6 +108,9 @@ export default function TriviaCastManager() {
             if (champion) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
         }
     }, [voiceMoment]);
+
+    // ⏳ Tick-tock music while everyone answers
+    useTimerMusic(gameState === 'question', { endTime: room?.endTime, key: room?.currentRound });
 
     // Fetch the rules narration while everyone is still joining, so it starts instantly
     const lobbyRoomCode = room?.roomCode;

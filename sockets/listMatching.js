@@ -7,7 +7,62 @@
 //   - plurals don't matter                                      ("cats" = "cat", "boxes" = "box", "berries" = "berry")
 //   - a small typo doesn't matter                               ("spagetti" = "spaghetti")
 //
-// Matching answers are crossed out automatically. Everything left over goes to a vote.
+// What a match is worth depends on the round's card (the three Listography cards):
+//   One-on-One     -> list up to 10. An answer scores only if exactly ONE other player wrote it too.
+//   Threefold      -> list up to 3.  Every other player who wrote your answer scores you a point.
+//   Forgotten Four -> list up to 4.  An answer scores only if NOBODY else wrote it. Matches are
+//                     crossed out, and everything left over goes to a vote ("does it really count?").
+
+/** The round cards. `points` is per scoring answer (Threefold: per player matched). */
+export const CARD_TYPES = {
+    one_on_one: {
+        id: 'one_on_one',
+        name: 'One-on-One',
+        listSize: 10,
+        writingSeconds: 90,
+        goal: 'Match exactly ONE other player',
+        howTo: 'List up to 10. An answer scores only if exactly one other player wrote it too. Two or more? It\'s out.',
+    },
+    threefold: {
+        id: 'threefold',
+        name: 'Threefold',
+        listSize: 3,
+        writingSeconds: 45,
+        goal: 'Match as many players as you can',
+        howTo: 'List up to 3. Score for every player who wrote the same answer as you.',
+    },
+    forgotten_four: {
+        id: 'forgotten_four',
+        name: 'Forgotten Four',
+        listSize: 4,
+        writingSeconds: 60,
+        goal: 'Match NOBODY',
+        howTo: 'List up to 4. Only answers nobody else wrote score, and the group votes on whether they really count.',
+    },
+};
+export const CARD_ORDER = ['one_on_one', 'threefold', 'forgotten_four'];
+
+/** Always gives back a real card (unknown ids fall back to Forgotten Four, the original List Cast rules) */
+export const getCard = (id) => CARD_TYPES[id] || CARD_TYPES.forgotten_four;
+
+/**
+ * A card for every round: all three cards shuffled, then shuffled again for the next three, and so on,
+ * so every card shows up and the same card never comes up three times running.
+ */
+export function drawCardTypes(rounds, random = Math.random) {
+    const result = [];
+    while (result.length < rounds) {
+        const bag = [...CARD_ORDER];
+        for (let i = bag.length - 1; i > 0; i--) {
+            const j = Math.floor(random() * (i + 1));
+            [bag[i], bag[j]] = [bag[j], bag[i]];
+        }
+        // Don't open a new bag with the card that just ended the last one
+        if (result.length && bag[0] === result[result.length - 1]) bag.push(bag.shift());
+        result.push(...bag);
+    }
+    return result.slice(0, rounds);
+}
 
 const ARTICLES = new Set(['a', 'an', 'the']);
 
@@ -91,25 +146,31 @@ export function isSameItem(keyA, keyB) {
 }
 
 /**
- * Compares everyone's lists.
+ * Compares everyone's lists and applies the round card's rules.
  * @param {Array<{seat:number, name:string, list:string[]}>} players
- * @returns {Array<{seat, name, items: Array<{id, text, status, matchedWith}>}>}
- *   status: 'matched' (someone else wrote it: crossed out)
- *           'dup'     (you wrote it twice: the repeat is crossed out)
- *           'open'    (nobody else wrote it: goes to the vote)
+ * @param {string} cardId   one of CARD_TYPES (defaults to Forgotten Four)
+ * @returns {Array<{seat, name, items: Array<{id, text, status, matchedWith, matchCount, points}>}>}
+ *   status: 'dup'       you wrote it twice: the repeat is crossed out (every card)
+ *           'open'      Forgotten Four: nobody else wrote it, so it goes to the vote
+ *           'matched'   Forgotten Four: someone else wrote it too: crossed out
+ *           'scored'    One-on-One / Threefold: it matched the way the card wants: points!
+ *           'crowded'   One-on-One: two or more others wrote it: crossed out
+ *           'unmatched' One-on-One / Threefold: nobody else wrote it: no points
+ *   points: how many scoring units the answer is worth (votes can still take Forgotten Four ones away)
  */
-export function compareLists(players) {
+export function compareLists(players, cardId) {
+    const card = getCard(cardId);
     const board = players.map((p) => ({ seat: p.seat, name: p.name, items: [] }));
     const all = [];
 
     board.forEach((entry, pi) => {
         const seen = [];
-        (players[pi].list || []).forEach((raw, index) => {
+        (players[pi].list || []).slice(0, card.listSize).forEach((raw, index) => {
             const text = typeof raw === 'string' ? raw.trim() : '';
             const key = normalizeItem(text);
             if (!key) return;
 
-            const item = { id: `${entry.seat}-${index}`, text, key, plain: plainKey(text), status: 'open', matchedWith: [] };
+            const item = { id: `${entry.seat}-${index}`, text, key, plain: plainKey(text), status: 'open', matchedWith: [], matchCount: 0, points: 0 };
             if (seen.some((other) => isSameAnswer(other, item))) item.status = 'dup';
             else seen.push(item);
 
@@ -121,10 +182,19 @@ export function compareLists(players) {
     all.forEach(({ seat, item }) => {
         if (item.status === 'dup') return;
         const matches = all.filter((o) => o.seat !== seat && o.item.status !== 'dup' && isSameAnswer(item, o.item));
-        if (matches.length > 0) {
-            item.status = 'matched';
-            const names = matches.map((o) => board.find((b) => b.seat === o.seat)?.name).filter(Boolean);
-            item.matchedWith = [...new Set(names)];
+        const seats = [...new Set(matches.map((o) => o.seat))];
+        item.matchCount = seats.length;
+        item.matchedWith = seats.map((s) => board.find((b) => b.seat === s)?.name).filter(Boolean);
+
+        if (card.id === 'one_on_one') {
+            item.status = seats.length === 1 ? 'scored' : seats.length === 0 ? 'unmatched' : 'crowded';
+            item.points = seats.length === 1 ? 1 : 0;
+        } else if (card.id === 'threefold') {
+            item.status = seats.length > 0 ? 'scored' : 'unmatched';
+            item.points = seats.length;
+        } else {
+            item.status = seats.length > 0 ? 'matched' : 'open';
+            item.points = seats.length > 0 ? 0 : 1;
         }
     });
 
@@ -134,17 +204,23 @@ export function compareLists(players) {
 }
 
 /**
- * Counts the votes on every answer that wasn't crossed out.
+ * Counts the votes on every answer that went to a vote (Forgotten Four's survivors).
  * Each voter's ballot lists the answers they said "doesn't count"; everything else is a "counts".
  * An answer is thrown out only when MORE than half of the other players voted against it (a tie keeps it).
+ * Answers that scored by matching (One-on-One, Threefold) don't need a vote: they count as they are.
  * @param {Array} board            from compareLists
  * @param {Array<{seat:number, ballot:string[]}>} voters   everyone who could vote this round
  */
 export function resolveVotes(board, voters) {
     board.forEach((entry) => {
         entry.items.forEach((item) => {
+            if (item.status === 'scored') {
+                item.counts = true;
+                return;
+            }
             if (item.status !== 'open') {
                 item.counts = false;
+                item.points = 0;
                 return;
             }
             const eligible = voters.filter((v) => v.seat !== entry.seat);
@@ -152,6 +228,7 @@ export function resolveVotes(board, voters) {
             item.noVotes = noVotes;
             item.voterCount = eligible.length;
             item.counts = noVotes * 2 <= eligible.length;
+            if (!item.counts) item.points = 0;
         });
     });
     return board;

@@ -4,16 +4,21 @@
 //   'cast'   -> List Cast. One device casts to the TV (room codes start with L).
 //   'phones' -> Listopia. No TV: everyone, including whoever made the room, plays on a phone (codes start with O).
 //
+// Every round draws one of three cards (see CARD_TYPES in listMatching.js):
+//   One-on-One (list 10, match exactly one player), Threefold (list 3, match as many as you can)
+//   and Forgotten Four (list 4, match nobody).
+//
 // A round:
-//   writing -> everyone gets the same category and writes up to LIST_SIZE answers before the clock runs out
-//   compare -> lists are compared; answers someone else also wrote are CROSSED OUT automatically
-//   voting  -> everyone votes on the answers that are left: does it count or not?
-//   results -> every answer still standing scores POINTS_PER_ITEM
+//   card    -> the round's card is revealed: how many to list and what counts
+//   writing -> everyone gets the same category and writes up to the card's list size before the clock runs out
+//   compare -> lists are compared and the card's rules are applied (scores, cross-outs)
+//   voting  -> Forgotten Four only: everyone votes on the answers nobody else wrote. Does it count or not?
+//   results -> every scoring answer earns POINTS_PER_ITEM (Threefold: per player matched)
 //   scoreboard -> then the next round (or the final standings)
 import { randomUUID } from "crypto";
 import { normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import { drawListCategories } from "../db/listCategories.js";
-import { compareLists, resolveVotes } from "./listMatching.js";
+import { compareLists, resolveVotes, drawCardTypes, getCard } from "./listMatching.js";
 import { startRoomJanitor } from "./roomJanitor.js";
 
 const activeListRooms = {};
@@ -25,14 +30,15 @@ export const getListCastRoom = (roomCode) => {
 };
 
 // --- Game settings ---
-const LIST_SIZE = 5;                 // answers per list
+const MAX_LIST_SIZE = 10;            // the longest list any card asks for (One-on-One)
 const MAX_ITEM_LENGTH = 40;          // characters per answer
-const POINTS_PER_ITEM = 100;         // for every answer that survives
+const POINTS_PER_ITEM = 100;         // for every scoring answer (Threefold: for every player matched)
 const DEFAULT_ROUNDS = 5;
 const MIN_PLAYERS = 2;
 
 // --- Pacing ---
-const WRITING_TIME = 60 * 1000;      // time to write your list
+const CARD_TIME = 7 * 1000;          // the round's card on screen before the clock starts
+// (Writing time depends on the card: see writingSeconds in CARD_TYPES)
 const COMPARE_TIME = 9 * 1000;       // watching the matches get crossed out
 const VOTING_TIME = 45 * 1000;       // time to vote on what's left
 const RESULTS_TIME = 10 * 1000;      // the round's points on screen
@@ -72,7 +78,8 @@ const getSafeRoom = (room) => {
         currentRound: room.currentRound,
         totalRounds: room.totalRounds,
         category: room.category,
-        listSize: LIST_SIZE,
+        card: room.card ? getCard(room.card) : null,
+        listSize: room.card ? getCard(room.card).listSize : MAX_LIST_SIZE,
         maxItemLength: MAX_ITEM_LENGTH,
         pointsPerItem: POINTS_PER_ITEM,
         minPlayers: MIN_PLAYERS,
@@ -96,9 +103,9 @@ const makeRoomCode = (mode) => {
 };
 
 // Tidies a list sent from a phone: right length, trimmed, no runaway text
-const cleanList = (items) => {
+const cleanList = (items, listSize = MAX_LIST_SIZE) => {
     if (!Array.isArray(items)) return [];
-    return items.slice(0, LIST_SIZE).map((item) =>
+    return items.slice(0, listSize).map((item) =>
         typeof item === 'string' ? item.replace(/\s+/g, ' ').trimStart().slice(0, MAX_ITEM_LENGTH) : ''
     );
 };
@@ -128,12 +135,13 @@ export default function registerListsNamespace(LNS) {
 
     const activePlayers = (room) => Object.values(room.players).filter(p => !p.isCaster && p.isConnected);
 
-    // --- A new round: new category, blank lists, start the clock ---
+    // --- A new round: reveal the card, then the category and the clock ---
     const startRound = (roomCode) => {
         const room = activeListRooms[roomCode];
         if (!room) return;
 
-        room.category = room.categories[room.currentRound - 1] || 'Things that make you smile';
+        room.card = room.cardTypes[room.currentRound - 1] || 'forgotten_four';
+        room.category = null; // kept a secret until the clock starts
         room.board = null;
         room.voterSeats = [];
         Object.values(room.players).forEach((p) => {
@@ -144,9 +152,22 @@ export default function registerListsNamespace(LNS) {
             p.roundPoints = 0;
         });
 
+        room.gameState = 'card';
+        room.endTime = Date.now() + CARD_TIME;
+        schedule(roomCode, room, 'card', CARD_TIME, () => startWriting(roomCode));
+        broadcast(roomCode);
+    };
+
+    // --- The card's been read: show the category and start the clock ---
+    const startWriting = (roomCode) => {
+        const room = activeListRooms[roomCode];
+        if (!room || room.gameState !== 'card') return;
+
+        const writingTime = getCard(room.card).writingSeconds * 1000;
+        room.category = room.categories[room.currentRound - 1] || 'Things that make you smile';
         room.gameState = 'writing';
-        room.endTime = Date.now() + WRITING_TIME;
-        schedule(roomCode, room, 'writing', WRITING_TIME + GRACE, () => startCompare(roomCode));
+        room.endTime = Date.now() + writingTime;
+        schedule(roomCode, room, 'writing', writingTime + GRACE, () => startCompare(roomCode));
 
         LNS.to(roomCode).emit('round_started', { round: room.currentRound });
         broadcast(roomCode);
@@ -164,7 +185,7 @@ export default function registerListsNamespace(LNS) {
             .sort((a, b) => a.joinOrder - b.joinOrder)
             .map(p => ({ seat: p.joinOrder, name: p.name, list: p.list || [] }));
 
-        room.board = compareLists(writers);
+        room.board = compareLists(writers, room.card);
         room.gameState = 'compare';
         room.endTime = null;
         broadcast(roomCode);
@@ -207,7 +228,7 @@ export default function registerListsNamespace(LNS) {
 
         room.board.forEach((entry) => {
             const player = Object.values(room.players).find(p => p.joinOrder === entry.seat);
-            const points = entry.items.filter(item => item.counts).length * POINTS_PER_ITEM;
+            const points = entry.items.reduce((sum, item) => sum + (item.counts ? item.points || 0 : 0), 0) * POINTS_PER_ITEM;
             entry.points = points;
             if (player) {
                 player.roundPoints = points;
@@ -340,6 +361,8 @@ export default function registerListsNamespace(LNS) {
                 expansion: normalizeExpansion(data.expansion),
                 totalRounds: normalizeRounds(data.totalRounds, DEFAULT_ROUNDS),
                 categories: [],
+                cardTypes: [],
+                card: null,
                 currentRound: 1,
                 category: null,
                 board: null,
@@ -456,6 +479,7 @@ export default function registerListsNamespace(LNS) {
             room.isStarting = true;
             try {
                 room.categories = await drawListCategories(room.expansion, room.totalRounds);
+                room.cardTypes = drawCardTypes(room.totalRounds);
             } finally {
                 room.isStarting = false;
             }
@@ -480,7 +504,7 @@ export default function registerListsNamespace(LNS) {
             if (!room || !player || player.isCaster || room.gameState !== 'writing' || player.hasSubmitted) return;
 
             const before = (player.list || []).filter(Boolean).length;
-            player.list = cleanList(items);
+            player.list = cleanList(items, getCard(room.card).listSize);
             // Only bother the other screens when the answer count changes
             if (player.list.filter(Boolean).length !== before) broadcast(roomCode);
         });
@@ -491,7 +515,7 @@ export default function registerListsNamespace(LNS) {
             const player = room?.players[socket.id];
             if (!room || !player || player.isCaster || room.gameState !== 'writing' || player.hasSubmitted) return;
 
-            player.list = cleanList(items);
+            player.list = cleanList(items, getCard(room.card).listSize);
             player.hasSubmitted = true;
             broadcast(roomCode);
             checkEveryoneDone(roomCode);

@@ -10,6 +10,23 @@ const backendBase = isLocal ? 'http://localhost:5005' : 'https://game-temple-bac
 const player = new Audio();
 const SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
 
+// 🎚️ Lets the timer music dip while the narrator talks (see timerMusic.js)
+const voiceListeners = new Set();
+let isSpeaking = false;
+const setSpeaking = (speaking) => {
+    if (speaking === isSpeaking) return;
+    isSpeaking = speaking;
+    voiceListeners.forEach((listener) => listener(speaking));
+};
+player.addEventListener('playing', () => setSpeaking(player.src !== SILENCE));
+['pause', 'ended', 'error', 'emptied'].forEach((eventName) => player.addEventListener(eventName, () => setSpeaking(false)));
+
+/** Calls `listener(true)` when the narrator starts talking and `listener(false)` when it stops. Returns an unsubscribe. */
+export function onVoiceChange(listener) {
+    voiceListeners.add(listener);
+    return () => voiceListeners.delete(listener);
+}
+
 let queue = [];          // lines waiting to be spoken: { audioPromise, keep, done }
 let currentDone = null;  // tells speak() how the current line ended
 let isPlaying = false;

@@ -6,12 +6,14 @@ import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { useTimerMusic } from '../../timerMusic.js';
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import { ListCastRulesTV, LIST_CAST_RULES_NARRATION } from './ListRules.jsx';
-import { ListWritingTV, ListBoardTV } from './ListScreensTV.jsx';
+import { ListCardTV, ListWritingTV, ListBoardTV } from './ListScreensTV.jsx';
+import { cardAnnouncement, ALL_CARD_ANNOUNCEMENTS } from './ListCards.jsx';
 
 // Phone controller
 import ListPlayer from './ListPlayer.jsx';
@@ -83,7 +85,8 @@ function ListCastTV({ roomCode, casterName }) {
 
     // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
     let voiceMoment = null;
-    if (gameState === 'writing' && room.category) voiceMoment = `writing-${room.currentRound}`;
+    if (gameState === 'card' && room.card) voiceMoment = `card-${room.currentRound}`;
+    else if (gameState === 'writing' && room.category) voiceMoment = `writing-${room.currentRound}`;
     else if (gameState === 'voting') voiceMoment = `voting-${room.currentRound}`;
     else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
 
@@ -92,8 +95,10 @@ function ListCastTV({ roomCode, casterName }) {
         if (!voiceMoment || !room) return;
         const code = room.roomCode;
 
-        if (voiceMoment.startsWith('writing')) {
-            speak(`Round ${room.currentRound}. ${room.category}. Go!`, code);
+        if (voiceMoment.startsWith('card')) {
+            speak(cardAnnouncement(room.card), code);
+        } else if (voiceMoment.startsWith('writing')) {
+            speak(`${room.category}. Go!`, code);
         } else if (voiceMoment.startsWith('voting')) {
             speak('Time to vote! Does everything left really count?', code);
         } else if (voiceMoment === 'game-over') {
@@ -104,10 +109,13 @@ function ListCastTV({ roomCode, casterName }) {
         }
     }, [voiceMoment]);
 
+    // ⏳ Tick-tock music while everyone writes their lists
+    useTimerMusic(gameState === 'writing', { endTime: room?.endTime, key: room?.currentRound });
+
     // Fetch the rules narration while everyone is still joining, so it starts instantly
     const lobbyRoomCode = room?.roomCode;
     useEffect(() => {
-        if (lobbyRoomCode) preloadVoice(LIST_CAST_RULES_NARRATION, lobbyRoomCode);
+        if (lobbyRoomCode) preloadVoice([...LIST_CAST_RULES_NARRATION, ...ALL_CARD_ANNOUNCEMENTS], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -144,6 +152,8 @@ function ListCastTV({ roomCode, casterName }) {
                 return <CouchCastLobby title="List Cast Room Created" roomCode={room.roomCode} players={playersArray} />;
             case 'rules':
                 return <ListCastRulesTV roomCode={room.roomCode} pointsPerItem={room.pointsPerItem} listSize={room.listSize} />;
+            case 'card':
+                return <ListCardTV room={room} />;
             case 'writing':
                 return <ListWritingTV room={room} />;
             case 'compare':

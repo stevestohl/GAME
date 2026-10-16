@@ -5,9 +5,11 @@ import { QRCodeSVG } from 'qrcode.react';
 import { listsSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
+import { useTimerMusic } from '../../timerMusic.js';
 import useCountdown from './useCountdown.js';
 import ListBoard from './ListBoard.jsx';
 import { ListRulesList } from './ListRules.jsx';
+import { RoundCard, CardChip, cardWritingTip } from './ListCards.jsx';
 import '../../styles/lists.css';
 
 const blankList = (size) => Array.from({ length: size }, () => '');
@@ -91,6 +93,10 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
     const me = room?.players?.[socket.id];
     const gameState = room?.gameState;
     const timeLeft = useCountdown(room?.endTime);
+
+    // ⏳ Listopia has no TV, so the room leader's phone plays the tick-tock music while everyone writes
+    // (one phone, so the room doesn't hear a dozen slightly-off clocks)
+    useTimerMusic(isListopia && !!me?.isPlayerHost && gameState === 'writing', { endTime: room?.endTime, key: room?.currentRound });
 
     // The list is as long as the server says
     const listSize = room?.listSize || 5;
@@ -304,6 +310,18 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
                 </>
             ));
 
+        // ===================== CARD REVEAL =====================
+        case 'card':
+            return frame(roundTitle, (
+                <div className="py-2">
+                    <p className="fw-bold text-muted text-uppercase small mb-2">This round's card</p>
+                    <RoundCard card={room.card} size="md" pointsPerItem={room.pointsPerItem} />
+                    <p className="text-muted mt-3 mb-0">
+                        {timeLeft !== null ? `The list is revealed in ${timeLeft}...` : 'Get ready...'}
+                    </p>
+                </div>
+            ));
+
         // ===================== WRITING =====================
         case 'writing': {
             if (me.hasSubmitted || sentList) {
@@ -312,6 +330,7 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
                     <div className="py-2">
                         <h1 className="display-4 mb-1">🔒</h1>
                         <h4 className="fw-bold mb-2">List Locked In!</h4>
+                        <div className="mb-2"><CardChip card={room.card} /></div>
                         {categoryBox}
                         <ol className="text-start fw-semibold mb-3">
                             {myList.filter((item) => item.trim()).map((item, i) => <li key={i}>{item}</li>)}
@@ -325,6 +344,7 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
             return frame(roundTitle, (
                 <>
                     {clock(`Write up to ${listSize}:`)}
+                    <div className="mb-2 text-start"><CardChip card={room.card} /></div>
                     {categoryBox}
                     <div className="d-flex flex-column gap-2 mb-3">
                         {myList.map((item, i) => (
@@ -347,7 +367,7 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
                             </div>
                         ))}
                     </div>
-                    <p className="small text-muted mb-2">Tip: answers someone else also writes get crossed out!</p>
+                    <p className="small text-muted mb-2">Tip: {cardWritingTip(room.card)}</p>
                     <Button variant="primary" size="lg" className="w-100 fw-bold" disabled={filled === 0} onClick={handleSubmitList}>
                         {filled === 0 ? 'Write at least one answer' : `I'm done (${filled} of ${listSize})`}
                     </Button>
@@ -358,23 +378,35 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
         // ===================== COMPARE =====================
         case 'compare': {
             const myEntry = room.board?.find((e) => e.seat === mySeat);
-            const crossedCount = myEntry ? myEntry.items.filter((i) => i.status !== 'open').length : 0;
+            const myItems = myEntry ? myEntry.items : [];
+            const crossedCount = myItems.filter((i) => ['dup', 'matched', 'crowded'].includes(i.status)).length;
+            const scoredCount = myItems.filter((i) => i.status === 'scored').length;
+            const isForgottenFour = !room.card || room.card.id === 'forgotten_four';
+
+            let mySummary;
+            if (isForgottenFour) {
+                mySummary = crossedCount === 0 ? 'Nobody matched you. Nice!' : `${crossedCount} of yours got crossed out.`;
+            } else if (scoredCount === 0) {
+                mySummary = 'No matches for you this time.';
+            } else {
+                mySummary = `${scoredCount} of yours matched!`;
+            }
+
             return frame(roundTitle, (
                 <>
                     <h4 className="fw-bold mb-1">Pencils down! ✏️</h4>
+                    <div className="mb-2"><CardChip card={room.card} /></div>
                     <p className="text-muted mb-3">
-                        {isListopia ? 'Answers that match get crossed out...' : 'Watch the TV as matching answers get crossed out!'}
+                        {isForgottenFour
+                            ? (isListopia ? 'Answers that match get crossed out...' : 'Watch the TV as matching answers get crossed out!')
+                            : (isListopia ? 'Finding the matches...' : 'Watch the TV to see who matched!')}
                     </p>
                     {isListopia ? (
                         <ListBoard board={room.board || []} phase="compare" variant="phone" mySeat={mySeat} pointsPerItem={room.pointsPerItem} />
                     ) : (
                         <>
                             <ListBoard board={myEntry ? [myEntry] : []} phase="compare" variant="phone" mySeat={mySeat} pointsPerItem={room.pointsPerItem} />
-                            {myEntry && (
-                                <p className="fw-bold mt-3 mb-0">
-                                    {crossedCount === 0 ? 'Nobody matched you. Nice!' : `${crossedCount} of yours got crossed out.`}
-                                </p>
-                            )}
+                            {myEntry && <p className="fw-bold mt-3 mb-0">{mySummary}</p>}
                         </>
                     )}
                 </>
