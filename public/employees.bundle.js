@@ -5219,6 +5219,13 @@ function ListBoard(_ref) {
       classes.push('crossed');
       if (phase === 'compare') classes.push('animate');
       if (item.status === 'dup') note = 'written twice';else if (item.status === 'crowded') note = "too many: ".concat(names);else note = "= ".concat(names);
+    } else if (item.status === 'scored' && phase === 'results' && item.counts === false) {
+      // A Threefold match the group voted out
+      classes.push('voted-out');
+      mark = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "ls-item-mark"
+      }, "\u2717");
+      note = "\uD83D\uDC4E ".concat(item.noVotes, " of ").concat(item.voterCount);
     } else if (item.status === 'scored') {
       classes.push('scored');
       if (phase === 'compare') classes.push('animate');
@@ -5250,9 +5257,11 @@ function ListBoard(_ref) {
       }
     }
 
-    // 🗳️ Phone voting: other players' surviving answers are buttons
-    if (phase === 'voting' && item.status === 'open' && onToggleVote && !isMine) {
-      var isNo = ballot === null || ballot === void 0 ? void 0 : ballot.has(item.id);
+    // 🗳️ Phone voting: answers up for a vote that aren't yours are buttons
+    // (copies of the same Threefold match share one vote key, so they flip together)
+    var canVoteOn = item.voteKey && !(item.voteSeats || []).includes(mySeat);
+    if (phase === 'voting' && canVoteOn && onToggleVote && !isMine) {
+      var isNo = ballot === null || ballot === void 0 ? void 0 : ballot.has(item.voteKey);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         key: item.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -5261,7 +5270,7 @@ function ListBoard(_ref) {
         "aria-pressed": isNo,
         "aria-label": "".concat(item.text, ": ").concat(isNo ? "doesn't count" : 'counts', ". Tap to change."),
         onClick: function onClick() {
-          return onToggleVote(item.id);
+          return onToggleVote(item.voteKey);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "ls-item-mark"
@@ -5458,21 +5467,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 /* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
-/* harmony import */ var _ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ListScreensTV.jsx */ "./src/features/Lists/ListScreensTV.jsx");
-/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
-/* harmony import */ var _ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ListPlayer.jsx */ "./src/features/Lists/ListPlayer.jsx");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
+/* harmony import */ var _ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ListScreensTV.jsx */ "./src/features/Lists/ListScreensTV.jsx");
+/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
+/* harmony import */ var _ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ListPlayer.jsx */ "./src/features/Lists/ListPlayer.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -5483,6 +5495,9 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -5514,7 +5529,7 @@ function ListCastManager() {
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName,
       mode: "cast"
@@ -5528,8 +5543,10 @@ function ListCastManager() {
   });
 }
 function ListCastTV(_ref) {
+  var _room$voterSeats;
   var roomCode = _ref.roomCode,
     casterName = _ref.casterName;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -5578,26 +5595,60 @@ function ListCastTV(_ref) {
 
   // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
   var voiceMoment = null;
-  if (gameState === 'card' && room.card) voiceMoment = "card-".concat(room.currentRound);else if (gameState === 'writing' && room.category) voiceMoment = "writing-".concat(room.currentRound);else if (gameState === 'voting') voiceMoment = "voting-".concat(room.currentRound);else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
+  if (gameState === 'card' && room.card) voiceMoment = "card-".concat(room.currentRound);else if (gameState === 'writing' && room.category) voiceMoment = "writing-".concat(room.currentRound);else if (gameState === 'voting') voiceMoment = "voting-".concat(room.currentRound);
+  // Results straight after a vote (anyone was asked to vote this round)
+  else if (gameState === 'results' && (_room$voterSeats = room.voterSeats) !== null && _room$voterSeats !== void 0 && _room$voterSeats.length) voiceMoment = "votes-in-".concat(room.currentRound);else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';else if (gameState === 'scoreboard') voiceMoment = "scores-".concat(room.currentRound);
+
+  // 🏆 The score recap: on the scoreboard headline and read by the narrator (same as Couch Cast)
+  var recap = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    if (gameState !== 'scoreboard' || !room) return null;
+    var players = Object.values(room.players).filter(function (p) {
+      return !p.isCaster;
+    });
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_7__.scoreRecap)({
+      players: players,
+      roundHadWinner: players.some(function (p) {
+        return (p.roundPoints || 0) > 0;
+      }),
+      round: room.currentRound,
+      isGameOver: !!room.isGameOver
+    });
+  }, [gameState, room]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
     if (!voiceMoment || !room) return;
     var code = room.roomCode;
     if (voiceMoment.startsWith('card')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)((0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_11__.cardAnnouncement)(room.card), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)((0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_13__.cardAnnouncement)(room.card), code);
     } else if (voiceMoment.startsWith('writing')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("".concat(room.category, ". Go!"), code);
     } else if (voiceMoment.startsWith('voting')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)('Time to vote! Does everything left really count?', code);
-    } else if (voiceMoment === 'game-over') {
-      var champion = Object.values(room.players).filter(function (p) {
-        return !p.isCaster;
-      }).sort(function (a, b) {
-        return (b.score || 0) - (a.score || 0);
-      })[0];
-      if (champion && champion.score > 0) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("That's the game! ".concat(champion.name, " wins with ").concat(champion.score, " points. Thanks for playing!"), code);
+      var _room$card;
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(((_room$card = room.card) === null || _room$card === void 0 ? void 0 : _room$card.id) === 'threefold' ? 'Time to vote! Do those matches really count?' : 'Time to vote! Does everything left really count?', code);
+    } else if (voiceMoment.startsWith('votes-in')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)('The votes are in!', code);
+    } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
+      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(recap.spoken, code);
     }
   }, [voiceMoment]);
+
+  // 🔁 End of the game: the caster picks what happens next
+  var handlePlayAgain = function handlePlayAgain() {
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(); // this tap lets the lobby music play again
+    _socket__WEBPACK_IMPORTED_MODULE_1__.listsSocket.emit('playAgain', {
+      roomCode: room === null || room === void 0 ? void 0 : room.roomCode
+    });
+  };
+  var handleGoHome = function handleGoHome() {
+    _socket__WEBPACK_IMPORTED_MODULE_1__.listsSocket.emit('endGame', {
+      roomCode: room === null || room === void 0 ? void 0 : room.roomCode
+    });
+    navigate('/home', {
+      state: {
+        toastMessage: 'Thanks for playing!'
+      }
+    });
+  };
 
   // ⏳ Tick-tock music while everyone writes their lists
   (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_6__.useTimerMusic)(gameState === 'writing', {
@@ -5608,7 +5659,7 @@ function ListCastTV(_ref) {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_9__.LIST_CAST_RULES_NARRATION), _toConsumableArray(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_11__.ALL_CARD_ANNOUNCEMENTS)), lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_11__.LIST_CAST_RULES_NARRATION), _toConsumableArray(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_13__.ALL_CARD_ANNOUNCEMENTS), ['The votes are in!']), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -5639,7 +5690,7 @@ function ListCastTV(_ref) {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -5649,36 +5700,41 @@ function ListCastTV(_ref) {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
           title: "List Cast Room Created",
           roomCode: room.roomCode,
           players: playersArray
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_9__.ListCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_11__.ListCastRulesTV, {
           roomCode: room.roomCode,
           pointsPerItem: room.pointsPerItem,
           listSize: room.listSize
         });
       case 'card':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.ListCardTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_12__.ListCardTV, {
           room: room
         });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.ListWritingTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_12__.ListWritingTV, {
           room: room
         });
       case 'compare':
       case 'voting':
       case 'results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.ListBoardTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_12__.ListBoardTV, {
           room: room
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           players: playersArray,
           isGameOver: room.isGameOver,
-          nextLabel: "Next list coming up..."
+          nextLabel: "Next list coming up...",
+          headline: recap === null || recap === void 0 ? void 0 : recap.headline,
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            onPlayAgain: handlePlayAgain,
+            onGoHome: handleGoHome
+          })
         });
       default:
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -5686,13 +5742,13 @@ function ListCastTV(_ref) {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -6441,6 +6497,7 @@ function ListPlayer(_ref) {
     // ===================== VOTING =====================
     case 'voting':
       {
+        var _room$card;
         var canVote = (room.voterSeats || []).includes(mySeat);
         var voters = connected.filter(function (p) {
           return (room.voterSeats || []).includes(p.seat);
@@ -6469,16 +6526,17 @@ function ListPlayer(_ref) {
           })));
         }
 
-        // Only other players' surviving answers are up for a vote
+        // Only other players' answers that are up for a vote (and aren't a match of your own)
+        var isThreefold = ((_room$card = room.card) === null || _room$card === void 0 ? void 0 : _room$card.id) === 'threefold';
         var othersOpen = (room.board || []).filter(function (e) {
           return e.seat !== mySeat && e.items.some(function (i) {
-            return i.status === 'open';
+            return i.voteKey && !(i.voteSeats || []).includes(mySeat);
           });
         });
         var board = isListopia ? room.board || [] : othersOpen;
         return frame(roundTitle, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, clock('Vote!'), categoryBox, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "text-start small text-secondary mb-3"
-        }, "Everything counts unless you tap it. Tap any answer that ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "doesn't fit the list"), ' ', "or is ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "really the same as someone else's"), "."), othersOpen.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        }, isThreefold ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "These answers matched! Everything counts unless you tap it. Tap any match that", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "doesn't really fit the list"), ".") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Everything counts unless you tap it. Tap any answer that ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "doesn't fit the list"), ' ', "or is ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "really the same as someone else's"), ".")), othersOpen.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "fw-bold"
         }, "Nothing of anyone else's to vote on this time.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: board,

@@ -47,6 +47,11 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
             if (item.status === 'dup') note = 'written twice';
             else if (item.status === 'crowded') note = `too many: ${names}`;
             else note = `= ${names}`;
+        } else if (item.status === 'scored' && phase === 'results' && item.counts === false) {
+            // A Threefold match the group voted out
+            classes.push('voted-out');
+            mark = <span className="ls-item-mark">✗</span>;
+            note = `👎 ${item.noVotes} of ${item.voterCount}`;
         } else if (item.status === 'scored') {
             classes.push('scored');
             if (phase === 'compare') classes.push('animate');
@@ -70,9 +75,11 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
             }
         }
 
-        // 🗳️ Phone voting: other players' surviving answers are buttons
-        if (phase === 'voting' && item.status === 'open' && onToggleVote && !isMine) {
-            const isNo = ballot?.has(item.id);
+        // 🗳️ Phone voting: answers up for a vote that aren't yours are buttons
+        // (copies of the same Threefold match share one vote key, so they flip together)
+        const canVoteOn = item.voteKey && !(item.voteSeats || []).includes(mySeat);
+        if (phase === 'voting' && canVoteOn && onToggleVote && !isMine) {
+            const isNo = ballot?.has(item.voteKey);
             return (
                 <li key={item.id}>
                     <button
@@ -80,7 +87,7 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
                         className={`ls-vote-btn ${isNo ? 'no' : ''}`}
                         aria-pressed={isNo}
                         aria-label={`${item.text}: ${isNo ? "doesn't count" : 'counts'}. Tap to change.`}
-                        onClick={() => onToggleVote(item.id)}
+                        onClick={() => onToggleVote(item.voteKey)}
                     >
                         <span className="ls-item-mark">{isNo ? '✗' : '✓'}</span>
                         <span className="ls-item-text">{item.text}</span>

@@ -33,6 +33,30 @@ const PROMPT_GRACE = 3 * 1000;
 // has used their one write-in, it's swapped for a 7th card so there are still 7.
 const HAND_SIZE = 6;
 
+// Cards that have been seen this game don't come back. Each room keeps the ids of every prompt
+// shown (all three options, picked or not) and every response card played; once a deck runs
+// out, it's shuffled back in.
+const drawFresh = async (room, type, size, alsoExclude = []) => {
+    const seenKey = type === 'prompt' ? 'seenPromptIds' : 'usedResponseIds';
+    room[seenKey] = room[seenKey] || [];
+    let cards = await drawCards(type, room.expansion, size, [...room[seenKey], ...alsoExclude]);
+    if (cards.length < size) {
+        room[seenKey] = [];
+        const ids = new Set(cards.map((c) => String(c._id)));
+        const more = await drawCards(type, room.expansion, size - cards.length, [...alsoExclude, ...cards.map((c) => c._id)]);
+        cards = [...cards, ...more.filter((c) => !ids.has(String(c._id)))];
+    }
+    if (type === 'prompt') room.seenPromptIds.push(...cards.map((c) => c._id));
+    return cards;
+};
+
+// A card a player just played goes on the "used" pile
+const markResponseUsed = (room, card) => {
+    if (!card?._id) return;
+    room.usedResponseIds = room.usedResponseIds || [];
+    room.usedResponseIds.push(card._id);
+};
+
 // A hand being dealt right now (roomCode:socketId -> Promise), so a double request only deals once
 const handDeals = new Map();
 
@@ -237,7 +261,7 @@ export default function registerCCNamespace(CCNS) {
         if (needed > 0) {
             // Don't deal a card that's already in someone's hand
             const inPlay = Object.values(room.hands).flat().map((card) => card._id).filter(Boolean);
-            const fresh = await drawCards('response', room.expansion, needed, inPlay);
+            const fresh = await drawFresh(room, 'response', needed, inPlay);
             hand = [...hand, ...fresh];
         }
 
@@ -263,7 +287,7 @@ export default function registerCCNamespace(CCNS) {
         });
 
         try {
-            const randomPrompts = await drawCards('prompt', room.expansion, 3);
+            const randomPrompts = await drawFresh(room, 'prompt', 3);
             room.promptOptions = randomPrompts;
             CCNS.to(roomCode).emit('prompt_options', { prompts: randomPrompts });
             startPromptTimer(roomCode);
@@ -706,7 +730,7 @@ export default function registerCCNamespace(CCNS) {
             if (room && (socket.id === room.hostId || room.players[socket.id]?.isCaster)) {
                 try {
                     room.gameState = 'prompt_selection';
-                    const randomPrompts = await drawCards('prompt', room.expansion, 3);
+                    const randomPrompts = await drawFresh(room, 'prompt', 3);
                     
                     // Store the prompts in the room state so the mobile host can access them
                     room.promptOptions = randomPrompts;
@@ -742,7 +766,10 @@ export default function registerCCNamespace(CCNS) {
                 if (!usedWriteIn) {
                     const hand = room.hands[socket.id] || [];
                     const card = hand.find((c) => String(c._id) === String(cardId)) || hand.find((c) => c.text === answer);
-                    if (card) room.playedCards[socket.id] = String(card._id);
+                    if (card) {
+                        room.playedCards[socket.id] = String(card._id);
+                        markResponseUsed(room, card);
+                    }
                 }
 
                 player.currentAnswer = answer;
@@ -799,7 +826,7 @@ export default function registerCCNamespace(CCNS) {
                         }
                     });
                     
-                    const randomPrompts = await drawCards('prompt', room.expansion, 3);
+                    const randomPrompts = await drawFresh(room, 'prompt', 3);
                     room.promptOptions = randomPrompts;
                     startPromptTimer(roomCode);
                     

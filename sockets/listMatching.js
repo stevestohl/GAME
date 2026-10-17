@@ -154,9 +154,12 @@ export function isSameItem(keyA, keyB) {
  *           'open'      Forgotten Four: nobody else wrote it, so it goes to the vote
  *           'matched'   Forgotten Four: someone else wrote it too: crossed out
  *           'scored'    One-on-One / Threefold: it matched the way the card wants: points!
+ *                       (Threefold's still go to a quick vote, to confirm they really fit the list)
  *           'crowded'   One-on-One: two or more others wrote it: crossed out
  *           'unmatched' One-on-One / Threefold: nobody else wrote it: no points
- *   points: how many scoring units the answer is worth (votes can still take Forgotten Four ones away)
+ *   points: how many scoring units the answer is worth (votes can still take some away)
+ *   voteKey / voteSeats: set on answers that go to a vote. Copies of the same matched answer share
+ *           one key, so they're voted on together; the players in `voteSeats` can't vote on it.
  */
 export function compareLists(players, cardId) {
     const card = getCard(cardId);
@@ -179,10 +182,22 @@ export function compareLists(players, cardId) {
         });
     });
 
-    all.forEach(({ seat, item }) => {
-        if (item.status === 'dup') return;
-        const matches = all.filter((o) => o.seat !== seat && o.item.status !== 'dup' && isSameAnswer(item, o.item));
-        const seats = [...new Set(matches.map((o) => o.seat))];
+    // Group answers that are the same thing. Matching is done in groups (not pair by pair) so it's
+    // always fair both ways: near-spellings can chain ("gaga" ~ "gagas" ~ "gagaa"), and pair by pair
+    // one player could score off a match while the player they matched gets crossed out.
+    const live = all.filter(({ item }) => item.status !== 'dup');
+    const parent = live.map((_, i) => i);
+    const root = (i) => (parent[i] === i ? i : (parent[i] = root(parent[i])));
+    for (let i = 0; i < live.length; i++) {
+        for (let j = i + 1; j < live.length; j++) {
+            if (live[i].seat !== live[j].seat && isSameAnswer(live[i].item, live[j].item)) parent[root(i)] = root(j);
+        }
+    }
+
+    live.forEach(({ seat, item }, i) => {
+        const group = live.filter((_, j) => root(j) === root(i));
+        const groupSeats = [...new Set(group.map((o) => o.seat))];
+        const seats = groupSeats.filter((s) => s !== seat);
         item.matchCount = seats.length;
         item.matchedWith = seats.map((s) => board.find((b) => b.seat === s)?.name).filter(Boolean);
 
@@ -192,9 +207,18 @@ export function compareLists(players, cardId) {
         } else if (card.id === 'threefold') {
             item.status = seats.length > 0 ? 'scored' : 'unmatched';
             item.points = seats.length;
+            // Matches still get a quick vote: does it really fit the list?
+            if (seats.length > 0) {
+                item.voteKey = `g${root(i)}`;
+                item.voteSeats = groupSeats;
+            }
         } else {
             item.status = seats.length > 0 ? 'matched' : 'open';
             item.points = seats.length > 0 ? 0 : 1;
+            if (seats.length === 0) {
+                item.voteKey = item.id;
+                item.voteSeats = [seat];
+            }
         }
     });
 
@@ -204,27 +228,23 @@ export function compareLists(players, cardId) {
 }
 
 /**
- * Counts the votes on every answer that went to a vote (Forgotten Four's survivors).
- * Each voter's ballot lists the answers they said "doesn't count"; everything else is a "counts".
- * An answer is thrown out only when MORE than half of the other players voted against it (a tie keeps it).
- * Answers that scored by matching (One-on-One, Threefold) don't need a vote: they count as they are.
+ * Counts the votes on every answer that went to a vote (Forgotten Four's survivors, Threefold's matches).
+ * Each voter's ballot lists the vote keys they said "doesn't count"; everything else is a "counts".
+ * An answer is thrown out only when MORE than half of the players who could vote on it voted against it
+ * (a tie keeps it). One-on-One matches don't need a vote: they count as they are.
  * @param {Array} board            from compareLists
  * @param {Array<{seat:number, ballot:string[]}>} voters   everyone who could vote this round
  */
 export function resolveVotes(board, voters) {
     board.forEach((entry) => {
         entry.items.forEach((item) => {
-            if (item.status === 'scored') {
-                item.counts = true;
+            if (!item.voteKey) {
+                item.counts = item.status === 'scored';
+                if (!item.counts) item.points = 0;
                 return;
             }
-            if (item.status !== 'open') {
-                item.counts = false;
-                item.points = 0;
-                return;
-            }
-            const eligible = voters.filter((v) => v.seat !== entry.seat);
-            const noVotes = eligible.filter((v) => (v.ballot || []).includes(item.id)).length;
+            const eligible = voters.filter((v) => !(item.voteSeats || []).includes(v.seat));
+            const noVotes = eligible.filter((v) => (v.ballot || []).includes(item.voteKey)).length;
             item.noVotes = noVotes;
             item.voterCount = eligible.length;
             item.counts = noVotes * 2 <= eligible.length;

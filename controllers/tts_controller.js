@@ -13,6 +13,11 @@ import { getListCastRoom } from "../sockets/lists_handler.js";
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || 'keLVje3aBMuRpxuu0bqO'; // "Crofty - Energetic Radio Host"
 const MODEL_ID = process.env.ELEVENLABS_MODEL_ID || 'eleven_flash_v2_5';   // fast + cheapest per character
 
+// Always English. Left to guess, the model sometimes hears a short or odd line
+// (a prompt full of blanks, a made-up name) as another language and reads it with a German accent.
+// Only the v2.5 models (flash/turbo) accept a language code.
+const LANGUAGE = MODEL_ID.includes('v2_5') ? { language_code: 'en' } : {};
+
 // --- Spending guards (ElevenLabs bills per character) ---
 const MAX_CHARS_PER_LINE = 400;
 const MAX_CHARS_PER_ROOM = 6000;
@@ -40,7 +45,7 @@ const generateSpeech = async (text, apiKey, attempt = 1) => {
                 'xi-api-key': apiKey,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ text, model_id: MODEL_ID }),
+            body: JSON.stringify({ text, model_id: MODEL_ID, ...LANGUAGE }),
             signal: AbortSignal.timeout(15000),
         });
     } catch (err) {

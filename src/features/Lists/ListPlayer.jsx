@@ -436,16 +436,23 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
                 ));
             }
 
-            // Only other players' surviving answers are up for a vote
-            const othersOpen = (room.board || []).filter((e) => e.seat !== mySeat && e.items.some((i) => i.status === 'open'));
+            // Only other players' answers that are up for a vote (and aren't a match of your own)
+            const isThreefold = room.card?.id === 'threefold';
+            const othersOpen = (room.board || []).filter((e) => e.seat !== mySeat
+                && e.items.some((i) => i.voteKey && !(i.voteSeats || []).includes(mySeat)));
             const board = isListopia ? room.board || [] : othersOpen;
             return frame(roundTitle, (
                 <>
                     {clock('Vote!')}
                     {categoryBox}
                     <p className="text-start small text-secondary mb-3">
-                        Everything counts unless you tap it. Tap any answer that <strong>doesn't fit the list</strong>
-                        {' '}or is <strong>really the same as someone else's</strong>.
+                        {isThreefold ? (
+                            <>These answers matched! Everything counts unless you tap it. Tap any match that
+                            {' '}<strong>doesn't really fit the list</strong>.</>
+                        ) : (
+                            <>Everything counts unless you tap it. Tap any answer that <strong>doesn't fit the list</strong>
+                            {' '}or is <strong>really the same as someone else's</strong>.</>
+                        )}
                     </p>
                     {othersOpen.length === 0 ? (
                         <p className="fw-bold">Nothing of anyone else's to vote on this time.</p>

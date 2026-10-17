@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { listsSocket as socket } from '../../socket';
 
@@ -7,6 +8,8 @@ import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic } from '../../timerMusic.js';
+import { scoreRecap } from '../../scoreRecap.js';
+import GameOverActions from '../Menu/GameOverActions.jsx';
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
@@ -48,6 +51,7 @@ export default function ListCastManager() {
 }
 
 function ListCastTV({ roomCode, casterName }) {
+    const navigate = useNavigate();
     const [room, setRoom] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const gameState = room?.gameState;
@@ -88,7 +92,22 @@ function ListCastTV({ roomCode, casterName }) {
     if (gameState === 'card' && room.card) voiceMoment = `card-${room.currentRound}`;
     else if (gameState === 'writing' && room.category) voiceMoment = `writing-${room.currentRound}`;
     else if (gameState === 'voting') voiceMoment = `voting-${room.currentRound}`;
+    // Results straight after a vote (anyone was asked to vote this round)
+    else if (gameState === 'results' && room.voterSeats?.length) voiceMoment = `votes-in-${room.currentRound}`;
     else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
+    else if (gameState === 'scoreboard') voiceMoment = `scores-${room.currentRound}`;
+
+    // 🏆 The score recap: on the scoreboard headline and read by the narrator (same as Couch Cast)
+    const recap = useMemo(() => {
+        if (gameState !== 'scoreboard' || !room) return null;
+        const players = Object.values(room.players).filter((p) => !p.isCaster);
+        return scoreRecap({
+            players,
+            roundHadWinner: players.some((p) => (p.roundPoints || 0) > 0),
+            round: room.currentRound,
+            isGameOver: !!room.isGameOver,
+        });
+    }, [gameState, room]);
 
     useEffect(() => {
         stopVoice();
@@ -100,14 +119,25 @@ function ListCastTV({ roomCode, casterName }) {
         } else if (voiceMoment.startsWith('writing')) {
             speak(`${room.category}. Go!`, code);
         } else if (voiceMoment.startsWith('voting')) {
-            speak('Time to vote! Does everything left really count?', code);
-        } else if (voiceMoment === 'game-over') {
-            const champion = Object.values(room.players)
-                .filter((p) => !p.isCaster)
-                .sort((a, b) => (b.score || 0) - (a.score || 0))[0];
-            if (champion && champion.score > 0) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
+            speak(room.card?.id === 'threefold'
+                ? 'Time to vote! Do those matches really count?'
+                : 'Time to vote! Does everything left really count?', code);
+        } else if (voiceMoment.startsWith('votes-in')) {
+            speak('The votes are in!', code);
+        } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
+            if (recap) speak(recap.spoken, code);
         }
     }, [voiceMoment]);
+
+    // 🔁 End of the game: the caster picks what happens next
+    const handlePlayAgain = () => {
+        startLobbyMusic();   // this tap lets the lobby music play again
+        socket.emit('playAgain', { roomCode: room?.roomCode });
+    };
+    const handleGoHome = () => {
+        socket.emit('endGame', { roomCode: room?.roomCode });
+        navigate('/home', { state: { toastMessage: 'Thanks for playing!' } });
+    };
 
     // ⏳ Tick-tock music while everyone writes their lists
     useTimerMusic(gameState === 'writing', { endTime: room?.endTime, key: room?.currentRound });
@@ -115,7 +145,7 @@ function ListCastTV({ roomCode, casterName }) {
     // Fetch the rules narration while everyone is still joining, so it starts instantly
     const lobbyRoomCode = room?.roomCode;
     useEffect(() => {
-        if (lobbyRoomCode) preloadVoice([...LIST_CAST_RULES_NARRATION, ...ALL_CARD_ANNOUNCEMENTS], lobbyRoomCode);
+        if (lobbyRoomCode) preloadVoice([...LIST_CAST_RULES_NARRATION, ...ALL_CARD_ANNOUNCEMENTS, 'The votes are in!'], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -161,7 +191,15 @@ function ListCastTV({ roomCode, casterName }) {
             case 'results':
                 return <ListBoardTV room={room} />;
             case 'scoreboard':
-                return <CouchCastScoreboardTV players={playersArray} isGameOver={room.isGameOver} nextLabel="Next list coming up..." />;
+                return (
+                    <CouchCastScoreboardTV
+                        players={playersArray}
+                        isGameOver={room.isGameOver}
+                        nextLabel="Next list coming up..."
+                        headline={recap?.headline}
+                        endActions={<GameOverActions onPlayAgain={handlePlayAgain} onGoHome={handleGoHome} />}
+                    />
+                );
             default:
                 return <div><h3 className="text-white">Unknown Game State: {gameState}</h3></div>;
         }

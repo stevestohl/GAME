@@ -12,7 +12,8 @@
 //   card    -> the round's card is revealed: how many to list and what counts
 //   writing -> everyone gets the same category and writes up to the card's list size before the clock runs out
 //   compare -> lists are compared and the card's rules are applied (scores, cross-outs)
-//   voting  -> Forgotten Four only: everyone votes on the answers nobody else wrote. Does it count or not?
+//   voting  -> Forgotten Four: everyone votes on the answers nobody else wrote. Threefold: on the matches.
+//              Does it count or not? (One-on-One skips the vote.)
 //   results -> every scoring answer earns POINTS_PER_ITEM (Threefold: per player matched)
 //   scoreboard -> then the next round (or the final standings)
 import { randomUUID } from "crypto";
@@ -190,7 +191,11 @@ export default function registerListsNamespace(LNS) {
         room.endTime = null;
         broadcast(roomCode);
 
-        const hasOpenItems = room.board.some(entry => entry.items.some(item => item.status === 'open'));
+        // Only hold a vote if someone here can actually vote on something (in a Threefold where everyone
+        // matched everything, there's nobody left to ask)
+        const seatsHere = activePlayers(room).map(p => p.joinOrder);
+        const hasOpenItems = room.board.some(entry => entry.items.some(item =>
+            item.voteKey && seatsHere.some(seat => !(item.voteSeats || []).includes(seat))));
         schedule(roomCode, room, 'compare', COMPARE_TIME, () => {
             if (hasOpenItems) startVoting(roomCode);
             else showResults(roomCode);
@@ -316,6 +321,48 @@ export default function registerListsNamespace(LNS) {
         LNS.to(roomCode).emit('room_closed', { roomCode, message });
         LNS.in(roomCode).socketsLeave(roomCode);
         delete activeListRooms[roomCode];
+    };
+
+    // --- Same players, fresh game (the caster tapped "Play Again" on the final scores) ---
+    const resetForNewGame = (roomCode) => {
+        const room = activeListRooms[roomCode];
+        if (!room) return;
+        clearTimer(room);
+
+        // Players who left during the last game don't come along
+        Object.keys(room.players).forEach((id) => {
+            const p = room.players[id];
+            if (!p.isCaster && !p.isConnected) delete room.players[id];
+        });
+
+        Object.values(room.players).forEach((p) => {
+            p.score = 0;
+            p.roundPoints = 0;
+            p.list = [];
+            p.hasSubmitted = false;
+            p.ballot = [];
+            p.hasVoted = false;
+        });
+
+        // The first player still here leads again (they get the start button)
+        const leader = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder)[0];
+        Object.values(room.players).forEach((p) => { p.isPlayerHost = !!leader && p.id === leader.id; });
+        room.hostId = leader ? leader.id : null;
+
+        room.gameId = randomUUID();
+        room.gameState = 'lobby';
+        room.currentRound = 1;
+        room.isGameOver = false;
+        room.categories = [];
+        room.cardTypes = [];
+        room.card = null;
+        room.category = null;
+        room.board = null;
+        room.voterSeats = [];
+        room.endTime = null;
+
+        console.log(`[Lists] Room ${roomCode}: playing again.`);
+        broadcast(roomCode);
     };
 
     // --- One device, one game (see the same helper in couchcast_handler.js) ---
@@ -497,6 +544,22 @@ export default function registerListsNamespace(LNS) {
             startRound(roomCode);
         });
 
+        // ---------- Event: The caster wants another game with the same players ----------
+        socket.on('playAgain', ({ roomCode } = {}) => {
+            const room = activeListRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            if (room.gameState !== 'scoreboard' || !room.isGameOver) return;   // only from the final scores
+            resetForNewGame(roomCode);
+        });
+
+        // ---------- Event: The caster is done for the night ----------
+        socket.on('endGame', ({ roomCode } = {}) => {
+            const room = activeListRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            socket.leave(roomCode);
+            closeRoom(roomCode, 'Thanks for playing! The host ended the game.');
+        });
+
         // ---------- Event: A phone sends its list as it's typed (so time-up never loses answers) ----------
         socket.on('update_list', ({ roomCode, items } = {}) => {
             const room = activeListRooms[roomCode];
@@ -528,12 +591,11 @@ export default function registerListsNamespace(LNS) {
             if (!room || !player || player.isCaster || room.gameState !== 'voting' || player.hasVoted) return;
             if (!room.voterSeats.includes(player.joinOrder)) return;
 
-            // Only real, still-open answers by OTHER players can be voted down
+            // Only answers up for a vote that aren't the voter's own can be voted down
             const allowed = new Set();
-            room.board.forEach((entry) => {
-                if (entry.seat === player.joinOrder) return;
-                entry.items.forEach((item) => { if (item.status === 'open') allowed.add(item.id); });
-            });
+            room.board.forEach((entry) => entry.items.forEach((item) => {
+                if (item.voteKey && !(item.voteSeats || []).includes(player.joinOrder)) allowed.add(item.voteKey);
+            }));
             player.ballot = Array.isArray(ballot) ? [...new Set(ballot)].filter(id => allowed.has(id)) : [];
             player.hasVoted = true;
 
