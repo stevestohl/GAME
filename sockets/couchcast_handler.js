@@ -452,6 +452,55 @@ export default function registerCCNamespace(CCNS) {
         delete activeCCRooms[roomCode];
     };
 
+    // --- HELPER: Same players, fresh game (the caster tapped "Play Again" on the final scores) ---
+    const resetForNewGame = (roomCode) => {
+        const room = activeCCRooms[roomCode];
+        if (!room) return;
+
+        if (room.timerId) clearTimeout(room.timerId);
+        room.timerId = null;
+
+        // Players who left during the last game don't come along
+        Object.keys(room.players).forEach((id) => {
+            const p = room.players[id];
+            if (!p.isCaster && !p.isConnected) delete room.players[id];
+        });
+
+        Object.values(room.players).forEach((p) => {
+            p.score = 0;
+            p.hasSubmitted = false;
+            p.currentAnswer = "";
+            p.hasUsedWriteIn = false;
+            p.answeredAt = null;
+            p.currentIsWriteIn = false;
+            p.isPlayerHost = false;
+        });
+
+        // The first player still here leads again (they get the "All in!" button)
+        const leader = Object.values(room.players)
+            .filter((p) => !p.isCaster)
+            .sort((a, b) => a.joinOrder - b.joinOrder)[0];
+        if (leader) leader.isPlayerHost = true;
+        room.hostId = leader ? leader.id : null;
+
+        room.gameId = randomUUID();   // a new game in the saved stats
+        room.gameState = 'lobby';
+        room.currentRound = 1;
+        room.currentHostIndex = 1;
+        room.currentPrompt = null;
+        room.promptOptions = null;
+        room.promptSubmissions = null;
+        room.promptAutoPicked = false;
+        room.roundResults = null;
+        room.endTime = null;
+        room.writingStartedAt = null;
+        room.hands = {};
+        room.playedCards = {};
+
+        console.log(`[Couch Cast] Room ${roomCode}: playing again.`);
+        CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+    };
+
     // --- HELPER: One device, one game ---
     // Before a device starts or joins a game, take it out of any other game it was in.
     // Without this it keeps receiving the old game's screens and the two fight for the display.
@@ -621,6 +670,22 @@ export default function registerCCNamespace(CCNS) {
             } catch (err) {
                 console.error("Error drawing hand:", err);
             }
+        });
+
+        // --- Event: The caster wants another game with the same players ---
+        socket.on('playAgain', ({ roomCode } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            if (room.gameState !== 'scoreboard') return;   // only from the final scores
+            resetForNewGame(roomCode);
+        });
+
+        // --- Event: The caster is done for the night ---
+        socket.on('endGame', ({ roomCode } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            socket.leave(roomCode);
+            closeRoom(roomCode, 'Thanks for playing! The host ended the game.');
         });
 
         // --- Event: Show Rules ---

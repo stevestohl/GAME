@@ -407,6 +407,207 @@
 }
 .tc-option.wrong { opacity: 0.4; }
 
+/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */
+.tc-slot {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+}
+.tc-slot > .tc-option,
+.tc-slot .tc-walker,
+.tc-slot .tc-eaten,
+.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }
+.tc-slot .tc-walker > .tc-option,
+.tc-slot .tc-eaten > .tc-option,
+.tc-slot .tc-placeholder > .tc-option,
+.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }
+/* During the reveal the wrong answers keep full colour until they leave */
+.tc-fx-shatter .tc-option.wrong,
+.tc-fx-walk .tc-option.wrong,
+.tc-fx-chomp .tc-option.wrong { opacity: 1; }
+
+/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */
+.tc-slot-correct { z-index: 3; }
+.tc-option.correct.tc-zoom {
+  position: relative;
+  z-index: 3;
+  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;
+}
+@keyframes tc-zoom {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }
+}
+@keyframes tc-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }
+  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }
+}
+
+/* 💥 Shatter: the card cracks, then its pieces fly apart */
+.tc-fx-shatter .tc-placeholder { visibility: hidden; }
+.tc-shard {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;
+}
+.tc-cracks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
+  pointer-events: none;
+  animation: tc-cracks 0.8s ease-out var(--delay) both;
+}
+@keyframes tc-shake {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(-1.5%, 1%); }
+  50%      { transform: translate(1.5%, -1%); }
+  75%      { transform: translate(-1%, -1%); }
+}
+@keyframes tc-fly {
+  from { transform: translate(0, 0) rotate(0); opacity: 1; }
+  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }
+}
+@keyframes tc-cracks {
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  60%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */
+.tc-fx-walk .tc-walker {
+  position: relative;
+  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;
+}
+.tc-legs {
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 92%;
+  height: clamp(10px, 3.2vh, 28px);
+  display: flex;
+  justify-content: space-between;
+  transform-origin: top center;
+  animation: tc-legs-grow 0.4s ease-out var(--delay) both;
+}
+.tc-leg {
+  position: relative;
+  width: clamp(4px, 0.9vh, 8px);
+  height: 100%;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  transform-origin: top center;
+  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;
+}
+.tc-leg.right { animation-direction: alternate-reverse; }
+/* Little shoes */
+.tc-leg::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: calc(50% - 2px);
+  width: 220%;
+  height: 35%;
+  border-radius: 6px;
+  background: #fff;
+  transform: translateX(calc(-30% * var(--dir, 1)));
+}
+@keyframes tc-legs-grow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+@keyframes tc-leg-swing {
+  from { transform: rotate(-24deg); }
+  to   { transform: rotate(24deg); }
+}
+@keyframes tc-walk-off {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }
+  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }
+  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }
+  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }
+  100% { transform: translate(calc(var(--dir) * 120vw), 0); }
+}
+
+/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */
+.tc-fx-chomp .tc-eaten {
+  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;
+}
+.tc-chompy-runner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 85%;
+  aspect-ratio: 1 / 1;
+  z-index: 2;
+  transform: translate(-100%, -50%);
+  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;
+}
+.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }
+.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }
+.tc-chompy-eye { fill: #1b1b1f; }
+.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }
+.tc-jaw {
+  transform-origin: 50px 50px;
+  animation: tc-chomp 0.18s ease-in-out infinite alternate;
+}
+.tc-jaw.top    { --open: -38deg; }
+.tc-jaw.bottom { --open: 38deg; }
+@keyframes tc-chomp {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(var(--open)); }
+}
+@keyframes tc-eat {
+  from { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 0 0 100%); }
+}
+@keyframes tc-chompy-run {
+  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */
+  4%   { left: 4%;   opacity: 1; }
+  92%  { left: 100%; opacity: 1; }
+  100% { left: 112%; opacity: 0; }
+}
+
+/* Reduce motion: no effects, the wrong answers just fade back */
+@media (prefers-reduced-motion: reduce) {
+  .tc-slot *, .tc-slot *::after { animation: none !important; }
+  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }
+  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }
+}
+
+/* 🔁 End of game: Play Again / Home (on the final scores) */
+.game-over-actions {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1.25rem);
+  flex-wrap: wrap;
+}
+.game-over-btn {
+  min-width: clamp(8rem, 22vw, 14rem);
+  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(0.9rem, 3.2vh, 1.4rem);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.1s ease, filter 0.15s ease;
+}
+.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }
+.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }
+.game-over-btn:active:not(:disabled) { transform: scale(0.97); }
+.game-over-btn:disabled { opacity: 0.6; }
+.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }
+
 .tc-results {
   display: flex;
   flex-wrap: wrap;

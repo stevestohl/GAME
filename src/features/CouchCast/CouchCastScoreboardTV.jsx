@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Badge, Spinner } from 'react-bootstrap';
 
-export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel = 'Next round starting soon...' }) {
+export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel = 'Next round starting soon...', headline, endActions }) {
     const [isPortrait, setIsPortrait] = useState(false);
     
     // Filter out the Caster and sort the rest by score (highest to lowest)
@@ -57,7 +57,14 @@ export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel =
                                 {isGameOver ? 'Final Standings' : 'Current Scores'}
                             </h2>
                             
-                            {leader && (
+                            {/* The narrator's recap line, when the game provides one */}
+                            {headline && (
+                                <h1 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1rem, 4.5vh, 2.2rem)', textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
+                                    {headline}
+                                </h1>
+                            )}
+
+                            {!headline && leader && (
                                 <h1 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1rem, 4.5vh, 2.2rem)', textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
                                     {/* Nobody on the board yet: don't crown a leader with zero points */}
                                     {(leader.score || 0) === 0
@@ -123,9 +130,11 @@ export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel =
             {/* Footer Section */}
             <div className="flex-shrink-0 text-center w-100" style={{ marginTop: '1.5vh', paddingBottom: '1.75rem' }}>
                 {isGameOver ? (
-                    <h4 className="text-white fw-semibold m-0" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)', fontSize: 'clamp(1rem, 2vh, 1.3rem)' }}>
-                        Thanks for playing! Close the room to start a new game.
-                    </h4>
+                    endActions || (
+                        <h4 className="text-white fw-semibold m-0" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)', fontSize: 'clamp(1rem, 2vh, 1.3rem)' }}>
+                            Thanks for playing! Close the room to start a new game.
+                        </h4>
+                    )
                 ) : (
                     <div className="d-flex align-items-center justify-content-center text-white opacity-90">
                         <Spinner animation="border" size="sm" className="me-2 text-primary" />

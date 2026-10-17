@@ -252,6 +252,49 @@ export default function registerTriviaCastNamespace(TCNS) {
         delete activeTCRooms[roomCode];
     };
 
+    // --- Same players, fresh game (the caster tapped "Play Again" on the final scores) ---
+    const resetForNewGame = (roomCode) => {
+        const room = activeTCRooms[roomCode];
+        if (!room) return;
+
+        if (room.timerId) clearTimeout(room.timerId);
+        room.timerId = null;
+
+        // Players who left during the last game don't come along
+        Object.keys(room.players).forEach((id) => {
+            const p = room.players[id];
+            if (!p.isCaster && !p.isConnected) delete room.players[id];
+        });
+
+        Object.values(room.players).forEach((p) => {
+            p.score = 0;
+            p.hasAnswered = false;
+            p.currentAnswer = null;
+            p.answeredAt = null;
+            p.lastCorrect = null;
+            p.lastPoints = 0;
+            p.isPlayerHost = false;
+        });
+
+        // The first player still here leads again (they get the "Everyone's in!" button)
+        const leader = Object.values(room.players)
+            .filter((p) => !p.isCaster)
+            .sort((a, b) => a.joinOrder - b.joinOrder)[0];
+        if (leader) leader.isPlayerHost = true;
+        room.hostId = leader ? leader.id : null;
+
+        room.gameId = randomUUID();   // a new game in the saved stats
+        room.gameState = 'lobby';
+        room.questions = null;        // a fresh set is drawn when the game starts
+        room.questionIndex = 0;
+        room.options = [];
+        room.endTime = null;
+        room.isGameOver = false;
+
+        console.log(`[Trivia Cast] Room ${roomCode}: playing again.`);
+        broadcast(roomCode);
+    };
+
     // --- One device, one game (see the same helper in couchcast_handler.js) ---
     const leaveOtherRooms = (socket, exceptCode) => {
         Object.keys(activeTCRooms).forEach((code) => {
@@ -410,6 +453,22 @@ export default function registerTriviaCastNamespace(TCNS) {
             if (!room || room.gameState !== 'rules') return;
             if (socket.id !== room.hostId && !room.players[socket.id]?.isCaster) return;
             startQuestion(roomCode);
+        });
+
+        // ---------- Event: The caster wants another game with the same players ----------
+        socket.on('playAgain', ({ roomCode } = {}) => {
+            const room = activeTCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            if (room.gameState !== 'scoreboard' || !room.isGameOver) return;
+            resetForNewGame(roomCode);
+        });
+
+        // ---------- Event: The caster is done for the night ----------
+        socket.on('endGame', ({ roomCode } = {}) => {
+            const room = activeTCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            socket.leave(roomCode);
+            closeRoom(roomCode, 'Thanks for playing! The host ended the game.');
         });
 
         // ---------- Event: A player taps an answer ----------

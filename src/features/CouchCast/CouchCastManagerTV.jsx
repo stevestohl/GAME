@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from "../../socket";
 
@@ -21,6 +22,8 @@ import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
 import { fillBlank } from './fillBlank.js';
+import { scoreRecap } from '../../scoreRecap.js';
+import GameOverActions from '../Menu/GameOverActions.jsx';
 
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
@@ -57,6 +60,7 @@ export default function CouchCastManager() {
     }
 
     // --- TV STATE MANAGEMENT ---
+    const navigate = useNavigate();
     const [gameState, setGameState] = useState('creating');
     const [roomData, setRoomData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
@@ -80,7 +84,18 @@ export default function CouchCastManager() {
     // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
     else if (gameState === 'winner_reveal' && roundResults?.winningSubmission) voiceMoment = `winner-${round}`;
     else if (gameState === 'scoreboard' && roundResults?.isGameOver) voiceMoment = 'game-over';
+    else if (gameState === 'scoreboard' && roomData) voiceMoment = `scores-${round}`;
 
+    // 🏆 The score recap: on the scoreboard headline and read by the narrator
+    const recap = useMemo(() => {
+        if (gameState !== 'scoreboard' || !roomData) return null;
+        return scoreRecap({
+            players: Object.values(roomData.players).filter((p) => !p.isCaster),
+            roundHadWinner: !!roundResults?.winner,
+            round,
+            isGameOver: !!roundResults?.isGameOver,
+        });
+    }, [gameState, roomData, roundResults, round]);
     useEffect(() => {
         // The screen changed: stop whatever was being said
         stopVoice();
@@ -104,13 +119,20 @@ export default function CouchCastManager() {
             speak([VOICE_WINNER_INTRO, `${sentence} That one came from ${playerName}!`], code);
             // Get the next judge's line ready while the confetti falls
             if (!roundResults.isGameOver && roundResults.nextHostName) preloadVoice(vibeLine(roundResults.nextHostName), code);
-        } else if (voiceMoment === 'game-over') {
-            const champion = Object.values(roomData.players)
-                .filter((p) => !p.isCaster)
-                .sort((a, b) => (b.score || 0) - (a.score || 0))[0];
-            if (champion) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
+        } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
+            if (recap) speak(recap.spoken, code);
         }
     }, [voiceMoment]);
+
+    // 🔁 End of the game: the caster picks what happens next
+    const handlePlayAgain = () => {
+        startLobbyMusic();   // this tap lets the lobby music play again
+        socket.emit('playAgain', { roomCode: roomData?.roomCode });
+    };
+    const handleGoHome = () => {
+        socket.emit('endGame', { roomCode: roomData?.roomCode });
+        navigate('/home', { state: { toastMessage: 'Thanks for playing!' } });
+    };
 
     // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes.
     // (The judge's pick is a 15-second clock on the screens; writing uses the server's clock.)
@@ -192,6 +214,8 @@ export default function CouchCastManager() {
             setRoomData(room);
             setGameState(room.gameState);
             if (room.currentPrompt) setCurrentPrompt(room.currentPrompt);
+            // "Play Again": forget the last game's results
+            if (room.gameState === 'lobby') setRoundResults(null);
         });
 
         socket.on('writing_phase_started', (data) => {
@@ -309,6 +333,8 @@ export default function CouchCastManager() {
                     <CouchCastScoreboardTV 
                         players={playersArray} 
                         isGameOver={roundResults?.isGameOver} // 👈 Also passed isGameOver here!
+                        headline={recap?.headline}
+                        endActions={<GameOverActions onPlayAgain={handlePlayAgain} onGoHome={handleGoHome} />}
                     />
                 );
 

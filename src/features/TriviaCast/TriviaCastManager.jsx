@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { triviaCastSocket as socket } from '../../socket';
 
@@ -15,6 +16,8 @@ import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION } 
 
 // Phone controller
 import TriviaCastPlayer from './TriviaCastPlayer.jsx';
+import { scoreRecap } from '../../scoreRecap.js';
+import GameOverActions from '../Menu/GameOverActions.jsx';
 
 /**
  * 📺❔ Trivia Cast. One address, two jobs:
@@ -44,6 +47,7 @@ export default function TriviaCastManager() {
     }
 
     // --- TV STATE ---
+    const navigate = useNavigate();
     const [room, setRoom] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -91,23 +95,44 @@ export default function TriviaCastManager() {
     if (gameState === 'question' && room.question) voiceMoment = `question-${room.currentRound}`;
     else if (gameState === 'reveal' && room.correctAnswer) voiceMoment = `reveal-${room.currentRound}`;
     else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
+    else if (gameState === 'scoreboard') voiceMoment = `scores-${room.currentRound}`;
 
+    // 🏆 The score recap: on the scoreboard headline and read by the narrator
+    const recap = useMemo(() => {
+        if (gameState !== 'scoreboard' || !room) return null;
+        const players = Object.values(room.players).filter((p) => !p.isCaster);
+        return scoreRecap({
+            players,
+            roundHadWinner: players.some((p) => (p.lastPoints || 0) > 0),
+            round: room.currentRound,
+            isGameOver: !!room.isGameOver,
+        });
+    }, [gameState, room]);
     useEffect(() => {
         stopVoice();
         if (!voiceMoment || !room) return;
         const code = room.roomCode;
 
         if (voiceMoment.startsWith('question')) {
-            speak(`Question ${room.currentRound}. ${room.question.text}`, code);
+            // Two lines, so the question on its own is cached and re-reading it at the reveal is free
+            speak([`Question ${room.currentRound}.`, room.question.text], code);
         } else if (voiceMoment.startsWith('reveal')) {
-            speak(`The answer is: ${room.correctAnswer}.`, code);
-        } else if (voiceMoment === 'game-over') {
-            const champion = Object.values(room.players)
-                .filter((p) => !p.isCaster)
-                .sort((a, b) => (b.score || 0) - (a.score || 0))[0];
-            if (champion) speak(`That's the game! ${champion.name} wins with ${champion.score} points. Thanks for playing!`, code);
+            // Read the question again, then the answer (the question is already cached, so it's instant)
+            speak([room.question.text, `The answer is: ${room.correctAnswer}.`], code);
+        } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
+            if (recap) speak(recap.spoken, code);
         }
     }, [voiceMoment]);
+
+    // 🔁 End of the game: the caster picks what happens next
+    const handlePlayAgain = () => {
+        startLobbyMusic();   // this tap lets the lobby music play again
+        socket.emit('playAgain', { roomCode: room?.roomCode });
+    };
+    const handleGoHome = () => {
+        socket.emit('endGame', { roomCode: room?.roomCode });
+        navigate('/home', { state: { toastMessage: 'Thanks for playing!' } });
+    };
 
     // ⏳ Tick-tock music while everyone answers
     useTimerMusic(gameState === 'question', { endTime: room?.endTime, key: room?.currentRound });
@@ -163,7 +188,15 @@ export default function TriviaCastManager() {
                 return <TriviaCastQuestionTV room={room} />;
 
             case 'scoreboard':
-                return <CouchCastScoreboardTV players={playersArray} isGameOver={room.isGameOver} nextLabel="Next question coming up..." />;
+                return (
+                    <CouchCastScoreboardTV
+                        players={playersArray}
+                        isGameOver={room.isGameOver}
+                        nextLabel="Next question coming up..."
+                        headline={recap?.headline}
+                        endActions={<GameOverActions onPlayAgain={handlePlayAgain} onGoHome={handleGoHome} />}
+                    />
+                );
 
             default:
                 return <div><h3 className="text-white">Unknown Game State: {gameState}</h3></div>;

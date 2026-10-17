@@ -6,10 +6,9 @@ import { speak, stopVoice } from '../../voice.js';
 // 🎙️ What the host voice says while the List Cast rules are on screen
 export const LIST_CAST_RULES_NARRATION = [
     "Welcome to List Cast! The game where it pays to know how your friends think.",
-    "Each round starts with a card, then a list appears on the TV. Write your answers on your phone before the clock runs out.",
-    "One on One: list ten, and score for every answer exactly one other player also wrote. If two or more wrote it, it's out.",
-    "Threefold: list three, and score for every player who wrote the same answer as you.",
-    "Forgotten Four: list four, and only answers nobody else thought of score. Then everyone votes on whether they really count.",
+    "Here's how it works. Every round, you'll get a topic, and you'll write a short list on your phone before the clock runs out.",
+    "The round's card tells you the goal. Some rounds, you want your answers to match the other players. Other rounds, you want answers nobody else thought of.",
+    "Threefold: match as many players as you can. One on One: match exactly one other player. Forgotten Four: don't match anybody.",
     "Let's get listing!",
 ];
 
@@ -17,28 +16,25 @@ export const LIST_CAST_RULES_NARRATION = [
 const NARRATION_GRACE_SECONDS = 20;
 
 /** The rules as a numbered list (TV rules screen and the Listopia phone rules) */
-export function ListRulesList({ pointsPerItem = 100, listSize = 5, style }) {
+export function ListRulesList({ pointsPerItem = 100, style }) {
     return (
         <ol className="d-flex flex-column mb-0" style={{ gap: '0.6em', ...style }}>
             <li>
-                <strong className="text-dark">Draw a Card, Write a List:</strong><br />
-                Each round's card says how many to list and what scores. Everyone gets the same category and races the clock.
+                <strong className="text-dark">Every Round, Write a List:</strong><br />
+                You'll get a topic. Write your list on your phone before the clock runs out.
             </li>
             <li>
-                <strong className="text-dark">🤝 One-on-One (list 10):</strong><br />
-                Score for each answer <strong>exactly one</strong> other player also wrote. Two or more? It's crossed out.
-            </li>
-            <li>
-                <strong className="text-dark">🎯 Threefold (list 3):</strong><br />
-                Score for <strong>every player</strong> who wrote the same answer as you.
-            </li>
-            <li>
-                <strong className="text-dark">👻 Forgotten Four (list 4):</strong><br />
-                Only answers <strong>nobody else</strong> wrote score, and the group votes on whether they really count.
+                <strong className="text-dark">The Card Sets the Goal:</strong><br />
+                Some rounds you want to <strong>match</strong> the other players, some rounds you <strong>don't</strong>.
+                <ul className="mt-1 mb-0 ps-3" style={{ listStyle: 'none' }}>
+                    <li>🎯 <strong>Threefold</strong> (list 3): match <strong>as many</strong> players as you can.</li>
+                    <li>🤝 <strong>One-on-One</strong> (list 10): match <strong>exactly one</strong> other player.</li>
+                    <li>👻 <strong>Forgotten Four</strong> (list 4): match <strong>nobody</strong>. The group votes on whether it counts.</li>
+                </ul>
             </li>
             <li>
                 <strong className="text-dark">Score:</strong><br />
-                <strong>{pointsPerItem} points</strong> each time you score. Most points at the end wins!
+                <strong>{pointsPerItem} points</strong> each time you hit the goal. Most points at the end wins!
             </li>
         </ol>
     );
