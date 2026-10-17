@@ -3,3 +3,6 @@ dist/
 build/
 .vscode/
 .env.local
+
+# Full-length audio before trimming (kept locally, never uploaded or committed)
+audio-originals/
