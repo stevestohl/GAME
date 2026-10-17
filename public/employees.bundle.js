@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./features/Employee/EmployeeList.jsx */ "./src/features/Employee/EmployeeList.jsx");
 /* harmony import */ var _features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./features/Employee/EmployeeReport.jsx */ "./src/features/Employee/EmployeeReport.jsx");
 /* harmony import */ var _features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features/Employee/EmployeeEdit.jsx */ "./src/features/Employee/EmployeeEdit.jsx");
@@ -30,17 +30,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./features/CouchCast/CouchCastDeckSelect.jsx */ "./src/features/CouchCast/CouchCastDeckSelect.jsx");
 /* harmony import */ var _features_Reshuffled_ReshuffledManagerTV_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/Reshuffled/ReshuffledManagerTV.jsx */ "./src/features/Reshuffled/ReshuffledManagerTV.jsx");
 /* harmony import */ var _features_Reshuffled_ReshuffledDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Reshuffled/ReshuffledDeckSelect.jsx */ "./src/features/Reshuffled/ReshuffledDeckSelect.jsx");
-/* harmony import */ var _features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/TicTacToe/TictactoeManager.jsx */ "./src/features/TicTacToe/TictactoeManager.jsx");
-/* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
-/* harmony import */ var _features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./features/Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
-/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
-/* harmony import */ var _features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastManager.jsx */ "./src/features/TriviaCast/TriviaCastManager.jsx");
-/* harmony import */ var _features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastDeckSelect.jsx */ "./src/features/TriviaCast/TriviaCastDeckSelect.jsx");
-/* harmony import */ var _features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./features/Lists/ListCastManager.jsx */ "./src/features/Lists/ListCastManager.jsx");
-/* harmony import */ var _features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./features/Lists/ListCastSetup.jsx */ "./src/features/Lists/ListCastSetup.jsx");
-/* harmony import */ var _features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./features/Lists/ListopiaManager.jsx */ "./src/features/Lists/ListopiaManager.jsx");
-/* harmony import */ var _features_Lists_ListopiaCreate_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./features/Lists/ListopiaCreate.jsx */ "./src/features/Lists/ListopiaCreate.jsx");
-/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
+/* harmony import */ var _features_Mixup_MixupManager_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Mixup/MixupManager.jsx */ "./src/features/Mixup/MixupManager.jsx");
+/* harmony import */ var _features_Mixup_MixupSetup_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/Mixup/MixupSetup.jsx */ "./src/features/Mixup/MixupSetup.jsx");
+/* harmony import */ var _features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./features/TicTacToe/TictactoeManager.jsx */ "./src/features/TicTacToe/TictactoeManager.jsx");
+/* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
+/* harmony import */ var _features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./features/Trivia/TriviaCreateButton.jsx */ "./src/features/Trivia/TriviaCreateButton.jsx");
+/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
+/* harmony import */ var _features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastManager.jsx */ "./src/features/TriviaCast/TriviaCastManager.jsx");
+/* harmony import */ var _features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastDeckSelect.jsx */ "./src/features/TriviaCast/TriviaCastDeckSelect.jsx");
+/* harmony import */ var _features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./features/Lists/ListCastManager.jsx */ "./src/features/Lists/ListCastManager.jsx");
+/* harmony import */ var _features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./features/Lists/ListCastSetup.jsx */ "./src/features/Lists/ListCastSetup.jsx");
+/* harmony import */ var _features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./features/Lists/ListopiaManager.jsx */ "./src/features/Lists/ListopiaManager.jsx");
+/* harmony import */ var _features_Lists_ListopiaCreate_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./features/Lists/ListopiaCreate.jsx */ "./src/features/Lists/ListopiaCreate.jsx");
+/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
 
 
 
@@ -64,6 +66,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
 
 
@@ -78,97 +82,103 @@ function Contents() {
   var NotFound = function NotFound() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Page Not Found");
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/home",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_GameCastHome_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/temple",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_Home_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/barhome",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_BarHome_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/join",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_26__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_28__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/tictactoe",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/tictactoe-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/trivia",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_21__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/trivia-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaCreateButton_jsx__WEBPACK_IMPORTED_MODULE_20__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/flashcards",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/flashcardsList",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/flashcardGame",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/prompt2",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2GameManager_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/prompt2-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2CreateButton_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/couchcast",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/couchcast-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/couchcast-decks",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/reshuffled",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Reshuffled_ReshuffledManagerTV_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/reshuffled-decks",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Reshuffled_ReshuffledDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
+    path: "/mixup",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Mixup_MixupManager_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
+    path: "/mixup-setup",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Mixup_MixupSetup_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/triviacast",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_20__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_22__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/triviacast-decks",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_21__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_23__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/listcast",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_22__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/listcast-setup",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_23__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_25__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/listopia",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_26__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/listopia-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListopiaCreate_jsx__WEBPACK_IMPORTED_MODULE_25__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListopiaCreate_jsx__WEBPACK_IMPORTED_MODULE_27__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/play",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/employees",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/edit/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/report",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "/",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Navigate, {
       replace: true,
       to: "/home"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
     path: "*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NotFound, null)
   }));
@@ -302,7 +312,7 @@ function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom) {
 
   // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
   (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
-  (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+  (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)((0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.lobbyTrackFor)('couchCast', expansion));
   if (setIsCreatingRoom) setIsCreatingRoom(true);
 
   // Set the timeout
@@ -417,6 +427,7 @@ function CouchCastDeckSelect() {
   // Start downloading the lobby music now, so it plays the moment a deck is tapped
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)('halloween');
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
@@ -862,7 +873,9 @@ function CouchCastLobby(_ref) {
     _ref$players = _ref.players,
     players = _ref$players === void 0 ? [] : _ref$players,
     _ref$title = _ref.title,
-    title = _ref$title === void 0 ? 'Couch Cast Room Created' : _ref$title;
+    title = _ref$title === void 0 ? 'Couch Cast Room Created' : _ref$title,
+    _ref$musicTrack = _ref.musicTrack,
+    musicTrack = _ref$musicTrack === void 0 ? 'default' : _ref$musicTrack;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isPortrait = _useState2[0],
@@ -881,7 +894,7 @@ function CouchCastLobby(_ref) {
     }, 100);
 
     // Usually already playing (started by the tap that created the room); this covers a refresh
-    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)(musicTrack);
     return function () {
       (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
       window.removeEventListener('resize', checkOrientation);
@@ -1180,6 +1193,7 @@ function CouchCastManager() {
 
   // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
+  var lobbyTrack = (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.lobbyTrackFor)('couchCast', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
 
   // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
   var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
@@ -1230,7 +1244,7 @@ function CouchCastManager() {
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(); // this tap lets the lobby music play again
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('playAgain', {
       roomCode: roomData === null || roomData === void 0 ? void 0 : roomData.roomCode
     });
@@ -1286,7 +1300,7 @@ function CouchCastManager() {
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
-    if (gameState === 'lobby') (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    if (gameState === 'lobby') (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
@@ -1391,7 +1405,8 @@ function CouchCastManager() {
       case 'lobby':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           roomCode: roomData.roomCode,
-          players: playersArray
+          players: playersArray,
+          musicTrack: lobbyTrack
         });
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -5569,6 +5584,7 @@ function ListCastTV(_ref) {
 
   // 🎨 Background follows the deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.listsTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
+  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.lobbyTrackFor)('listCast', room === null || room === void 0 ? void 0 : room.expansion);
 
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -5644,7 +5660,7 @@ function ListCastTV(_ref) {
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(); // this tap lets the lobby music play again
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.listsSocket.emit('playAgain', {
       roomCode: room === null || room === void 0 ? void 0 : room.roomCode
     });
@@ -5688,7 +5704,7 @@ function ListCastTV(_ref) {
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
@@ -5713,7 +5729,8 @@ function ListCastTV(_ref) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
           title: "List Cast Room Created",
           roomCode: room.roomCode,
-          players: playersArray
+          players: playersArray,
+          musicTrack: lobbyTrack
         });
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_11__.ListCastRulesTV, {
@@ -5841,7 +5858,8 @@ function ListCastSetup() {
 
   // Start downloading the lobby music now, so it plays the moment a deck is tapped
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)('listCast');
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)('halloween');
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
@@ -8647,21 +8665,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Couch_Cast_Button.jpg */ "./src/assets/logos/Couch_Cast_Button.jpg");
 /* harmony import */ var _assets_logos_Join_Room_Button_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/logos/Join_Room_Button.jpeg */ "./src/assets/logos/Join_Room_Button.jpeg");
 /* harmony import */ var _TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../TriviaCast/TriviaCastTile.jsx */ "./src/features/TriviaCast/TriviaCastTile.jsx");
 /* harmony import */ var _Lists_ListTiles_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Lists/ListTiles.jsx */ "./src/features/Lists/ListTiles.jsx");
 /* harmony import */ var _Reshuffled_ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Reshuffled/ReshuffledTile.jsx */ "./src/features/Reshuffled/ReshuffledTile.jsx");
-/* harmony import */ var _GameRow_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GameRow.jsx */ "./src/features/Menu/GameRow.jsx");
-/* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
-/* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
+/* harmony import */ var _Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Mixup/MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
+/* harmony import */ var _GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GameRow.jsx */ "./src/features/Menu/GameRow.jsx");
+/* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
+/* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -8671,6 +8690,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -8776,9 +8796,9 @@ var STEPS = [{
   text: 'Start the game, then everyone scans the QR code on the TV (or taps Join Room and types the code) to play from their own phone.'
 }];
 function HowToCast() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "border-0 shadow-sm gt-cast-steps"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
     className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "gt-cast-steps-title"
@@ -8811,8 +8831,8 @@ function HowToCast() {
  */
 function GameCastHome() {
   var _location$state;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useLocation)();
 
   // 🍞 "That game has ended" and friends land here
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.toastMessage) || ''),
@@ -8867,7 +8887,7 @@ function GameCastHome() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     style: {
       position: 'fixed',
       top: '20px',
@@ -8875,7 +8895,7 @@ function GameCastHome() {
       transform: 'translateX(-50%)',
       zIndex: 99999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     show: !!toastMsg,
     onClose: function onClose() {
       return setToastMsg('');
@@ -8883,19 +8903,19 @@ function GameCastHome() {
     delay: 4000,
     autohide: true,
     bg: "dark"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
     className: "fw-bold text-white text-center px-4 py-2"
-  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Header, {
     className: "main-card-header"
-  }, "GAME-CAST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
+  }, "GAME-CAST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
     className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HowToCast, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HowToCast, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: "g-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
-    xs: 12
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    xs: 12
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: imgBtnClass,
     onClick: function onClick() {
@@ -8910,7 +8930,7 @@ function GameCastHome() {
     alt: "Join a Room",
     className: "w-100 h-100",
     style: imgStyle
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     xs: 12,
     className: "d-flex align-items-center mb-1 position-relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -8922,7 +8942,7 @@ function GameCastHome() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "burglar-divider ".concat(burglarActive ? 'active' : '')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: isStolen ? _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_8__ : _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_7__,
+    src: isStolen ? _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_9__ : _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_8__,
     alt: "",
     "aria-hidden": "true",
     style: {
@@ -8930,15 +8950,15 @@ function GameCastHome() {
       height: 'auto',
       mixBlendMode: 'multiply'
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: "g-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     title: "Couch Cast",
     players: "3+ players",
     description: "An Apples to Apples\u2013style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     onClick: function onClick() {
@@ -8953,12 +8973,12 @@ function GameCastHome() {
     alt: "Couch Cast",
     className: "w-100 h-100",
     style: imgStyle
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     flip: true,
     title: "Trivia Cast",
     players: "2+ players",
     description: "Trivia night on the big screen. Questions show on the TV and everyone answers on their phone."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     onClick: function onClick() {
@@ -8968,11 +8988,11 @@ function GameCastHome() {
     style: _objectSpread({
       '--shimmer-delay': '0.8s'
     }, squareStyle)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     title: "List Cast",
     players: "3+ players",
     description: "Write a list on your phone and try not to match anyone. Matching answers get crossed out on the TV, then everyone votes on the rest."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     onClick: function onClick() {
@@ -8982,12 +9002,12 @@ function GameCastHome() {
     style: _objectSpread({
       '--shimmer-delay': '1.2s'
     }, squareStyle)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Lists_ListTiles_jsx__WEBPACK_IMPORTED_MODULE_4__.ListCastTile, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Lists_ListTiles_jsx__WEBPACK_IMPORTED_MODULE_4__.ListCastTile, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     flip: true,
     title: "Couch Cast Re-Shuffled",
     players: "3+ players",
     description: "Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     onClick: function onClick() {
@@ -8997,12 +9017,26 @@ function GameCastHome() {
     style: _objectSpread({
       '--shimmer-delay': '1.6s'
     }, squareStyle)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Reshuffled_ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Reshuffled_ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    title: "Temple Mix Up!",
+    players: "3+ players",
+    description: "Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    variant: "primary",
+    className: gameImgBtnClass,
+    onClick: function onClick() {
+      return navigate('/mixup-setup');
+    },
+    "aria-label": "Set up a Temple Mix Up game",
+    style: _objectSpread({
+      '--shimmer-delay': '2s'
+    }, squareStyle)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     xs: 12,
     className: "text-center mt-2 mb-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "small text-muted"
-  }, "No TV? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, "No TV? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "link",
     size: "sm",
     className: "p-0 fw-bold align-baseline",
@@ -9982,6 +10016,10 @@ function UniversalJoinScreen() {
       case 'C':
         targetRoute = "/couchcast?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
         break;
+      case 'M':
+        // Temple Mix Up
+        targetRoute = "/mixup?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        break;
       case 'S':
         // Couch Cast Re-Shuffled (experimental)
         targetRoute = "/reshuffled?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
@@ -10107,6 +10145,1915 @@ function UniversalJoinScreen() {
       return navigate('/');
     }
   }, "Back to Home")))));
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/DrawingCanvas.jsx":
+/*!**********************************************!*\
+  !*** ./src/features/Mixup/DrawingCanvas.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DrawingPad": () => (/* binding */ DrawingPad),
+/* harmony export */   "DrawingView": () => (/* binding */ DrawingView),
+/* harmony export */   "PEN_COLORS": () => (/* binding */ PEN_COLORS),
+/* harmony export */   "PEN_SIZES": () => (/* binding */ PEN_SIZES)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+/**
+ * ✏️ Pictionary drawing for Temple Mix Up.
+ *   DrawingPad  -> the drawer's phone: draw with a finger, the strokes stream to the server
+ *   DrawingView -> the TV (and the guessers' phones): the same drawing, appearing live
+ *
+ * A drawing is a list of strokes: { id, c: color, w: width, p: [[x, y], ...] }, with x, y and the
+ * width as fractions of the (square) canvas, so it looks the same on every screen size.
+ */
+
+var PEN_COLORS = ['#222222', '#e63946', '#1d4ed8', '#2a9d43', '#f4a11a', '#8b5cf6', '#8d5524'];
+var PEN_SIZES = [{
+  id: 'thin',
+  w: 0.008,
+  label: 'Thin'
+}, {
+  id: 'medium',
+  w: 0.018,
+  label: 'Medium'
+}, {
+  id: 'thick',
+  w: 0.035,
+  label: 'Thick'
+}];
+var ERASER = '#ffffff';
+var SEND_EVERY_MS = 50;
+var drawStroke = function drawStroke(ctx, stroke, size) {
+  var points = stroke.p;
+  if (!points.length) return;
+  ctx.strokeStyle = stroke.c;
+  ctx.fillStyle = stroke.c;
+  ctx.lineWidth = Math.max(1, stroke.w * size);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  if (points.length === 1) {
+    // A tap is a dot
+    ctx.beginPath();
+    ctx.arc(points[0][0] * size, points[0][1] * size, ctx.lineWidth / 2, 0, Math.PI * 2);
+    ctx.fill();
+    return;
+  }
+  ctx.beginPath();
+  ctx.moveTo(points[0][0] * size, points[0][1] * size);
+  for (var i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i][0] * size, points[i][1] * size);
+  }
+  ctx.stroke();
+};
+
+// Keeps a square canvas sharp at any size, and redraws everything when asked
+var useSquareCanvas = function useSquareCanvas(strokesRef) {
+  var canvasRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var sizeRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
+  var redraw = function redraw() {
+    var canvas = canvasRef.current;
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var size = sizeRef.current;
+    ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+    strokesRef.current.forEach(function (stroke) {
+      return drawStroke(ctx, stroke, size);
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var canvas = canvasRef.current;
+    if (!canvas) return undefined;
+    var fit = function fit() {
+      var size = canvas.clientWidth;
+      if (!size) return;
+      var ratio = window.devicePixelRatio || 1;
+      sizeRef.current = size;
+      canvas.width = Math.round(size * ratio);
+      canvas.height = Math.round(size * ratio);
+      redraw();
+    };
+    fit();
+    var observer = new ResizeObserver(fit);
+    observer.observe(canvas);
+    return function () {
+      return observer.disconnect();
+    };
+  }, []);
+  return {
+    canvasRef: canvasRef,
+    sizeRef: sizeRef,
+    redraw: redraw
+  };
+};
+
+/** 📺 Watch the drawing appear (TV, and guessers' phones) */
+function DrawingView(_ref) {
+  var roomCode = _ref.roomCode,
+    _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    style = _ref.style;
+  var strokesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
+  var _useSquareCanvas = useSquareCanvas(strokesRef),
+    canvasRef = _useSquareCanvas.canvasRef,
+    redraw = _useSquareCanvas.redraw;
+  var frame = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var queueRedraw = function queueRedraw() {
+      if (frame.current) return;
+      frame.current = requestAnimationFrame(function () {
+        frame.current = null;
+        redraw();
+      });
+    };
+    var handleSnapshot = function handleSnapshot(_ref2) {
+      var strokes = _ref2.strokes;
+      strokesRef.current = (strokes || []).map(function (s) {
+        return _objectSpread(_objectSpread({}, s), {}, {
+          p: _toConsumableArray(s.p)
+        });
+      });
+      queueRedraw();
+    };
+    var handlePoints = function handlePoints(_ref3) {
+      var _existing$p;
+      var stroke = _ref3.stroke;
+      var existing = strokesRef.current.find(function (s) {
+        return s.id === stroke.id;
+      });
+      if (existing) (_existing$p = existing.p).push.apply(_existing$p, _toConsumableArray(stroke.p));else strokesRef.current.push(_objectSpread(_objectSpread({}, stroke), {}, {
+        p: _toConsumableArray(stroke.p)
+      }));
+      queueRedraw();
+    };
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('drawing_snapshot', handleSnapshot);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('draw_points', handlePoints);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('get_drawing', {
+      roomCode: roomCode
+    }); // catch up on anything drawn already
+    return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('drawing_snapshot', handleSnapshot);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('draw_points', handlePoints);
+      if (frame.current) cancelAnimationFrame(frame.current);
+    };
+  }, [roomCode]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    ref: canvasRef,
+    className: "mx-canvas ".concat(className),
+    style: _objectSpread({
+      aspectRatio: '1 / 1',
+      width: '100%',
+      display: 'block'
+    }, style),
+    "aria-label": "The drawing",
+    role: "img"
+  });
+}
+
+/** 📱 Draw with a finger (the drawer's phone) */
+function DrawingPad(_ref4) {
+  var roomCode = _ref4.roomCode;
+  var strokesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
+  var _useSquareCanvas2 = useSquareCanvas(strokesRef),
+    canvasRef = _useSquareCanvas2.canvasRef,
+    sizeRef = _useSquareCanvas2.sizeRef,
+    redraw = _useSquareCanvas2.redraw;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(PEN_COLORS[0]),
+    _useState2 = _slicedToArray(_useState, 2),
+    color = _useState2[0],
+    setColor = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('medium'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    sizeId = _useState4[0],
+    setSizeId = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isErasing = _useState6[0],
+    setIsErasing = _useState6[1];
+  var current = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // the stroke being drawn
+  var unsent = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]); // its points not sent yet
+
+  var penWidth = function penWidth() {
+    return isErasing ? 0.05 : PEN_SIZES.find(function (s) {
+      return s.id === sizeId;
+    }).w;
+  };
+
+  // A clear (or a reconnect) from the server replaces what's on the pad
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleSnapshot = function handleSnapshot(_ref5) {
+      var strokes = _ref5.strokes;
+      strokesRef.current = (strokes || []).map(function (s) {
+        return _objectSpread(_objectSpread({}, s), {}, {
+          p: _toConsumableArray(s.p)
+        });
+      });
+      redraw();
+    };
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('drawing_snapshot', handleSnapshot);
+    return function () {
+      return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('drawing_snapshot', handleSnapshot);
+    };
+  }, []);
+
+  // Send new points in small batches, not one message per finger movement
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var timer = setInterval(function () {
+      var stroke = current.current;
+      if (!stroke || !unsent.current.length) return;
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('draw_points', {
+        roomCode: roomCode,
+        stroke: {
+          id: stroke.id,
+          c: stroke.c,
+          w: stroke.w,
+          p: unsent.current
+        }
+      });
+      unsent.current = [];
+    }, SEND_EVERY_MS);
+    return function () {
+      return clearInterval(timer);
+    };
+  }, [roomCode]);
+  var pointFrom = function pointFrom(e) {
+    var rect = canvasRef.current.getBoundingClientRect();
+    return [(e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height];
+  };
+  var handleDown = function handleDown(e) {
+    var _canvasRef$current$se, _canvasRef$current;
+    e.preventDefault();
+    (_canvasRef$current$se = (_canvasRef$current = canvasRef.current).setPointerCapture) === null || _canvasRef$current$se === void 0 ? void 0 : _canvasRef$current$se.call(_canvasRef$current, e.pointerId);
+    var stroke = {
+      id: Math.random().toString(36).slice(2, 10),
+      c: isErasing ? ERASER : color,
+      w: penWidth(),
+      p: [pointFrom(e)]
+    };
+    current.current = stroke;
+    strokesRef.current.push(stroke);
+    unsent.current = _toConsumableArray(stroke.p);
+    redraw();
+  };
+  var handleMove = function handleMove(e) {
+    var stroke = current.current;
+    if (!stroke) return;
+    e.preventDefault();
+    var point = pointFrom(e);
+    var last = stroke.p[stroke.p.length - 1];
+    if (Math.hypot(point[0] - last[0], point[1] - last[1]) < 0.003) return; // ignore tiny jitters
+    stroke.p.push(point);
+    unsent.current.push(point);
+    // Draw just the new bit (a full redraw on every move is too slow on phones)
+    var ctx = canvasRef.current.getContext('2d');
+    drawStroke(ctx, _objectSpread(_objectSpread({}, stroke), {}, {
+      p: [last, point]
+    }), sizeRef.current);
+  };
+  var handleUp = function handleUp() {
+    var stroke = current.current;
+    if (stroke && unsent.current.length) {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('draw_points', {
+        roomCode: roomCode,
+        stroke: {
+          id: stroke.id,
+          c: stroke.c,
+          w: stroke.w,
+          p: unsent.current
+        }
+      });
+    }
+    unsent.current = [];
+    current.current = null;
+  };
+  var handleClear = function handleClear() {
+    strokesRef.current = [];
+    redraw();
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('draw_clear', {
+      roomCode: roomCode
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    ref: canvasRef,
+    className: "mx-canvas mx-canvas-pad",
+    style: {
+      aspectRatio: '1 / 1',
+      width: '100%',
+      display: 'block',
+      touchAction: 'none'
+    },
+    onPointerDown: handleDown,
+    onPointerMove: handleMove,
+    onPointerUp: handleUp,
+    onPointerCancel: handleUp,
+    onPointerLeave: handleUp,
+    "aria-label": "Drawing pad: draw with your finger"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-tools mt-2",
+    role: "group",
+    "aria-label": "Pen color"
+  }, PEN_COLORS.map(function (c) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      key: c,
+      type: "button",
+      className: "mx-swatch ".concat(!isErasing && color === c ? 'selected' : ''),
+      style: {
+        background: c
+      },
+      "aria-label": "Pen color ".concat(c),
+      "aria-pressed": !isErasing && color === c,
+      onClick: function onClick() {
+        setColor(c);
+        setIsErasing(false);
+      }
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "button",
+    className: "mx-tool-btn ".concat(isErasing ? 'selected' : ''),
+    "aria-pressed": isErasing,
+    onClick: function onClick() {
+      return setIsErasing(function (v) {
+        return !v;
+      });
+    }
+  }, "\uD83E\uDDFD Eraser")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-tools mt-2",
+    role: "group",
+    "aria-label": "Pen size"
+  }, PEN_SIZES.map(function (s) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      key: s.id,
+      type: "button",
+      className: "mx-tool-btn ".concat(!isErasing && sizeId === s.id ? 'selected' : ''),
+      "aria-pressed": !isErasing && sizeId === s.id,
+      onClick: function onClick() {
+        setSizeId(s.id);
+        setIsErasing(false);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "mx-size-dot",
+      style: {
+        width: "".concat(6 + s.w * 300, "px"),
+        height: "".concat(6 + s.w * 300, "px")
+      }
+    }), s.label);
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "button",
+    className: "mx-tool-btn mx-clear",
+    onClick: handleClear
+  }, "\uD83D\uDDD1\uFE0F Clear")));
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/MixupManager.jsx":
+/*!*********************************************!*\
+  !*** ./src/features/Mixup/MixupManager.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MixupManager)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+/* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
+/* harmony import */ var _MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./MixupPlayer.jsx */ "./src/features/Mixup/MixupPlayer.jsx");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 🎪 Temple Mix Up. One address, two jobs:
+ *   role=caster -> the TV screen (this component)
+ *   role=guest  -> a player's phone (MixupPlayer)
+ */
+function MixupManager() {
+  (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  var searchParams = new URLSearchParams(window.location.search);
+  var roomCode = (searchParams.get('room') || '').toUpperCase();
+  var name = searchParams.get('name') || 'Caster';
+  if (searchParams.get('role') === 'guest') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      roomCode: roomCode,
+      playerName: name
+    }), roomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "cc-room-code"
+    }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, roomCode)));
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MixupTV, {
+    roomCode: roomCode,
+    casterName: name
+  });
+}
+
+// What the narrator says to open each round
+var introLine = function introLine(room) {
+  var round = room.round;
+  if (round.type === 'meme') return "Round ".concat(room.currentRound, ". Meme time! Write the funniest caption you can.");
+  if (round.type === 'draw') return "Round ".concat(room.currentRound, ". Pictionary! ").concat(round.drawerName, ", you're drawing. Everyone else, get guessing!");
+  return "Round ".concat(room.currentRound, ". Trivia time!");
+};
+function MixupTV(_ref) {
+  var _room$round, _room$round2;
+  var roomCode = _ref.roomCode,
+    casterName = _ref.casterName;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    room = _useState2[0],
+    setRoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    errorMessage = _useState4[0],
+    setErrorMessage = _useState4[1];
+  var gameState = room === null || room === void 0 ? void 0 : room.gameState;
+
+  // 🎨 Background follows the block of rounds, and covers the nav bar on the TV
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.mixupTheme)(room === null || room === void 0 ? void 0 : (_room$round = room.round) === null || _room$round === void 0 ? void 0 : _room$round.type), true);
+
+  // --- SOCKET LISTENERS ---
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var joinMyRoom = function joinMyRoom() {
+      return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('joinRoom', {
+        roomCode: roomCode,
+        playerName: casterName
+      });
+    };
+    var handleRoomUpdate = function handleRoomUpdate(update) {
+      if ((update === null || update === void 0 ? void 0 : update.roomCode) === roomCode) setRoom(update);
+    };
+    var handleJoinError = function handleJoinError(msg) {
+      setErrorMessage(msg);
+      setTimeout(function () {
+        return setErrorMessage('');
+      }, 5000);
+    };
+    var handleClosed = function handleClosed() {
+      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        message = _ref2.message;
+      return navigate('/home', {
+        state: {
+          toastMessage: message || 'That game has ended.'
+        }
+      });
+    };
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('room_updated', handleRoomUpdate);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('joinError', handleJoinError);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('room_closed', handleClosed);
+    if (roomCode) {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('connect', joinMyRoom);
+      if (_socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.connected) joinMyRoom();else _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.connect();
+    } else {
+      setErrorMessage('No room code found in the URL!');
+    }
+    return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('connect', joinMyRoom);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('room_updated', handleRoomUpdate);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('joinError', handleJoinError);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('room_closed', handleClosed);
+    };
+  }, [roomCode, casterName]);
+
+  // 🏆 The score recap: on the scoreboard headline and read by the narrator
+  var recap = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    if (gameState !== 'scoreboard' || !room) return null;
+    var players = Object.values(room.players).filter(function (p) {
+      return !p.isCaster;
+    });
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_7__.scoreRecap)({
+      players: players,
+      roundHadWinner: players.some(function (p) {
+        return (p.roundPoints || 0) > 0;
+      }),
+      round: room.currentRound,
+      isGameOver: !!room.isGameOver
+    });
+  }, [gameState, room]);
+
+  // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
+  var n = room === null || room === void 0 ? void 0 : room.currentRound;
+  var voiceMoment = null;
+  if (gameState === 'intro' && room.round) voiceMoment = "intro-".concat(n);else if (gameState === 'meme_vote') voiceMoment = "vote-".concat(n);else if (gameState === 'meme_results') voiceMoment = "meme-results-".concat(n);else if (gameState === 'draw_results') voiceMoment = "draw-results-".concat(n);else if (gameState === 'trivia' && (_room$round2 = room.round) !== null && _room$round2 !== void 0 && _room$round2.question) voiceMoment = "trivia-".concat(n);else if (gameState === 'trivia_results') voiceMoment = "trivia-results-".concat(n);else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : "scores-".concat(n);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
+    if (!voiceMoment || !room) return;
+    var code = room.roomCode;
+    var round = room.round;
+    if (voiceMoment.startsWith('intro')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(introLine(room), code);
+    } else if (voiceMoment.startsWith('vote')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)('Time to vote! Pick the funniest caption. Not your own!', code);
+    } else if (voiceMoment.startsWith('meme-results')) {
+      var winners = (round.captions || []).filter(function (c) {
+        return (round.winnerIds || []).includes(c.id);
+      });
+      if (winners.length === 1) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(["The funniest caption goes to ".concat(winners[0].name, "."), winners[0].text], code);else if (winners.length > 1) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("It's a tie! ".concat(winners.map(function (w) {
+        return w.name;
+      }).join(' and '), " both score."), code);else (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)('Nobody wrote a caption that time!', code);
+    } else if (voiceMoment.startsWith('draw-results')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(round.guessedBy ? "".concat(round.guessedBy, " got it! It was ").concat(round.word, ".") : "Time's up! It was ".concat(round.word, "."), code);
+    } else if (voiceMoment.startsWith('trivia-results')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)("The answer is ".concat(round.correctAnswer, "."), code);
+    } else if (voiceMoment.startsWith('trivia')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(round.question.text, code);
+    } else if (recap) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(recap.spoken, code);
+    }
+  }, [voiceMoment]);
+
+  // ⏳ Timer music while people are writing, voting, drawing or answering
+  var isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'trivia'].includes(gameState);
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_6__.useTimerMusic)(isTimerPhase, {
+    endTime: room === null || room === void 0 ? void 0 : room.endTime,
+    key: "".concat(gameState, "-").concat(n)
+  });
+
+  // Fetch the rules narration while everyone is still joining, so it starts instantly
+  var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!']), lobbyRoomCode);
+  }, [lobbyRoomCode]);
+
+  // 🔇 After a page refresh the browser mutes us until someone taps the screen
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isSoundLocked = _useState6[0],
+    setIsSoundLocked = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var isCurrent = true;
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.canPlaySound)().then(function (allowed) {
+      if (isCurrent) setIsSoundLocked(!allowed);
+    });
+    return function () {
+      isCurrent = false;
+    };
+  }, []);
+  var handleTurnSoundOn = function handleTurnSoundOn() {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    setIsSoundLocked(false);
+  };
+
+  // 🔁 End of the game: the caster picks what happens next
+  var handlePlayAgain = function handlePlayAgain() {
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('playAgain', {
+      roomCode: room === null || room === void 0 ? void 0 : room.roomCode
+    });
+  };
+  var handleGoHome = function handleGoHome() {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('endGame', {
+      roomCode: room === null || room === void 0 ? void 0 : room.roomCode
+    });
+    navigate('/home', {
+      state: {
+        toastMessage: 'Thanks for playing!'
+      }
+    });
+  };
+
+  // Leaving the game: stop talking
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return _voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice;
+  }, []);
+  var renderGamePhase = function renderGamePhase() {
+    if (!room) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "fullscreen-gameplay-container justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        animation: "border",
+        variant: "light"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "mt-3 text-white"
+      }, "Powering up the TV..."));
+    }
+    var playersArray = Object.values(room.players);
+    switch (gameState) {
+      case 'lobby':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          title: "Temple Mix Up Room Created",
+          roomCode: room.roomCode,
+          players: playersArray
+        });
+      case 'rules':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.MixupRulesTV, {
+          roomCode: room.roomCode,
+          totalRounds: room.totalRounds
+        });
+      case 'intro':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.RoundIntroTV, {
+          room: room
+        });
+      case 'meme_write':
+      case 'meme_vote':
+      case 'meme_results':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.MemeTV, {
+          room: room
+        });
+      case 'draw':
+      case 'draw_results':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.DrawTV, {
+          room: room
+        });
+      case 'trivia':
+      case 'trivia_results':
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.TriviaTV, {
+          room: room
+        });
+      case 'scoreboard':
+        {
+          // Rounds come in blocks of each type: work out what's next from the round number
+          var each = room.totalRounds / 3;
+          var nextLook = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.ROUND_LOOKS[['meme', 'draw', 'trivia'][Math.floor(room.currentRound / each)]];
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+            players: playersArray,
+            isGameOver: room.isGameOver,
+            nextLabel: nextLook ? "Next up: ".concat(nextLook.icon, " ").concat(nextLook.title) : 'Next round coming up...',
+            headline: recap === null || recap === void 0 ? void 0 : recap.headline,
+            endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              onPlayAgain: handlePlayAgain,
+              onGoHome: handleGoHome
+            })
+          });
+        }
+      default:
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "text-white"
+        }, "Unknown Game State: ", gameState));
+    }
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    fluid: true,
+    className: "p-0",
+    style: {
+      minHeight: '100vh'
+    }
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    variant: "danger",
+    className: "text-center m-2 position-absolute w-100",
+    style: {
+      zIndex: 10002
+    }
+  }, errorMessage), renderGamePhase(), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "button",
+    className: "cc-sound-button",
+    onClick: handleTurnSoundOn
+  }, "\uD83D\uDD07 Tap to turn sound back on"), (room === null || room === void 0 ? void 0 : room.roomCode) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cc-room-code"
+  }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, room.roomCode)));
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/MixupPlayer.jsx":
+/*!********************************************!*\
+  !*** ./src/features/Mixup/MixupPlayer.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MixupPlayer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DrawingCanvas.jsx */ "./src/features/Mixup/DrawingCanvas.jsx");
+/* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
+/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+/**
+ * 📱 Temple Mix Up on a player's phone: write captions, vote, draw or guess, answer trivia.
+ * The TV shows everything big; the phone is the controller.
+ */
+function MixupPlayer(_ref) {
+  var _room$round, _room$round2, _players$find;
+  var roomCode = _ref.roomCode,
+    playerName = _ref.playerName;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    room = _useState2[0],
+    setRoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState4 = _slicedToArray(_useState3, 2),
+    mine = _useState4[0],
+    setMine = _useState4[1]; // this phone's private bits (my caption id, my word to draw)
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState6 = _slicedToArray(_useState5, 2),
+    error = _useState6[0],
+    setError = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    caption = _useState8[0],
+    setCaption = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState9, 2),
+    guess = _useState10[0],
+    setGuess = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    guessFeedback = _useState12[0],
+    setGuessFeedback = _useState12[1]; // 'wrong' | 'right'
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 2),
+    myGuesses = _useState14[0],
+    setMyGuesses = _useState14[1];
+  var lastRound = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.mixupTheme)(room === null || room === void 0 ? void 0 : (_room$round = room.round) === null || _room$round === void 0 ? void 0 : _room$round.type));
+
+  // --- Join, and stay joined through refreshes and network blips ---
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var playerId = localStorage.getItem('templePlayerId');
+    if (!playerId) {
+      playerId = 'player_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('templePlayerId', playerId);
+    }
+    var joinMyRoom = function joinMyRoom() {
+      return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('joinRoom', {
+        roomCode: roomCode,
+        playerName: playerName,
+        playerId: playerId
+      });
+    };
+    var handleRoom = function handleRoom(update) {
+      if ((update === null || update === void 0 ? void 0 : update.roomCode) === roomCode) setRoom(update);
+    };
+    var handleMyState = function handleMyState(state) {
+      return setMine(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), state);
+      });
+    };
+    var handleJoinError = function handleJoinError(msg) {
+      return setError(msg);
+    };
+    var handleClosed = function handleClosed() {
+      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        message = _ref2.message;
+      return navigate('/home', {
+        state: {
+          toastMessage: message || 'That game has ended.'
+        }
+      });
+    };
+    var handleGuessResult = function handleGuessResult(_ref3) {
+      var correct = _ref3.correct;
+      setGuessFeedback(correct ? 'right' : 'wrong');
+      if (correct) (0,_chime_js__WEBPACK_IMPORTED_MODULE_2__.playChime)();
+    };
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('room_updated', handleRoom);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('my_state', handleMyState);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('joinError', handleJoinError);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('room_closed', handleClosed);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('guess_result', handleGuessResult);
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('connect', joinMyRoom);
+    if (_socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.connected) joinMyRoom();else _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.connect();
+    return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('room_updated', handleRoom);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('my_state', handleMyState);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('joinError', handleJoinError);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('room_closed', handleClosed);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('guess_result', handleGuessResult);
+      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('connect', joinMyRoom);
+    };
+  }, [roomCode, playerName]);
+
+  // A new round: clear the boxes
+  var roundKey = room ? "".concat(room.currentRound, "-").concat((_room$round2 = room.round) === null || _room$round2 === void 0 ? void 0 : _room$round2.type) : null;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!roundKey || roundKey === lastRound.current) return;
+    lastRound.current = roundKey;
+    setCaption('');
+    setGuess('');
+    setGuessFeedback(null);
+    setMyGuesses([]);
+    setMine({});
+  }, [roundKey]);
+  var timeLeft = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.useCountdown)(room === null || room === void 0 ? void 0 : room.endTime);
+  if (error && !room) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+      title: "Temple Mix Up"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      variant: "danger"
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      variant: "primary",
+      className: "w-100",
+      onClick: function onClick() {
+        return navigate('/join');
+      }
+    }, "Back to Join"));
+  }
+  if (!room) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+      title: "Temple Mix Up"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      animation: "border",
+      variant: "primary"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "text-muted mt-2 mb-0"
+    }, "Joining room ", roomCode, "..."));
+  }
+  var me = Object.values(room.players).find(function (p) {
+    return p.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id;
+  }) || {};
+  var round = room.round;
+  var isLeader = room.hostId === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id;
+  var players = Object.values(room.players).filter(function (p) {
+    return !p.isCaster && p.isConnected;
+  });
+  var roundTitle = round ? "Round ".concat(room.currentRound, " of ").concat(room.totalRounds) : 'Temple Mix Up';
+  var clock = timeLeft !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-phone-clock ".concat(timeLeft <= 10 ? 'low' : '')
+  }, "\u23F1\uFE0F ", timeLeft, "s");
+  switch (room.gameState) {
+    // ===================== LOBBY / RULES =====================
+    case 'lobby':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+        title: "You're In!"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "text-muted"
+      }, "Look up at the TV. ", players.length, " player", players.length === 1 ? '' : 's', " so far."), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        variant: "warning",
+        className: "py-2"
+      }, error), isLeader ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-3 border border-warning rounded bg-white shadow-sm"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fw-bold text-dark mb-3"
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        variant: "primary",
+        size: "lg",
+        className: "w-100 fw-bold py-3",
+        onClick: function onClick() {
+          setError('');
+          _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('startGame', {
+            roomCode: roomCode
+          });
+        }
+      }, "All in!"), players.length < room.minPlayers && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "small text-muted mt-2 mb-0"
+      }, "You need at least ", room.minPlayers, " players.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "p-3 border rounded bg-light text-muted"
+      }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, ((_players$find = players.find(function (p) {
+        return p.id === room.hostId;
+      })) === null || _players$find === void 0 ? void 0 : _players$find.name) || 'the leader'), " to start the game..."));
+    case 'rules':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+        title: "How to Play"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mx-phone-rules text-start"
+      }, ['meme', 'draw', 'trivia'].map(function (type) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          key: type,
+          className: "mb-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "me-2"
+        }, _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.ROUND_LOOKS[type].icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.ROUND_LOOKS[type].title), " ", _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.ROUND_LOOKS[type].blurb);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "text-muted small mb-0 mt-2"
+      }, "Listen to the TV. The game starts in a moment!"));
+
+    // ===================== A ROUND'S TITLE CARD =====================
+    case 'intro':
+      {
+        var look = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.ROUND_LOOKS[round.type];
+        var amDrawing = round.type === 'draw' && round.drawerId === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+          title: roundTitle
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mx-phone-intro-icon"
+        }, look.icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+          className: "fw-bold"
+        }, look.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "text-muted mb-0"
+        }, round.type === 'draw' ? amDrawing ? "🎨 You're drawing! Get ready..." : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.drawerName), " is drawing. Get ready to guess!") : look.blurb));
+      }
+
+    // ===================== MEMES =====================
+    case 'meme_write':
+      if (me.hasSubmitted) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Waiting, {
+        title: roundTitle,
+        icon: "\u2705",
+        text: "Caption in! Waiting for everyone else..."
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+        title: roundTitle,
+        right: clock
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.MemeImage, {
+        meme: round.meme,
+        className: "mx-meme-small mb-3"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        onSubmit: function onSubmit(e) {
+          e.preventDefault();
+          if (caption.trim()) _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('submit_caption', {
+            roomCode: roomCode,
+            caption: caption
+          });
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Control, {
+        as: "textarea",
+        rows: 2,
+        maxLength: 120,
+        value: caption,
+        onChange: function onChange(e) {
+          return setCaption(e.target.value);
+        },
+        placeholder: "Write the funniest caption...",
+        className: "fs-5 fw-bold mb-2",
+        "aria-label": "Your caption"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        type: "submit",
+        variant: "success",
+        size: "lg",
+        className: "w-100 fw-bold",
+        disabled: !caption.trim()
+      }, "Send caption")));
+    case 'meme_vote':
+      {
+        var choices = (round.captions || []).filter(function (c) {
+          return c.id !== mine.myCaptionId;
+        });
+        if (me.hasVoted) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Waiting, {
+          title: roundTitle,
+          icon: "\uD83D\uDDF3\uFE0F",
+          text: "Vote in! Waiting for everyone else..."
+        });
+        if (!choices.length) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Waiting, {
+          title: roundTitle,
+          icon: "\uD83C\uDF7F",
+          text: "Nothing to vote on this time. Watch the TV!"
+        });
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+          title: roundTitle,
+          right: clock
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+          className: "fw-bold mb-1"
+        }, "Which caption is funniest?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "small text-muted mb-3"
+        }, "Tap one. Yours isn't on the list."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "d-flex flex-column gap-2"
+        }, choices.map(function (c) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+            key: c.id,
+            variant: "outline-primary",
+            className: "text-start p-3 text-wrap fw-bold bg-white text-dark",
+            onClick: function onClick() {
+              return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('submit_vote', {
+                roomCode: roomCode,
+                captionId: c.id
+              });
+            }
+          }, c.text);
+        })));
+      }
+    case 'meme_results':
+      {
+        var winners = (round.captions || []).filter(function (c) {
+          return (round.winnerIds || []).includes(c.id);
+        });
+        var iWon = winners.some(function (c) {
+          return c.playerId === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id;
+        });
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+          title: roundTitle
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mx-phone-intro-icon"
+        }, iWon ? '🏆' : winners.length ? '😂' : '🦗'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "fw-bold"
+        }, iWon ? 'Your caption won! +100' : winners.length ? "".concat(winners.map(function (w) {
+          return w.name;
+        }).join(' & '), " ").concat(winners.length > 1 ? 'tie!' : 'wins!') : 'No captions this time'), winners[0] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.MemeImage, {
+          meme: round.meme,
+          caption: winners[0].text,
+          className: "mx-meme-small mt-2"
+        }));
+      }
+
+    // ===================== PICTIONARY =====================
+    case 'draw':
+      {
+        if (round.drawerId === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+            title: "\uD83C\uDFA8 You're drawing!",
+            right: clock
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "mx-draw-word"
+          }, "Draw: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, mine.drawWord || '...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+            className: "small text-muted mb-2"
+          }, "No letters or numbers! Everyone's guessing on their phones."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_4__.DrawingPad, {
+            roomCode: roomCode
+          }));
+        }
+        var sendGuess = function sendGuess(e) {
+          e.preventDefault();
+          var text = guess.trim();
+          if (!text) return;
+          _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('submit_guess', {
+            roomCode: roomCode,
+            guess: text
+          });
+          setMyGuesses(function (prev) {
+            return [text].concat(_toConsumableArray(prev)).slice(0, 5);
+          });
+          setGuess('');
+        };
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+          title: "".concat(round.drawerName, " is drawing"),
+          right: clock
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_4__.DrawingView, {
+          roomCode: roomCode,
+          className: "mx-canvas-small mb-2"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          onSubmit: sendGuess,
+          className: "d-flex gap-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Control, {
+          value: guess,
+          onChange: function onChange(e) {
+            setGuess(e.target.value);
+            setGuessFeedback(null);
+          },
+          placeholder: "Type a guess...",
+          maxLength: 40,
+          autoComplete: "off",
+          className: "fs-5 fw-bold",
+          "aria-label": "Your guess"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          type: "submit",
+          variant: "success",
+          className: "fw-bold px-3",
+          disabled: !guess.trim()
+        }, "Guess")), guessFeedback === 'wrong' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mx-guess-nope mt-2"
+        }, "\u274C Nope! Keep guessing."), myGuesses.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "small text-muted mt-1"
+        }, "Tried: ", myGuesses.join(', ')));
+      }
+    case 'draw_results':
+      {
+        var iGuessed = round.guessedBy && round.guessedBy === me.name;
+        var iDrew = round.drawerId === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+          title: roundTitle
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mx-phone-intro-icon"
+        }, iGuessed ? '🎯' : iDrew && round.guessedBy ? '🎨' : round.guessedBy ? '✏️' : '⏰'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "fw-bold"
+        }, iGuessed ? 'You got it! +100' : iDrew && round.guessedBy ? "".concat(round.guessedBy, " guessed your drawing! +50") : round.guessedBy ? "".concat(round.guessedBy, " got it!") : "Time's up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "fs-5 mb-0"
+        }, "It was ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.word), "."));
+      }
+
+    // ===================== TRIVIA =====================
+    case 'trivia':
+      if (me.hasSubmitted) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Waiting, {
+        title: roundTitle,
+        icon: "\uD83D\uDD12",
+        text: "Answer locked in! Waiting for everyone else..."
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+        title: roundTitle,
+        right: clock
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+        className: "fw-bold mb-3 lh-base"
+      }, round.question.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "d-flex flex-column gap-2"
+      }, round.question.options.map(function (option, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          key: option,
+          variant: "outline-primary",
+          className: "text-start p-3 text-wrap fw-bold bg-white text-dark",
+          onClick: function onClick() {
+            return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('submit_answer', {
+              roomCode: roomCode,
+              option: option
+            });
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "me-2 text-primary"
+        }, String.fromCharCode(65 + i), "."), option);
+      })));
+    case 'trivia_results':
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+        title: roundTitle
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "mx-phone-intro-icon"
+      }, me.lastCorrect ? '🎉' : '😬'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "fw-bold"
+      }, me.lastCorrect ? 'Correct! +100' : 'Not this time'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "fs-5 mb-0"
+      }, "The answer: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.correctAnswer)));
+
+    // ===================== SCORES =====================
+    case 'scoreboard':
+      {
+        var ranked = _toConsumableArray(players).sort(function (a, b) {
+          return (b.score || 0) - (a.score || 0);
+        });
+        var place = ranked.findIndex(function (p) {
+          return p.id === _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.id;
+        }) + 1;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+          title: room.isGameOver ? 'Final Scores' : roundTitle
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "mx-phone-intro-icon"
+        }, room.isGameOver ? place === 1 ? '👑' : '🎉' : '📊'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+          className: "fw-bold mb-1"
+        }, me.score || 0, " points"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "text-muted"
+        }, place ? "You're #".concat(place, " of ").concat(ranked.length) : ''), room.isGameOver && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          variant: "outline-secondary",
+          className: "w-100 fw-bold",
+          onClick: function onClick() {
+            return navigate('/home');
+          }
+        }, "Back to Home"));
+      }
+    default:
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+        title: "Temple Mix Up"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        animation: "border"
+      }));
+  }
+}
+function Frame(_ref4) {
+  var title = _ref4.title,
+    right = _ref4.right,
+    children = _ref4.children;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "page-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    className: "main-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
+    className: "main-card-header d-flex justify-content-between align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, title), right), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+    className: "text-center p-3"
+  }, children)));
+}
+function Waiting(_ref5) {
+  var title = _ref5.title,
+    icon = _ref5.icon,
+    text = _ref5.text;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+    title: title
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-phone-intro-icon"
+  }, icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "fs-5 fw-bold mb-0"
+  }, text));
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/MixupScreensTV.jsx":
+/*!***********************************************!*\
+  !*** ./src/features/Mixup/MixupScreensTV.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DrawTV": () => (/* binding */ DrawTV),
+/* harmony export */   "MIXUP_RULES_NARRATION": () => (/* binding */ MIXUP_RULES_NARRATION),
+/* harmony export */   "MemeImage": () => (/* binding */ MemeImage),
+/* harmony export */   "MemeTV": () => (/* binding */ MemeTV),
+/* harmony export */   "MixupRulesTV": () => (/* binding */ MixupRulesTV),
+/* harmony export */   "ROUND_LOOKS": () => (/* binding */ ROUND_LOOKS),
+/* harmony export */   "RoundIntroTV": () => (/* binding */ RoundIntroTV),
+/* harmony export */   "TriviaTV": () => (/* binding */ TriviaTV),
+/* harmony export */   "useCountdown": () => (/* binding */ useCountdown)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DrawingCanvas.jsx */ "./src/features/Mixup/DrawingCanvas.jsx");
+/* harmony import */ var _TriviaCast_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../TriviaCast/TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
+/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+// 🎙️ What the host voice says while the rules are on screen
+var MIXUP_RULES_NARRATION = ["Welcome to Temple Mix Up! Three games in one.", "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.", "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.", "And to finish, trivia. Tap the right answer before time runs out.", "Let's mix it up!"];
+
+// If the voice stalls, start the game anyway this many seconds after the countdown ends
+var NARRATION_GRACE_SECONDS = 20;
+var ROUND_LOOKS = {
+  meme: {
+    icon: '🖼️',
+    title: 'Meme It!',
+    blurb: 'Write the funniest caption on your phone.'
+  },
+  draw: {
+    icon: '✏️',
+    title: 'Draw It!',
+    blurb: 'One draws, everyone else guesses. First right guess wins!'
+  },
+  trivia: {
+    icon: '❓',
+    title: 'Know It!',
+    blurb: 'Tap the right answer before time runs out.'
+  }
+};
+function useCountdown(endTime) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    timeLeft = _useState2[0],
+    setTimeLeft = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!endTime) {
+      setTimeLeft(null);
+      return undefined;
+    }
+    var update = function update() {
+      return setTimeLeft(Math.max(0, Math.ceil((endTime - Date.now()) / 1000)));
+    };
+    update();
+    var timer = setInterval(update, 250);
+    return function () {
+      return clearInterval(timer);
+    };
+  }, [endTime]);
+  return timeLeft;
+}
+
+/** The clock along the bottom of a TV screen */
+function ClockStrip(_ref) {
+  var endTime = _ref.endTime,
+    left = _ref.left;
+  var timeLeft = useCountdown(endTime);
+  var total = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  if (timeLeft !== null && (total.current === null || timeLeft > total.current)) total.current = timeLeft;
+  var percent = total.current ? timeLeft / total.current * 100 : 100;
+  var isLow = timeLeft !== null && timeLeft <= 10;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-between align-items-center mb-1 px-1 mx-strip"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, left), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: isLow ? 'text-danger' : ''
+  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    now: percent,
+    variant: isLow ? 'danger' : 'light',
+    className: "mx-bar"
+  }));
+}
+
+/** A meme with a caption across the bottom, in classic meme lettering */
+function MemeImage(_ref2) {
+  var meme = _ref2.meme,
+    caption = _ref2.caption,
+    _ref2$className = _ref2.className,
+    className = _ref2$className === void 0 ? '' : _ref2$className;
+  if (!meme) return null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-meme ".concat(className)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: meme.url,
+    alt: meme.name,
+    className: "mx-meme-img"
+  }), caption && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-meme-caption"
+  }, caption));
+}
+
+// ======================================================================================
+// 📜 Rules
+// ======================================================================================
+function MixupRulesTV(_ref3) {
+  var roomCode = _ref3.roomCode,
+    totalRounds = _ref3.totalRounds;
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(45),
+    _useState4 = _slicedToArray(_useState3, 2),
+    timeLeft = _useState4[0],
+    setTimeLeft = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isNarrating = _useState6[0],
+    setIsNarrating = _useState6[1];
+  var hasStarted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  var each = totalRounds / 3;
+  var handleNext = function handleNext() {
+    if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
+    hasStarted.current = true;
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('startRounds', {
+      roomCode: roomCode
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var isCurrent = true;
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.speak)(MIXUP_RULES_NARRATION, roomCode).then(function (wasSpoken) {
+      if (!isCurrent) return;
+      setIsNarrating(false);
+      if (wasSpoken) setTimeout(function () {
+        return isCurrent && handleNext();
+      }, 800);
+    });
+    return function () {
+      isCurrent = false;
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.stopVoice)();
+    };
+  }, [roomCode]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (timeLeft <= 0 && (!isNarrating || timeLeft <= -NARRATION_GRACE_SECONDS)) {
+      handleNext();
+      return undefined;
+    }
+    var timerId = setInterval(function () {
+      return setTimeLeft(function (prev) {
+        return prev - 1;
+      });
+    }, 1000);
+    return function () {
+      return clearInterval(timerId);
+    };
+  }, [timeLeft, isNarrating]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 p-3 pb-4 w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header text-center"
+  }, "How To Play Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-rules-grid flex-grow-1",
+    style: {
+      minHeight: 0
+    }
+  }, ['meme', 'draw', 'trivia'].map(function (type, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: type,
+      className: "shining-border-wrapper h-100"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      className: "fullscreen-gameplay-card h-100 mx-rule-card"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+      className: "d-flex flex-column align-items-center text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-rule-step"
+    }, "Part ", i + 1, " \xB7 ", each, " rounds"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-rule-icon"
+    }, ROUND_LOOKS[type].icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-rule-title"
+    }, ROUND_LOOKS[type].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-rule-text"
+    }, type === 'meme' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Caption the meme on your phone, then vote for the funniest (not your own). ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Most votes: +100."), " Ties all score."), type === 'draw' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "One player draws on their phone, the rest type guesses. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "First right guess: +100"), ", and the artist gets ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "+50"), "."), type === 'trivia' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Tap the right answer before the clock runs out. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Right answer: +100."))))));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex justify-content-between align-items-center mt-3 mx-strip",
+    style: {
+      paddingRight: '7rem'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Game starts in ", Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    variant: "light",
+    size: "sm",
+    className: "fw-bold px-4",
+    onClick: handleNext
+  }, "Skip \u23ED"))));
+}
+
+// ======================================================================================
+// 🎬 A round's title card
+// ======================================================================================
+function RoundIntroTV(_ref4) {
+  var room = _ref4.room;
+  var round = room.round;
+  var look = ROUND_LOOKS[round.type];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro-round"
+  }, "Round ", room.currentRound, " of ", room.totalRounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro-icon"
+  }, look.icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro-title"
+  }, look.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro-blurb"
+  }, round.type === 'draw' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.drawerName), " is drawing. Everyone else, get guessing!") : look.blurb), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro-count"
+  }, look.title.replace('!', ''), " ", round.typeNumber, " of ", round.typeCount)));
+}
+
+// ======================================================================================
+// 🖼️ Memes: writing, voting, results
+// ======================================================================================
+function MemeTV(_ref5) {
+  var _winners$;
+  var room = _ref5.room;
+  var round = room.round;
+  var state = room.gameState;
+  var players = Object.values(room.players).filter(function (p) {
+    return !p.isCaster && p.isConnected;
+  });
+  var captions = round.captions || [];
+  var winners = captions.filter(function (c) {
+    return (round.winnerIds || []).includes(c.id);
+  });
+  var heading = 'Caption this!';
+  if (state === 'meme_vote') heading = 'Vote for the funniest!';
+  if (state === 'meme_results') heading = winners.length > 1 ? "It's a tie!" : winners.length ? 'The funniest caption...' : 'Nobody wrote a caption!';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 px-3 pb-4 w-100",
+    style: {
+      maxWidth: '1400px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header mb-0"
+  }, heading, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tc-category"
+  }, "Round ", room.currentRound, " of ", room.totalRounds, " \xB7 Meme ", round.typeNumber, "/", round.typeCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-meme-row flex-grow-1",
+    style: {
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-meme-stage"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MemeImage, {
+    meme: round.meme,
+    caption: state === 'meme_results' ? (_winners$ = winners[0]) === null || _winners$ === void 0 ? void 0 : _winners$.text : null
+  })), state === 'meme_vote' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-caption-list"
+  }, captions.map(function (c, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: c.id,
+      className: "mx-caption-card"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "mx-caption-letter"
+    }, String.fromCharCode(65 + i)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, c.text));
+  })), state === 'meme_results' && captions.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-caption-list"
+  }, captions.map(function (c) {
+    var isWinner = (round.winnerIds || []).includes(c.id);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: c.id,
+      className: "mx-caption-card ".concat(isWinner ? 'winner' : '')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "mx-caption-votes"
+    }, isWinner ? '👑' : '', " ", c.votes, " ", c.votes === 1 ? 'vote' : 'votes'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, c.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "mx-caption-name"
+    }, c.name, isWinner ? ' · +100' : ''));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-shrink-0",
+    style: {
+      marginTop: '1.5vh',
+      paddingRight: '7rem'
+    }
+  }, state === 'meme_write' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ClockStrip, {
+    endTime: room.endTime,
+    left: "\u270D\uFE0F ".concat(players.filter(function (p) {
+      return p.hasSubmitted;
+    }).length, " of ").concat(players.length, " captions in")
+  }), state === 'meme_vote' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ClockStrip, {
+    endTime: room.endTime,
+    left: "\uD83D\uDDF3\uFE0F ".concat(players.filter(function (p) {
+      return p.hasVoted;
+    }).length, " of ").concat(players.length, " voted \xB7 vote on your phone")
+  }))));
+}
+
+// ======================================================================================
+// ✏️ Pictionary: the live drawing, then the answer
+// ======================================================================================
+function DrawTV(_ref6) {
+  var room = _ref6.room;
+  var round = room.round;
+  var isResults = room.gameState === 'draw_results';
+  var guesses = round.guesses || [];
+  var feedEnd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var _feedEnd$current;
+    (_feedEnd$current = feedEnd.current) === null || _feedEnd$current === void 0 ? void 0 : _feedEnd$current.scrollIntoView({
+      block: 'end'
+    });
+  }, [guesses.length]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fullscreen-gameplay-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 px-3 pb-4 w-100",
+    style: {
+      maxWidth: '1400px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "fullscreen-gameplay-header mb-0"
+  }, isResults ? round.guessedBy ? "".concat(round.guessedBy, " got it!") : "Time's up!" : "".concat(round.drawerName, " is drawing..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tc-category"
+  }, "Round ", room.currentRound, " of ", room.totalRounds, " \xB7 Pictionary ", round.typeNumber, "/", round.typeCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-draw-row flex-grow-1",
+    style: {
+      minHeight: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-draw-stage"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_3__.DrawingView, {
+    roomCode: room.roomCode
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-draw-side"
+  }, isResults ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-answer-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-answer-label"
+  }, "It was..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-answer-word"
+  }, round.word), round.guessedBy ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-answer-points"
+  }, "\uD83C\uDF89 ", round.guessedBy, " +100 \xB7 \uD83C\uDFA8 ", round.drawerName, " +50") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-answer-points"
+  }, "Nobody guessed it this time.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-guess-feed"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-guess-title"
+  }, "Guesses so far"), guesses.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-guess-empty"
+  }, "Type your guesses on your phone!"), guesses.map(function (g, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: i,
+      className: "mx-guess"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, g.name, ":"), " ", g.text, " \u274C");
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    ref: feedEnd
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-shrink-0",
+    style: {
+      marginTop: '1.5vh',
+      paddingRight: '7rem'
+    }
+  }, !isResults && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ClockStrip, {
+    endTime: room.endTime,
+    left: "\u270F\uFE0F ".concat(round.drawerName, " draws \xB7 first right guess wins")
+  }))));
+}
+
+// ======================================================================================
+// ❓ Trivia: Trivia Cast's own question screen, fed this round's question
+// ======================================================================================
+function TriviaTV(_ref7) {
+  var room = _ref7.room;
+  var round = room.round;
+  var players = {};
+  Object.values(room.players).forEach(function (p) {
+    players[p.id] = _objectSpread(_objectSpread({}, p), {}, {
+      hasAnswered: p.hasSubmitted
+    });
+  });
+  var view = _objectSpread(_objectSpread({}, room), {}, {
+    players: players,
+    currentRound: round.typeNumber,
+    totalRounds: round.typeCount,
+    question: round.question,
+    correctAnswer: round.correctAnswer || null
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_4__.TriviaCastQuestionTV, {
+    room: view
+  });
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/MixupSetup.jsx":
+/*!*******************************************!*\
+  !*** ./src/features/Mixup/MixupSetup.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MIXUP_ROUND_OPTIONS": () => (/* binding */ MIXUP_ROUND_OPTIONS),
+/* harmony export */   "default": () => (/* binding */ MixupSetup)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var _MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
+/* harmony import */ var _mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixupCreate.js */ "./src/features/Mixup/mixupCreate.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _Menu_RoundsPicker_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/RoundsPicker.jsx */ "./src/features/Menu/RoundsPicker.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var MIXUP_ROUND_OPTIONS = [9, 12, 15];
+
+/**
+ * 🎪 Temple Mix Up setup: what the game is, how many rounds, and start.
+ */
+function MixupSetup() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isCreatingRoom = _useState2[0],
+    setIsCreatingRoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(MIXUP_ROUND_OPTIONS[0]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    totalRounds = _useState4[0],
+    setTotalRounds = _useState4[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+  }, []);
+  var each = totalRounds / 3;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "page-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "main-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
+    className: "main-card-header"
+  }, "Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+    className: "p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "bg-light border-0 shadow-sm m-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+    className: "p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: "g-2 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    xs: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "w-100 rounded shadow-sm"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    xs: 8,
+    className: "text-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fw-bold mb-1"
+  }, "Temple Mix Up!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "text-muted fw-normal small ms-2"
+  }, "3+ players")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "small text-secondary lh-sm"
+  }, "Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown. Cast one extra device to the TV as the main screen."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex align-items-center my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-2 small fw-bold text-muted text-uppercase"
+  }, "How Many Rounds?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_RoundsPicker_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    label: "Rounds",
+    options: MIXUP_ROUND_OPTIONS,
+    value: totalRounds,
+    onChange: setTotalRounds,
+    disabled: isCreatingRoom
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "small text-muted text-center mt-2 mb-3"
+  }, "\uD83D\uDDBC\uFE0F ", each, " meme rounds, then \u270F\uFE0F ", each, " Pictionary, then \u2753 ", each, " trivia."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    variant: "primary",
+    size: "lg",
+    className: "w-100 fw-bold py-3 shadow-sm",
+    disabled: isCreatingRoom,
+    onClick: function onClick() {
+      return (0,_mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__.createMixupRoom)(navigate, setIsCreatingRoom, {
+        totalRounds: totalRounds
+      });
+    }
+  }, "Start a Mix Up room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    variant: "outline-secondary",
+    className: "w-100 fw-bold mt-2",
+    disabled: isCreatingRoom,
+    onClick: function onClick() {
+      return navigate('/home');
+    }
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    show: isCreatingRoom,
+    backdrop: "static",
+    keyboard: false,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+    className: "d-flex flex-column align-items-center justify-content-center p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    animation: "border",
+    variant: "primary",
+    className: "mb-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "fw-bold text-dark"
+  }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted small mb-0"
+  }, "Waking up game server..."))));
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/MixupTile.jsx":
+/*!******************************************!*\
+  !*** ./src/features/Mixup/MixupTile.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MixupTile)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/**
+ * 🎪 Game tile for Temple Mix Up, drawn in code to match the other cast tiles: a blue glass square
+ * with the three round types on it (a meme picture, a pencil and a question mark) and the name.
+ */
+function MixupTile(_ref) {
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? 'w-100 h-100' : _ref$className,
+    style = _ref.style;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 200 200",
+    className: className,
+    style: _objectSpread({
+      display: 'block'
+    }, style),
+    role: "img",
+    "aria-label": "Temple Mix Up"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("linearGradient", {
+    id: "mxTileBg",
+    x1: "0",
+    y1: "0",
+    x2: "0",
+    y2: "1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "0",
+    stopColor: "#5d7fe8"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "1",
+    stopColor: "#3550c8"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    width: "200",
+    height: "200",
+    fill: "url(#mxTileBg)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    fill: "none",
+    stroke: "#fff",
+    strokeWidth: "5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: "22",
+    y: "40",
+    width: "54",
+    height: "50",
+    rx: "6"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M28 82 L42 66 L52 76 L60 68 L70 82",
+    strokeWidth: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M30 50 H68",
+    strokeWidth: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M92 92 L128 44 L138 52 L102 100 L90 104 Z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M122 52 L132 60",
+    strokeWidth: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M84 116 q8 -8 14 0 t14 0",
+    strokeWidth: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M152 52 q0 -14 14 -14 q14 0 14 13 q0 10 -12 15 q-3 2 -3 9"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "165",
+    cy: "92",
+    r: "4",
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: "100",
+    y: "152",
+    textAnchor: "middle",
+    fill: "#fff",
+    fontSize: "25",
+    fontWeight: "700",
+    fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+  }, "Temple"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: "100",
+    y: "180",
+    textAnchor: "middle",
+    fill: "#fff",
+    fontSize: "25",
+    fontWeight: "700",
+    fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+  }, "Mix Up!"));
 }
 
 /***/ }),
@@ -11472,7 +13419,7 @@ function handleCreateReshuffled(playerName, navigate, setIsCreatingRoom) {
 
   // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
   (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
-  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)((0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.lobbyTrackFor)('reshuffled', expansion));
   if (setIsCreatingRoom) setIsCreatingRoom(true);
 
   // Set the timeout
@@ -11587,6 +13534,7 @@ function ReshuffledDeckSelect() {
   // Start downloading the lobby music now, so it plays the moment a deck is tapped
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)('halloween');
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
@@ -12028,7 +13976,9 @@ function ReshuffledLobby(_ref) {
     _ref$players = _ref.players,
     players = _ref$players === void 0 ? [] : _ref$players,
     _ref$title = _ref.title,
-    title = _ref$title === void 0 ? 'Couch Cast Re-Shuffled Room Created' : _ref$title;
+    title = _ref$title === void 0 ? 'Couch Cast Re-Shuffled Room Created' : _ref$title,
+    _ref$musicTrack = _ref.musicTrack,
+    musicTrack = _ref$musicTrack === void 0 ? 'default' : _ref$musicTrack;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isPortrait = _useState2[0],
@@ -12047,7 +13997,7 @@ function ReshuffledLobby(_ref) {
     }, 100);
 
     // Usually already playing (started by the tap that created the room); this covers a refresh
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)(musicTrack);
     return function () {
       (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
       window.removeEventListener('resize', checkOrientation);
@@ -12346,6 +14296,7 @@ function ReshuffledManager() {
 
   // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
+  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.lobbyTrackFor)('reshuffled', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
 
   // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
   var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
@@ -12396,7 +14347,7 @@ function ReshuffledManager() {
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(); // this tap lets the lobby music play again
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('playAgain', {
       roomCode: roomData === null || roomData === void 0 ? void 0 : roomData.roomCode
     });
@@ -12452,7 +14403,7 @@ function ReshuffledManager() {
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
@@ -12557,7 +14508,8 @@ function ReshuffledManager() {
       case 'lobby':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           roomCode: roomData.roomCode,
-          players: playersArray
+          players: playersArray,
+          musicTrack: lobbyTrack
         });
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -14240,8 +16192,10 @@ function HandCard(_ref) {
     return clearTimeout(timer.current);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    variant: "outline-secondary",
-    className: "text-start p-3 text-wrap fw-bold shadow-sm bg-white cc-tap-option d-flex justify-content-between align-items-center gap-2 ".concat(fits ? '' : 'opacity-75'),
+    variant: "outline-secondary"
+    // text-dark: the outline button's hover turns text white, which vanishes on this white card
+    ,
+    className: "text-start p-3 text-wrap fw-bold shadow-sm bg-white text-dark cc-tap-option d-flex justify-content-between align-items-center gap-2 ".concat(fits ? '' : 'opacity-75'),
     style: {
       WebkitTouchCallout: 'none',
       userSelect: 'none'
@@ -16422,6 +18376,7 @@ function TriviaCastDeckSelect() {
   // Start downloading the lobby music now, so it plays the moment a deck is tapped
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)();
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_3__.preloadLobbyMusic)('halloween');
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
@@ -16603,6 +18558,7 @@ function TriviaCastManager() {
 
   // 🎨 Background follows the question deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
+  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.lobbyTrackFor)('triviaCast', room === null || room === void 0 ? void 0 : room.expansion);
 
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -16673,7 +18629,7 @@ function TriviaCastManager() {
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(); // this tap lets the lobby music play again
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('playAgain', {
       roomCode: room === null || room === void 0 ? void 0 : room.roomCode
     });
@@ -16717,7 +18673,7 @@ function TriviaCastManager() {
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
@@ -16744,7 +18700,8 @@ function TriviaCastManager() {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
           title: "Trivia Cast Room Created",
           roomCode: room.roomCode,
-          players: playersArray
+          players: playersArray,
+          musicTrack: lobbyTrack
         });
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_9__.TriviaCastRulesTV, {
@@ -17769,6 +19726,32 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/* ===================================
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/mixup.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/mixup.css ***!
+  \********************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-rule-card { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(10px); }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #6b7280; font-size: clamp(0.7rem, 2.2vh, 1rem); }\n.mx-rule-icon { font-size: clamp(2rem, 12vh, 5rem); line-height: 1.2; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1.1rem, 5vh, 2.4rem); }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.75rem, 2.8vh, 1.3rem); line-height: 1.3; margin-top: 1vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"AAAA,qBAAqB;;AAErB,sCAAsC;AACtC;IACI,WAAW;IACX,gBAAgB;IAChB,uCAAuC;IACvC,2CAA2C;AAC/C;AACA;IACI,6BAA6B;IAC7B,0CAA0C;IAC1C,mBAAmB;AACvB;;AAEA,gCAAgC;AAChC;IACI,kBAAkB;IAClB,qBAAqB;IACrB,eAAe;IACf,gBAAgB;IAChB,cAAc;AAClB;AACA;IACI,eAAe;IACf,gBAAgB;IAChB,mBAAmB;IACnB,mBAAmB;IACnB,2CAA2C;IAC3C,gBAAgB;AACpB;AACA,wFAAwF;AACxF;IACI,kBAAkB;IAClB,QAAQ;IACR,SAAS;IACT,UAAU;IACV,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;IACzB,yEAAyE;IACzE,gBAAgB;IAChB,qCAAqC;IACrC,WAAW;IACX,sBAAsB;IACtB,6BAA6B;IAC7B,wBAAwB;IACxB,+EAA+E;IAC/E,uBAAuB;IACvB,oCAAoC;AACxC;AACA,kCAAkC,sCAAsC,EAAE,6BAA6B,EAAE;AACzG,8BAA8B,gBAAgB,EAAE;;AAEhD;;IAEI,aAAa;IACb,QAAQ;IACR,oBAAoB;IACpB,iBAAiB;AACrB;AACA;IACI,aAAa;IACb,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,YAAY;IACZ,aAAa;AACjB;AACA,iFAAiF;AACjF,8BAA8B,gBAAgB,EAAE,WAAW,EAAE,cAAc,EAAE;;AAE7E;IACI,aAAa;IACb,aAAa;IACb,sBAAsB;IACtB,QAAQ;IACR,gBAAgB;IAChB,YAAY;AAChB;AACA;IACI,aAAa;IACb,sBAAsB;IACtB,UAAU;IACV,qCAAqC;IACrC,cAAc;IACd,mBAAmB;IACnB,oBAAoB;IACpB,gBAAgB;IAChB,sCAAsC;IACtC,0CAA0C;IAC1C,oCAAoC;AACxC;AACA,gCAAgC,sBAAsB,EAAE;AACxD,gCAAgC,sBAAsB,EAAE;AACxD,gCAAgC,sBAAsB,EAAE;AACxD,gCAAgC,sBAAsB,EAAE;AACxD,0BAA0B,mBAAmB,EAAE,0BAA0B,EAAE;AAC3E;IACI,sBAAsB;IACtB,mBAAmB;IACnB,WAAW;IACX,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;AACpB;AACA,oBAAoB,iBAAiB,EAAE,cAAc,EAAE;AACvD,mBAAmB,iBAAiB,EAAE,cAAc,EAAE;;AAEtD,qCAAqC;AACrC;IACI,gBAAgB;IAChB,mBAAmB;IACnB,2CAA2C;AAC/C;AACA,iBAAiB,yBAAyB,EAAE;AAC5C,mBAAmB,gBAAgB,EAAE,cAAc,EAAE;AACrD;IACI,cAAc;IACd,mBAAmB;IACnB,YAAY;IACZ,cAAc;AAClB;AACA,wBAAwB,YAAY,EAAE,sBAAsB,EAAE,eAAe,EAAE;AAC/E;IACI,WAAW;IACX,YAAY;IACZ,aAAa;IACb,sBAAsB;AAC1B;AACA;IACI,WAAW;IACX,gBAAgB;IAChB,qCAAqC;IACrC,mBAAmB;IACnB,oBAAoB;IACpB,cAAc;IACd,uCAAuC;AAC3C;AACA,kBAAkB,gBAAgB,EAAE,yBAAyB,EAAE,gBAAgB,EAAE,cAAc,EAAE,oBAAoB,EAAE;AACvH,YAAY,gBAAgB,EAAE,oCAAoC,EAAE;AACpE,kBAAkB,cAAc,EAAE,kBAAkB,EAAE;AACtD;IACI,cAAc;IACd,qCAAqC;IACrC,mBAAmB;IACnB,gBAAgB;IAChB,kBAAkB;IAClB,cAAc;IACd,oCAAoC;AACxC;AACA,mBAAmB,gBAAgB,EAAE,cAAc,EAAE,qCAAqC,EAAE;AAC5F,kBAAkB,gBAAgB,EAAE,qCAAqC,EAAE,0BAA0B,EAAE,cAAc,EAAE,gBAAgB,EAAE;AACzI,oBAAoB,gBAAgB,EAAE,sCAAsC,EAAE,eAAe,EAAE;;AAE/F,0BAA0B;AAC1B,YAAY,aAAa,EAAE,eAAe,EAAE,QAAQ,EAAE,uBAAuB,EAAE,mBAAmB,EAAE;AACpG;IACI,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,6BAA6B;IAC7B,UAAU;AACd;AACA,sBAAsB,6BAA6B,EAAE,sBAAsB,EAAE;AAC7E;IACI,oBAAoB;IACpB,mBAAmB;IACnB,QAAQ;IACR,yBAAyB;IACzB,gBAAgB;IAChB,oBAAoB;IACpB,iBAAiB;IACjB,gBAAgB;IAChB,iBAAiB;IACjB,cAAc;AAClB;AACA,wBAAwB,mBAAmB,EAAE,WAAW,EAAE,qBAAqB,EAAE;AACjF,wBAAwB,qBAAqB,EAAE,cAAc,EAAE;AAC/D,eAAe,qBAAqB,EAAE,kBAAkB,EAAE,wBAAwB,EAAE;AACpF,gBAAgB,iBAAiB,EAAE,kBAAkB,EAAE;AACvD,uBAAuB,cAAc,EAAE,0BAA0B,EAAE;AACnE,iBAAiB,cAAc,EAAE,gBAAgB,EAAE,qCAAqC,EAAE;;AAE1F,qDAAqD;AACrD,iBAAiB,aAAa,EAAE,qCAAqC,EAAE,UAAU,EAAE;AACnF,gBAAgB,qDAAqD,EAAE,2BAA2B,EAAE;AACpG,gBAAgB,gBAAgB,EAAE,yBAAyB,EAAE,cAAc,EAAE,qCAAqC,EAAE;AACpH,gBAAgB,kCAAkC,EAAE,gBAAgB,EAAE;AACtE,iBAAiB,gBAAgB,EAAE,cAAc,EAAE,qCAAqC,EAAE;AAC1F,gBAAgB,cAAc,EAAE,gBAAgB,EAAE,wCAAwC,EAAE,gBAAgB,EAAE,eAAe,EAAE;;AAE/H,YAAY,kBAAkB,EAAE,WAAW,EAAE,4CAA4C,EAAE,oCAAoC,EAAE;AACjI,kBAAkB,gBAAgB,EAAE,iCAAiC,EAAE,YAAY,EAAE;AACrF,iBAAiB,mCAAmC,EAAE,gBAAgB,EAAE,8CAA8C,EAAE;AACxH,kBAAkB,gBAAgB,EAAE,oCAAoC,EAAE,cAAc,EAAE;AAC1F,kBAAkB,qCAAqC,EAAE,eAAe,EAAE;AAC1E,kBAAkB,qCAAqC,EAAE,eAAe,EAAE,YAAY,EAAE,yBAAyB,EAAE,qBAAqB,EAAE;;AAE1I,iCAAiC;AACjC,kBAAkB,gBAAgB,EAAE,eAAe,EAAE;AACrD,sBAAsB,cAAc,EAAE;AACtC,uBAAuB,iBAAiB,EAAE,gBAAgB,EAAE;AAC5D,kBAAkB,kBAAkB,EAAE;;AAEtC;IACI,KAAK,UAAU,EAAE,sBAAsB,EAAE;IACzC,OAAO,UAAU,EAAE,mBAAmB,EAAE;AAC5C;AACA;IACI,WAAW,oBAAoB,EAAE;IACjC,MAAM,wBAAwB,EAAE;IAChC,MAAM,uBAAuB,EAAE;AACnC;AACA;IACI,WAAW,wBAAwB,EAAE;IACrC,MAAM,2BAA2B,EAAE;IACnC,MAAM,0BAA0B,EAAE;AACtC;AACA;IACI,4GAA4G,eAAe,EAAE;AACjI","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-rule-card { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(10px); }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #6b7280; font-size: clamp(0.7rem, 2.2vh, 1rem); }\n.mx-rule-icon { font-size: clamp(2rem, 12vh, 5rem); line-height: 1.2; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1.1rem, 5vh, 2.4rem); }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.75rem, 2.8vh, 1.3rem); line-height: 1.3; margin-top: 1vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./src/styles/cards.css":
 /*!******************************!*\
   !*** ./src/styles/cards.css ***!
@@ -17869,6 +19852,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_lists_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_lists_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_lists_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./src/styles/mixup.css":
+/*!******************************!*\
+  !*** ./src/styles/mixup.css ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_mixup_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./mixup.css */ "./node_modules/css-loader/dist/cjs.js!./src/styles/mixup.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_mixup_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_mixup_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_mixup_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_mixup_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -18199,32 +20234,63 @@ function fillBlank(prompt, answer) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "lobbyTrackFor": () => (/* binding */ lobbyTrackFor),
 /* harmony export */   "preloadLobbyMusic": () => (/* binding */ preloadLobbyMusic),
 /* harmony export */   "startLobbyMusic": () => (/* binding */ startLobbyMusic),
 /* harmony export */   "stopLobbyMusic": () => (/* binding */ stopLobbyMusic)
 /* harmony export */ });
-// 🎵 The Couch Cast lobby music: one shared player.
+// 🎵 The lobby music for the TV games: one shared player per track.
 // It's started by the tap that creates the room (browsers only allow sound after a tap),
 // so it's already playing by the time the lobby appears.
-var lobbyMusic = new Audio('/audio/LobbyMusic.mp3');
-lobbyMusic.loop = true;
-lobbyMusic.volume = 0.4;
-lobbyMusic.preload = 'none'; // don't download it for visitors who never open Couch Cast
+var makeTrack = function makeTrack(src) {
+  var audio = new Audio(src);
+  audio.loop = true;
+  audio.volume = 0.4;
+  audio.preload = 'none'; // don't download it for visitors who never open a cast game
+  return audio;
+};
+var TRACKS = {
+  "default": makeTrack('/audio/LobbyMusic.mp3'),
+  listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),
+  // List Cast
+  halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3') // any game played with a Halloween deck
+};
 
-// Called on the deck page: start downloading so it's ready by the time a deck is tapped
+// Which track a game's lobby plays: Halloween decks always get the Halloween song,
+// List Cast has its own, and everything else plays the usual lobby music
+function lobbyTrackFor(game, expansion) {
+  if (expansion === 'halloween') return 'halloween';
+  if (game === 'listCast') return 'listCast';
+  return 'default';
+}
+
+// Called on a setup page: start downloading so it's ready by the time a deck is tapped
 function preloadLobbyMusic() {
-  lobbyMusic.preload = 'auto';
-  lobbyMusic.load();
+  var track = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+  var audio = TRACKS[track] || TRACKS["default"];
+  audio.preload = 'auto';
+  audio.load();
 }
 function startLobbyMusic() {
-  if (!lobbyMusic.paused) return;
-  lobbyMusic.play()["catch"](function (err) {
+  var track = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+  var audio = TRACKS[track] || TRACKS["default"];
+  // Only one lobby song at a time
+  Object.values(TRACKS).forEach(function (other) {
+    if (other !== audio && !other.paused) {
+      other.pause();
+      other.currentTime = 0;
+    }
+  });
+  if (!audio.paused) return;
+  audio.play()["catch"](function (err) {
     return console.warn('Audio autoplay blocked:', err.message);
   });
 }
 function stopLobbyMusic() {
-  lobbyMusic.pause();
-  lobbyMusic.currentTime = 0;
+  Object.values(TRACKS).forEach(function (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  });
 }
 
 /***/ }),
@@ -18302,7 +20368,7 @@ function createListRoom(navigate, setIsCreatingRoom, _ref2) {
   if (isCast) {
     enterFullscreen();
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)((0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.lobbyTrackFor)('listCast', expansion));
   }
   setIsCreatingRoom(true);
   var timeout = setTimeout(function () {
@@ -18395,6 +20461,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "couchCastTheme": () => (/* binding */ couchCastTheme),
 /* harmony export */   "listsTheme": () => (/* binding */ listsTheme),
+/* harmony export */   "mixupTheme": () => (/* binding */ mixupTheme),
 /* harmony export */   "triviaCastTheme": () => (/* binding */ triviaCastTheme),
 /* harmony export */   "useBackgroundTheme": () => (/* binding */ useBackgroundTheme),
 /* harmony export */   "useSetBackgroundTheme": () => (/* binding */ useSetBackgroundTheme)
@@ -18463,11 +20530,113 @@ function listsTheme(expansion) {
   return expansion === 'halloween' ? 'halloween' : 'lists';
 }
 
+// Temple Mix Up: the background follows the block of rounds (memes, Pictionary, trivia)
+function mixupTheme(roundType) {
+  if (roundType === 'draw') return 'lists';
+  if (roundType === 'trivia') return 'trivia';
+  return 'couchcast';
+}
+
 // Trivia Cast: each question deck gets its own background
 function triviaCastTheme(expansion) {
   if (expansion === 'halloween') return 'halloween';
   if (expansion === 'animals') return 'animals';
   return 'trivia';
+}
+
+/***/ }),
+
+/***/ "./src/features/Mixup/mixupCreate.js":
+/*!*******************************************!*\
+  !*** ./src/features/Mixup/mixupCreate.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createMixupRoom": () => (/* binding */ createMixupRoom)
+/* harmony export */ });
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+// Ask for fullscreen; phones that don't allow it (iOS Safari) just carry on
+var enterFullscreen = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            if (!(!document.fullscreenElement && document.documentElement.requestFullscreen)) {
+              _context.next = 4;
+              break;
+            }
+            _context.next = 4;
+            return document.documentElement.requestFullscreen();
+          case 4:
+            _context.next = 9;
+            break;
+          case 6:
+            _context.prev = 6;
+            _context.t0 = _context["catch"](0);
+            console.warn("Fullscreen bypassed:", _context.t0.message);
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 6]]);
+  }));
+  return function enterFullscreen() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/** Creates a Temple Mix Up room (this device becomes the TV), then opens it */
+function createMixupRoom(navigate, setIsCreatingRoom) {
+  var _ref2 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+    _ref2$totalRounds = _ref2.totalRounds,
+    totalRounds = _ref2$totalRounds === void 0 ? 9 : _ref2$totalRounds;
+  // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
+  enterFullscreen();
+  (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
+  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+  setIsCreatingRoom(true);
+  var timeout = setTimeout(function () {
+    setIsCreatingRoom(false);
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.off('roomCreated');
+    alert("The server is taking too long to wake up. Please try again.");
+  }, 60000);
+  var emitCreate = function emitCreate() {
+    return _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.emit('createRoom', {
+      playerName: 'Caster',
+      totalRounds: totalRounds
+    });
+  };
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.off('roomCreated');
+  _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.once('roomCreated', function (_ref3) {
+    var roomCode = _ref3.roomCode;
+    clearTimeout(timeout);
+    setIsCreatingRoom(false);
+    // Strip away Bootstrap modal scroll locks before React Router takes us away
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    document.body.style.paddingRight = '';
+    navigate("/mixup?room=".concat(roomCode, "&role=caster&name=Caster"));
+  });
+  if (_socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.connected) emitCreate();else {
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.connect();
+    _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.once('connect', emitCreate);
+  }
 }
 
 /***/ }),
@@ -18535,7 +20704,7 @@ function handleCreateTriviaCast(navigate, setIsCreatingRoom) {
   // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
   enterFullscreen();
   (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
-  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)();
+  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)((0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.lobbyTrackFor)('triviaCast', expansion));
   setIsCreatingRoom(true);
   var timeout = setTimeout(function () {
     setIsCreatingRoom(false);
@@ -18896,6 +21065,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "couchCastSocket": () => (/* binding */ couchCastSocket),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "listsSocket": () => (/* binding */ listsSocket),
+/* harmony export */   "mixupSocket": () => (/* binding */ mixupSocket),
 /* harmony export */   "prompt2Socket": () => (/* binding */ prompt2Socket),
 /* harmony export */   "reshuffledSocket": () => (/* binding */ reshuffledSocket),
 /* harmony export */   "tictactoeSocket": () => (/* binding */ tictactoeSocket),
@@ -18933,6 +21103,11 @@ var triviaCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".c
 });
 // 🔀 Couch Cast Re-Shuffled (experimental)
 var reshuffledSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/reshuffled"), {
+  transports: ['websocket', 'polling'],
+  autoConnect: false
+});
+// 🎪 Temple Mix Up
+var mixupSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/mixup"), {
   transports: ['websocket', 'polling'],
   autoConnect: false
 });

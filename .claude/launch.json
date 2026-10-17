@@ -6,6 +6,13 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["server.js"],
       "port": 5005
+    },
+    {
+      "name": "topcake",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "cd /Users/steve/github/TOPCAKE && PORT=5006 node server.js"],
+      "port": 5006,
+      "autoPort": false
     }
   ]
 }

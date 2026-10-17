@@ -27,7 +27,8 @@ export default function ListCastSetup() {
 
     // Start downloading the lobby music now, so it plays the moment a deck is tapped
     useEffect(() => {
-        preloadLobbyMusic();
+        preloadLobbyMusic('listCast');
+        preloadLobbyMusic('halloween');
     }, []);
 
     return (

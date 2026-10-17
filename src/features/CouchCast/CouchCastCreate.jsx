@@ -1,6 +1,6 @@
 import { couchCastSocket } from "../../socket";
 import { unlockVoice } from "../../voice.js";
-import { startLobbyMusic, stopLobbyMusic } from "./lobbyMusic.js";
+import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "./lobbyMusic.js";
 
 // Helper function to request fullscreen (Orientation lock removed)
 const enterFullscreen = async () => {
@@ -22,7 +22,7 @@ export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom, e
 
     // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
     unlockVoice();
-    startLobbyMusic();
+    startLobbyMusic(lobbyTrackFor('couchCast', expansion));
 
     if (setIsCreatingRoom) setIsCreatingRoom(true);
 

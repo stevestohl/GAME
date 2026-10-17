@@ -17,7 +17,7 @@ const getSafeRoom = (room) => {
     if (!room) return null;
     // `hands` (the cards each player was dealt) stays on the server too: it's only for the saved stats
     // `playedCards` (which card each player played, to be swapped out next round) is server-only too
-    const { timerId, destroyTimer, hands, playedCards, ...safeRoom } = room;
+    const { timerId, destroyTimer, hands, playedCards, dealQueue, ...safeRoom } = room;
     return safeRoom;
 };
 
@@ -715,7 +715,11 @@ export default function registerReshuffledNamespace(CCNS) {
 
                 const key = `${room.roomCode}:${socket.id}`;
                 if (!handDeals.has(key)) {
-                    handDeals.set(key, dealHand(room, socket.id).finally(() => handDeals.delete(key)));
+                    // One hand at a time per room: phones asking at the same moment would otherwise
+                    // both draw before either hand is saved, and could be dealt the same card
+                    const deal = (room.dealQueue || Promise.resolve()).then(() => dealHand(room, socket.id));
+                    room.dealQueue = deal.catch(() => {});
+                    handDeals.set(key, deal.finally(() => handDeals.delete(key)));
                 }
                 const hand = await handDeals.get(key);
 
@@ -886,6 +890,9 @@ export default function registerReshuffledNamespace(CCNS) {
         socket.on('pick_winner', ({ roomCode, winningPlayerId }) => {
             const room = activeCCRooms[roomCode];
             if (!room || socket.id !== room.hostId) return;
+            // Only someone who actually played an answer this round can win it
+            const pick = room.players[winningPlayerId];
+            if (!pick || pick.isCaster || winningPlayerId === room.hostId || !pick.hasSubmitted || !pick.currentAnswer) return;
             crownWinner(roomCode, winningPlayerId);
         });
 

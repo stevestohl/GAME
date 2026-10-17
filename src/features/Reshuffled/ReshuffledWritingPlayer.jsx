@@ -48,7 +48,8 @@ function HandCard({ card, text, fits, onPlay, onLongPress }) {
     return (
         <Button
             variant="outline-secondary"
-            className={`text-start p-3 text-wrap fw-bold shadow-sm bg-white cc-tap-option d-flex justify-content-between align-items-center gap-2 ${fits ? '' : 'opacity-75'}`}
+            // text-dark: the outline button's hover turns text white, which vanishes on this white card
+            className={`text-start p-3 text-wrap fw-bold shadow-sm bg-white text-dark cc-tap-option d-flex justify-content-between align-items-center gap-2 ${fits ? '' : 'opacity-75'}`}
             style={{ WebkitTouchCallout: 'none', userSelect: 'none' }}
             onPointerDown={startPress}
             onPointerUp={endPress}

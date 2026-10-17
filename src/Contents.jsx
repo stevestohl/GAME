@@ -19,6 +19,8 @@ import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 import CouchCastDeckSelect from './features/CouchCast/CouchCastDeckSelect.jsx'
 import ReshuffledManager from './features/Reshuffled/ReshuffledManagerTV.jsx'
 import ReshuffledDeckSelect from './features/Reshuffled/ReshuffledDeckSelect.jsx'
+import MixupManager from './features/Mixup/MixupManager.jsx'
+import MixupSetup from './features/Mixup/MixupSetup.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
@@ -63,6 +65,9 @@ export default function Contents() {
             {/* 🔀 Couch Cast Re-Shuffled: experimental, not linked from any menu yet */}
             <Route path="/reshuffled" element={<ReshuffledManager />} />
             <Route path="/reshuffled-decks" element={<ReshuffledDeckSelect />} />
+            {/* 🎪 Temple Mix Up */}
+            <Route path="/mixup" element={<MixupManager />} />
+            <Route path="/mixup-setup" element={<MixupSetup />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />
             <Route path="/triviacast-decks" element={<TriviaCastDeckSelect />} />
             <Route path="/listcast" element={<ListCastManager />} />

@@ -1,6 +1,6 @@
 import { reshuffledSocket } from "../../socket";
 import { unlockVoice } from "../../voice.js";
-import { startLobbyMusic, stopLobbyMusic } from "../CouchCast/lobbyMusic.js";
+import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "../CouchCast/lobbyMusic.js";
 
 // Helper function to request fullscreen (Orientation lock removed)
 const enterFullscreen = async () => {
@@ -22,7 +22,7 @@ export function handleCreateReshuffled(playerName, navigate, setIsCreatingRoom, 
 
     // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
     unlockVoice();
-    startLobbyMusic();
+    startLobbyMusic(lobbyTrackFor('reshuffled', expansion));
 
     if (setIsCreatingRoom) setIsCreatingRoom(true);
 

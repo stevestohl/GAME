@@ -49,6 +49,13 @@ export function listsTheme(expansion) {
     return expansion === 'halloween' ? 'halloween' : 'lists';
 }
 
+// Temple Mix Up: the background follows the block of rounds (memes, Pictionary, trivia)
+export function mixupTheme(roundType) {
+    if (roundType === 'draw') return 'lists';
+    if (roundType === 'trivia') return 'trivia';
+    return 'couchcast';
+}
+
 // Trivia Cast: each question deck gets its own background
 export function triviaCastTheme(expansion) {
     if (expansion === 'halloween') return 'halloween';

@@ -1,6 +1,6 @@
 import { triviaCastSocket } from "../../socket.js";
 import { unlockVoice } from "../../voice.js";
-import { startLobbyMusic, stopLobbyMusic } from "../CouchCast/lobbyMusic.js";
+import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "../CouchCast/lobbyMusic.js";
 
 // Ask for fullscreen; phones that don't allow it (iOS Safari) just carry on
 const enterFullscreen = async () => {
@@ -20,7 +20,7 @@ export function handleCreateTriviaCast(navigate, setIsCreatingRoom, expansion = 
     // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
     enterFullscreen();
     unlockVoice();
-    startLobbyMusic();
+    startLobbyMusic(lobbyTrackFor('triviaCast', expansion));
 
     setIsCreatingRoom(true);
 

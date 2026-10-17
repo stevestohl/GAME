@@ -3,7 +3,7 @@ import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { startLobbyMusic, stopLobbyMusic } from '../CouchCast/lobbyMusic.js';
 
-export default function ReshuffledLobby({ roomCode, players = [], title = 'Couch Cast Re-Shuffled Room Created' }) {
+export default function ReshuffledLobby({ roomCode, players = [], title = 'Couch Cast Re-Shuffled Room Created' , musicTrack = 'default' }) {
   const [isPortrait, setIsPortrait] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function ReshuffledLobby({ roomCode, players = [], title = 'Couch
     }, 100);
     
     // Usually already playing (started by the tap that created the room); this covers a refresh
-    startLobbyMusic();
+    startLobbyMusic(musicTrack);
 
     return () => {
       stopLobbyMusic();

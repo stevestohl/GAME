@@ -9,7 +9,9 @@
     "watch": "webpack --watch",
     "seed:lists": "node db/seedListCategories.js",
     "seed:reshuffled": "node db/seedReshuffled.js",
-    "reshuffled:alternates": "node db/addReshuffledAlternates.js"
+    "reshuffled:alternates": "node db/addReshuffledAlternates.js",
+    "seed:memes": "node db/seedMixupMemes.js",
+    "pictionary:add": "node db/addPictionaryPrompts.js"
   },
   "type": "module",
   "keywords": [],

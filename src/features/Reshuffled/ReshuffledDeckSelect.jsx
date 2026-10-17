@@ -28,6 +28,7 @@ export default function ReshuffledDeckSelect() {
     // Start downloading the lobby music now, so it plays the moment a deck is tapped
     useEffect(() => {
         preloadLobbyMusic();
+        preloadLobbyMusic('halloween');
     }, []);
 
     return (

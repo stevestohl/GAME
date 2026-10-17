@@ -6,7 +6,7 @@ import { listsSocket as socket } from '../../socket';
 import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
-import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic } from '../../timerMusic.js';
 import { scoreRecap } from '../../scoreRecap.js';
 import GameOverActions from '../Menu/GameOverActions.jsx';
@@ -58,6 +58,7 @@ function ListCastTV({ roomCode, casterName }) {
 
     // 🎨 Background follows the deck, and covers the nav bar on the TV
     useSetBackgroundTheme(listsTheme(room?.expansion), true);
+    const lobbyTrack = lobbyTrackFor('listCast', room?.expansion);
 
     // --- SOCKET LISTENERS ---
     useEffect(() => {
@@ -131,7 +132,7 @@ function ListCastTV({ roomCode, casterName }) {
 
     // 🔁 End of the game: the caster picks what happens next
     const handlePlayAgain = () => {
-        startLobbyMusic();   // this tap lets the lobby music play again
+        startLobbyMusic(lobbyTrack);   // this tap lets the lobby music play again
         socket.emit('playAgain', { roomCode: room?.roomCode });
     };
     const handleGoHome = () => {
@@ -158,7 +159,7 @@ function ListCastTV({ roomCode, casterName }) {
 
     const handleTurnSoundOn = () => {
         unlockVoice();
-        if (gameState === 'lobby') startLobbyMusic();
+        if (gameState === 'lobby') startLobbyMusic(lobbyTrack);
         setIsSoundLocked(false);
     };
 
@@ -179,7 +180,7 @@ function ListCastTV({ roomCode, casterName }) {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="List Cast Room Created" roomCode={room.roomCode} players={playersArray} />;
+                return <CouchCastLobby title="List Cast Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} />;
             case 'rules':
                 return <ListCastRulesTV roomCode={room.roomCode} pointsPerItem={room.pointsPerItem} listSize={room.listSize} />;
             case 'card':

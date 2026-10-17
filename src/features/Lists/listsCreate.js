@@ -1,6 +1,6 @@
 import { listsSocket } from "../../socket.js";
 import { unlockVoice } from "../../voice.js";
-import { startLobbyMusic, stopLobbyMusic } from "../CouchCast/lobbyMusic.js";
+import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "../CouchCast/lobbyMusic.js";
 
 // Ask for fullscreen; phones that don't allow it (iOS Safari) just carry on
 const enterFullscreen = async () => {
@@ -25,7 +25,7 @@ export function createListRoom(navigate, setIsCreatingRoom, { mode, expansion = 
     if (isCast) {
         enterFullscreen();
         unlockVoice();
-        startLobbyMusic();
+        startLobbyMusic(lobbyTrackFor('listCast', expansion));
     }
 
     setIsCreatingRoom(true);

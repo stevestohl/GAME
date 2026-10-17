@@ -12,6 +12,7 @@ import registerCCNamespace from './sockets/couchcast_handler.js';
 import registerTriviaCastNamespace from './sockets/triviacast_handler.js';
 import registerListsNamespace from './sockets/lists_handler.js';
 import registerReshuffledNamespace from './sockets/reshuffled_handler.js';
+import registerMixupNamespace from './sockets/mixup_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -63,6 +64,11 @@ console.log("Namespace '/lists' registered.");
 const RSNS = io.of('/reshuffled');
 registerReshuffledNamespace(RSNS);
 console.log("Namespace '/reshuffled' registered.");
+
+// 🎪 Temple Mix Up (memes, Pictionary and trivia)
+const MXNS = io.of('/mixup');
+registerMixupNamespace(MXNS);
+console.log("Namespace '/mixup' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

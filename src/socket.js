@@ -38,6 +38,11 @@ export const reshuffledSocket = io(`${SOCKET_URL}/reshuffled`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+// 🎪 Temple Mix Up
+export const mixupSocket = io(`${SOCKET_URL}/mixup`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 // List Cast and Listopia
 export const listsSocket = io(`${SOCKET_URL}/lists`, {
     transports: ['websocket', 'polling'],

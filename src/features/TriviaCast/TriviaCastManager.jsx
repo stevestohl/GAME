@@ -6,7 +6,7 @@ import { triviaCastSocket as socket } from '../../socket';
 import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
-import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic } from '../../timerMusic.js';
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
@@ -55,6 +55,7 @@ export default function TriviaCastManager() {
 
     // 🎨 Background follows the question deck, and covers the nav bar on the TV
     useSetBackgroundTheme(triviaCastTheme(room?.expansion), true);
+    const lobbyTrack = lobbyTrackFor('triviaCast', room?.expansion);
 
     // --- SOCKET LISTENERS ---
     useEffect(() => {
@@ -126,7 +127,7 @@ export default function TriviaCastManager() {
 
     // 🔁 End of the game: the caster picks what happens next
     const handlePlayAgain = () => {
-        startLobbyMusic();   // this tap lets the lobby music play again
+        startLobbyMusic(lobbyTrack);   // this tap lets the lobby music play again
         socket.emit('playAgain', { roomCode: room?.roomCode });
     };
     const handleGoHome = () => {
@@ -156,7 +157,7 @@ export default function TriviaCastManager() {
 
     const handleTurnSoundOn = () => {
         unlockVoice();
-        if (gameState === 'lobby') startLobbyMusic();
+        if (gameState === 'lobby') startLobbyMusic(lobbyTrack);
         setIsSoundLocked(false);
     };
 
@@ -178,7 +179,7 @@ export default function TriviaCastManager() {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Trivia Cast Room Created" roomCode={room.roomCode} players={playersArray} />;
+                return <CouchCastLobby title="Trivia Cast Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} />;
 
             case 'rules':
                 return <TriviaCastRulesTV roomCode={room.roomCode} />;

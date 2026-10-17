@@ -55,6 +55,10 @@ export default function UniversalJoinScreen() {
             case 'C':
                 targetRoute = `/couchcast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
                 break;
+            case 'M':
+                // Temple Mix Up
+                targetRoute = `/mixup?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                break;
             case 'S':
                 // Couch Cast Re-Shuffled (experimental)
                 targetRoute = `/reshuffled?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;

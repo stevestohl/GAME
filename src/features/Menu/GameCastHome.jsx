@@ -6,6 +6,7 @@ import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 import { ListCastTile } from '../Lists/ListTiles.jsx';
 import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
+import MixupTile from '../Mixup/MixupTile.jsx';
 import GameRow from './GameRow.jsx';
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -248,6 +249,23 @@ export default function GameCastHome() {
                                         style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
                                     >
                                         <ReshuffledTile />
+                                    </Button>
+                                </GameRow>
+
+                                {/* 🎪 Temple Mix Up — text left, button right */}
+                                <GameRow
+                                    title="Temple Mix Up!"
+                                    players="3+ players"
+                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        onClick={() => navigate('/mixup-setup')}
+                                        aria-label="Set up a Temple Mix Up game"
+                                        style={{ '--shimmer-delay': '2s', ...squareStyle }}
+                                    >
+                                        <MixupTile />
                                     </Button>
                                 </GameRow>
                             </Row>

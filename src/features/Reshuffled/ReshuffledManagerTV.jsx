@@ -7,7 +7,7 @@ import { reshuffledSocket as socket } from "../../socket";
 import useWakeLock from '../../hooks/useWakeLock.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
-import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic } from '../../timerMusic.js';
 
 // TV Phase Components
@@ -74,6 +74,7 @@ export default function ReshuffledManager() {
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
+    const lobbyTrack = lobbyTrackFor('reshuffled', roomData?.expansion);
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
     const round = roomData?.currentRound;
@@ -126,7 +127,7 @@ export default function ReshuffledManager() {
 
     // 🔁 End of the game: the caster picks what happens next
     const handlePlayAgain = () => {
-        startLobbyMusic();   // this tap lets the lobby music play again
+        startLobbyMusic(lobbyTrack);   // this tap lets the lobby music play again
         socket.emit('playAgain', { roomCode: roomData?.roomCode });
     };
     const handleGoHome = () => {
@@ -169,7 +170,7 @@ export default function ReshuffledManager() {
 
     const handleTurnSoundOn = () => {
         unlockVoice();
-        if (gameState === 'lobby') startLobbyMusic();
+        if (gameState === 'lobby') startLobbyMusic(lobbyTrack);
         setIsSoundLocked(false);
     };
 
@@ -274,8 +275,7 @@ export default function ReshuffledManager() {
                 return (
                     <ReshuffledLobby 
                         roomCode={roomData.roomCode} 
-                        players={playersArray} 
-                    />
+                        players={playersArray} musicTrack={lobbyTrack} />
                 );
 
             case 'rules':
