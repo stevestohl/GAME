@@ -5,6 +5,7 @@ import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 import { ListCastTile } from '../Lists/ListTiles.jsx';
+import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import GameRow from './GameRow.jsx';
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -229,6 +230,24 @@ export default function GameCastHome() {
                                         style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
                                     >
                                         <ListCastTile />
+                                    </Button>
+                                </GameRow>
+
+                                {/* 🔀 Couch Cast Re-Shuffled (experimental) — button left, text right */}
+                                <GameRow
+                                    flip
+                                    title="Couch Cast Re-Shuffled"
+                                    players="3+ players"
+                                    description="Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        onClick={() => navigate('/reshuffled-decks')}
+                                        aria-label="Choose a Couch Cast Re-Shuffled deck"
+                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
+                                    >
+                                        <ReshuffledTile />
                                     </Button>
                                 </GameRow>
                             </Row>

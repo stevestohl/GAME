@@ -1,4 +1,5 @@
 import { getCouchCastRoom } from "../sockets/couchcast_handler.js";
+import { getReshuffledRoom } from "../sockets/reshuffled_handler.js";
 import { getTriviaCastRoom } from "../sockets/triviacast_handler.js";
 import { getListCastRoom } from "../sockets/lists_handler.js";
 
@@ -79,8 +80,8 @@ export const speakLine = async (req, res) => {
             return res.status(400).json({ success: false, message: "Text is missing or too long." });
         }
 
-        // Only a live TV game (Couch Cast, Trivia Cast or List Cast) can ask for speech
-        const room = getCouchCastRoom(roomCode) || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode);
+        // Only a live TV game (Couch Cast, Re-Shuffled, Trivia Cast or List Cast) can ask for speech
+        const room = getCouchCastRoom(roomCode) || getReshuffledRoom(roomCode) || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode);
         if (!room) {
             return res.status(404).json({ success: false, message: "Room not found." });
         }

@@ -11,6 +11,7 @@ import registerPrompt2Namespace from './sockets/prompt2_handler.js';
 import registerCCNamespace from './sockets/couchcast_handler.js';
 import registerTriviaCastNamespace from './sockets/triviacast_handler.js';
 import registerListsNamespace from './sockets/lists_handler.js';
+import registerReshuffledNamespace from './sockets/reshuffled_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -57,6 +58,11 @@ console.log("Namespace '/triviacast' registered.");
 const LNS = io.of('/lists');
 registerListsNamespace(LNS);
 console.log("Namespace '/lists' registered.");
+
+// 🔀 Couch Cast Re-Shuffled (experimental; its own cards database)
+const RSNS = io.of('/reshuffled');
+registerReshuffledNamespace(RSNS);
+console.log("Namespace '/reshuffled' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

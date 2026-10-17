@@ -17,6 +17,8 @@ import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
 import Prompt2CreateScreen from './features/Prompt2/Prompt2CreateButton.jsx'
 import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 import CouchCastDeckSelect from './features/CouchCast/CouchCastDeckSelect.jsx'
+import ReshuffledManager from './features/Reshuffled/ReshuffledManagerTV.jsx'
+import ReshuffledDeckSelect from './features/Reshuffled/ReshuffledDeckSelect.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
@@ -58,6 +60,9 @@ export default function Contents() {
             <Route path="/couchcast" element={<CouchCastManager />} />
             <Route path="/couchcast-setup" element={<CouchCastManager />} />
             <Route path="/couchcast-decks" element={<CouchCastDeckSelect />} />
+            {/* 🔀 Couch Cast Re-Shuffled: experimental, not linked from any menu yet */}
+            <Route path="/reshuffled" element={<ReshuffledManager />} />
+            <Route path="/reshuffled-decks" element={<ReshuffledDeckSelect />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />
             <Route path="/triviacast-decks" element={<TriviaCastDeckSelect />} />
             <Route path="/listcast" element={<ListCastManager />} />

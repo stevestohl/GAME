@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 // what people played, how fast, and which answers the judges picked.
 const PromptAnswerSchema = new mongoose.Schema({
     // --- Which game ---
-    game: { type: String, enum: ['couchcast', 'prompt2'], required: true },
+    game: { type: String, enum: ['couchcast', 'prompt2', 'reshuffled'], required: true },
     gameId: { type: String, required: true, index: true },   // unique per game played (room codes get reused)
     roomCode: { type: String, required: true },
     expansion: { type: String, default: 'core' },            // the deck that was chosen for the game

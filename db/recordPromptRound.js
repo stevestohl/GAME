@@ -16,7 +16,7 @@ const answerText = (answer) => {
  * Runs in the background: a database hiccup must never hold up the game.
  *
  * @param {object} round
- * @param {'couchcast'|'prompt2'} round.game
+ * @param {'couchcast'|'prompt2'|'reshuffled'} round.game
  * @param {object} round.room              the live room
  * @param {object} round.judge             the player who judged this round
  * @param {object[]} round.players         everyone who could answer (not the judge, not the TV)
@@ -37,10 +37,12 @@ export const recordPromptRound = ({ game, room, judge, players, winningPlayerId,
         const rows = players.map((p) => {
             const answer = answerText(p.currentAnswer);
             const hand = hands[p.id];
-            // Couch Cast sends the card's text; find which dealt card it was
+            // Couch Cast sends the card's text; find which dealt card it was.
+            // (Re-Shuffled can play a card in other words, so it remembers the card's id instead.)
             const playedCard = typeof p.currentAnswer === 'object'
                 ? p.currentAnswer
-                : (hand || []).find((card) => card.text === answer);
+                : (hand || []).find((card) => card.text === answer)
+                    || (answer && p.currentCardId ? (hand || []).find((card) => String(card._id) === String(p.currentCardId)) : undefined);
             const isWinner = !!winningPlayerId && p.id === winningPlayerId;
 
             return {

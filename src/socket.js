@@ -33,6 +33,11 @@ export const triviaCastSocket = io(`${SOCKET_URL}/triviacast`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+// 🔀 Couch Cast Re-Shuffled (experimental)
+export const reshuffledSocket = io(`${SOCKET_URL}/reshuffled`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 // List Cast and Listopia
 export const listsSocket = io(`${SOCKET_URL}/lists`, {
     transports: ['websocket', 'polling'],
