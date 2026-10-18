@@ -6,3 +6,7 @@ build/
 
 # Full-length audio before trimming (kept locally, never uploaded or committed)
 audio-originals/
+
+# Secrets never go to GitHub (set DB and the rest in Render's Environment settings)
+.env
+.env.local
