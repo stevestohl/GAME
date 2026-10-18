@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form, Button, Alert, Spinner, Nav, Badge } from 'react-bootstrap';
 import { adminFetch, signIn, signOut, getToken } from './adminApi.js';
 import UsersPage from './UsersPage.jsx';
+import ContentPage from './ContentPage.jsx';
 
 /**
  * 🔐 game-temple.org/admin. Sign in, then:
@@ -39,7 +40,6 @@ export default function AdminApp() {
     if (!user) return <SignIn onSignedIn={setUser} />;
 
     const isOwner = user.role === 'owner';
-    const gameName = (id) => catalog.find((g) => g.id === id)?.name || id;
 
     return (
         <div className="page-container" style={{ maxWidth: '1000px', width: '100%', margin: '0 auto' }}>
@@ -67,23 +67,7 @@ export default function AdminApp() {
                         </div>
                     )}
 
-                    {tab === 'content' && (
-                        <div>
-                            <h5>Content</h5>
-                            {isOwner ? (
-                                <p className="text-muted">As the owner you can manage every game and deck. The card, question and topic editors come in a later stage.</p>
-                            ) : user.access.length === 0 ? (
-                                <p className="text-muted">You don't manage any games or decks yet. Ask the owner to add some.</p>
-                            ) : (
-                                <>
-                                    <p className="text-muted mb-2">You manage these games and decks (editors coming in a later stage):</p>
-                                    <ul>
-                                        {user.access.map((a) => <li key={`${a.game}:${a.deck}`}><strong>{gameName(a.game)}</strong>: {a.deck} deck</li>)}
-                                    </ul>
-                                </>
-                            )}
-                        </div>
-                    )}
+                    {tab === 'content' && <ContentPage />}
 
                     {tab === 'users' && isOwner && <UsersPage me={user} catalog={catalog} />}
                 </Card.Body>
