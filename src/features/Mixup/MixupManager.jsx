@@ -15,7 +15,7 @@ import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, TriviaTV, MIXUP_RULES_NARRATION, ROUND_LOOKS } from './MixupScreensTV.jsx';
 import MixupPlayer from './MixupPlayer.jsx';
-import { usePlayerSounds } from '../../playerSounds.js';
+import { usePlayerSounds, useTvChime } from '../../playerSounds.js';
 
 /**
  * 🎪 Temple Mix Up. One address, two jobs:
@@ -57,6 +57,8 @@ function MixupTV({ roomCode, casterName }) {
     useSetBackgroundTheme(mixupTheme(room?.round?.type), true);
     // 🔊 Each player's own sound: when they join, and each time they answer
     usePlayerSounds(room?.roomCode, room?.players);
+    // 🔔 Voting is open: chime on the TV, where everyone hears it
+    useTvChime(room?.gameState === 'meme_vote' ? `vote-${room.currentRound}` : null);
 
     // --- SOCKET LISTENERS ---
     useEffect(() => {

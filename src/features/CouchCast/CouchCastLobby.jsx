@@ -130,7 +130,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
                         <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
-                          <Avatar id={player.avatar} name={player.name} size={28} style={{ width: 'clamp(20px, 4vh, 32px)', height: 'clamp(20px, 4vh, 32px)' }} />
+                          <Avatar id={player.avatar} name={player.name} size={56} style={{ width: 'clamp(40px, 8vh, 64px)', height: 'clamp(40px, 8vh, 64px)' }} />
                           <span className="text-truncate">{player.name}</span>
                         </span>
                         {player.isPlayerHost && (

@@ -109,7 +109,7 @@ export default function ReshuffledScoreboardTV({ players, isGameOver, nextLabel 
                                     <span className={`fw-bold me-2 me-md-3 flex-shrink-0 ${isLeader ? 'text-primary' : 'text-white-50'}`} style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)' }}>
                                         #{index + 1}
                                     </span>
-                                    <Avatar id={player.avatar} name={player.name} size={36} className="me-2" style={{ width: 'clamp(22px, 5vh, 44px)', height: 'clamp(22px, 5vh, 44px)' }} />
+                                    <Avatar id={player.avatar} name={player.name} size={72} className="me-2 me-md-3" style={{ width: 'clamp(44px, 9vh, 88px)', height: 'clamp(44px, 9vh, 88px)' }} />
                                     <span className={`fw-bold text-truncate ${isLeader ? 'text-dark' : 'text-white'}`} style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)', textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)' }}>
                                         {player.name}
                                     </span>

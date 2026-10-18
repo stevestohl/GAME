@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { getAudioContext } from './chime.js';
+import { getAudioContext, playChime } from './chime.js';
 
 // 🔊 Each player's own sound on the TV: 16 distinct noises, made in the browser (no audio files).
 // A player gets a random one (no repeats until all 16 are used) the moment they enter the lobby,
@@ -128,8 +128,9 @@ const pickSound = (taken) => {
     return free[Math.floor(Math.random() * free.length)];
 };
 
-// Has this player just done their thing this round? (each game names it a little differently)
-const isDone = (p) => !!(p.hasSubmitted || p.hasAnswered || p.hasVoted);
+// How many things this player has done this round (answered, submitted, voted). Counting them
+// separately means voting still plays their sound after they already submitted earlier in the round.
+const doneCount = (p) => Number(!!p.hasSubmitted) + Number(!!p.hasAnswered) + Number(!!p.hasVoted);
 
 /**
  * For a TV screen: plays a player's sound when they first appear, and again each time they answer/vote.
@@ -152,13 +153,13 @@ export function usePlayerSounds(roomCode, players) {
             .filter((p) => p && p.name && !p.isCaster)
             .forEach((p) => {
                 const key = p.name.trim().toLowerCase(); // names are unique within a room
-                const done = isDone(p);
+                const done = doneCount(p);
                 if (map[key] === undefined) {
                     // New in the lobby: hand out a sound and let everyone hear it
                     map[key] = pickSound(map);
                     changed = true;
                     playPlayerSound(map[key]);
-                } else if (done && doneRef.current[key] === false) {
+                } else if (doneRef.current[key] !== undefined && done > doneRef.current[key]) {
                     playPlayerSound(map[key]);
                 }
                 doneRef.current[key] = done;
@@ -166,4 +167,16 @@ export function usePlayerSounds(roomCode, players) {
 
         if (changed) saveSounds(roomCode, map);
     }, [roomCode, players]);
+}
+
+/**
+ * For a TV screen: the "it's your turn" chime, on the TV (where the sound is), when a moment starts.
+ * `moment` is null most of the time and a new value (e.g. 'voting-3') each time the chime should ring.
+ */
+export function useTvChime(moment) {
+    const lastRef = useRef(null);
+    useEffect(() => {
+        if (moment && moment !== lastRef.current) playChime();
+        lastRef.current = moment;
+    }, [moment]);
 }

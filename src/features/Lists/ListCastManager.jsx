@@ -20,7 +20,7 @@ import { cardAnnouncement, ALL_CARD_ANNOUNCEMENTS } from './ListCards.jsx';
 
 // Phone controller
 import ListPlayer from './ListPlayer.jsx';
-import { usePlayerSounds } from '../../playerSounds.js';
+import { usePlayerSounds, useTvChime } from '../../playerSounds.js';
 
 /**
  * 📺📝 List Cast. One address, two jobs:
@@ -61,6 +61,8 @@ function ListCastTV({ roomCode, casterName }) {
     useSetBackgroundTheme(listsTheme(room?.expansion), true);
     // 🔊 Each player's own sound: when they join, and each time they answer
     usePlayerSounds(room?.roomCode, room?.players);
+    // 🔔 Voting is open: chime on the TV, where everyone hears it
+    useTvChime(room?.gameState === 'voting' ? `voting-${room.currentRound}` : null);
     const lobbyTrack = lobbyTrackFor('listCast', room?.expansion);
 
     // --- SOCKET LISTENERS ---
