@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
+import { Avatar } from '../../avatars.jsx';
 
 export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default' }) {
   const [isPortrait, setIsPortrait] = useState(false);
@@ -128,7 +129,10 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                   <ListGroup className="mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0" style={{ minHeight: 0 }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
-                        <span className="text-truncate fw-bold" style={{ maxWidth: '70%', fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>{player.name}</span>
+                        <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
+                          <Avatar id={player.avatar} name={player.name} size={28} style={{ width: 'clamp(20px, 4vh, 32px)', height: 'clamp(20px, 4vh, 32px)' }} />
+                          <span className="text-truncate">{player.name}</span>
+                        </span>
                         {player.isPlayerHost && (
                           <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)' }}>Host</Badge>
                         )}

@@ -57,6 +57,7 @@ const getSafeRoom = (room) => {
         players[p.id] = {
             id: p.id,
             name: p.name,
+            avatar: p.avatar || null,
             score: p.score,
             seat: p.joinOrder,
             isCaster: p.isCaster,
@@ -439,7 +440,9 @@ export default function registerListsNamespace(LNS) {
         });
 
         // ---------- Event: Room Joining (phones, and the TV after a refresh) ----------
-        socket.on('joinRoom', ({ roomCode, playerName, playerId } = {}) => {
+        socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar } = {}) => {
+            // 🙂 The avatar the player picked (a short id like "cat"; anything else is ignored)
+            const cleanAvatar = typeof avatar === 'string' && /^[a-z0-9-]{1,24}$/.test(avatar) ? avatar : null;
             if (!roomCode) return;
             const code = roomCode.trim().toUpperCase();
             const room = activeListRooms[code];
@@ -472,6 +475,7 @@ export default function registerListsNamespace(LNS) {
                 player = room.players[existingKey];
                 player.id = socket.id;
                 player.isConnected = true;
+                if (cleanAvatar) player.avatar = cleanAvatar;
                 if (room.hostId === existingKey) room.hostId = socket.id;
                 delete room.players[existingKey];
                 room.players[socket.id] = player;
@@ -479,6 +483,7 @@ export default function registerListsNamespace(LNS) {
                 const isFirstPlayer = !Object.values(room.players).some(p => !p.isCaster && p.isConnected);
                 player = {
                     playerId,
+                    avatar: cleanAvatar,
                     id: socket.id,
                     name: requestedName,
                     score: 0,

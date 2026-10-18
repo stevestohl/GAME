@@ -7,6 +7,7 @@ import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { DrawingPad, DrawingView } from './DrawingCanvas.jsx';
 import { MemeImage, ROUND_LOOKS, useCountdown } from './MixupScreensTV.jsx';
 import '../../styles/mixup.css';
+import { getMyAvatar } from '../../avatars.jsx';
 
 /**
  * 📱 Temple Mix Up on a player's phone: write captions, vote, draw or guess, answer trivia.
@@ -32,7 +33,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
             playerId = 'player_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('templePlayerId', playerId);
         }
-        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId });
+        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId, avatar: getMyAvatar() });
         const handleRoom = (update) => { if (update?.roomCode === roomCode) setRoom(update); };
         const handleMyState = (state) => setMine((prev) => ({ ...prev, ...state }));
         const handleJoinError = (msg) => setError(msg);

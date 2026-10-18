@@ -11,6 +11,7 @@ import ListBoard from './ListBoard.jsx';
 import { ListRulesList } from './ListRules.jsx';
 import { RoundCard, CardChip, cardWritingTip } from './ListCards.jsx';
 import '../../styles/lists.css';
+import { getMyAvatar } from '../../avatars.jsx';
 
 const blankList = (size) => Array.from({ length: size }, () => '');
 
@@ -45,7 +46,7 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
             localStorage.setItem('templePlayerId', playerId);
         }
 
-        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId });
+        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId, avatar: getMyAvatar() });
         const handleRoomUpdate = (update) => { if (update?.roomCode === roomCode) setRoom(update); };
         const handleJoinError = (message) => {
             // "Need more players" just means the start button was early: stay in the room

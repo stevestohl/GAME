@@ -226,6 +226,693 @@ function Page() {
 
 /***/ }),
 
+/***/ "./src/avatars.jsx":
+/*!*************************!*\
+  !*** ./src/avatars.jsx ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AVATARS": () => (/* binding */ AVATARS),
+/* harmony export */   "Avatar": () => (/* binding */ Avatar),
+/* harmony export */   "AvatarPicker": () => (/* binding */ AvatarPicker),
+/* harmony export */   "getMyAvatar": () => (/* binding */ getMyAvatar),
+/* harmony export */   "isAvatar": () => (/* binding */ isAvatar),
+/* harmony export */   "setMyAvatar": () => (/* binding */ setMyAvatar)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/**
+ * 🙂 Player avatars for the cast games. Players pick one on the Join Room screen; the phone
+ * remembers it, sends it with every join, and the TV shows it in the lobby and on the scoreboards.
+ * Each avatar is a little drawing in a glossy, lit circle (drawn in code, so it looks the same on every device).
+ *
+ *   <Avatar id="cat" size={40} />        one avatar
+ *   <AvatarPicker value={id} onChange={setId} />
+ *   getMyAvatar() / setMyAvatar(id)       this phone's pick (localStorage)
+ *
+ * To add one: add an entry to AVATARS with an id (lowercase letters, numbers, dashes), a label,
+ * a background color and a draw() that returns SVG shapes on a 100 x 100 canvas.
+ */
+
+var OUTLINE = '#2b2b2b';
+
+// A person: skin tone, hair color and a couple of hairstyles, smiling, with a shirt
+var person = function person(skin, hair, shirt) {
+  var style = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'short';
+  return function () {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M18 100 C20 78 34 70 50 70 C66 70 80 78 82 100 Z",
+      fill: shirt
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "44",
+      y: "58",
+      width: "12",
+      height: "14",
+      rx: "4",
+      fill: skin
+    }), style === 'long' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M27 46 C24 22 40 14 50 14 C62 14 77 22 73 48 L74 70 L62 66 L38 66 L26 70 Z",
+      fill: hair
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "42",
+      r: "21",
+      fill: skin
+    }), style === 'short' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M29 40 C27 20 43 15 52 16 C66 17 74 26 71 40 C66 30 57 27 48 29 C40 30 33 34 29 40 Z",
+      fill: hair
+    }), style === 'curly' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M28 40 C22 30 28 16 40 16 C44 10 56 10 60 16 C72 16 78 30 72 40 C70 32 64 28 58 30 C54 26 46 26 42 30 C36 28 30 32 28 40 Z",
+      fill: hair
+    }), style === 'long' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 38 C34 24 50 20 64 26 C68 30 70 34 70 38 C60 30 44 30 30 38 Z",
+      fill: hair
+    }), style === 'bun' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "15",
+      r: "9",
+      fill: hair
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M29 40 C28 24 40 18 50 18 C62 18 72 24 71 40 C64 30 38 30 29 40 Z",
+      fill: hair
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "42",
+      cy: "44",
+      r: "2.6",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "58",
+      cy: "44",
+      r: "2.6",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M42 52 Q50 59 58 52",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2.6",
+      strokeLinecap: "round"
+    }));
+  };
+};
+var AVATARS = [{
+  id: 'cat',
+  label: 'Cat',
+  bg: '#ffb703',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M24 30 L30 58 L44 40 Z M76 30 L70 58 L56 40 Z",
+      fill: "#f2f2f2",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M28 34 L32 50 L40 41 Z M72 34 L68 50 L60 41 Z",
+      fill: "#ff9fb2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "58",
+      rx: "28",
+      ry: "25",
+      fill: "#f2f2f2",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "40",
+      cy: "54",
+      rx: "3.5",
+      ry: "5",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "60",
+      cy: "54",
+      rx: "3.5",
+      ry: "5",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M46 63 L54 63 L50 67 Z",
+      fill: "#ff7a93"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 67 Q46 72 42 70 M50 67 Q54 72 58 70",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 62 L16 60 M30 66 L16 68 M70 62 L84 60 M70 66 L84 68",
+      stroke: OUTLINE,
+      strokeWidth: "1.8",
+      strokeLinecap: "round"
+    }));
+  }
+}, {
+  id: 'dog',
+  label: 'Dog',
+  bg: '#8ecae6',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M22 36 C14 44 16 66 26 72 C32 62 34 48 32 38 Z M78 36 C86 44 84 66 74 72 C68 62 66 48 68 38 Z",
+      fill: "#7a4a24"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "54",
+      rx: "24",
+      ry: "26",
+      fill: "#c98a4b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "66",
+      rx: "14",
+      ry: "11",
+      fill: "#f1d3b0"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "41",
+      cy: "50",
+      r: "3.4",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "59",
+      cy: "50",
+      r: "3.4",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "61",
+      rx: "5.5",
+      ry: "4",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 65 L50 69 M44 70 Q50 75 56 70",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2.2",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M47 72 Q50 82 53 72 Z",
+      fill: "#ff6b81"
+    }));
+  }
+}, {
+  id: 'person-1',
+  label: 'Person',
+  bg: '#a8dadc',
+  draw: person('#f6d7c3', '#d9a441', '#e76f51', 'short')
+}, {
+  id: 'person-2',
+  label: 'Person',
+  bg: '#ffd6a5',
+  draw: person('#e8b48a', '#3d2b1f', '#2a9d8f', 'long')
+}, {
+  id: 'person-3',
+  label: 'Person',
+  bg: '#caffbf',
+  draw: person('#c68642', '#1f1410', '#6a4c93', 'curly')
+}, {
+  id: 'person-4',
+  label: 'Person',
+  bg: '#bdb2ff',
+  draw: person('#8d5524', '#140c08', '#f4a261', 'bun')
+}, {
+  id: 'person-5',
+  label: 'Person',
+  bg: '#ffc6ff',
+  draw: person('#5c3a21', '#0d0806', '#1d4ed8', 'curly')
+}, {
+  id: 'smiley',
+  label: 'Smiley',
+  bg: '#ff8fab',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "50",
+      r: "30",
+      fill: "#ffd60a",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "40",
+      cy: "43",
+      rx: "3.6",
+      ry: "5.5",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "60",
+      cy: "43",
+      rx: "3.6",
+      ry: "5.5",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M35 56 Q50 72 65 56",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "3.2",
+      strokeLinecap: "round"
+    }));
+  }
+}, {
+  id: 'heart',
+  label: 'Heart',
+  bg: '#ffd1dc',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 78 C30 64 20 52 20 40 C20 30 28 23 37 23 C43 23 48 27 50 32 C52 27 57 23 63 23 C72 23 80 30 80 40 C80 52 70 64 50 78 Z",
+      fill: "#e63946",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M32 36 C32 32 35 30 38 30",
+      fill: "none",
+      stroke: "#fff",
+      strokeWidth: "3",
+      strokeLinecap: "round",
+      opacity: "0.8"
+    }));
+  }
+}, {
+  id: 'goth',
+  label: 'Goth',
+  bg: '#5a189a',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M18 100 C20 78 34 70 50 70 C66 70 80 78 82 100 Z",
+      fill: "#111"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M26 48 C22 22 38 12 50 12 C64 12 80 22 74 50 L76 82 L62 70 L38 70 L24 82 Z",
+      fill: "#0b0b0b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "44",
+      y: "58",
+      width: "12",
+      height: "13",
+      rx: "4",
+      fill: "#eee6f2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "42",
+      r: "20",
+      fill: "#eee6f2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 40 C32 24 46 20 56 22 C64 24 70 30 70 38 C62 28 48 30 38 36 Z",
+      fill: "#0b0b0b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M37 42 L45 42 L44 47 L38 47 Z M55 42 L63 42 L62 47 L56 47 Z",
+      fill: "#2b0a3d"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "41",
+      cy: "44",
+      r: "2",
+      fill: "#000"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "59",
+      cy: "44",
+      r: "2",
+      fill: "#000"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M44 53 Q50 57 56 53 Q50 55 44 53 Z",
+      fill: "#3c0d4f",
+      stroke: "#3c0d4f",
+      strokeWidth: "2",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M40 70 L60 70",
+      stroke: "#222",
+      strokeWidth: "4"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "73",
+      r: "2.6",
+      fill: "#b5179e"
+    }));
+  }
+}, {
+  id: 'soccer',
+  label: 'Soccer ball',
+  bg: '#80ed99',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "50",
+      r: "30",
+      fill: "#fff",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 38 L61 46 L57 59 L43 59 L39 46 Z",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 38 L50 22 M61 46 L76 41 M57 59 L66 72 M43 59 L34 72 M39 46 L24 41",
+      stroke: OUTLINE,
+      strokeWidth: "2.2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M44 21 L56 21 L50 26 Z M77 36 L80 48 L74 44 Z M70 74 L60 78 L64 71 Z M30 74 L40 78 L36 71 Z M23 36 L20 48 L26 44 Z",
+      fill: OUTLINE
+    }));
+  }
+}, {
+  id: 'basketball',
+  label: 'Basketball',
+  bg: '#ffe066',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "50",
+      r: "30",
+      fill: "#f77f00",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M20 50 L80 50 M50 20 L50 80",
+      stroke: OUTLINE,
+      strokeWidth: "2.4"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M29 29 C40 40 40 60 29 71 M71 29 C60 40 60 60 71 71",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2.4"
+    }));
+  }
+}, {
+  id: 'football',
+  label: 'Football',
+  bg: '#b7e4c7',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M18 50 C30 28 70 28 82 50 C70 72 30 72 18 50 Z",
+      fill: "#8b4513",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      transform: "rotate(-30 50 50)"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+      transform: "rotate(-30 50 50)",
+      stroke: "#fff",
+      strokeWidth: "2.4",
+      strokeLinecap: "round"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M38 50 L62 50"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M42 46 L42 54 M47 46 L47 54 M52 46 L52 54 M57 46 L57 54"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M26 44 L26 56 M74 44 L74 56"
+    })));
+  }
+}, {
+  id: 'baseball',
+  label: 'Baseball',
+  bg: '#a0c4ff',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "50",
+      r: "30",
+      fill: "#fff",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M32 27 C42 40 42 60 32 73 M68 27 C58 40 58 60 68 73",
+      fill: "none",
+      stroke: "#e63946",
+      strokeWidth: "2.4"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M34 34 L40 32 M37 42 L43 41 M38 50 L44 50 M37 58 L43 59 M34 66 L40 68 M66 34 L60 32 M63 42 L57 41 M62 50 L56 50 M63 58 L57 59 M66 66 L60 68",
+      stroke: "#e63946",
+      strokeWidth: "1.8",
+      strokeLinecap: "round"
+    }));
+  }
+}, {
+  id: 'tennis',
+  label: 'Tennis ball',
+  bg: '#48cae4',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "50",
+      r: "30",
+      fill: "#d4f73b",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M24 34 C38 42 38 58 24 66 M76 34 C62 42 62 58 76 66",
+      fill: "none",
+      stroke: "#fff",
+      strokeWidth: "3.4",
+      strokeLinecap: "round"
+    }));
+  }
+}];
+var BY_ID = Object.fromEntries(AVATARS.map(function (a) {
+  return [a.id, a];
+}));
+var isAvatar = function isAvatar(id) {
+  return !!BY_ID[id];
+};
+
+// ---- The 3D finish: every avatar sits in the same glossy, lit "medallion" ----
+
+// Lighten (amount > 0) or darken (amount < 0) a #rrggbb color
+var shade = function shade(hex, amount) {
+  var n = parseInt(hex.slice(1), 16);
+  var mix = function mix(c) {
+    return Math.round(amount >= 0 ? c + (255 - c) * amount : c * (1 + amount));
+  };
+  var r = mix(n >> 16 & 255),
+    g = mix(n >> 8 & 255),
+    b = mix(n & 255);
+  return "#".concat((1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1));
+};
+
+/**
+ * The frame every avatar is drawn in: a lit, sphere-like background, the drawing raised off it with a
+ * soft shadow, a gentle shadow toward the edges, a gloss highlight across the top and a beveled rim.
+ * (Gradient and filter ids are per color/avatar, so many avatars on one screen share them safely.)
+ */
+function Medallion(_ref) {
+  var uid = _ref.uid,
+    bg = _ref.bg,
+    label = _ref.label,
+    size = _ref.size,
+    className = _ref.className,
+    style = _ref.style,
+    children = _ref.children;
+  var k = "av-".concat(uid);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    viewBox: "0 0 100 100",
+    width: size,
+    height: size,
+    className: "gt-avatar ".concat(className),
+    style: _objectSpread({
+      flexShrink: 0,
+      display: 'inline-block'
+    }, style),
+    role: "img",
+    "aria-label": label
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("radialGradient", {
+    id: "".concat(k, "-bg"),
+    cx: "35%",
+    cy: "28%",
+    r: "80%"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "0%",
+    stopColor: shade(bg, 0.45)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "55%",
+    stopColor: bg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "100%",
+    stopColor: shade(bg, -0.35)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("radialGradient", {
+    id: "".concat(k, "-edge"),
+    cx: "50%",
+    cy: "45%",
+    r: "55%"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "70%",
+    stopColor: "#000",
+    stopOpacity: "0"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "100%",
+    stopColor: "#000",
+    stopOpacity: "0.28"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("linearGradient", {
+    id: "".concat(k, "-gloss"),
+    x1: "0",
+    y1: "0",
+    x2: "0",
+    y2: "1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "0%",
+    stopColor: "#fff",
+    stopOpacity: "0.75"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "100%",
+    stopColor: "#fff",
+    stopOpacity: "0"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("linearGradient", {
+    id: "".concat(k, "-rim"),
+    x1: "0",
+    y1: "0",
+    x2: "0",
+    y2: "1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "0%",
+    stopColor: "#ffffff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "50%",
+    stopColor: shade(bg, 0.6)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
+    offset: "100%",
+    stopColor: shade(bg, -0.45)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("filter", {
+    id: "".concat(k, "-lift"),
+    x: "-20%",
+    y: "-20%",
+    width: "140%",
+    height: "140%"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("feDropShadow", {
+    dx: "0",
+    dy: "2.2",
+    stdDeviation: "1.8",
+    floodColor: "#000",
+    floodOpacity: "0.35"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("clipPath", {
+    id: "".concat(k, "-clip")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "46"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "46",
+    fill: "url(#".concat(k, "-bg)")
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    clipPath: "url(#".concat(k, "-clip)")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    filter: "url(#".concat(k, "-lift)")
+  }, children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "46",
+    fill: "url(#".concat(k, "-edge)")
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "50",
+    cy: "24",
+    rx: "34",
+    ry: "18",
+    fill: "url(#".concat(k, "-gloss)")
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "47",
+    fill: "none",
+    stroke: "url(#".concat(k, "-rim)"),
+    strokeWidth: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "49",
+    fill: "none",
+    stroke: "#000",
+    strokeOpacity: "0.18",
+    strokeWidth: "1"
+  }));
+}
+
+/** One avatar: a drawing in a glossy, 3D-looking circle (a player with no avatar gets their first initial) */
+function Avatar(_ref2) {
+  var id = _ref2.id,
+    name = _ref2.name,
+    _ref2$size = _ref2.size,
+    size = _ref2$size === void 0 ? 40 : _ref2$size,
+    _ref2$className = _ref2.className,
+    className = _ref2$className === void 0 ? '' : _ref2$className,
+    style = _ref2.style;
+  var avatar = BY_ID[id];
+  if (!avatar) {
+    if (!name) return null;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Medallion, {
+      uid: "initial",
+      bg: "#9ca3af",
+      label: name,
+      size: size,
+      className: className,
+      style: style
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+      x: "50",
+      y: "66",
+      textAnchor: "middle",
+      fontSize: "46",
+      fontWeight: "800",
+      fill: "#fff",
+      fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    }, String(name).trim().charAt(0).toUpperCase() || '?'));
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Medallion, {
+    uid: id,
+    bg: avatar.bg,
+    label: avatar.label,
+    size: size,
+    className: className,
+    style: style
+  }, avatar.draw());
+}
+
+// ---- This phone's pick ----
+var STORAGE_KEY = 'templeAvatar';
+
+/** The avatar this phone uses (picks one at random the first time) */
+function getMyAvatar() {
+  var id = null;
+  try {
+    id = localStorage.getItem(STORAGE_KEY);
+  } catch (_unused) {/* private mode */}
+  if (isAvatar(id)) return id;
+  id = AVATARS[Math.floor(Math.random() * AVATARS.length)].id;
+  setMyAvatar(id);
+  return id;
+}
+function setMyAvatar(id) {
+  if (!isAvatar(id)) return;
+  try {
+    localStorage.setItem(STORAGE_KEY, id);
+  } catch (_unused2) {/* private mode */}
+}
+
+/** A grid of avatars to tap (Join Room screen) */
+function AvatarPicker(_ref3) {
+  var value = _ref3.value,
+    onChange = _ref3.onChange;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-avatar-picker",
+    role: "radiogroup",
+    "aria-label": "Pick your avatar"
+  }, AVATARS.map(function (avatar) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      key: avatar.id,
+      type: "button",
+      role: "radio",
+      "aria-checked": value === avatar.id,
+      "aria-label": avatar.label,
+      className: "gt-avatar-choice ".concat(value === avatar.id ? 'selected' : ''),
+      onClick: function onClick() {
+        return onChange(avatar.id);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Avatar, {
+      id: avatar.id,
+      size: 46
+    }));
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/employees.jsx":
 /*!***************************!*\
   !*** ./src/employees.jsx ***!
@@ -852,18 +1539,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 /* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -952,18 +1641,18 @@ function CouchCastLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden",
     style: {
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
@@ -998,13 +1687,13 @@ function CouchCastLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "d-flex flex-column",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1.5rem)',
@@ -1015,22 +1704,33 @@ function CouchCastLobby(_ref) {
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)'
     }
-  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0",
     style: {
       minHeight: 0
     }
   }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       key: player.id,
       className: "d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-truncate fw-bold",
+      className: "d-flex align-items-center gap-2 fw-bold",
       style: {
         maxWidth: '70%',
+        minWidth: 0,
         fontSize: 'clamp(0.85rem, 2vh, 1.2rem)'
       }
-    }, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
+      id: player.avatar,
+      name: player.name,
+      size: 28,
+      style: {
+        width: 'clamp(20px, 4vh, 32px)',
+        height: 'clamp(20px, 4vh, 32px)'
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "text-truncate"
+    }, player.name)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       bg: "primary",
       className: "rounded-pill px-2 py-1 shadow-sm",
       style: {
@@ -1496,15 +2196,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/index.mjs");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CouchCastScoreboard.jsx */ "./src/features/CouchCast/CouchCastScoreboard.jsx");
 /* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
 /* harmony import */ var _CouchCastWritingPlayer_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CouchCastWritingPlayer.jsx */ "./src/features/CouchCast/CouchCastWritingPlayer.jsx");
@@ -1512,6 +2212,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
 /* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1532,6 +2233,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function CouchCastPlayerSetup(_ref) {
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName;
@@ -1539,7 +2241,7 @@ function CouchCastPlayerSetup(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     gameState = _useState2[0],
     setGameState = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useNavigate)();
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState4 = _slicedToArray(_useState3, 2),
     roomData = _useState4[0],
@@ -1595,14 +2297,16 @@ function CouchCastPlayerSetup(_ref) {
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: pId
+        playerId: pId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_10__.getMyAvatar)()
       });
     });
     if (_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.connected) {
       _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: pId
+        playerId: pId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_10__.getMyAvatar)()
       });
     }
 
@@ -1690,22 +2394,22 @@ function CouchCastPlayerSetup(_ref) {
 
   // The Retry Screen
   if (gameState === 'name_retry') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       className: "text-center shadow-sm w-100 border-0",
       style: {
         maxWidth: '400px',
         backgroundColor: '#f8f9fa'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
       className: "p-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "warning",
       className: "fw-bold shadow-sm"
     }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
       className: "mb-3 text-dark"
-    }, "Try a different name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Control, {
+    }, "Try a different name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Control, {
       type: "text",
       placeholder: "New Player Name",
       value: retryName,
@@ -1714,7 +2418,7 @@ function CouchCastPlayerSetup(_ref) {
       },
       className: "mb-4 text-center fs-5 shadow-sm",
       autoFocus: true
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
       variant: "primary",
       size: "lg",
       className: "w-100 fw-bold shadow-sm",
@@ -1728,15 +2432,16 @@ function CouchCastPlayerSetup(_ref) {
         _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('joinRoom', {
           roomCode: roomCode,
           playerName: retryName.trim(),
-          playerId: localStorage.getItem('templePlayerId')
+          playerId: localStorage.getItem('templePlayerId'),
+          avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_10__.getMyAvatar)()
         });
       }
     }, "Join Room"))));
   }
   if (gameState === 'error') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "mt-5 text-center d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "danger",
       className: "fw-bold shadow-sm",
       style: {
@@ -1745,9 +2450,9 @@ function CouchCastPlayerSetup(_ref) {
     }, error));
   }
   if (gameState === 'joining' || !roomData || !playerData) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "mt-5 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
       animation: "border",
       variant: "primary",
       style: {
@@ -1763,15 +2468,15 @@ function CouchCastPlayerSetup(_ref) {
   var hostName = hostPlayer ? hostPlayer.name : 'the host';
   switch (gameState) {
     case 'lobby':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         className: "mt-5 d-flex justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
         className: "text-center shadow-sm w-100 border-0",
         style: {
           maxWidth: '400px',
           backgroundColor: '#f8f9fa'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
         className: "p-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "text-primary fw-bold mb-3"
@@ -1781,7 +2486,7 @@ function CouchCastPlayerSetup(_ref) {
         className: "p-3 border border-warning rounded bg-white shadow-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "fw-bold text-dark mb-3"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         variant: roomData.expansion === 'halloween' ? 'success' : 'primary',
         size: "lg",
         className: "w-100 fw-bold py-3 fs-5 shadow-sm",
@@ -1790,13 +2495,13 @@ function CouchCastPlayerSetup(_ref) {
         className: "p-3 border border-dashed rounded bg-light text-muted fs-6"
       }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."))));
     case 'rules':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         className: "mt-5 pt-4 text-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "text-primary fw-bold mb-3"
       }, "Welcome to Couch Cast!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
         className: "text-muted fw-normal"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
         animation: "grow",
         variant: "warning",
         className: "mt-5"
@@ -1834,14 +2539,14 @@ function CouchCastPlayerSetup(_ref) {
         var didIWin = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner = roundResults.winner) === null || _roundResults$winner === void 0 ? void 0 : _roundResults$winner.id) === playerData.id;
         var winnerName = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winning = roundResults.winningSubmission) === null || _roundResults$winning === void 0 ? void 0 : _roundResults$winning.playerName) || (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner2 = roundResults.winner) === null || _roundResults$winner2 === void 0 ? void 0 : _roundResults$winner2.name) || 'Someone';
         var card = roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission ? (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_9__.fillBlank)(roomData.currentPrompt, roundResults.winningSubmission.answer) : null;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           className: "mt-5 d-flex justify-content-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
           className: "text-center shadow-sm w-100 border-0 ".concat(didIWin ? 'bg-success text-white' : 'bg-light'),
           style: {
             maxWidth: '400px'
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
           className: "p-4 p-sm-5"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
           className: "display-1 mb-2"
@@ -1868,9 +2573,9 @@ function CouchCastPlayerSetup(_ref) {
         isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
       });
     default:
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         className: "mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
         animation: "grow",
         variant: "warning"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
@@ -2494,15 +3199,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function CouchCastScoreboardTV(_ref) {
@@ -2571,12 +3278,12 @@ function CouchCastScoreboardTV(_ref) {
     style: {
       borderRadius: '15px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "border-0 text-white w-100 frosted-glass-panel",
     style: {
       borderRadius: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     style: {
       padding: 'clamp(0.3rem, 1.5vh, 1rem) 1rem'
     }
@@ -2638,13 +3345,22 @@ function CouchCastScoreboardTV(_ref) {
       style: {
         fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)'
       }
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
+      id: player.avatar,
+      name: player.name,
+      size: 36,
+      className: "me-2",
+      style: {
+        width: 'clamp(22px, 5vh, 44px)',
+        height: 'clamp(22px, 5vh, 44px)'
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "fw-bold text-truncate ".concat(isLeader ? 'text-dark' : 'text-white'),
       style: {
         fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)',
         textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
       }
-    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       bg: isLeader ? 'primary' : 'light',
       text: isLeader ? 'light' : 'dark',
       className: "rounded-pill shadow-sm fw-bold flex-shrink-0 ms-2",
@@ -2667,7 +3383,7 @@ function CouchCastScoreboardTV(_ref) {
     }
   }, "Thanks for playing! Close the room to start a new game.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex align-items-center justify-content-center text-white opacity-90"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     animation: "border",
     size: "sm",
     className: "me-2 text-primary"
@@ -5968,15 +6684,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
@@ -5987,6 +6703,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
 /* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
 /* harmony import */ var _styles_lists_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../styles/lists.css */ "./src/styles/lists.css");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -5997,6 +6714,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6028,7 +6746,7 @@ function ListPlayer(_ref) {
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName,
     mode = _ref.mode;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useNavigate)();
   var isListopia = mode === 'phones';
   var gameName = isListopia ? 'Listopia' : 'List Cast';
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -6073,7 +6791,8 @@ function ListPlayer(_ref) {
       return _socket__WEBPACK_IMPORTED_MODULE_2__.listsSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: playerId
+        playerId: playerId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_11__.getMyAvatar)()
       });
     };
     var handleRoomUpdate = function handleRoomUpdate(update) {
@@ -6225,11 +6944,11 @@ function ListPlayer(_ref) {
   var frame = function frame(title, body) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "page-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       className: "main-card"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Header, {
       className: "main-card-header"
-    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
       className: "p-3"
     }, body)));
   };
@@ -6253,10 +6972,10 @@ function ListPlayer(_ref) {
 
   // ---------- Couldn't join ----------
   if (error) {
-    return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "warning",
       className: "fw-bold"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
       variant: "primary",
       className: "w-100 fw-bold",
       onClick: function onClick() {
@@ -6269,7 +6988,7 @@ function ListPlayer(_ref) {
   if (!room || !me) {
     return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "py-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
       animation: "border",
       variant: "primary"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
@@ -6293,7 +7012,7 @@ function ListPlayer(_ref) {
           className: "p-3 border border-warning rounded bg-white shadow-sm"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "fw-bold text-dark mb-3"
-        }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           variant: "success",
           size: "lg",
           className: "w-100 fw-bold py-3",
@@ -6323,7 +7042,7 @@ function ListPlayer(_ref) {
           style: {
             letterSpacing: '0.2em'
           }
-        }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
           className: "d-inline-block shadow-sm border-0 p-2 mb-1"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
           value: joinUrl,
@@ -6335,18 +7054,18 @@ function ListPlayer(_ref) {
           className: "d-flex justify-content-between align-items-center mb-2"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
           className: "text-start mb-0 fw-bold"
-        }, "Players"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        }, "Players"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
           bg: "secondary",
           className: "rounded-pill px-3"
-        }, connected.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        }, connected.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
           className: "mb-3 text-start shadow-sm"
         }, connected.map(function (p) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Item, {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
             key: p.id,
             className: "d-flex justify-content-between align-items-center py-2"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "fw-bold"
-          }, p.name, p.id === me.id ? ' (you)' : ''), p.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          }, p.name, p.id === me.id ? ' (you)' : ''), p.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
             bg: "primary",
             className: "rounded-pill"
           }, "Leader"));
@@ -6362,7 +7081,7 @@ function ListPlayer(_ref) {
           className: "text-primary fw-bold mb-2"
         }, "Get Ready!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "text-muted mb-3"
-        }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
           animation: "grow",
           variant: "warning"
         })));
@@ -6372,7 +7091,7 @@ function ListPlayer(_ref) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_8__.ListRulesList, {
         pointsPerItem: room.pointsPerItem,
         listSize: room.listSize
-      })), me.isPlayerHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      })), me.isPlayerHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
         variant: "success",
         size: "lg",
         className: "w-100 fw-bold py-3",
@@ -6443,7 +7162,7 @@ function ListPlayer(_ref) {
             className: "ls-input-row"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "ls-input-num"
-          }, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Control, {
+          }, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"].Control, {
             ref: function ref(el) {
               inputRefs.current[i] = el;
             },
@@ -6465,7 +7184,7 @@ function ListPlayer(_ref) {
           }));
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "small text-muted mb-2"
-        }, "Tip: ", (0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.cardWritingTip)(room.card)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }, "Tip: ", (0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_9__.cardWritingTip)(room.card)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           variant: "primary",
           size: "lg",
           className: "w-100 fw-bold",
@@ -6542,7 +7261,7 @@ function ListPlayer(_ref) {
             className: "fw-bold mb-2"
           }, canVote ? 'Votes In!' : 'Voting...'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
             className: "text-muted mb-2"
-          }, canVote ? '' : "You joined mid-round, so you'll vote next round. ", votedCount, " of ", voters.length, " have voted."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
+          }, canVote ? '' : "You joined mid-round, so you'll vote next round. ", votedCount, " of ", voters.length, " have voted."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
             now: voters.length ? votedCount / voters.length * 100 : 0,
             className: "mb-3"
           }), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -6579,7 +7298,7 @@ function ListPlayer(_ref) {
           style: {
             background: 'linear-gradient(transparent, #fff 30%)'
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           variant: "success",
           size: "lg",
           className: "w-100 fw-bold",
@@ -6631,22 +7350,22 @@ function ListPlayer(_ref) {
           className: "display-4 mb-1"
         }, iWon ? '🏆' : '📊'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
           className: "fw-bold text-dark mb-1"
-        }, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        }, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
           bg: "primary",
           className: "fs-5 rounded-pill px-3 py-2 mb-3"
-        }, me.score, " pts"), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        }, me.score, " pts"), isListopia && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
           className: "mb-3 text-start shadow-sm"
         }, ranked.map(function (p) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Item, {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
             key: p.id,
             className: "d-flex justify-content-between align-items-center py-2 ".concat(p.id === me.id ? 'fw-bold bg-light' : '')
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "text-muted me-2"
-          }, "#", rankOf(p)), rankOf(p) === 1 && p.score > 0 ? '👑 ' : '', p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          }, "#", rankOf(p)), rankOf(p) === 1 && p.score > 0 ? '👑 ' : '', p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
             bg: rankOf(p) === 1 ? 'primary' : 'secondary',
             className: "rounded-pill"
           }, p.score, " pts"));
-        })), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        })), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           variant: "primary",
           className: "w-100 fw-bold",
           onClick: function onClick() {
@@ -6657,7 +7376,7 @@ function ListPlayer(_ref) {
         }, "Next list coming up...")));
       }
     default:
-      return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      return frame(gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         animation: "grow",
         variant: "warning"
       }));
@@ -9939,15 +10658,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
+/* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -9958,13 +10678,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function UniversalJoinScreen() {
   var _location$state;
-  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useSearchParams)(),
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.toastMessage) || ''),
     _useState2 = _slicedToArray(_useState, 2),
     toastMsg = _useState2[0],
@@ -9979,13 +10700,19 @@ function UniversalJoinScreen() {
     _useState6 = _slicedToArray(_useState5, 2),
     playerName = _useState6[0],
     setPlayerName = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
+      return (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.getMyAvatar)();
+    }),
     _useState8 = _slicedToArray(_useState7, 2),
-    error = _useState8[0],
-    setError = _useState8[1];
+    avatar = _useState8[0],
+    setAvatar = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState9, 2),
+    error = _useState10[0],
+    setError = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var savedName = localStorage.getItem('templePlayerName');
-    setPlayerName(savedName || (0,_funnyNames_js__WEBPACK_IMPORTED_MODULE_1__.getRandomFunnyName)());
+    setPlayerName(savedName || (0,_funnyNames_js__WEBPACK_IMPORTED_MODULE_2__.getRandomFunnyName)());
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (urlRoomCode) {
@@ -10000,7 +10727,7 @@ function UniversalJoinScreen() {
     }
   }, [location]);
   var handleRandomizeName = function handleRandomizeName() {
-    setPlayerName((0,_funnyNames_js__WEBPACK_IMPORTED_MODULE_1__.getRandomFunnyName)());
+    setPlayerName((0,_funnyNames_js__WEBPACK_IMPORTED_MODULE_2__.getRandomFunnyName)());
   };
   var handleJoin = function handleJoin(e) {
     e.preventDefault();
@@ -10048,11 +10775,12 @@ function UniversalJoinScreen() {
         return;
     }
     localStorage.setItem('templePlayerName', playerName.trim());
+    (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.setMyAvatar)(avatar);
     navigate(targetRoute);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     style: {
       position: 'fixed',
       top: '20px',
@@ -10060,7 +10788,7 @@ function UniversalJoinScreen() {
       transform: 'translateX(-50%)',
       zIndex: 99999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     show: !!toastMsg,
     onClose: function onClose() {
       return setToastMsg('');
@@ -10068,13 +10796,13 @@ function UniversalJoinScreen() {
     delay: 4000,
     autohide: true,
     bg: "danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     className: "fw-bold text-white text-center px-4 py-2"
-  }, "\u26A0\uFE0F ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "\u26A0\uFE0F ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
     className: "main-card-header"
-  }, "Join a Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, "Join a Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "p-4 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mb-4"
@@ -10082,19 +10810,19 @@ function UniversalJoinScreen() {
     className: "fw-bold text-primary mb-1"
   }, urlRoomCode ? "Joining Room ".concat(urlRoomCode.toUpperCase()) : 'Have a Room Code?'), !urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fw-bold text-primary mb-1"
-  }, "Enter it Here!")), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, "Enter it Here!")), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     variant: "danger"
-  }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     onSubmit: handleJoin
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
     className: "mb-3 text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-between align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Label, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
     className: "fw-bold text-secondary small mb-0"
   }, "Room Code"), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "text-success small fw-bold"
-  }, "\u2705 Room Verified & Locked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+  }, "\u2705 Room Verified & Locked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
     size: "lg",
     type: "text",
     placeholder: "4-Letter Code",
@@ -10109,13 +10837,13 @@ function UniversalJoinScreen() {
     },
     disabled: !!urlRoomCode,
     required: true
-  }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Text, {
+  }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Text, {
     className: "text-muted text-center d-block mt-1"
-  }, "You're joining room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, urlRoomCode.toUpperCase()), ". Just pick your name and jump in!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+  }, "You're joining room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, urlRoomCode.toUpperCase()), ". Just pick your name and jump in!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
     className: "mb-4 text-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Label, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
     className: "fw-bold text-secondary small"
-  }, "Your Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+  }, "Your Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
     size: "lg",
     type: "text",
     placeholder: "Enter your nickname",
@@ -10126,18 +10854,25 @@ function UniversalJoinScreen() {
     maxLength: 12,
     className: "text-center fw-bold",
     required: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "outline-primary",
     type: "button",
     onClick: handleRandomizeName,
     title: "Generate Random Name",
     className: "px-3 fs-5"
-  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
+    className: "mb-4 text-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
+    className: "fw-bold text-secondary small"
+  }, "Pick Your Avatar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.AvatarPicker, {
+    value: avatar,
+    onChange: setAvatar
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "primary",
     size: "lg",
     className: "w-100 fw-bold shadow-sm mb-2",
     type: "submit"
-  }, "Jump In!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, "Jump In!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "outline-secondary",
     size: "sm",
     className: "w-100 mt-2",
@@ -10879,18 +11614,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DrawingCanvas.jsx */ "./src/features/Mixup/DrawingCanvas.jsx");
 /* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
 /* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -10914,6 +11650,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 /**
  * 📱 Temple Mix Up on a player's phone: write captions, vote, draw or guess, answer trivia.
  * The TV shows everything big; the phone is the controller.
@@ -10922,7 +11659,7 @@ function MixupPlayer(_ref) {
   var _room$round, _room$round2, _players$find;
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -10965,7 +11702,8 @@ function MixupPlayer(_ref) {
       return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: playerId
+        playerId: playerId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_7__.getMyAvatar)()
       });
     };
     var handleRoom = function handleRoom(update) {
@@ -11025,9 +11763,9 @@ function MixupPlayer(_ref) {
   if (error && !room) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
       title: "Temple Mix Up"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       variant: "danger"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "primary",
       className: "w-100",
       onClick: function onClick() {
@@ -11038,7 +11776,7 @@ function MixupPlayer(_ref) {
   if (!room) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
       title: "Temple Mix Up"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       animation: "border",
       variant: "primary"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -11064,14 +11802,14 @@ function MixupPlayer(_ref) {
         title: "You're In!"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "text-muted"
-      }, "Look up at the TV. ", players.length, " player", players.length === 1 ? '' : 's', " so far."), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, "Look up at the TV. ", players.length, " player", players.length === 1 ? '' : 's', " so far."), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
         variant: "warning",
         className: "py-2"
       }, error), isLeader ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "p-3 border border-warning rounded bg-white shadow-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "fw-bold text-dark mb-3"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
         variant: "primary",
         size: "lg",
         className: "w-100 fw-bold py-3",
@@ -11133,7 +11871,7 @@ function MixupPlayer(_ref) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_5__.MemeImage, {
         meme: round.meme,
         className: "mx-meme-small mb-3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         onSubmit: function onSubmit(e) {
           e.preventDefault();
           if (caption.trim()) _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('submit_caption', {
@@ -11141,7 +11879,7 @@ function MixupPlayer(_ref) {
             caption: caption
           });
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Control, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Control, {
         as: "textarea",
         rows: 2,
         maxLength: 120,
@@ -11152,7 +11890,7 @@ function MixupPlayer(_ref) {
         placeholder: "Write the funniest caption...",
         className: "fs-5 fw-bold mb-2",
         "aria-label": "Your caption"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
         type: "submit",
         variant: "success",
         size: "lg",
@@ -11184,7 +11922,7 @@ function MixupPlayer(_ref) {
         }, "Tap one. Yours isn't on the list."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "d-flex flex-column gap-2"
         }, choices.map(function (c) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
             key: c.id,
             variant: "outline-primary",
             className: "text-start p-3 text-wrap fw-bold bg-white text-dark",
@@ -11254,10 +11992,10 @@ function MixupPlayer(_ref) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_4__.DrawingView, {
           roomCode: roomCode,
           className: "mx-canvas-small mb-2"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           onSubmit: sendGuess,
           className: "d-flex gap-2"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Control, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Control, {
           value: guess,
           onChange: function onChange(e) {
             setGuess(e.target.value);
@@ -11268,7 +12006,7 @@ function MixupPlayer(_ref) {
           autoComplete: "off",
           className: "fs-5 fw-bold",
           "aria-label": "Your guess"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
           type: "submit",
           variant: "success",
           className: "fw-bold px-3",
@@ -11309,7 +12047,7 @@ function MixupPlayer(_ref) {
       }, round.question.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "d-flex flex-column gap-2"
       }, round.question.options.map(function (option, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
           key: option,
           variant: "outline-primary",
           className: "text-start p-3 text-wrap fw-bold bg-white text-dark",
@@ -11351,7 +12089,7 @@ function MixupPlayer(_ref) {
           className: "fw-bold mb-1"
         }, me.score || 0, " points"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "text-muted"
-        }, place ? "You're #".concat(place, " of ").concat(ranked.length) : ''), room.isGameOver && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }, place ? "You're #".concat(place, " of ").concat(ranked.length) : ''), room.isGameOver && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
           variant: "outline-secondary",
           className: "w-100 fw-bold",
           onClick: function onClick() {
@@ -11362,7 +12100,7 @@ function MixupPlayer(_ref) {
     default:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
         title: "Temple Mix Up"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
         animation: "border"
       }));
   }
@@ -11373,11 +12111,11 @@ function Frame(_ref4) {
     children = _ref4.children;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Header, {
     className: "main-card-header d-flex justify-content-between align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, title), right), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, title), right), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
     className: "text-center p-3"
   }, children)));
 }
@@ -13955,18 +14693,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -14055,18 +14795,18 @@ function ReshuffledLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden",
     style: {
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
@@ -14101,13 +14841,13 @@ function ReshuffledLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "d-flex flex-column",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1.5rem)',
@@ -14118,22 +14858,33 @@ function ReshuffledLobby(_ref) {
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)'
     }
-  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0",
     style: {
       minHeight: 0
     }
   }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       key: player.id,
       className: "d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-truncate fw-bold",
+      className: "d-flex align-items-center gap-2 fw-bold",
       style: {
         maxWidth: '70%',
+        minWidth: 0,
         fontSize: 'clamp(0.85rem, 2vh, 1.2rem)'
       }
-    }, player.name), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
+      id: player.avatar,
+      name: player.name,
+      size: 28,
+      style: {
+        width: 'clamp(20px, 4vh, 32px)',
+        height: 'clamp(20px, 4vh, 32px)'
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "text-truncate"
+    }, player.name)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       bg: "primary",
       className: "rounded-pill px-2 py-1 shadow-sm",
       style: {
@@ -14599,15 +15350,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/index.mjs");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _ReshuffledScoreboard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReshuffledScoreboard.jsx */ "./src/features/Reshuffled/ReshuffledScoreboard.jsx");
 /* harmony import */ var _ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReshuffledPromptSelection.jsx */ "./src/features/Reshuffled/ReshuffledPromptSelection.jsx");
 /* harmony import */ var _ReshuffledWritingPlayer_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ReshuffledWritingPlayer.jsx */ "./src/features/Reshuffled/ReshuffledWritingPlayer.jsx");
@@ -14615,6 +15366,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
 /* harmony import */ var _CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -14635,6 +15387,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function ReshuffledPlayerSetup(_ref) {
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName;
@@ -14642,7 +15395,7 @@ function ReshuffledPlayerSetup(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     gameState = _useState2[0],
     setGameState = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useNavigate)();
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState4 = _slicedToArray(_useState3, 2),
     roomData = _useState4[0],
@@ -14698,14 +15451,16 @@ function ReshuffledPlayerSetup(_ref) {
       _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: pId
+        playerId: pId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_10__.getMyAvatar)()
       });
     });
     if (_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.connected) {
       _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: pId
+        playerId: pId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_10__.getMyAvatar)()
       });
     }
 
@@ -14793,22 +15548,22 @@ function ReshuffledPlayerSetup(_ref) {
 
   // The Retry Screen
   if (gameState === 'name_retry') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       className: "text-center shadow-sm w-100 border-0",
       style: {
         maxWidth: '400px',
         backgroundColor: '#f8f9fa'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
       className: "p-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "warning",
       className: "fw-bold shadow-sm"
     }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
       className: "mb-3 text-dark"
-    }, "Try a different name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Control, {
+    }, "Try a different name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Control, {
       type: "text",
       placeholder: "New Player Name",
       value: retryName,
@@ -14817,7 +15572,7 @@ function ReshuffledPlayerSetup(_ref) {
       },
       className: "mb-4 text-center fs-5 shadow-sm",
       autoFocus: true
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
       variant: "primary",
       size: "lg",
       className: "w-100 fw-bold shadow-sm",
@@ -14831,15 +15586,16 @@ function ReshuffledPlayerSetup(_ref) {
         _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('joinRoom', {
           roomCode: roomCode,
           playerName: retryName.trim(),
-          playerId: localStorage.getItem('templePlayerId')
+          playerId: localStorage.getItem('templePlayerId'),
+          avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_10__.getMyAvatar)()
         });
       }
     }, "Join Room"))));
   }
   if (gameState === 'error') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "mt-5 text-center d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "danger",
       className: "fw-bold shadow-sm",
       style: {
@@ -14848,9 +15604,9 @@ function ReshuffledPlayerSetup(_ref) {
     }, error));
   }
   if (gameState === 'joining' || !roomData || !playerData) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: "mt-5 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
       animation: "border",
       variant: "primary",
       style: {
@@ -14866,15 +15622,15 @@ function ReshuffledPlayerSetup(_ref) {
   var hostName = hostPlayer ? hostPlayer.name : 'the host';
   switch (gameState) {
     case 'lobby':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         className: "mt-5 d-flex justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
         className: "text-center shadow-sm w-100 border-0",
         style: {
           maxWidth: '400px',
           backgroundColor: '#f8f9fa'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
         className: "p-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "text-primary fw-bold mb-3"
@@ -14884,7 +15640,7 @@ function ReshuffledPlayerSetup(_ref) {
         className: "p-3 border border-warning rounded bg-white shadow-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "fw-bold text-dark mb-3"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         variant: roomData.expansion === 'halloween' ? 'success' : 'primary',
         size: "lg",
         className: "w-100 fw-bold py-3 fs-5 shadow-sm",
@@ -14893,13 +15649,13 @@ function ReshuffledPlayerSetup(_ref) {
         className: "p-3 border border-dashed rounded bg-light text-muted fs-6"
       }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."))));
     case 'rules':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         className: "mt-5 pt-4 text-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "text-primary fw-bold mb-3"
       }, "Welcome to Couch Cast Re-Shuffled!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
         className: "text-muted fw-normal"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
         animation: "grow",
         variant: "warning",
         className: "mt-5"
@@ -14939,14 +15695,14 @@ function ReshuffledPlayerSetup(_ref) {
         var didIWin = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner = roundResults.winner) === null || _roundResults$winner === void 0 ? void 0 : _roundResults$winner.id) === playerData.id;
         var winnerName = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winning = roundResults.winningSubmission) === null || _roundResults$winning === void 0 ? void 0 : _roundResults$winning.playerName) || (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner2 = roundResults.winner) === null || _roundResults$winner2 === void 0 ? void 0 : _roundResults$winner2.name) || 'Someone';
         var card = roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission ? (0,_CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_9__.fillBlank)(roomData.currentPrompt, roundResults.winningSubmission.answer) : null;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           className: "mt-5 d-flex justify-content-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
           className: "text-center shadow-sm w-100 border-0 ".concat(didIWin ? 'bg-success text-white' : 'bg-light'),
           style: {
             maxWidth: '400px'
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Body, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
           className: "p-4 p-sm-5"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
           className: "display-1 mb-2"
@@ -14973,9 +15729,9 @@ function ReshuffledPlayerSetup(_ref) {
         isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
       });
     default:
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
         className: "mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
         animation: "grow",
         variant: "warning"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
@@ -15599,15 +16355,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function ReshuffledScoreboardTV(_ref) {
@@ -15676,12 +16434,12 @@ function ReshuffledScoreboardTV(_ref) {
     style: {
       borderRadius: '15px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "border-0 text-white w-100 frosted-glass-panel",
     style: {
       borderRadius: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     style: {
       padding: 'clamp(0.3rem, 1.5vh, 1rem) 1rem'
     }
@@ -15743,13 +16501,22 @@ function ReshuffledScoreboardTV(_ref) {
       style: {
         fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)'
       }
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
+      id: player.avatar,
+      name: player.name,
+      size: 36,
+      className: "me-2",
+      style: {
+        width: 'clamp(22px, 5vh, 44px)',
+        height: 'clamp(22px, 5vh, 44px)'
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "fw-bold text-truncate ".concat(isLeader ? 'text-dark' : 'text-white'),
       style: {
         fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)',
         textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
       }
-    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       bg: isLeader ? 'primary' : 'light',
       text: isLeader ? 'light' : 'dark',
       className: "rounded-pill shadow-sm fw-bold flex-shrink-0 ms-2",
@@ -15772,7 +16539,7 @@ function ReshuffledScoreboardTV(_ref) {
     }
   }, "Thanks for playing! Close the room to start a new game.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex align-items-center justify-content-center text-white opacity-90"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     animation: "border",
     size: "sm",
     className: "me-2 text-primary"
@@ -18764,21 +19531,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -18795,7 +19564,7 @@ function TriviaCastPlayer(_ref) {
   var _room$players, _room$question, _room$question2;
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -18826,7 +19595,8 @@ function TriviaCastPlayer(_ref) {
       return _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('joinRoom', {
         roomCode: roomCode,
         playerName: playerName,
-        playerId: playerId
+        playerId: playerId,
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_4__.getMyAvatar)()
       });
     };
     var handleRoomUpdate = function handleRoomUpdate(update) {
@@ -18893,21 +19663,21 @@ function TriviaCastPlayer(_ref) {
   var frame = function frame(title, body) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "page-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "main-card"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Header, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
       className: "main-card-header"
-    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
       className: "p-3"
     }, body)));
   };
 
   // ---------- Couldn't join ----------
   if (error) {
-    return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       variant: "warning",
       className: "fw-bold"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       variant: "primary",
       className: "w-100 fw-bold",
       onClick: function onClick() {
@@ -18920,7 +19690,7 @@ function TriviaCastPlayer(_ref) {
   if (!room || !me) {
     return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "py-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       animation: "border",
       variant: "primary"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
@@ -18936,7 +19706,7 @@ function TriviaCastPlayer(_ref) {
         className: "p-3 border border-warning rounded bg-white shadow-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "fw-bold text-dark mb-3"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
         variant: "success",
         size: "lg",
         className: "w-100 fw-bold py-3",
@@ -18955,7 +19725,7 @@ function TriviaCastPlayer(_ref) {
         className: "text-primary fw-bold mb-2"
       }, "Get Ready!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "text-muted mb-3"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
         animation: "grow",
         variant: "warning"
       })));
@@ -19031,10 +19801,10 @@ function TriviaCastPlayer(_ref) {
           className: "display-3 mb-2"
         }, room.isGameOver && myRank === 1 ? '🏆' : '📊'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
           className: "fw-bold text-dark mb-1"
-        }, room.isGameOver && myRank === 1 ? 'You won!' : "You're #".concat(myRank, " of ").concat(ranked.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }, room.isGameOver && myRank === 1 ? 'You won!' : "You're #".concat(myRank, " of ").concat(ranked.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
           bg: "primary",
           className: "fs-5 rounded-pill px-3 py-2 mb-3"
-        }, me.score, " pts"), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }, me.score, " pts"), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
           variant: "primary",
           className: "w-100 fw-bold",
           onClick: function onClick() {
@@ -19045,7 +19815,7 @@ function TriviaCastPlayer(_ref) {
         }, "Next question coming up...")));
       }
     default:
-      return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
         animation: "grow",
         variant: "warning"
       }));
@@ -19693,7 +20463,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.5rem;\n  padding-right: 7rem;   /* keeps clear of the room code in the corner */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* Small phones: icons only in the pills */\n@media (max-width: 420px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 12px; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

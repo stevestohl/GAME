@@ -12,6 +12,7 @@ import ReshuffledJudging from './ReshuffledJudging.jsx'; // 👈 IMPORTED OUR JU
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
 import { fillBlank } from '../CouchCast/fillBlank.js';
+import { getMyAvatar } from '../../avatars.jsx';
 
 export default function ReshuffledPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -54,11 +55,11 @@ useEffect(() => {
         }
         
         socket.on('connect', () => {
-            socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
+            socket.emit('joinRoom', { roomCode, playerName, playerId: pId, avatar: getMyAvatar() });
         });
 
         if (socket.connected) {
-             socket.emit('joinRoom', { roomCode, playerName, playerId: pId });
+             socket.emit('joinRoom', { roomCode, playerName, playerId: pId, avatar: getMyAvatar() });
         }
 
         // 3. Socket listeners
@@ -177,7 +178,8 @@ useEffect(() => {
                                 socket.emit('joinRoom', { 
                                     roomCode: roomCode, 
                                     playerName: retryName.trim(), 
-                                    playerId: localStorage.getItem('templePlayerId') 
+                                    playerId: localStorage.getItem('templePlayerId'),
+                                    avatar: getMyAvatar(),
                                 });
                             }}
                         >

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { Card, Form, Button, Alert, InputGroup, Toast, ToastContainer } from 'react-bootstrap';
+import { AvatarPicker, getMyAvatar, setMyAvatar } from '../../avatars.jsx';
 import { getRandomFunnyName } from '../../funnyNames.js';
 
 export default function UniversalJoinScreen() {
@@ -14,6 +15,7 @@ export default function UniversalJoinScreen() {
 
     const [roomCode, setRoomCode] = useState(urlRoomCode || '');
     const [playerName, setPlayerName] = useState('');
+    const [avatar, setAvatar] = useState(() => getMyAvatar());
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -88,6 +90,7 @@ export default function UniversalJoinScreen() {
         }
 
         localStorage.setItem('templePlayerName', playerName.trim());
+        setMyAvatar(avatar);
         navigate(targetRoute);
     };
 
@@ -179,6 +182,12 @@ export default function UniversalJoinScreen() {
                                     🎲
                                 </Button>
                             </InputGroup>
+                        </Form.Group>
+
+                        {/* 🙂 Your avatar: shown next to your name on the TV */}
+                        <Form.Group className='mb-4 text-start'>
+                            <Form.Label className='fw-bold text-secondary small'>Pick Your Avatar</Form.Label>
+                            <AvatarPicker value={avatar} onChange={setAvatar} />
                         </Form.Group>
 
                         <Button 

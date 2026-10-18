@@ -596,7 +596,9 @@ export default function registerReshuffledNamespace(CCNS) {
         });
 
         // --- Event: Room Joining ---
-        socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {
+        socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar }) => {
+            // 🙂 The avatar the player picked (a short id like "cat"; anything else is ignored)
+            const cleanAvatar = typeof avatar === 'string' && /^[a-z0-9-]{1,24}$/.test(avatar) ? avatar : null;
             if(!roomCode) return;
             const code = roomCode.trim().toUpperCase();
             const currentRoom = activeCCRooms[code];
@@ -657,6 +659,7 @@ export default function registerReshuffledNamespace(CCNS) {
                     const playerData = currentRoom.players[existingPlayerKey];
                     playerData.id = socket.id;
                     playerData.isConnected = true; 
+                    if (cleanAvatar) playerData.avatar = cleanAvatar;
                     
                     if (currentRoom.hostId === existingPlayerKey) {
                         currentRoom.hostId = socket.id;
@@ -681,6 +684,7 @@ export default function registerReshuffledNamespace(CCNS) {
                     
                     currentRoom.players[socket.id] = {
                         playerId: playerId,
+                        avatar: cleanAvatar,
                         id: socket.id,
                         name: playerName || 'Anonymous',
                         score: 0,

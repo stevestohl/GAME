@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { triviaCastSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
+import { getMyAvatar } from '../../avatars.jsx';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -29,7 +30,7 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
             localStorage.setItem('templePlayerId', playerId);
         }
 
-        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId });
+        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId, avatar: getMyAvatar() });
         const handleRoomUpdate = (update) => { if (update?.roomCode === roomCode) setRoom(update); };
         const handleJoinError = (message) => setError(message);
         const handleRoomClosed = ({ message }) => {
