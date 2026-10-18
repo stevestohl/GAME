@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import routes from './routes/routes.js'
+import adminRoutes from './routes/admin.js'
 import path from 'path'
 import cors from 'cors'
 import { fileURLToPath } from 'url' // 🎣 Required for absolute pathing in ES Modules
@@ -10,6 +11,9 @@ dotenv.config()
 dotenv.config({ path: '.env.local' })
 
 const app = express()
+
+// Render sits in front of the server: trust it, so req.ip is the visitor's address (used to slow down password guessing)
+app.set('trust proxy', 1)
 
 // 🛠️ Set up absolute directory pathing
 const __filename = fileURLToPath(import.meta.url)
@@ -43,6 +47,8 @@ app.use(express.static('public', {
 }));
 
 // 4. Backend API Routes
+// 🔐 game-temple.org/admin's API (sign-in and accounts; see routes/admin.js)
+app.use('/api/admin', adminRoutes)
 app.use('/api', routes)
 
 // 5. Catch-all route to serve your Webpack frontend safely

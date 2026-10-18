@@ -21,6 +21,7 @@ import ReshuffledManager from './features/Reshuffled/ReshuffledManagerTV.jsx'
 import ReshuffledDeckSelect from './features/Reshuffled/ReshuffledDeckSelect.jsx'
 import MixupManager from './features/Mixup/MixupManager.jsx'
 import MixupSetup from './features/Mixup/MixupSetup.jsx'
+import AdminApp from './features/Admin/AdminApp.jsx'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
@@ -68,6 +69,8 @@ export default function Contents() {
             {/* 🎪 Temple Mix Up */}
             <Route path="/mixup" element={<MixupManager />} />
             <Route path="/mixup-setup" element={<MixupSetup />} />
+            {/* 🔐 Admin site (sign-in required; the server checks every request) */}
+            <Route path="/admin" element={<AdminApp />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />
             <Route path="/triviacast-decks" element={<TriviaCastDeckSelect />} />
             <Route path="/listcast" element={<ListCastManager />} />
