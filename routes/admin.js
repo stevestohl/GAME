@@ -3,6 +3,7 @@ import { login, me, requireAdmin, requireOwner } from '../controllers/admin_auth
 import { listUsers, createUser, updateUser, deleteUser } from '../controllers/admin_users_controller.js'
 import { MANAGED_GAMES } from '../db/adminCatalog.js'
 import { listSources, listContent, createContent, updateContent, deleteContent } from '../controllers/admin_content_controller.js'
+import { topResponses } from '../controllers/admin_dashboard_controller.js'
 
 // 🔐 The admin API behind game-temple.org/admin. Everything except signing in needs a valid token.
 const router = express.Router()
@@ -25,6 +26,9 @@ router.get('/content/:source', safe(listContent))
 router.post('/content/:source', safe(createContent))
 router.patch('/content/:source/:id', safe(updateContent))
 router.delete('/content/:source/:id', safe(deleteContent))
+
+// Dashboard: limited to the decks each account manages (checked inside each handler)
+router.get('/dashboard/couchcast/top-responses', safe(topResponses))
 
 // Accounts: owner only
 router.get('/users', requireOwner, safe(listUsers))

@@ -20,6 +20,7 @@ import { cardAnnouncement, ALL_CARD_ANNOUNCEMENTS } from './ListCards.jsx';
 
 // Phone controller
 import ListPlayer from './ListPlayer.jsx';
+import { usePlayerSounds } from '../../playerSounds.js';
 
 /**
  * 📺📝 List Cast. One address, two jobs:
@@ -58,6 +59,8 @@ function ListCastTV({ roomCode, casterName }) {
 
     // 🎨 Background follows the deck, and covers the nav bar on the TV
     useSetBackgroundTheme(listsTheme(room?.expansion), true);
+    // 🔊 Each player's own sound: when they join, and each time they answer
+    usePlayerSounds(room?.roomCode, room?.players);
     const lobbyTrack = lobbyTrackFor('listCast', room?.expansion);
 
     // --- SOCKET LISTENERS ---

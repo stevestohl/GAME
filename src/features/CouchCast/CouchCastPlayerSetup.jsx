@@ -39,6 +39,7 @@ useEffect(() => {
         // 2. NEW LISTENER FOR THE TOAST!
         const handleJoinError = (errorMessage) => {
             toast.error(errorMessage, {
+                toastId: 'joinError', // the same message never stacks
                 position: "top-center",
                 autoClose: 4000
             });
@@ -49,18 +50,11 @@ useEffect(() => {
         
         socket.on('joinError', handleJoinError);
         
-        // 🚨 Connection logic
-        if (!socket.connected) {
-            socket.connect();
-        }
-        
-        socket.on('connect', () => {
-            socket.emit('joinRoom', { roomCode, playerName, playerId: pId, avatar: getMyAvatar() });
-        });
-
-        if (socket.connected) {
-             socket.emit('joinRoom', { roomCode, playerName, playerId: pId, avatar: getMyAvatar() });
-        }
+        // 🚨 Connection logic: one named listener, removed on cleanup, so a re-mount never sends joinRoom twice
+        const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId: pId, avatar: getMyAvatar() });
+        socket.on('connect', joinMyRoom);
+        if (socket.connected) joinMyRoom();
+        else socket.connect();
 
         // 3. Socket listeners
         const handleSync = (payload) => {
@@ -112,6 +106,7 @@ useEffect(() => {
         socket.on('round_ended', handleRoundEnded);
 
         return () => {
+            socket.off('connect', joinMyRoom);
             socket.off('joinError', handleJoinError); // 👈 Cleaned up here!
             socket.off('sync_game_state', handleSync);
             socket.off('room_closed', handleRoomClosed);

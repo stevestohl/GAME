@@ -120,10 +120,10 @@ export default function UniversalJoinScreen() {
                 </Card.Header>
                 <Card.Body className='p-4 text-center'>
                     <div className='mb-4'>
-                        <h2 className='fw-bold text-primary mb-1'>
-                            {urlRoomCode ? `Joining Room ${urlRoomCode.toUpperCase()}` : 'Have a Room Code?'}
+                        {/* One line, sized to fit a phone, so the Jump In button shows without scrolling */}
+                        <h2 className='fw-bold text-primary mb-1 text-nowrap' style={{ fontSize: 'clamp(1.2rem, 6.5vw, 2rem)' }}>
+                            {urlRoomCode ? `Joining Room ${urlRoomCode.toUpperCase()}` : 'Enter Room Code Here!'}
                         </h2>
-                        {!urlRoomCode && <h2 className='fw-bold text-primary mb-1'>Enter it Here!</h2>}
                     </div>
 
                     {error && <Alert variant="danger">{error}</Alert>}

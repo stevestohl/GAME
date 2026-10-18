@@ -18,6 +18,7 @@ import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION } 
 import TriviaCastPlayer from './TriviaCastPlayer.jsx';
 import { scoreRecap } from '../../scoreRecap.js';
 import GameOverActions from '../Menu/GameOverActions.jsx';
+import { usePlayerSounds } from '../../playerSounds.js';
 
 /**
  * 📺❔ Trivia Cast. One address, two jobs:
@@ -55,6 +56,8 @@ export default function TriviaCastManager() {
 
     // 🎨 Background follows the question deck, and covers the nav bar on the TV
     useSetBackgroundTheme(triviaCastTheme(room?.expansion), true);
+    // 🔊 Each player's own sound: when they join, and each time they answer
+    usePlayerSounds(room?.roomCode, room?.players);
     const lobbyTrack = lobbyTrackFor('triviaCast', room?.expansion);
 
     // --- SOCKET LISTENERS ---

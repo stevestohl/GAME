@@ -24,6 +24,7 @@ import ReshuffledPlayerSetup from './ReshuffledPlayerSetup.jsx';
 import { fillBlank } from '../CouchCast/fillBlank.js';
 import { scoreRecap } from '../../scoreRecap.js';
 import GameOverActions from '../Menu/GameOverActions.jsx';
+import { usePlayerSounds } from '../../playerSounds.js';
 
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
@@ -74,6 +75,8 @@ export default function ReshuffledManager() {
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
+    // 🔊 Each player's own sound: when they join, and each time they answer
+    usePlayerSounds(roomData?.roomCode, roomData?.players);
     const lobbyTrack = lobbyTrackFor('reshuffled', roomData?.expansion);
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once

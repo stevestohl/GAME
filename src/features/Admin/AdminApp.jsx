@@ -3,10 +3,11 @@ import { Card, Form, Button, Alert, Spinner, Nav, Badge } from 'react-bootstrap'
 import { adminFetch, signIn, signOut, getToken } from './adminApi.js';
 import UsersPage from './UsersPage.jsx';
 import ContentPage from './ContentPage.jsx';
+import DashboardPage from './DashboardPage.jsx';
 
 /**
  * 🔐 game-temple.org/admin. Sign in, then:
- *   Dashboard -> games played and visitors (coming in stage 2)
+ *   Dashboard -> reports (top Couch Cast responses so far)
  *   Content   -> edit cards, questions and topics for the games and decks you manage (stage 3)
  *   Users     -> owner only: add accounts and choose which games/decks each admin manages
  */
@@ -60,12 +61,7 @@ export default function AdminApp() {
                         {isOwner && <Nav.Item><Nav.Link eventKey="users">👥 Users</Nav.Link></Nav.Item>}
                     </Nav>
 
-                    {tab === 'dashboard' && (
-                        <div className="text-muted">
-                            <h5 className="text-dark">Dashboard</h5>
-                            <p className="mb-0">Games played by game, unique and returning visitors: coming in the next stage.</p>
-                        </div>
-                    )}
+                    {tab === 'dashboard' && <DashboardPage />}
 
                     {tab === 'content' && <ContentPage />}
 
