@@ -1328,6 +1328,19 @@
         animation: none !important;
     }
 }
+/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger
+   is held on one it turns grey with white words, meaning "picked, but not sent yet". This beats
+   any background or text colour the button has (bg-white, text-dark...), so the words can never
+   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */
+.cc-tap-option:active:not(:disabled):not(.disabled) {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #fff !important;
+}
+.cc-tap-option:active:not(:disabled):not(.disabled) * {
+    color: inherit !important;
+}
+
 /* 📱 Couch Cast phone buttons: touch screens keep a button "hovered" after a tap, and the
    button that appears under that finger on the next screen showed up grey as if picked.
    Only a real pick (the selected variant) gets colour. */

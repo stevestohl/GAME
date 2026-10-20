@@ -319,7 +319,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                         <Button
                             key={i}
                             variant={i === 0 ? 'outline-secondary' : 'outline-primary'}
-                            className="text-start p-3 text-wrap fw-bold"
+                            className="text-start p-3 text-wrap fw-bold cc-tap-option"
                             onClick={() => handlePlayCard(alternatesFor, text)}
                         >
                             {text}

@@ -1,10 +1,9 @@
 export const funnyNames = [
-
+    // Standard / Wholesome
     "Anita Break",
     "Gladys Overwith",
     "Justin Case",
     "Paige Turner",
-    "Robin Banks",
     "Barry Cade",
     "Ella Vator",
     "Tim Burr",
@@ -16,9 +15,7 @@ export const funnyNames = [
     "Barb Dwyer",
     "Carrie Oakey",
     "Anita Job",
-    "Neil Down",
     "Otto Mattic",
-    "Phil M. Up",
     "Sue Shei",
 
     // Food & Drink
@@ -27,23 +24,19 @@ export const funnyNames = [
     "Mac Aroni",
     "Olive Tree",
     "Tom Morrow",
-    "Sal Monella",
     "Pea Soup",
     "Heinz Sight",
     "C. Senor",
     "Sherry Wine",
 
     // Actions & Phrasing
-    "Amanda Hugginkiss",
     "Anita Room",
     "Dan D. Lyon",
     "Earl E. Bird",
-    "Eileen Dover",
     "Gilda Wreck",
     "Helen Highwater",
     "Hy Price",
     "Ilene Left",
-    "Ivana Tinkle",
     "May B. Tomorrow",
     "Morey Bund",
     "Owen Money",
@@ -62,15 +55,12 @@ export const funnyNames = [
     "Dusty Miller",
     "Ginger Vitis",
     "Harry Beard",
-    "Jay Walker",
-    "Lou Stool",
     "Marsha Mellow",
     "Penny Less",
     "Polly Graph",
     "Ray Gunn",
     "Rocky Shore",
     "Sandy Beaches",
-    "Woody Forrester",
 
     // Medical & Science
     "Barry D. Hatchett",
@@ -84,15 +74,15 @@ export const funnyNames = [
     "Luke Sky-Walker",
     "Marcus Absent",
 
-    // Mischief & Crime
+    // Miscellaneous & Pop Culture
     "Buster Move",
     "Chuck Wagon",
     "Crystal Ball",
-    "Daisy Chain",
     "Don Key",
     "Ella Phant",
-    "G. I. Joe",
-]
+    "G. I. Joe"
+];
+
 export function getRandomFunnyName() {
     const randomIndex = Math.floor(Math.random () * funnyNames.length)
     return funnyNames[randomIndex]

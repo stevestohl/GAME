@@ -132,7 +132,7 @@ export default function Prompt2ResponseSelectionScreen({
                 <Button
                   key={idx}
                   variant={selectedIdx === idx ? "primary" : "outline-primary"}
-                  className="text-start p-3"
+                  className="text-start p-3 cc-tap-option"
                   onClick={() => setSelectedIdx(idx)}
                 >
                   <span className="text-muted me-2">{idx + 1}.</span> 

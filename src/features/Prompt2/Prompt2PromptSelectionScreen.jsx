@@ -152,7 +152,7 @@ export default function Prompt2PromptSelectionScreen({
                   }
                 }}
                 // Left text-start so the inside text stays aligned nicely to the left
-                className="text-start p-3 border shadow-sm bg-white prompt-card-btn"
+                className="text-start p-3 border shadow-sm bg-white prompt-card-btn cc-tap-option"
                 style={{ 
                   width: '92%', // Fixed: Forces a deliberate, controlled width
                   cursor: "pointer",

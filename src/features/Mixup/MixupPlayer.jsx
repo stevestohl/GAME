@@ -184,7 +184,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
                     <p className="small text-muted mb-3">Tap one. Yours isn't on the list.</p>
                     <div className="d-flex flex-column gap-2">
                         {choices.map((c) => (
-                            <Button key={c.id} variant="outline-primary" className="text-start p-3 text-wrap fw-bold bg-white text-dark" onClick={() => socket.emit('submit_vote', { roomCode, captionId: c.id })}>
+                            <Button key={c.id} variant="outline-primary" className="text-start p-3 text-wrap fw-bold bg-white text-dark cc-tap-option" onClick={() => socket.emit('submit_vote', { roomCode, captionId: c.id })}>
                                 {c.text}
                             </Button>
                         ))}
@@ -267,7 +267,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
                     <h5 className="fw-bold mb-3 lh-base">{round.question.text}</h5>
                     <div className="d-flex flex-column gap-2">
                         {round.question.options.map((option, i) => (
-                            <Button key={option} variant="outline-primary" className="text-start p-3 text-wrap fw-bold bg-white text-dark" onClick={() => socket.emit('submit_answer', { roomCode, option })}>
+                            <Button key={option} variant="outline-primary" className="text-start p-3 text-wrap fw-bold bg-white text-dark cc-tap-option" onClick={() => socket.emit('submit_answer', { roomCode, option })}>
                                 <span className="me-2 text-primary">{String.fromCharCode(65 + i)}.</span>{option}
                             </Button>
                         ))}

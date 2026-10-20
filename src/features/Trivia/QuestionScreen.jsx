@@ -51,7 +51,7 @@ export default function QuestionScreen({ roomCode, currentQuestion, playerAnswer
                                         disabled={hasAnswered}
                                         onClick={() => handleChoiceClick(choice)}
                                         // 3. Added 'text-break' to the buttons to handle long answers gracefully
-                                        className="py-2 fw-semibold text-start px-3 shadow-sm text-break"
+                                        className="py-2 fw-semibold text-start px-3 shadow-sm text-break cc-tap-option"
                                     >
                                         {choice}
                                     </Button>

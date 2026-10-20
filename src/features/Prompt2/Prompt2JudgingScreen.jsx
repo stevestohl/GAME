@@ -26,6 +26,7 @@ export default function Prompt2JudgingScreen({ isHost, submissions = [], onPickW
                       <Button 
                         variant="outline-success" 
                         size="sm" 
+                        className="cc-tap-option"
                         onClick={() => onPickWinner(sub.playerId)}
                       >
                         🏆 Pick

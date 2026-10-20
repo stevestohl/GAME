@@ -1,6 +1,7 @@
 // 🎙️ Voice-overs for the Couch Cast TV screen.
 // Each line is turned into speech by the backend (ElevenLabs) and played in order.
-// If voice-overs aren't set up, or a line fails, the game just carries on silently.
+// A line the backend can't supply (not set up, the daily limit is used up, a hiccup) is read
+// by the device's own built-in voice instead, so nothing that matters (like the prompt) is skipped.
 
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const backendBase = isLocal ? 'http://localhost:5005' : 'https://game-temple-backend.onrender.com';
@@ -27,7 +28,7 @@ export function onVoiceChange(listener) {
     return () => voiceListeners.delete(listener);
 }
 
-let queue = [];          // lines waiting to be spoken: { audioPromise, keep, done }
+let queue = [];          // lines waiting to be spoken: { text, audioPromise, keep, done }
 let currentDone = null;  // tells speak() how the current line ended
 let isPlaying = false;
 let session = 0;         // bumped by stopVoice() so stale lines never start
@@ -37,6 +38,29 @@ const preloaded = new Map();
 const MAX_PRELOADED = 60;
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// 🗣️ The device's built-in voice, for lines the backend couldn't turn into speech
+const deviceVoice = window.speechSynthesis || null;
+let currentUtterance = null;
+
+const englishVoice = () => {
+    const voices = deviceVoice?.getVoices() || [];
+    return voices.find((v) => v.lang === 'en-US' && v.localService) || voices.find((v) => v.lang?.startsWith('en')) || null;
+};
+
+// Resolves true once the line has been read all the way through
+const speakWithDevice = (text) => new Promise((resolve) => {
+    if (!deviceVoice || !window.SpeechSynthesisUtterance) return resolve(false);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    const voice = englishVoice();
+    if (voice) utterance.voice = voice;
+    utterance.onstart = () => setSpeaking(true);
+    utterance.onend = () => { setSpeaking(false); resolve(true); };
+    utterance.onerror = () => { setSpeaking(false); resolve(false); };
+    currentUtterance = utterance;
+    deviceVoice.speak(utterance);
+});
 
 const fetchAudio = async (text, roomCode, attempt = 1) => {
     try {
@@ -97,7 +121,13 @@ const playNext = async () => {
         playNext();
     };
 
-    if (!url) return finish(false);
+    if (!url) {
+        // No recording for this line: the device reads it instead
+        console.warn(`Voice-over: using the device voice for "${next.text.slice(0, 40)}"`);
+        const spoken = await speakWithDevice(next.text);
+        if (currentUtterance && mySession === session) currentUtterance = null;
+        return finish(spoken);
+    }
 
     currentDone = next.done;
     player.onended = () => finish(true);
@@ -115,6 +145,12 @@ const toSpokenText = (text) => String(text || '').replace(/_{2,}/g, 'blank').rep
 // Call this from a tap/click (e.g. the button that starts the game) so the
 // browser lets the narrator speak later without another tap.
 export function unlockVoice() {
+    // iPhones only let the built-in voice talk later if it said something (even nothing) in a tap
+    if (deviceVoice && window.SpeechSynthesisUtterance && !deviceVoice.speaking) {
+        const hush = new SpeechSynthesisUtterance(' ');
+        hush.volume = 0;
+        deviceVoice.speak(hush);
+    }
     if (isPlaying) return;
     player.src = SILENCE;
     player.play().catch(() => {});
@@ -161,7 +197,7 @@ export function speak(lines, roomCode) {
         return new Promise((resolve) => {
             const ready = preloaded.get(text);
             // Start loading straight away so there's no gap between lines
-            queue.push({ audioPromise: ready || fetchAudio(text, roomCode), keep: !!ready, done: resolve });
+            queue.push({ text, audioPromise: ready || fetchAudio(text, roomCode), keep: !!ready, done: resolve });
         });
     });
     playNext();
@@ -176,6 +212,10 @@ export function stopVoice() {
     player.onended = null;
     player.onerror = null;
     player.pause();
+    if (currentUtterance) {
+        currentUtterance = null;
+        deviceVoice?.cancel();
+    }
     if (currentDone) {
         currentDone(false);
         currentDone = null;
