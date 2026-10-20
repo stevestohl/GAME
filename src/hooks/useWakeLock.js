@@ -1,6 +1,43 @@
 // src/hooks/useWakeLock.js
 import { useEffect } from 'react';
 
+// 🎞️ Backup for iPhones and iPads: their browsers often ignore the wake lock (Chrome on iPhone,
+// Low Power Mode...), but they never let the screen sleep while a video is playing. So on those,
+// a tiny silent, invisible video (public/keep-awake.mp4, 2 KB) loops for as long as the game is up.
+export const isAppleTouch = () => /iPhone|iPad|iPod/.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);   // iPads say they're a Mac
+
+let keepAwakeVideo = null;
+const getKeepAwakeVideo = () => {
+  if (!keepAwakeVideo) {
+    const video = document.createElement('video');
+    video.src = '/keep-awake.mp4';
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('aria-hidden', 'true');
+    Object.assign(video.style, {
+      position: 'fixed', left: '0', bottom: '0', width: '1px', height: '1px',
+      opacity: '0.01', pointerEvents: 'none', zIndex: '-1',
+    });
+    document.body.appendChild(video);
+    keepAwakeVideo = video;
+  }
+  return keepAwakeVideo;
+};
+
+/** Start the keep-awake video. Call it from a tap too: in Low Power Mode, video only starts from a tap. */
+export function playKeepAwakeVideo() {
+  const video = getKeepAwakeVideo();
+  if (video.paused) video.play().catch(() => {});   // refused for now: the next tap tries again
+}
+
+const stopKeepAwakeVideo = () => {
+  if (keepAwakeVideo && !keepAwakeVideo.paused) keepAwakeVideo.pause();
+};
+
 /**
  * Keeps the screen awake for as long as the calling component is on screen.
  *
@@ -9,22 +46,23 @@ import { useEffect } from 'react';
  * and it can refuse one outright (battery saver, page not visible yet).
  * So one request on mount isn't enough: this keeps asking again whenever
  * the lock is lost or the page comes back.
+ * On iPhones and iPads (and browsers with no wake lock, or that refuse it), the keep-awake
+ * video above plays as well.
  */
 export default function useWakeLock() {
   useEffect(() => {
-    if (!('wakeLock' in navigator)) {
-      console.warn('Wake Lock is not supported on this browser - the screen may sleep.');
-      return;
-    }
+    const hasWakeLock = 'wakeLock' in navigator;
+    let useVideo = !hasWakeLock || isAppleTouch();
 
     let wakeLock = null;
     let isRequesting = false;
     let isActive = true; // false once the component has unmounted
 
     const requestWakeLock = async () => {
-      // Already holding one, already asking, or the browser would refuse (hidden page)
-      if (!isActive || isRequesting || (wakeLock && !wakeLock.released)) return;
-      if (document.visibilityState !== 'visible') return;
+      if (!isActive || document.visibilityState !== 'visible') return;
+      if (useVideo) playKeepAwakeVideo();
+      // Already holding one, already asking, or no wake lock in this browser
+      if (!hasWakeLock || isRequesting || (wakeLock && !wakeLock.released)) return;
 
       isRequesting = true;
       try {
@@ -45,8 +83,10 @@ export default function useWakeLock() {
           requestWakeLock();
         });
       } catch (err) {
-        // Refused for now; the listeners below will try again
+        // Refused for now; the listeners below will try again, and the video steps in meanwhile
         console.warn(`Wake Lock error: ${err.message}`);
+        useVideo = true;
+        playKeepAwakeVideo();
       } finally {
         isRequesting = false;
       }
@@ -75,6 +115,7 @@ export default function useWakeLock() {
         wakeLock.release();
         wakeLock = null;
       }
+      stopKeepAwakeVideo();
     };
   }, []);
 }

@@ -7,8 +7,12 @@
 //                          (useHideBrowserBar), and the browser hides its bar when the page scrolls
 //                        - Share -> Add to Home Screen: opened from there, there's no browser bar at all
 
+import { playKeepAwakeVideo, isAppleTouch } from './hooks/useWakeLock.js';
+
 /** Ask for fullscreen. Call it inside a tap; devices that don't allow it just carry on. */
 export async function enterFullscreen() {
+    // iPhone/iPad: start the keep-awake video in this tap (see hooks/useWakeLock.js)
+    if (isAppleTouch()) playKeepAwakeVideo();
     const page = document.documentElement;
     const request = page.requestFullscreen || page.webkitRequestFullscreen;
     if (!request || document.fullscreenElement || document.webkitFullscreenElement) return;
