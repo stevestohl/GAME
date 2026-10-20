@@ -1,5 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, Row, Col, Badge } from 'react-bootstrap';
+
+// 📜 More answers than fit on the screen: drift slowly down through them, rest at the bottom,
+// glide back to the top and go again, so everyone can read every answer without anyone scrolling.
+const SCROLL_SPEED = 22;      // pixels per second
+const SCROLL_REST_MS = 3000;  // pause at the top and at the bottom
+
+function useSlowScroll(ref, active) {
+    useEffect(() => {
+        const box = ref.current;
+        if (!active || !box) return undefined;
+
+        const TICK_MS = 40;
+        let position = 0;      // kept as a fraction: scrollTop rounds to whole pixels
+        let restUntil = Date.now() + SCROLL_REST_MS;
+        let atBottom = false;
+
+        const timer = setInterval(() => {
+            const now = Date.now();
+            if (now < restUntil) return;
+            const max = box.scrollHeight - box.clientHeight;
+            if (max <= 2) return;   // it all fits (answers can still grow, so keep checking)
+
+            if (atBottom) {
+                // Rested at the bottom: glide back up, rest at the top, then start again
+                box.scrollTo({ top: 0, behavior: 'smooth' });
+                position = 0;
+                atBottom = false;
+                restUntil = now + SCROLL_REST_MS;
+                return;
+            }
+            position = Math.min(max, position + (SCROLL_SPEED * TICK_MS) / 1000);
+            box.scrollTop = position;
+            if (position >= max) {
+                atBottom = true;
+                restUntil = now + SCROLL_REST_MS;
+            }
+        }, TICK_MS);
+
+        box.scrollTop = 0;
+        return () => clearInterval(timer);
+    }, [ref, active]);
+}
 
 export default function CouchCastJudgingTV({ 
     currentPrompt, 
@@ -8,6 +50,10 @@ export default function CouchCastJudgingTV({
     endTime,
     winningSubmission 
 }) {
+    // 📜 The answers scroll themselves when there are more than fit
+    const answersRef = useRef(null);
+    useSlowScroll(answersRef, !winningSubmission && submissions?.length > 0);
+
     // Add state to track device orientation for the overlay
     const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
 
@@ -56,10 +102,10 @@ export default function CouchCastJudgingTV({
                 </h2>
 
                 {/* Main Content Area */}
-                <div className="d-flex flex-column flex-grow-1 overflow-auto align-items-center w-100">
+                <div className="d-flex flex-column flex-grow-1 overflow-auto align-items-center w-100" style={{ minHeight: 0 }}>
                     {!winningSubmission ? (
                         /* --- STATE 1: WAITING FOR JUDGE --- */
-                        <div className="w-100 d-flex flex-column align-items-center h-100">
+                        <div className="w-100 d-flex flex-column align-items-center flex-grow-1" style={{ minHeight: 0 }}>
                             <h4 className="text-white fw-bold mb-3 text-center" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
                                 {submissions && submissions.length > 0
                                     ? `${judgeName} is deciding the winner! Read them aloud:`
@@ -69,7 +115,8 @@ export default function CouchCastJudgingTV({
                                 )}
                             </h4>
                             
-                            <Row className="w-100 justify-content-center m-0 px-2 flex-grow-1 overflow-auto">
+                            <div ref={answersRef} className="w-100 flex-grow-1 overflow-auto custom-scrollbar" style={{ minHeight: 0 }}>
+                            <Row className="w-100 justify-content-center m-0 px-2">
                                 {submissions && submissions.length > 0 ? (
                                     submissions.map((sub, index) => (
                                         <Col md={6} lg={4} key={index} className="mb-3">
@@ -88,6 +135,7 @@ export default function CouchCastJudgingTV({
                                     <h3 className="text-white fw-bold text-center mt-5">No one submitted anything! How embarrassing.<br />On to the next round...</h3>
                                 )}
                             </Row>
+                            </div>
                         </div>
                     ) : (
                         /* --- STATE 2: THE WINNER REVEAL --- */

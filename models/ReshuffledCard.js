@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 // 🔀 A card for Couch Cast Re-Shuffled.
-// Lives in its OWN database (`couchcast_reshuffled`, collection `cards`) on the same Atlas cluster,
-// so nothing here can touch the live Couch Cast / Prompt 2 cards in the main database.
+// Lives in its OWN database (`couchcast_reshuffled`, collection `cards`) on the same Atlas cluster.
+// Couch Cast, Prompt 2 and Couch Cast Re-Shuffled all deal from these cards.
 // The cards start as a copy of the Prompt 2 deck (run `npm run seed:reshuffled`), then get tagged:
 //
 //   Prompts have a `slot`: what kind of answer reads well in the blank
@@ -50,6 +50,7 @@ const ReshuffledCardSchema = new mongoose.Schema({
 
     sourceId: { type: mongoose.Schema.Types.ObjectId },   // the Prompt 2 card it was copied from
     reviewed: { type: Boolean, default: false },          // true = hand-checked; the seed script won't overwrite it
+    createdBy: { type: String },                          // admin who added it on the admin site's Content tab
     active: { type: Boolean, default: true },             // false = keep it, but stop dealing it
 }, {
     collection: 'cards',

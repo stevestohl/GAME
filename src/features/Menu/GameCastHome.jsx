@@ -5,7 +5,7 @@ import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 import { ListCastTile } from '../Lists/ListTiles.jsx';
-import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
+// import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';   // 🔀 Re-Shuffled tile is dormant (see the bottom of the game list)
 import MixupTile from '../Mixup/MixupTile.jsx';
 import GameRow from './GameRow.jsx';
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
@@ -234,7 +234,28 @@ export default function GameCastHome() {
                                     </Button>
                                 </GameRow>
 
-                                {/* 🔀 Couch Cast Re-Shuffled (experimental) — button left, text right */}
+                                {/* 🎪 Temple Mix Up — button left, text right */}
+                                <GameRow
+                                    flip
+                                    title="Temple Mix Up!"
+                                    players="3+ players"
+                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        onClick={() => navigate('/mixup-setup')}
+                                        aria-label="Set up a Temple Mix Up game"
+                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
+                                    >
+                                        <MixupTile />
+                                    </Button>
+                                </GameRow>
+
+                                {/* 🔀 Couch Cast Re-Shuffled: dormant until its next version is ready.
+                                    Couch Cast now plays this game; the Re-Shuffled code stays (/reshuffled)
+                                    for the next version. To bring the tile back, un-comment this and the
+                                    ReshuffledTile import at the top.
                                 <GameRow
                                     flip
                                     title="Couch Cast Re-Shuffled"
@@ -246,28 +267,12 @@ export default function GameCastHome() {
                                         className={gameImgBtnClass}
                                         onClick={() => navigate('/reshuffled-decks')}
                                         aria-label="Choose a Couch Cast Re-Shuffled deck"
-                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
+                                        style={{ '--shimmer-delay': '2s', ...squareStyle }}
                                     >
                                         <ReshuffledTile />
                                     </Button>
                                 </GameRow>
-
-                                {/* 🎪 Temple Mix Up — text left, button right */}
-                                <GameRow
-                                    title="Temple Mix Up!"
-                                    players="3+ players"
-                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/mixup-setup')}
-                                        aria-label="Set up a Temple Mix Up game"
-                                        style={{ '--shimmer-delay': '2s', ...squareStyle }}
-                                    >
-                                        <MixupTile />
-                                    </Button>
-                                </GameRow>
+                                */}
                             </Row>
                         </Col>
 

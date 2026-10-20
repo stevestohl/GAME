@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, ProgressBar, Spinner } from 'react-bootstrap';
+import { Card, ProgressBar, Spinner } from 'react-bootstrap';
 
 export default function CouchCastWritingTV({ currentPrompt, endTime, players, hostId, defaultDuration = 60 }) {
     const [timeLeft, setTimeLeft] = useState(defaultDuration);
@@ -10,9 +10,9 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
     useEffect(() => {
         if (!endTime) return;
         
+        // (After a pause the clock comes back with less time left: the bar keeps its full length)
         const initialRemaining = Math.floor((endTime - Date.now()) / 1000);
-        const calculatedTotal = initialRemaining > 0 ? initialRemaining : defaultDuration;
-        setTotalTime(calculatedTotal);
+        setTotalTime(Math.max(defaultDuration, initialRemaining));
         const updateTime = () => {
             const remaining = Math.floor((endTime - Date.now()) / 1000);
             setTimeLeft(remaining > 0 ? remaining : 0);
@@ -53,7 +53,7 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
     const activeWriters = (players || []).filter(p => p?.id !== hostId && !p?.isCaster)
 
     return (
-        <div className="fullscreen-gameplay-container">
+        <div className="fullscreen-gameplay-container cc-writing-tv">
             
             {/* --- LANDSCAPE REMINDER OVERLAY --- */}
             {isPortrait && (
@@ -104,40 +104,28 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
                 />
             </div>
 
-            {/* Grid of Players Writing */}
-            <div className="w-100 flex-grow-1 overflow-auto custom-scrollbar my-2 px-3 pb-2 d-flex justify-content-center align-items-start" style={{ maxWidth: '1000px', minHeight: 0 }}>
-                {/* 1. Changed g-3 to g-2 to tighten vertical grid gap */}
-                <Row className="justify-content-center g-2 w-100 m-0">
+            {/* Players Writing: small name tags that wrap, so a whole room fits on a landscape phone */}
+            <div className="w-100 flex-grow-1 overflow-auto custom-scrollbar my-2 px-3 pb-2" style={{ maxWidth: '1000px', minHeight: 0 }}>
+                <div className="d-flex flex-wrap justify-content-center align-content-start gap-2">
                     {activeWriters.map(player => (
-                        <Col xs={6} md={3} key={player.id}>
-                            <Card 
-                                className={`shadow-sm h-100 border-0 transition-all frosted-glass-panel ${player.hasSubmitted ? 'bg-success bg-opacity-75 text-white' : 'text-white'}`}
-                                style={{ 
-                                    transform: player.hasSubmitted ? 'scale(1.03)' : 'scale(1)',
-                                    transition: 'transform 0.2s ease-in-out, background-color 0.2s ease-in-out',
-                                    borderRadius: '12px',
-                                    minHeight: '80px' // 2. Reduced from 110px
-                                }}
-                            >
-                                {/* 3. Changed p-3 to p-2 */}
-                                <Card.Body className="d-flex flex-column align-items-center justify-content-center p-2 text-center">
-                                    {/* 4. Changed mb-3 to mb-1 and added fs-5 */}
-                                    <h4 className="fw-bold mb-1 text-truncate w-100 fs-5" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                                        {player.name}
-                                    </h4>
-                                    {player.hasSubmitted ? (
-                                        <span className="fs-4 m-0" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))' }}>✅</span>
-                                    ) : (
-                                        <div className="d-flex align-items-center gap-2 mt-1">
-                                            <Spinner animation="grow" variant="light" size="sm" />
-                                            <small className="text-white-50 fw-semibold">Writing...</small>
-                                        </div>
-                                    )}
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        <Card 
+                            key={player.id}
+                            className={`cc-writer-tag shadow-sm border-0 frosted-glass-panel ${player.hasSubmitted ? 'bg-success bg-opacity-75 text-white' : 'text-white'}`}
+                            style={{ transform: player.hasSubmitted ? 'scale(1.03)' : 'scale(1)' }}
+                        >
+                            <Card.Body className="d-flex align-items-center justify-content-center gap-2 p-2 text-center">
+                                <span className="fw-bold text-truncate" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                                    {player.name}
+                                </span>
+                                {player.hasSubmitted ? (
+                                    <span style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))' }} aria-label="Answered">✅</span>
+                                ) : (
+                                    <Spinner animation="grow" variant="light" size="sm" aria-label="Writing" />
+                                )}
+                            </Card.Body>
+                        </Card>
                     ))}
-                </Row>
+                </div>
             </div>
         </div>
     );

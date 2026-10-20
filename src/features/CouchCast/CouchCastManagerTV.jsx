@@ -18,6 +18,7 @@ import CouchCastWinnerRevealTV from './CouchCastWinnerRevealTV.jsx';
 import CouchCastScoreboardTV from './CouchCastScoreboardTV.jsx';
 import CouchCastRules, { RULES_NARRATION } from './CouchCastRules.jsx';
 import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
+import CouchCastCasterControls, { CouchCastPausedOverlay } from './CouchCastCasterControls.jsx';
 
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
@@ -66,8 +67,7 @@ export default function CouchCastManager() {
     const [roomData, setRoomData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     
-    // Phase-specific state for the TV
-    const [endTime, setEndTime] = useState(null);
+    // Phase-specific state for the TV (the clocks count down to roomData.endTime)
     const [currentPrompt, setCurrentPrompt] = useState(null);
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
@@ -138,12 +138,20 @@ export default function CouchCastManager() {
         navigate('/home', { state: { toastMessage: 'Thanks for playing!' } });
     };
 
-    // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes.
-    // (The judge's pick is a 15-second clock on the screens; writing uses the server's clock.)
-    const promptPickEnd = useMemo(() => (gameState === 'prompt_selection' ? Date.now() + 15 * 1000 : null), [gameState, round]);
-    const isTimerPhase = gameState === 'prompt_selection' || gameState === 'writing';
+    // ⏸️ The caster can pause a running game: the server stops every clock, the phones show "Paused"
+    const isPaused = !!roomData?.isPaused;
+    const canPause = ['prompt_selection', 'writing', 'judging', 'winner_reveal'].includes(gameState)
+        || (gameState === 'scoreboard' && !roundResults?.isGameOver);
+    const handleTogglePause = () => socket.emit('set_paused', { roomCode: roomData?.roomCode, paused: !isPaused });
+    useEffect(() => {
+        if (isPaused) stopVoice();
+    }, [isPaused]);
+
+    // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes (both on the
+    // server's clock). It stops for a pause and starts a fresh track when the game resumes.
+    const isTimerPhase = (gameState === 'prompt_selection' || gameState === 'writing') && !isPaused;
     useTimerMusic(isTimerPhase, {
-        endTime: gameState === 'writing' ? endTime : promptPickEnd,
+        endTime: roomData?.endTime,
         key: `${gameState}-${round}`,
     });
 
@@ -206,7 +214,6 @@ export default function CouchCastManager() {
             if (payload.roomData?.roomCode !== urlRoomCode) return;
             setGameState(payload.gameState);
             setRoomData(payload.roomData);
-            setEndTime(payload.endTime);
             setCurrentPrompt(payload.currentPrompt);
             setSubmissions(payload.submissions);
             setRoundResults(payload.roundResults);
@@ -225,7 +232,6 @@ export default function CouchCastManager() {
         socket.on('writing_phase_started', (data) => {
             setGameState(data.gameState);
             setCurrentPrompt(data.prompt);
-            setEndTime(data.endTime);
             setPromptAutoPicked(!!data.autoPicked);
         });
 
@@ -296,6 +302,7 @@ export default function CouchCastManager() {
                         judgeName={pickerName} 
                         roomCode={roomData.roomCode} 
                         prompts={roomData.promptOptions}
+                        endTime={roomData.endTime}
                     />
                 );
 
@@ -303,7 +310,7 @@ export default function CouchCastManager() {
                 return (
                     <CouchCastWritingTV 
                         currentPrompt={currentPrompt} 
-                        endTime={endTime} 
+                        endTime={roomData.endTime} 
                         players={playersArray} 
                         hostId={roomData.hostId} 
                     />
@@ -355,6 +362,11 @@ export default function CouchCastManager() {
             )}
             
             {renderGamePhase()}
+
+            {isPaused && <CouchCastPausedOverlay isCaster />}
+            {roomData && (
+                <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />
+            )}
 
             {isSoundLocked && (
                 <button type="button" className="cc-sound-button" onClick={handleTurnSoundOn}>

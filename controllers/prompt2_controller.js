@@ -1,4 +1,4 @@
-import Prompt2Model from "../models/Prompt2.js";
+import ReshuffledCard from "../models/ReshuffledCard.js";
 import { drawCards } from "../db/drawCards.js";
 
 // ==========================================
@@ -10,7 +10,7 @@ import { drawCards } from "../db/drawCards.js";
  */
 export const getAllPrompt2Cards = async (req, res) => {
     try {
-        const prompt2Cards = await Prompt2Model.find({});
+        const prompt2Cards = await ReshuffledCard.find({ active: { $ne: false } });
         res.status(200).json({ 
             success: true, 
             data: prompt2Cards,

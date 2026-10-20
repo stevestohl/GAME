@@ -1,4 +1,4 @@
-import Prompt2 from "../models/Prompt2.js";
+import ReshuffledCard from "../models/ReshuffledCard.js";
 
 // 🃏 What the admin site's Content tab can edit, one entry per "content source" (a collection of
 // cards/questions/topics shared by one or more games). Each source names:
@@ -13,7 +13,7 @@ export const CONTENT_SOURCES = {
         game: 'couchcast',
         label: 'Couch Cast & Prompt 2 cards',
         noun: 'card',
-        model: Prompt2,
+        model: ReshuffledCard,   // the couchcast_reshuffled cards, dealt by both games
         deckField: 'expansion',
         fields: {
             text: { label: 'Card text', kind: 'text', required: true, max: 200 },
@@ -23,8 +23,9 @@ export const CONTENT_SOURCES = {
         filters: ['type', 'deck', 'createdBy'],
         sortable: ['text', 'type', 'deck', 'createdBy', 'updatedAt'],
         search: ['text'],
-        // New cards: the extra fields the games expect
-        defaults: { isVerbPhrase: false },
+        // New cards: the extra fields the games expect. (Tags like `slot`, `kinds` and `forms` are
+        // left off: an untagged card still gets dealt, it just isn't matched to the prompt.)
+        defaults: { active: true },
     },
 };
 

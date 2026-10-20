@@ -12,6 +12,7 @@
 import { useEffect } from 'react';
 import { getAudioContext } from './chime.js';
 import { onVoiceChange } from './voice.js';
+import { isMusicMuted, onMusicMuteChange } from './musicMute.js';
 
 const VOLUME = 1.1;           // overall loudness of the music (about as loud as the lobby music)
 const DUCKED = 0.3;           // how much of that is left while the narrator talks
@@ -194,13 +195,61 @@ export const TIMER_TRACKS = [
 ];
 
 // ---------------------------------------------------------------------------------------------
+// 🛋️ Lobby songs, made the same way (no audio files, nothing copyrighted). They loop forever and
+// are never picked at random for a timer; lobbyMusic.js plays them by id.
+// ---------------------------------------------------------------------------------------------
+export const LOBBY_SYNTH_TRACKS = [
+    {
+        // Couch Cast's core deck: a laid-back groove with a marimba hook, an 8-bar loop
+        id: 'couch-groove',
+        name: 'Couch Groove',
+        bpm: 108,
+        swing: 0.2,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 8;
+            // Cmaj7 Am7 Dm7 G7 | Cmaj7 Am7 Fmaj7 G7
+            const roots = [36, 45, 38, 43, 36, 45, 41, 43];
+            const chords = [[60, 64, 67, 71], [60, 64, 67, 69], [60, 62, 65, 69], [59, 62, 65, 67], [60, 64, 67, 71], [60, 64, 67, 69], [60, 64, 65, 69], [59, 62, 65, 67]];
+
+            // Drums: kick, a brushy backbeat and soft hats
+            if (pos === 0 || pos === 8) inst.kick(ctx, out, t, 0.32);
+            if (pos === 7) inst.kick(ctx, out, t, 0.14);
+            if (pos === 4 || pos === 12) { inst.brush(ctx, out, t, 0.09); inst.tick(ctx, out, t, 1500, 0.06); }
+            if (pos % 2 === 0) inst.hat(ctx, out, t, pos % 4 === 2 ? 0.035 : 0.02);
+
+            // Bass: root, fifth and an octave pop
+            [[0, 0, 0.3], [6, 7, 0.2], [8, 0, 0.26], [11, 12, 0.16], [14, 7, 0.2]].forEach(([p, interval, vol]) => {
+                if (p === pos) inst.bass(ctx, out, t, roots[bar] + interval, vol, 0.28);
+            });
+
+            // Electric piano on the off-beats
+            if (pos === 2 || pos === 10) inst.keys(ctx, out, t, chords[bar], 0.045, 0.32);
+
+            // The hook
+            const hook = [
+                [[0, 76], [3, 79], [6, 76], [10, 74], [12, 72]],
+                [[2, 72], [4, 74], [8, 76], [14, 72]],
+                [[0, 77], [3, 76], [6, 74], [10, 72], [12, 69]],
+                [[0, 71], [4, 74], [8, 79]],
+                [[0, 76], [3, 79], [6, 76], [10, 74], [12, 72]],
+                [[2, 72], [4, 74], [8, 76], [14, 72]],
+                [[0, 77], [4, 76], [8, 77], [10, 79], [12, 81]],
+                [[0, 79], [6, 74], [8, 71]],
+            ];
+            hook[bar].forEach(([p, n]) => { if (p === pos) inst.marimba(ctx, out, t, n, 0.16); });
+        },
+    },
+];
+
+// ---------------------------------------------------------------------------------------------
 // ▶️ The player
 // ---------------------------------------------------------------------------------------------
 let current = null;     // { track, master, step, nextTime, endTime, timer }
 let lastTrackId = null;
 let isDucked = false;
 
-const masterLevel = () => VOLUME * (isDucked ? DUCKED : 1);
+const masterLevel = () => (isMusicMuted() ? 0.0001 : VOLUME * (isDucked ? DUCKED : 1));
 
 // The narrator speaks -> dip the music; the narrator stops -> bring it back
 onVoiceChange((speaking) => {
@@ -210,8 +259,15 @@ onVoiceChange((speaking) => {
     current.master.gain.setTargetAtTime(masterLevel(), ctx.currentTime, speaking ? 0.08 : 0.4);
 });
 
+// Music switched off (or back on): fade to silence and back, without stopping the beat
+onMusicMuteChange(() => {
+    if (!current) return;
+    const ctx = current.master.context;
+    current.master.gain.setTargetAtTime(masterLevel(), ctx.currentTime, 0.1);
+});
+
 const pickTrack = (trackId) => {
-    const chosen = TIMER_TRACKS.find((tr) => tr.id === trackId);
+    const chosen = [...TIMER_TRACKS, ...LOBBY_SYNTH_TRACKS].find((tr) => tr.id === trackId);
     if (chosen) return chosen;
     const choices = TIMER_TRACKS.filter((tr) => tr.id !== lastTrackId);
     return choices[Math.floor(Math.random() * choices.length)];
@@ -276,6 +332,9 @@ export function startTimerMusic({ endTime = null, trackId = null } = {}) {
     current.timer = setInterval(runScheduler, SCHEDULER_MS);
     runScheduler();
 }
+
+/** The id of the track playing right now, or null */
+export const playingTimerTrackId = () => current?.track.id || null;
 
 /** Move the finish line (e.g. the server's clock arrived after the music started) */
 export function setTimerMusicEndTime(endTime) {

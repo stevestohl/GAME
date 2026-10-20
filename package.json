@@ -12,7 +12,8 @@
     "reshuffled:alternates": "node db/addReshuffledAlternates.js",
     "seed:memes": "node db/seedMixupMemes.js",
     "pictionary:add": "node db/addPictionaryPrompts.js",
-    "admin:owner": "node db/createOwner.js"
+    "admin:owner": "node db/createOwner.js",
+    "move:rounds": "node db/moveRoundHistory.js"
   },
   "type": "module",
   "keywords": [],

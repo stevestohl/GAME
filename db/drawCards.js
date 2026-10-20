@@ -1,4 +1,4 @@
-import Prompt2Model from "../models/Prompt2.js";
+import ReshuffledCard from "../models/ReshuffledCard.js";
 import Temple_Trivia from "../models/Temple_Trivia.js";
 
 // Cleans up a deck name coming from the client; anything unusable becomes 'core'
@@ -8,8 +8,9 @@ export const normalizeExpansion = (expansion) => {
         : 'core';
 };
 
-// Draws random cards from a deck (expansion): that deck's cards first,
+// Draws random Prompt 2 cards from a deck (expansion): that deck's cards first,
 // then tops up from the core deck if it runs short (small or not yet loaded).
+// Prompt 2 deals from the same cards as Couch Cast (the couchcast_reshuffled database).
 // excludeIds: cards that must not come up (e.g. ones already sitting in someone's hand).
 export const drawCards = async (type, expansion, size, excludeIds = []) => {
     // Core also matches older cards saved without an expansion field
@@ -18,15 +19,15 @@ export const drawCards = async (type, expansion, size, excludeIds = []) => {
     const isCore = deck === 'core';
     const notThese = excludeIds.length ? { _id: { $nin: excludeIds } } : {};
 
-    const cards = await Prompt2Model.aggregate([
-        { $match: { type, expansion: isCore ? coreMatch : deck, ...notThese } },
+    const cards = await ReshuffledCard.aggregate([
+        { $match: { type, active: { $ne: false }, expansion: isCore ? coreMatch : deck, ...notThese } },
         { $sample: { size } }
     ]);
 
     if (isCore || cards.length >= size) return cards;
 
-    const extras = await Prompt2Model.aggregate([
-        { $match: { type, expansion: coreMatch, ...notThese, _id: { $nin: [...excludeIds, ...cards.map((c) => c._id)] } } },
+    const extras = await ReshuffledCard.aggregate([
+        { $match: { type, active: { $ne: false }, expansion: coreMatch, ...notThese, _id: { $nin: [...excludeIds, ...cards.map((c) => c._id)] } } },
         { $sample: { size: size - cards.length } }
     ]);
     return [...cards, ...extras];

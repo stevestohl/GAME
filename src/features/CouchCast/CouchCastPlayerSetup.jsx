@@ -9,6 +9,7 @@ import CouchCastScoreboard from './CouchCastScoreboard.jsx';
 import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 import CouchCastWritingPlayer from './CouchCastWritingPlayer.jsx';
 import CouchCastJudging from './CouchCastJudging.jsx'; // 👈 IMPORTED OUR JUDGING COMPONENT
+import { CouchCastPausedOverlay } from './CouchCastCasterControls.jsx';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
 import { fillBlank } from './fillBlank.js';
@@ -209,134 +210,147 @@ useEffect(() => {
     const hostPlayer = roomData.hostId ? roomData.players[roomData.hostId] : null;
     const hostName = hostPlayer ? hostPlayer.name : 'the host';
 
-    switch (gameState) {
-        case 'lobby':
-            return (
-                <Container className="mt-5 d-flex justify-content-center">
-                    <Card className="text-center shadow-sm w-100 border-0" style={{ maxWidth: '400px', backgroundColor: '#f8f9fa' }}>
-                        <Card.Body className="p-4">
-                            <h2 className="text-primary fw-bold mb-3">You're In!</h2>
-                            <p className="fs-6 text-muted mb-4">Look up at the TV.</p>
+    // ⏸️ The caster paused the game: "Paused" covers whatever this phone was showing
+    const renderPhase = () => {
+        switch (gameState) {
+            case 'lobby':
+                return (
+                    <Container className="mt-5 d-flex justify-content-center">
+                        <Card className="text-center shadow-sm w-100 border-0" style={{ maxWidth: '400px', backgroundColor: '#f8f9fa' }}>
+                            <Card.Body className="p-4">
+                                <h2 className="text-primary fw-bold mb-3">You're In!</h2>
+                                <p className="fs-6 text-muted mb-4">Look up at the TV.</p>
                             
-                            {isHost ? (
-                                <div className="p-3 border border-warning rounded bg-white shadow-sm">
-                                    <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
-                                    <Button variant={roomData.expansion === 'halloween' ? 'success' : 'primary'} size="lg" className="w-100 fw-bold py-3 fs-5 shadow-sm" onClick={handleStartGame}>
-                                        All in!
-                                    </Button>
-                                </div>
-                            ) : (
-                                <div className="p-3 border border-dashed rounded bg-light text-muted fs-6">
-                                    Waiting for <strong>{hostName}</strong> to start the game...
-                                </div>
-                            )}
-                        </Card.Body>
-                    </Card>
-                </Container>
-            );
+                                {isHost ? (
+                                    <div className="p-3 border border-warning rounded bg-white shadow-sm">
+                                        <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
+                                        <Button variant={roomData.expansion === 'halloween' ? 'success' : 'primary'} size="lg" className="w-100 fw-bold py-3 fs-5 shadow-sm" onClick={handleStartGame}>
+                                            All in!
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <div className="p-3 border border-dashed rounded bg-light text-muted fs-6">
+                                        Waiting for <strong>{hostName}</strong> to start the game...
+                                    </div>
+                                )}
+                            </Card.Body>
+                        </Card>
+                    </Container>
+                );
 
-        case 'rules':
-            return (
-                <Container className="mt-5 pt-4 text-center">
-                    <h1 className="text-primary fw-bold mb-3">Welcome to Couch Cast!</h1>
-                    <h4 className="text-muted fw-normal">Keep your eyes on the TV to learn how to play.</h4>
-                    <Spinner animation="grow" variant="warning" className="mt-5" />
-                </Container>
-            );
+            case 'rules':
+                return (
+                    <Container className="mt-5 pt-4 text-center">
+                        <h1 className="text-primary fw-bold mb-3">Welcome to Couch Cast!</h1>
+                        <h4 className="text-muted fw-normal">Keep your eyes on the TV to learn how to play.</h4>
+                        <Spinner animation="grow" variant="warning" className="mt-5" />
+                    </Container>
+                );
 
-        case 'prompt_selection':
-            return (
-                <CouchCastPromptSelection 
-                    isJudge={isHost} 
-                    judgeName={hostName} 
-                    roomCode={roomCode} 
-                    prompts={roomData.promptOptions} 
-                />
-            );
+            case 'prompt_selection':
+                return (
+                    <CouchCastPromptSelection 
+                        isJudge={isHost} 
+                        judgeName={hostName} 
+                        roomCode={roomCode} 
+                        prompts={roomData.promptOptions} 
+                        endTime={roomData.endTime}
+                    />
+                );
 
-        case 'writing':
-            return (
-                <CouchCastWritingPlayer 
-                    roomCode={roomCode}
-                    currentPrompt={roomData.currentPrompt}
-                    endTime={roomData.endTime}
-                    isJudge={isHost}
-                    hasSubmitted={playerData.hasSubmitted}
-                    hasUsedWriteIn={!!playerData.hasUsedWriteIn}
-                />
-            );
+            case 'writing':
+                return (
+                    <CouchCastWritingPlayer 
+                        roomCode={roomCode}
+                        currentPrompt={roomData.currentPrompt}
+                        endTime={roomData.endTime}
+                        isJudge={isHost}
+                        hasSubmitted={playerData.hasSubmitted}
+                        hasUsedWriteIn={!!playerData.hasUsedWriteIn}
+                        promptOptions={roomData.promptOptions}
+                        judgeStars={roomData.judgeStars}
+                    />
+                );
 
-        case 'judging':
-             // 👈 WIRED UP THE JUDGE CONTROLLER
-             return (
-                 <CouchCastJudging 
-                     roomCode={roomCode} 
-                     isJudge={isHost} 
-                     currentPrompt={roomData.currentPrompt} 
-                     endTime={roomData.endTime}
-                     submissions={submissions} 
-                     expansion={roomData.expansion}
-                 />
-             );
+            case 'judging':
+                 // 👈 WIRED UP THE JUDGE CONTROLLER
+                 return (
+                     <CouchCastJudging 
+                         roomCode={roomCode} 
+                         isJudge={isHost} 
+                         currentPrompt={roomData.currentPrompt} 
+                         endTime={roomData.endTime}
+                         submissions={submissions} 
+                         expansion={roomData.expansion}
+                     />
+                 );
 
-        case 'winner_reveal': {
-             // Every phone shows this round's winning card (no more "look at the TV")
-             const didIWin = roundResults?.winner?.id === playerData.id;
-             const winnerName = roundResults?.winningSubmission?.playerName || roundResults?.winner?.name || 'Someone';
-             const card = roundResults?.winningSubmission
-                 ? fillBlank(roomData.currentPrompt, roundResults.winningSubmission.answer)
-                 : null;
+            case 'winner_reveal': {
+                 // Every phone shows this round's winning card (no more "look at the TV")
+                 const didIWin = roundResults?.winner?.id === playerData.id;
+                 const winnerName = roundResults?.winningSubmission?.playerName || roundResults?.winner?.name || 'Someone';
+                 const card = roundResults?.winningSubmission
+                     ? fillBlank(roomData.currentPrompt, roundResults.winningSubmission.answer)
+                     : null;
              
-             return (
-                 <Container className="mt-5 d-flex justify-content-center">
-                     <Card className={`text-center shadow-sm w-100 border-0 ${didIWin ? 'bg-success text-white' : 'bg-light'}`} style={{ maxWidth: '400px' }}>
-                         <Card.Body className="p-4 p-sm-5">
-                             <h1 className="display-1 mb-2">{didIWin ? '🏆' : '🎉'}</h1>
-                             <h2 className={`fw-bold mb-3 ${didIWin ? '' : 'text-primary'}`}>
-                                 {didIWin ? 'You Won!' : `${winnerName} wins!`}
-                             </h2>
+                 return (
+                     <Container className="mt-5 d-flex justify-content-center">
+                         <Card className={`text-center shadow-sm w-100 border-0 ${didIWin ? 'bg-success text-white' : 'bg-light'}`} style={{ maxWidth: '400px' }}>
+                             <Card.Body className="p-4 p-sm-5">
+                                 <h1 className="display-1 mb-2">{didIWin ? '🏆' : '🎉'}</h1>
+                                 <h2 className={`fw-bold mb-3 ${didIWin ? '' : 'text-primary'}`}>
+                                     {didIWin ? 'You Won!' : `${winnerName} wins!`}
+                                 </h2>
 
-                             {card && (
-                                 <div className={`rounded p-3 mb-3 text-start fs-5 ${didIWin ? 'bg-white text-dark' : 'bg-white border'}`}>
-                                     {card.hasBlank ? (
-                                         <>
-                                             {card.before}<strong className="text-primary">{card.answer}</strong>{card.after}
-                                         </>
-                                     ) : (
-                                         <>
-                                             <div className="text-muted mb-2">{card.before}</div>
-                                             <strong className="text-primary">{card.answer}</strong>
-                                         </>
-                                     )}
-                                 </div>
-                             )}
+                                 {card && (
+                                     <div className={`rounded p-3 mb-3 text-start fs-5 ${didIWin ? 'bg-white text-dark' : 'bg-white border'}`}>
+                                         {card.hasBlank ? (
+                                             <>
+                                                 {card.before}<strong className="text-primary">{card.answer}</strong>{card.after}
+                                             </>
+                                         ) : (
+                                             <>
+                                                 <div className="text-muted mb-2">{card.before}</div>
+                                                 <strong className="text-primary">{card.answer}</strong>
+                                             </>
+                                         )}
+                                     </div>
+                                 )}
 
-                             <p className={`mb-0 ${didIWin ? '' : 'text-muted'}`}>
-                                 {didIWin ? 'The judge loved your answer.' : '+100 points'}
-                             </p>
-                         </Card.Body>
-                     </Card>
-                 </Container>
-             );
+                                 <p className={`mb-0 ${didIWin ? '' : 'text-muted'}`}>
+                                     {didIWin ? 'The judge loved your answer.' : '+100 points'}
+                                 </p>
+                             </Card.Body>
+                         </Card>
+                     </Container>
+                 );
+            }
+
+            case 'scoreboard':
+                // The players just wait here passively. The backend timer will automatically 
+                // kick everyone back to 'prompt_selection' after a few seconds!
+                return (
+                    <CouchCastScoreboard 
+                        playerData={playerData} 
+                        players={Object.values(roomData.players)} 
+                        isGameOver={roundResults?.isGameOver}
+                    />
+                );
+
+            default:
+                return (
+                    <Container className="mt-5 text-center">
+                        <Spinner animation="grow" variant="warning" />
+                        <h4 className="mt-3 text-muted">Wait for it...</h4>
+                    </Container>
+                );
         }
+    };
 
-        case 'scoreboard':
-            // The players just wait here passively. The backend timer will automatically 
-            // kick everyone back to 'prompt_selection' after a few seconds!
-            return (
-                <CouchCastScoreboard 
-                    playerData={playerData} 
-                    players={Object.values(roomData.players)} 
-                    isGameOver={roundResults?.isGameOver}
-                />
-            );
-
-        default:
-            return (
-                <Container className="mt-5 text-center">
-                    <Spinner animation="grow" variant="warning" />
-                    <h4 className="mt-3 text-muted">Wait for it...</h4>
-                </Container>
-            );
-    }
+    return (
+        <>
+            {renderPhase()}
+            {roomData.isPaused && <CouchCastPausedOverlay />}
+        </>
+    );
 }

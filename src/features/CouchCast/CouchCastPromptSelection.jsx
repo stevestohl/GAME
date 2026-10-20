@@ -7,7 +7,8 @@ export default function CouchCastPromptSelection({
     isJudge, 
     judgeName, 
     roomCode,
-    prompts = [] 
+    prompts = [],
+    endTime = null,
 }) {
     const [timeLeft, setTimeLeft] = useState(15);
     const [selectedPrompt, setSelectedPrompt] = useState(null);
@@ -28,24 +29,27 @@ export default function CouchCastPromptSelection({
         return p.prompt || p.text || "Unknown Prompt"; 
     };
 
-    // --- LOGIC: The Countdown & Auto-Pick / Auto-Submit ---
+    // --- LOGIC: The Countdown (to the server's clock) ---
+    // No endTime means the game is paused (or the clock hasn't arrived yet): the countdown holds still
     useEffect(() => {
-        if (timeLeft <= 0) {
+        if (!endTime) return;
+        const updateTime = () => setTimeLeft(Math.max(0, Math.ceil((endTime - Date.now()) / 1000)));
+        updateTime();
+        const timer = setInterval(updateTime, 250);
+        return () => clearInterval(timer);
+    }, [endTime]);
+
+    // --- LOGIC: Auto-Pick / Auto-Submit when the clock runs out ---
+    useEffect(() => {
+        if (timeLeft <= 0 && endTime) {
             if (isJudge && prompts.length > 0) {
                 // Time's up: pick randomly if the judge never tapped one.
                 // If they did tap and we're still here, the pick didn't land, so send it again.
                 const promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
                 socket.emit('select_prompt', { roomCode, selectedPrompt: promptToSubmit, autoPicked: !selectedPrompt });
             }
-            return;
         }
-
-        const timer = setInterval(() => {
-            setTimeLeft((prev) => prev - 1);
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [timeLeft, isJudge, prompts, roomCode, selectedPrompt]);
+    }, [timeLeft, endTime, isJudge, prompts, roomCode, selectedPrompt]);
 
     // A tap from the screen before (e.g. "All in!") can leave the browser treating the
     // button now under that finger as focused, which paints it grey as if it were picked

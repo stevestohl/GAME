@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 // 📊 One row per player per round in Couch Cast and Prompt 2.
 // Written when a round's winner is crowned (or the round is skipped). Built for analysis:
 // what people played, how fast, and which answers the judges picked.
+// Lives next to the cards, in the `couchcast_reshuffled` database (collection `promptanswers`).
 const PromptAnswerSchema = new mongoose.Schema({
     // --- Which game ---
     game: { type: String, enum: ['couchcast', 'prompt2', 'reshuffled'], required: true },
@@ -14,7 +15,7 @@ const PromptAnswerSchema = new mongoose.Schema({
     // --- Which round ---
     roundNumber: { type: Number },
     totalRounds: { type: Number },
-    promptId: { type: mongoose.Schema.Types.ObjectId, ref: 'Prompt2' },
+    promptId: { type: mongoose.Schema.Types.ObjectId, ref: 'ReshuffledCard' },
     promptText: { type: String },
     promptExpansion: { type: String },                       // the deck the prompt itself belongs to
     promptOptions: { type: [String], default: undefined },   // the prompts the judge chose from (Couch Cast only)
@@ -27,7 +28,7 @@ const PromptAnswerSchema = new mongoose.Schema({
 
     // --- What they did ---
     answer: { type: String, default: null },                 // null = didn't answer in time
-    cardId: { type: mongoose.Schema.Types.ObjectId, ref: 'Prompt2', default: null },   // the response card played, when known
+    cardId: { type: mongoose.Schema.Types.ObjectId, ref: 'ReshuffledCard', default: null },   // the response card played, when known
     isWriteIn: { type: Boolean, default: false },            // typed their own answer (Couch Cast only)
     handOptions: { type: [String], default: undefined },     // the cards they could choose from (Couch Cast only)
     responseTimeMs: { type: Number, default: null },         // from the prompt being chosen to their answer
@@ -40,4 +41,7 @@ const PromptAnswerSchema = new mongoose.Schema({
     pointsAwarded: { type: Number, default: 0 },
 }, { timestamps: true });
 
-export default mongoose.model('PromptAnswer', PromptAnswerSchema);
+// Same cluster connection, the cards' database
+const reshuffledDb = mongoose.connection.useDb('couchcast_reshuffled', { useCache: true });
+
+export default reshuffledDb.model('PromptAnswer', PromptAnswerSchema);

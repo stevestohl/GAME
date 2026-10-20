@@ -25,9 +25,9 @@ export default function CouchCastDeckSelect() {
         document.body.style.paddingRight = '';
     }, []);
 
-    // Start downloading the lobby music now, so it plays the moment a deck is tapped
+    // Start downloading the Halloween lobby song now, so it plays the moment that deck is tapped
+    // (the core deck's song is made in the browser: nothing to download)
     useEffect(() => {
-        preloadLobbyMusic();
         preloadLobbyMusic('halloween');
     }, []);
 
