@@ -1,17 +1,8 @@
 import { mixupSocket } from "../../socket.js";
 import { unlockVoice } from "../../voice.js";
+import { enterFullscreen } from "../../fullscreen.js";
 import { startLobbyMusic, stopLobbyMusic } from "../CouchCast/lobbyMusic.js";
 
-// Ask for fullscreen; phones that don't allow it (iOS Safari) just carry on
-const enterFullscreen = async () => {
-    try {
-        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-            await document.documentElement.requestFullscreen();
-        }
-    } catch (err) {
-        console.warn("Fullscreen bypassed:", err.message);
-    }
-};
 
 /** Creates a Temple Mix Up room (this device becomes the TV), then opens it */
 export function createMixupRoom(navigate, setIsCreatingRoom, { totalRounds = 9 } = {}) {

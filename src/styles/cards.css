@@ -1575,3 +1575,9 @@
   .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }
   .cc-writer-tag { min-width: 7rem; }
 }
+
+/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.
+   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js). */
+html.cast-screen body {
+  min-height: calc(100lvh + 120px);
+}

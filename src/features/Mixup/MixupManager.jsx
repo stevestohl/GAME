@@ -4,6 +4,7 @@ import { Container, Alert, Spinner } from 'react-bootstrap';
 import { mixupSocket as socket } from '../../socket.js';
 
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
@@ -24,6 +25,8 @@ import { usePlayerSounds, useTvChime } from '../../playerSounds.js';
  */
 export default function MixupManager() {
     useWakeLock();
+    // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
+    useHideBrowserBar(new URLSearchParams(window.location.search).get('role') !== 'guest');
     const searchParams = new URLSearchParams(window.location.search);
     const roomCode = (searchParams.get('room') || '').toUpperCase();
     const name = searchParams.get('name') || 'Caster';

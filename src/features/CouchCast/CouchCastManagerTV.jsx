@@ -5,6 +5,7 @@ import { couchCastSocket as socket } from "../../socket";
 
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from './lobbyMusic.js';
@@ -38,6 +39,8 @@ const VOICE_TOO_SLOW = ["Too slow!", "I'm just gonna pick for you."];
 export default function CouchCastManager() {
 
     useWakeLock()    
+    // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
+    useHideBrowserBar(new URLSearchParams(window.location.search).get('role') !== 'guest');
     
     // Grab the room code, player name, and role from the URL!
     const searchParams = new URLSearchParams(window.location.search);

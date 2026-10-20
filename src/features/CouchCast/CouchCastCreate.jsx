@@ -1,17 +1,8 @@
 import { couchCastSocket } from "../../socket";
 import { unlockVoice } from "../../voice.js";
+import { enterFullscreen } from "../../fullscreen.js";
 import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "./lobbyMusic.js";
 
-// Helper function to request fullscreen (Orientation lock removed)
-const enterFullscreen = async () => {
-    try {
-        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-            await document.documentElement.requestFullscreen();
-        }
-    } catch (err) {
-        console.warn("Fullscreen bypassed (likely an unsupported device or iOS Safari):", err.message);
-    }
-};
 
 export function handleCreateCouchCast(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds = 3) {
     const cleanName = 'Caster';

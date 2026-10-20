@@ -3,6 +3,7 @@ import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
+import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 
 export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default' }) {
   const [isPortrait, setIsPortrait] = useState(false);
@@ -30,6 +31,8 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
       clearTimeout(timer);
     };
   }, []); 
+
+  const showIPhoneTip = isIPhone() && !isHomeScreenApp();
 
   const activePlayers = players.filter(player => !player.isCaster);
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
@@ -165,6 +168,13 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
         <div className="cc-lobby-tip">
           🔋 For the best experience, turn off Battery Saver / Low Power Mode on this device so the screen stays awake.
         </div>
+
+        {/* 📱 iPhones can't go fullscreen: show how to get rid of the browser bar (see src/fullscreen.js) */}
+        {showIPhoneTip && (
+          <div className="cc-lobby-tip">
+            📱 Swipe up on this screen to hide the browser bar. For true full screen, tap Share → Add to Home Screen and start games from there.
+          </div>
+        )}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { Container, Alert, Spinner } from 'react-bootstrap';
 import { triviaCastSocket as socket } from '../../socket';
 
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
@@ -28,6 +29,8 @@ import { usePlayerSounds } from '../../playerSounds.js';
 export default function TriviaCastManager() {
 
     useWakeLock();
+    // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
+    useHideBrowserBar(new URLSearchParams(window.location.search).get('role') !== 'guest');
 
     const searchParams = new URLSearchParams(window.location.search);
     const urlRoomCode = (searchParams.get('room') || '').toUpperCase();

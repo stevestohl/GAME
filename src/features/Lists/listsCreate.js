@@ -1,17 +1,8 @@
 import { listsSocket } from "../../socket.js";
 import { unlockVoice } from "../../voice.js";
+import { enterFullscreen } from "../../fullscreen.js";
 import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "../CouchCast/lobbyMusic.js";
 
-// Ask for fullscreen; phones that don't allow it (iOS Safari) just carry on
-const enterFullscreen = async () => {
-    try {
-        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-            await document.documentElement.requestFullscreen();
-        }
-    } catch (err) {
-        console.warn("Fullscreen bypassed:", err.message);
-    }
-};
 
 /**
  * Creates a List Cast or Listopia room, then opens it.
