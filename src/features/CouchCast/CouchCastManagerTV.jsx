@@ -24,7 +24,8 @@ import CouchCastCasterControls, { CouchCastPausedOverlay } from './CouchCastCast
 // Player Controller Component
 import CouchCastPlayerSetup from './CouchCastPlayerSetup.jsx';
 import { fillBlank } from './fillBlank.js';
-import { scoreRecap } from '../../scoreRecap.js';
+import { scoreRecap, NEXT_UP_LINES } from '../../scoreRecap.js';
+import { FINALE_DRUMROLL_MS } from './CouchCastFinale.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
 
@@ -101,6 +102,7 @@ export default function CouchCastManager() {
             roundHadWinner: !!roundResults?.winner,
             round,
             isGameOver: !!roundResults?.isGameOver,
+            totalRounds: roomData.totalRounds,
         });
     }, [gameState, roomData, roundResults, round]);
     useEffect(() => {
@@ -126,9 +128,26 @@ export default function CouchCastManager() {
             speak([VOICE_WINNER_INTRO, `${sentence} That one came from ${playerName}!`], code);
             // Get the next judge's line ready while the confetti falls
             if (!roundResults.isGameOver && roundResults.nextHostName) preloadVoice(vibeLine(roundResults.nextHostName), code);
-        } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
-            if (recap) speak(recap.spoken, code);
+        } else if (voiceMoment.startsWith('scores')) {
+            // ⏭️ The scores, then what comes next ("It's half time!"), then straight on to the next round.
+            // (No voice at all: give everyone a few seconds to read the scoreboard instead.)
+            let isCurrent = true;
+            let timer = null;
+            const scoresRound = round;
+            speak([recap?.spoken, recap?.nextUp], code).then((spoken) => {
+                if (!isCurrent) return;
+                timer = setTimeout(() => socket.emit('scores_read', { roomCode: code, round: scoresRound }), spoken ? 300 : 4000);
+            });
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
+        } else if (voiceMoment === 'game-over') {
+            // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers
+            const timer = setTimeout(() => { if (recap) speak(recap.spoken, code); }, FINALE_DRUMROLL_MS + 600);
+            return () => clearTimeout(timer);
         }
+        return undefined;
     }, [voiceMoment]);
 
     // 🔁 End of the game: the caster picks what happens next
@@ -162,7 +181,7 @@ export default function CouchCastManager() {
     const lobbyRoomCode = roomData?.roomCode;
     useEffect(() => {
         if (!lobbyRoomCode) return;
-        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO, ...VOICE_TOO_SLOW], lobbyRoomCode);
+        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO, ...VOICE_TOO_SLOW, ...NEXT_UP_LINES], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // The first judge is known once the rules are showing: get their line ready too
@@ -347,6 +366,8 @@ export default function CouchCastManager() {
                         players={playersArray} 
                         isGameOver={roundResults?.isGameOver} // 👈 Also passed isGameOver here!
                         headline={recap?.headline}
+                        nextLabel={recap?.nextUp}
+                        celebrate
                         endActions={<GameOverActions onPlayAgain={handlePlayAgain} onGoHome={handleGoHome} />}
                     />
                 );

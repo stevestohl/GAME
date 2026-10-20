@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Badge, Spinner } from 'react-bootstrap';
 import { Avatar } from '../../avatars.jsx';
+import { useFinale, DrumrollOverlay, ChampionBanner, Fireworks, FinaleConfetti } from './CouchCastFinale.jsx';
 
-export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel = 'Next round starting soon...', headline, endActions }) {
+// celebrate: on the final scores, put on the big finale (drum roll, then fireworks and the champion)
+export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel = 'Next round starting soon...', headline, endActions, celebrate = false }) {
     const [isPortrait, setIsPortrait] = useState(false);
     
     // Filter out the Caster and sort the rest by score (highest to lowest)
@@ -12,6 +14,13 @@ export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel =
         .sort((a, b) => (b?.score || 0) - (a?.score || 0));
 
     const leader = rankedPlayers[0];
+
+    // 🏆 The finale: everyone tied on the top score is a champion (nobody, if nobody scored)
+    const topScore = leader?.score || 0;
+    const champions = topScore > 0 ? rankedPlayers.filter((p) => (p.score || 0) === topScore) : [];
+    const isFinale = !!(celebrate && isGameOver && champions.length);
+    const finalePhase = useFinale(isFinale);
+    const isRevealed = isFinale && finalePhase === 'reveal';
 
     // More players = more columns, so the whole table fits on the TV without scrolling
     const columnCount = rankedPlayers.length <= 3 ? 1 : rankedPlayers.length <= 8 ? 2 : 3;
@@ -49,7 +58,21 @@ export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel =
                 </div>
             )}
             
+            {/* 🥁 → 🎆 The finale's drum roll, then the fireworks */}
+            {isFinale && !isRevealed && <DrumrollOverlay />}
+            {isRevealed && <Fireworks />}
+            {isRevealed && <FinaleConfetti />}
+
+            {/* 👑 Finale: the champion takes the whole header */}
+            {isFinale && (
+                <div className="w-100 text-center flex-shrink-0 px-3" style={{ maxWidth: '900px', marginTop: 'clamp(1.4rem, 7vh, 3rem)', marginBottom: '1.2vh' }}>
+                    {/* (the top margin leaves room for the crown above the banner) */}
+                    {isRevealed && <ChampionBanner champions={champions} />}
+                </div>
+            )}
+
             {/* Header & Leader Banner - compact so the scores get the room */}
+            {!isFinale && (
             <div className="w-100 text-center flex-shrink-0 px-3" style={{ maxWidth: '800px', marginBottom: '1.5vh' }}>
                 <div className="shining-border-wrapper" style={{ borderRadius: '15px' }}>
                     <Card className="border-0 text-white w-100 frosted-glass-panel" style={{ borderRadius: '10px' }}>
@@ -77,6 +100,7 @@ export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel =
                     </Card>
                 </div>
             </div>
+            )}
 
             {/* Scoreboard grid: fills top-to-bottom, then starts a new column */}
             <div className="w-100 flex-grow-1 px-3" style={{ maxWidth: columnCount === 1 ? '750px' : '1100px', minHeight: 0 }}>
@@ -93,31 +117,34 @@ export default function CouchCastScoreboardTV({ players, isGameOver, nextLabel =
                 >
                     {rankedPlayers.map((player, index) => {
                         const isLeader = index === 0;
+                        const isChampion = isFinale && champions.includes(player);
+                        // Tied champions all get the top row's look
+                        const isTop = isLeader || isChampion;
                         return (
                             <div 
                                 key={player.id} 
-                                className={`d-flex justify-content-between align-items-center ${isLeader ? 'shadow' : 'frosted-glass-panel'}`}
+                                className={`d-flex justify-content-between align-items-center ${isTop ? 'shadow' : 'frosted-glass-panel'} ${isChampion && isRevealed ? 'cc-finale-row' : ''}`}
                                 style={{ 
                                     // The leader's row is solid white so it stands out from the glass rows
-                                    backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.92)' : undefined,
+                                    backgroundColor: isTop ? 'rgba(255, 255, 255, 0.92)' : undefined,
                                     borderRadius: '12px',
                                     padding: 'clamp(0.25rem, 1.4vh, 0.9rem) clamp(0.6rem, 2vh, 1.25rem)',
                                     minWidth: 0,
                                 }}
                             >
                                 <div className="d-flex align-items-center text-start" style={{ minWidth: 0 }}>
-                                    <span className={`fw-bold me-2 me-md-3 flex-shrink-0 ${isLeader ? 'text-primary' : 'text-white-50'}`} style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)' }}>
+                                    <span className={`fw-bold me-2 me-md-3 flex-shrink-0 ${isTop ? 'text-primary' : 'text-white-50'}`} style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)' }}>
                                         #{index + 1}
                                     </span>
                                     <Avatar id={player.avatar} name={player.name} size={72} className="me-2 me-md-3" style={{ width: 'clamp(44px, 9vh, 88px)', height: 'clamp(44px, 9vh, 88px)' }} />
-                                    <span className={`fw-bold text-truncate ${isLeader ? 'text-dark' : 'text-white'}`} style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)', textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                                    <span className={`fw-bold text-truncate ${isTop ? 'text-dark' : 'text-white'}`} style={{ fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)', textShadow: isTop ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)' }}>
                                         {player.name}
                                     </span>
                                 </div>
                                 
                                 <Badge 
-                                    bg={isLeader ? 'primary' : 'light'} 
-                                    text={isLeader ? 'light' : 'dark'}
+                                    bg={isTop ? 'primary' : 'light'} 
+                                    text={isTop ? 'light' : 'dark'}
                                     className="rounded-pill shadow-sm fw-bold flex-shrink-0 ms-2"
                                     style={{ fontSize: 'clamp(0.75rem, 3vh, 1.25rem)', padding: '0.8vh 1.6vh' }}
                                 >

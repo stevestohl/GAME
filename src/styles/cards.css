@@ -1594,3 +1594,127 @@
 html.cast-screen body {
   min-height: calc(100lvh + 120px);
 }
+
+/* =========================================================
+   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion
+   ========================================================= */
+.cc-finale-drumroll {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1vh;
+  overflow: hidden;
+  background: rgba(0, 8, 25, 0.92);
+  color: #fff;
+  text-align: center;
+}
+.cc-finale-drumroll h1 {
+  position: relative;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 9vh, 4.5rem);
+  color: var(--gt-gold);
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);
+  animation: cc-finale-build 3.2s ease-in forwards;
+}
+.cc-finale-drum {
+  position: relative;
+  font-size: clamp(3rem, 18vh, 8rem);
+  animation: cc-finale-shake 0.09s linear infinite alternate;
+}
+/* A spotlight sweeping back and forth across the stage */
+.cc-finale-spotlight {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);
+  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;
+}
+@keyframes cc-finale-build {
+  from { transform: scale(0.85); opacity: 0.4; }
+  to   { transform: scale(1.12); opacity: 1; }
+}
+@keyframes cc-finale-shake {
+  from { transform: translate(-2px, 1px) rotate(-3deg); }
+  to   { transform: translate(2px, -1px) rotate(3deg); }
+}
+@keyframes cc-finale-sweep {
+  from { transform: translateX(-25%); }
+  to   { transform: translateX(25%); }
+}
+
+.cc-finale-fireworks {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 9998;          /* behind the champion and the scores, in front of the background */
+  pointer-events: none;
+}
+
+.cc-finale-champion {
+  position: relative;
+  z-index: 10001;
+  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;
+  border-radius: 18px;
+  color: #3b2a00;
+  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);
+  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;
+}
+.cc-finale-crown {
+  position: absolute;
+  top: clamp(-2.6rem, -7vh, -1.4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(2rem, 9vh, 4rem);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;
+}
+.cc-finale-label {
+  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: clamp(0.75rem, 3vh, 1.2rem);
+}
+.cc-finale-avatar {
+  width: clamp(44px, 13vh, 110px) !important;
+  height: clamp(44px, 13vh, 110px) !important;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.cc-finale-name {
+  font-weight: 900;
+  font-size: clamp(1.4rem, 8vh, 3.4rem);
+  line-height: 1.1;
+  max-width: 60vw;
+}
+.cc-finale-score {
+  font-weight: 800;
+  font-size: clamp(0.9rem, 3.6vh, 1.6rem);
+}
+/* The champion's row in the rankings glows gold too */
+.cc-finale-row {
+  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;
+}
+@keyframes cc-finale-pop {
+  0%   { transform: scale(0.3); opacity: 0; }
+  70%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes cc-finale-glow {
+  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }
+  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }
+}
+@keyframes cc-finale-bob {
+  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }
+  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }
+}

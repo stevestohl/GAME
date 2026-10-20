@@ -135,6 +135,10 @@ const handDeals = new Map();
 // How many rounds make a game when the caster doesn't choose
 const DEFAULT_ROUNDS = 3;
 
+// 🏆 Between rounds the TV reads the scores out, then says 'scores_read' and the next round starts.
+// If it never does (no sound, a TV that dropped out), the next round starts after this long anyway.
+const SCOREBOARD_BACKUP_MS = 15 * 1000;
+
 // How long the TV shows "No one submitted anything!" before the next round starts
 const NO_SUBMISSIONS_DELAY = 5 * 1000;
 
@@ -450,13 +454,13 @@ export default function registerCCNamespace(CCNS) {
             room.gameState = 'scoreboard';
             CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
 
-            // TIMER 2: If the game IS NOT over, wait 7 more seconds on the scoreboard, 
-            // then start the next round automatically.
+            // TIMER 2: If the game IS NOT over, the next round starts as soon as the TV has finished
+            // reading out the scores ('scores_read'). This is only the backup, for a TV that never says so.
             if (!isGameOver) {
                 setRoomTimer(room, () => {
-                    if (activeCCRooms[roomCode] !== room) return;
+                    if (activeCCRooms[roomCode] !== room || room.gameState !== 'scoreboard') return;
                     startNextRound(roomCode);
-                }, 7000); // 7 seconds looking at the scoreboard
+                }, SCOREBOARD_BACKUP_MS);
             } 
             // If the game IS over, we just stay on the scoreboard permanently!
             
@@ -941,6 +945,18 @@ export default function registerCCNamespace(CCNS) {
             if (paused) pauseRoom(room); else resumeRoom(room);
             console.log(`[Couch Cast] Room ${roomCode}: ${room.isPaused ? 'paused' : 'back on'}.`);
             CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+        });
+
+        // --- 🏆 Event: The TV finished reading out the scores: straight on to the next round ---
+        socket.on('scores_read', ({ roomCode, round } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster || room.isPaused) return;
+            if (room.gameState !== 'scoreboard' || room.currentRound !== round || room.currentRound >= room.totalRounds) return;
+            // The backup timer isn't needed any more
+            if (room.timerId) clearTimeout(room.timerId);
+            room.timerId = null;
+            room.timerFn = null;
+            startNextRound(roomCode);
         });
 
         // --- 🔄 Event: A player pays NEW_HAND_COST points to swap their whole hand for a new one ---
