@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { serverNow } from '../../serverClock.js';
 import { Card, ProgressBar, Spinner } from 'react-bootstrap';
 
 export default function CouchCastWritingTV({ currentPrompt, endTime, players, hostId, defaultDuration = 60 }) {
@@ -11,10 +12,10 @@ export default function CouchCastWritingTV({ currentPrompt, endTime, players, ho
         if (!endTime) return;
         
         // (After a pause the clock comes back with less time left: the bar keeps its full length)
-        const initialRemaining = Math.floor((endTime - Date.now()) / 1000);
+        const initialRemaining = Math.floor((endTime - serverNow()) / 1000);
         setTotalTime(Math.max(defaultDuration, initialRemaining));
         const updateTime = () => {
-            const remaining = Math.floor((endTime - Date.now()) / 1000);
+            const remaining = Math.floor((endTime - serverNow()) / 1000);
             setTimeLeft(remaining > 0 ? remaining : 0);
         };
         

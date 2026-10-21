@@ -242,15 +242,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AVATARS": () => (/* binding */ AVATARS),
 /* harmony export */   "Avatar": () => (/* binding */ Avatar),
 /* harmony export */   "AvatarPicker": () => (/* binding */ AvatarPicker),
+/* harmony export */   "AvatarTheme": () => (/* binding */ AvatarTheme),
 /* harmony export */   "getMyAvatar": () => (/* binding */ getMyAvatar),
 /* harmony export */   "isAvatar": () => (/* binding */ isAvatar),
 /* harmony export */   "setMyAvatar": () => (/* binding */ setMyAvatar)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _halloweenAvatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./halloweenAvatars.jsx */ "./src/halloweenAvatars.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 /**
@@ -261,6 +264,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  *   <Avatar id="cat" size={40} />        one avatar
  *   <AvatarPicker value={id} onChange={setId} />
  *   getMyAvatar() / setMyAvatar(id)       this phone's pick (localStorage)
+ *
+ * 🎃 Themes: inside <AvatarTheme theme="halloween">, every avatar is drawn as its Halloween costume
+ * (halloweenAvatars.jsx). The TV wraps a Halloween-deck game in it; the player's own pick is unchanged.
  *
  * To add one: add an entry to AVATARS with an id (lowercase letters, numbers, dashes), a label,
  * a background color and a draw() that returns SVG shapes on a 100 x 100 canvas.
@@ -679,6 +685,21 @@ var isAvatar = function isAvatar(id) {
   return !!BY_ID[id];
 };
 
+// 🎃 Costumes: drawn by <Avatar> only inside a matching <AvatarTheme>
+var COSTUMES = Object.fromEntries(_halloweenAvatars_jsx__WEBPACK_IMPORTED_MODULE_1__.HALLOWEEN_AVATARS.map(function (a) {
+  return [a.id, a];
+}));
+var AvatarThemeContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
+
+/** Show every avatar inside as its costume for `theme` ('halloween'), or as itself (null) */
+function AvatarTheme(_ref) {
+  var theme = _ref.theme,
+    children = _ref.children;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AvatarThemeContext.Provider, {
+    value: theme || null
+  }, children);
+}
+
 // ---- The 3D finish: every avatar sits in the same glossy, lit "medallion" ----
 
 // Lighten (amount > 0) or darken (amount < 0) a #rrggbb color
@@ -698,14 +719,14 @@ var shade = function shade(hex, amount) {
  * soft shadow, a gentle shadow toward the edges, a gloss highlight across the top and a beveled rim.
  * (Gradient and filter ids are per color/avatar, so many avatars on one screen share them safely.)
  */
-function Medallion(_ref) {
-  var uid = _ref.uid,
-    bg = _ref.bg,
-    label = _ref.label,
-    size = _ref.size,
-    className = _ref.className,
-    style = _ref.style,
-    children = _ref.children;
+function Medallion(_ref2) {
+  var uid = _ref2.uid,
+    bg = _ref2.bg,
+    label = _ref2.label,
+    size = _ref2.size,
+    className = _ref2.className,
+    style = _ref2.style,
+    children = _ref2.children;
   var k = "av-".concat(uid);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     viewBox: "0 0 100 100",
@@ -831,15 +852,17 @@ function Medallion(_ref) {
 }
 
 /** One avatar: a drawing in a glossy, 3D-looking circle (a player with no avatar gets their first initial) */
-function Avatar(_ref2) {
-  var id = _ref2.id,
-    name = _ref2.name,
-    _ref2$size = _ref2.size,
-    size = _ref2$size === void 0 ? 40 : _ref2$size,
-    _ref2$className = _ref2.className,
-    className = _ref2$className === void 0 ? '' : _ref2$className,
-    style = _ref2.style;
-  var avatar = BY_ID[id];
+function Avatar(_ref3) {
+  var id = _ref3.id,
+    name = _ref3.name,
+    _ref3$size = _ref3.size,
+    size = _ref3$size === void 0 ? 40 : _ref3$size,
+    _ref3$className = _ref3.className,
+    className = _ref3$className === void 0 ? '' : _ref3$className,
+    style = _ref3.style;
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(AvatarThemeContext);
+  var costumeId = theme === 'halloween' ? _halloweenAvatars_jsx__WEBPACK_IMPORTED_MODULE_1__.COSTUME_FOR[id] : null;
+  var avatar = costumeId && COSTUMES[costumeId] || BY_ID[id];
   if (!avatar) {
     if (!name) return null;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Medallion, {
@@ -860,7 +883,7 @@ function Avatar(_ref2) {
     }, String(name).trim().charAt(0).toUpperCase() || '?'));
   }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Medallion, {
-    uid: id,
+    uid: avatar.id,
     bg: avatar.bg,
     label: avatar.label,
     size: size,
@@ -891,9 +914,9 @@ function setMyAvatar(id) {
 }
 
 /** A grid of avatars to tap (Join Room screen) */
-function AvatarPicker(_ref3) {
-  var value = _ref3.value,
-    onChange = _ref3.onChange;
+function AvatarPicker(_ref4) {
+  var value = _ref4.value,
+    onChange = _ref4.onChange;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "gt-avatar-picker",
     role: "radiogroup",
@@ -3140,17 +3163,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3178,7 +3203,7 @@ function CouchCastJudging(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!endTime) return;
     var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
+      var remaining = Math.floor((endTime - (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.serverNow)()) / 1000);
       setTimeLeft(remaining > 0 ? remaining : 0);
     };
     updateTime();
@@ -3193,7 +3218,7 @@ function CouchCastJudging(_ref) {
     if (selectedWinnerId) return; // Prevent double-taps
     setSelectedWinnerId(playerId);
     console.log("[CouchCast] Judge picked winner ".concat(playerId, " for room ").concat(roomCode));
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('pick_winner', {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('pick_winner', {
       roomCode: roomCode,
       winningPlayerId: playerId
     });
@@ -3203,16 +3228,16 @@ function CouchCastJudging(_ref) {
   // 1. THE PLAYER'S VIEW (Waiting for Judge)
   // ==========================================
   if (!isJudge) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "shadow-sm w-100 border-info",
       style: {
         maxWidth: '420px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
       className: "text-center p-5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       animation: "border",
       variant: "info",
       className: "mb-4",
@@ -3220,9 +3245,9 @@ function CouchCastJudging(_ref) {
         width: '3rem',
         height: '3rem'
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
       className: "fw-bold fs-4 text-dark mb-2"
-    }, "Moment of Truth"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+    }, "Moment of Truth"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, {
       className: "text-muted fs-6"
     }, "The Judge is currently reviewing the submissions. Look up at the TV and cross your fingers!"))));
   }
@@ -3230,14 +3255,14 @@ function CouchCastJudging(_ref) {
   // ==========================================
   // 2. THE JUDGE'S VIEW (Picking the Winner)
   // ==========================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "mt-4 d-flex justify-content-center pb-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "shadow-sm w-100 ".concat(isSeasonal ? 'border-warning' : 'border-primary'),
     style: {
       maxWidth: '420px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
     className: "text-center py-3 ".concat(isSeasonal ? 'bg-warning text-dark' : 'bg-primary text-white')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "small fw-bold text-uppercase opacity-75 mb-1",
@@ -3246,7 +3271,7 @@ function CouchCastJudging(_ref) {
     }
   }, "You Are The Judge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fs-5 fw-bold"
-  }, (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+  }, (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-center text-muted fw-bold mb-3"
   }, "Read the answers on the TV, then tap your favorite to crown it!"), timeLeft !== null && submissions.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-center mb-3"
@@ -3259,7 +3284,7 @@ function CouchCastJudging(_ref) {
   }, submissions.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-center text-danger fw-bold my-4"
   }, "No one submitted an answer!") : submissions.map(function (sub, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       key: index,
       variant: selectedWinnerId === sub.playerId ? 'warning' : 'outline-dark',
       className: "text-start p-3 fw-semibold text-wrap shadow-sm cc-tap-option",
@@ -3285,16 +3310,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3368,7 +3395,7 @@ function CouchCastJudgingTV(_ref) {
       return;
     }
     var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
+      var remaining = Math.floor((endTime - (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.serverNow)()) / 1000);
       setTimeLeft(remaining > 0 ? remaining : 0);
     };
     updateTime();
@@ -3434,23 +3461,23 @@ function CouchCastJudgingTV(_ref) {
     style: {
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "w-100 justify-content-center m-0 px-2"
   }, submissions && submissions.length > 0 ? submissions.map(function (sub, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       md: 6,
       lg: 4,
       key: index,
       className: "mb-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "shining-border-wrapper h-100"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "fullscreen-gameplay-card h-100",
       style: {
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
         backdropFilter: 'blur(10px)'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
       className: "d-flex align-items-center justify-content-center p-3 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       className: "fw-bold text-dark m-0",
@@ -3477,21 +3504,21 @@ function CouchCastJudgingTV(_ref) {
     }
   }, "WINNER!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.7)',
       backdropFilter: 'blur(15px)',
       border: '3px solid #198754'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4 p-md-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "text-center fw-bold text-dark mb-4 display-5",
     style: {
       fontSize: 'clamp(1.8rem, 4vh, 3rem)'
     }
-  }, "\"", winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "\"", winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     bg: "success",
     className: "fs-3 p-3 shadow-sm rounded-pill",
     style: {
@@ -3742,10 +3769,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
@@ -3753,20 +3780,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 /* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
-/* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
-/* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
-/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CouchCastRules.jsx */ "./src/features/CouchCast/CouchCastRules.jsx");
-/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
-/* harmony import */ var _CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
-/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
-/* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
+/* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
+/* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
+/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./CouchCastRules.jsx */ "./src/features/CouchCast/CouchCastRules.jsx");
+/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
+/* harmony import */ var _CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
+/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
+/* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -3783,6 +3812,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 // Lock Screen to keep phone screen awake
+
 
 
 
@@ -3808,6 +3838,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
 var VOICE_PROMPT_INTRO = "The prompt is...";
@@ -3817,6 +3848,18 @@ var vibeLine = function vibeLine(name) {
 };
 // When the judge runs out of time and a prompt is picked for them
 var VOICE_TOO_SLOW = ["Too slow!", "I'm just gonna pick for you."];
+// 👻 Nobody answered: one of these (the second one echoes), then on to the next round
+var VOICE_ANYONE_THERE = [["Hey, anyone there?"], [{
+  text: 'Hello?'
+}, {
+  text: 'Hello?',
+  volume: 0.45
+}, {
+  text: 'Hello?',
+  volume: 0.2
+}]];
+var VOICE_MOVING_ON = "Anyhow, moving on to the next round.";
+var VOICE_MOVING_ON_LAST = "Anyhow, let's see the final scores.";
 function CouchCastManager() {
   var _roomData$players, _roomData$players$roo;
   (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
@@ -3831,7 +3874,7 @@ function CouchCastManager() {
 
   // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3840,7 +3883,7 @@ function CouchCastManager() {
   }
 
   // --- TV STATE MANAGEMENT ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_22__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_24__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('creating'),
     _useState2 = _slicedToArray(_useState, 2),
     gameState = _useState2[0],
@@ -3875,7 +3918,7 @@ function CouchCastManager() {
   // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_21__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_22__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
   var lobbyTrack = (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('couchCast', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
 
   // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
@@ -3884,12 +3927,12 @@ function CouchCastManager() {
   var voiceMoment = null;
   if (gameState === 'prompt_selection' && judgeName) voiceMoment = "picking-".concat(round);else if (gameState === 'writing' && currentPrompt) voiceMoment = "prompt-".concat(round);
   // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
-  else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';else if (gameState === 'scoreboard' && roomData) voiceMoment = "scores-".concat(round);
+  else if (gameState === 'judging' && submissions && submissions.length === 0) voiceMoment = "no-answers-".concat(round);else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';else if (gameState === 'scoreboard' && roomData) voiceMoment = "scores-".concat(round);
 
   // 🏆 The score recap: on the scoreboard headline and read by the narrator
   var recap = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     if (gameState !== 'scoreboard' || !roomData) return null;
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__.scoreRecap)({
       players: Object.values(roomData.players).filter(function (p) {
         return !p.isCaster;
       }),
@@ -3916,7 +3959,7 @@ function CouchCastManager() {
         playerName = _roundResults$winning.playerName,
         answer = _roundResults$winning.answer;
       // Read the whole card: the prompt with the winning answer in the blank
-      var _fillBlank = (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_17__.fillBlank)(currentPrompt, answer),
+      var _fillBlank = (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_18__.fillBlank)(currentPrompt, answer),
         sentence = _fillBlank.sentence;
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
       // Get the next judge's line ready while the confetti falls
@@ -3940,13 +3983,33 @@ function CouchCastManager() {
         isCurrent = false;
         clearTimeout(timer);
       };
+    } else if (voiceMoment.startsWith('no-answers')) {
+      // 👻 "Hey, anyone there?"... then straight on (no voice: a moment to read the screen instead)
+      var _isCurrent = true;
+      var _timer = null;
+      var emptyRound = round;
+      var call = VOICE_ANYONE_THERE[Math.floor(Math.random() * VOICE_ANYONE_THERE.length)];
+      var isLastRound = round >= (roomData.totalRounds || 3);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([].concat(_toConsumableArray(call), [isLastRound ? VOICE_MOVING_ON_LAST : VOICE_MOVING_ON]), code).then(function (spoken) {
+        if (!_isCurrent) return;
+        _timer = setTimeout(function () {
+          return _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('no_answers_read', {
+            roomCode: code,
+            round: emptyRound
+          });
+        }, spoken ? 300 : 3000);
+      });
+      return function () {
+        _isCurrent = false;
+        clearTimeout(_timer);
+      };
     } else if (voiceMoment === 'game-over') {
       // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers
-      var _timer = setTimeout(function () {
+      var _timer2 = setTimeout(function () {
         if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code);
-      }, _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_19__.FINALE_DRUMROLL_MS + 600);
+      }, _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_20__.FINALE_DRUMROLL_MS + 600);
       return function () {
-        return clearTimeout(_timer);
+        return clearTimeout(_timer2);
       };
     }
     return undefined;
@@ -3987,15 +4050,17 @@ function CouchCastManager() {
   // server's clock). It stops for a pause and starts a fresh track when the game resumes.
   var isTimerPhase = (gameState === 'prompt_selection' || gameState === 'writing') && !isPaused;
   (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(isTimerPhase, {
-    endTime: roomData === null || roomData === void 0 ? void 0 : roomData.endTime,
-    key: "".concat(gameState, "-").concat(round)
+    endTime: (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_8__.toDeviceTime)(roomData === null || roomData === void 0 ? void 0 : roomData.endTime),
+    // the music's hurry-up tick runs on this device's clock
+    key: "".concat(gameState, "-").concat(round),
+    theme: (roomData === null || roomData === void 0 ? void 0 : roomData.expansion) === 'halloween' ? 'halloween' : null // 🎃 spooky tracks for the Halloween deck
   });
 
   // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
   var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!lobbyRoomCode) return;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_13__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW, _toConsumableArray(_scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__.NEXT_UP_LINES)), lobbyRoomCode);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_14__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW, _toConsumableArray(_scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__.NEXT_UP_LINES), ["Hey, anyone there?", 'Hello?', VOICE_MOVING_ON, VOICE_MOVING_ON_LAST]), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // The first judge is known once the rules are showing: get their line ready too
@@ -4111,7 +4176,7 @@ function CouchCastManager() {
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_25__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -4121,18 +4186,18 @@ function CouchCastManager() {
     var playersArray = Object.values(roomData.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
           roomCode: roomData.roomCode,
           players: playersArray,
           musicTrack: lobbyTrack
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
           roomCode: roomData.roomCode
         });
       case 'prompt_selection':
         var pickerName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
           isCastScreen: true,
           judgeName: pickerName,
           roomCode: roomData.roomCode,
@@ -4140,7 +4205,7 @@ function CouchCastManager() {
           endTime: roomData.endTime
         });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           currentPrompt: currentPrompt,
           endTime: roomData.endTime,
           players: playersArray,
@@ -4148,14 +4213,14 @@ function CouchCastManager() {
         });
       case 'judging':
         var _judgeName = ((_roomData$players$roo3 = roomData.players[roomData.hostId]) === null || _roomData$players$roo3 === void 0 ? void 0 : _roomData$players$roo3.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           currentPrompt: currentPrompt,
           submissions: submissions,
           judgeName: _judgeName,
           endTime: roomData.endTime
         });
       case 'winner_reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
           currentPrompt: currentPrompt,
           winner: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winner,
           winningSubmission: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winningSubmission // 👈 AND PASSED IT HERE
@@ -4164,14 +4229,14 @@ function CouchCastManager() {
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
           players: playersArray,
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver // 👈 Also passed isGameOver here!
           ,
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
           nextLabel: recap === null || recap === void 0 ? void 0 : recap.nextUp,
           celebrate: true,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_20__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_21__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -4182,31 +4247,37 @@ function CouchCastManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_24__["default"], {
-    fluid: true,
-    className: "p-0",
-    style: {
-      minHeight: '100vh'
-    }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_25__["default"], {
-    variant: "danger",
-    className: "text-center m-2 position-absolute w-100",
-    style: {
-      zIndex: 10002
-    }
-  }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_15__.CouchCastPausedOverlay, {
-    isCaster: true
-  }), roomData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
-    canPause: canPause || isPaused,
-    isPaused: isPaused,
-    onTogglePause: handleTogglePause
-  }), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    type: "button",
-    className: "cc-sound-button",
-    onClick: handleTurnSoundOn
-  }, "\uD83D\uDD07 Tap to turn sound back on"), (roomData === null || roomData === void 0 ? void 0 : roomData.roomCode) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "cc-room-code"
-  }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, roomData.roomCode)));
+  return (
+    /*#__PURE__*/
+    // 🎃 A Halloween-deck game: everyone's avatar shows up in costume
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_23__.AvatarTheme, {
+      theme: (roomData === null || roomData === void 0 ? void 0 : roomData.expansion) === 'halloween' ? 'halloween' : null
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_26__["default"], {
+      fluid: true,
+      className: "p-0",
+      style: {
+        minHeight: '100vh'
+      }
+    }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__["default"], {
+      variant: "danger",
+      className: "text-center m-2 position-absolute w-100",
+      style: {
+        zIndex: 10002
+      }
+    }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_16__.CouchCastPausedOverlay, {
+      isCaster: true
+    }), roomData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      canPause: canPause || isPaused,
+      isPaused: isPaused,
+      onTogglePause: handleTogglePause
+    }), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      type: "button",
+      className: "cc-sound-button",
+      onClick: handleTurnSoundOn
+    }, "\uD83D\uDD07 Tap to turn sound back on"), (roomData === null || roomData === void 0 ? void 0 : roomData.roomCode) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "cc-room-code"
+    }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, roomData.roomCode))))
+  );
 }
 
 /***/ }),
@@ -4629,18 +4700,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -4693,7 +4766,7 @@ function CouchCastPromptSelection(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!endTime) return;
     var updateTime = function updateTime() {
-      return setTimeLeft(Math.max(0, Math.ceil((endTime - Date.now()) / 1000)));
+      return setTimeLeft(Math.max(0, Math.ceil((endTime - (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.serverNow)()) / 1000)));
     };
     updateTime();
     var timer = setInterval(updateTime, 250);
@@ -4709,7 +4782,7 @@ function CouchCastPromptSelection(_ref) {
         // Time's up: pick randomly if the judge never tapped one.
         // If they did tap and we're still here, the pick didn't land, so send it again.
         var promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
-        _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('select_prompt', {
+        _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('select_prompt', {
           roomCode: roomCode,
           selectedPrompt: promptToSubmit,
           autoPicked: !selectedPrompt
@@ -4747,7 +4820,7 @@ function CouchCastPromptSelection(_ref) {
   var handlePromptPick = function handlePromptPick(promptObj) {
     if (selectedPrompt) return;
     setSelectedPrompt(promptObj);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('select_prompt', {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('select_prompt', {
       roomCode: roomCode,
       selectedPrompt: promptObj
     });
@@ -4760,7 +4833,7 @@ function CouchCastPromptSelection(_ref) {
     if (prompts.length === 0) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container d-flex justify-content-center align-items-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
         animation: "border",
         variant: "light",
         style: {
@@ -4809,14 +4882,14 @@ function CouchCastPromptSelection(_ref) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "h-100 w-100 shining-border-wrapper"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: "fullscreen-gameplay-card h-100 w-100 border-0",
         style: {
           backgroundColor: isHighlighted ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.25)',
           backdropFilter: 'blur(10px)',
           transition: 'background-color 0.5s ease-in-out'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
         className: "d-flex align-items-center justify-content-center p-3 p-md-4 text-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "fw-bold m-0 ".concat(isHighlighted ? 'text-dark' : 'text-white'),
@@ -4835,7 +4908,7 @@ function CouchCastPromptSelection(_ref) {
       style: {
         textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
       }
-    }, timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       animated: true,
       now: timeLeft / 15 * 100,
       variant: timeLeft <= 5 ? 'danger' : 'light',
@@ -4852,16 +4925,16 @@ function CouchCastPromptSelection(_ref) {
   // 2. JUDGE SCREEN (The Host selecting on Mobile)
   // ==========================================
   if (isJudge) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "mt-4 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "shadow-sm w-100",
       style: {
         maxWidth: '420px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
       className: "text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
       className: "fw-bold mb-3 fs-4 text-primary"
     }, "Set the Vibe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
       className: "text-muted mb-3"
@@ -4873,7 +4946,7 @@ function CouchCastPromptSelection(_ref) {
         gap: '10px'
       }
     }, prompts.map(function (promptObj, index) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         key: index,
         variant: selectedPrompt === promptObj ? 'primary' : 'outline-secondary',
         className: "text-start p-3 text-wrap cc-tap-option",
@@ -4888,16 +4961,16 @@ function CouchCastPromptSelection(_ref) {
   // ==========================================
   // 3. PLAYER SCREEN (Waiting on Mobile)
   // ==========================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "shadow-sm w-100 border-warning",
     style: {
       maxWidth: '420px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
     className: "text-center p-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     animation: "grow",
     variant: "warning",
     className: "mb-4",
@@ -4905,9 +4978,9 @@ function CouchCastPromptSelection(_ref) {
       width: '3rem',
       height: '3rem'
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
     className: "fw-bold fs-4 text-dark mb-2"
-  }, "Hold Your Horses..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
+  }, "Hold Your Horses..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, {
     className: "text-muted fs-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, judgeName), " is judging their options. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "(", timeLeft, "s left)"))));
 }
@@ -5665,14 +5738,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -5686,6 +5760,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -5758,7 +5833,7 @@ function HandCard(_ref) {
   var endPress = function endPress() {
     return clearTimeout(timer.current);
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "outline-secondary"
     // text-dark: the outline button's hover turns text white, which vanishes on this white card
     ,
@@ -5795,7 +5870,7 @@ function PromptStars(_ref2) {
   var starred = new Set(judgeStars);
   if (!promptOptions.length) return null;
   var toggle = function toggle(prompt) {
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('star_prompt', {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('star_prompt', {
       roomCode: roomCode,
       promptId: prompt._id,
       starred: !starred.has(String(prompt._id))
@@ -5812,7 +5887,7 @@ function PromptStars(_ref2) {
   }, promptOptions.map(function (prompt) {
     var isStarred = starred.has(String(prompt._id));
     var isPicked = String(prompt._id) === String(currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt._id);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: prompt._id,
       variant: isStarred ? 'warning' : 'outline-secondary',
       className: "text-start p-2 text-wrap d-flex align-items-start gap-2",
@@ -5858,7 +5933,7 @@ function CouchCastWritingPlayer(_ref3) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!endTime) return;
     var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
+      var remaining = Math.floor((endTime - (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.serverNow)()) / 1000);
       setTimeLeft(remaining > 0 ? remaining : 0);
     };
     updateTime();
@@ -5871,13 +5946,13 @@ function CouchCastWritingPlayer(_ref3) {
   // NEW: Fetch hand from the backend
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isJudge && !hasSubmitted) {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('request_hand');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('receive_hand', function (data) {
+      _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('request_hand');
+      _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.on('receive_hand', function (data) {
         setPlayerHand(data.hand);
       });
     }
     return function () {
-      return _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.off('receive_hand');
+      return _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.off('receive_hand');
     };
   }, [isJudge, hasSubmitted]);
   var getPromptText = function getPromptText(p) {
@@ -5890,7 +5965,7 @@ function CouchCastWritingPlayer(_ref3) {
   var handlePlayCard = function handlePlayCard(card) {
     var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : card.text;
     setAlternatesFor(null);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('submit_answer', {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('submit_answer', {
       roomCode: roomCode,
       answer: text,
       cardId: card._id,
@@ -5930,7 +6005,7 @@ function CouchCastWritingPlayer(_ref3) {
     }
     setConfirmNewHand(false);
     setPlayerHand([]); // shows "Drawing cards..." until the new hand arrives
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('new_hand', {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('new_hand', {
       roomCode: roomCode
     });
   };
@@ -5940,7 +6015,7 @@ function CouchCastWritingPlayer(_ref3) {
     e.preventDefault();
     var answer = writeIn.trim();
     if (!answer) return;
-    _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('submit_answer', {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.couchCastSocket.emit('submit_answer', {
       roomCode: roomCode,
       answer: answer,
       usedWriteIn: true
@@ -5951,20 +6026,20 @@ function CouchCastWritingPlayer(_ref3) {
   // 1. JUDGE VIEW (Waiting for answers)
   // ==========================================
   if (isJudge) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "shadow-sm w-100 border-primary",
       style: {
         maxWidth: '420px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
       className: "text-center p-4"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       className: "text-primary fw-bold mb-3"
     }, "You set the vibe!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
       className: "text-dark mb-4"
-    }, "\"", getPromptText(currentPrompt), "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, "\"", getPromptText(currentPrompt), "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       animation: "border",
       variant: "primary",
       className: "mb-3"
@@ -5984,14 +6059,14 @@ function CouchCastWritingPlayer(_ref3) {
   // 2. PLAYER VIEW (Answer Locked In)
   // ==========================================
   if (hasSubmitted) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "shadow-sm w-100 bg-success text-white border-0",
       style: {
         maxWidth: '420px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
       className: "text-center p-5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
       className: "display-1 mb-3"
@@ -6005,18 +6080,18 @@ function CouchCastWritingPlayer(_ref3) {
   // ==========================================
   // 3. PLAYER VIEW (Currently Writing)
   // ==========================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "mt-4 pb-4 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "shadow-sm w-100 border-0",
     style: {
       maxWidth: '450px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Header, {
     className: "bg-primary text-white text-center py-4 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
     className: "mb-0 fw-bold lh-base"
-  }, getPromptText(currentPrompt))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, getPromptText(currentPrompt))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     className: "p-4 bg-light"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-between align-items-center mb-1"
@@ -6030,7 +6105,7 @@ function CouchCastWritingPlayer(_ref3) {
     className: "d-flex flex-column gap-2"
   }, playerHand.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-center py-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     animation: "border",
     variant: "secondary"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -6063,13 +6138,13 @@ function CouchCastWritingPlayer(_ref3) {
       },
       onLongPress: setAlternatesFor
     });
-  })), !hasUsedWriteIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), !hasUsedWriteIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "shadow-sm mt-2 border-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     onSubmit: handleSendWriteIn
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
     type: "text",
     placeholder: "\u270D\uFE0F Write your own (1 per game)",
     value: writeIn,
@@ -6079,7 +6154,7 @@ function CouchCastWritingPlayer(_ref3) {
     className: "fw-bold border-0 shadow-none fs-5 py-2",
     maxLength: 60,
     "aria-label": "Custom write-in answer"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     type: "submit",
     variant: writeIn.trim() ? 'success' : 'secondary',
     className: "fw-bold px-3 rounded",
@@ -6087,27 +6162,27 @@ function CouchCastWritingPlayer(_ref3) {
     "aria-label": "Send write-in answer"
   }, "Send"))))), playerHand.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex gap-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: confirmNewHand ? 'warning' : 'outline-secondary',
     className: "fw-bold flex-grow-1",
     onClick: handleNewHand
-  }, confirmNewHand ? "Yes, pay ".concat(NEW_HAND_COST, " points") : "\uD83D\uDD04 New hand (costs ".concat(NEW_HAND_COST, " points)")), confirmNewHand && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, confirmNewHand ? "Yes, pay ".concat(NEW_HAND_COST, " points") : "\uD83D\uDD04 New hand (costs ".concat(NEW_HAND_COST, " points)")), confirmNewHand && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "outline-secondary",
     className: "fw-bold",
     onClick: function onClick() {
       return setConfirmNewHand(false);
     }
-  }, "Keep"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "Keep"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     show: !!alternatesFor,
     onHide: function onHide() {
       return setAlternatesFor(null);
     },
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
     closeButton: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Title, {
     className: "fs-5"
-  }, "Play it another way")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+  }, "Play it another way")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
     className: "d-flex flex-column gap-2"
   }, alternatesFor && [alternatesFor].concat(_toConsumableArray((alternatesFor.alternates || []).map(function (alt) {
     return _objectSpread(_objectSpread({}, alt), {}, {
@@ -6116,7 +6191,7 @@ function CouchCastWritingPlayer(_ref3) {
   }))).map(function (version) {
     return cardForSlot(version, slot).text;
   }).map(function (text, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: i,
       variant: i === 0 ? 'outline-secondary' : 'outline-primary',
       className: "text-start p-3 text-wrap fw-bold cc-tap-option",
@@ -6141,15 +6216,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function CouchCastWritingTV(_ref) {
@@ -6177,10 +6254,10 @@ function CouchCastWritingTV(_ref) {
     if (!endTime) return;
 
     // (After a pause the clock comes back with less time left: the bar keeps its full length)
-    var initialRemaining = Math.floor((endTime - Date.now()) / 1000);
+    var initialRemaining = Math.floor((endTime - (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.serverNow)()) / 1000);
     setTotalTime(Math.max(defaultDuration, initialRemaining));
     var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
+      var remaining = Math.floor((endTime - (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.serverNow)()) / 1000);
       setTimeLeft(remaining > 0 ? remaining : 0);
     };
     updateTime(); // Run once immediately
@@ -6240,12 +6317,12 @@ function CouchCastWritingTV(_ref) {
     style: {
       borderRadius: '15px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "border-0 text-white w-100 frosted-glass-panel",
     style: {
       borderRadius: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
     className: "p-3 p-md-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fw-bold mb-2 fs-4 text-uppercase",
@@ -6277,7 +6354,7 @@ function CouchCastWritingTV(_ref) {
     style: {
       textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
     }
-  }, timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     animated: true,
     now: timeLeft / totalTime * 100,
     variant: timeLeft <= 10 ? 'danger' : 'light',
@@ -6297,13 +6374,13 @@ function CouchCastWritingTV(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-wrap justify-content-center align-content-start gap-2"
   }, activeWriters.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: player.id,
       className: "cc-writer-tag shadow-sm border-0 frosted-glass-panel ".concat(player.hasSubmitted ? 'bg-success bg-opacity-75 text-white' : 'text-white'),
       style: {
         transform: player.hasSubmitted ? 'scale(1.03)' : 'scale(1)'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
       className: "d-flex align-items-center justify-content-center gap-2 p-2 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "fw-bold text-truncate",
@@ -6315,7 +6392,7 @@ function CouchCastWritingTV(_ref) {
         filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))'
       },
       "aria-label": "Answered"
-    }, "\u2705") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, "\u2705") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       animation: "grow",
       variant: "light",
       size: "sm",
@@ -22767,6 +22844,668 @@ function TriviaCastTile(_ref) {
 
 /***/ }),
 
+/***/ "./src/halloweenAvatars.jsx":
+/*!**********************************!*\
+  !*** ./src/halloweenAvatars.jsx ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "COSTUME_FOR": () => (/* binding */ COSTUME_FOR),
+/* harmony export */   "HALLOWEEN_AVATARS": () => (/* binding */ HALLOWEEN_AVATARS)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * 🎃 Halloween costumes for the avatars: in a game played with the Halloween deck, every player's
+ * avatar is shown as its Halloween twin (see COSTUME_FOR below and AvatarTheme in avatars.jsx).
+ * Same 100 x 100 canvas and glossy medallion as the everyday avatars.
+ */
+
+var OUTLINE = '#2b2b2b';
+var HALLOWEEN_AVATARS = [{
+  id: 'hw-ghost',
+  label: 'Ghost',
+  bg: '#7b2cbf',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M26 86 L26 46 C26 28 37 18 50 18 C63 18 74 28 74 46 L74 86 L66 79 L58 86 L50 79 L42 86 L34 79 Z",
+      fill: "#f8f9fa",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "41",
+      cy: "45",
+      rx: "4.5",
+      ry: "6.5",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "59",
+      cy: "45",
+      rx: "4.5",
+      ry: "6.5",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "60",
+      rx: "5",
+      ry: "6.5",
+      fill: OUTLINE
+    }));
+  }
+}, {
+  id: 'hw-spider',
+  label: 'Spider',
+  bg: '#ff9f1c',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 4 L50 34",
+      stroke: "#f8f9fa",
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M40 50 L22 36 L12 46 M40 56 L18 54 L8 64 M41 62 L22 70 L16 82 M44 66 L32 82 L30 94 M60 50 L78 36 L88 46 M60 56 L82 54 L92 64 M59 62 L78 70 L84 82 M56 66 L68 82 L70 94",
+      fill: "none",
+      stroke: "#1b1b1b",
+      strokeWidth: "3.4",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "60",
+      rx: "15",
+      ry: "16",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "40",
+      r: "10",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "46",
+      cy: "39",
+      r: "3",
+      fill: "#fff"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "54",
+      cy: "39",
+      r: "3",
+      fill: "#fff"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "46.5",
+      cy: "39.5",
+      r: "1.4",
+      fill: "#c1121f"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "54.5",
+      cy: "39.5",
+      r: "1.4",
+      fill: "#c1121f"
+    }));
+  }
+}, {
+  id: 'hw-pumpkin',
+  label: 'Jack-o\'-lantern',
+  bg: '#3c096c',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M48 26 C47 18 50 14 56 12",
+      fill: "none",
+      stroke: "#386641",
+      strokeWidth: "5",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "38",
+      cy: "56",
+      rx: "16",
+      ry: "25",
+      fill: "#f77f00",
+      stroke: OUTLINE,
+      strokeWidth: "2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "62",
+      cy: "56",
+      rx: "16",
+      ry: "25",
+      fill: "#f77f00",
+      stroke: OUTLINE,
+      strokeWidth: "2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "56",
+      rx: "15",
+      ry: "26",
+      fill: "#fb8b24",
+      stroke: OUTLINE,
+      strokeWidth: "2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M33 47 L40 38 L44 49 Z M67 47 L60 38 L56 49 Z",
+      fill: "#ffd60a",
+      stroke: OUTLINE,
+      strokeWidth: "1.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M32 60 L38 66 L42 61 L46 67 L50 62 L54 67 L58 61 L62 66 L68 60 Q60 76 50 76 Q40 76 32 60 Z",
+      fill: "#ffd60a",
+      stroke: OUTLINE,
+      strokeWidth: "1.5",
+      strokeLinejoin: "round"
+    }));
+  }
+}, {
+  id: 'hw-candy',
+  label: 'Candy',
+  bg: '#2ec4b6',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 50 L12 36 L16 50 L12 64 Z M70 50 L88 36 L84 50 L88 64 Z",
+      fill: "#ff006e",
+      stroke: OUTLINE,
+      strokeWidth: "2.2",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "50",
+      rx: "22",
+      ry: "16",
+      fill: "#ff006e",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M36 38 L46 62 M48 35 L58 65 M60 37 L66 52",
+      stroke: "#fff",
+      strokeWidth: "4",
+      strokeLinecap: "round",
+      opacity: "0.85"
+    }));
+  }
+}, {
+  id: 'hw-treat-bag',
+  label: 'Trick-or-treat bag',
+  bg: '#9d4edd',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M34 34 C34 18 66 18 66 34",
+      fill: "none",
+      stroke: "#1b1b1b",
+      strokeWidth: "4",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M26 34 L74 34 L80 84 Q50 90 20 84 Z",
+      fill: "#f77f00",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M38 50 L44 44 L46 52 Z M62 50 L56 44 L54 52 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M36 62 Q50 74 64 62 L60 64 L56 60 L52 65 L48 60 L44 65 L40 60 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "40",
+      cy: "30",
+      r: "5",
+      fill: "#ff006e",
+      stroke: OUTLINE,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "52",
+      y: "22",
+      width: "9",
+      height: "12",
+      rx: "2",
+      fill: "#ffd60a",
+      stroke: OUTLINE,
+      strokeWidth: "1.5"
+    }));
+  }
+}, {
+  id: 'hw-bat',
+  label: 'Bat',
+  bg: '#ffd166',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 46 C42 40 30 36 14 40 C20 44 22 50 20 56 C26 52 32 54 34 60 C38 54 44 54 50 58 C56 54 62 54 66 60 C68 54 74 52 80 56 C78 50 80 44 86 40 C70 36 58 40 50 46 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M42 40 L44 30 L48 38 M58 40 L56 30 L52 38",
+      fill: "#1b1b1b",
+      stroke: "#1b1b1b",
+      strokeWidth: "3",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "45",
+      rx: "10",
+      ry: "11",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "46",
+      cy: "43",
+      r: "2.4",
+      fill: "#ffd60a"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "54",
+      cy: "43",
+      r: "2.4",
+      fill: "#ffd60a"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M46 50 L47.5 54 L49 50 M51 50 L52.5 54 L54 50",
+      fill: "#fff"
+    }));
+  }
+}, {
+  id: 'hw-witch',
+  label: 'Witch',
+  bg: '#80ed99',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "58",
+      r: "20",
+      fill: "#95d5b2",
+      stroke: OUTLINE,
+      strokeWidth: "2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 52 C28 64 30 74 34 82 L40 66 Z M70 52 C72 64 70 74 66 82 L60 66 Z",
+      fill: "#6a040f"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "40",
+      rx: "34",
+      ry: "7",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M32 40 L52 4 L66 40 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "34",
+      y: "31",
+      width: "30",
+      height: "6",
+      fill: "#7b2cbf"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "43",
+      cy: "56",
+      r: "2.6",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "57",
+      cy: "56",
+      r: "2.6",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 58 L47 66 L52 65",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M43 70 Q50 75 57 70",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2.4",
+      strokeLinecap: "round"
+    }));
+  }
+}, {
+  id: 'hw-skull',
+  label: 'Skull',
+  bg: '#ff6d00',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M26 46 C26 28 37 18 50 18 C63 18 74 28 74 46 C74 56 68 60 66 64 L66 74 L34 74 L34 64 C32 60 26 56 26 46 Z",
+      fill: "#f8f9fa",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M34 74 L34 82 L66 82 L66 74",
+      fill: "#f8f9fa",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M42 74 L42 82 M50 74 L50 82 M58 74 L58 82",
+      stroke: OUTLINE,
+      strokeWidth: "2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "40",
+      cy: "47",
+      rx: "7",
+      ry: "8",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "60",
+      cy: "47",
+      rx: "7",
+      ry: "8",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 56 L46 64 L54 64 Z",
+      fill: OUTLINE
+    }));
+  }
+}, {
+  id: 'hw-black-cat',
+  label: 'Black cat',
+  bg: '#ffbe0b',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M24 30 L30 58 L44 40 Z M76 30 L70 58 L56 40 Z",
+      fill: "#1b1b1b",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "58",
+      rx: "28",
+      ry: "25",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "40",
+      cy: "54",
+      rx: "5",
+      ry: "6",
+      fill: "#80ed99"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "60",
+      cy: "54",
+      rx: "5",
+      ry: "6",
+      fill: "#80ed99"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "40",
+      cy: "54",
+      rx: "1.6",
+      ry: "5",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "60",
+      cy: "54",
+      rx: "1.6",
+      ry: "5",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M46 63 L54 63 L50 67 Z",
+      fill: "#ff7a93"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 62 L14 60 M30 66 L14 68 M70 62 L86 60 M70 66 L86 68",
+      stroke: "#e9ecef",
+      strokeWidth: "1.6",
+      strokeLinecap: "round"
+    }));
+  }
+}, {
+  id: 'hw-candy-corn',
+  label: 'Candy corn',
+  bg: '#5a189a',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 12 C56 12 76 70 74 80 C72 88 28 88 26 80 C24 70 44 12 50 12 Z",
+      fill: "#fff8e7",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M33 58 C38 60 62 60 67 58 L72 76 C70 82 30 82 28 76 Z",
+      fill: "#ffbe0b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M28 76 C30 82 70 82 72 76 L74 80 C72 88 28 88 26 80 Z",
+      fill: "#fb8500"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M41 38 C45 40 55 40 59 38 L67 58 C62 60 38 60 33 58 Z",
+      fill: "#fb8500"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 12 C56 12 76 70 74 80 C72 88 28 88 26 80 C24 70 44 12 50 12 Z",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2.5",
+      strokeLinejoin: "round"
+    }));
+  }
+}, {
+  id: 'hw-mummy',
+  label: 'Mummy',
+  bg: '#e9c46a',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "50",
+      r: "28",
+      fill: "#f1e9da",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M24 38 L76 32 M23 50 L77 44 M25 62 L75 58 M30 72 L70 70 M28 28 L62 24",
+      stroke: "#c9b79c",
+      strokeWidth: "3",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "30",
+      y: "43",
+      width: "40",
+      height: "11",
+      rx: "5",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "41",
+      cy: "48.5",
+      r: "3.2",
+      fill: "#ffd60a"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "59",
+      cy: "48.5",
+      r: "3.2",
+      fill: "#ffd60a"
+    }));
+  }
+}, {
+  id: 'hw-vampire',
+  label: 'Vampire',
+  bg: '#c1121f',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M16 100 L22 70 L34 82 L50 74 L66 82 L78 70 L84 100 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M22 70 L34 82 L50 74 L66 82 L78 70 L70 62 L30 62 Z",
+      fill: "#9d0208"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "46",
+      r: "21",
+      fill: "#e9ecef",
+      stroke: OUTLINE,
+      strokeWidth: "2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M29 42 C30 22 70 22 71 42 C66 34 56 32 50 40 C44 32 34 34 29 42 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M40 46 L46 48 M60 46 L54 48",
+      stroke: OUTLINE,
+      strokeWidth: "2.4",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "43",
+      cy: "51",
+      r: "2.4",
+      fill: "#9d0208"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "57",
+      cy: "51",
+      r: "2.4",
+      fill: "#9d0208"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M42 58 Q50 63 58 58",
+      fill: "none",
+      stroke: OUTLINE,
+      strokeWidth: "2.2",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M45 59.5 L46.5 64 L48 60.5 M52 60.5 L53.5 64 L55 59.5",
+      fill: "#fff",
+      stroke: OUTLINE,
+      strokeWidth: "0.8"
+    }));
+  }
+}, {
+  id: 'hw-monster',
+  label: 'Monster',
+  bg: '#a7c957',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "28",
+      y: "24",
+      width: "44",
+      height: "52",
+      rx: "6",
+      fill: "#74c69d",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M28 24 L72 24 L72 36 L64 32 L56 37 L48 31 L40 37 L28 32 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "20",
+      y: "58",
+      width: "8",
+      height: "6",
+      rx: "2",
+      fill: "#adb5bd",
+      stroke: OUTLINE,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      x: "72",
+      y: "58",
+      width: "8",
+      height: "6",
+      rx: "2",
+      fill: "#adb5bd",
+      stroke: OUTLINE,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M37 47 L45 47 M55 47 L63 47",
+      stroke: OUTLINE,
+      strokeWidth: "3",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "41",
+      cy: "51",
+      r: "2.6",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "59",
+      cy: "51",
+      r: "2.6",
+      fill: OUTLINE
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M40 66 L60 66 M44 63 L44 69 M50 63 L50 69 M56 63 L56 69",
+      stroke: OUTLINE,
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M58 30 L62 40 M60 34 L64 33",
+      stroke: OUTLINE,
+      strokeWidth: "1.5"
+    }));
+  }
+}, {
+  id: 'hw-cauldron',
+  label: 'Cauldron',
+  bg: '#ff8fab',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "40",
+      cy: "30",
+      r: "6",
+      fill: "#70e000",
+      opacity: "0.85"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "55",
+      cy: "22",
+      r: "4.5",
+      fill: "#70e000",
+      opacity: "0.85"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "62",
+      cy: "34",
+      r: "3.5",
+      fill: "#70e000",
+      opacity: "0.85"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M22 46 C22 82 78 82 78 46 Z",
+      fill: "#1b1b1b"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+      cx: "50",
+      cy: "45",
+      rx: "30",
+      ry: "7",
+      fill: "#38b000",
+      stroke: "#1b1b1b",
+      strokeWidth: "4"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M30 78 L26 88 M70 78 L74 88",
+      stroke: "#1b1b1b",
+      strokeWidth: "5",
+      strokeLinecap: "round"
+    }));
+  }
+}, {
+  id: 'hw-lollipop',
+  label: 'Lollipop',
+  bg: '#4cc9f0',
+  draw: function draw() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 58 L50 94",
+      stroke: "#f8f9fa",
+      strokeWidth: "5",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: "50",
+      cy: "40",
+      r: "24",
+      fill: "#ff006e",
+      stroke: OUTLINE,
+      strokeWidth: "2.5"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M50 40 m0 -4 a4 4 0 1 1 -4 4 a8 8 0 1 1 8 8 a12 12 0 1 1 -12 -12 a16 16 0 1 1 16 16",
+      fill: "none",
+      stroke: "#fff",
+      strokeWidth: "3.2",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      d: "M44 62 Q50 56 56 62",
+      fill: "#7b2cbf",
+      stroke: OUTLINE,
+      strokeWidth: "1.5"
+    }));
+  }
+}];
+
+// Each everyday avatar's Halloween twin (every one different, so no two players end up the same)
+var COSTUME_FOR = {
+  'cat': 'hw-black-cat',
+  'dog': 'hw-bat',
+  'person-1': 'hw-witch',
+  'person-2': 'hw-vampire',
+  'person-3': 'hw-mummy',
+  'person-4': 'hw-monster',
+  'person-5': 'hw-skull',
+  'smiley': 'hw-pumpkin',
+  'heart': 'hw-candy',
+  'goth': 'hw-ghost',
+  'soccer': 'hw-spider',
+  'basketball': 'hw-candy-corn',
+  'football': 'hw-treat-bag',
+  'baseball': 'hw-cauldron',
+  'tennis': 'hw-lollipop'
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/cards.css":
 /*!********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/cards.css ***!
@@ -24362,6 +25101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "playKeepAwakeVideo": () => (/* binding */ playKeepAwakeVideo)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _keepAwakeVideo_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../keepAwakeVideo.js */ "./src/keepAwakeVideo.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -24369,9 +25109,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // src/hooks/useWakeLock.js
 
 
+
 // 🎞️ Backup for iPhones and iPads: their browsers often ignore the wake lock (Chrome on iPhone,
 // Low Power Mode...), but they never let the screen sleep while a video is playing. So on those,
-// a tiny silent, invisible video (public/keep-awake.mp4, 2 KB) loops for as long as the game is up.
+// a tiny silent, invisible video (src/keepAwakeVideo.js, 2 KB) loops for as long as the game is up.
 var isAppleTouch = function isAppleTouch() {
   return /iPhone|iPad|iPod/.test(navigator.userAgent) || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
 }; // iPads say they're a Mac
@@ -24380,7 +25121,7 @@ var keepAwakeVideo = null;
 var getKeepAwakeVideo = function getKeepAwakeVideo() {
   if (!keepAwakeVideo) {
     var video = document.createElement('video');
-    video.src = '/keep-awake.mp4';
+    video.src = _keepAwakeVideo_js__WEBPACK_IMPORTED_MODULE_1__.KEEP_AWAKE_VIDEO;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
@@ -24526,6 +25267,24 @@ function useWakeLock() {
     };
   }, []);
 }
+
+/***/ }),
+
+/***/ "./src/keepAwakeVideo.js":
+/*!*******************************!*\
+  !*** ./src/keepAwakeVideo.js ***!
+  \*******************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "KEEP_AWAKE_VIDEO": () => (/* binding */ KEEP_AWAKE_VIDEO)
+/* harmony export */ });
+// 🎞️ The keep-awake video (see hooks/useWakeLock.js): 2 seconds of a black 16x16 picture with a
+// silent sound track, 2 KB. It's written into the code as a data: link rather than kept as a
+// file, so it can never be missing from the website (a missing file meant iPhones fell asleep).
+// Made on a Mac with AVFoundation (H.264 video + AAC audio, MP4).
+var KEEP_AWAKE_VIDEO = 'data:video/mp4;base64,AAAAHGZ0eXBtcDQyAAAAAWlzb21tcDQxbXA0MgAAAAFtZGF0AAAAAAAAAXYA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHANAABwDQAAcA0AAHAAAAOwYFMkdWStxcTEM/lO/FETzRQ6gBAAADAAEDAAADAAECAAAH0AsAAAMAAAMAAAMBLAwDiSgBDf////+AAAAAJiW4IACD/x67v/70wYBE1CeG1bepiPbqe3D8suYhjOIAAPYEWnhwAAAAEiHhDEPf8BYm9+2wMf3T+Yn/qgAAABQhqIKEOf/15VkCygMmZ8uKqeYYgAAAABMBqMGIe//2dabdsDFuBjc0dleYAAAF7G1vb3YAAABsbXZoZAAAAADm/aOP5v2jjwAAViIAAKxEAAEAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAKOdHJhawAAAFx0a2hkAAAAAeb9o4/m/aOPAAAAAQAAAAAAAKxEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAQAAAAEAAAAAAAJGVkdHMAAAAcZWxzdAAAAAAAAAABAACsRAAAAlgAAQAAAAACBm1kaWEAAAAgbWRoZAAAAADm/aOP5v2jjwAAAlgAAASwVcQAAAAAADFoZGxyAAAAAAAAAAB2aWRlAAAAAAAAAAAAAAAAQ29yZSBNZWRpYSBWaWRlbwAAAAGtbWluZgAAABR2bWhkAAAAAQAAAAAAAAAAAAAAJGRpbmYAAAAcZHJlZgAAAAAAAAABAAAADHVybCAAAAABAAABbXN0YmwAAAChc3RzZAAAAAAAAAABAAAAkWF2YzEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAQAEgAAABIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY//8AAAAnYXZjQwFkAAv/4QAMJ2QAC6xWUMN4FmClAQAEKO48sP34+AAAAAAKZmllbAEAAAAACmNocm0AAAAAABhzdHRzAAAAAAAAAAEAAAAEAAABLAAAADBjdHRzAAAAAAAAAAQAAAABAAACWAAAAAEAAASwAAAAAQAAAlgAAAABAAAAAAAAABRzdHNzAAAAAAAAAAEAAAABAAAAEHNkdHAAAAAAIBAQGAAAABxzdHNjAAAAAAAAAAEAAAABAAAAAgAAAAEAAAAkc3RzegAAAAAAAAAAAAAABAAAAGkAAAAWAAAAGAAAABcAAAAYc3RjbwAAAAAAAAACAAAA5AAAAWMAAALqdHJhawAAAFx0a2hkAAAAAeb9o4/m/aOPAAAAAgAAAAAAAKxEAAAAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAJGVkdHMAAAAcZWxzdAAAAAAAAAABAACsRAAACEAAAQAAAAACYm1kaWEAAAAgbWRoZAAAAADm/aOP5v2jjwAAViIAALgAVcQAAAAAADFoZGxyAAAAAAAAAABzb3VuAAAAAAAAAAAAAAAAQ29yZSBNZWRpYSBBdWRpbwAAAAIJbWluZgAAABBzbWhkAAAAAAAAAAAAAAAkZGluZgAAABxkcmVmAAAAAAAAAAEAAAAMdXJsIAAAAAEAAAHNc3RibAAAAGdzdHNkAAAAAAAAAAEAAABXbXA0YQAAAAAAAAABAAAAAAAAAAAAAgAQAAAAAFYiAAAAAAAzZXNkcwAAAAADgICAIgAAAASAgIAUQBQAGAAAAD6AAAA+gAWAgIACE4gGgICAAQIAAAAac2dwZAEAAAByb2xsAAAAAgAAAAH//wAAABxzYmdwAAAAAHJvbGwAAAABAAAALgAAAAEAAAAYc3R0cwAAAAAAAAABAAAALgAABAAAAAAoc3RzYwAAAAAAAAACAAAAAQAAABUAAAABAAAAAwAAAAQAAAABAAAAzHN0c3oAAAAAAAAAAAAAAC4AAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAHHN0Y28AAAAAAAAAAwAAACwAAACAAAAA1A==';
 
 /***/ }),
 
@@ -25158,6 +25917,54 @@ function scoreRecap(_ref) {
 
 /***/ }),
 
+/***/ "./src/serverClock.js":
+/*!****************************!*\
+  !*** ./src/serverClock.js ***!
+  \****************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "serverNow": () => (/* binding */ serverNow),
+/* harmony export */   "syncServerClock": () => (/* binding */ syncServerClock),
+/* harmony export */   "toDeviceTime": () => (/* binding */ toDeviceTime),
+/* harmony export */   "watchServerClock": () => (/* binding */ watchServerClock)
+/* harmony export */ });
+// ⏱️ The server's idea of "now". Countdowns end at the server's `endTime`, but a phone or computer
+// whose own clock is a few seconds off would count down wrong (and a judge's phone could even
+// pick a prompt for them before their time was up). Every room update carries `serverTime`,
+// so screens count down with the server's clock instead of their own.
+
+var offset = 0; // server clock minus this device's clock, in ms
+
+/** Note the server's time from a room update (`room.serverTime`) */
+function syncServerClock(serverTime) {
+  if (typeof serverTime === 'number' && Number.isFinite(serverTime)) offset = serverTime - Date.now();
+}
+
+/** Like Date.now(), but on the server's clock */
+var serverNow = function serverNow() {
+  return Date.now() + offset;
+};
+
+/** A time on the server's clock (like endTime), as this device's clock would show it */
+var toDeviceTime = function toDeviceTime(serverTime) {
+  return serverTime ? serverTime - offset : serverTime;
+};
+
+/** Keep the clock in step with a game's room updates */
+function watchServerClock(socket) {
+  socket.on('room_updated', function (room) {
+    return syncServerClock(room === null || room === void 0 ? void 0 : room.serverTime);
+  });
+  socket.on('sync_game_state', function (payload) {
+    var _payload$roomData;
+    return syncServerClock(payload === null || payload === void 0 ? void 0 : (_payload$roomData = payload.roomData) === null || _payload$roomData === void 0 ? void 0 : _payload$roomData.serverTime);
+  });
+}
+
+/***/ }),
+
 /***/ "./src/socket.js":
 /*!***********************!*\
   !*** ./src/socket.js ***!
@@ -25177,6 +25984,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "triviaSocket": () => (/* binding */ triviaSocket)
 /* harmony export */ });
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./serverClock.js */ "./src/serverClock.js");
+
 
 var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:5005' : 'https://game-temple-backend.onrender.com';
 
@@ -25201,6 +26010,8 @@ var couchCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".co
   transports: ['websocket', 'polling'],
   autoConnect: false
 });
+// ⏱️ Couch Cast's countdowns follow the server's clock (see serverClock.js)
+(0,_serverClock_js__WEBPACK_IMPORTED_MODULE_1__.watchServerClock)(couchCastSocket);
 var triviaCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/triviacast"), {
   transports: ['websocket', 'polling'],
   autoConnect: false
@@ -25233,6 +26044,7 @@ var listsSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LOBBY_SYNTH_TRACKS": () => (/* binding */ LOBBY_SYNTH_TRACKS),
+/* harmony export */   "SPOOKY_TIMER_TRACKS": () => (/* binding */ SPOOKY_TIMER_TRACKS),
 /* harmony export */   "TIMER_TRACKS": () => (/* binding */ TIMER_TRACKS),
 /* harmony export */   "playingTimerTrackId": () => (/* binding */ playingTimerTrackId),
 /* harmony export */   "setTimerMusicEndTime": () => (/* binding */ setTimerMusicEndTime),
@@ -25499,6 +26311,47 @@ var inst = {
       vol: vol * 0.3,
       decay: 0.8
     });
+  },
+  // 👻 A theremin: a wobbly sine that slides into each note
+  theremin: function theremin(ctx, out, t, note, length) {
+    var vol = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0.07;
+    var from = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
+    var osc = ctx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(midi(from !== null && from !== void 0 ? from : note), t);
+    osc.frequency.exponentialRampToValueAtTime(midi(note), t + Math.min(0.25, length / 2));
+    var lfo = ctx.createOscillator();
+    var depth = ctx.createGain();
+    lfo.frequency.setValueAtTime(5.5, t);
+    depth.gain.setValueAtTime(midi(note) * 0.018, t);
+    lfo.connect(depth);
+    depth.connect(osc.frequency);
+    var gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(vol, t + 0.12);
+    gain.gain.setValueAtTime(vol, t + length * 0.7);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + length);
+    osc.connect(gain);
+    gain.connect(out);
+    osc.start(t);
+    lfo.start(t);
+    osc.stop(t + length + 0.05);
+    lfo.stop(t + length + 0.05);
+  },
+  // A low, hollow drone (two slightly detuned triangles)
+  drone: function drone(ctx, out, t, note, length) {
+    var vol = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0.08;
+    [-6, 6].forEach(function (detune) {
+      return tone(ctx, out, t, {
+        freq: midi(note),
+        type: 'triangle',
+        vol: vol,
+        attack: 0.4,
+        decay: length,
+        detune: detune,
+        filter: 500
+      });
+    });
   }
 };
 
@@ -25581,6 +26434,57 @@ var TIMER_TRACKS = [{
 }];
 
 // ---------------------------------------------------------------------------------------------
+// 🎃 Spooky timer tracks: games played with the Halloween deck pick from these instead
+// ---------------------------------------------------------------------------------------------
+var SPOOKY_TIMER_TRACKS = [{
+  // A haunted music box winding down over a creaking clock and a low drone (A minor, with a sinister flat 2nd)
+  id: 'haunted-music-box',
+  name: 'Haunted Music Box',
+  bpm: 84,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 4;
+    if (pos % 4 === 0) inst.tick(ctx, out, t, pos / 4 % 2 === 0 ? 1300 : 900, 0.22);
+    if (pos === 0 && bar % 2 === 0) inst.drone(ctx, out, t, [33, 34, 33, 29][bar], 5.5, 0.09);
+    var tunes = [[[0, 81], [2, 76], [4, 77], [6, 76], [8, 72], [12, 71]], [[0, 72], [2, 69], [4, 70], [6, 69], [8, 64], [12, 63]], [[0, 81], [2, 80], [4, 76], [6, 77], [8, 74], [12, 73]], [[0, 69], [4, 70], [8, 68], [12, 69]]];
+    tunes[bar].forEach(function (_ref5) {
+      var _ref6 = _slicedToArray(_ref5, 2),
+        p = _ref6[0],
+        n = _ref6[1];
+      if (p === pos) inst.musicBox(ctx, out, t, n, 0.09);
+    });
+    if (bar === 3 && pos === 14) inst.bell(ctx, out, t, 57, 0.06);
+  }
+}, {
+  // Something creeping up the stairs: a sneaky plucked bass walking down by half steps, a heartbeat,
+  // and a theremin wailing over the top (D minor)
+  id: 'creeping-theremin',
+  name: 'Creeping Theremin',
+  bpm: 96,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 4;
+    var walk = [[38, 41, 45, 44], [43, 42, 41, 40], [38, 41, 45, 46], [45, 44, 43, 37]];
+    if (pos % 4 === 0) inst.bass(ctx, out, t, walk[bar][pos / 4], 0.28, 0.22);
+    if (pos === 0 || pos === 3) inst.kick(ctx, out, t, pos === 0 ? 0.32 : 0.2); // lub-dub
+    if (pos % 8 === 6) inst.tick(ctx, out, t, 2400, 0.05);
+    var wails = {
+      0: [74, 3, 69],
+      1: [77, 2.4, 74],
+      2: [81, 3, 77],
+      3: [73, 2.4, 76]
+    };
+    if (pos === 0) {
+      var _wails$bar = _slicedToArray(wails[bar], 3),
+        note = _wails$bar[0],
+        length = _wails$bar[1],
+        from = _wails$bar[2];
+      inst.theremin(ctx, out, t, note, length, 0.06, from);
+    }
+  }
+}];
+
+// ---------------------------------------------------------------------------------------------
 // 🛋️ Lobby songs, made the same way (no audio files, nothing copyrighted). They loop forever and
 // are never picked at random for a timer; lobbyMusic.js plays them by id.
 // ---------------------------------------------------------------------------------------------
@@ -25607,11 +26511,11 @@ var LOBBY_SYNTH_TRACKS = [{
     if (pos % 2 === 0) inst.hat(ctx, out, t, pos % 4 === 2 ? 0.035 : 0.02);
 
     // Bass: root, fifth and an octave pop
-    [[0, 0, 0.3], [6, 7, 0.2], [8, 0, 0.26], [11, 12, 0.16], [14, 7, 0.2]].forEach(function (_ref5) {
-      var _ref6 = _slicedToArray(_ref5, 3),
-        p = _ref6[0],
-        interval = _ref6[1],
-        vol = _ref6[2];
+    [[0, 0, 0.3], [6, 7, 0.2], [8, 0, 0.26], [11, 12, 0.16], [14, 7, 0.2]].forEach(function (_ref7) {
+      var _ref8 = _slicedToArray(_ref7, 3),
+        p = _ref8[0],
+        interval = _ref8[1],
+        vol = _ref8[2];
       if (p === pos) inst.bass(ctx, out, t, roots[bar] + interval, vol, 0.28);
     });
 
@@ -25620,10 +26524,10 @@ var LOBBY_SYNTH_TRACKS = [{
 
     // The hook
     var hook = [[[0, 76], [3, 79], [6, 76], [10, 74], [12, 72]], [[2, 72], [4, 74], [8, 76], [14, 72]], [[0, 77], [3, 76], [6, 74], [10, 72], [12, 69]], [[0, 71], [4, 74], [8, 79]], [[0, 76], [3, 79], [6, 76], [10, 74], [12, 72]], [[2, 72], [4, 74], [8, 76], [14, 72]], [[0, 77], [4, 76], [8, 77], [10, 79], [12, 81]], [[0, 79], [6, 74], [8, 71]]];
-    hook[bar].forEach(function (_ref7) {
-      var _ref8 = _slicedToArray(_ref7, 2),
-        p = _ref8[0],
-        n = _ref8[1];
+    hook[bar].forEach(function (_ref9) {
+      var _ref10 = _slicedToArray(_ref9, 2),
+        p = _ref10[0],
+        n = _ref10[1];
       if (p === pos) inst.marimba(ctx, out, t, n, 0.16);
     });
   }
@@ -25653,12 +26557,13 @@ var masterLevel = function masterLevel() {
   var ctx = current.master.context;
   current.master.gain.setTargetAtTime(masterLevel(), ctx.currentTime, 0.1);
 });
-var pickTrack = function pickTrack(trackId) {
-  var chosen = [].concat(TIMER_TRACKS, LOBBY_SYNTH_TRACKS).find(function (tr) {
+var pickTrack = function pickTrack(trackId, theme) {
+  var chosen = [].concat(TIMER_TRACKS, SPOOKY_TIMER_TRACKS, LOBBY_SYNTH_TRACKS).find(function (tr) {
     return tr.id === trackId;
   });
   if (chosen) return chosen;
-  var choices = TIMER_TRACKS.filter(function (tr) {
+  var pool = theme === 'halloween' ? SPOOKY_TIMER_TRACKS : TIMER_TRACKS;
+  var choices = pool.filter(function (tr) {
     return tr.id !== lastTrackId;
   });
   return choices[Math.floor(Math.random() * choices.length)];
@@ -25701,18 +26606,21 @@ var playHurry = function playHurry(ctx, playing, step, t) {
  * @param {object} options
  * @param {number} [options.endTime]  when the clock runs out (ms since 1970, like Date.now()), for the hurry-up tick
  * @param {string} [options.trackId]  pick a track instead of a random one (see TIMER_TRACKS)
+ * @param {string} [options.theme]    'halloween': pick from the spooky tracks
  */
 function startTimerMusic() {
-  var _ref9 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    _ref9$endTime = _ref9.endTime,
-    endTime = _ref9$endTime === void 0 ? null : _ref9$endTime,
-    _ref9$trackId = _ref9.trackId,
-    trackId = _ref9$trackId === void 0 ? null : _ref9$trackId;
+  var _ref11 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    _ref11$endTime = _ref11.endTime,
+    endTime = _ref11$endTime === void 0 ? null : _ref11$endTime,
+    _ref11$trackId = _ref11.trackId,
+    trackId = _ref11$trackId === void 0 ? null : _ref11$trackId,
+    _ref11$theme = _ref11.theme,
+    theme = _ref11$theme === void 0 ? null : _ref11$theme;
   stopTimerMusic();
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
   if (!ctx) return;
   if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
-  var track = pickTrack(trackId);
+  var track = pickTrack(trackId, theme);
   lastTrackId = track.id;
   var master = ctx.createGain();
   master.gain.setValueAtTime(0.0001, ctx.currentTime);
@@ -25759,18 +26667,22 @@ function stopTimerMusic() {
 
 /**
  * 🎣 React: play timer music while `isActive` is true.
- * A new `key` (e.g. the round number) starts a fresh track; `endTime` drives the hurry-up tick.
+ * A new `key` (e.g. the round number) starts a fresh track; `endTime` drives the hurry-up tick;
+ * `theme: 'halloween'` plays the spooky tracks.
  */
 function useTimerMusic(isActive) {
-  var _ref10 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-    _ref10$endTime = _ref10.endTime,
-    endTime = _ref10$endTime === void 0 ? null : _ref10$endTime,
-    _ref10$key = _ref10.key,
-    key = _ref10$key === void 0 ? null : _ref10$key;
+  var _ref12 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    _ref12$endTime = _ref12.endTime,
+    endTime = _ref12$endTime === void 0 ? null : _ref12$endTime,
+    _ref12$key = _ref12.key,
+    key = _ref12$key === void 0 ? null : _ref12$key,
+    _ref12$theme = _ref12.theme,
+    theme = _ref12$theme === void 0 ? null : _ref12$theme;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isActive) return undefined;
     startTimerMusic({
-      endTime: endTime
+      endTime: endTime,
+      theme: theme
     });
     return function () {
       return stopTimerMusic();
@@ -25876,10 +26788,12 @@ var englishVoice = function englishVoice() {
 
 // Resolves true once the line has been read all the way through
 var speakWithDevice = function speakWithDevice(text) {
+  var volume = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
   return new Promise(function (resolve) {
     if (!deviceVoice || !window.SpeechSynthesisUtterance) return resolve(false);
     var utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
+    utterance.volume = volume;
     var voice = englishVoice();
     if (voice) utterance.voice = voice;
     utterance.onstart = function () {
@@ -26031,7 +26945,7 @@ var playNext = /*#__PURE__*/function () {
             // No recording for this line: the device reads it instead
             console.warn("Voice-over: using the device voice for \"".concat(next.text.slice(0, 40), "\""));
             _context2.next = 20;
-            return speakWithDevice(next.text);
+            return speakWithDevice(next.text, next.volume);
           case 20:
             spoken = _context2.sent;
             if (currentUtterance && mySession === session) currentUtterance = null;
@@ -26044,12 +26958,13 @@ var playNext = /*#__PURE__*/function () {
             player.onerror = function () {
               return finish(false);
             };
+            player.volume = next.volume; // (iPhones ignore this and always play at full volume)
             player.src = url;
             player.play()["catch"](function (err) {
               console.warn("Voice-over blocked by the browser: ".concat(err.message));
               finish(false);
             });
-          case 28:
+          case 29:
           case "end":
             return _context2.stop();
         }
@@ -26142,15 +27057,30 @@ function preloadVoice(lines, roomCode) {
 }
 
 // Say one or more lines, in order, after anything already queued.
+// A line is text, or { text, volume } for a quieter one (0 to 1, e.g. an echo).
 // Resolves when they're finished: true if every line was actually spoken,
 // false if the voice is unavailable or it was cut off by stopVoice().
 function speak(lines, roomCode) {
-  var results = [].concat(lines).map(toSpokenText).filter(Boolean).map(function (text) {
+  var results = [].concat(lines).map(function (line) {
+    var _line$volume;
+    return line && _typeof(line) === 'object' ? {
+      text: toSpokenText(line.text),
+      volume: (_line$volume = line.volume) !== null && _line$volume !== void 0 ? _line$volume : 1
+    } : {
+      text: toSpokenText(line),
+      volume: 1
+    };
+  }).filter(function (line) {
+    return line.text;
+  }).map(function (_ref3) {
+    var text = _ref3.text,
+      volume = _ref3.volume;
     return new Promise(function (resolve) {
       var ready = preloaded.get(text);
       // Start loading straight away so there's no gap between lines
       queue.push({
         text: text,
+        volume: volume,
         audioPromise: ready || fetchAudio(text, roomCode),
         keep: !!ready,
         done: resolve

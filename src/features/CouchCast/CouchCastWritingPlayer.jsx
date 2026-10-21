@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { serverNow } from '../../serverClock.js';
 import { Container, Card, Button, Form, InputGroup, Spinner, Modal } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
@@ -116,7 +117,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
     useEffect(() => {
         if (!endTime) return;
         const updateTime = () => {
-            const remaining = Math.floor((endTime - Date.now()) / 1000);
+            const remaining = Math.floor((endTime - serverNow()) / 1000);
             setTimeLeft(remaining > 0 ? remaining : 0);
         };
         updateTime();

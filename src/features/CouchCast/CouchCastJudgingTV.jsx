@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { serverNow } from '../../serverClock.js';
 import { Card, Row, Col, Badge } from 'react-bootstrap';
 
 // 📜 More answers than fit on the screen: drift slowly down through them, rest at the bottom,
@@ -66,7 +67,7 @@ export default function CouchCastJudgingTV({
             return;
         }
         const updateTime = () => {
-            const remaining = Math.floor((endTime - Date.now()) / 1000);
+            const remaining = Math.floor((endTime - serverNow()) / 1000);
             setTimeLeft(remaining > 0 ? remaining : 0);
         };
         updateTime();

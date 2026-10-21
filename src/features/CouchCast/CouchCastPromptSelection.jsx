@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { serverNow } from '../../serverClock.js';
 import { Container, Card, Button, Spinner, ProgressBar } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
@@ -33,7 +34,7 @@ export default function CouchCastPromptSelection({
     // No endTime means the game is paused (or the clock hasn't arrived yet): the countdown holds still
     useEffect(() => {
         if (!endTime) return;
-        const updateTime = () => setTimeLeft(Math.max(0, Math.ceil((endTime - Date.now()) / 1000)));
+        const updateTime = () => setTimeLeft(Math.max(0, Math.ceil((endTime - serverNow()) / 1000)));
         updateTime();
         const timer = setInterval(updateTime, 250);
         return () => clearInterval(timer);

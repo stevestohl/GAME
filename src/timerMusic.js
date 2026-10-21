@@ -119,6 +119,34 @@ const inst = {
         tone(ctx, out, t, { freq: midi(note), vol, decay: 1.6 });
         tone(ctx, out, t, { freq: midi(note) * 2.76, vol: vol * 0.3, decay: 0.8 });
     },
+    // 👻 A theremin: a wobbly sine that slides into each note
+    theremin: (ctx, out, t, note, length, vol = 0.07, from = null) => {
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(midi(from ?? note), t);
+        osc.frequency.exponentialRampToValueAtTime(midi(note), t + Math.min(0.25, length / 2));
+        const lfo = ctx.createOscillator();
+        const depth = ctx.createGain();
+        lfo.frequency.setValueAtTime(5.5, t);
+        depth.gain.setValueAtTime(midi(note) * 0.018, t);
+        lfo.connect(depth);
+        depth.connect(osc.frequency);
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(vol, t + 0.12);
+        gain.gain.setValueAtTime(vol, t + length * 0.7);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + length);
+        osc.connect(gain);
+        gain.connect(out);
+        osc.start(t);
+        lfo.start(t);
+        osc.stop(t + length + 0.05);
+        lfo.stop(t + length + 0.05);
+    },
+    // A low, hollow drone (two slightly detuned triangles)
+    drone: (ctx, out, t, note, length, vol = 0.08) => {
+        [-6, 6].forEach((detune) => tone(ctx, out, t, { freq: midi(note), type: 'triangle', vol, attack: 0.4, decay: length, detune, filter: 500 }));
+    },
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -195,6 +223,49 @@ export const TIMER_TRACKS = [
 ];
 
 // ---------------------------------------------------------------------------------------------
+// 🎃 Spooky timer tracks: games played with the Halloween deck pick from these instead
+// ---------------------------------------------------------------------------------------------
+export const SPOOKY_TIMER_TRACKS = [
+    {
+        // A haunted music box winding down over a creaking clock and a low drone (A minor, with a sinister flat 2nd)
+        id: 'haunted-music-box',
+        name: 'Haunted Music Box',
+        bpm: 84,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 4;
+            if (pos % 4 === 0) inst.tick(ctx, out, t, (pos / 4) % 2 === 0 ? 1300 : 900, 0.22);
+            if (pos === 0 && bar % 2 === 0) inst.drone(ctx, out, t, [33, 34, 33, 29][bar], 5.5, 0.09);
+            const tunes = [
+                [[0, 81], [2, 76], [4, 77], [6, 76], [8, 72], [12, 71]],
+                [[0, 72], [2, 69], [4, 70], [6, 69], [8, 64], [12, 63]],
+                [[0, 81], [2, 80], [4, 76], [6, 77], [8, 74], [12, 73]],
+                [[0, 69], [4, 70], [8, 68], [12, 69]],
+            ];
+            tunes[bar].forEach(([p, n]) => { if (p === pos) inst.musicBox(ctx, out, t, n, 0.09); });
+            if (bar === 3 && pos === 14) inst.bell(ctx, out, t, 57, 0.06);
+        },
+    },
+    {
+        // Something creeping up the stairs: a sneaky plucked bass walking down by half steps, a heartbeat,
+        // and a theremin wailing over the top (D minor)
+        id: 'creeping-theremin',
+        name: 'Creeping Theremin',
+        bpm: 96,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 4;
+            const walk = [[38, 41, 45, 44], [43, 42, 41, 40], [38, 41, 45, 46], [45, 44, 43, 37]];
+            if (pos % 4 === 0) inst.bass(ctx, out, t, walk[bar][pos / 4], 0.28, 0.22);
+            if (pos === 0 || pos === 3) inst.kick(ctx, out, t, pos === 0 ? 0.32 : 0.2);   // lub-dub
+            if (pos % 8 === 6) inst.tick(ctx, out, t, 2400, 0.05);
+            const wails = { 0: [74, 3, 69], 1: [77, 2.4, 74], 2: [81, 3, 77], 3: [73, 2.4, 76] };
+            if (pos === 0) { const [note, length, from] = wails[bar]; inst.theremin(ctx, out, t, note, length, 0.06, from); }
+        },
+    },
+];
+
+// ---------------------------------------------------------------------------------------------
 // 🛋️ Lobby songs, made the same way (no audio files, nothing copyrighted). They loop forever and
 // are never picked at random for a timer; lobbyMusic.js plays them by id.
 // ---------------------------------------------------------------------------------------------
@@ -266,10 +337,11 @@ onMusicMuteChange(() => {
     current.master.gain.setTargetAtTime(masterLevel(), ctx.currentTime, 0.1);
 });
 
-const pickTrack = (trackId) => {
-    const chosen = [...TIMER_TRACKS, ...LOBBY_SYNTH_TRACKS].find((tr) => tr.id === trackId);
+const pickTrack = (trackId, theme) => {
+    const chosen = [...TIMER_TRACKS, ...SPOOKY_TIMER_TRACKS, ...LOBBY_SYNTH_TRACKS].find((tr) => tr.id === trackId);
     if (chosen) return chosen;
-    const choices = TIMER_TRACKS.filter((tr) => tr.id !== lastTrackId);
+    const pool = theme === 'halloween' ? SPOOKY_TIMER_TRACKS : TIMER_TRACKS;
+    const choices = pool.filter((tr) => tr.id !== lastTrackId);
     return choices[Math.floor(Math.random() * choices.length)];
 };
 
@@ -313,14 +385,15 @@ const playHurry = (ctx, playing, step, t) => {
  * @param {object} options
  * @param {number} [options.endTime]  when the clock runs out (ms since 1970, like Date.now()), for the hurry-up tick
  * @param {string} [options.trackId]  pick a track instead of a random one (see TIMER_TRACKS)
+ * @param {string} [options.theme]    'halloween': pick from the spooky tracks
  */
-export function startTimerMusic({ endTime = null, trackId = null } = {}) {
+export function startTimerMusic({ endTime = null, trackId = null, theme = null } = {}) {
     stopTimerMusic();
     const ctx = getAudioContext();
     if (!ctx) return;
     if (ctx.state === 'suspended') ctx.resume().catch(() => {});
 
-    const track = pickTrack(trackId);
+    const track = pickTrack(trackId, theme);
     lastTrackId = track.id;
 
     const master = ctx.createGain();
@@ -355,12 +428,13 @@ export function stopTimerMusic() {
 
 /**
  * 🎣 React: play timer music while `isActive` is true.
- * A new `key` (e.g. the round number) starts a fresh track; `endTime` drives the hurry-up tick.
+ * A new `key` (e.g. the round number) starts a fresh track; `endTime` drives the hurry-up tick;
+ * `theme: 'halloween'` plays the spooky tracks.
  */
-export function useTimerMusic(isActive, { endTime = null, key = null } = {}) {
+export function useTimerMusic(isActive, { endTime = null, key = null, theme = null } = {}) {
     useEffect(() => {
         if (!isActive) return undefined;
-        startTimerMusic({ endTime });
+        startTimerMusic({ endTime, theme });
         return () => stopTimerMusic();
     }, [isActive, key]);
 

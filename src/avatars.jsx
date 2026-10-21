@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
+import { HALLOWEEN_AVATARS, COSTUME_FOR } from './halloweenAvatars.jsx';
 
 /**
  * 🙂 Player avatars for the cast games. Players pick one on the Join Room screen; the phone
@@ -8,6 +9,9 @@ import React from 'react';
  *   <Avatar id="cat" size={40} />        one avatar
  *   <AvatarPicker value={id} onChange={setId} />
  *   getMyAvatar() / setMyAvatar(id)       this phone's pick (localStorage)
+ *
+ * 🎃 Themes: inside <AvatarTheme theme="halloween">, every avatar is drawn as its Halloween costume
+ * (halloweenAvatars.jsx). The TV wraps a Halloween-deck game in it; the player's own pick is unchanged.
  *
  * To add one: add an entry to AVATARS with an id (lowercase letters, numbers, dashes), a label,
  * a background color and a draw() that returns SVG shapes on a 100 x 100 canvas.
@@ -164,6 +168,15 @@ export const AVATARS = [
 const BY_ID = Object.fromEntries(AVATARS.map((a) => [a.id, a]));
 export const isAvatar = (id) => !!BY_ID[id];
 
+// 🎃 Costumes: drawn by <Avatar> only inside a matching <AvatarTheme>
+const COSTUMES = Object.fromEntries(HALLOWEEN_AVATARS.map((a) => [a.id, a]));
+const AvatarThemeContext = createContext(null);
+
+/** Show every avatar inside as its costume for `theme` ('halloween'), or as itself (null) */
+export function AvatarTheme({ theme, children }) {
+    return <AvatarThemeContext.Provider value={theme || null}>{children}</AvatarThemeContext.Provider>;
+}
+
 // ---- The 3D finish: every avatar sits in the same glossy, lit "medallion" ----
 
 // Lighten (amount > 0) or darken (amount < 0) a #rrggbb color
@@ -227,7 +240,9 @@ function Medallion({ uid, bg, label, size, className, style, children }) {
 
 /** One avatar: a drawing in a glossy, 3D-looking circle (a player with no avatar gets their first initial) */
 export function Avatar({ id, name, size = 40, className = '', style }) {
-    const avatar = BY_ID[id];
+    const theme = useContext(AvatarThemeContext);
+    const costumeId = theme === 'halloween' ? COSTUME_FOR[id] : null;
+    const avatar = (costumeId && COSTUMES[costumeId]) || BY_ID[id];
     if (!avatar) {
         if (!name) return null;
         return (
@@ -239,7 +254,7 @@ export function Avatar({ id, name, size = 40, className = '', style }) {
         );
     }
     return (
-        <Medallion uid={id} bg={avatar.bg} label={avatar.label} size={size} className={className} style={style}>
+        <Medallion uid={avatar.id} bg={avatar.bg} label={avatar.label} size={size} className={className} style={style}>
             {avatar.draw()}
         </Medallion>
     );

@@ -18,7 +18,8 @@ const getSafeRoom = (room) => {
     // `hands` (the cards each player was dealt) stays on the server too: it's only for the saved stats
     // `playedCards` (which card each player played, to be swapped out next round) is server-only too
     const { timerId, timerFn, timerDueAt, pausedTimerLeft, pausedEndTimeLeft, destroyTimer, hands, playedCards, dealQueue, ...safeRoom } = room;
-    return safeRoom;
+    // The server's clock, so screens whose own clock is off still count down to endTime correctly
+    return { ...safeRoom, serverTime: Date.now() };
 };
 
 // ⏸️ Each room runs one clock at a time (the judge's prompt pick, writing, judging, the winner
@@ -139,8 +140,9 @@ const DEFAULT_ROUNDS = 3;
 // If it never does (no sound, a TV that dropped out), the next round starts after this long anyway.
 const SCOREBOARD_BACKUP_MS = 15 * 1000;
 
-// How long the TV shows "No one submitted anything!" before the next round starts
-const NO_SUBMISSIONS_DELAY = 5 * 1000;
+// Nobody answered: the TV shows "No one submitted anything!", asks "Hey, anyone there?" and says
+// 'no_answers_read' when it's done, then the next round starts. This is the longest it waits for that.
+const NO_SUBMISSIONS_DELAY = 12 * 1000;
 
 // Lets the HTTP side (voice-overs) check that a room is real and still open
 export const getCouchCastRoom = (roomCode) => activeCCRooms[roomCode] || null;
@@ -232,6 +234,7 @@ export default function registerCCNamespace(CCNS) {
         if (anonymousSubmissions.length === 0) {
             room.endTime = null;
             setRoomTimer(room, () => skipRound(roomCode), NO_SUBMISSIONS_DELAY);
+            room.noAnswersRound = room.currentRound;
         } else {
             // Judge is on the clock: no pick in time means a random answer wins
             room.endTime = Date.now() + JUDGING_TIME_LIMIT;
@@ -859,8 +862,9 @@ export default function registerCCNamespace(CCNS) {
         socket.on('startPromptSelection', async ({ roomCode }) => {
             const room = activeCCRooms[roomCode];
             
-            // Allow EITHER the Host or the Caster (TV) to start this phase
-            if (room && (socket.id === room.hostId || room.players[socket.id]?.isCaster)) {
+            // Allow EITHER the Host or the Caster (TV) to start this phase, and only from the rules:
+            // a second TV window (or a late, repeated tap) must not restart a round that's already going
+            if (room && room.gameState === 'rules' && (socket.id === room.hostId || room.players[socket.id]?.isCaster)) {
                 try {
                     room.gameState = 'prompt_selection';
                     const randomPrompts = await drawFresh(room, 'prompt', 3);
@@ -957,6 +961,18 @@ export default function registerCCNamespace(CCNS) {
             room.timerId = null;
             room.timerFn = null;
             startNextRound(roomCode);
+        });
+
+        // --- 👻 Event: The TV finished asking "Hey, anyone there?": move straight on ---
+        socket.on('no_answers_read', ({ roomCode, round } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster || room.isPaused) return;
+            if (room.gameState !== 'judging' || room.noAnswersRound !== round || room.currentRound !== round) return;
+            if ((room.promptSubmissions || []).length > 0) return;
+            if (room.timerId) clearTimeout(room.timerId);
+            room.timerId = null;
+            room.timerFn = null;
+            skipRound(roomCode);
         });
 
         // --- 🔄 Event: A player pays NEW_HAND_COST points to swap their whole hand for a new one ---

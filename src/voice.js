@@ -49,10 +49,11 @@ const englishVoice = () => {
 };
 
 // Resolves true once the line has been read all the way through
-const speakWithDevice = (text) => new Promise((resolve) => {
+const speakWithDevice = (text, volume = 1) => new Promise((resolve) => {
     if (!deviceVoice || !window.SpeechSynthesisUtterance) return resolve(false);
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
+    utterance.volume = volume;
     const voice = englishVoice();
     if (voice) utterance.voice = voice;
     utterance.onstart = () => setSpeaking(true);
@@ -124,7 +125,7 @@ const playNext = async () => {
     if (!url) {
         // No recording for this line: the device reads it instead
         console.warn(`Voice-over: using the device voice for "${next.text.slice(0, 40)}"`);
-        const spoken = await speakWithDevice(next.text);
+        const spoken = await speakWithDevice(next.text, next.volume);
         if (currentUtterance && mySession === session) currentUtterance = null;
         return finish(spoken);
     }
@@ -132,6 +133,7 @@ const playNext = async () => {
     currentDone = next.done;
     player.onended = () => finish(true);
     player.onerror = () => finish(false);
+    player.volume = next.volume;   // (iPhones ignore this and always play at full volume)
     player.src = url;
     player.play().catch((err) => {
         console.warn(`Voice-over blocked by the browser: ${err.message}`);
@@ -190,14 +192,20 @@ export function preloadVoice(lines, roomCode) {
 }
 
 // Say one or more lines, in order, after anything already queued.
+// A line is text, or { text, volume } for a quieter one (0 to 1, e.g. an echo).
 // Resolves when they're finished: true if every line was actually spoken,
 // false if the voice is unavailable or it was cut off by stopVoice().
 export function speak(lines, roomCode) {
-    const results = [].concat(lines).map(toSpokenText).filter(Boolean).map((text) => {
+    const results = [].concat(lines)
+        .map((line) => (line && typeof line === 'object'
+            ? { text: toSpokenText(line.text), volume: line.volume ?? 1 }
+            : { text: toSpokenText(line), volume: 1 }))
+        .filter((line) => line.text)
+        .map(({ text, volume }) => {
         return new Promise((resolve) => {
             const ready = preloaded.get(text);
             // Start loading straight away so there's no gap between lines
-            queue.push({ text, audioPromise: ready || fetchAudio(text, roomCode), keep: !!ready, done: resolve });
+            queue.push({ text, volume, audioPromise: ready || fetchAudio(text, roomCode), keep: !!ready, done: resolve });
         });
     });
     playNext();

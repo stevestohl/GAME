@@ -10,6 +10,7 @@ import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.j
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from './lobbyMusic.js';
 import { useTimerMusic } from '../../timerMusic.js';
+import { toDeviceTime } from '../../serverClock.js';
 
 // TV Phase Components
 import CouchCastLobby from './CouchCastLobby.jsx';
@@ -28,6 +29,7 @@ import { scoreRecap, NEXT_UP_LINES } from '../../scoreRecap.js';
 import { FINALE_DRUMROLL_MS } from './CouchCastFinale.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
+import { AvatarTheme } from '../../avatars.jsx';
 
 // 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
 // and they give the changing part of each announcement a moment to load behind them.
@@ -36,6 +38,13 @@ const VOICE_WINNER_INTRO = "And the winner is...";
 const vibeLine = (name) => `${name} is setting the vibe.`;
 // When the judge runs out of time and a prompt is picked for them
 const VOICE_TOO_SLOW = ["Too slow!", "I'm just gonna pick for you."];
+// 👻 Nobody answered: one of these (the second one echoes), then on to the next round
+const VOICE_ANYONE_THERE = [
+    ["Hey, anyone there?"],
+    [{ text: 'Hello?' }, { text: 'Hello?', volume: 0.45 }, { text: 'Hello?', volume: 0.2 }],
+];
+const VOICE_MOVING_ON = "Anyhow, moving on to the next round.";
+const VOICE_MOVING_ON_LAST = "Anyhow, let's see the final scores.";
 
 export default function CouchCastManager() {
 
@@ -90,6 +99,7 @@ export default function CouchCastManager() {
     if (gameState === 'prompt_selection' && judgeName) voiceMoment = `picking-${round}`;
     else if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
     // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
+    else if (gameState === 'judging' && submissions && submissions.length === 0) voiceMoment = `no-answers-${round}`;
     else if (gameState === 'winner_reveal' && roundResults?.winningSubmission) voiceMoment = `winner-${round}`;
     else if (gameState === 'scoreboard' && roundResults?.isGameOver) voiceMoment = 'game-over';
     else if (gameState === 'scoreboard' && roomData) voiceMoment = `scores-${round}`;
@@ -142,6 +152,21 @@ export default function CouchCastManager() {
                 isCurrent = false;
                 clearTimeout(timer);
             };
+        } else if (voiceMoment.startsWith('no-answers')) {
+            // 👻 "Hey, anyone there?"... then straight on (no voice: a moment to read the screen instead)
+            let isCurrent = true;
+            let timer = null;
+            const emptyRound = round;
+            const call = VOICE_ANYONE_THERE[Math.floor(Math.random() * VOICE_ANYONE_THERE.length)];
+            const isLastRound = round >= (roomData.totalRounds || 3);
+            speak([...call, isLastRound ? VOICE_MOVING_ON_LAST : VOICE_MOVING_ON], code).then((spoken) => {
+                if (!isCurrent) return;
+                timer = setTimeout(() => socket.emit('no_answers_read', { roomCode: code, round: emptyRound }), spoken ? 300 : 3000);
+            });
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
         } else if (voiceMoment === 'game-over') {
             // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers
             const timer = setTimeout(() => { if (recap) speak(recap.spoken, code); }, FINALE_DRUMROLL_MS + 600);
@@ -173,15 +198,17 @@ export default function CouchCastManager() {
     // server's clock). It stops for a pause and starts a fresh track when the game resumes.
     const isTimerPhase = (gameState === 'prompt_selection' || gameState === 'writing') && !isPaused;
     useTimerMusic(isTimerPhase, {
-        endTime: roomData?.endTime,
+        endTime: toDeviceTime(roomData?.endTime),   // the music's hurry-up tick runs on this device's clock
         key: `${gameState}-${round}`,
+        theme: roomData?.expansion === 'halloween' ? 'halloween' : null,   // 🎃 spooky tracks for the Halloween deck
     });
 
     // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
     const lobbyRoomCode = roomData?.roomCode;
     useEffect(() => {
         if (!lobbyRoomCode) return;
-        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO, ...VOICE_TOO_SLOW, ...NEXT_UP_LINES], lobbyRoomCode);
+        preloadVoice([...RULES_NARRATION, VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO, ...VOICE_TOO_SLOW, ...NEXT_UP_LINES,
+            "Hey, anyone there?", 'Hello?', VOICE_MOVING_ON, VOICE_MOVING_ON_LAST], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // The first judge is known once the rules are showing: get their line ready too
@@ -378,6 +405,8 @@ export default function CouchCastManager() {
     };
 
     return (
+        // 🎃 A Halloween-deck game: everyone's avatar shows up in costume
+        <AvatarTheme theme={roomData?.expansion === 'halloween' ? 'halloween' : null}>
         <Container fluid className="p-0" style={{ minHeight: '100vh'}}>
             {errorMessage && (
                 <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 10002 }}>
@@ -405,5 +434,6 @@ export default function CouchCastManager() {
                 </div>
             )}
         </Container>
+        </AvatarTheme>
     );
 }

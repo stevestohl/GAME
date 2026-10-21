@@ -1,9 +1,10 @@
 // src/hooks/useWakeLock.js
 import { useEffect } from 'react';
+import { KEEP_AWAKE_VIDEO } from '../keepAwakeVideo.js';
 
 // 🎞️ Backup for iPhones and iPads: their browsers often ignore the wake lock (Chrome on iPhone,
 // Low Power Mode...), but they never let the screen sleep while a video is playing. So on those,
-// a tiny silent, invisible video (public/keep-awake.mp4, 2 KB) loops for as long as the game is up.
+// a tiny silent, invisible video (src/keepAwakeVideo.js, 2 KB) loops for as long as the game is up.
 export const isAppleTouch = () => /iPhone|iPad|iPod/.test(navigator.userAgent)
   || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);   // iPads say they're a Mac
 
@@ -11,7 +12,7 @@ let keepAwakeVideo = null;
 const getKeepAwakeVideo = () => {
   if (!keepAwakeVideo) {
     const video = document.createElement('video');
-    video.src = '/keep-awake.mp4';
+    video.src = KEEP_AWAKE_VIDEO;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;

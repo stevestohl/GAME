@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+import { watchServerClock } from './serverClock.js';
 
 const SOCKET_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5005'
@@ -29,6 +30,8 @@ export const couchCastSocket = io(`${SOCKET_URL}/couchcast`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+// ⏱️ Couch Cast's countdowns follow the server's clock (see serverClock.js)
+watchServerClock(couchCastSocket)
 export const triviaCastSocket = io(`${SOCKET_URL}/triviacast`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
