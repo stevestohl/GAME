@@ -41,7 +41,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
 
 
   return (
- <div className="fullscreen-gameplay-container">
+ <div className="fullscreen-gameplay-container cc-lobby">
   
   {/* --- LANDSCAPE REMINDER OVERLAY --- */}
   {isPortrait && (
@@ -54,8 +54,9 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
     </div>
   )}
 
-  {/* Tightened overall padding. Removed the conflicting inline paddingBottom */}
-  <div className="d-flex flex-column h-100 p-3 pb-4 w-100">
+  {/* Tight padding all round (the screen itself adds none here, see .cc-lobby): the bottom lines up
+      the tips with the room code pill in the corner */}
+  <div className="d-flex flex-column h-100 px-3 pt-2 pb-2 w-100">
     
     {/* Main title uses clamp() to shrink gracefully on short viewports */}
     <h2 className="fullscreen-gameplay-header">
@@ -82,12 +83,12 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
                 <Card.Body className="d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden" style={{ minHeight: 0 }}>
                   
-                  {/* Flexible title */}
+                  {/* "Scan to join Room ABCD" on one line, so the QR code gets the room */}
                   <Card.Title 
                     className="fw-bold text-dark mb-1 text-center flex-shrink-0"
-                    style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)' }}
+                    style={{ fontSize: 'clamp(0.9rem, 2.6vh, 1.5rem)' }}
                   >
-                    Scan to join!
+                    Scan to join Room <span className="cc-lobby-code">{roomCode}</span>
                   </Card.Title>
                   
                   {/* QR code container bound dynamically by available height */}
@@ -101,17 +102,6 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     />
                   </div>
                   
-                  {/* Room code font scales dynamically so it never breaks layout */}
-                  <div 
-                    className="fw-bold flex-shrink-0 mt-1" 
-                    style={{ 
-                      color: '#ffffff', 
-                      letterSpacing: '0.15em',
-                      fontSize: 'clamp(1.2rem, 3.2vh, 2.2rem)' 
-                    }}
-                  >
-                    {roomCode}
-                  </div>
                 </Card.Body>
               </Card>
             </div>
@@ -147,10 +137,10 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                   </ListGroup>
 
                   <div 
-                    className="text-dark fw-bold p-2 border border-2 border-primary border-dashed rounded text-center flex-shrink-0 shadow-sm" 
+                    className="text-dark fw-semibold px-2 py-1 border border-primary border-dashed rounded text-center flex-shrink-0" 
                     style={{ 
-                      backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                      fontSize: 'clamp(0.75rem, 1.8vh, 1.1rem)' 
+                      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                      fontSize: 'clamp(0.7rem, 1.7vh, 1rem)' 
                     }}
                   >
                     {activePlayers.length < 1 
@@ -172,7 +162,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
         {/* 📱 iPhones can't go fullscreen: show how to get rid of the browser bar (see src/fullscreen.js) */}
         {showIPhoneTip && (
           <div className="cc-lobby-tip">
-            📱 Swipe up on this screen to hide the browser bar. For true full screen, tap Share → Add to Home Screen and start games from there.
+            📱 Swipe up to hide the browser bar, or tap Share → Add to Home Screen for true full screen.
           </div>
         )}
       </div>
