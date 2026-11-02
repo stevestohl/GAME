@@ -1926,13 +1926,51 @@ html.cast-screen {
   column-gap: 0.75rem;
 }
 
-.cc-crew .crew-actor *, .cc-crew .couch-leg, .cc-crew .couch-body { transform-box: fill-box; }
+/* Only the parts that move get their own box to turn around: Safari also applies this to shapes
+   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */
+.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,
+.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,
+.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path,
+.cc-crew .couch-leg, .cc-crew .couch-body { transform-box: fill-box; }
 
 /* Walking: legs take turns, the body bobs */
 .cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }
 .cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }
 .cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }
 @keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+/* Running (the chase): the same, flat out */
+.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }
+.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }
+.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }
+
+/* 🐈 The cat: a slow tail swish, and a paw at the screen */
+.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }
+@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }
+.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }
+.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }
+@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }
+
+/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */
+.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }
+.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }
+.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }
+.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }
+.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }
+@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }
+/* Fist bumps: the crew member's arm swings up, his comes down to meet it */
+.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }
+.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }
+.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }
+.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }
+.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }
+@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }
+/* The ground shakes while the mountain moves */
+.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }
+@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }
+
+/* 🐕 "WOOF!" */
+.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }
+.cc-crew .crew-bark.is-on { opacity: 1; }
 @keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }
 
 /* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */
