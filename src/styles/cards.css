@@ -1603,6 +1603,10 @@
 html.cast-screen body {
   min-height: calc(100lvh + 120px);
 }
+/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */
+html.cast-screen {
+  overscroll-behavior-y: none;
+}
 
 /* =========================================================
    🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion

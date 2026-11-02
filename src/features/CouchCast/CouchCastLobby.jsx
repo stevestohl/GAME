@@ -17,18 +17,12 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
     checkOrientation();
     window.addEventListener('resize', checkOrientation);
 
-    // Wait a brief moment for rendering, then scroll down by 1 pixel
-    const timer = setTimeout(() => {
-      window.scrollTo(0, 1);
-    }, 100);
-    
     // Usually already playing (started by the tap that created the room); this covers a refresh
     startLobbyMusic(musicTrack);
 
     return () => {
       stopLobbyMusic();
       window.removeEventListener('resize', checkOrientation);
-      clearTimeout(timer);
     };
   }, []); 
 
