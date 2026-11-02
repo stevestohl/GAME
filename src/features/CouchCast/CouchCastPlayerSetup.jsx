@@ -14,6 +14,8 @@ import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.j
 import { playChime } from '../../chime.js';
 import { fillBlank } from './fillBlank.js';
 import { getMyAvatar } from '../../avatars.jsx';
+import TowerParty from './TowerParty.jsx';
+import TowerCredits from './TowerCredits.jsx';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -28,6 +30,7 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [roundResults, setRoundResults] = useState(null);
     const [submissions, setSubmissions] = useState([]); // 👈 Added state to hold the anonymous answers for the judge
     const [retryName, setRetryName] = useState('');
+    const [showCredits, setShowCredits] = useState(false);
 
 useEffect(() => {
         // 1. Generate or grab a persistent Player ID for backend reconnection
@@ -105,8 +108,12 @@ useEffect(() => {
         socket.on('errorMsg', handleError);
         socket.on('start_judging', handleStartJudging);
         socket.on('round_ended', handleRoundEnded);
+        // 🎬 The TV finished reading the final scores: roll the Tower Party credits here too
+        const handleCreditsRoll = () => setShowCredits(true);
+        socket.on('credits_roll', handleCreditsRoll);
 
         return () => {
+            socket.off('credits_roll', handleCreditsRoll);
             socket.off('connect', joinMyRoom);
             socket.off('joinError', handleJoinError); // 👈 Cleaned up here!
             socket.off('sync_game_state', handleSync);
@@ -215,11 +222,10 @@ useEffect(() => {
         switch (gameState) {
             case 'lobby':
                 return (
-                    <Container className="mt-5 d-flex justify-content-center">
+                    <Container className="mt-3 pb-4 d-flex justify-content-center">
                         <Card className="text-center shadow-sm w-100 border-0" style={{ maxWidth: '400px', backgroundColor: '#f8f9fa' }}>
-                            <Card.Body className="p-4">
+                            <Card.Body className="p-3">
                                 <h2 className="text-primary fw-bold mb-3">You're In!</h2>
-                                <p className="fs-6 text-muted mb-4">Look up at the TV.</p>
                             
                                 {isHost ? (
                                     <div className="p-3 border border-warning rounded bg-white shadow-sm">
@@ -233,6 +239,9 @@ useEffect(() => {
                                         Waiting for <strong>{hostName}</strong> to start the game...
                                     </div>
                                 )}
+
+                                {/* 🏗️ Something to do together while everyone joins */}
+                                <TowerParty socket={socket} roomCode={roomCode} roomData={roomData} />
                             </Card.Body>
                         </Card>
                     </Container>
@@ -351,6 +360,7 @@ useEffect(() => {
         <>
             {renderPhase()}
             {roomData.isPaused && <CouchCastPausedOverlay />}
+            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData.tower} onDone={() => setShowCredits(false)} />}
         </>
     );
 }

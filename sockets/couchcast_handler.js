@@ -11,6 +11,7 @@ import { recordPromptRound } from "../db/recordPromptRound.js"
 import ReshuffledCard from "../models/ReshuffledCard.js"
 import ReshuffledPromptVote from "../models/ReshuffledPromptVote.js"
 import { startRoomJanitor } from "./roomJanitor.js";
+import { newTower, towerRosterChanged, towerDrop, towerStop, towerReset } from "./towerParty.js";
 
 // HELPER: Strips out Node.js objects so Socket.IO doesn't crash!
 const getSafeRoom = (room) => {
@@ -180,6 +181,7 @@ const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds
         playerCount: 0, 
         endTime: null, 
         timerId: null, 
+        tower: newTower(),   // 🏗️ the lobby mini-game (sockets/towerParty.js)
         players: {
             [socket.id]: {
                 id: socket.id,
@@ -545,6 +547,8 @@ export default function registerCCNamespace(CCNS) {
             }
         }
 
+        // 🏗️ Their turn on the lobby tower goes to someone who's still here
+        towerRosterChanged(room, () => CCNS.to(roomCode).emit('room_updated', getSafeRoom(room)));
         CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
     };
 
@@ -555,6 +559,7 @@ export default function registerCCNamespace(CCNS) {
 
         if (room.timerId) clearTimeout(room.timerId);
         if (room.destroyTimer) clearTimeout(room.destroyTimer);
+        towerStop(room);
 
         console.log(`[Room Closed] ${roomCode}: ${message}`);
         CCNS.to(roomCode).emit('room_closed', { roomCode, message });
@@ -609,6 +614,7 @@ export default function registerCCNamespace(CCNS) {
         room.writingStartedAt = null;
         room.hands = {};
         room.playedCards = {};
+        towerReset(room, () => CCNS.to(roomCode).emit('room_updated', getSafeRoom(room)));
 
         console.log(`[Couch Cast] Room ${roomCode}: playing again.`);
         CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
@@ -763,7 +769,9 @@ export default function registerCCNamespace(CCNS) {
                         currentRoom.hostId = socket.id;
                     }
                 }
-                
+
+                // 🏗️ A new (or returning) player can take a turn on the lobby tower
+                towerRosterChanged(currentRoom, () => CCNS.to(code).emit('room_updated', getSafeRoom(currentRoom)));
                 CCNS.to(code).emit('room_updated', getSafeRoom(currentRoom));
             } else {
                 // Using joinError here as well so the frontend can handle both with a toast!
@@ -854,6 +862,7 @@ export default function registerCCNamespace(CCNS) {
             if (room && (socket.id === room.hostId || room.players[socket.id]?.isPlayerHost)) {
                 room.hostId = socket.id; 
                 room.gameState = 'rules';
+                towerStop(room);   // 🏗️ the real game starts: the lobby tower's scores wait for the credits
                 CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
             }
         });
@@ -1050,6 +1059,20 @@ export default function registerCCNamespace(CCNS) {
                     console.error("Error starting next round:", err);
                 }
             }
+        });
+
+        // --- 🏗️ Event: A player dropped their avatar on the lobby tower ---
+        socket.on('tower_drop', ({ roomCode, x } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room) return;
+            towerDrop(room, socket.id, x, () => CCNS.to(roomCode).emit('room_updated', getSafeRoom(room)));
+        });
+
+        // --- 🎬 Event: The TV finished reading the final scores: roll the credits on every phone too ---
+        socket.on('credits_roll', ({ roomCode } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room?.players[socket.id]?.isCaster) return;
+            socket.to(roomCode).emit('credits_roll');
         });
 
         // --- Event: Leave Room (player backed out to the menu) ---

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { serverNow } from '../../serverClock.js';
-import { Container, Card, Button, Form, InputGroup, Spinner, Modal } from 'react-bootstrap';
+import { Container, Card, Button, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 
 // 🔀 How a card reads in this prompt (see models/ReshuffledCard.js for the tags).
@@ -27,43 +27,20 @@ export function cardForSlot(card, slot) {
     }
 }
 
-const LONG_PRESS_MS = 500;
+// 🔀 What a reshuffle (a whole new hand) costs: the server takes it off the score; it can go below zero
+const RESHUFFLE_COST = 50;
 
-// 🔄 What a whole new hand costs (the server takes it off the score; it can go below zero)
-const NEW_HAND_COST = 50;
-
-/** One card in the hand: tap to play it, press and hold for its alternates (when it has any) */
-function HandCard({ card, text, fits, onPlay, onLongPress }) {
-    const timer = useRef(null);
-    const didLongPress = useRef(false);
-    const hasAlternates = (card.alternates || []).length > 0;
-
-    const startPress = () => {
-        didLongPress.current = false;
-        if (!hasAlternates) return;
-        timer.current = setTimeout(() => {
-            didLongPress.current = true;
-            if (navigator.vibrate) navigator.vibrate(15);
-            onLongPress(card);
-        }, LONG_PRESS_MS);
-    };
-    const endPress = () => clearTimeout(timer.current);
-
+/** One card in the hand: tap to play it.
+ *  (Cards can carry alternate wordings in the database; they're left out of the game for now.) */
+function HandCard({ text, fits, onPlay }) {
     return (
         <Button
             variant="outline-secondary"
             // text-dark: the outline button's hover turns text white, which vanishes on this white card
-            className={`text-start p-3 text-wrap fw-bold shadow-sm bg-white text-dark cc-tap-option d-flex justify-content-between align-items-center gap-2 ${fits ? '' : 'opacity-75'}`}
-            style={{ WebkitTouchCallout: 'none', userSelect: 'none' }}
-            onPointerDown={startPress}
-            onPointerUp={endPress}
-            onPointerLeave={endPress}
-            onPointerCancel={endPress}
-            onContextMenu={(e) => { if (hasAlternates) e.preventDefault(); }}
-            onClick={() => { if (!didLongPress.current) onPlay(text); }}
+            className={`text-start p-3 text-wrap fw-bold shadow-sm bg-white text-dark cc-tap-option ${fits ? '' : 'opacity-75'}`}
+            onClick={() => onPlay(text)}
         >
-            <span>{text}</span>
-            {hasAlternates && <span className="small text-muted fw-normal flex-shrink-0" aria-hidden="true" title="Press and hold for more">⋯</span>}
+            {text}
         </Button>
     );
 }
@@ -146,7 +123,6 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
 
     // Tapping a card plays it straight away, in the wording shown on it
     const handlePlayCard = (card, text = card.text) => {
-        setAlternatesFor(null);
         socket.emit('submit_answer', { roomCode, answer: text, cardId: card._id, usedWriteIn: false });
     };
 
@@ -156,10 +132,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
     const goodFits = shownHand.filter((c) => c.fits);
     const wildCards = shownHand.filter((c) => !c.fits);
 
-    // Press and hold: the card's funny alternates
-    const [alternatesFor, setAlternatesFor] = useState(null);
-
-    // 🔄 Swap the whole hand for a new one, for points. First tap asks, second tap pays.
+    // 🔀 Reshuffle: swap the whole hand for a new one, for points. First tap asks, second tap pays.
     const [confirmNewHand, setConfirmNewHand] = useState(false);
     const handleNewHand = () => {
         if (!confirmNewHand) {
@@ -243,7 +216,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                         ) : (
                             <>
                                 {goodFits.map(({ card, text }) => (
-                                    <HandCard key={card._id} card={card} text={text} fits onPlay={(t) => handlePlayCard(card, t)} onLongPress={setAlternatesFor} />
+                                    <HandCard key={card._id} text={text} fits onPlay={(t) => handlePlayCard(card, t)} />
                                 ))}
                                 {wildCards.length > 0 && (
                                     <div className="text-center small text-muted text-uppercase fw-bold mt-2">
@@ -251,7 +224,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                                     </div>
                                 )}
                                 {wildCards.map(({ card, text }) => (
-                                    <HandCard key={card._id} card={card} text={text} fits={false} onPlay={(t) => handlePlayCard(card, t)} onLongPress={setAlternatesFor} />
+                                    <HandCard key={card._id} text={text} fits={false} onPlay={(t) => handlePlayCard(card, t)} />
                                 ))}
                             </>
                         )}
@@ -294,7 +267,7 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                                     className="fw-bold flex-grow-1"
                                     onClick={handleNewHand}
                                 >
-                                    {confirmNewHand ? `Yes, pay ${NEW_HAND_COST} points` : `🔄 New hand (costs ${NEW_HAND_COST} points)`}
+                                    {confirmNewHand ? `Yes, pay ${RESHUFFLE_COST} points` : `🔀 Reshuffle (${RESHUFFLE_COST} points)`}
                                 </Button>
                                 {confirmNewHand && (
                                     <Button variant="outline-secondary" className="fw-bold" onClick={() => setConfirmNewHand(false)}>
@@ -307,27 +280,6 @@ export default function CouchCastWritingPlayer({ roomCode, currentPrompt, endTim
                 </Card.Body>
             </Card>
 
-            {/* ⋯ Press and hold: the same card, said other ways */}
-            <Modal show={!!alternatesFor} onHide={() => setAlternatesFor(null)} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title className="fs-5">Play it another way</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="d-flex flex-column gap-2">
-                    {/* The card itself, then each alternate, all worded for this prompt's blank */}
-                    {alternatesFor && [alternatesFor, ...(alternatesFor.alternates || []).map((alt) => ({ ...alt, kinds: alternatesFor.kinds }))]
-                        .map((version) => cardForSlot(version, slot).text)
-                        .map((text, i) => (
-                        <Button
-                            key={i}
-                            variant={i === 0 ? 'outline-secondary' : 'outline-primary'}
-                            className="text-start p-3 text-wrap fw-bold cc-tap-option"
-                            onClick={() => handlePlayCard(alternatesFor, text)}
-                        >
-                            {text}
-                        </Button>
-                    ))}
-                </Modal.Body>
-            </Modal>
         </Container>
     );
 }

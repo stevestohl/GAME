@@ -399,7 +399,51 @@ export const LOBBY_SYNTH_TRACKS = [
             }
         },
     },
+    {
+        // ⚖️ The judge is reading the answers: curious, a little suspenseful, an 8-bar loop.
+        // A ticking clock, a plucked walking bass, soft chords and a marimba asking "hmm...?"
+        id: 'deliberation',
+        name: 'Deliberation',
+        bpm: 112,
+        swing: 0.12,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 8;
+            const chord = bar % 4;
+            // Dm Bb Gm A7
+            const roots = [38, 34, 43, 45];
+            const chords = [[62, 65, 69], [62, 65, 70], [62, 67, 70], [61, 64, 67]];
+            const motif = [
+                [[0, 74], [3, 77], [6, 81], [12, 79]],
+                [[2, 77], [6, 74], [10, 72]],
+                [[0, 74], [3, 79], [6, 82], [12, 81]],
+                [[0, 79], [4, 76], [8, 73], [12, 76]],
+                [[0, 74], [3, 77], [6, 81], [12, 79]],
+                [[2, 77], [6, 74], [10, 72]],
+                [[0, 74], [3, 79], [6, 82], [12, 81]],
+                [[0, 81], [4, 79], [8, 76], [12, 73]],
+            ];
+
+            // The clock, tick... tock
+            if (pos % 4 === 0) inst.tick(ctx, out, t, pos % 8 === 0 ? 1800 : 1300, 0.07);
+            if (pos === 0 || pos === 8) inst.kick(ctx, out, t, 0.18);
+            if (pos % 2 === 0) inst.hat(ctx, out, t, 0.012);
+
+            // Plucked bass walking root, fifth, octave, fifth
+            [[0, 0], [4, 7], [8, 12], [12, 7]].forEach(([p, interval]) => {
+                if (p === pos) inst.bass(ctx, out, t, roots[chord] + interval, 0.24, 0.16);
+            });
+
+            // Soft chords, held
+            if (pos === 0) inst.keys(ctx, out, t, chords[chord], 0.03, 1.6);
+
+            motif[bar].forEach(([p, n]) => { if (p === pos) inst.marimba(ctx, out, t, n, 0.13); });
+        },
+    },
 ];
+
+// ⚖️ While the judge reads the answers (played by id, like the lobby songs)
+export const JUDGING_TRACK = 'deliberation';
 
 // ---------------------------------------------------------------------------------------------
 // ▶️ The player
@@ -519,10 +563,10 @@ export function stopTimerMusic() {
  * A new `key` (e.g. the round number) starts a fresh track; `endTime` drives the hurry-up tick;
  * `theme: 'halloween'` plays the spooky tracks.
  */
-export function useTimerMusic(isActive, { endTime = null, key = null, theme = null } = {}) {
+export function useTimerMusic(isActive, { endTime = null, key = null, trackId = null, theme = null } = {}) {
     useEffect(() => {
         if (!isActive) return undefined;
-        startTimerMusic({ endTime, theme });
+        startTimerMusic({ endTime, trackId, theme });
         return () => stopTimerMusic();
     }, [isActive, key]);
 

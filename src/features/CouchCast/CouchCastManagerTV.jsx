@@ -9,7 +9,7 @@ import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from './lobbyMusic.js';
-import { useTimerMusic } from '../../timerMusic.js';
+import { useTimerMusic, JUDGING_TRACK } from '../../timerMusic.js';
 import { toDeviceTime } from '../../serverClock.js';
 
 // TV Phase Components
@@ -28,6 +28,7 @@ import { fillBlank } from './fillBlank.js';
 import { scoreRecap, NEXT_UP_LINES } from '../../scoreRecap.js';
 import { FINALE_DRUMROLL_MS } from './CouchCastFinale.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
+import TowerCredits from './TowerCredits.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
 import { AvatarTheme } from '../../avatars.jsx';
 
@@ -36,6 +37,7 @@ import { AvatarTheme } from '../../avatars.jsx';
 const VOICE_PROMPT_INTRO = "The prompt is...";
 const VOICE_WINNER_INTRO = "And the winner is...";
 const vibeLine = (name) => `${name} is setting the vibe.`;
+const judgingLine = (name) => `${name} is judging.`;
 // When the judge runs out of time and a prompt is picked for them
 const VOICE_TOO_SLOW = ["Too slow!", "I'm just gonna pick for you."];
 // 👻 Nobody answered: one of these (the second one echoes), then on to the next round
@@ -85,6 +87,7 @@ export default function CouchCastManager() {
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
     const [promptAutoPicked, setPromptAutoPicked] = useState(false);
+    const [showCredits, setShowCredits] = useState(false);   // 🎬 the Tower Party credits, after the final scores
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
@@ -98,8 +101,9 @@ export default function CouchCastManager() {
     let voiceMoment = null;
     if (gameState === 'prompt_selection' && judgeName) voiceMoment = `picking-${round}`;
     else if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
-    // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
     else if (gameState === 'judging' && submissions && submissions.length === 0) voiceMoment = `no-answers-${round}`;
+    // ⚖️ "Sam is judging", then the judging music plays until they pick
+    else if (gameState === 'judging' && submissions?.length && judgeName) voiceMoment = `judging-${round}`;
     else if (gameState === 'winner_reveal' && roundResults?.winningSubmission) voiceMoment = `winner-${round}`;
     else if (gameState === 'scoreboard' && roundResults?.isGameOver) voiceMoment = 'game-over';
     else if (gameState === 'scoreboard' && roomData) voiceMoment = `scores-${round}`;
@@ -125,12 +129,16 @@ export default function CouchCastManager() {
 
         if (voiceMoment.startsWith('picking')) {
             speak(vibeLine(judgeName), code);
+        } else if (voiceMoment.startsWith('judging')) {
+            speak(judgingLine(judgeName), code);
         } else if (voiceMoment.startsWith('prompt')) {
             // The judge never picked: the narrator teases them before reading the prompt
             const lines = promptAutoPicked
                 ? [VOICE_TOO_SLOW[Math.floor(Math.random() * VOICE_TOO_SLOW.length)], VOICE_PROMPT_INTRO, promptText]
                 : [VOICE_PROMPT_INTRO, promptText];
             speak(lines, code);
+            // Get the judge's line ready while everyone writes
+            preloadVoice(judgingLine(judgeName), code);
         } else if (voiceMoment.startsWith('winner')) {
             const { playerName, answer } = roundResults.winningSubmission;
             // Read the whole card: the prompt with the winning answer in the blank
@@ -168,9 +176,20 @@ export default function CouchCastManager() {
                 clearTimeout(timer);
             };
         } else if (voiceMoment === 'game-over') {
-            // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers
-            const timer = setTimeout(() => { if (recap) speak(recap.spoken, code); }, FINALE_DRUMROLL_MS + 600);
-            return () => clearTimeout(timer);
+            // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers,
+            // then the lobby's Tower Party credits roll (here and on every phone)
+            let isCurrent = true;
+            const timer = setTimeout(() => {
+                Promise.resolve(recap ? speak(recap.spoken, code) : null).then(() => {
+                    if (!isCurrent) return;
+                    setShowCredits(true);
+                    socket.emit('credits_roll', { roomCode: code });
+                });
+            }, FINALE_DRUMROLL_MS + 600);
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
         }
         return undefined;
     }, [voiceMoment]);
@@ -194,12 +213,15 @@ export default function CouchCastManager() {
         if (isPaused) stopVoice();
     }, [isPaused]);
 
-    // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes (both on the
-    // server's clock). It stops for a pause and starts a fresh track when the game resumes.
-    const isTimerPhase = (gameState === 'prompt_selection' || gameState === 'writing') && !isPaused;
+    // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes, and the judging
+    // music while the judge reads the answers (all on the server's clock). It stops for a pause and
+    // starts a fresh track when the game resumes.
+    const isJudgingMusic = gameState === 'judging' && !!submissions?.length;
+    const isTimerPhase = (gameState === 'prompt_selection' || gameState === 'writing' || isJudgingMusic) && !isPaused;
     useTimerMusic(isTimerPhase, {
         endTime: toDeviceTime(roomData?.endTime),   // the music's hurry-up tick runs on this device's clock
         key: `${gameState}-${round}`,
+        trackId: isJudgingMusic ? JUDGING_TRACK : null,
         theme: roomData?.expansion === 'halloween' ? 'halloween' : null,   // 🎃 spooky tracks for the Halloween deck
     });
 
@@ -417,6 +439,7 @@ export default function CouchCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
+            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} onDone={() => setShowCredits(false)} />}
             {roomData && (
                 <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />
             )}
