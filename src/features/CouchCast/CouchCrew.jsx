@@ -540,7 +540,7 @@ function Couch({ couchRef }) {
 export const INK = '#16161d';   // the outline on everything
 export const ink = { stroke: INK, strokeWidth: 2.4, strokeLinejoin: 'round' };
 
-function Robot({ elRef }) {
+export function Robot({ elRef }) {
     // A scrappy vintage machine: dented mustard paint, rusty boots, one red scanner for an eye
     return (
         <g ref={elRef} className="crew-actor crew-robot" data-look="left">
@@ -548,7 +548,13 @@ function Robot({ elRef }) {
                 <g className="crew-leg crew-leg-l"><rect x={-15} y={-30} width={10} height={24} fill="#6d7a86" {...ink} /><rect x={-19} y={-8} width={17} height={8} rx={2} fill="#c4512c" {...ink} /></g>
                 <g className="crew-leg crew-leg-r"><rect x={5} y={-30} width={10} height={24} fill="#6d7a86" {...ink} /><rect x={2} y={-8} width={17} height={8} rx={2} fill="#c4512c" {...ink} /></g>
                 <path d="M -22 -64 L 22 -64 L 18 -28 L -18 -28 Z" fill="#e0b04a" {...ink} />
-                <path d="M -10 -41 H 10 M -10 -36.5 H 10 M -10 -32 H 10" stroke={INK} strokeWidth={1.6} />
+                {/* The belly hatch (it swings open between rounds to stash the cat) */}
+                <rect x={-11} y={-46} width={22} height={16} rx={2} fill="#1d2a3a" />
+                <g className="crew-robot-hatch">
+                    <rect x={-11} y={-46} width={22} height={16} rx={2} fill="#e0b04a" stroke={INK} strokeWidth={1.6} />
+                    <path d="M -8 -41 H 6 M -8 -37.5 H 6 M -8 -34 H 6" stroke={INK} strokeWidth={1.4} />
+                    <circle cx={8.5} cy={-38} r={1.2} fill={INK} />
+                </g>
                 <circle cx={-9} cy={-53} r={4.2} fill="#f4efe4" {...ink} strokeWidth={1.6} />
                 <path d="M -9 -53 L -6.5 -55.5" stroke="#d64545" strokeWidth={1.4} strokeLinecap="round" />
                 <circle cx={9} cy={-53} r={3} fill="#d64545" {...ink} strokeWidth={1.6} />
@@ -581,7 +587,7 @@ function Robot({ elRef }) {
     );
 }
 
-function Dog({ elRef }) {
+export function Dog({ elRef }) {
     // A scruffy mutt: wiry brows, an underbite and a spiked collar, and not impressed by much
     const fur = '#8a7a66';
     const dark = '#4e4338';
@@ -626,7 +632,7 @@ function Dog({ elRef }) {
     );
 }
 
-function Alien({ elRef }) {
+export function Alien({ elRef }) {
     // A lanky grey in a hoodie, glowing eyes, smirking at whatever's on
     const skin = '#9fb8a8';
     const hoodie = '#2b2d42';

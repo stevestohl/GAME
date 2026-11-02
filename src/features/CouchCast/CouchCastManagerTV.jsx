@@ -30,6 +30,7 @@ import { FINALE_DRUMROLL_MS } from './CouchCastFinale.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import TowerCredits from './TowerCredits.jsx';
 import CouchCastRoundIntro from './CouchCastRoundIntro.jsx';
+import { SCENE_MS as ROUND_SCENE_MS } from './RoundCatScene.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
 import { AvatarTheme } from '../../avatars.jsx';
 
@@ -102,6 +103,7 @@ export default function CouchCastManager() {
     // 🔊 Each player's own sound: when they join, and each time they answer
     usePlayerSounds(roomData?.roomCode, roomData?.players);
     const lobbyTrack = lobbyTrackFor('couchCast', roomData?.expansion);
+    const hasCrew = !!roomData && roomData.expansion !== 'halloween';   // 🛋️ the Couch Cast crew shows up in the Core deck
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
     const round = roomData?.currentRound;
@@ -141,9 +143,12 @@ export default function CouchCastManager() {
             let isCurrent = true;
             let timer = null;
             const introRound = round;
+            const startedAt = Date.now();
             speak(roundIntroLine(introRound), code).then((spoken) => {
                 if (!isCurrent) return;
-                timer = setTimeout(() => socket.emit('round_intro_read', { roomCode: code, round: introRound }), spoken ? 600 : 3000);
+                // 🐈 With the crew on screen, let their bit with the cat finish too
+                const sceneLeft = hasCrew ? ROUND_SCENE_MS - (Date.now() - startedAt) : 0;
+                timer = setTimeout(() => socket.emit('round_intro_read', { roomCode: code, round: introRound }), Math.max(spoken ? 600 : 3000, sceneLeft));
             });
             // Get the judge's line ready behind it
             if (judgeName) preloadVoice(vibeLine(judgeName), code);
@@ -393,7 +398,7 @@ export default function CouchCastManager() {
                 );
 
             case 'round_intro':
-                return <CouchCastRoundIntro round={roomData.currentRound} totalRounds={roomData.totalRounds} />;
+                return <CouchCastRoundIntro round={roomData.currentRound} totalRounds={roomData.totalRounds} crew={hasCrew} />;
 
             case 'prompt_selection':
                 const pickerName = roomData.players[roomData.hostId]?.name || 'The Judge';

@@ -143,7 +143,7 @@ const SCOREBOARD_BACKUP_MS = 15 * 1000;
 
 // "Round 3": the round's title card between the scores and the prompts (the TV moves on when the
 // narrator's done; this is the backup)
-const ROUND_INTRO_BACKUP_MS = 8 * 1000;
+const ROUND_INTRO_BACKUP_MS = 11 * 1000;   // room for the crew's bit with the cat (RoundCatScene.jsx)
 
 // Nobody answered: the TV shows "No one submitted anything!", asks "Hey, anyone there?" and says
 // 'no_answers_read' when it's done, then the next round starts. This is the longest it waits for that.

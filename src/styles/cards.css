@@ -1930,7 +1930,7 @@ html.cast-screen {
    tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */
 .cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,
 .cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,
-.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path,
+.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,
 .cc-crew .couch-leg, .cc-crew .couch-body { transform-box: fill-box; }
 
 /* Walking: legs take turns, the body bobs */
@@ -2078,3 +2078,39 @@ html.cast-screen {
 /* Back on the ground: squash, puff up, glare */
 .cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }
 @keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }
+
+/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */
+.cc-round-scene {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30vh;
+  pointer-events: none;
+}
+.cc-crew.cc-round-scene-art {
+  position: static;
+  visibility: visible;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */
+}
+.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }
+.cc-crew .rcs-claw.is-on { opacity: 1; }
+.cc-crew .rcs-claw-head { transition: transform 0.1s; }
+.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }
+.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }
+.cc-crew .rcs-ray {
+  fill: none;
+  stroke: #39ff88;
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));
+}
+.cc-crew .rcs-ray.is-on { opacity: 1; }
+/* The robot's belly hatch swings open, and rattles shut with a cat inside */
+.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }
+.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }
+.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }
+@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }

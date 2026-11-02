@@ -1,8 +1,10 @@
 import React from 'react';
+import RoundCatScene from './RoundCatScene.jsx';
 
 // 🎬 Between rounds: a title card on the TV ("Round 3") while the narrator calls it,
-// and "Next: Round 3" on the phones
-export default function CouchCastRoundIntro({ round, totalRounds, isPhone = false }) {
+// and "Next: Round 3" on the phones. `crew`: one of the Couch Cast crew deals with the cat along
+// the bottom of the TV (Core deck)
+export default function CouchCastRoundIntro({ round, totalRounds, isPhone = false, crew = false }) {
     const isFinal = totalRounds && round >= totalRounds;
 
     if (isPhone) {
@@ -22,6 +24,11 @@ export default function CouchCastRoundIntro({ round, totalRounds, isPhone = fals
                 <div className="cc-round-intro-title">Round {round}</div>
                 {totalRounds && <div className="cc-round-intro-of">of {totalRounds}</div>}
             </div>
+            {crew && (
+                <div className="cc-round-scene">
+                    <RoundCatScene round={round} />
+                </div>
+            )}
         </div>
     );
 }
