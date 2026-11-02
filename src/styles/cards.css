@@ -1834,3 +1834,67 @@ html.cast-screen {
 .tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }
 .tp-credits-role { opacity: 0.85; }
 .tp-credits-end { margin-top: 1.6rem; font-style: italic; }
+
+/* 🎬 Between rounds: "Round 3" on the TV, "Next: Round 3" on the phones (CouchCastRoundIntro.jsx) */
+.cc-round-intro {
+  text-align: center;
+  color: #fff;
+  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.cc-round-intro .cc-round-intro-title {
+  font-size: clamp(4rem, 16vw, 11rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);
+}
+.cc-round-intro .cc-round-intro-of {
+  margin-top: 0.6rem;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  opacity: 0.85;
+}
+.cc-round-intro-final {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 1.2rem;
+  border-radius: 999px;
+  background: #ffc107;
+  color: #212529;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.cc-round-intro-phone {
+  margin: 4rem auto 0;
+  width: calc(100% - 2rem);
+  max-width: 400px;
+  padding: 2.5rem 1.5rem;
+  border-radius: 1rem;
+  background: #f8f9fa;
+  text-align: center;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.cc-round-intro-phone .cc-round-intro-next {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.cc-round-intro-phone .cc-round-intro-title {
+  font-size: clamp(2.5rem, 14vw, 3.5rem);
+  white-space: nowrap;
+  font-weight: 900;
+  color: #0d6efd;
+  line-height: 1.1;
+}
+.cc-round-intro-phone .cc-round-intro-final {
+  margin: 1rem 0 0;
+}
+@keyframes cc-round-intro-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}

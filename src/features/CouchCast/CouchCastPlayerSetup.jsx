@@ -16,6 +16,7 @@ import { fillBlank } from './fillBlank.js';
 import { getMyAvatar } from '../../avatars.jsx';
 import TowerParty from './TowerParty.jsx';
 import TowerCredits from './TowerCredits.jsx';
+import CouchCastRoundIntro from './CouchCastRoundIntro.jsx';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [gameState, setGameState] = useState('joining');
@@ -255,6 +256,9 @@ useEffect(() => {
                         <Spinner animation="grow" variant="warning" className="mt-5" />
                     </Container>
                 );
+
+            case 'round_intro':
+                return <CouchCastRoundIntro round={roomData.currentRound} totalRounds={roomData.totalRounds} isPhone />;
 
             case 'prompt_selection':
                 return (

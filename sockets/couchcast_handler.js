@@ -141,6 +141,10 @@ const DEFAULT_ROUNDS = 3;
 // If it never does (no sound, a TV that dropped out), the next round starts after this long anyway.
 const SCOREBOARD_BACKUP_MS = 15 * 1000;
 
+// "Round 3": the round's title card between the scores and the prompts (the TV moves on when the
+// narrator's done; this is the backup)
+const ROUND_INTRO_BACKUP_MS = 8 * 1000;
+
 // Nobody answered: the TV shows "No one submitted anything!", asks "Hey, anyone there?" and says
 // 'no_answers_read' when it's done, then the next round starts. This is the longest it waits for that.
 const NO_SUBMISSIONS_DELAY = 12 * 1000;
@@ -357,12 +361,12 @@ export default function registerCCNamespace(CCNS) {
         return hand;
     };
 
-    // --- HELPER: Start the next round with 3 fresh prompts ---
-    const startNextRound = async (roomCode) => {
+    // --- HELPER: Between rounds: the TV shows "Round 3" and the narrator calls it, then the prompts ---
+    const startNextRound = (roomCode) => {
         const room = activeCCRooms[roomCode];
         if (!room) return;
 
-        room.gameState = 'prompt_selection';
+        room.gameState = 'round_intro';
         room.currentRound += 1; 
         room.endTime = null; 
         
@@ -373,6 +377,22 @@ export default function registerCCNamespace(CCNS) {
                 p.currentAnswer = "";
             }
         });
+
+        // The TV says when the narrator is done ('round_intro_read'); this is the backup for a TV that never does
+        setRoomTimer(room, () => {
+            if (activeCCRooms[roomCode] !== room || room.gameState !== 'round_intro') return;
+            startPromptSelection(roomCode);
+        }, ROUND_INTRO_BACKUP_MS);
+        CCNS.to(roomCode).emit('room_updated', getSafeRoom(room));
+    };
+
+    // --- HELPER: The judge gets 3 fresh prompts to pick from ---
+    const startPromptSelection = async (roomCode) => {
+        const room = activeCCRooms[roomCode];
+        if (!room) return;
+
+        room.gameState = 'prompt_selection';
+        room.endTime = null;
 
         try {
             const randomPrompts = await drawFresh(room, 'prompt', 3);
@@ -970,6 +990,17 @@ export default function registerCCNamespace(CCNS) {
             room.timerId = null;
             room.timerFn = null;
             startNextRound(roomCode);
+        });
+
+        // --- 🎬 Event: The TV finished announcing the round: on to the prompts ---
+        socket.on('round_intro_read', ({ roomCode, round } = {}) => {
+            const room = activeCCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster || room.isPaused) return;
+            if (room.gameState !== 'round_intro' || room.currentRound !== round) return;
+            if (room.timerId) clearTimeout(room.timerId);
+            room.timerId = null;
+            room.timerFn = null;
+            startPromptSelection(roomCode);
         });
 
         // --- 👻 Event: The TV finished asking "Hey, anyone there?": move straight on ---

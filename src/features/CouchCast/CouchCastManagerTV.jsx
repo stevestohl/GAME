@@ -29,6 +29,7 @@ import { scoreRecap, NEXT_UP_LINES } from '../../scoreRecap.js';
 import { FINALE_DRUMROLL_MS } from './CouchCastFinale.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import TowerCredits from './TowerCredits.jsx';
+import CouchCastRoundIntro from './CouchCastRoundIntro.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
 import { AvatarTheme } from '../../avatars.jsx';
 
@@ -46,6 +47,13 @@ const VOICE_ANYONE_THERE = [
     [{ text: 'Hello?' }, { text: 'Hello?', volume: 0.45 }, { text: 'Hello?', volume: 0.2 }],
 ];
 const VOICE_MOVING_ON = "Anyhow, moving on to the next round.";
+// 🎬 Between rounds, over the "Round 3" title card (a different one each round)
+const ROUND_INTRO_LINES = [
+    (n) => `Get ready for round ${n}!`,
+    (n) => `Prepare for round ${n}.`,
+    (n) => `What will you come up with next? Round ${n}, up ahead.`,
+];
+const roundIntroLine = (n) => ROUND_INTRO_LINES[n % ROUND_INTRO_LINES.length](n);
 const VOICE_MOVING_ON_LAST = "Anyhow, let's see the final scores.";
 
 export default function CouchCastManager() {
@@ -99,7 +107,8 @@ export default function CouchCastManager() {
     const round = roomData?.currentRound;
     const judgeName = roomData?.players?.[roomData.hostId]?.name;
     let voiceMoment = null;
-    if (gameState === 'prompt_selection' && judgeName) voiceMoment = `picking-${round}`;
+    if (gameState === 'round_intro' && roomData) voiceMoment = `round-intro-${round}`;
+    else if (gameState === 'prompt_selection' && judgeName) voiceMoment = `picking-${round}`;
     else if (gameState === 'writing' && currentPrompt) voiceMoment = `prompt-${round}`;
     else if (gameState === 'judging' && submissions && submissions.length === 0) voiceMoment = `no-answers-${round}`;
     // ⚖️ "Sam is judging", then the judging music plays until they pick
@@ -127,7 +136,22 @@ export default function CouchCastManager() {
         const code = roomData.roomCode;
         const promptText = currentPrompt?.text || currentPrompt;
 
-        if (voiceMoment.startsWith('picking')) {
+        if (voiceMoment.startsWith('round-intro')) {
+            // "Get ready for round 3!", then on to the prompts (no voice: a moment to see the card instead)
+            let isCurrent = true;
+            let timer = null;
+            const introRound = round;
+            speak(roundIntroLine(introRound), code).then((spoken) => {
+                if (!isCurrent) return;
+                timer = setTimeout(() => socket.emit('round_intro_read', { roomCode: code, round: introRound }), spoken ? 600 : 3000);
+            });
+            // Get the judge's line ready behind it
+            if (judgeName) preloadVoice(vibeLine(judgeName), code);
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
+        } else if (voiceMoment.startsWith('picking')) {
             speak(vibeLine(judgeName), code);
         } else if (voiceMoment.startsWith('judging')) {
             speak(judgingLine(judgeName), code);
@@ -152,6 +176,7 @@ export default function CouchCastManager() {
             let isCurrent = true;
             let timer = null;
             const scoresRound = round;
+            preloadVoice(roundIntroLine(scoresRound + 1), code);
             speak([recap?.spoken, recap?.nextUp], code).then((spoken) => {
                 if (!isCurrent) return;
                 timer = setTimeout(() => socket.emit('scores_read', { roomCode: code, round: scoresRound }), spoken ? 300 : 4000);
@@ -206,7 +231,7 @@ export default function CouchCastManager() {
 
     // ⏸️ The caster can pause a running game: the server stops every clock, the phones show "Paused"
     const isPaused = !!roomData?.isPaused;
-    const canPause = ['prompt_selection', 'writing', 'judging', 'winner_reveal'].includes(gameState)
+    const canPause = ['round_intro', 'prompt_selection', 'writing', 'judging', 'winner_reveal'].includes(gameState)
         || (gameState === 'scoreboard' && !roundResults?.isGameOver);
     const handleTogglePause = () => socket.emit('set_paused', { roomCode: roomData?.roomCode, paused: !isPaused });
     useEffect(() => {
@@ -364,6 +389,9 @@ export default function CouchCastManager() {
                         roomCode={roomData.roomCode}
                     />
                 );
+
+            case 'round_intro':
+                return <CouchCastRoundIntro round={roomData.currentRound} totalRounds={roomData.totalRounds} />;
 
             case 'prompt_selection':
                 const pickerName = roomData.players[roomData.hostId]?.name || 'The Judge';
