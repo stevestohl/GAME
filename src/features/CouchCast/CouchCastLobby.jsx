@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
 import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
+import CouchCrew from './CouchCrew.jsx';
 
-export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default' }) {
+// `crew`: the couch and its characters crawl in under the players card (Couch Cast's Core deck)
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
+  const stageRef = useRef(null);    // 🛋️ where the couch sits
+  const screenRef = useRef(null);   // the QR card: the crew's "TV"
+  const qrRef = useRef(null);
 
   useEffect(() => {
     // Check orientation on load and resize
@@ -31,11 +36,14 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const activePlayers = players.filter(player => !player.isCaster);
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
+  // A little smaller when the list goes two to a row above the couch, so more rows fit
+  const avatarSize = crew && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
 
   return (
- <div className="fullscreen-gameplay-container cc-lobby">
+ <div className={`fullscreen-gameplay-container cc-lobby ${crew ? 'has-crew' : ''}`}>
+  {crew && !isPortrait && <CouchCrew stageRef={stageRef} screenRef={screenRef} qrRef={qrRef} playerCount={activePlayers.length} />}
   
   {/* --- LANDSCAPE REMINDER OVERLAY --- */}
   {isPortrait && (
@@ -72,8 +80,8 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
         <div className="row flex-grow-1 gx-3 gy-0" style={{ minHeight: 0 }}>
           
           {/* --- LEFT COLUMN: QR CODE FLOATING CARD --- */}
-          <div className="col-6 d-flex flex-column h-100">
-            <div className="shining-border-wrapper">
+          <div className="col-6 d-flex flex-column h-100 cc-lobby-screen-col">
+            <div className="shining-border-wrapper" ref={screenRef}>
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
                 <Card.Body className="d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden" style={{ minHeight: 0 }}>
                   
@@ -87,7 +95,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                   
                   {/* QR code container bound dynamically by available height; on a tall screen it stops
                       growing at 60vh, and my-auto centers it in the space left under the title */}
-                  <div className="bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2 my-auto" style={{ minHeight: 0, aspectRatio: '1/1', maxHeight: '60vh' }}>
+                  <div ref={qrRef} className="bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2 my-auto cc-lobby-qr" style={{ minHeight: 0, aspectRatio: '1/1', maxHeight: '60vh' }}>
                     <QRCodeSVG 
                       value={joinUrl} 
                       style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
@@ -102,9 +110,9 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
             </div>
           </div>
 
-          {/* --- RIGHT COLUMN: PLAYERS FLOATING CARD --- */}
+          {/* --- RIGHT COLUMN: PLAYERS FLOATING CARD (and with the crew, the couch underneath) --- */}
           <div className="col-6 d-flex flex-column h-100">
-            <div className="shining-border-wrapper">
+            <div className="shining-border-wrapper" style={crew ? { height: 'auto', flex: '1 1 0', minHeight: 0 } : undefined}>
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
                 <Card.Body className="d-flex flex-column" style={{ padding: 'clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
                   <h5 
@@ -114,11 +122,11 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     Players ({activePlayers.length}):
                   </h5>
                   
-                  <ListGroup className="mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0" style={{ minHeight: 0 }}>
+                  <ListGroup className={`mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 ${crew && activePlayers.length > 4 ? 'cc-lobby-players-grid' : ''}`} style={{ minHeight: 0 }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
                         <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
-                          <Avatar id={player.avatar} name={player.name} size={56} style={{ width: 'clamp(40px, 8vh, 64px)', height: 'clamp(40px, 8vh, 64px)' }} />
+                          <Avatar id={player.avatar} name={player.name} size={56} style={{ width: avatarSize, height: avatarSize }} />
                           <span className="text-truncate">{player.name}</span>
                         </span>
                         {player.isPlayerHost && (
@@ -145,6 +153,8 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                 </Card.Body>
               </Card>
             </div>
+            {/* The couch's spot gives up room as the players list grows */}
+            {crew && <div ref={stageRef} className="cc-crew-stage" style={{ '--crowd': Math.max(0, activePlayers.length - 4) }} />}
           </div>
           
         </div>

@@ -380,7 +380,8 @@ export default function CouchCastManager() {
                 return (
                     <CouchCastLobby 
                         roomCode={roomData.roomCode} 
-                        players={playersArray} musicTrack={lobbyTrack} />
+                        players={playersArray} musicTrack={lobbyTrack}
+                        crew={roomData.expansion !== 'halloween'} />
                 );
 
             case 'rules':

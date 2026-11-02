@@ -1898,3 +1898,110 @@ html.cast-screen {
   from { opacity: 0; transform: scale(0.6); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind
+   the QR card, so the characters can peek out from behind it but never cover the code */
+.cc-crew {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+  visibility: hidden;
+}
+.cc-crew.is-ready { visibility: visible; }
+.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }
+/* The couch's spot under the players card */
+.cc-crew-stage {
+  flex: 0 0 auto;
+  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);
+}
+/* More than four players: two to a row, so everyone still fits above the couch */
+.cc-lobby-players-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+  column-gap: 0.75rem;
+}
+
+.cc-crew .crew-actor *, .cc-crew .couch-leg, .cc-crew .couch-body { transform-box: fill-box; }
+
+/* Walking: legs take turns, the body bobs */
+.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }
+.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }
+.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }
+@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }
+
+/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */
+.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }
+.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }
+.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }
+@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+.cc-crew .crew-pupils { transition: transform 0.3s ease; }
+.cc-crew [data-look="left"] .crew-pupils { transform: translateX(-3px); }
+.cc-crew [data-look="right"] .crew-pupils { transform: translateX(3px); }
+
+/* Little idle touches */
+.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }
+@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }
+.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }
+@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }
+@keyframes crew-light { 50% { fill: #34d1bf; } }
+
+/* The robot raises its phone to cast */
+.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }
+.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }
+
+/* The couch: legs scuttle on the way in, then it plops down */
+.cc-crew .couch-leg { transform-origin: 50% 0%; }
+.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }
+.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }
+.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }
+@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }
+.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }
+.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }
+@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }
+
+/* 📡 The cast: waves off the robot's phone and a dashed beam to the QR card */
+.cc-crew .crew-beam { opacity: 0; transition: opacity 0.4s ease; }
+.cc-crew .crew-beam.is-on { opacity: 1; }
+.cc-crew .crew-beam-path {
+  fill: none;
+  stroke: #4dd0e1;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 3 11;
+  filter: drop-shadow(0 0 6px rgba(77, 208, 225, 0.9));
+  animation: crew-beam-flow 0.6s linear infinite;
+}
+@keyframes crew-beam-flow { to { stroke-dashoffset: -28; } }
+.cc-crew .crew-wave {
+  fill: none;
+  stroke: #4dd0e1;
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: crew-wave 1.2s ease-out infinite;
+}
+.cc-crew .crew-wave:nth-of-type(2) { animation-delay: 0.2s; }
+.cc-crew .crew-wave:nth-of-type(3) { animation-delay: 0.4s; }
+@keyframes crew-wave { from { opacity: 1; transform: scale(0.6); } to { opacity: 0; transform: scale(1.4); } }
+
+/* The QR code "turns on" when the cast lands, then keeps a soft glow */
+.cc-lobby-qr.cc-qr-on {
+  animation: cc-qr-on 1.4s ease-out;
+  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;
+}
+@keyframes cc-qr-on {
+  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }
+  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }
+  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }
+}
