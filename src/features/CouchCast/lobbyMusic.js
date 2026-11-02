@@ -31,7 +31,7 @@ const makeSynthTrack = (trackId) => ({
 
 const TRACKS = {
     default: makeTrack('/audio/LobbyMusic.mp3'),
-    couchCast: makeSynthTrack('couch-groove'),                // Couch Cast's core deck
+    couchCast: makeSynthTrack('couch-anthem'),                // Couch Cast's core deck
     listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),     // List Cast
     triviaCast: makeTrack('/audio/TriviaCastLobbyMusic.mp3'), // Trivia Cast
     halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),   // any game played with a Halloween deck

@@ -147,6 +147,26 @@ const inst = {
     drone: (ctx, out, t, note, length, vol = 0.08) => {
         [-6, 6].forEach((detune) => tone(ctx, out, t, { freq: midi(note), type: 'triangle', vol, attack: 0.4, decay: length, detune, filter: 500 }));
     },
+    // 🪩 Dance-floor kit
+    // A big, bright lead: three detuned saws stacked like a 90s "supersaw"
+    supersaw: (ctx, out, t, note, vol = 0.05, decay = 0.3) => [-14, 0, 14].forEach((detune) =>
+        tone(ctx, out, t, { freq: midi(note), type: 'sawtooth', vol, attack: 0.005, decay, detune, filter: 3400 })),
+    // The pumping off-beat bass: short and buzzy, with a soft sub underneath
+    offbeatBass: (ctx, out, t, note, vol = 0.2) => {
+        tone(ctx, out, t, { freq: midi(note), type: 'sawtooth', vol, attack: 0.005, decay: 0.13, filter: 650 });
+        tone(ctx, out, t, { freq: midi(note), vol: vol * 0.9, attack: 0.005, decay: 0.15 });
+    },
+    clap: (ctx, out, t, vol = 0.12) => {
+        noise(ctx, out, t, { vol, decay: 0.03, type: 'bandpass', freq: 1400, q: 0.9 });
+        noise(ctx, out, t + 0.012, { vol: vol * 0.9, decay: 0.14, type: 'bandpass', freq: 1200, q: 0.8 });
+    },
+    openHat: (ctx, out, t, vol = 0.05) => noise(ctx, out, t, { vol, decay: 0.16, freq: 9000 }),
+    snare: (ctx, out, t, vol = 0.1) => {
+        noise(ctx, out, t, { vol, decay: 0.08, type: 'bandpass', freq: 2200, q: 0.6 });
+        tone(ctx, out, t, { freq: 190, type: 'triangle', vol: vol * 0.6, decay: 0.06 });
+    },
+    // A whoosh for the build: noise through a filter that's opened up further (`lift` 0..1) each time
+    riser: (ctx, out, t, lift, vol = 0.05) => noise(ctx, out, t, { vol: vol * (0.3 + lift), decay: 0.12, type: 'bandpass', freq: 600 + lift * 7000, q: 1.2 }),
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -309,6 +329,74 @@ export const LOBBY_SYNTH_TRACKS = [
                 [[0, 79], [6, 74], [8, 71]],
             ];
             hook[bar].forEach(([p, n]) => { if (p === pos) inst.marimba(ctx, out, t, n, 0.16); });
+        },
+    },
+    {
+        // Couch Cast's core deck: a big, bright late-90s dance-floor anthem (our own tune), a 16-bar loop:
+        //   bars 1-4   the groove, with the hook played as piano chord stabs
+        //   bars 5-8   the drop: a supersaw lead takes the hook, claps and open hats
+        //   bars 9-12  the breakdown: the hook on piano alone, then a snare roll and a whoosh building up
+        //   bars 13-16 the drop again, with the lead doubled an octave up
+        id: 'couch-anthem',
+        name: 'Couch Anthem',
+        bpm: 132,
+        swing: 0,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 16;
+            const part = Math.floor(bar / 4);            // 0 groove, 1 drop, 2 breakdown, 3 drop
+            const chord = bar % 4;
+            // Am F C G, round and round
+            const roots = [45, 41, 48, 43];
+            const chords = [[57, 60, 64], [57, 60, 65], [55, 60, 64], [55, 59, 62]];
+            // The hook: [16th in the bar, note], one bar per chord
+            const hook = [
+                [[0, 76], [3, 76], [6, 79], [8, 81], [11, 79], [14, 76]],
+                [[0, 77], [3, 76], [6, 72], [10, 74], [12, 76]],
+                [[0, 76], [3, 76], [6, 79], [8, 84], [11, 83], [14, 79]],
+                [[0, 81], [3, 79], [6, 76], [8, 74], [12, 71]],
+            ];
+            const hookNote = hook[chord].find(([p]) => p === pos)?.[1];
+            const isDrop = part === 1 || part === 3;
+            const isBreakdown = part === 2;
+            const isBuild = bar === 10 || bar === 11;
+
+            // 💥 A crash to land each drop
+            if (pos === 0 && (bar === 4 || bar === 12)) inst.openHat(ctx, out, t, 0.11);
+
+            if (!isBreakdown) {
+                // Four on the floor, the pumping off-beat bass and open hats in between
+                if (pos % 4 === 0) inst.kick(ctx, out, t, isDrop ? 0.42 : 0.34);
+                if (pos % 4 === 2) {
+                    inst.offbeatBass(ctx, out, t, roots[chord], isDrop ? 0.17 : 0.13);
+                    inst.openHat(ctx, out, t, isDrop ? 0.045 : 0.03);
+                }
+                if (pos === 4 || pos === 12) inst.clap(ctx, out, t, isDrop ? 0.11 : 0.07);
+                if (isDrop && pos % 2 === 1) inst.hat(ctx, out, t, 0.018);
+            } else if (!isBuild) {
+                // Breakdown: just a long bass note under the piano
+                if (pos === 0) inst.bass(ctx, out, t, roots[chord], 0.28, 1.6);
+            } else {
+                // The build: a snare roll that speeds up (8ths, then 16ths) and gets louder, plus the whoosh
+                const lift = ((bar - 10) * 16 + pos) / 32;
+                const roll = bar === 10 ? pos % 2 === 0 : pos < 15;    // a breath of silence right before the drop
+                if (roll) inst.snare(ctx, out, t, 0.03 + lift * 0.09);
+                if (pos < 15) inst.riser(ctx, out, t, lift);
+                if (pos === 0 || pos === 8) inst.keys(ctx, out, t, chords[chord], 0.035, 0.5);
+            }
+
+            if (hookNote === undefined) return;
+            if (part === 0) {
+                // The hook as piano stabs: the chord with the tune on top
+                inst.keys(ctx, out, t, [...chords[chord], hookNote], 0.036, 0.22);
+            } else if (isDrop) {
+                inst.supersaw(ctx, out, t, hookNote, 0.045, 0.26);
+                inst.keys(ctx, out, t, chords[chord], 0.03, 0.18);
+                if (part === 3) inst.supersaw(ctx, out, t, hookNote + 12, 0.014, 0.2);
+            } else if (!isBuild) {
+                // Breakdown: the tune alone on the piano, ringing out
+                inst.keys(ctx, out, t, [hookNote, hookNote - 12], 0.06, 0.8);
+            }
         },
     },
 ];

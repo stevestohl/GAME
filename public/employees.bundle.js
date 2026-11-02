@@ -24503,7 +24503,7 @@ var makeSynthTrack = function makeSynthTrack(trackId) {
 };
 var TRACKS = {
   "default": makeTrack('/audio/LobbyMusic.mp3'),
-  couchCast: makeSynthTrack('couch-groove'),
+  couchCast: makeSynthTrack('couch-anthem'),
   // Couch Cast's core deck
   listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),
   // List Cast
@@ -26076,6 +26076,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chime.js */ "./src/chime.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./voice.js */ "./src/voice.js");
 /* harmony import */ var _musicMute_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./musicMute.js */ "./src/musicMute.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -26372,6 +26376,93 @@ var inst = {
         filter: 500
       });
     });
+  },
+  // 🪩 Dance-floor kit
+  // A big, bright lead: three detuned saws stacked like a 90s "supersaw"
+  supersaw: function supersaw(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.05;
+    var decay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0.3;
+    return [-14, 0, 14].forEach(function (detune) {
+      return tone(ctx, out, t, {
+        freq: midi(note),
+        type: 'sawtooth',
+        vol: vol,
+        attack: 0.005,
+        decay: decay,
+        detune: detune,
+        filter: 3400
+      });
+    });
+  },
+  // The pumping off-beat bass: short and buzzy, with a soft sub underneath
+  offbeatBass: function offbeatBass(ctx, out, t, note) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.2;
+    tone(ctx, out, t, {
+      freq: midi(note),
+      type: 'sawtooth',
+      vol: vol,
+      attack: 0.005,
+      decay: 0.13,
+      filter: 650
+    });
+    tone(ctx, out, t, {
+      freq: midi(note),
+      vol: vol * 0.9,
+      attack: 0.005,
+      decay: 0.15
+    });
+  },
+  clap: function clap(ctx, out, t) {
+    var vol = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0.12;
+    noise(ctx, out, t, {
+      vol: vol,
+      decay: 0.03,
+      type: 'bandpass',
+      freq: 1400,
+      q: 0.9
+    });
+    noise(ctx, out, t + 0.012, {
+      vol: vol * 0.9,
+      decay: 0.14,
+      type: 'bandpass',
+      freq: 1200,
+      q: 0.8
+    });
+  },
+  openHat: function openHat(ctx, out, t) {
+    var vol = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0.05;
+    return noise(ctx, out, t, {
+      vol: vol,
+      decay: 0.16,
+      freq: 9000
+    });
+  },
+  snare: function snare(ctx, out, t) {
+    var vol = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0.1;
+    noise(ctx, out, t, {
+      vol: vol,
+      decay: 0.08,
+      type: 'bandpass',
+      freq: 2200,
+      q: 0.6
+    });
+    tone(ctx, out, t, {
+      freq: 190,
+      type: 'triangle',
+      vol: vol * 0.6,
+      decay: 0.06
+    });
+  },
+  // A whoosh for the build: noise through a filter that's opened up further (`lift` 0..1) each time
+  riser: function riser(ctx, out, t, lift) {
+    var vol = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0.05;
+    return noise(ctx, out, t, {
+      vol: vol * (0.3 + lift),
+      decay: 0.12,
+      type: 'bandpass',
+      freq: 600 + lift * 7000,
+      q: 1.2
+    });
   }
 };
 
@@ -26551,6 +26642,71 @@ var LOBBY_SYNTH_TRACKS = [{
       if (p === pos) inst.marimba(ctx, out, t, n, 0.16);
     });
   }
+}, {
+  // Couch Cast's core deck: a big, bright late-90s dance-floor anthem (our own tune), a 16-bar loop:
+  //   bars 1-4   the groove, with the hook played as piano chord stabs
+  //   bars 5-8   the drop: a supersaw lead takes the hook, claps and open hats
+  //   bars 9-12  the breakdown: the hook on piano alone, then a snare roll and a whoosh building up
+  //   bars 13-16 the drop again, with the lead doubled an octave up
+  id: 'couch-anthem',
+  name: 'Couch Anthem',
+  bpm: 132,
+  swing: 0,
+  play: function play(ctx, out, step, t) {
+    var _hook$chord$find;
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 16;
+    var part = Math.floor(bar / 4); // 0 groove, 1 drop, 2 breakdown, 3 drop
+    var chord = bar % 4;
+    // Am F C G, round and round
+    var roots = [45, 41, 48, 43];
+    var chords = [[57, 60, 64], [57, 60, 65], [55, 60, 64], [55, 59, 62]];
+    // The hook: [16th in the bar, note], one bar per chord
+    var hook = [[[0, 76], [3, 76], [6, 79], [8, 81], [11, 79], [14, 76]], [[0, 77], [3, 76], [6, 72], [10, 74], [12, 76]], [[0, 76], [3, 76], [6, 79], [8, 84], [11, 83], [14, 79]], [[0, 81], [3, 79], [6, 76], [8, 74], [12, 71]]];
+    var hookNote = (_hook$chord$find = hook[chord].find(function (_ref11) {
+      var _ref12 = _slicedToArray(_ref11, 1),
+        p = _ref12[0];
+      return p === pos;
+    })) === null || _hook$chord$find === void 0 ? void 0 : _hook$chord$find[1];
+    var isDrop = part === 1 || part === 3;
+    var isBreakdown = part === 2;
+    var isBuild = bar === 10 || bar === 11;
+
+    // 💥 A crash to land each drop
+    if (pos === 0 && (bar === 4 || bar === 12)) inst.openHat(ctx, out, t, 0.11);
+    if (!isBreakdown) {
+      // Four on the floor, the pumping off-beat bass and open hats in between
+      if (pos % 4 === 0) inst.kick(ctx, out, t, isDrop ? 0.42 : 0.34);
+      if (pos % 4 === 2) {
+        inst.offbeatBass(ctx, out, t, roots[chord], isDrop ? 0.17 : 0.13);
+        inst.openHat(ctx, out, t, isDrop ? 0.045 : 0.03);
+      }
+      if (pos === 4 || pos === 12) inst.clap(ctx, out, t, isDrop ? 0.11 : 0.07);
+      if (isDrop && pos % 2 === 1) inst.hat(ctx, out, t, 0.018);
+    } else if (!isBuild) {
+      // Breakdown: just a long bass note under the piano
+      if (pos === 0) inst.bass(ctx, out, t, roots[chord], 0.28, 1.6);
+    } else {
+      // The build: a snare roll that speeds up (8ths, then 16ths) and gets louder, plus the whoosh
+      var lift = ((bar - 10) * 16 + pos) / 32;
+      var roll = bar === 10 ? pos % 2 === 0 : pos < 15; // a breath of silence right before the drop
+      if (roll) inst.snare(ctx, out, t, 0.03 + lift * 0.09);
+      if (pos < 15) inst.riser(ctx, out, t, lift);
+      if (pos === 0 || pos === 8) inst.keys(ctx, out, t, chords[chord], 0.035, 0.5);
+    }
+    if (hookNote === undefined) return;
+    if (part === 0) {
+      // The hook as piano stabs: the chord with the tune on top
+      inst.keys(ctx, out, t, [].concat(_toConsumableArray(chords[chord]), [hookNote]), 0.036, 0.22);
+    } else if (isDrop) {
+      inst.supersaw(ctx, out, t, hookNote, 0.045, 0.26);
+      inst.keys(ctx, out, t, chords[chord], 0.03, 0.18);
+      if (part === 3) inst.supersaw(ctx, out, t, hookNote + 12, 0.014, 0.2);
+    } else if (!isBuild) {
+      // Breakdown: the tune alone on the piano, ringing out
+      inst.keys(ctx, out, t, [hookNote, hookNote - 12], 0.06, 0.8);
+    }
+  }
 }];
 
 // ---------------------------------------------------------------------------------------------
@@ -26629,13 +26785,13 @@ var playHurry = function playHurry(ctx, playing, step, t) {
  * @param {string} [options.theme]    'halloween': pick from the spooky tracks
  */
 function startTimerMusic() {
-  var _ref11 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    _ref11$endTime = _ref11.endTime,
-    endTime = _ref11$endTime === void 0 ? null : _ref11$endTime,
-    _ref11$trackId = _ref11.trackId,
-    trackId = _ref11$trackId === void 0 ? null : _ref11$trackId,
-    _ref11$theme = _ref11.theme,
-    theme = _ref11$theme === void 0 ? null : _ref11$theme;
+  var _ref13 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    _ref13$endTime = _ref13.endTime,
+    endTime = _ref13$endTime === void 0 ? null : _ref13$endTime,
+    _ref13$trackId = _ref13.trackId,
+    trackId = _ref13$trackId === void 0 ? null : _ref13$trackId,
+    _ref13$theme = _ref13.theme,
+    theme = _ref13$theme === void 0 ? null : _ref13$theme;
   stopTimerMusic();
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
   if (!ctx) return;
@@ -26691,13 +26847,13 @@ function stopTimerMusic() {
  * `theme: 'halloween'` plays the spooky tracks.
  */
 function useTimerMusic(isActive) {
-  var _ref12 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-    _ref12$endTime = _ref12.endTime,
-    endTime = _ref12$endTime === void 0 ? null : _ref12$endTime,
-    _ref12$key = _ref12.key,
-    key = _ref12$key === void 0 ? null : _ref12$key,
-    _ref12$theme = _ref12.theme,
-    theme = _ref12$theme === void 0 ? null : _ref12$theme;
+  var _ref14 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    _ref14$endTime = _ref14.endTime,
+    endTime = _ref14$endTime === void 0 ? null : _ref14$endTime,
+    _ref14$key = _ref14.key,
+    key = _ref14$key === void 0 ? null : _ref14$key,
+    _ref14$theme = _ref14.theme,
+    theme = _ref14$theme === void 0 ? null : _ref14$theme;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isActive) return undefined;
     startTimerMusic({
