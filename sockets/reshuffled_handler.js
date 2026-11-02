@@ -91,7 +91,11 @@ export const getReshuffledRoom = (roomCode) => activeCCRooms[roomCode] || null;
 
 // HELPER: Finds the room a socket is playing in
 const findRoomBySocket = (socketId) => {
-    return Object.values(activeCCRooms).find(room => room.players[socketId]);
+    // A phone that moved on to a new game is still listed (as disconnected) in the old one,
+    // so pick the game it's connected to: otherwise its hand is dealt in the old game, the card
+    // it plays is never taken out of its hand, and the same card can be played again
+    const rooms = Object.values(activeCCRooms).filter(room => room.players[socketId]);
+    return rooms.find(room => room.players[socketId].isConnected !== false) || rooms[0];
 };
 
 const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds) => {
