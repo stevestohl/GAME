@@ -3659,7 +3659,7 @@ function CouchCastLobby(_ref) {
   }, "Scan to join Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "cc-lobby-code"
   }, roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2",
+    className: "bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2 my-auto",
     style: {
       minHeight: 0,
       aspectRatio: '1/1',

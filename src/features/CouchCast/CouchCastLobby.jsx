@@ -85,8 +85,9 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     Scan to join Room <span className="cc-lobby-code">{roomCode}</span>
                   </Card.Title>
                   
-                  {/* QR code container bound dynamically by available height */}
-                  <div className="bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2" style={{ minHeight: 0, aspectRatio: '1/1', maxHeight: '60vh' }}>
+                  {/* QR code container bound dynamically by available height; on a tall screen it stops
+                      growing at 60vh, and my-auto centers it in the space left under the title */}
+                  <div className="bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2 my-auto" style={{ minHeight: 0, aspectRatio: '1/1', maxHeight: '60vh' }}>
                     <QRCodeSVG 
                       value={joinUrl} 
                       style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
