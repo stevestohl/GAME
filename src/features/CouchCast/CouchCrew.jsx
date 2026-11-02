@@ -537,8 +537,8 @@ function Couch({ couchRef }) {
     );
 }
 
-const INK = '#16161d';   // the outline on everything
-const ink = { stroke: INK, strokeWidth: 2.4, strokeLinejoin: 'round' };
+export const INK = '#16161d';   // the outline on everything
+export const ink = { stroke: INK, strokeWidth: 2.4, strokeLinejoin: 'round' };
 
 function Robot({ elRef }) {
     // A scrappy vintage machine: dented mustard paint, rusty boots, one red scanner for an eye
@@ -667,7 +667,7 @@ function Alien({ elRef }) {
     );
 }
 
-function Cat({ elRef }) {
+export function Cat({ elRef }) {
     // A sleek black cat, side-on, facing left (towards the screen)
     const coat = '#26262f';
     return (

@@ -388,6 +388,7 @@ export default function CouchCastManager() {
                 return (
                     <CouchCastRules
                         roomCode={roomData.roomCode}
+                        crew={roomData.expansion !== 'halloween'}
                     />
                 );
 

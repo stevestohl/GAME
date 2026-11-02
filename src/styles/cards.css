@@ -2043,3 +2043,38 @@ html.cast-screen {
 @media (prefers-reduced-motion: reduce) {
   .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }
 }
+
+/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */
+.cc-rules-abduct {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  margin: 0.25rem 0;
+}
+.cc-crew.cc-abduct {
+  position: static;
+  visibility: visible;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.cc-abduct .abduct-beam {
+  fill: rgba(57, 255, 136, 0.35);
+  stroke: rgba(57, 255, 136, 0.8);
+  stroke-width: 0.8;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }
+@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }
+.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }
+@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }
+.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }
+@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }
+.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }
+.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }
+/* Back on the ground: squash, puff up, glare */
+.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }
+@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 import { speak, stopVoice } from '../../voice.js';
+import RulesAbduction from './RulesAbduction.jsx';
 
 // 🎙️ What the host voice says while the rules are on screen
 export const RULES_NARRATION = [
@@ -13,7 +14,8 @@ export const RULES_NARRATION = [
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
 const NARRATION_GRACE_SECONDS = 20;
 
-export default function CouchCastRules({ roomCode }) {
+// `crew`: the alien beams up the cat under the countdown (Couch Cast's Core deck)
+export default function CouchCastRules({ roomCode, crew = false }) {
     const [timeLeft, setTimeLeft] = useState(30);
     
     // Add state to track device orientation for the overlay
@@ -144,6 +146,13 @@ export default function CouchCastRules({ roomCode }) {
                                     <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 6rem)', lineHeight: 1 }}>
                                         {Math.max(timeLeft, 0)}s
                                     </div>
+
+                                    {/* 🛸 Meanwhile, under the countdown... */}
+                                    {crew && !isPortrait && (
+                                        <div className="cc-rules-abduct">
+                                            <RulesAbduction />
+                                        </div>
+                                    )}
                                     
                                     {/* Developer Skip Button */}
                                     <Button 
