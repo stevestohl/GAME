@@ -1599,9 +1599,11 @@
 }
 
 /* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.
-   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js). */
+   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).
+   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it
+   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */
 html.cast-screen body {
-  min-height: calc(100lvh + 120px);
+  min-height: calc(200lvh);
 }
 /* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */
 html.cast-screen {
