@@ -25122,7 +25122,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // 🎞️ Backup for iPhones and iPads: their browsers often ignore the wake lock (Chrome on iPhone,
 // Low Power Mode...), but they never let the screen sleep while a video is playing. So on those,
-// a tiny silent, invisible video (src/keepAwakeVideo.js, 2 KB) loops for as long as the game is up.
+// a tiny silent, invisible video (src/keepAwakeVideo.js, 2 KB) plays for as long as the game is up.
+//
+// The catch: iPhones only count a video that has sound and isn't on loop (so muted background clips
+// can't keep a phone awake). So it isn't muted (its sound track is silence anyway), and instead of
+// looping it jumps back to the start just before the end. Unmuted video needs a tap to start, which
+// is why it's started by the tap that creates the room, and again by any tap after that.
 var isAppleTouch = function isAppleTouch() {
   return /iPhone|iPad|iPod/.test(navigator.userAgent) || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
 }; // iPads say they're a Mac
@@ -25132,11 +25137,16 @@ var getKeepAwakeVideo = function getKeepAwakeVideo() {
   if (!keepAwakeVideo) {
     var video = document.createElement('video');
     video.src = _keepAwakeVideo_js__WEBPACK_IMPORTED_MODULE_1__.KEEP_AWAKE_VIDEO;
-    video.muted = true;
-    video.loop = true;
     video.playsInline = true;
-    video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+    // Our own loop: back to the start before it reaches the end (it's 2 seconds long)
+    video.addEventListener('timeupdate', function () {
+      if (video.currentTime > 1) video.currentTime = 0;
+    });
+    video.addEventListener('ended', function () {
+      video.currentTime = 0;
+      video.play()["catch"](function () {});
+    });
     video.setAttribute('aria-hidden', 'true');
     Object.assign(video.style, {
       position: 'fixed',
