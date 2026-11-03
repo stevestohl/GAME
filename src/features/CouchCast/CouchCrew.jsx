@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, Bat, FrankensteinMonster } from './HalloweenCrew.jsx';
+import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, HolidayCouch, Sleigh, Santa } from './HolidayCrew.jsx';
 
 // 🛋️ The Couch Cast crew (Core deck lobby): a couch on little legs crawls in and sits down, then a
 // robot, a dog and an alien wander in, hop onto it, and the robot casts to "the screen", which is
@@ -18,6 +19,9 @@ import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, B
 // a witch who casts with her wand, the HOA president and a vampire. All three chase off a tiny ghost,
 // and Frankenstein's monster comes out of a castle in place of Sasquatch on his mountain. A black chandelier sways above, and
 // a few bats fly by now and then.
+//
+// 🎄 The Holiday deck runs the Core show with the crew dressed up (HolidayCrew.jsx). In place of
+// Sasquatch's mountain, Santa lands beside the couch in a sleigh that flies on its own.
 
 // Who sits where, left to right: `caster` is nearest the screen and `chaser` is in the middle
 const SEATS = ['caster', 'chaser', 'third'];
@@ -32,10 +36,12 @@ const rand = (min, max) => min + Math.random() * (max - min);
 
 export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0, theme = 'core' }) {
     const isHalloween = theme === 'halloween';
+    const isHoliday = theme === 'holiday';
     const svgRef = useRef(null);
     const couchRef = useRef(null);
     const beamRef = useRef(null);
     const barkRef = useRef(null);
+    const hoHoRef = useRef(null);
     const bumpRef = useRef(null);
     const mountainRef = useRef(null);
     const chandelierRef = useRef(null);
@@ -68,7 +74,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             const couchRight = cx + 104 * cs;
             const free = stage.right - root.left - 6 - couchRight;
             const mountain = free >= 80 * cs
-                ? { x: couchRight + free / 2, left: couchRight, sx: Math.min(free, 260 * cs) / 200, sy: Math.min(stage.height * 0.74, 150 * cs) / 160 }   // low enough that Sasquatch fits on the peak
+                ? {
+                    x: couchRight + free / 2,
+                    left: couchRight,
+                    sx: Math.min(free, 260 * cs) / 200,
+                    sy: Math.min(stage.height * 0.74, 150 * cs) / 160,   // low enough that Sasquatch fits on the peak
+                    sleigh: Math.min(free / 225, stage.height / 140, cs),
+                }
                 : null;
             L = {
                 width: root.width,
@@ -77,6 +89,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 s,
                 cx,
                 floorY,
+                stageTop: stage.top - root.top,
                 seatX: [-50, 0, 50].map((u) => cx + u * cs),
                 seatY: floorY - SEAT_TOP * cs + HIP * s,   // feet position for a seated character
                 offRight: root.width + 120 * cs,
@@ -102,6 +115,8 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         // ⛰️ The big one: Sasquatch, on a mountain that grows out of the floor (see sasquatchVisit)
         const sasquatch = { name: 'sasquatch', x: 0, y: 0, rot: 0, lift: 0, size: 1, flip: 1, spot: 'off', el: actorEls.sasquatch.current };
         const mountain = { grow: 0, el: mountainRef.current };
+        // 🛷 On the Holiday deck that spot's for Santa's sleigh (see sleighIn)
+        const sleigh = { x: 0, y: 0, rot: 0, flip: 1, on: false, landed: false };
         const chandelier = { drop: reduceMotion ? 1 : 0, el: chandelierRef.current };
         const drawChandelier = () => {
             if (!chandelier.el) return;
@@ -129,6 +144,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         };
         const drawMountain = () => {
             const m = L.mountain;
+            if (isHoliday) {
+                mountain.el.style.display = m && sleigh.on ? '' : 'none';
+                if (!m) return;
+                if (sleigh.landed) { sleigh.x = m.x; sleigh.y = L.floorY; }
+                mountain.el.setAttribute('transform', `translate(${sleigh.x} ${sleigh.y}) rotate(${sleigh.rot}) scale(${sleigh.flip * m.sleigh} ${m.sleigh})`);
+                return;
+            }
             mountain.el.style.display = m && mountain.grow > 0 ? '' : 'none';
             if (m) mountain.el.setAttribute('transform', `translate(${m.x} ${L.floorY + 2}) scale(${m.sx} ${m.sy * mountain.grow})`);
         };
@@ -375,6 +397,58 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         };
         const rumble = (on) => svg.classList.toggle('is-rumbling', on);
 
+        // 🎅 "HO HO HO!" over the sleigh (kept low enough to clear the players card)
+        const hoHoHo = async () => {
+            const k = L.mountain.sleigh;
+            const bubble = hoHoRef.current;
+            const y = Math.max(L.stageTop + 16 * L.s, L.floorY - 128 * k);
+            bubble.setAttribute('transform', `translate(${sleigh.x - 8 * k} ${y}) scale(${L.s})`);
+            bubble.classList.add('is-on');
+            await wait(1300);
+            bubble.classList.remove('is-on');
+        };
+        // 🛷 The sleigh swoops down from the right, level with the couch, and lands in the free space beside it
+        const sleighIn = async () => {
+            const m = L.mountain;
+            const fromX = L.width + 130 * m.sleigh;
+            const fromY = L.stageTop + 20 * m.sleigh;
+            sleigh.on = true;
+            sleigh.flip = 1;
+            mountain.el.classList.add('is-flying');
+            await tween(2600, easeOut, (t) => {
+                sleigh.x = fromX + (m.x - fromX) * t;
+                sleigh.y = fromY + (L.floorY - fromY) * t ** 2 + Math.sin(t * Math.PI * 3) * 6 * L.cs * (1 - t);
+                sleigh.rot = -10 * (1 - t);
+                drawMountain();
+            });
+            mountain.el.classList.remove('is-flying');
+            sleigh.landed = true;
+            drawMountain();
+            await wait(350);
+            await hoHoHo();
+        };
+        // ...and takes off again: it turns to face the way out, and climbs away
+        const sleighOut = async () => {
+            const m = L.mountain;
+            sleigh.landed = false;
+            const toX = L.width + 130 * m.sleigh;
+            const fromX = sleigh.x;
+            const fromY = sleigh.y;
+            await hoHoHo();
+            await tween(350, easeInOut, (t) => { sleigh.flip = 1 - 2 * t || 0.01; drawMountain(); });
+            mountain.el.classList.add('is-flying');
+            await tween(2400, (t) => t * t, (t) => {
+                sleigh.x = fromX + (toX - fromX) * t;
+                sleigh.y = fromY + (L.stageTop + 20 * m.sleigh - fromY) * Math.sqrt(t);
+                sleigh.rot = 10 * Math.min(1, t * 3);
+                drawMountain();
+            });
+            mountain.el.classList.remove('is-flying');
+            sleigh.on = false;
+            sleigh.rot = 0;
+            drawMountain();
+        };
+
         const sasquatchVisit = async () => {
             eventRunning = true;
             Object.values(actors).forEach((a) => { a.busy = true; look(a, 'right'); });
@@ -397,7 +471,19 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 { x: m.left + 8 * L.cs, y: groundY, size: near },
             ] : [];
 
-            if (m) {
+            if (m && isHoliday) {
+                // Santa climbs out of the sleigh
+                await sleighIn();
+                const k = m.sleigh;
+                mountain.el.classList.add('is-empty');
+                sasquatch.spot = 'floor';
+                sasquatch.x = m.x - 30 * k;
+                sasquatch.y = L.floorY - 40 * k;
+                sasquatch.size = near;
+                sasquatch.flip = 1;
+                draw(sasquatch);
+                await hop(sasquatch, m.left + 8 * L.cs, groundY, 18, 520);
+            } else if (m) {
                 // The ground shakes and a mountain pushes up beside the couch
                 rumble(true);
                 await tween(1700, (t) => 1 - (1 - t) ** 3 + Math.sin(t * Math.PI * 3) * 0.04 * (1 - t), (t) => { mountain.grow = t; drawMountain(); });
@@ -451,7 +537,12 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
 
             // And off he goes, back over the mountain (or out the way he came)
             Object.values(actors).forEach((a) => look(a, 'right'));
-            if (m) {
+            if (m && isHoliday) {
+                await walkTo(sasquatch, m.left + 8 * L.cs, 55);
+                sasquatch.flip = -1;
+                await hop(sasquatch, m.x - 30 * m.sleigh, L.floorY - 40 * m.sleigh, 18, 520);
+                mountain.el.classList.remove('is-empty');
+            } else if (m) {
                 await walkTo(sasquatch, m.left + 8 * L.cs, 55);
                 await walkPath(sasquatch, [...slope].reverse().slice(1).concat(start), 34);
                 sasquatch.el.classList.add('is-leaving');
@@ -464,7 +555,9 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             sasquatch.x = L.offRight;
             draw(sasquatch);
 
-            if (m) {
+            if (m && isHoliday) {
+                await sleighOut();
+            } else if (m) {
                 mountain.el.classList.remove('is-open');
                 await wait(isHalloween ? 800 : 400);
                 rumble(true);
@@ -555,12 +648,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         lastCount.current = playerCount;
     }, [playerCount]);
 
-    const [Caster, Chaser, Third, Pest, Hill, TheCouch, Visitor] = isHalloween
-        ? [Witch, HoaPresident, Vampire, Ghost, Castle, GothicCouch, FrankensteinMonster]
-        : [Robot, Dog, Alien, Cat, Mountain, Couch, Sasquatch];
+    let cast = [Robot, Dog, Alien, Cat, Mountain, Couch, Sasquatch];
+    if (isHalloween) cast = [Witch, HoaPresident, Vampire, Ghost, Castle, GothicCouch, FrankensteinMonster];
+    if (isHoliday) cast = [HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, Sleigh, HolidayCouch, Santa];
+    const [Caster, Chaser, Third, Pest, Hill, TheCouch, Visitor] = cast;
 
     return (
-        <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''}`} aria-hidden="true" preserveAspectRatio="none">
+        <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''} ${isHoliday ? 'cc-crew-holiday' : ''}`} aria-hidden="true" preserveAspectRatio="none">
             {/* 📡 The cast beam (only while the robot is casting) */}
             <g ref={beamRef} className="crew-beam">
                 <path className="crew-beam-path" d="" />
@@ -571,7 +665,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
 
             <g className="crew-world">
                 {isHalloween && <Chandelier chandelierRef={chandelierRef} />}
-                <Hill mountainRef={mountainRef} castleRef={mountainRef} />
+                <Hill mountainRef={mountainRef} castleRef={mountainRef} sleighRef={mountainRef} />
                 <TheCouch couchRef={couchRef} />
                 <Caster elRef={actorEls.caster} />
                 <Chaser elRef={actorEls.chaser} />
@@ -586,6 +680,11 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <path d="M 0 -13 L 3.5 -5 L 12 -7 L 6 0 L 12 7 L 3.5 5 L 0 13 L -3.5 5 L -12 7 L -6 0 L -12 -7 L -3.5 -5 Z" fill="#ffd23f" stroke="#16161d" strokeWidth={2} strokeLinejoin="round" />
             </g>
 
+            <g ref={hoHoRef} className="crew-bark">
+                <path d="M -4 -14 H 82 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z" fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={39} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">HO HO HO!</text>
+            </g>
+
             <g ref={barkRef} className="crew-bark">
                 <path d={`M -4 -14 H ${isHalloween ? 82 : 40} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
                 <text x={isHalloween ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">{isHalloween ? 'VIOLATION!' : 'WOOF!'}</text>
@@ -596,7 +695,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
 
 // --- The drawings (feet at 0,0; up is negative y) ---
 
-export function Couch({ couchRef }) {
+export function Couch({ couchRef, children }) {
     // A well-loved thrift-store couch: worn rust velour, a patch, and a lumpy cushion
     return (
         <g ref={couchRef}>
@@ -612,6 +711,7 @@ export function Couch({ couchRef }) {
                 {[-76, -25, 26].map((x, i) => <path key={x} d={`M ${x} -40 q 0 -6 6 -6 h 38 q 6 0 6 6 ${i === 1 ? 'q 0 4 -3 8' : 'v 8'} q 0 8 -6 8 h -38 q -6 0 -6 -8 Z`} fill="#c9653a" />)}
                 <rect x={-102} y={-60} width={26} height={44} rx={9} fill="#a2482a" />
                 <rect x={76} y={-60} width={26} height={44} rx={9} fill="#a2482a" />
+                {children}
             </g>
         </g>
     );
@@ -620,7 +720,8 @@ export function Couch({ couchRef }) {
 export const INK = '#16161d';   // the outline on everything
 export const ink = { stroke: INK, strokeWidth: 2.4, strokeLinejoin: 'round' };
 
-export function Robot({ elRef }) {
+// (`children`: an outfit, drawn on top: see HolidayCrew.jsx)
+export function Robot({ elRef, children }) {
     // A scrappy vintage machine: dented mustard paint, rusty boots, one red scanner for an eye
     return (
         <g ref={elRef} className="crew-actor crew-robot" data-look="left">
@@ -662,12 +763,13 @@ export function Robot({ elRef }) {
                 <path d="M -8 -74 H 8" stroke={INK} strokeWidth={2.4} strokeDasharray="2 2" />
                 <path d="M 6 -92 L 8 -99 L 4 -102" stroke={INK} strokeWidth={2} fill="none" strokeLinejoin="round" />
                 <circle className="crew-robot-light" cx={4} cy={-103.5} r={2.6} fill="#ff4d3a" {...ink} strokeWidth={1.4} />
+                {children}
             </g>
         </g>
     );
 }
 
-export function Dog({ elRef }) {
+export function Dog({ elRef, children }) {
     // A scruffy mutt: wiry brows, an underbite and a spiked collar, and not impressed by much
     const fur = '#8a7a66';
     const dark = '#4e4338';
@@ -707,21 +809,22 @@ export function Dog({ elRef }) {
                 <ellipse cx={0} cy={-74.5} rx={3.8} ry={2.6} fill={INK} />
                 <path d="M -5 -67.5 Q 0 -65.5 5 -67.5" stroke={INK} strokeWidth={1.6} fill="none" strokeLinecap="round" />
                 <path d="M 1.5 -67 l 1.5 -3.2 l 1.5 3.2" fill="#fff" stroke={INK} strokeWidth={1} strokeLinejoin="round" />
+                {children}
             </g>
         </g>
     );
 }
 
-export function Alien({ elRef }) {
+export function Alien({ elRef, hoodie = '#2b2d42', children }) {
     // A lanky grey in a hoodie, glowing eyes, smirking at whatever's on
     const skin = '#9fb8a8';
-    const hoodie = '#2b2d42';
+    const pants = '#2b2d42';
     const neon = '#39ff88';
     return (
         <g ref={elRef} className="crew-actor crew-alien" data-look="left">
             <g className="crew-fig">
-                <g className="crew-leg crew-leg-l"><rect x={-10} y={-30} width={6} height={26} fill={hoodie} {...ink} strokeWidth={2} /><rect x={-14} y={-5} width={12} height={5} rx={2} fill="#f4efe4" {...ink} strokeWidth={1.8} /></g>
-                <g className="crew-leg crew-leg-r"><rect x={4} y={-30} width={6} height={26} fill={hoodie} {...ink} strokeWidth={2} /><rect x={2} y={-5} width={12} height={5} rx={2} fill="#f4efe4" {...ink} strokeWidth={1.8} /></g>
+                <g className="crew-leg crew-leg-l"><rect x={-10} y={-30} width={6} height={26} fill={pants} {...ink} strokeWidth={2} /><rect x={-14} y={-5} width={12} height={5} rx={2} fill="#f4efe4" {...ink} strokeWidth={1.8} /></g>
+                <g className="crew-leg crew-leg-r"><rect x={4} y={-30} width={6} height={26} fill={pants} {...ink} strokeWidth={2} /><rect x={2} y={-5} width={12} height={5} rx={2} fill="#f4efe4" {...ink} strokeWidth={1.8} /></g>
                 <path d="M -15 -60 Q -18 -42 -14 -27 L 14 -27 Q 18 -42 15 -60 Q 0 -64 -15 -60 Z" fill={hoodie} {...ink} />
                 <circle cx={0} cy={-44} r={4} fill="none" stroke={neon} strokeWidth={1.8} />
                 <path d="M -8 -42.5 Q 0 -38 8 -45.5" stroke={neon} strokeWidth={1.6} fill="none" strokeLinecap="round" />
@@ -748,12 +851,13 @@ export function Alien({ elRef }) {
                     <path d="M 17 -86.5 Q 10 -92 2 -82 Q 9 -86.5 17 -86.5 Z" fill={skin} stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
                 </g>
                 <path d="M -4 -72 Q 1 -70 5.5 -74" stroke={INK} strokeWidth={1.6} fill="none" strokeLinecap="round" />
+                {children}
             </g>
         </g>
     );
 }
 
-export function Cat({ elRef }) {
+export function Cat({ elRef, children }) {
     // A sleek black cat, side-on, facing left (towards the screen)
     const coat = '#26262f';
     return (
@@ -774,6 +878,7 @@ export function Cat({ elRef }) {
                 <ellipse cx={-19.5} cy={-29.5} rx={2.6} ry={2.2} fill="#ffd23f" />
                 <rect x={-20.1} y={-31.4} width={1.2} height={3.8} rx={0.6} fill={INK} />
                 <path d="M -24.5 -25 l -6 -1 M -24.5 -24 l -6 1.5" stroke="#9a9aa6" strokeWidth={0.9} strokeLinecap="round" />
+                {children}
             </g>
         </g>
     );

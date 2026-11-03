@@ -15,7 +15,7 @@ export const RULES_NARRATION = [
 const NARRATION_GRACE_SECONDS = 20;
 
 // `crew`: the alien beams up the cat under the countdown (Couch Cast; `crewTheme`: on the Halloween
-// deck, the witch makes off with the ghost)
+// deck, the witch makes off with the ghost; on the Holiday deck, the cat's in its scarf)
 export default function CouchCastRules({ roomCode, crew = false, crewTheme = 'core' }) {
     const [timeLeft, setTimeLeft] = useState(30);
     

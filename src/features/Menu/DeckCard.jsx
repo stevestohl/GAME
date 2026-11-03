@@ -8,8 +8,30 @@ import React from 'react';
  * leave it undefined for a plain "tap to go" button.
  */
 
+// 🎄 The Holiday deck's wreath: leaves around a ring, each tilted along the circle
+const WREATH_LEAVES = Array.from({ length: 22 }, (_, i) => {
+    const angle = (i / 22) * 360;
+    const radius = i % 2 ? 36 : 28;
+    return { angle, radius, fill: ['#0b4a2c', '#7fe3a6', '#1f8f57'][i % 3] };
+});
+
 // Glass artwork, keyed by the deck's `icon` in cardDecks.js
 const ICONS = {
+    holiday: (
+        <>
+            <circle cx="50" cy="48" r="32" fill="none" stroke="#0a3f26" strokeWidth="17" />
+            {WREATH_LEAVES.map(({ angle, radius, fill }) => (
+                <path key={angle} transform={`rotate(${angle} 50 48) translate(50 ${48 - radius}) rotate(58)`} d="M -9 0 Q 0 -6.5 9 0 Q 0 6.5 -9 0 Z" fill={fill} stroke="#07331e" strokeWidth="0.8" />
+            ))}
+            {[[50, 12], [79, 28], [84, 60], [64, 80], [21, 66], [17, 33], [33, 19], [68, 17]].map(([x, y]) => (
+                <circle key={`${x}${y}`} cx={x} cy={y} r="3.1" fill="#e5262f" stroke="#fff" strokeWidth="0.9" />
+            ))}
+            {/* The bow */}
+            <path d="M 50 80 L 38 96 L 44 96 L 50 86 Z M 50 80 L 62 96 L 56 96 L 50 86 Z" fill="#b91c26" stroke="#fff" strokeWidth="1" strokeLinejoin="round" />
+            <path d="M 50 80 Q 34 66 28 74 Q 26 84 50 80 Z M 50 80 Q 66 66 72 74 Q 74 84 50 80 Z" fill="#e5262f" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round" />
+            <circle cx="50" cy="79" r="4.2" fill="#ffd23f" stroke="#fff" strokeWidth="1" />
+        </>
+    ),
     // 🕺 Jeffinitely: the '70s rainbow, an '80s neon grid and a '90s squiggle, around a mixtape
     jeffinitely: (
         <>

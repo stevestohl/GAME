@@ -23,6 +23,17 @@ export const CARD_DECKS = [
     },
     {
         // Couch Cast only, for now (the server's list of each game's decks is db/gameCatalog.js)
+        id: 'holiday',
+        title: 'Holiday',
+        tag: 'Seasonal',
+        icon: 'holiday',
+        description: 'Ugly sweaters, regifted socks and family photos gone wrong.',
+        colors: ['#3ecf83', '#0c5c38'],
+        background: 'linear-gradient(160deg, #35b873 0%, #178a52 50%, #0b5433 100%)',
+        startsHidden: true,   // don't flash it at visitors before the server's answer arrives
+    },
+    {
+        // Couch Cast only, for now (the server's list of each game's decks is db/gameCatalog.js)
         id: 'jeffinitely',
         title: 'Jeffinitely',
         tag: 'Totally Retro',

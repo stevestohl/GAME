@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { getAudioContext } from './chime.js';
 import { onVoiceChange } from './voice.js';
 import { isMusicMuted, onMusicMuteChange } from './musicMute.js';
+import { MEDLEY_BPM, MEDLEY_STEPS, MEDLEY_LENGTH } from './holidaySongs.js';
 
 const VOLUME = 1.1;           // overall loudness of the music (about as loud as the lobby music)
 const DUCKED = 0.3;           // how much of that is left while the narrator talks
@@ -118,6 +119,12 @@ const inst = {
     bell: (ctx, out, t, note, vol = 0.12) => {
         tone(ctx, out, t, { freq: midi(note), vol, decay: 1.6 });
         tone(ctx, out, t, { freq: midi(note) * 2.76, vol: vol * 0.3, decay: 0.8 });
+    },
+    // 🔔 Sleigh bells: a bright shake with a little ring on top
+    sleighBells: (ctx, out, t, vol = 0.05) => {
+        noise(ctx, out, t, { vol, decay: 0.07, type: 'bandpass', freq: 7600, q: 3 });
+        tone(ctx, out, t, { freq: 3950, vol: vol * 0.35, decay: 0.09 });
+        tone(ctx, out, t, { freq: 5270, vol: vol * 0.2, decay: 0.06 });
     },
     // 👻 A theremin: a wobbly sine that slides into each note
     theremin: (ctx, out, t, note, length, vol = 0.07, from = null) => {
@@ -290,6 +297,27 @@ export const SPOOKY_TIMER_TRACKS = [
 // are never picked at random for a timer; lobbyMusic.js plays them by id.
 // ---------------------------------------------------------------------------------------------
 export const LOBBY_SYNTH_TRACKS = [
+    {
+        // 🎄 The Holiday deck: four carols, one after another (see holidaySongs.js), over sleigh bells
+        id: 'holiday-medley',
+        name: 'Holiday Medley',
+        bpm: MEDLEY_BPM,
+        swing: 0,
+        play(ctx, out, step, t) {
+            const pos = step % MEDLEY_LENGTH;
+            const beat = MEDLEY_STEPS[pos];
+            if (pos % 2 === 0) inst.sleighBells(ctx, out, t, pos % 4 === 0 ? 0.05 : 0.028);
+            if (!beat) return;
+            if (beat.bass) inst.bass(ctx, out, t, beat.bass, 0.3, 0.32);
+            if (beat.chord) inst.keys(ctx, out, t, beat.chord, 0.04, 0.26);
+            if (!beat.lead) return;
+            const { note, instrument } = beat.lead;
+            if (instrument === 'stab') inst.stab(ctx, out, t, [note, note - 12], 0.1);
+            else if (instrument === 'bell') inst.bell(ctx, out, t, note, 0.17);
+            else if (instrument === 'musicBox') inst.musicBox(ctx, out, t, note, 0.22);
+            else inst.marimba(ctx, out, t, note, 0.26);
+        },
+    },
     {
         // Couch Cast's core deck: a laid-back groove with a marimba hook, an 8-bar loop
         id: 'couch-groove',

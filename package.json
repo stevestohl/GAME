@@ -14,6 +14,7 @@
     "pictionary:add": "node db/addPictionaryPrompts.js",
     "admin:owner": "node db/createOwner.js",
     "seed:jeffinitely": "node db/seedJeffinitely.js",
+    "seed:holiday": "node db/seedHoliday.js",
     "move:rounds": "node db/moveRoundHistory.js"
   },
   "type": "module",

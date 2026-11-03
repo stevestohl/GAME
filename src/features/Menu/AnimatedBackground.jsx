@@ -150,6 +150,27 @@ const ICONS = {
         </>
     ),
 
+    // 🎄 Holiday
+    pineTree: (
+        <>
+            <path d="M50 8 L72 40 H60 L80 66 H62 L86 90 H14 L38 66 H20 L40 40 H28 Z" />
+            <circle cx="46" cy="38" r="3.5" className="gt-icon-dot" />
+            <circle cx="58" cy="58" r="3.5" className="gt-icon-dot" />
+            <circle cx="38" cy="72" r="3.5" className="gt-icon-dot" />
+        </>
+    ),
+    gift: (
+        <>
+            <rect x="16" y="40" width="68" height="48" rx="4" />
+            <rect x="10" y="28" width="80" height="16" rx="4" />
+            <path d="M50 28 V88" />
+            <path d="M50 28 Q30 4 22 16 Q18 28 50 28 Q82 28 78 16 Q70 4 50 28 Z" />
+        </>
+    ),
+    snowflake: (
+        <path d="M50 8 V92 M14 29 L86 71 M14 71 L86 29 M50 22 L40 12 M50 22 L60 12 M50 78 L40 88 M50 78 L60 88 M24 34 L11 38 M24 34 L20 21 M76 66 L89 62 M76 66 L80 79 M24 66 L11 62 M24 66 L20 79 M76 34 L89 38 M76 34 L80 21" />
+    ),
+
     // 🎃 Halloween
     pumpkin: (
         <>
@@ -218,6 +239,17 @@ const HALLOWEEN_FLOATERS = [
     { icon: 'bat',     top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 10 },
 ];
 
+const HOLIDAY_FLOATERS = [
+    { icon: 'pineTree',  top: '12%', left: '3%',  size: 180, dur: 38, delay: 0,   rot: -8 },
+    { icon: 'gift',      top: '58%', left: '79%', size: 170, dur: 44, delay: -8,  rot: 10 },
+    { icon: 'snowflake', top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: -8 },
+    { icon: 'star',      top: '8%',  left: '82%', size: 110, dur: 48, delay: -20, rot: -8 },
+    { icon: 'candy',     top: '42%', left: '90%', size: 80,  dur: 30, delay: -5,  rot: 30 },
+    { icon: 'snowflake', top: '38%', left: '-1%', size: 100, dur: 42, delay: -26, rot: 6 },
+    { icon: 'pineTree',  top: '84%', left: '44%', size: 100, dur: 40, delay: -12, rot: 10 },
+    { icon: 'gift',      top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 10 },
+];
+
 const TRIVIA_FLOATERS = [
     { icon: 'question',   top: '12%', left: '4%',  size: 170, dur: 38, delay: 0,   rot: -12 },
     { icon: 'castScreen', top: '60%', left: '78%', size: 190, dur: 44, delay: -8,  rot: 12 },
@@ -256,6 +288,7 @@ const THEMES = {
     home: FLOATERS,
     couchcast: COUCHCAST_FLOATERS,
     halloween: HALLOWEEN_FLOATERS,
+    holiday: HOLIDAY_FLOATERS,
     trivia: TRIVIA_FLOATERS,
     animals: ANIMALS_FLOATERS,
     lists: LISTS_FLOATERS,

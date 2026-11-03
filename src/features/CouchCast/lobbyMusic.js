@@ -135,12 +135,14 @@ const TRACKS = {
     listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),     // List Cast
     triviaCast: makeTrack('/audio/TriviaCastLobbyMusic.mp3'), // Trivia Cast
     halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),   // any game played with a Halloween deck
+    holiday: makeSynthTrack('holiday-medley'),                // Couch Cast's Holiday deck
 };
 
-// Which track a game's lobby plays: Halloween decks always get the Halloween song,
+// Which track a game's lobby plays: Halloween decks always get the Halloween song, the Holiday deck its carols,
 // List Cast, Trivia Cast and Couch Cast have their own, and everything else plays the usual lobby music
 export function lobbyTrackFor(game, expansion) {
     if (expansion === 'halloween') return 'halloween';
+    if (expansion === 'holiday') return 'holiday';
     if (game === 'couchCast') return 'couchCast';
     if (game === 'listCast') return 'listCast';
     if (game === 'triviaCast') return 'triviaCast';

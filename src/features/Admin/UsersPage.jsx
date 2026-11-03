@@ -3,7 +3,7 @@ import { Card, Form, Button, Alert, Badge, Row, Col, Spinner, Modal } from 'reac
 import { adminFetch } from './adminApi.js';
 
 // Deck ids the site already uses, offered as suggestions (any new id like "jeffinitely" works too)
-const KNOWN_DECKS = ['core', 'halloween', 'animals', 'jeffinitely'];
+const KNOWN_DECKS = ['core', 'halloween', 'holiday', 'animals', 'jeffinitely'];
 
 /**
  * 👥 Owner only: the admin accounts. Each admin manages a list of game + deck pairs

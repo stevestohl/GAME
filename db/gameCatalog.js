@@ -9,7 +9,7 @@ const TRIVIA_DECKS = [{ id: 'core', name: 'Core' }, { id: 'halloween', name: 'Ha
 const LIST_DECKS = [{ id: 'core', name: 'Core Lists' }, { id: 'halloween', name: 'Halloween' }];
 
 export const GAMES = [
-    { id: 'couchcast', name: 'Couch Cast', section: 'Game-Cast', decks: [...CARD_DECKS, { id: 'jeffinitely', name: 'Jeffinitely', defaultHidden: true }] },
+    { id: 'couchcast', name: 'Couch Cast', section: 'Game-Cast', decks: [...CARD_DECKS, { id: 'holiday', name: 'Holiday', defaultHidden: true }, { id: 'jeffinitely', name: 'Jeffinitely', defaultHidden: true }] },
     { id: 'triviacast', name: 'Trivia Cast', section: 'Game-Cast', decks: TRIVIA_DECKS },
     { id: 'listcast', name: 'List Cast', section: 'Game-Cast', decks: LIST_DECKS },
     { id: 'mixup', name: 'Temple Mix Up', section: 'Game-Cast', decks: [] },

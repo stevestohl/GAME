@@ -5,10 +5,11 @@ import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
 import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
+import Snowfall from './Snowfall.jsx';
 import LobbyVisualizer from '../TriviaCast/LobbyVisualizer.jsx';
 
-// `crew`: the couch and its characters crawl in under the players card (Couch Cast's Core and
-// Halloween decks; `crewTheme` says which cast). `scoreFor`: a player's lobby game score, if the game has one
+// `crew`: the couch and its characters crawl in under the players card (Couch Cast's decks;
+// `crewTheme` says which cast, and the Holiday deck also gets snow). `scoreFor`: a player's lobby game score, if the game has one
 // `visualizer`: a music visualizer takes the couch's spot under the players card (Trivia Cast)
 export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, visualizer = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
@@ -47,6 +48,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
 
   return (
  <div className={`fullscreen-gameplay-container cc-lobby ${crew ? `has-crew crew-${crewTheme}` : ''}`}>
+  {crew && crewTheme === 'holiday' && !isPortrait && <Snowfall />}
   {crew && !isPortrait && <CouchCrew stageRef={stageRef} screenRef={screenRef} qrRef={qrRef} playerCount={activePlayers.length} theme={crewTheme} />}
   
   {/* --- LANDSCAPE REMINDER OVERLAY --- */}

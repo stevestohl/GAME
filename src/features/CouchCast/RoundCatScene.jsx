@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
 import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
+import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat } from './HolidayCrew.jsx';
 
 // 🐈 Between rounds (Core deck): along the bottom of the "Round 3" card, one of the crew deals with
 // the cat, taking turns round by round:
@@ -11,6 +12,7 @@ import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
 //   hoa:     "VIOLATION!", and the ghost slinks off with a ticket stuck to it
 //   vampire: "BLEH!", and chases it off the screen
 //   witch:   shrinks it with her wand, and it rides off on her hat
+// 🎄 The Holiday deck plays the Core deck's scenes, with everyone in their holiday clothes.
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 // The TV waits SCENE_MS for it before moving on to the prompts.
@@ -24,11 +26,12 @@ const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
 const easeOut = (t) => 1 - (1 - t) ** 3;
 const linear = (t) => t;
 
-const SCENES = { core: ['robot', 'dog', 'alien'], halloween: ['hoa', 'vampire', 'witch'] };
+const SCENES = { core: ['robot', 'dog', 'alien'], holiday: ['robot', 'dog', 'alien'], halloween: ['hoa', 'vampire', 'witch'] };
 /** Which of the crew has the cat this round (round 2 is the first one with an intro) */
 export const sceneFor = (round, theme = 'core') => SCENES[theme][(Math.max(2, round) - 2) % SCENES[theme].length];
 
 const HEROES = { robot: Robot, dog: Dog, alien: Alien, hoa: HoaPresident, vampire: Vampire, witch: Witch };
+const HOLIDAY_HEROES = { robot: HolidayRobot, dog: HolidayDog, alien: HolidayAlien };
 const BARKS = { dog: 'WOOF!', vampire: 'BLEH!', hoa: 'VIOLATION!' };
 
 export default function RoundCatScene({ round, theme = 'core' }) {
@@ -240,8 +243,9 @@ export default function RoundCatScene({ round, theme = 'core' }) {
         };
     }, [round]);
 
-    const Hero = HEROES[who];
-    const Pest = isHalloween ? Ghost : Cat;
+    const isHoliday = theme === 'holiday';
+    const Hero = (isHoliday ? HOLIDAY_HEROES : HEROES)[who];
+    const Pest = isHalloween ? Ghost : isHoliday ? HolidayCat : Cat;
     const isWide = who === 'hoa';
     return (
         <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">

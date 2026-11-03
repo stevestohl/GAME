@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Cat, INK, ink } from './CouchCrew.jsx';
 import { Ghost, BroomWitch } from './HalloweenCrew.jsx';
+import { HolidayCat } from './HolidayCrew.jsx';
 
 // 🛸 The rules screen's little show (Core deck): the lobby's cat wanders in and sits down, then the
 // alien's flying saucer glides over and beams it up. Near the end of the countdown the saucer comes
@@ -144,7 +145,7 @@ export default function RulesAbduction({ theme = 'core' }) {
     return (
         <svg className={`cc-crew cc-abduct ${isHalloween ? 'cc-abduct-halloween' : ''}`} viewBox="0 0 200 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <polygon ref={beamRef} className="abduct-beam" points="0,0 0,0 0,0" />
-            {isHalloween ? <Ghost elRef={catRef} /> : <Cat elRef={catRef} />}
+            {isHalloween ? <Ghost elRef={catRef} /> : theme === 'holiday' ? <HolidayCat elRef={catRef} /> : <Cat elRef={catRef} />}
             <g ref={saucerRef}>
                 {isHalloween ? <BroomWitch /> : <Saucer />}
             </g>

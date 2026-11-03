@@ -3,12 +3,14 @@ import { getAudioContext } from '../../chime.js';
 import { duckCreditsMarch } from '../../celebrationSounds.js';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
 import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
+import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat } from './HolidayCrew.jsx';
 
 // 🐈 The crew's last bit, along the bottom of the end credits (Core deck, on the TV): the cat strolls
 // on, and all three chase it off the screen. Now and then the cat comes back with backup: a giant cat,
 // little cat riding on its head, chases the whole crew off the other way.
 // 👻 The Halloween deck plays it with its own crew and a tiny ghost. They always chase it off the
 // screen, then come running back with a giant ghost after them, tiny ghost on its head, yelling BOO!
+// 🎄 The Holiday deck plays the Core deck's version, in holiday clothes (the cat wears its scarf).
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 
@@ -310,7 +312,10 @@ export default function CreditsChase({ theme = 'core' }) {
 
     const bubble = "M -4 -14 H 40 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z";
     const wideBubble = bubble.replace('H 40', 'H 82');
-    const [First, Second, Third, Pest] = isHalloween ? [HoaPresident, Witch, Vampire, Ghost] : [Dog, Robot, Alien, Cat];
+    let cast = [Dog, Robot, Alien, Cat];
+    if (isHalloween) cast = [HoaPresident, Witch, Vampire, Ghost];
+    if (theme === 'holiday') cast = [HolidayDog, HolidayRobot, HolidayAlien, HolidayCat];
+    const [First, Second, Third, Pest] = cast;
     return (
         <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <g className="crew-world">
