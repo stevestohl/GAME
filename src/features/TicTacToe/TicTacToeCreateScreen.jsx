@@ -123,7 +123,7 @@ export default function TicTacToeCreateScreen() {
                                         Creating Room...
                                     </>
                                 ) : (
-                                    'Create Room'
+                                    'Start a Match'
                                 )}
                             </Button>
                         </div>

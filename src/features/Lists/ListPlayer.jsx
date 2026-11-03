@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Spinner, Alert, Badge, Form, ListGroup, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { QRCodeSVG } from 'qrcode.react';
 import { listsSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
@@ -12,6 +11,7 @@ import { ListRulesList } from './ListRules.jsx';
 import { RoundCard, CardChip, cardWritingTip } from './ListCards.jsx';
 import '../../styles/lists.css';
 import { getMyAvatar } from '../../avatars.jsx';
+import TempleWaitingRoom from '../Menu/TempleWaitingRoom.jsx';
 
 const blankList = (size) => Array.from({ length: size }, () => '');
 
@@ -35,7 +35,9 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
     const inputRefs = useRef([]);
     const sendTimer = useRef(null);
 
-    useSetBackgroundTheme(listsTheme(room?.expansion));
+    // 🔵 Listopia's waiting room stays blue, whichever deck it's playing
+    const isBlueLobby = isListopia && (!room || room.gameState === 'lobby');
+    useSetBackgroundTheme(isBlueLobby ? 'home' : listsTheme(room?.expansion));
 
     // ---------- Connect & listen ----------
     useEffect(() => {
@@ -253,34 +255,21 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
             }
 
             // Listopia: no TV, so this phone shows the code for everyone else
-            const joinUrl = `${window.location.origin}/join?room=${roomCode}`;
-            return frame('Listopia Lobby', (
-                <>
-                    <div className="bg-light p-3 rounded mb-3 border">
-                        <span className="text-secondary d-block small fw-bold text-uppercase mb-1">Room Code</span>
-                        <span className="fs-1 fw-bold text-dark d-block mb-2" style={{ letterSpacing: '0.2em' }}>{roomCode}</span>
-                        <Card className="d-inline-block shadow-sm border-0 p-2 mb-1">
-                            <QRCodeSVG value={joinUrl} size={130} level="H" />
-                        </Card>
-                        <div className="text-muted small fw-semibold">Friends scan to join</div>
-                    </div>
-
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                        <h6 className="text-start mb-0 fw-bold">Players</h6>
-                        <Badge bg="secondary" className="rounded-pill px-3">{connected.length}</Badge>
-                    </div>
-                    <ListGroup className="mb-3 text-start shadow-sm">
-                        {connected.map((p) => (
-                            <ListGroup.Item key={p.id} className="d-flex justify-content-between align-items-center py-2">
-                                <span className="fw-bold">{p.name}{p.id === me.id ? ' (you)' : ''}</span>
-                                {p.isPlayerHost && <Badge bg="primary" className="rounded-pill">Leader</Badge>}
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-
-                    {startButton}
-                </>
-            ));
+            return (
+                <TempleWaitingRoom
+                    game="listopia"
+                    title="Listopia"
+                    roomCode={roomCode}
+                    players={connected}
+                    meId={me.id}
+                    leaderId={leader?.id}
+                    onStart={me.isPlayerHost ? () => socket.emit('startGame', { roomCode }) : undefined}
+                    canStart={canStart}
+                    startLabel="Everyone's in!"
+                    startDisabledLabel="Waiting for more players..."
+                    status={me.isPlayerHost ? null : `Waiting for ${leader?.name || 'the room leader'} to start the game...`}
+                />
+            );
         }
 
         // ===================== RULES =====================

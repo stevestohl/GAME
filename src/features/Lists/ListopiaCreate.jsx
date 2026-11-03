@@ -1,7 +1,7 @@
-import { useGameVisibility, useKeepDeckVisible } from '../../gameVisibility.js';
+import { useGameVisibility } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Form, Button, InputGroup, Spinner, Row, Col } from 'react-bootstrap';
+import { Card, Form, Button, InputGroup, Modal, Spinner, Row, Col } from 'react-bootstrap';
 import { getRandomFunnyName } from '../../funnyNames.js';
 import { LIST_DECKS, LIST_ROUND_OPTIONS } from '../../cardDecks.js';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
@@ -10,7 +10,7 @@ import { ListopiaTile } from './ListTiles.jsx';
 import { createListRoom } from './listsCreate.js';
 
 /**
- * 📱📝 Listopia setup: pick your name, how many rounds and a deck, then make the room.
+ * 📱📝 Listopia setup: pick your name and how many rounds, then tap a deck to make the room.
  * Whoever makes the room plays too (no TV needed).
  */
 export default function ListopiaCreate() {
@@ -18,8 +18,6 @@ export default function ListopiaCreate() {
     const navigate = useNavigate();
     const [playerName, setPlayerName] = useState('');
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [expansion, setExpansion] = useState('core');
-    useKeepDeckVisible(visibleDecks('listopia', LIST_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(LIST_ROUND_OPTIONS[0]);
 
     useEffect(() => {
@@ -27,8 +25,8 @@ export default function ListopiaCreate() {
         setPlayerName(savedName || getRandomFunnyName());
     }, []);
 
-    const handleCreateRoom = (e) => {
-        e.preventDefault();
+    // Tapping a deck goes straight in
+    const startWithDeck = (expansion) => {
         const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
         localStorage.setItem('templePlayerName', cleanName);
         createListRoom(navigate, setIsCreatingRoom, { mode: 'phones', expansion, totalRounds, playerName: cleanName });
@@ -58,7 +56,7 @@ export default function ListopiaCreate() {
                         </Card.Body>
                     </Card>
 
-                    <Form onSubmit={handleCreateRoom}>
+                    <Form onSubmit={(e) => e.preventDefault()}>
                         <Form.Group className="mb-3 text-start">
                             <Form.Label className="fw-bold text-secondary small">Your Name</Form.Label>
                             <InputGroup>
@@ -92,33 +90,21 @@ export default function ListopiaCreate() {
                         </Form.Group>
 
                         <Form.Group className="mb-4 text-start">
-                            <Form.Label className="fw-bold text-secondary small">List Deck</Form.Label>
+                            <Form.Label className="fw-bold text-secondary small">Tap a Deck to Start</Form.Label>
                             <Row className="g-2">
                                 {visibleDecks('listopia', LIST_DECKS).map((deck, i) => (
                                     <Col xs={6} key={deck.id}>
                                         <DeckCard
                                             deck={deck}
                                             index={i}
-                                            selected={expansion === deck.id}
                                             disabled={isCreatingRoom}
-                                            onClick={() => setExpansion(deck.id)}
-                                            ariaLabel={`Play with the ${deck.title} lists`}
+                                            onClick={() => startWithDeck(deck.id)}
+                                            ariaLabel={`Start a Listopia game with the ${deck.title} deck`}
                                         />
                                     </Col>
                                 ))}
                             </Row>
                         </Form.Group>
-
-                        <Button variant="primary" size="lg" className="w-100 fw-bold shadow-sm mb-2" type="submit" disabled={isCreatingRoom}>
-                            {isCreatingRoom ? (
-                                <>
-                                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
-                                    Creating Room...
-                                </>
-                            ) : (
-                                'Create Room'
-                            )}
-                        </Button>
 
                         <Button variant="outline-secondary" size="sm" className="w-100 mt-2" onClick={() => navigate('/temple')} disabled={isCreatingRoom}>
                             Back to Game-Temple
@@ -126,6 +112,14 @@ export default function ListopiaCreate() {
                     </Form>
                 </Card.Body>
             </Card>
+
+            <Modal show={isCreatingRoom} backdrop="static" keyboard={false} centered>
+                <Modal.Body className="d-flex flex-column align-items-center justify-content-center p-4">
+                    <Spinner animation="border" variant="primary" className="mb-3" />
+                    <h4 className="fw-bold text-dark">Creating Room...</h4>
+                    <p className="text-muted small mb-0">Waking up game server...</p>
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }

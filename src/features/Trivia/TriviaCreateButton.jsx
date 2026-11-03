@@ -1,4 +1,4 @@
-import { useGameVisibility, useKeepDeckVisible } from '../../gameVisibility.js';
+import { useGameVisibility } from '../../gameVisibility.js';
 import React, { useEffect, useState } from 'react';
 import { Card, Form, Button, InputGroup, Modal, Spinner, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -49,8 +49,6 @@ export default function TriviaCreateScreen() {
     const navigate = useNavigate();
     const [hostName, setHostName] = useState('');
     const [isCreating, setIsCreating] = useState(false);
-    const [expansion, setExpansion] = useState('core');
-    useKeepDeckVisible(visibleDecks('trivia', TRIVIA_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
     const [level, setLevel] = useState(DEFAULT_LEVEL);
 
@@ -63,14 +61,11 @@ export default function TriviaCreateScreen() {
         setHostName(getRandomFunnyName());
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const trimmed = hostName.trim();
-        if (!trimmed) return;
-        
-        localStorage.setItem('templePlayerName', trimmed);
-        // Fixed: Call handleCreateTriviaRoom instead of handleCreateTttRoom
-        handleCreateTriviaRoom(trimmed, navigate, setIsCreating, expansion, totalRounds, level);
+    // Tapping a deck goes straight in
+    const startWithDeck = (deckId) => {
+        const name = hostName.trim() || 'Host';
+        localStorage.setItem('templePlayerName', name);
+        handleCreateTriviaRoom(name, navigate, setIsCreating, deckId, totalRounds, level);
     };
 
     return (
@@ -81,7 +76,7 @@ export default function TriviaCreateScreen() {
                 </Card.Header>
 
                 <Card.Body className="p-3">
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={(e) => e.preventDefault()}>
                         <Form.Group className="mb-4 text-start">
                             <Form.Label className="fw-bold small text-muted text-uppercase">
                                 Your Host Name
@@ -126,7 +121,7 @@ export default function TriviaCreateScreen() {
                         {/* 🃏 Question deck (expansion) */}
                         <Form.Group className="mb-4 text-start">
                             <Form.Label className="fw-bold small text-muted text-uppercase">
-                                Question Deck
+                                Tap a Deck to Start
                             </Form.Label>
                             <Row className="g-2">
                                 {visibleDecks('trivia', TRIVIA_DECKS).map((deck, i) => (
@@ -135,33 +130,18 @@ export default function TriviaCreateScreen() {
                                             compact
                                             deck={deck}
                                             index={i}
-                                            selected={expansion === deck.id}
                                             disabled={isCreating}
-                                            onClick={() => setExpansion(deck.id)}
-                                            ariaLabel={`Play with the ${deck.title} questions`}
+                                            onClick={() => startWithDeck(deck.id)}
+                                            ariaLabel={`Start a Trivia game with the ${deck.title} questions`}
                                         />
                                     </Col>
                                 ))}
                             </Row>
                         </Form.Group>
 
-                        <div className="d-flex gap-2">
-                            <Button 
-                                variant="outline-secondary" 
-                                className="w-50 fw-bold"
-                                onClick={() => navigate('/temple')}
-                            >
-                                Back
-                            </Button>
-                            <Button 
-                                type="submit" 
-                                variant="primary" 
-                                className="w-50 fw-bold"
-                                disabled={!hostName.trim()}
-                            >
-                                Create Room
-                            </Button>
-                        </div>
+                        <Button variant="outline-secondary" className="w-100 fw-bold" onClick={() => navigate('/temple')} disabled={isCreating}>
+                            Back
+                        </Button>
                     </Form>
                 </Card.Body>
             </Card>

@@ -1,7 +1,7 @@
-import { useGameVisibility, useKeepDeckVisible } from '../../gameVisibility.js';
+import { useGameVisibility } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Form, Button, InputGroup, Spinner, Row, Col } from 'react-bootstrap';
+import { Card, Form, Button, InputGroup, Modal, Spinner, Row, Col } from 'react-bootstrap';
 import { prompt2Socket } from '../../socket.js'; // Check this path based on your folder structure
 import { getRandomFunnyName } from '../../funnyNames.js'; // Check this path based on your folder structure
 import { CARD_DECKS, ROUND_OPTIONS } from '../../cardDecks.js';
@@ -13,8 +13,6 @@ export default function Prompt2CreateScreen() {
     const navigate = useNavigate();
     const [playerName, setPlayerName] = useState('');
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [expansion, setExpansion] = useState('core');
-    useKeepDeckVisible(visibleDecks('prompt2', CARD_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
 
     // Pull saved name on mount
@@ -27,9 +25,8 @@ export default function Prompt2CreateScreen() {
         setPlayerName(getRandomFunnyName());
     };
 
-    const handleCreateRoom = (e) => {
-        e.preventDefault();
-        
+    // Tapping a deck goes straight in
+    const startWithDeck = (expansion) => {
         const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
         console.log(`Request Prompt2 Room creation for ${cleanName} (deck: ${expansion})`);
         
@@ -82,10 +79,10 @@ export default function Prompt2CreateScreen() {
                 <Card.Body className='p-4 text-center'>
                     <div className='mb-4'>
                         <h2 className='fw-bold text-primary mb-1'>Ready to Play?</h2>
-                        <p className='text-muted'>Pick your host name and generate a room code.</p>
+                        <p className='text-muted'>Pick your name and rounds, then tap a deck.</p>
                     </div>
 
-                    <Form onSubmit={handleCreateRoom}>
+                    <Form onSubmit={(e) => e.preventDefault()}>
                         <Form.Group className='mb-4 text-start'>              
                             <Form.Label className='fw-bold text-secondary small'>Host Name</Form.Label>
                             <InputGroup>
@@ -126,39 +123,21 @@ export default function Prompt2CreateScreen() {
 
                         {/* 🃏 Card deck (expansion) */}
                         <Form.Group className='mb-4 text-start'>
-                            <Form.Label className='fw-bold text-secondary small'>Card Deck</Form.Label>
+                            <Form.Label className='fw-bold text-secondary small'>Tap a Deck to Start</Form.Label>
                             <Row className="g-2">
                                 {visibleDecks('prompt2', CARD_DECKS).map((deck, i) => (
                                     <Col xs={6} key={deck.id}>
                                         <DeckCard
                                             deck={deck}
                                             index={i}
-                                            selected={expansion === deck.id}
                                             disabled={isCreatingRoom}
-                                            onClick={() => setExpansion(deck.id)}
-                                            ariaLabel={`Play with the ${deck.title} deck`}
+                                            onClick={() => startWithDeck(deck.id)}
+                                            ariaLabel={`Start a Prompt 2 game with the ${deck.title} deck`}
                                         />
                                     </Col>
                                 ))}
                             </Row>
                         </Form.Group>
-
-                        <Button 
-                            variant='primary' 
-                            size='lg' 
-                            className='w-100 fw-bold shadow-sm mb-2' 
-                            type="submit"
-                            disabled={isCreatingRoom}
-                        >
-                            {isCreatingRoom ? (
-                                <>
-                                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
-                                    Creating Room...
-                                </>
-                            ) : (
-                                'Create Room'
-                            )}
-                        </Button>
 
                         <Button 
                             variant='outline-secondary' 
@@ -172,6 +151,14 @@ export default function Prompt2CreateScreen() {
                     </Form>
                 </Card.Body>
             </Card>
+
+            <Modal show={isCreatingRoom} backdrop="static" keyboard={false} centered>
+                <Modal.Body className="d-flex flex-column align-items-center justify-content-center p-4">
+                    <Spinner animation="border" variant="primary" className="mb-3" />
+                    <h4 className="fw-bold text-dark">Creating Room...</h4>
+                    <p className="text-muted small mb-0">Waking up game server...</p>
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }

@@ -44,7 +44,9 @@ export default function Prompt2GameManager() {
         };
         // Setup Listeners
         socket.on('connect', onConnect);
-        socket.connect();
+        // Coming from the create screen the socket's already connected, so 'connect' won't fire again
+        if (socket.connected) onConnect();
+        else socket.connect();
 
         // Centralized room listener (Handles state transitions globally)
 socket.on('room_updated', (data) => {
