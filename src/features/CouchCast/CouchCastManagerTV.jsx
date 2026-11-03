@@ -103,7 +103,8 @@ export default function CouchCastManager() {
     // 🔊 Each player's own sound: when they join, and each time they answer
     usePlayerSounds(roomData?.roomCode, roomData?.players);
     const lobbyTrack = lobbyTrackFor('couchCast', roomData?.expansion);
-    const hasCrew = !!roomData && roomData.expansion !== 'halloween';   // 🛋️ the Couch Cast crew shows up in the Core deck
+    const hasCrew = !!roomData;   // 🛋️ the Couch Cast crew shows up in every deck
+    const crewTheme = roomData?.expansion === 'halloween' ? 'halloween' : 'core';
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
     const round = roomData?.currentRound;
@@ -386,19 +387,19 @@ export default function CouchCastManager() {
                     <CouchCastLobby 
                         roomCode={roomData.roomCode} 
                         players={playersArray} musicTrack={lobbyTrack}
-                        crew={roomData.expansion !== 'halloween'} />
+                        crew crewTheme={crewTheme} />
                 );
 
             case 'rules':
                 return (
                     <CouchCastRules
                         roomCode={roomData.roomCode}
-                        crew={roomData.expansion !== 'halloween'}
+                        crew crewTheme={crewTheme}
                     />
                 );
 
             case 'round_intro':
-                return <CouchCastRoundIntro round={roomData.currentRound} totalRounds={roomData.totalRounds} crew={hasCrew} />;
+                return <CouchCastRoundIntro round={roomData.currentRound} totalRounds={roomData.totalRounds} crew={hasCrew} crewTheme={crewTheme} />;
 
             case 'prompt_selection':
                 const pickerName = roomData.players[roomData.hostId]?.name || 'The Judge';
@@ -474,7 +475,7 @@ export default function CouchCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
-            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} chase={hasCrew} onDone={() => setShowCredits(false)} />}
+            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} chase={hasCrew} chaseTheme={crewTheme} onDone={() => setShowCredits(false)} />}
             {roomData && (
                 <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />
             )}

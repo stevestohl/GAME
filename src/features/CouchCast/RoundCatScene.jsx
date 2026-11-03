@@ -1,11 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
+import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
 
 // 🐈 Between rounds (Core deck): along the bottom of the "Round 3" card, one of the crew deals with
 // the cat, taking turns round by round:
 //   robot: its belly hatch opens, a grabber claw reels the cat in, and off it clanks
 //   dog:   barks, and chases the cat off the screen
 //   alien: shrink-rays the cat, which ends up riding off on its head
+// 👻 On the Halloween deck it's a tiny ghost:
+//   hoa:     "VIOLATION!", and the ghost slinks off with a ticket stuck to it
+//   vampire: "BLEH!", and chases it off the screen
+//   witch:   shrinks it with her wand, and it rides off on her hat
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 // The TV waits SCENE_MS for it before moving on to the prompts.
@@ -19,18 +24,23 @@ const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
 const easeOut = (t) => 1 - (1 - t) ** 3;
 const linear = (t) => t;
 
-const SCENES = ['robot', 'dog', 'alien'];
+const SCENES = { core: ['robot', 'dog', 'alien'], halloween: ['hoa', 'vampire', 'witch'] };
 /** Which of the crew has the cat this round (round 2 is the first one with an intro) */
-export const sceneFor = (round) => SCENES[(Math.max(2, round) - 2) % SCENES.length];
+export const sceneFor = (round, theme = 'core') => SCENES[theme][(Math.max(2, round) - 2) % SCENES[theme].length];
 
-export default function RoundCatScene({ round }) {
-    const who = sceneFor(round);
+const HEROES = { robot: Robot, dog: Dog, alien: Alien, hoa: HoaPresident, vampire: Vampire, witch: Witch };
+const BARKS = { dog: 'WOOF!', vampire: 'BLEH!', hoa: 'VIOLATION!' };
+
+export default function RoundCatScene({ round, theme = 'core' }) {
+    const isHalloween = theme === 'halloween';
+    const who = sceneFor(round, theme);
     const svgRef = useRef(null);
     const heroRef = useRef(null);
     const catRef = useRef(null);
     const clawRef = useRef(null);
     const barkRef = useRef(null);
     const rayRef = useRef(null);
+    const ticketRef = useRef(null);
 
     useEffect(() => {
         if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
@@ -117,6 +127,38 @@ export default function RoundCatScene({ round }) {
             await walk(hero, OFF_R, 1500);
         };
 
+        // 📋 VIOLATION! A ticket lands on the ghost, and it slinks away, wearing it
+        const hoaScene = async () => {
+            await Promise.all([walk(cat, 150, 1200), wait(200).then(() => walk(hero, 255, 1200))]);
+            look('left');
+            await wait(150);
+            const bubble = barkRef.current;
+            bubble.setAttribute('transform', `translate(${hero.x + 16 * S} ${hero.y - 104 * S}) scale(${S})`);
+            bubble.classList.add('is-on');
+            await wait(600);
+            const ticket = ticketRef.current;
+            const from = { x: hero.x - 20 * S, y: hero.y - 45 * S };
+            const stick = () => ({ x: cat.x, y: cat.y - 22 * cat.size });
+            ticket.classList.add('is-on');
+            const to = stick();
+            await tween(420, easeOut, (t) => ticket.setAttribute('transform',
+                `translate(${from.x + (to.x - from.x) * t} ${from.y + (to.y - from.y) * t - Math.sin(Math.PI * t) * 26}) rotate(${t * 360})`));
+            bubble.classList.remove('is-on');
+            await wait(300);
+            // Off it goes, head down, and off goes the president the other way
+            cat.rot = -10;
+            const fromCat = cat.x;
+            await Promise.all([
+                tween(1500, linear, (t) => {
+                    cat.x = fromCat + (OFF_L - fromCat) * t;
+                    draw(cat);
+                    const at = stick();
+                    ticket.setAttribute('transform', `translate(${at.x} ${at.y}) rotate(-10)`);
+                }),
+                wait(250).then(() => walk(hero, OFF_R, 1250)),
+            ]);
+        };
+
         // 🐕 WOOF! and away
         const dogScene = async () => {
             await Promise.all([walk(cat, 190, 1200), wait(200).then(() => walk(hero, 285, 1300))]);
@@ -141,7 +183,10 @@ export default function RoundCatScene({ round }) {
             look('left');
             await wait(250);
             const ray = rayRef.current;
-            const from = { x: hero.x - 19 * S, y: hero.y - 32 * S };
+            // The alien's hand, or the tip of the witch's raised wand
+            if (who === 'witch') hero.el.classList.add('crew-casting');
+            if (who === 'witch') await wait(300);
+            const from = who === 'witch' ? { x: hero.x - 42 * S, y: hero.y - 81 * S } : { x: hero.x - 19 * S, y: hero.y - 32 * S };
             ray.classList.add('is-on');
             await tween(700, linear, (t) => {
                 const to = catMiddle();
@@ -157,10 +202,11 @@ export default function RoundCatScene({ round }) {
                 draw(cat);
             });
             ray.classList.remove('is-on');
+            hero.el.classList.remove('crew-casting');
             cat.rot = 0;
             // Float up and plonk down on top of its head
             const start = { x: cat.x, y: cat.y };
-            const perch = () => ({ x: hero.x + 3 * cat.size, y: hero.y - 104 * S });
+            const perch = () => (who === 'witch' ? { x: hero.x - 1, y: hero.y - 110 * S } : { x: hero.x + 3 * cat.size, y: hero.y - 104 * S });
             await tween(600, easeInOut, (t) => {
                 const end = perch();
                 cat.x = start.x + (end.x - start.x) * t;
@@ -185,7 +231,7 @@ export default function RoundCatScene({ round }) {
 
         draw(hero);
         draw(cat);
-        ({ robot: robotScene, dog: dogScene, alien: alienScene })[who]();
+        ({ robot: robotScene, dog: dogScene, alien: alienScene, hoa: hoaScene, vampire: dogScene, witch: alienScene })[who]();
 
         return () => {
             dead = true;
@@ -194,12 +240,18 @@ export default function RoundCatScene({ round }) {
         };
     }, [round]);
 
-    const Hero = { robot: Robot, dog: Dog, alien: Alien }[who];
+    const Hero = HEROES[who];
+    const Pest = isHalloween ? Ghost : Cat;
+    const isWide = who === 'hoa';
     return (
-        <svg ref={svgRef} className="cc-crew cc-round-scene-art" viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+        <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <polyline ref={rayRef} className="rcs-ray" points="0,0" />
-            <Cat elRef={catRef} />
+            <Pest elRef={catRef} />
             <Hero elRef={heroRef} />
+            <g ref={ticketRef} className="rcs-ticket">
+                <rect x={-5} y={-6.5} width={10} height={13} fill="#fff6d8" stroke={INK} strokeWidth={1.2} />
+                <path d="M -3 -3.5 h 6 M -3 -0.5 h 6 M -3 2.5 h 4" stroke="#b5332f" strokeWidth={1} />
+            </g>
             <g ref={clawRef} className="rcs-claw">
                 <line stroke="#9fb0c3" strokeWidth={2.4} strokeLinecap="round" />
                 <line stroke={INK} strokeWidth={0.8} strokeDasharray="1.5 2" />
@@ -209,8 +261,8 @@ export default function RoundCatScene({ round }) {
                 </g>
             </g>
             <g ref={barkRef} className="crew-bark">
-                <path d="M -4 -14 H 40 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z" fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">WOOF!</text>
+                <path d={`M -4 -14 H ${isWide ? 82 : 40} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={isWide ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{BARKS[who] || ''}</text>
             </g>
         </svg>
     );

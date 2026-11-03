@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, Bat } from './HalloweenCrew.jsx';
 
 // 🛋️ The Couch Cast crew (Core deck lobby): a couch on little legs crawls in and sits down, then a
 // robot, a dog and an alien wander in, hop onto it, and the robot casts to "the screen", which is
@@ -12,8 +13,15 @@ import React, { useEffect, useRef } from 'react';
 //
 // Drawing units: each character is ~100 units tall with its feet at (0, 0); the couch is 200 wide.
 // The cat is drawn side-on, facing left (it's flipped to run the other way).
+//
+// 🦇 The Halloween deck runs the same show with its own cast (HalloweenCrew.jsx): a gothic couch, and
+// a witch who casts with her wand, the HOA president and a vampire. All three chase off a tiny ghost,
+// and Sasquatch comes out of a castle instead of over a mountain. A black chandelier sways above, and
+// a few bats fly by now and then.
 
-const SEATS = ['robot', 'dog', 'alien'];   // left to right: the robot sits nearest the screen
+// Who sits where, left to right: `caster` is nearest the screen and `chaser` is in the middle
+const SEATS = ['caster', 'chaser', 'third'];
+const BAT_COUNT = 3;
 const HIP = 30;          // where a character bends to sit (units up from its feet)
 const SEAT_TOP = 44;     // the couch cushions' top (units up from the floor)
 
@@ -22,14 +30,17 @@ const easeOut = (t) => 1 - (1 - t) ** 3;
 const linear = (t) => t;
 const rand = (min, max) => min + Math.random() * (max - min);
 
-export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 }) {
+export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0, theme = 'core' }) {
+    const isHalloween = theme === 'halloween';
     const svgRef = useRef(null);
     const couchRef = useRef(null);
     const beamRef = useRef(null);
     const barkRef = useRef(null);
     const bumpRef = useRef(null);
     const mountainRef = useRef(null);
-    const actorEls = { robot: useRef(null), dog: useRef(null), alien: useRef(null), cat: useRef(null), sasquatch: useRef(null) };
+    const chandelierRef = useRef(null);
+    const batRefs = useRef([]);
+    const actorEls = { caster: useRef(null), chaser: useRef(null), third: useRef(null), cat: useRef(null), sasquatch: useRef(null) };
     const engineRef = useRef(null);
 
     useEffect(() => {
@@ -74,6 +85,9 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
                 mountain,
                 // Sasquatch up close: a head taller than the crew, but never taller than the couch's spot
                 sqSize: Math.min(cs * 0.95, (stage.height - 4) / 146) / s,
+                // 🕯️ The chandelier hangs in the top corner, above the QR card
+                chandelierX: root.width * 0.085,
+                chandelierSize: Math.min(root.height * 0.19, root.width * 0.1) / 100,
             };
             svg.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
         };
@@ -88,6 +102,12 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
         // ⛰️ The big one: Sasquatch, on a mountain that grows out of the floor (see sasquatchVisit)
         const sasquatch = { name: 'sasquatch', x: 0, y: 0, rot: 0, lift: 0, size: 1, flip: 1, spot: 'off', el: actorEls.sasquatch.current };
         const mountain = { grow: 0, el: mountainRef.current };
+        const chandelier = { drop: reduceMotion ? 1 : 0, el: chandelierRef.current };
+        const drawChandelier = () => {
+            if (!chandelier.el) return;
+            const size = L.chandelierSize;
+            chandelier.el.setAttribute('transform', `translate(${L.chandelierX} ${-130 * size * (1 - chandelier.drop)}) scale(${size})`);
+        };
         let eventRunning = false;   // a peek, the cat or Sasquatch: one thing at a time
         const drawCouch = () => couch.el.setAttribute('transform', `translate(${couch.x} ${couch.y}) scale(${L.cs})`);
         const draw = (a) => a.el.setAttribute('transform',
@@ -105,6 +125,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             if (cat.spot === 'off') { cat.x = L.offRight; cat.y = L.floorY; draw(cat); }
             if (sasquatch.spot === 'off') { sasquatch.x = L.offRight; sasquatch.y = L.floorY; sasquatch.size = L.sqSize; draw(sasquatch); }
             drawMountain();
+            drawChandelier();
         };
         const drawMountain = () => {
             const m = L.mountain;
@@ -158,9 +179,9 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             await hop(a, L.seatX[a.seat] - 8 * L.cs, L.floorY, 16, 380);
         };
 
-        // 📡 The robot holds up its phone: cast waves, a beam to the QR card, and the code lights up
+        // 📡 The robot holds up its phone (the witch, her wand): cast waves, a beam to the QR card, and the code lights up
         const cast = async () => {
-            const robot = actors.robot;
+            const robot = actors.caster;
             robot.el.classList.add('crew-casting');
             await wait(350);
             // The phone, at the end of the robot's raised arm (see the robot's drawing)
@@ -224,7 +245,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             timers.add(id);
         };
 
-        // 🐕 "WOOF!" over the dog's head
+        // 🐕 "WOOF!" over the dog's head ("VIOLATION!" over the HOA president's)
         const bark = async (dog) => {
             const bubble = barkRef.current;
             bubble.setAttribute('transform', `translate(${dog.x + 16 * L.s} ${dog.y - dog.lift - 104 * L.s}) scale(${L.s})`);
@@ -234,17 +255,19 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
         };
 
         // 🐈 A cat slinks in and goes for the screen; the dog isn't having it
+        // (👻 On the Halloween deck it's a tiny ghost, and all three go after it)
+        const chasers = isHalloween ? Object.values(actors) : [actors.chaser];
         const catVisit = async () => {
-            const dog = actors.dog;
+            const dog = actors.chaser;
             eventRunning = true;
-            dog.busy = true;
+            chasers.forEach((a) => { a.busy = true; });
 
-            // In from the right, past the couch (the dog watches it go by)
+            // In from the right, past the couch (they watch it go by)
             cat.spot = 'floor';
             cat.x = L.offRight;
             cat.y = L.floorY;
-            look(dog, 'right');
-            const lookLeft = setTimeout(() => look(dog, 'left'), 1600);
+            chasers.forEach((a) => look(a, 'right'));
+            const lookLeft = setTimeout(() => chasers.forEach((a) => look(a, 'left')), 1600);
             timers.add(lookLeft);
             await walkTo(cat, L.screenRight + 6 * L.s, 70);   // right up against the screen's edge
 
@@ -252,30 +275,33 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             cat.el.classList.add('crew-cat-swat');
             await wait(1300);
 
-            // That does it: the dog barks, jumps down, and the cat bolts with the dog right behind
+            // That does it: a bark, down they jump, and the cat bolts with them right behind
             await bark(dog);
             cat.el.classList.remove('crew-cat-swat');
-            dog.spot = 'floor';
+            chasers.forEach((a) => { a.spot = 'floor'; });
             await Promise.all([
-                hop(dog, dog.x - 6 * L.cs, L.floorY, 14, 320),
+                ...chasers.map((a) => hop(a, a.x - 6 * L.cs, L.floorY, 14, 320)),
                 hop(cat, cat.x, cat.y, 22, 300).then(() => { cat.flip = -1; draw(cat); }),
             ]);
-            dog.rot = 8;   // leaning into the run
+            chasers.forEach((a) => { a.rot = 8; });   // leaning into the run
             await Promise.all([
                 walkTo(cat, L.offRight, 300, 'crew-running'),
-                wait(250).then(() => walkTo(dog, L.offRight + 40 * L.cs, 230, 'crew-running')),
+                ...chasers.map((a, i) => wait(250 + i * 180).then(() => walkTo(a, L.offRight + 40 * L.cs, 230, 'crew-running'))),
             ]);
             cat.spot = 'off';
             cat.flip = 1;
             cat.x = L.offRight;
             draw(cat);
 
-            // A moment off-screen, then back to the couch, very pleased with itself
+            // A moment off-screen, then back to the couch, very pleased with themselves
             await wait(1400);
-            dog.rot = 0;
-            await walkTo(dog, L.seatX[dog.seat] - 8 * L.cs, 85);
-            await sitDown(dog);
-            dog.busy = false;
+            await Promise.all(chasers.map(async (a, i) => {
+                a.rot = 0;
+                await wait(i * 500);
+                await walkTo(a, L.seatX[a.seat] - 8 * L.cs, 85);
+                await sitDown(a);
+                a.busy = false;
+            }));
             eventRunning = false;
             cheer();
         };
@@ -284,9 +310,40 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
                 timers.delete(id);
                 if (dead) return;
                 // Wait for any peek to finish first
-                if (eventRunning || actors.dog.busy || actors.dog.spot !== 'seat') { catNow(4000); return; }
+                if (eventRunning || chasers.some((a) => a.busy || a.spot !== 'seat')) { catNow(4000); return; }
                 catVisit();
                 catNow(rand(55000, 80000));
+            }, delay);
+            timers.add(id);
+        };
+
+        // 🦇 A few bats flap across the top of the room, behind the cards
+        const batFlight = async () => {
+            const leftToRight = Math.random() < 0.5;
+            const fromX = leftToRight ? -40 : L.width + 40;
+            const toX = leftToRight ? L.width + 40 : -40;
+            const baseY = L.height * rand(0.08, 0.26);
+            const swoop = L.height * rand(0.04, 0.1);
+            await Promise.all(batRefs.current.map(async (el, i) => {
+                await wait(i * rand(200, 500));
+                const size = rand(0.75, 1.25) * L.cs;
+                const offset = rand(-0.05, 0.05) * L.height;
+                const ms = rand(3200, 4600);
+                const wiggle = rand(0, Math.PI * 2);
+                await tween(ms, linear, (t) => {
+                    const x = fromX + (toX - fromX) * t;
+                    const y = baseY + offset + Math.sin(t * Math.PI * 3 + wiggle) * swoop;
+                    el.setAttribute('transform', `translate(${x} ${y}) scale(${size})`);
+                });
+                el.setAttribute('transform', 'translate(-200 -200)');
+            }));
+        };
+        const batsNow = (delay) => {
+            const id = setTimeout(async () => {
+                timers.delete(id);
+                if (dead) return;
+                await batFlight();
+                batsNow(rand(18000, 40000));
             }, delay);
             timers.add(id);
         };
@@ -325,8 +382,15 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             const near = L.sqSize;
             const groundY = L.floorY + 3 * L.cs;   // a touch nearer than the couch
 
+            // 🏰 The castle's way out: from a tiny figure in the doorway, straight out toward us
+            const start = m && (isHalloween
+                ? { x: m.x, y: L.floorY, size: near * 0.2 }
+                : { x: m.x + 10 * m.sx, y: L.floorY - 160 * m.sy, size: near * 0.22 });
             // The path down: over the peak, zig-zagging down the slope, out onto the floor
-            const slope = m ? [
+            const slope = m && isHalloween ? [
+                { x: m.x - 12 * m.sx, y: L.floorY + 1 * L.cs, size: near * 0.5 },
+                { x: m.left + 8 * L.cs, y: groundY, size: near },
+            ] : m ? [
                 { x: m.x + 34 * m.sx, y: L.floorY - 108 * m.sy, size: near * 0.42 },
                 { x: m.x - 28 * m.sx, y: L.floorY - 58 * m.sy, size: near * 0.62 },
                 { x: m.x + 10 * m.sx, y: L.floorY - 24 * m.sy, size: near * 0.8 },
@@ -339,11 +403,15 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
                 await tween(1700, (t) => 1 - (1 - t) ** 3 + Math.sin(t * Math.PI * 3) * 0.04 * (1 - t), (t) => { mountain.grow = t; drawMountain(); });
                 rumble(false);
                 await wait(500);
-                // He steps over the peak, small and far away
+                if (isHalloween) {
+                    mountain.el.classList.add('is-open');   // the castle door swings open
+                    await wait(600);
+                }
+                // He steps over the peak (or out of the door), small and far away
                 sasquatch.spot = 'mountain';
-                sasquatch.x = m.x + 10 * m.sx;
-                sasquatch.y = L.floorY - 160 * m.sy;
-                sasquatch.size = near * 0.22;
+                sasquatch.x = start.x;
+                sasquatch.y = start.y;
+                sasquatch.size = start.size;
                 draw(sasquatch);
                 sasquatch.el.classList.add('is-arriving');
                 await wait(500);
@@ -361,7 +429,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
 
             // Fist bumps down the couch: alien, dog, robot
             const fistReach = 127;   // how far right of a character he stands so the fists meet (character units)
-            for (const name of ['alien', 'dog', 'robot']) {
+            for (const name of ['third', 'chaser', 'caster']) {
                 const a = actors[name];
                 await walkTo(sasquatch, a.x + fistReach * L.s, 55);
                 sasquatch.flip = 1;
@@ -385,7 +453,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             Object.values(actors).forEach((a) => look(a, 'right'));
             if (m) {
                 await walkTo(sasquatch, m.left + 8 * L.cs, 55);
-                await walkPath(sasquatch, [...slope].reverse().slice(1).concat({ x: m.x + 10 * m.sx, y: L.floorY - 160 * m.sy, size: near * 0.22 }), 34);
+                await walkPath(sasquatch, [...slope].reverse().slice(1).concat(start), 34);
                 sasquatch.el.classList.add('is-leaving');
                 await wait(500);
                 sasquatch.el.classList.remove('is-leaving');
@@ -397,7 +465,8 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             draw(sasquatch);
 
             if (m) {
-                await wait(400);
+                mountain.el.classList.remove('is-open');
+                await wait(isHalloween ? 800 : 400);
                 rumble(true);
                 await tween(1200, easeInOut, (t) => { mountain.grow = 1 - t; drawMountain(); });
                 rumble(false);
@@ -419,6 +488,9 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
 
         // --- The show ---
         const intro = async () => {
+            // 🕯️ The chandelier lowers itself into the room
+            if (chandelier.el) tween(1800, easeOut, (t) => { chandelier.drop = t; drawChandelier(); });
+
             // The couch scuttles in from the right and plops down
             couch.spot = 'moving';
             couch.el.classList.add('couch-crawling');
@@ -448,6 +520,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             catNow(rand(26000, 34000));
             sasquatchNow(rand(60000, 75000));
         };
+        if (isHalloween && !reduceMotion) batsNow(rand(10000, 16000));
 
         measure();
         couch.spot = reduceMotion ? 'home' : 'off';
@@ -482,8 +555,12 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
         lastCount.current = playerCount;
     }, [playerCount]);
 
+    const [Caster, Chaser, Third, Pest, Hill, TheCouch] = isHalloween
+        ? [Witch, HoaPresident, Vampire, Ghost, Castle, GothicCouch]
+        : [Robot, Dog, Alien, Cat, Mountain, Couch];
+
     return (
-        <svg ref={svgRef} className="cc-crew" aria-hidden="true" preserveAspectRatio="none">
+        <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''}`} aria-hidden="true" preserveAspectRatio="none">
             {/* 📡 The cast beam (only while the robot is casting) */}
             <g ref={beamRef} className="crew-beam">
                 <path className="crew-beam-path" d="" />
@@ -493,22 +570,25 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0 
             </g>
 
             <g className="crew-world">
-                <Mountain mountainRef={mountainRef} />
-                <Couch couchRef={couchRef} />
-                <Robot elRef={actorEls.robot} />
-                <Dog elRef={actorEls.dog} />
-                <Alien elRef={actorEls.alien} />
-                <Cat elRef={actorEls.cat} />
+                {isHalloween && <Chandelier chandelierRef={chandelierRef} />}
+                <Hill mountainRef={mountainRef} castleRef={mountainRef} />
+                <TheCouch couchRef={couchRef} />
+                <Caster elRef={actorEls.caster} />
+                <Chaser elRef={actorEls.chaser} />
+                <Third elRef={actorEls.third} />
+                <Pest elRef={actorEls.cat} />
                 <Sasquatch elRef={actorEls.sasquatch} />
             </g>
+
+            {isHalloween && Array.from({ length: BAT_COUNT }, (_, i) => <Bat key={i} elRef={(el) => { batRefs.current[i] = el; }} />)}
 
             <g ref={bumpRef} className="crew-pow">
                 <path d="M 0 -13 L 3.5 -5 L 12 -7 L 6 0 L 12 7 L 3.5 5 L 0 13 L -3.5 5 L -12 7 L -6 0 L -12 -7 L -3.5 -5 Z" fill="#ffd23f" stroke="#16161d" strokeWidth={2} strokeLinejoin="round" />
             </g>
 
             <g ref={barkRef} className="crew-bark">
-                <path d="M -4 -14 H 40 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z" fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">WOOF!</text>
+                <path d={`M -4 -14 H ${isHalloween ? 82 : 40} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={isHalloween ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">{isHalloween ? 'VIOLATION!' : 'WOOF!'}</text>
             </g>
         </svg>
     );

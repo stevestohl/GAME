@@ -6,8 +6,9 @@ import { Avatar } from '../../avatars.jsx';
 import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
 
-// `crew`: the couch and its characters crawl in under the players card (Couch Cast's Core deck)
-export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false }) {
+// `crew`: the couch and its characters crawl in under the players card (Couch Cast's Core and
+// Halloween decks; `crewTheme` says which cast)
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core' }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
   const screenRef = useRef(null);   // the QR card: the crew's "TV"
@@ -42,8 +43,8 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
 
 
   return (
- <div className={`fullscreen-gameplay-container cc-lobby ${crew ? 'has-crew' : ''}`}>
-  {crew && !isPortrait && <CouchCrew stageRef={stageRef} screenRef={screenRef} qrRef={qrRef} playerCount={activePlayers.length} />}
+ <div className={`fullscreen-gameplay-container cc-lobby ${crew ? `has-crew crew-${crewTheme}` : ''}`}>
+  {crew && !isPortrait && <CouchCrew stageRef={stageRef} screenRef={screenRef} qrRef={qrRef} playerCount={activePlayers.length} theme={crewTheme} />}
   
   {/* --- LANDSCAPE REMINDER OVERLAY --- */}
   {isPortrait && (

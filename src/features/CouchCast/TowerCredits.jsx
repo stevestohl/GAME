@@ -5,8 +5,8 @@ import { startCreditsMarch } from '../../celebrationSounds.js';
 
 // 🎬 The end credits: after the final scores are read, the lobby's Tower Party results roll up the
 // screen like the end of a movie (on the TV and every phone). Nobody played? No credits.
-// `chase`: the crew chases the cat along the bottom to a march while they roll (Couch Cast's Core deck, on the TV)
-export default function TowerCredits({ tower, onDone, chase = false }) {
+// `chase`: the crew chases the cat along the bottom to a march while they roll (Couch Cast, on the TV; `chaseTheme` says which crew)
+export default function TowerCredits({ tower, onDone, chase = false, chaseTheme = 'core' }) {
     const crew = Object.values(tower?.stats || {})
         .filter((s) => s.stacked > 0)
         .sort((a, b) => b.stacked - a.stacked || b.perfects - a.perfects);
@@ -19,7 +19,7 @@ export default function TowerCredits({ tower, onDone, chase = false }) {
     const showChase = chase && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
     return (
-        <div className="tp-credits" aria-live="polite">
+        <div className={`tp-credits ${showChase ? `tp-chase-${chaseTheme}` : ''}`} aria-live="polite">
             {showChase && <div className="tp-chase-floor" />}
             <div className="tp-credits-roll" style={{ animationDuration: `${seconds}s` }} onAnimationEnd={onDone}>
                 <div className="tp-credits-kicker">And in the lobby...</div>
@@ -38,7 +38,7 @@ export default function TowerCredits({ tower, onDone, chase = false }) {
                 ))}
                 <div className="tp-credits-end">Thanks for building it together!</div>
             </div>
-            {showChase && <div className="cc-round-scene"><CreditsChase /></div>}
+            {showChase && <div className="cc-round-scene"><CreditsChase theme={chaseTheme} /></div>}
         </div>
     );
 }

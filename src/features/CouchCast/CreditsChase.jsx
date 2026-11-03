@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { getAudioContext } from '../../chime.js';
 import { duckCreditsMarch } from '../../celebrationSounds.js';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
+import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
 
 // 🐈 The crew's last bit, along the bottom of the end credits (Core deck, on the TV): the cat strolls
 // on, and all three chase it off the screen. Now and then the cat comes back with backup: a giant cat,
 // little cat riding on its head, chases the whole crew off the other way.
+// 👻 The Halloween deck plays it with its own crew and a tiny ghost, whose backup is a giant ghost.
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 
@@ -15,6 +17,52 @@ const CAT = 0.7;         // the cat's size
 const GIANT = 4.5;       // the giant cat's size: about half the screen high
 const GIANT_CHANCE = 1 / 3;
 const START_MS = 1500;   // let the credits get going first
+
+/** 👻 One long, wavering BOOOO from the giant ghost, made in the browser like the meow */
+function playBoo() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    duckCreditsMarch(1.7);
+    const t0 = ctx.currentTime + 0.02;
+    const at = (seconds) => t0 + seconds;
+
+    const volume = ctx.createGain();
+    volume.gain.setValueAtTime(0.0001, at(0));
+    volume.gain.exponentialRampToValueAtTime(0.8, at(0.3));
+    volume.gain.setValueAtTime(0.8, at(0.9));
+    volume.gain.exponentialRampToValueAtTime(0.0001, at(1.55));
+    const muffle = ctx.createBiquadFilter();
+    muffle.type = 'lowpass';
+    muffle.frequency.value = 1100;
+    muffle.connect(volume);
+    volume.connect(ctx.destination);
+
+    // A wobble in the pitch: up into the "OOO", then sinking away
+    const wobble = ctx.createOscillator();
+    const wobbleDepth = ctx.createGain();
+    wobble.frequency.value = 5;
+    wobbleDepth.gain.value = 16;
+    wobble.connect(wobbleDepth);
+
+    const voices = [['sine', 1, 0.7], ['triangle', 2, 0.25]].map(([type, octave, level]) => {
+        const voice = ctx.createOscillator();
+        const gain = ctx.createGain();
+        voice.type = type;
+        gain.gain.value = level;
+        voice.frequency.setValueAtTime(170 * octave, at(0));
+        voice.frequency.exponentialRampToValueAtTime(320 * octave, at(0.5));
+        voice.frequency.exponentialRampToValueAtTime(130 * octave, at(1.55));
+        wobbleDepth.connect(voice.frequency);
+        voice.connect(gain);
+        gain.connect(muffle);
+        return voice;
+    });
+    [wobble, ...voices].forEach((osc) => {
+        osc.start(at(0));
+        osc.stop(at(1.6));
+    });
+}
 
 /** 😾 One long, low MEOW from the giant cat, made in the browser (no audio file needed) */
 function playMeow() {
@@ -83,7 +131,8 @@ function playMeow() {
     });
 }
 
-export default function CreditsChase() {
+export default function CreditsChase({ theme = 'core' }) {
+    const isHalloween = theme === 'halloween';
     const svgRef = useRef(null);
     const robotRef = useRef(null);
     const dogRef = useRef(null);
@@ -173,18 +222,19 @@ export default function CreditsChase() {
             cat.flip = -1;
             cat.size = 0.55;
             const ride = () => {
-                cat.x = giant.x + 16 * GIANT;
-                cat.y = giant.y - giant.lift - 38 * GIANT;
+                cat.x = giant.x + (isHalloween ? 0 : 16 * GIANT);
+                cat.y = giant.y - giant.lift - (isHalloween ? 39 : 38) * GIANT;
                 draw(cat);
             };
             const from = giant.x;
             giant.el.classList.add('crew-walking');
-            await tween(1100, (t) => { giant.x = from + (-20 - from) * t; draw(giant); ride(); });
+            const stopAt = isHalloween ? 15 : -20;   // the ghost's face is in its middle, so it comes further on
+            await tween(1100, (t) => { giant.x = from + (stopAt - from) * t; draw(giant); ride(); });
             giant.el.classList.remove('crew-walking');
             svgRef.current.classList.remove('is-rumbling');
 
             meowRef.current.classList.add('is-on');
-            playMeow();
+            (isHalloween ? playBoo : playMeow)();
             await Promise.all(crew.map((a) => hop(a, 300, 22)));
             await wait(250);
             meowRef.current.classList.remove('is-on');
@@ -217,22 +267,24 @@ export default function CreditsChase() {
     }, []);
 
     const bubble = "M -4 -14 H 40 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z";
+    const wideBubble = bubble.replace('H 40', 'H 82');
+    const [First, Second, Third, Pest] = isHalloween ? [HoaPresident, Witch, Vampire, Ghost] : [Dog, Robot, Alien, Cat];
     return (
-        <svg ref={svgRef} className="cc-crew cc-round-scene-art" viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+        <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <g className="crew-world">
-                <Cat elRef={catRef} />
-                <Alien elRef={alienRef} />
-                <Robot elRef={robotRef} />
-                <Dog elRef={dogRef} />
-                <Cat elRef={giantRef} />
+                <Pest elRef={catRef} />
+                <Third elRef={alienRef} />
+                <Second elRef={robotRef} />
+                <First elRef={dogRef} />
+                <Pest elRef={giantRef} />
             </g>
             <g ref={barkRef} className="crew-bark">
-                <path d={bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">WOOF!</text>
+                <path d={isHalloween ? wideBubble : bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={isHalloween ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{isHalloween ? 'VIOLATION!' : 'WOOF!'}</text>
             </g>
             <g ref={meowRef} className="crew-bark" transform="translate(112 -62) scale(1.6)">
                 <path d={bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">MEOW.</text>
+                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{isHalloween ? 'BOO.' : 'MEOW.'}</text>
             </g>
         </svg>
     );

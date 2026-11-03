@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Cat, INK, ink } from './CouchCrew.jsx';
+import { Ghost, BroomWitch } from './HalloweenCrew.jsx';
 
 // 🛸 The rules screen's little show (Core deck): the lobby's cat wanders in and sits down, then the
 // alien's flying saucer glides over and beams it up. Near the end of the countdown the saucer comes
 // back and drops it off again, and the cat stalks away in a huff.
+// 🧹 On the Halloween deck, it's the witch on her broom, spiriting off the tiny ghost.
 //
 // Drawn in a fixed 200 × 120 box (it scales to fit its spot); the floor is at y = 112.
 
@@ -15,7 +17,8 @@ const easeOut = (t) => 1 - (1 - t) ** 3;
 const easeIn = (t) => t * t * t;
 const linear = (t) => t;
 
-export default function RulesAbduction() {
+export default function RulesAbduction({ theme = 'core' }) {
+    const isHalloween = theme === 'halloween';
     const catRef = useRef(null);
     const saucerRef = useRef(null);
     const beamRef = useRef(null);
@@ -139,11 +142,11 @@ export default function RulesAbduction() {
     }, []);
 
     return (
-        <svg className="cc-crew cc-abduct" viewBox="0 0 200 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+        <svg className={`cc-crew cc-abduct ${isHalloween ? 'cc-abduct-halloween' : ''}`} viewBox="0 0 200 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <polygon ref={beamRef} className="abduct-beam" points="0,0 0,0 0,0" />
-            <Cat elRef={catRef} />
+            {isHalloween ? <Ghost elRef={catRef} /> : <Cat elRef={catRef} />}
             <g ref={saucerRef}>
-                <Saucer />
+                {isHalloween ? <BroomWitch /> : <Saucer />}
             </g>
         </svg>
     );

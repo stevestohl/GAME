@@ -3,8 +3,8 @@ import RoundCatScene from './RoundCatScene.jsx';
 
 // 🎬 Between rounds: a title card on the TV ("Round 3") while the narrator calls it,
 // and "Next: Round 3" on the phones. `crew`: one of the Couch Cast crew deals with the cat along
-// the bottom of the TV (Core deck)
-export default function CouchCastRoundIntro({ round, totalRounds, isPhone = false, crew = false }) {
+// the bottom of the TV; on the Halloween deck (`crewTheme`), its crew deals with a tiny ghost
+export default function CouchCastRoundIntro({ round, totalRounds, isPhone = false, crew = false, crewTheme = 'core' }) {
     const isFinal = totalRounds && round >= totalRounds;
 
     if (isPhone) {
@@ -26,7 +26,7 @@ export default function CouchCastRoundIntro({ round, totalRounds, isPhone = fals
             </div>
             {crew && (
                 <div className="cc-round-scene">
-                    <RoundCatScene round={round} />
+                    <RoundCatScene round={round} theme={crewTheme} />
                 </div>
             )}
         </div>

@@ -14,8 +14,9 @@ export const RULES_NARRATION = [
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
 const NARRATION_GRACE_SECONDS = 20;
 
-// `crew`: the alien beams up the cat under the countdown (Couch Cast's Core deck)
-export default function CouchCastRules({ roomCode, crew = false }) {
+// `crew`: the alien beams up the cat under the countdown (Couch Cast; `crewTheme`: on the Halloween
+// deck, the witch makes off with the ghost)
+export default function CouchCastRules({ roomCode, crew = false, crewTheme = 'core' }) {
     const [timeLeft, setTimeLeft] = useState(30);
     
     // Add state to track device orientation for the overlay
@@ -150,7 +151,7 @@ export default function CouchCastRules({ roomCode, crew = false }) {
                                     {/* 🛸 Meanwhile, under the countdown... */}
                                     {crew && !isPortrait && (
                                         <div className="cc-rules-abduct">
-                                            <RulesAbduction />
+                                            <RulesAbduction theme={crewTheme} />
                                         </div>
                                     )}
                                     
