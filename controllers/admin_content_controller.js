@@ -169,7 +169,9 @@ export const listContent = async (req, res) => {
     }
 
     const limit = PAGE_SIZES.includes(Number(req.query.limit)) ? Number(req.query.limit) : 30;
-    const total = await model.countDocuments(match);
+    // strictQuery off: Mongoose would quietly drop a condition on anything not in the model's schema (like createdBy),
+    // and the filter (or worse, the deck limit) would show everything
+    const total = await model.countDocuments(match).setOptions({ strictQuery: false });
     const pages = Math.max(1, Math.ceil(total / limit));
     const page = Math.min(pages, Math.max(1, Number(req.query.page) || 1));
 
@@ -179,6 +181,7 @@ export const listContent = async (req, res) => {
 
     // Sort like a person would: capitals and small letters together, numbers in number order
     const docs = await model.find(match)
+        .setOptions({ strictQuery: false })
         .collation({ locale: 'en', strength: 2, numericOrdering: true })
         .sort({ [sortField]: dir, _id: 1 })
         .skip((page - 1) * limit)
