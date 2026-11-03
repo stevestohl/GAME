@@ -1291,6 +1291,9 @@
 .aa-leader.is-me { background: #ffd36e; }
 .aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */
+.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }
+
 /* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */
 .sn-stage {
   position: relative;

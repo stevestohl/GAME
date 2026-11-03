@@ -110,14 +110,18 @@ export default function MixupPlayer({ roomCode, playerName }) {
                     {isLeader && (
                         <div className="tc-leader-bar">
                             <span className="fw-bold text-dark small">👑 Room Leader</span>
-                            <Button variant="primary" className="fw-bold flex-grow-1" onClick={() => { setError(''); socket.emit('startGame', { roomCode }); }}>
-                                All in!
+                            <Button
+                                variant={players.length < room.minPlayers ? 'secondary' : 'primary'}
+                                className="fw-bold flex-grow-1"
+                                disabled={players.length < room.minPlayers}
+                                onClick={() => { setError(''); socket.emit('startGame', { roomCode }); }}
+                            >
+                                {players.length < room.minPlayers ? `Need ${room.minPlayers} players (${players.length} so far)` : 'All in!'}
                             </Button>
                         </div>
                     )}
                     <Frame title="You're In!">
                         {error && <Alert variant="warning" className="py-2">{error}</Alert>}
-                        {isLeader && players.length < room.minPlayers && <p className="small text-muted mb-1">You need at least {room.minPlayers} players.</p>}
                         {!isLeader && (
                             <div className="p-2 border rounded bg-light text-muted small">
                                 Waiting for <strong>{players.find((p) => p.id === room.hostId)?.name || 'the leader'}</strong> to start the game...

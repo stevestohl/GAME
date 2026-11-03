@@ -2,6 +2,14 @@ import ReshuffledCard from "../models/ReshuffledCard.js";
 import Temple_Trivia from "../models/Temple_Trivia.js";
 
 // Cleans up a deck name coming from the client; anything unusable becomes 'core'
+// 🎚️ Trivia levels: which to try, in order, when a level runs short ('mixed' takes anything)
+const LEVEL_ORDER = {
+    easy: ['easy', 'medium', 'hard'],
+    medium: ['medium', 'easy', 'hard'],
+    hard: ['hard', 'medium', 'easy'],
+};
+export const normalizeLevel = (level) => (Object.hasOwn(LEVEL_ORDER, level) ? level : 'mixed');
+
 export const normalizeExpansion = (expansion) => {
     return typeof expansion === 'string' && expansion.trim()
         ? expansion.trim().toLowerCase()
@@ -42,22 +50,34 @@ export const normalizeRounds = (rounds, fallback = 3, max = 20) => {
 
 // Draws random trivia questions from a deck (expansion): that deck's questions first,
 // then tops up from core if it doesn't have enough.
-export const drawTriviaQuestions = async (expansion, size) => {
+// `level`: 'easy', 'medium' or 'hard' tries that level first, then borrows from the closest level in the same
+// deck, then from core the same way. 'mixed' (the default) takes any level.
+export const drawTriviaQuestions = async (expansion, size, level = 'mixed') => {
     // Core also matches older questions saved without an expansion field
     const coreMatch = { $in: ['core', null] };
     const deck = normalizeExpansion(expansion);
     const isCore = deck === 'core';
+    const decks = isCore ? [coreMatch] : [deck, coreMatch];
+    const levels = LEVEL_ORDER[normalizeLevel(level)] || [null];
 
-    const questions = await Temple_Trivia.aggregate([
-        { $match: { expansion: isCore ? coreMatch : deck } },
-        { $sample: { size } }
-    ]);
+    const questions = [];
+    for (const expansionMatch of decks) {
+        for (const wanted of levels) {
+            if (questions.length >= size) break;
+            // (Older questions aren't tidy: "Easy", "easy, like Ricardo")
+            const difficulty = wanted ? { difficulty: { $regex: `^${wanted}`, $options: 'i' } } : {};
+            const found = await Temple_Trivia.aggregate([
+                { $match: { expansion: expansionMatch, ...difficulty, _id: { $nin: questions.map((q) => q._id) } } },
+                { $sample: { size: size - questions.length } },
+            ]);
+            questions.push(...found);
+        }
+    }
 
-    if (isCore || questions.length >= size) return questions;
-
-    const extras = await Temple_Trivia.aggregate([
-        { $match: { expansion: coreMatch } },
-        { $sample: { size: size - questions.length } }
-    ]);
-    return [...questions, ...extras];
+    // Any borrowed questions shouldn't all come last
+    for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    return questions;
 };

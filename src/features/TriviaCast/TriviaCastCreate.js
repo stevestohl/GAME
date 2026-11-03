@@ -5,8 +5,8 @@ import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "../CouchCast/lob
 
 
 // Called from the tap on a deck: creates the room and opens the TV screen
-export function handleCreateTriviaCast(navigate, setIsCreatingRoom, expansion = 'core', totalRounds = 5) {
-    console.log(`Request Trivia Cast room (deck: ${expansion}, questions: ${totalRounds})`);
+export function handleCreateTriviaCast(navigate, setIsCreatingRoom, expansion = 'core', totalRounds = 5, level = 'mixed') {
+    console.log(`Request Trivia Cast room (deck: ${expansion}, questions: ${totalRounds}, level: ${level})`);
 
     // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
     enterFullscreen();
@@ -23,7 +23,7 @@ export function handleCreateTriviaCast(navigate, setIsCreatingRoom, expansion = 
     }, 60000);
 
     const emitCreate = () => {
-        triviaCastSocket.emit('createRoom', { playerName: 'Caster', expansion, totalRounds });
+        triviaCastSocket.emit('createRoom', { playerName: 'Caster', expansion, totalRounds, level });
     };
 
     triviaCastSocket.off('roomCreated');

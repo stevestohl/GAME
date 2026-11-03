@@ -15,6 +15,7 @@ import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
 import CouchCastRoundIntro from '../CouchCast/CouchCastRoundIntro.jsx';
 import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
+import { FINALE_DRUMROLL_MS } from '../CouchCast/CouchCastFinale.jsx';
 import QuizFinale from './QuizFinale.jsx';
 import { QuizRoundScene, SCENE_MS as ROUND_SCENE_MS } from './QuizScenes.jsx';
 import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION, roundKicker, roundIntroLine } from './TriviaCastScreensTV.jsx';
@@ -24,6 +25,8 @@ import TriviaCastPlayer from './TriviaCastPlayer.jsx';
 import { scoreRecap } from '../../scoreRecap.js';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
+
+const CHAMPION_MOMENT_MS = 3500;   // 🏆 fireworks on the winner, after the narrator's done, before the curtain
 
 /**
  * 📺❔ Trivia Cast. One address, two jobs:
@@ -149,12 +152,14 @@ export default function TriviaCastManager() {
             // Read the question again, then the answer (the question is already cached, so it's instant)
             speak([room.question.text, `The answer is: ${room.correctAnswer}.`], code);
         } else if (voiceMoment === 'game-over') {
-            // 🎭 The final scores get read, then the curtain comes down
+            // 🥁 The narrator waits for the drum roll and announces the champion over the cheers, the fireworks
+            // get their moment, then the curtain comes down
             let isCurrent = true;
-            let timer;
-            Promise.resolve(recap ? speak(recap.spoken, code) : false).then((spoken) => {
-                if (isCurrent) timer = setTimeout(() => setShowFinale(true), spoken ? 1000 : 6000);
-            });
+            let timer = setTimeout(() => {
+                Promise.resolve(recap ? speak(recap.spoken, code) : false).then((spoken) => {
+                    if (isCurrent) timer = setTimeout(() => setShowFinale(true), spoken ? CHAMPION_MOMENT_MS : 7000);
+                });
+            }, FINALE_DRUMROLL_MS + 600);
             return () => {
                 isCurrent = false;
                 clearTimeout(timer);
@@ -247,6 +252,7 @@ export default function TriviaCastManager() {
                     <CouchCastScoreboardTV
                         players={playersArray}
                         isGameOver={room.isGameOver}
+                        celebrate
                         nextLabel="Next question coming up..."
                         headline={recap?.headline}
                         endActions={<GameOverActions onPlayAgain={handlePlayAgain} onGoHome={handleGoHome} />}

@@ -1,5 +1,5 @@
 import { guardCreateRoom } from '../db/gameVisibility.js';
-import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
+import { drawTriviaQuestions, normalizeExpansion, normalizeLevel, normalizeRounds } from "../db/drawCards.js";
 import { startRoomJanitor } from "./roomJanitor.js";
 /**
  * trivia_handler.js
@@ -12,7 +12,7 @@ const activeRooms = {};
 // How many questions make a game when the host doesn't choose
 const DEFAULT_QUESTIONS = 5;
 
-const createRoomLogic = (socket, roomsObject, expansion, totalRounds) => {  
+const createRoomLogic = (socket, roomsObject, expansion, totalRounds, level) => {  
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
     let finalRoomCode;
     do {   // never hand out a code that's already being played
@@ -27,6 +27,7 @@ const createRoomLogic = (socket, roomsObject, expansion, totalRounds) => {
     roomsObject[finalRoomCode] = {
         roomCode: finalRoomCode,
         expansion: expansion,       // which deck of questions
+        level: level,               // easy, medium, hard or mixed
         totalRounds: totalRounds,   // how many questions
         players: []
     };
@@ -53,7 +54,8 @@ export default function registerTriviaNamespace(namespace) {
                 socket,
                 activeRooms,
                 normalizeExpansion(data.expansion),
-                normalizeRounds(data.totalRounds, DEFAULT_QUESTIONS)
+                normalizeRounds(data.totalRounds, DEFAULT_QUESTIONS),
+                normalizeLevel(data.level)
             );
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
@@ -125,7 +127,7 @@ export default function registerTriviaNamespace(namespace) {
             if (currentRoom) {
                 try {
                     // A fresh random set from the room's deck, as many as the host asked for
-                    const dbQuestions = await drawTriviaQuestions(currentRoom.expansion, currentRoom.totalRounds || DEFAULT_QUESTIONS);
+                    const dbQuestions = await drawTriviaQuestions(currentRoom.expansion, currentRoom.totalRounds || DEFAULT_QUESTIONS, currentRoom.level);
 
                     if (!dbQuestions || dbQuestions.length === 0) {
                         return socket.emit('errorMsg', 'No trivia questions found in the database.');

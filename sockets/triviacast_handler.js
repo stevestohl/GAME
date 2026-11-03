@@ -4,7 +4,7 @@
 import { newAttack, attackHit, attackPlayerGone } from './avatarAttack.js';
 import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
-import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
+import { drawTriviaQuestions, normalizeExpansion, normalizeLevel, normalizeRounds } from "../db/drawCards.js";
 import TriviaAnswer from "../models/TriviaAnswer.js";
 import { startRoomJanitor } from "./roomJanitor.js";
 
@@ -407,6 +407,7 @@ export default function registerTriviaCastNamespace(TCNS) {
                 gameState: 'lobby',
                 expansion: normalizeExpansion(data.expansion),
                 totalRounds: normalizeRounds(data.totalRounds, DEFAULT_QUESTIONS),
+                level: normalizeLevel(data.level),
                 hostId: null,
                 questions: null,
                 questionIndex: 0,
@@ -524,7 +525,7 @@ export default function registerTriviaCastNamespace(TCNS) {
             if (socket.id !== room.hostId && !room.players[socket.id]?.isCaster) return;
 
             try {
-                const questions = await drawTriviaQuestions(room.expansion, room.totalRounds);
+                const questions = await drawTriviaQuestions(room.expansion, room.totalRounds, room.level);
                 if (!questions.length) return socket.emit('joinError', 'No trivia questions found in the database.');
 
                 room.questions = questions;

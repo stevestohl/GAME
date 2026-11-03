@@ -7,8 +7,9 @@ import { getRandomFunnyName } from '../../funnyNames.js';
 import { TRIVIA_DECKS, QUESTION_OPTIONS } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
 
-export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds = QUESTION_OPTIONS[0]) {
+export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds = QUESTION_OPTIONS[0], level = DEFAULT_LEVEL) {
     const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';    
     
     if (!socket) {
@@ -35,7 +36,7 @@ export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, 
     });
 
     console.log(`Requesting Trivia Room creation for: ${cleanName} (deck: ${expansion}, questions: ${totalRounds})`);
-    socket.emit('createRoom', { hostName: cleanName, expansion, totalRounds });
+    socket.emit('createRoom', { hostName: cleanName, expansion, totalRounds, level });
 
     socket.once('roomCreated', ({ roomCode }) => {
         console.log(`Trivia room created successfully! Code: ${roomCode}`);
@@ -51,6 +52,7 @@ export default function TriviaCreateScreen() {
     const [expansion, setExpansion] = useState('core');
     useKeepDeckVisible(visibleDecks('trivia', TRIVIA_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
+    const [level, setLevel] = useState(DEFAULT_LEVEL);
 
     useEffect(() => {
         const savedName = localStorage.getItem('templePlayerName');
@@ -68,7 +70,7 @@ export default function TriviaCreateScreen() {
         
         localStorage.setItem('templePlayerName', trimmed);
         // Fixed: Call handleCreateTriviaRoom instead of handleCreateTttRoom
-        handleCreateTriviaRoom(trimmed, navigate, setIsCreating, expansion, totalRounds);
+        handleCreateTriviaRoom(trimmed, navigate, setIsCreating, expansion, totalRounds, level);
     };
 
     return (
@@ -111,6 +113,14 @@ export default function TriviaCreateScreen() {
                                 onChange={setTotalRounds}
                                 disabled={isCreating}
                             />
+                        </Form.Group>
+
+                        {/* 🎚️ How hard */}
+                        <Form.Group className="mb-4 text-start">
+                            <Form.Label className="fw-bold small text-muted text-uppercase">
+                                What Level?
+                            </Form.Label>
+                            <LevelPicker value={level} onChange={setLevel} disabled={isCreating} />
                         </Form.Group>
 
                         {/* 🃏 Question deck (expansion) */}

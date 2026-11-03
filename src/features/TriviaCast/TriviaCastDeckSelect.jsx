@@ -7,6 +7,7 @@ import { handleCreateTriviaCast } from './TriviaCastCreate.js';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { TRIVIA_DECKS, QUESTION_OPTIONS } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
+import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
 
 /**
@@ -19,6 +20,7 @@ export default function TriviaCastDeckSelect() {
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
+    const [level, setLevel] = useState(DEFAULT_LEVEL);
 
     // Global Scroll Unlock Safety Net (same as Home)
     useEffect(() => {
@@ -77,6 +79,14 @@ export default function TriviaCastDeckSelect() {
 
                     <div className="d-flex align-items-center mt-3 mb-2">
                         <hr className="flex-grow-1 my-0 opacity-25" />
+                        <span className="mx-2 small fw-bold text-muted text-uppercase">What Level?</span>
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                    </div>
+
+                    <LevelPicker value={level} onChange={setLevel} disabled={isCreatingRoom} />
+
+                    <div className="d-flex align-items-center mt-3 mb-2">
+                        <hr className="flex-grow-1 my-0 opacity-25" />
                         <span className="mx-2 small fw-bold text-muted text-uppercase">Then Tap a Deck to Start</span>
                         <hr className="flex-grow-1 my-0 opacity-25" />
                     </div>
@@ -90,7 +100,7 @@ export default function TriviaCastDeckSelect() {
                                     deck={deck}
                                     index={i}
                                     disabled={isCreatingRoom}
-                                    onClick={() => handleCreateTriviaCast(navigate, setIsCreatingRoom, deck.id, totalRounds)}
+                                    onClick={() => handleCreateTriviaCast(navigate, setIsCreatingRoom, deck.id, totalRounds, level)}
                                     ariaLabel={`Create a Trivia Cast room with the ${deck.title} questions`}
                                 />
                             </Col>
