@@ -20,6 +20,10 @@ import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, HolidayCouch, Sleig
 // and Frankenstein's monster comes out of a castle in place of Sasquatch on his mountain. A black chandelier sways above, and
 // a few bats fly by now and then.
 //
+// 📽️ The robot (on every deck but Halloween) casts like a projector: a
+// cone of light from its visor lands on the QR code for a few seconds. That light is its own SVG, above the
+// cards, since it has to reach the code; it stops at the code's edge so it never covers it.
+//
 // 🎄 The Holiday deck runs the Core show with the crew dressed up (HolidayCrew.jsx). In place of
 // Sasquatch's mountain, Santa lands beside the couch in a sleigh that flies on its own.
 
@@ -37,7 +41,9 @@ const rand = (min, max) => min + Math.random() * (max - min);
 export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0, theme = 'core' }) {
     const isHalloween = theme === 'halloween';
     const isHoliday = theme === 'holiday';
+    const hasProjector = !isHalloween;   // the witch has a wand instead
     const svgRef = useRef(null);
+    const lightRef = useRef(null);
     const couchRef = useRef(null);
     const beamRef = useRef(null);
     const barkRef = useRef(null);
@@ -94,6 +100,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 seatY: floorY - SEAT_TOP * cs + HIP * s,   // feet position for a seated character
                 offRight: root.width + 120 * cs,
                 screenRight: screen.right - root.left,
+                qrRect: { right: qr.right - root.left, top: qr.top - root.top, bottom: qr.bottom - root.top },
                 qrMidY: qr.top - root.top + qr.height / 2,
                 mountain,
                 // Sasquatch up close: a head taller than the crew, but never taller than the couch's spot
@@ -103,6 +110,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 chandelierSize: Math.min(root.height * 0.19, root.width * 0.1) / 100,
             };
             svg.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
+            lightRef.current?.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
         };
 
         // --- The cast: a couch and three characters, each a position the frames below move around ---
@@ -201,8 +209,33 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             await hop(a, L.seatX[a.seat] - 8 * L.cs, L.floorY, 16, 380);
         };
 
-        // 📡 The robot holds up its phone (the witch, her wand): cast waves, a beam to the QR card, and the code lights up
+        // 📽️ The projector: light from the robot's visor to the QR code, which lights up; then it switches off
+        const project = async () => {
+            const robot = actors.caster;
+            const light = lightRef.current;
+            const x = robot.x - 6 * L.s;
+            const y = robot.y - 83 * L.s;
+            const { right, top, bottom } = L.qrRect;
+            light.querySelector('.crew-proj-cone').setAttribute('points', `${x},${y - 3 * L.s} ${right},${top} ${right},${bottom} ${x},${y + 3 * L.s}`);
+            const gradient = light.querySelector('linearGradient');
+            gradient.setAttribute('x1', x);
+            gradient.setAttribute('x2', right);
+            const lens = light.querySelector('.crew-proj-lens');
+            lens.setAttribute('cx', x);
+            lens.setAttribute('cy', y);
+            lens.setAttribute('r', 5 * L.s);
+            await wait(350);
+            light.classList.add('is-on');
+            await wait(700);
+            qrRef?.current?.classList.add('cc-qr-on');
+            await wait(3000);
+            light.classList.remove('is-on');
+            await wait(400);
+        };
+
+        // 📡 The witch holds up her wand: cast waves, a beam to the QR card, and the code lights up
         const cast = async () => {
+            if (hasProjector) { await project(); return; }
             const robot = actors.caster;
             robot.el.classList.add('crew-casting');
             await wait(350);
@@ -654,6 +687,19 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
     const [Caster, Chaser, Third, Pest, Hill, TheCouch, Visitor] = cast;
 
     return (
+        <>
+        {hasProjector && (
+            <svg ref={lightRef} className="cc-crew is-ready crew-proj" aria-hidden="true" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="crew-proj-light" gradientUnits="userSpaceOnUse" x1={0} y1={0} x2={1} y2={0}>
+                        <stop offset="0" stopColor="#fffbe0" stopOpacity={0.85} />
+                        <stop offset="1" stopColor="#fff6c9" stopOpacity={0.3} />
+                    </linearGradient>
+                </defs>
+                <polygon className="crew-proj-cone" points="0,0 0,0 0,0" fill="url(#crew-proj-light)" />
+                <circle className="crew-proj-lens" r={0} />
+            </svg>
+        )}
         <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''} ${isHoliday ? 'cc-crew-holiday' : ''}`} aria-hidden="true" preserveAspectRatio="none">
             {/* 📡 The cast beam (only while the robot is casting) */}
             <g ref={beamRef} className="crew-beam">
@@ -690,6 +736,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <text x={isHalloween ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">{isHalloween ? 'VIOLATION!' : 'WOOF!'}</text>
             </g>
         </svg>
+        </>
     );
 }
 
