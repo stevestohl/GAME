@@ -1206,6 +1206,24 @@
     flex-shrink: 0;
 }
 
+/* 👑 The room leader's start button in Trivia Cast's phone lobby: pinned just under the nav bar */
+.tc-leader-bar {
+  position: sticky;
+  top: 64px;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 450px;
+  margin: 0.25rem auto 0;
+  padding: 0.45rem 0.6rem;
+  background: #fff;
+  border: 2px solid #ffc107;
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
 /* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */
 .aa-card {
   margin-top: 0.5rem;

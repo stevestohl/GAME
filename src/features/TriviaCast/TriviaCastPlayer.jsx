@@ -125,25 +125,30 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
 
     switch (gameState) {
         case 'lobby':
-            return frame("You're In!", (
+            return (
                 <>
-                    {!me.isPlayerHost && (
-                        <div className="p-2 border border-dashed rounded bg-light text-muted small">
-                            Waiting for <strong>{leader?.name || 'the room leader'}</strong> to start the game...
-                        </div>
-                    )}
-                    {/* 👾 Something to do while everyone joins */}
-                    <AvatarAttack socket={socket} roomCode={roomCode} room={room} />
+                    {/* 👑 Pinned under the nav bar, so the leader can't scroll away from it, and well away from the game's controls */}
                     {me.isPlayerHost && (
-                        <div className="p-2 mt-2 border border-warning rounded bg-white shadow-sm">
-                            <p className="fw-bold text-dark small mb-2">👑 You are the Room Leader</p>
-                            <Button variant="success" size="lg" className="w-100 fw-bold" onClick={() => socket.emit('startGame', { roomCode })}>
+                        <div className="tc-leader-bar">
+                            <span className="fw-bold text-dark small">👑 Room Leader</span>
+                            <Button variant="success" className="fw-bold flex-grow-1" onClick={() => socket.emit('startGame', { roomCode })}>
                                 Everyone's in!
                             </Button>
                         </div>
                     )}
+                    {frame("You're In!", (
+                        <>
+                            {!me.isPlayerHost && (
+                                <div className="p-2 border border-dashed rounded bg-light text-muted small">
+                                    Waiting for <strong>{leader?.name || 'the room leader'}</strong> to start the game...
+                                </div>
+                            )}
+                            {/* 👾 Something to do while everyone joins */}
+                            <AvatarAttack socket={socket} roomCode={roomCode} room={room} />
+                        </>
+                    ))}
                 </>
-            ));
+            );
 
         case 'rules':
             return frame('Trivia Cast', (
