@@ -28,7 +28,25 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
 
-    <script src="/vendor.bundle.js"></script>
-    <script src="/employees.bundle.js"></script>
+    <!-- The web host tells browsers to keep .js files for 30 days. So ask "has this changed?" first (the host
+         answers quickly if not), or people would keep playing an old version after a new one is uploaded. -->
+    <script>
+      (function () {
+        var files = ['/vendor.bundle.js', '/employees.bundle.js'];
+        var start = function () {
+          files.forEach(function (src) {
+            var script = document.createElement('script');
+            script.src = src;
+            script.async = false;   // keeps them in order
+            document.body.appendChild(script);
+          });
+        };
+        if (!window.fetch || !window.Promise) return start();
+        // Can't check (offline, say): start anyway with whatever the browser has
+        Promise.all(files.map(function (src) {
+          return fetch(src, { cache: 'no-cache' }).then(function (response) { return response.blob(); });
+        })).then(start, start);
+      })();
+    </script>
 </body>
 </html>
