@@ -21,6 +21,17 @@ export const CARD_DECKS = [
         description: 'Spooky, silly and a little bit haunted. Perfect for fright night.',
         colors: ['#ff9a3d', '#5b2a86'],
     },
+    {
+        // Couch Cast only, for now (the server's list of each game's decks is db/gameCatalog.js)
+        id: 'jeffinitely',
+        title: 'Jeffinitely',
+        tag: 'Totally Retro',
+        icon: 'jeffinitely',
+        description: "Shag carpet, big hair and dial-up. Three decades of questionable decisions.",
+        colors: ['#ff5fa2', '#5b2a86'],
+        background: 'linear-gradient(160deg, #ff8a3d 0%, #ff4f9a 38%, #7b3fd1 70%, #18b6c9 100%)',
+        startsHidden: true,   // don't flash it at visitors before the server's answer arrives
+    },
 ];
 
 // Trivia (the trivia collection)

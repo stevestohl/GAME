@@ -1367,10 +1367,13 @@
 }
 .cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }
 
-/* Small phones: icons only in the pills, and just the logo, so the key fits */
-@media (max-width: 420px) {
+/* Phones: icons only in the pills, so everything fits on one line with the key */
+@media (max-width: 620px) {
     .gt-pill-label { display: none; }
     .gt-pill { padding: 8px 10px; }
+}
+/* Small phones: just the logo, too */
+@media (max-width: 420px) {
     .gt-brand-text { display: none; }
 }
 

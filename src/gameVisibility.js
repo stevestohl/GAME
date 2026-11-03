@@ -56,7 +56,7 @@ onAuthChange(() => {
 
 /** `decks` is a list from cardDecks.js. Each deck in the answer knows if it's `hidden` (a badge for the owner and admins). */
 const describeDecks = (entry, decks) => {
-    if (!entry) return decks;
+    if (!entry) return decks.filter((deck) => !deck.startsHidden);
     return decks.flatMap((deck) => {
         const known = entry.decks.find((d) => d.id === deck.id);
         return known ? [{ ...deck, hidden: known.hidden }] : [];

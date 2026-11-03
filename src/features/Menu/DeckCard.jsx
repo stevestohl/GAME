@@ -10,6 +10,35 @@ import React from 'react';
 
 // Glass artwork, keyed by the deck's `icon` in cardDecks.js
 const ICONS = {
+    // 🕺 Jeffinitely: the '70s rainbow, an '80s neon grid and a '90s squiggle, around a mixtape
+    jeffinitely: (
+        <>
+            {/* '70s: a big rainbow sun */}
+            <circle cx="50" cy="42" r="40" fill="#e8532b" />
+            <circle cx="50" cy="42" r="33" fill="#f59a23" />
+            <circle cx="50" cy="42" r="26" fill="#ffd23f" />
+            <circle cx="50" cy="42" r="19" fill="#2ec4b6" />
+            {/* '80s: a neon grid floor */}
+            <rect x="3" y="58" width="94" height="35" rx="3" fill="#1a1147" />
+            <path d="M 3 66 H 97 M 3 75 H 97 M 3 86 H 97 M 50 58 V 93 M 34 58 L 20 93 M 66 58 L 80 93 M 18 58 L -8 93 M 82 58 L 108 93" fill="none" stroke="#ff4fd8" strokeWidth="1.3" />
+            {/* A mixtape */}
+            <g transform="rotate(-6 50 56)">
+                <rect x="20" y="37" width="60" height="38" rx="4" fill="#1f1f2b" stroke="#fff" strokeWidth="2" />
+                <rect x="25" y="41" width="50" height="19" rx="2" fill="#fff6d8" />
+                <path d="M 25 45 H 75" stroke="#ff4f9a" strokeWidth="2.6" />
+                <path d="M 25 48.5 H 75" stroke="#2ec4b6" strokeWidth="2.6" />
+                <circle cx="38" cy="55" r="4" fill="#1f1f2b" />
+                <circle cx="62" cy="55" r="4" fill="#1f1f2b" />
+                <path d="M 42 55 H 58" stroke="#1f1f2b" strokeWidth="3" />
+                <path d="M 29 75 L 32 66 H 68 L 71 75" fill="#3a3a4d" stroke="#fff" strokeWidth="1.2" />
+            </g>
+            {/* '90s: a squiggle and some loud shapes */}
+            <path d="M 6 16 q 5 -8 10 0 t 10 0 t 10 0" fill="none" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" />
+            <path d="M 84 8 L 96 22 L 78 24 Z" fill="#7ee081" stroke="#1f1f2b" strokeWidth="1.5" strokeLinejoin="round" />
+            <circle cx="90" cy="52" r="5" fill="#ff4fd8" stroke="#1f1f2b" strokeWidth="1.5" />
+            <rect x="3" y="44" width="10" height="10" fill="#18b6c9" stroke="#1f1f2b" strokeWidth="1.5" transform="rotate(20 8 49)" />
+        </>
+    ),
     // Two fanned cards with a sparkle
     core: (
         <>
@@ -81,6 +110,7 @@ export default function DeckCard({ deck, index = 0, selected, disabled, onClick,
             style={{
                 '--deck-from': deck.colors[0],
                 '--deck-to': deck.colors[1],
+                ...(deck.background ? { background: deck.background } : {}),
                 '--shimmer-delay': `${index * 0.4}s`,
             }}
         >

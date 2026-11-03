@@ -19,7 +19,7 @@ const keyFor = (game, deck) => (deck ? `${game}/${deck}` : game);
 const isHidden = (map, game, deck) => {
     const saved = map.get(keyFor(game.id, deck));
     if (saved !== undefined) return saved;
-    return deck ? false : !!game.defaultHidden;
+    return !!(deck ? game.decks.find((d) => d.id === deck)?.defaultHidden : game.defaultHidden);
 };
 // The owner and admins can see hidden games (later, buyers would be a third kind of account: they can't)
 const canSeeHidden = (user) => !!user && (user.role === 'owner' || user.role === 'admin');
@@ -29,7 +29,7 @@ const describe = (map) => GAMES.map((game) => ({
     name: game.name,
     section: game.section,
     hidden: isHidden(map, game),
-    decks: game.decks.map((deck) => ({ ...deck, hidden: isHidden(map, game, deck.id) })),
+    decks: game.decks.map(({ id, name }) => ({ id, name, hidden: isHidden(map, game, id) })),
 }));
 
 /** The games and decks this person may see. Hidden ones aren't even mentioned to the public. */
