@@ -3,7 +3,7 @@
 // They're part of the soundtrack, so the caster's 🔇 music button silences them too.
 
 import { getAudioContext } from './chime.js';
-import { isMusicMuted } from './musicMute.js';
+import { isMusicMuted, onMusicMuteChange } from './musicMute.js';
 
 const midi = (note) => 440 * Math.pow(2, (note - 69) / 12);
 
@@ -167,4 +167,79 @@ export function playCelebration(seconds = 3) {
         osc.start(w);
         osc.stop(w + 0.55);
     });
+}
+
+// 🎺 The end credits' march: eight bars in C major, round and round until the credits finish.
+// Each bar: the horns' chord, then the tune as [beat in the bar, length in beats, note]
+const MARCH_BEAT = 0.5;          // seconds
+const MARCH_VOLUME = 0.8;
+const MARCH_DUCKED = 0.2;        // how much is left while the giant cat has the floor
+const C = [48, 55, 60, 64];
+const F = [48, 57, 60, 65];
+const G = [47, 55, 62, 67];
+const MARCH = [
+    [C, [[0, 0.33, 67], [0.33, 0.33, 67], [0.66, 0.34, 67], [1, 3, 72]]],
+    [C, [[0, 1, 76], [1, 0.5, 74], [1.5, 0.5, 72], [2, 2, 76]]],
+    [F, [[0, 1, 77], [1, 1, 76], [2, 2, 72]]],
+    [G, [[0, 0.5, 74], [0.5, 0.5, 76], [1, 1, 77], [2, 2, 79]]],
+    [F, [[0, 1, 81], [1, 0.5, 79], [1.5, 0.5, 77], [2, 2, 77]]],
+    [C, [[0, 1, 79], [1, 1, 76], [2, 2, 72]]],
+    [G, [[0, 1, 74], [1, 0.5, 76], [1.5, 0.5, 77], [2, 2, 79]]],
+    [C, [[0, 0.33, 79], [0.33, 0.33, 79], [0.66, 0.34, 79], [1, 3, 84]]],
+];
+
+let march = null;
+
+/** Starts the march, and returns the function that fades it out. The caster's 🔇 mutes it like the rest. */
+export function startCreditsMarch() {
+    const ctx = getAudioContext();
+    if (!ctx) return () => {};
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+
+    const out = ctx.createGain();
+    const level = () => (isMusicMuted() ? 0.0001 : MARCH_VOLUME);
+    out.gain.setValueAtTime(level(), ctx.currentTime);
+    out.connect(ctx.destination);
+    const stopWatchingMute = onMusicMuteChange(() => out.gain.setTargetAtTime(level(), ctx.currentTime, 0.05));
+    const me = { ctx, out, level };
+    march = me;
+
+    let bar = 0;
+    let barStart = ctx.currentTime + 0.05;
+    let timer = null;
+    // One bar at a time, a little ahead of the clock, so stopping leaves nothing queued up
+    const playBar = () => {
+        const [chord, tune] = MARCH[bar % MARCH.length];
+        const at = (beat) => barStart + beat * MARCH_BEAT;
+        [0, 2].forEach((beat) => {
+            chord.forEach((note) => horn(ctx, out, at(beat), note, 1.5 * MARCH_BEAT, 0.03));
+            kick(ctx, out, at(beat), 0.3);
+        });
+        [1, 3].forEach((beat) => noise(ctx, out, at(beat), { vol: 0.07, decay: 0.12, freq: 2200, q: 0.6 }));
+        if (bar % MARCH.length === 0) noise(ctx, out, at(0), { vol: 0.1, decay: 1.2, type: 'highpass', freq: 6000, q: 0.4 });
+        tune.forEach(([beat, length, note]) => horn(ctx, out, at(beat), note, length * MARCH_BEAT, 0.07));
+        bar += 1;
+        barStart += 4 * MARCH_BEAT;
+        timer = setTimeout(playBar, Math.max(0, (barStart - ctx.currentTime - 0.4) * 1000));
+    };
+    playBar();
+
+    return () => {
+        clearTimeout(timer);
+        stopWatchingMute();
+        if (march === me) march = null;
+        out.gain.cancelScheduledValues(ctx.currentTime);
+        out.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.25);
+        setTimeout(() => out.disconnect(), 2500);
+    };
+}
+
+/** Drop the march for a moment, so a sound effect (the giant cat's meow) comes through */
+export function duckCreditsMarch(seconds) {
+    if (!march) return;
+    const { ctx, out, level } = march;
+    const now = ctx.currentTime;
+    out.gain.cancelScheduledValues(now);
+    out.gain.setTargetAtTime(level() * MARCH_DUCKED, now, 0.04);
+    out.gain.setTargetAtTime(level(), now + seconds, 0.2);
 }

@@ -8598,11 +8598,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CouchCrew.jsx */ "./src/features/CouchCast/CouchCrew.jsx");
+/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
+/* harmony import */ var _celebrationSounds_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../celebrationSounds.js */ "./src/celebrationSounds.js");
+/* harmony import */ var _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CouchCrew.jsx */ "./src/features/CouchCast/CouchCrew.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -8619,6 +8629,78 @@ var GIANT = 4.5; // the giant cat's size: about half the screen high
 var GIANT_CHANCE = 1 / 3;
 var START_MS = 1500; // let the credits get going first
 
+/** 😾 One long, low MEOW from the giant cat, made in the browser (no audio file needed) */
+function playMeow() {
+  (0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_2__.duckCreditsMarch)(1.3);
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+  var t0 = ctx.currentTime + 0.02;
+  var at = function at(seconds) {
+    return t0 + seconds;
+  };
+
+  // The voice: up into the "ee", then a long slide down through the "ow"
+  var voice = ctx.createOscillator();
+  voice.type = 'sawtooth';
+  voice.frequency.setValueAtTime(190, at(0));
+  voice.frequency.exponentialRampToValueAtTime(340, at(0.28));
+  voice.frequency.setValueAtTime(340, at(0.42));
+  voice.frequency.exponentialRampToValueAtTime(150, at(1.25));
+
+  // A wobble in the pitch and a rasp in the throat: this is a big animal
+  var wobble = ctx.createOscillator();
+  var wobbleDepth = ctx.createGain();
+  wobble.frequency.value = 6;
+  wobbleDepth.gain.value = 7;
+  wobble.connect(wobbleDepth);
+  wobbleDepth.connect(voice.frequency);
+  var rasp = ctx.createOscillator();
+  var raspDepth = ctx.createGain();
+  var throat = ctx.createGain();
+  rasp.frequency.value = 31;
+  raspDepth.gain.value = 0.22;
+  throat.gain.value = 0.78;
+  rasp.connect(raspDepth);
+  raspDepth.connect(throat.gain);
+
+  // The mouth opening and closing: "m" to "ee" to "ow", shaped by two resonances
+  var volume = ctx.createGain();
+  [{
+    hz: [[500, 0], [850, 0.3], [950, 0.5], [420, 1.25]],
+    gain: 1
+  }, {
+    hz: [[1100, 0], [2300, 0.3], [2000, 0.55], [800, 1.25]],
+    gain: 0.55
+  }].forEach(function (_ref) {
+    var hz = _ref.hz,
+      gain = _ref.gain;
+    var mouth = ctx.createBiquadFilter();
+    var level = ctx.createGain();
+    mouth.type = 'bandpass';
+    mouth.Q.value = 5;
+    level.gain.value = gain;
+    hz.forEach(function (_ref2, i) {
+      var _ref3 = _slicedToArray(_ref2, 2),
+        value = _ref3[0],
+        when = _ref3[1];
+      if (i === 0) mouth.frequency.setValueAtTime(value, at(when));else mouth.frequency.linearRampToValueAtTime(value, at(when));
+    });
+    throat.connect(mouth);
+    mouth.connect(level);
+    level.connect(volume);
+  });
+  volume.gain.setValueAtTime(0.0001, at(0));
+  volume.gain.exponentialRampToValueAtTime(1.1, at(0.12));
+  volume.gain.setValueAtTime(1.1, at(0.75));
+  volume.gain.exponentialRampToValueAtTime(0.0001, at(1.3));
+  voice.connect(throat);
+  volume.connect(ctx.destination);
+  [voice, wobble, rasp].forEach(function (osc) {
+    osc.start(at(0));
+    osc.stop(at(1.35));
+  });
+}
 function CreditsChase() {
   var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var robotRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
@@ -8686,7 +8768,7 @@ function CreditsChase() {
       });
     };
     var walk = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(a, x, ms) {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(a, x, ms) {
         var gait,
           from,
           _args = arguments;
@@ -8713,7 +8795,7 @@ function CreditsChase() {
         }, _callee);
       }));
       return function walk(_x, _x2, _x3) {
-        return _ref.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       };
     }();
     var hop = function hop(a) {
@@ -8734,7 +8816,7 @@ function CreditsChase() {
 
     // The cat strolls on and stops for a swat at nothing, then the crew comes running and it bolts
     var opening = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var bark;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
@@ -8765,13 +8847,13 @@ function CreditsChase() {
         }, _callee2);
       }));
       return function opening() {
-        return _ref2.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       };
     }();
 
     // 🐕🤖👽 Off they all go, and that's the end of that
     var chaseScene = /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -8789,13 +8871,13 @@ function CreditsChase() {
         }, _callee3);
       }));
       return function chaseScene() {
-        return _ref3.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       };
     }();
 
     // 🐈‍⬛ ...until the floor starts shaking, and the cat comes back with a much bigger cat
     var giantScene = /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var ride, from, away;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
@@ -8834,20 +8916,21 @@ function CreditsChase() {
                 giant.el.classList.remove('crew-walking');
                 svgRef.current.classList.remove('is-rumbling');
                 meowRef.current.classList.add('is-on');
-                _context4.next = 20;
+                playMeow();
+                _context4.next = 21;
                 return Promise.all(crew.map(function (a) {
                   return hop(a, 300, 22);
                 }));
-              case 20:
-                _context4.next = 22;
+              case 21:
+                _context4.next = 23;
                 return wait(250);
-              case 22:
+              case 23:
                 meowRef.current.classList.remove('is-on');
 
                 // Run! The dog was closest, so it's last out
                 away = giant.x;
                 giant.el.classList.add('crew-running');
-                _context4.next = 27;
+                _context4.next = 28;
                 return Promise.all([walk(alien, OFF_R + 30, 1100), wait(80).then(function () {
                   return walk(robot, OFF_R + 30, 1200);
                 }), wait(160).then(function () {
@@ -8859,7 +8942,7 @@ function CreditsChase() {
                     ride();
                   });
                 })]);
-              case 27:
+              case 28:
               case "end":
                 return _context4.stop();
             }
@@ -8867,7 +8950,7 @@ function CreditsChase() {
         }, _callee4);
       }));
       return function giantScene() {
-        return _ref4.apply(this, arguments);
+        return _ref7.apply(this, arguments);
       };
     }();
     [].concat(crew, [cat, giant]).forEach(draw);
@@ -8893,15 +8976,15 @@ function CreditsChase() {
     "aria-hidden": "true"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     className: "crew-world"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Cat, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Cat, {
     elRef: catRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Alien, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Alien, {
     elRef: alienRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Robot, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Robot, {
     elRef: robotRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Dog, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Dog, {
     elRef: dogRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Cat, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Cat, {
     elRef: giantRef
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: barkRef,
@@ -8909,7 +8992,7 @@ function CreditsChase() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     d: bubble,
     fill: "#fff",
-    stroke: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.INK,
+    stroke: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.INK,
     strokeWidth: 2.4,
     strokeLinejoin: "round"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
@@ -8918,7 +9001,7 @@ function CreditsChase() {
     textAnchor: "middle",
     fontSize: 13,
     fontWeight: 900,
-    fill: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.INK,
+    fill: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.INK,
     fontFamily: "system-ui, sans-serif"
   }, "WOOF!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: meowRef,
@@ -8927,7 +9010,7 @@ function CreditsChase() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     d: bubble,
     fill: "#fff",
-    stroke: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.INK,
+    stroke: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.INK,
     strokeWidth: 2.4,
     strokeLinejoin: "round"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
@@ -8936,7 +9019,7 @@ function CreditsChase() {
     textAnchor: "middle",
     fontSize: 13,
     fontWeight: 900,
-    fill: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.INK,
+    fill: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.INK,
     fontFamily: "system-ui, sans-serif"
   }, "MEOW.")));
 }
@@ -9763,13 +9846,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _CreditsChase_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreditsChase.jsx */ "./src/features/CouchCast/CreditsChase.jsx");
+/* harmony import */ var _celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../celebrationSounds.js */ "./src/celebrationSounds.js");
+
 
 
 
 
 // 🎬 The end credits: after the final scores are read, the lobby's Tower Party results roll up the
 // screen like the end of a movie (on the TV and every phone). Nobody played? No credits.
-// `chase`: the crew chases the cat along the bottom while they roll (Couch Cast's Core deck, on the TV)
+// `chase`: the crew chases the cat along the bottom to a march while they roll (Couch Cast's Core deck, on the TV)
 function TowerCredits(_ref) {
   var _window$matchMedia, _window;
   var tower = _ref.tower,
@@ -9781,6 +9866,10 @@ function TowerCredits(_ref) {
   }).sort(function (a, b) {
     return b.stacked - a.stacked || b.perfects - a.perfects;
   });
+  var playMarch = chase && crew.length > 0;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return playMarch ? (0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.startCreditsMarch)() : undefined;
+  }, [playMarch]);
   if (!crew.length) return null;
 
   // Longer credits for a bigger crew, so everyone can read their line
@@ -27545,7 +27634,9 @@ var LIST_ROUND_OPTIONS = [5, 7, 10]; // List Cast and Listopia: rounds
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "duckCreditsMarch": () => (/* binding */ duckCreditsMarch),
 /* harmony export */   "playCelebration": () => (/* binding */ playCelebration),
+/* harmony export */   "startCreditsMarch": () => (/* binding */ startCreditsMarch),
 /* harmony export */   "stopCelebration": () => (/* binding */ stopCelebration)
 /* harmony export */ });
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chime.js */ "./src/chime.js");
@@ -27785,6 +27876,106 @@ function playCelebration() {
     osc.start(w);
     osc.stop(w + 0.55);
   });
+}
+
+// 🎺 The end credits' march: eight bars in C major, round and round until the credits finish.
+// Each bar: the horns' chord, then the tune as [beat in the bar, length in beats, note]
+var MARCH_BEAT = 0.5; // seconds
+var MARCH_VOLUME = 0.8;
+var MARCH_DUCKED = 0.2; // how much is left while the giant cat has the floor
+var C = [48, 55, 60, 64];
+var F = [48, 57, 60, 65];
+var G = [47, 55, 62, 67];
+var MARCH = [[C, [[0, 0.33, 67], [0.33, 0.33, 67], [0.66, 0.34, 67], [1, 3, 72]]], [C, [[0, 1, 76], [1, 0.5, 74], [1.5, 0.5, 72], [2, 2, 76]]], [F, [[0, 1, 77], [1, 1, 76], [2, 2, 72]]], [G, [[0, 0.5, 74], [0.5, 0.5, 76], [1, 1, 77], [2, 2, 79]]], [F, [[0, 1, 81], [1, 0.5, 79], [1.5, 0.5, 77], [2, 2, 77]]], [C, [[0, 1, 79], [1, 1, 76], [2, 2, 72]]], [G, [[0, 1, 74], [1, 0.5, 76], [1.5, 0.5, 77], [2, 2, 79]]], [C, [[0, 0.33, 79], [0.33, 0.33, 79], [0.66, 0.34, 79], [1, 3, 84]]]];
+var march = null;
+
+/** Starts the march, and returns the function that fades it out. The caster's 🔇 mutes it like the rest. */
+function startCreditsMarch() {
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (!ctx) return function () {};
+  if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+  var out = ctx.createGain();
+  var level = function level() {
+    return (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.isMusicMuted)() ? 0.0001 : MARCH_VOLUME;
+  };
+  out.gain.setValueAtTime(level(), ctx.currentTime);
+  out.connect(ctx.destination);
+  var stopWatchingMute = (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.onMusicMuteChange)(function () {
+    return out.gain.setTargetAtTime(level(), ctx.currentTime, 0.05);
+  });
+  var me = {
+    ctx: ctx,
+    out: out,
+    level: level
+  };
+  march = me;
+  var bar = 0;
+  var barStart = ctx.currentTime + 0.05;
+  var timer = null;
+  // One bar at a time, a little ahead of the clock, so stopping leaves nothing queued up
+  var playBar = function playBar() {
+    var _MARCH = _slicedToArray(MARCH[bar % MARCH.length], 2),
+      chord = _MARCH[0],
+      tune = _MARCH[1];
+    var at = function at(beat) {
+      return barStart + beat * MARCH_BEAT;
+    };
+    [0, 2].forEach(function (beat) {
+      chord.forEach(function (note) {
+        return horn(ctx, out, at(beat), note, 1.5 * MARCH_BEAT, 0.03);
+      });
+      kick(ctx, out, at(beat), 0.3);
+    });
+    [1, 3].forEach(function (beat) {
+      return noise(ctx, out, at(beat), {
+        vol: 0.07,
+        decay: 0.12,
+        freq: 2200,
+        q: 0.6
+      });
+    });
+    if (bar % MARCH.length === 0) noise(ctx, out, at(0), {
+      vol: 0.1,
+      decay: 1.2,
+      type: 'highpass',
+      freq: 6000,
+      q: 0.4
+    });
+    tune.forEach(function (_ref4) {
+      var _ref5 = _slicedToArray(_ref4, 3),
+        beat = _ref5[0],
+        length = _ref5[1],
+        note = _ref5[2];
+      return horn(ctx, out, at(beat), note, length * MARCH_BEAT, 0.07);
+    });
+    bar += 1;
+    barStart += 4 * MARCH_BEAT;
+    timer = setTimeout(playBar, Math.max(0, (barStart - ctx.currentTime - 0.4) * 1000));
+  };
+  playBar();
+  return function () {
+    clearTimeout(timer);
+    stopWatchingMute();
+    if (march === me) march = null;
+    out.gain.cancelScheduledValues(ctx.currentTime);
+    out.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.25);
+    setTimeout(function () {
+      return out.disconnect();
+    }, 2500);
+  };
+}
+
+/** Drop the march for a moment, so a sound effect (the giant cat's meow) comes through */
+function duckCreditsMarch(seconds) {
+  if (!march) return;
+  var _march = march,
+    ctx = _march.ctx,
+    out = _march.out,
+    level = _march.level;
+  var now = ctx.currentTime;
+  out.gain.cancelScheduledValues(now);
+  out.gain.setTargetAtTime(level() * MARCH_DUCKED, now, 0.04);
+  out.gain.setTargetAtTime(level(), now + seconds, 0.2);
 }
 
 /***/ }),

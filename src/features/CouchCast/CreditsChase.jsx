@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { getAudioContext } from '../../chime.js';
+import { duckCreditsMarch } from '../../celebrationSounds.js';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
 
 // 🐈 The crew's last bit, along the bottom of the end credits (Core deck, on the TV): the cat strolls
@@ -13,6 +15,73 @@ const CAT = 0.7;         // the cat's size
 const GIANT = 4.5;       // the giant cat's size: about half the screen high
 const GIANT_CHANCE = 1 / 3;
 const START_MS = 1500;   // let the credits get going first
+
+/** 😾 One long, low MEOW from the giant cat, made in the browser (no audio file needed) */
+function playMeow() {
+    duckCreditsMarch(1.3);
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    const t0 = ctx.currentTime + 0.02;
+    const at = (seconds) => t0 + seconds;
+
+    // The voice: up into the "ee", then a long slide down through the "ow"
+    const voice = ctx.createOscillator();
+    voice.type = 'sawtooth';
+    voice.frequency.setValueAtTime(190, at(0));
+    voice.frequency.exponentialRampToValueAtTime(340, at(0.28));
+    voice.frequency.setValueAtTime(340, at(0.42));
+    voice.frequency.exponentialRampToValueAtTime(150, at(1.25));
+
+    // A wobble in the pitch and a rasp in the throat: this is a big animal
+    const wobble = ctx.createOscillator();
+    const wobbleDepth = ctx.createGain();
+    wobble.frequency.value = 6;
+    wobbleDepth.gain.value = 7;
+    wobble.connect(wobbleDepth);
+    wobbleDepth.connect(voice.frequency);
+
+    const rasp = ctx.createOscillator();
+    const raspDepth = ctx.createGain();
+    const throat = ctx.createGain();
+    rasp.frequency.value = 31;
+    raspDepth.gain.value = 0.22;
+    throat.gain.value = 0.78;
+    rasp.connect(raspDepth);
+    raspDepth.connect(throat.gain);
+
+    // The mouth opening and closing: "m" to "ee" to "ow", shaped by two resonances
+    const volume = ctx.createGain();
+    [
+        { hz: [[500, 0], [850, 0.3], [950, 0.5], [420, 1.25]], gain: 1 },
+        { hz: [[1100, 0], [2300, 0.3], [2000, 0.55], [800, 1.25]], gain: 0.55 },
+    ].forEach(({ hz, gain }) => {
+        const mouth = ctx.createBiquadFilter();
+        const level = ctx.createGain();
+        mouth.type = 'bandpass';
+        mouth.Q.value = 5;
+        level.gain.value = gain;
+        hz.forEach(([value, when], i) => {
+            if (i === 0) mouth.frequency.setValueAtTime(value, at(when));
+            else mouth.frequency.linearRampToValueAtTime(value, at(when));
+        });
+        throat.connect(mouth);
+        mouth.connect(level);
+        level.connect(volume);
+    });
+
+    volume.gain.setValueAtTime(0.0001, at(0));
+    volume.gain.exponentialRampToValueAtTime(1.1, at(0.12));
+    volume.gain.setValueAtTime(1.1, at(0.75));
+    volume.gain.exponentialRampToValueAtTime(0.0001, at(1.3));
+
+    voice.connect(throat);
+    volume.connect(ctx.destination);
+    [voice, wobble, rasp].forEach((osc) => {
+        osc.start(at(0));
+        osc.stop(at(1.35));
+    });
+}
 
 export default function CreditsChase() {
     const svgRef = useRef(null);
@@ -115,6 +184,7 @@ export default function CreditsChase() {
             svgRef.current.classList.remove('is-rumbling');
 
             meowRef.current.classList.add('is-on');
+            playMeow();
             await Promise.all(crew.map((a) => hop(a, 300, 22)));
             await wait(250);
             meowRef.current.classList.remove('is-on');
