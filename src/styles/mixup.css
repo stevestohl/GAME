@@ -238,3 +238,5 @@
 .mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
 .mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }
 .mx-phone-topic span { font-size: 0.62rem; }
+.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }
+.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }

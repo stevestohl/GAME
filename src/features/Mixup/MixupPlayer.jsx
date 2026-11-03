@@ -5,7 +5,7 @@ import { mixupSocket as socket } from '../../socket.js';
 import { playChime } from '../../chime.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { DrawingPad, DrawingView } from './DrawingCanvas.jsx';
-import { MemeImage, ROUND_LOOKS, useCountdown } from './MixupScreensTV.jsx';
+import { MemeImage, ROUND_LOOKS, useCountdown, roundKicker } from './MixupScreensTV.jsx';
 import SnakeSnack from './SnakeSnack.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
 import '../../styles/mixup.css';
@@ -115,7 +115,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
     const round = room.round;
     const isLeader = room.hostId === socket.id;
     const players = Object.values(room.players).filter((p) => !p.isCaster && p.isConnected);
-    const roundTitle = round ? `Round ${room.currentRound} of ${room.totalRounds}` : 'Temple Mix Up';
+    const roundTitle = round ? ROUND_LOOKS[round.type].title : 'Temple Mix Up';
     const clock = timeLeft !== null && <span className={`mx-phone-clock ${timeLeft <= 10 ? 'low' : ''}`}>⏱️ {timeLeft}s</span>;
 
     switch (room.gameState) {
@@ -166,7 +166,8 @@ export default function MixupPlayer({ roomCode, playerName }) {
             const look = ROUND_LOOKS[round.type];
             const amDrawing = round.type === 'draw' && round.drawerId === socket.id;
             return (
-                <Frame title={roundTitle}>
+                <Frame title={`Round ${room.currentRound}`}>
+                    {roundKicker(room.currentRound, room.totalRounds) && <div className="cc-round-intro-final mb-2">{roundKicker(room.currentRound, room.totalRounds)}</div>}
                     <div className="mx-phone-intro-icon">{look.icon}</div>
                     <h2 className="fw-bold">{look.title}</h2>
                     <p className="text-muted mb-0">
@@ -342,6 +343,15 @@ export default function MixupPlayer({ roomCode, playerName }) {
                 </Frame>
             );
         }
+
+        case 'nobody':
+            return (
+                <Frame title={roundTitle}>
+                    <div className="mx-phone-intro-icon">🥺</div>
+                    <h3 className="fw-bold">Awww...</h3>
+                    <p className="text-muted mb-0">Is it just me here? On to the {room.currentRound >= room.totalRounds ? 'scoreboard' : 'next round'}.</p>
+                </Frame>
+            );
 
         // ===================== SCORES =====================
         case 'scoreboard': {

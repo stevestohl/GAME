@@ -2499,19 +2499,23 @@ html.cast-screen {
 @keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }
 @keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }
 
-/* 🕵️ Temple Mix Up's lobby show (SpyShow.jsx): puffs of smoke, shifty eyes and a very careful walk */
-.cc-crew .spy-smoke { opacity: 0; pointer-events: none; }
-.cc-crew .spy-smoke.is-on { animation: spy-puff 0.65s ease-out; }
-@keyframes spy-puff {
-  0% { opacity: 0; transform-origin: 0 0; }
-  18% { opacity: 1; }
-  60% { opacity: 0.9; }
-  100% { opacity: 0; }
-}
+/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */
 .cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }
 @keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }
-.cc-crew .spy-tiptoe.crew-walking .crew-leg-l { animation-duration: 0.5s; }
-.cc-crew .spy-tiptoe.crew-walking .crew-leg-r { animation-duration: 0.5s; }
+.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }
+.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }
+@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }
+.cc-crew .spy-siren-blue { animation-delay: 0.21s; }
+@keyframes spy-siren { 50% { opacity: 0.15; } }
+.cc-crew .spy-car-prisoners { display: none; }
+.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }
+.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }
+@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }
+/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */
+.cc-crew.spy-rules-show { z-index: 5; }
+.mx-rules-with-spies { padding-bottom: 17vh !important; }
+.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }
 
 /* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */
 .qf-finale {

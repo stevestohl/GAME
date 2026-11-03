@@ -15,7 +15,7 @@ import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
 import CouchCastCasterControls from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
-import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, MatchTV, MIXUP_RULES_NARRATION, ROUND_LOOKS } from './MixupScreensTV.jsx';
+import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, MatchTV, NobodyTV, MIXUP_RULES_NARRATION, ROUND_LOOKS, roundKicker, nobodyLine } from './MixupScreensTV.jsx';
 import MixupPlayer from './MixupPlayer.jsx';
 import { SnakeCredits } from './SnakeSnack.jsx';
 import { usePlayerSounds, useTvChime } from '../../playerSounds.js';
@@ -47,9 +47,12 @@ export default function MixupManager() {
 // What the narrator says to open each round
 const introLine = (room) => {
     const round = room.round;
-    if (round.type === 'meme') return `Round ${room.currentRound}. Meme time! Write the funniest caption you can.`;
-    if (round.type === 'draw') return `Round ${room.currentRound}. Pictionary! ${round.drawerName}, you're drawing. Everyone else, get guessing!`;
-    return `Round ${room.currentRound}. Threefold! Match as many people as you can.`;
+    const kicker = roundKicker(room.currentRound, room.totalRounds);
+    const opening = kicker === 'Final round!' ? 'Final round!'
+        : `${kicker === '⅓ of the way there!' ? 'A third of the way there! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! ' : ''}Round ${room.currentRound}.`;
+    if (round.type === 'meme') return `${opening} Meme time! Write the funniest caption you can.`;
+    if (round.type === 'draw') return `${opening} Pictionary! ${round.drawerName}, you're drawing. Everyone else, get guessing!`;
+    return `${opening} Threefold! Match as many people as you can.`;
 };
 
 const lobbyTrack = lobbyTrackFor('mixup');
@@ -112,6 +115,7 @@ function MixupTV({ roomCode, casterName }) {
     const n = room?.currentRound;
     let voiceMoment = null;
     if (gameState === 'intro' && room.round) voiceMoment = `intro-${n}`;
+    else if (gameState === 'nobody') voiceMoment = `nobody-${n}`;
     else if (gameState === 'meme_vote') voiceMoment = `vote-${n}`;
     else if (gameState === 'meme_results') voiceMoment = `meme-results-${n}`;
     else if (gameState === 'draw_results') voiceMoment = `draw-results-${n}`;
@@ -126,6 +130,8 @@ function MixupTV({ roomCode, casterName }) {
 
         if (voiceMoment.startsWith('intro')) {
             speak(introLine(room), code);
+        } else if (voiceMoment.startsWith('nobody')) {
+            speak(nobodyLine(n, room.totalRounds), code);
         } else if (voiceMoment.startsWith('vote')) {
             speak('Time to vote! Pick the funniest caption. Not your own!', code);
         } else if (voiceMoment.startsWith('meme-results')) {
@@ -216,6 +222,8 @@ function MixupTV({ roomCode, casterName }) {
             case 'draw':
             case 'draw_results':
                 return <DrawTV room={room} />;
+            case 'nobody':
+                return <NobodyTV room={room} />;
             case 'match_write':
             case 'match_compare':
             case 'match_results':

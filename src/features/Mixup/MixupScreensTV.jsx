@@ -4,6 +4,7 @@ import { mixupSocket as socket } from '../../socket.js';
 import { speak, stopVoice } from '../../voice.js';
 import { DrawingView } from './DrawingCanvas.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
+import { SpyRulesShow } from './SpyShow.jsx';
 import '../../styles/mixup.css';
 
 // 🎙️ What the host voice says while the rules are on screen
@@ -23,6 +24,15 @@ export const ROUND_LOOKS = {
     draw: { icon: '✏️', title: 'Draw It!', blurb: 'One draws, everyone else guesses. First right guess wins!' },
     match: { icon: '🤝', title: 'Match It!', blurb: 'Write three answers, and match as many people as you can.' },
 };
+
+// 🎬 What a round's bumper says above the round number: a third of the way, two thirds, the last one
+export const roundKicker = (round, total) => {
+    if (round >= total) return 'Final round!';
+    if (round - 1 === total / 3) return '⅓ of the way there!';
+    if (round - 1 === (total * 2) / 3) return '⅔ of the way there!';
+    return null;
+};
+export const nobodyLine = (round, total) => `Awww... is it just me here? On to the ${round >= total ? 'scoreboard' : 'next round'}.`;
 
 export function useCountdown(endTime) {
     const [timeLeft, setTimeLeft] = useState(null);
@@ -101,7 +111,8 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
 
     return (
         <div className="fullscreen-gameplay-container">
-            <div className="d-flex flex-column h-100 p-3 pb-4 w-100">
+            <SpyRulesShow />
+            <div className="d-flex flex-column h-100 p-3 w-100 mx-rules-with-spies">
                 <h2 className="fullscreen-gameplay-header text-center">How To Play Temple Mix Up!</h2>
                 <div className="mx-rules-grid flex-grow-1" style={{ minHeight: 0 }}>
                     {['meme', 'draw', 'match'].map((type, i) => (
@@ -136,16 +147,17 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
 export function RoundIntroTV({ room }) {
     const round = room.round;
     const look = ROUND_LOOKS[round.type];
+    const kicker = roundKicker(room.currentRound, room.totalRounds);
     return (
         <div className="fullscreen-gameplay-container justify-content-center">
             <div className="mx-intro">
-                <div className="mx-intro-round">Round {room.currentRound} of {room.totalRounds}</div>
+                {kicker && <div className="cc-round-intro-final">{kicker}</div>}
+                <div className="mx-intro-bumper">Round {room.currentRound}</div>
                 <div className="mx-intro-icon">{look.icon}</div>
                 <div className="mx-intro-title">{look.title}</div>
                 <div className="mx-intro-blurb">
                     {round.type === 'draw' ? <><strong>{round.drawerName}</strong> is drawing. Everyone else, get guessing!</> : look.blurb}
                 </div>
-                <div className="mx-intro-count">{look.title.replace('!', '')} {round.typeNumber} of {round.typeCount}</div>
             </div>
         </div>
     );
@@ -170,7 +182,7 @@ export function MemeTV({ room }) {
             <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: '1400px' }}>
                 <h2 className="fullscreen-gameplay-header mb-0">
                     {heading}
-                    <span className="tc-category">Round {room.currentRound} of {room.totalRounds} · Meme {round.typeNumber}/{round.typeCount}</span>
+                    <span className="tc-category">Meme It!</span>
                 </h2>
 
                 <div className="mx-meme-row flex-grow-1" style={{ minHeight: 0 }}>
@@ -236,7 +248,7 @@ export function DrawTV({ room }) {
                     {isResults
                         ? (round.guessedBy ? `${round.guessedBy} got it!` : "Time's up!")
                         : `${round.drawerName} is drawing...`}
-                    <span className="tc-category">Round {room.currentRound} of {room.totalRounds} · Pictionary {round.typeNumber}/{round.typeCount}</span>
+                    <span className="tc-category">Draw It!</span>
                 </h2>
 
                 <div className="mx-draw-row flex-grow-1" style={{ minHeight: 0 }}>
@@ -286,7 +298,7 @@ export function MatchTV({ room }) {
     return (
         <div className="fullscreen-gameplay-container">
             <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: '1150px' }}>
-                <h2 className="fullscreen-gameplay-header mb-0">Threefold {round.typeNumber} of {round.typeCount}</h2>
+                <h2 className="fullscreen-gameplay-header mb-0">Threefold</h2>
                 <div className="mx-match-topic">
                     <span className="mx-match-label">The list</span>
                     {round.topic}
@@ -321,6 +333,22 @@ export function MatchTV({ room }) {
                         <ClockStrip endTime={room.endTime} left={`${doneCount} of ${players.length} done`} />
                     </div>
                 )}
+            </div>
+        </div>
+    );
+}
+
+// ======================================================================================
+// 😢 Nobody answered
+// ======================================================================================
+export function NobodyTV({ room }) {
+    return (
+        <div className="fullscreen-gameplay-container justify-content-center">
+            <div className="mx-intro">
+                <div className="mx-intro-icon">🥺</div>
+                <div className="mx-intro-title">Awww...</div>
+                <div className="mx-intro-blurb">Is it just me here?</div>
+                <div className="mx-intro-blurb">On to the {room.currentRound >= room.totalRounds ? 'scoreboard' : 'next round'}.</div>
             </div>
         </div>
     );

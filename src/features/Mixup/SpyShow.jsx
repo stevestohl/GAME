@@ -1,344 +1,519 @@
 import React, { useEffect, useRef } from 'react';
+import { Plane } from '../TriviaCast/QuizCast.jsx';
+import { makeDirector } from '../TriviaCast/QuizScenes.jsx';
+import { Spy, Bush, PoliceCar, Officer, DroppedHat, DroppedGlasses, DroppedCase, SpyBubble, wearGear } from './SpyCast.jsx';
 
-// 🕵️ Temple Mix Up's lobby show, in the space under the players card: three secret agents who can't stop changing
-// their disguises (the game keeps changing too). A puff of smoke and each one is someone else: a trench coat,
-// a chef, a tourist, a granny, the fake nose and glasses, a walking bush, a cardboard box. Now and then one of
-// them tiptoes off behind the QR card and comes back as somebody new, while a searchlight sweeps the room.
-//
-// Like the other lobby shows, it's one SVG laid over the lobby *behind* the cards, so it can't cover the QR code.
-// Each figure is ~100 units tall with its feet at (0, 0).
+// 🕵️ Temple Mix Up's two very bad spies, who keep changing their disguises (the game keeps changing too).
+//   SpyShow:      the lobby, under the players card. They take turns at: announcing obviously fake disguises, popping
+//                 out of a bush, walking into each other and grabbing the wrong disguises, the old suitcase handoff,
+//                 and hiding from a police car that's looking for them (it doesn't catch them yet).
+//   SpyRulesShow: the rules screen. They parachute from two planes and walk across the bottom of the screen.
+//   SpyArrest:    the end credits. The police finally catch them and take them away.
 
-const INK = '#16161d';
-const ink = { stroke: INK, strokeWidth: 2.4, strokeLinejoin: 'round' };
-const line = { stroke: INK, strokeLinecap: 'round', fill: 'none' };
-const SKIN = '#e2b692';
-
-const AGENTS = 3;
-const DISGUISE_GAP_MS = [1500, 2800];   // between one quick change and the next
-const SNEAK_GAP_MS = [14000, 24000];    // between trips behind the QR card
-
-const rand = (min, max) => min + Math.random() * (max - min);
-const linear = (t) => t;
 const easeOut = (t) => 1 - (1 - t) ** 3;
+const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+const linear = (t) => t;
 
-// Two legs, under anything that shows them
-function Legs({ color = '#23232c', shoe = '#101016' }) {
-    return (
-        <>
-            <g className="crew-leg crew-leg-l">
-                <rect x={-12} y={-30} width={9} height={25} fill={color} {...ink} strokeWidth={2} />
-                <path d="M -3 0 H -18 Q -18 -6 -12 -6 H -3 Z" fill={shoe} {...ink} strokeWidth={1.8} />
-            </g>
-            <g className="crew-leg crew-leg-r">
-                <rect x={3} y={-30} width={9} height={25} fill={color} {...ink} strokeWidth={2} />
-                <path d="M 3 0 H 18 Q 18 -6 12 -6 H 3 Z" fill={shoe} {...ink} strokeWidth={1.8} />
-            </g>
-        </>
-    );
-}
+const SPY_A = { suit: '#6b4a32', tie: '#e5484d', skin: '#e2b692', hair: '#2c2118' };
+const SPY_B = { suit: '#47506a', tie: '#2ea866', skin: '#dcb08a', hair: '#7a3b1e' };
 
-const Face = ({ fill = SKIN }) => <path d="M -13 -86 V -76 Q -13 -66 0 -65 Q 13 -66 13 -76 V -86 Q 0 -94 -13 -86 Z" fill={fill} {...ink} />;
+const reduceMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-const Trench = () => (
-    <>
-        <Legs />
-        <path d="M -18 -62 L -24 -20 H 24 L 18 -62 Q 0 -67 -18 -62 Z" fill="#b39a6b" {...ink} />
-        <path d="M 0 -62 V -20 M -21 -44 H 21" stroke={INK} strokeWidth={2} />
-        <path d="M -8 -64 L 0 -52 L 8 -64 L 14 -56 L 3 -44 H -3 L -14 -56 Z" fill="#a08755" {...ink} strokeWidth={1.6} />
-        <rect x={-26} y={-60} width={8} height={26} rx={3} fill="#b39a6b" {...ink} strokeWidth={2} />
-        <rect x={18} y={-60} width={8} height={26} rx={3} fill="#b39a6b" {...ink} strokeWidth={2} />
-        <rect x={15} y={-34} width={24} height={17} rx={2} fill="#3d2a1a" {...ink} strokeWidth={2} />
-        <rect x={24} y={-37} width={6} height={4} fill={INK} />
-        <Face />
-        <path d="M -12 -80 H 12 L 11 -74 H 2 L 0 -77 L -2 -74 H -11 Z" fill="#111016" stroke={INK} strokeWidth={1} />
-        <path d="M -5 -68 H 5" {...line} strokeWidth={1.6} />
-        <path d="M -15 -86 Q -14 -102 0 -102 Q 14 -102 15 -86 Z" fill="#3a3a44" {...ink} />
-        <path d="M -24 -86 Q 0 -92 24 -86 Q 0 -81 -24 -86 Z" fill="#2c2c34" {...ink} strokeWidth={2} />
-        <rect x={-14} y={-92} width={28} height={4} fill="#e5484d" />
-    </>
-);
-
-const Chef = () => (
-    <>
-        <Legs color="#3b3b47" />
-        <path d="M -17 -62 L -19 -24 H 19 L 17 -62 Q 0 -67 -17 -62 Z" fill="#f6f4ee" {...ink} />
-        <path d="M -5 -56 v 2 M 5 -56 v 2 M -5 -46 v 2 M 5 -46 v 2 M -5 -36 v 2 M 5 -36 v 2" stroke={INK} strokeWidth={2.4} strokeLinecap="round" />
-        <rect x={-25} y={-60} width={8} height={24} rx={3} fill="#f6f4ee" {...ink} strokeWidth={2} />
-        <rect x={17} y={-60} width={8} height={24} rx={3} fill="#f6f4ee" {...ink} strokeWidth={2} />
-        <path d="M 22 -38 L 34 -58" stroke="#8a6d3a" strokeWidth={4} strokeLinecap="round" />
-        <ellipse cx={36} cy={-62} rx={6} ry={8} fill="#8a6d3a" {...ink} strokeWidth={1.6} />
-        <Face />
-        <circle cx={-5} cy={-79} r={1.8} fill={INK} />
-        <circle cx={5} cy={-79} r={1.8} fill={INK} />
-        <path d="M 0 -74 Q -11 -74 -13 -68 Q -5 -70 0 -71 Q 5 -70 13 -68 Q 11 -74 0 -74 Z" fill="#14131a" {...ink} strokeWidth={1.2} />
-        <path d="M -13 -88 V -96 Q -24 -100 -18 -110 Q -14 -118 -6 -114 Q 0 -122 6 -114 Q 14 -118 18 -110 Q 24 -100 13 -96 V -88 Z" fill="#fff" {...ink} />
-    </>
-);
-
-const Tourist = () => (
-    <>
-        <Legs color="#e2b692" shoe="#f6f4ee" />
-        <rect x={-15} y={-34} width={30} height={12} fill="#c2ae85" {...ink} strokeWidth={2} />
-        <path d="M -17 -62 L -16 -30 H 16 L 17 -62 Q 0 -67 -17 -62 Z" fill="#2fa8a0" {...ink} />
-        <circle cx={-8} cy={-52} r={3} fill="#ff6b6b" /><circle cx={7} cy={-46} r={3} fill="#ffd23f" /><circle cx={-4} cy={-38} r={3} fill="#ff6b6b" /><circle cx={9} cy={-56} r={2.4} fill="#fff" />
-        <rect x={-24} y={-60} width={7} height={22} rx={3} fill={SKIN} {...ink} strokeWidth={2} />
-        <rect x={17} y={-60} width={7} height={22} rx={3} fill={SKIN} {...ink} strokeWidth={2} />
-        <path d="M -8 -63 L 0 -44 L 8 -63" fill="none" stroke={INK} strokeWidth={1.4} />
-        <rect x={-9} y={-48} width={18} height={12} rx={2} fill="#23232c" {...ink} strokeWidth={1.8} />
-        <circle cx={0} cy={-42} r={3.6} fill="#7fb5e0" stroke={INK} strokeWidth={1.2} />
-        <Face />
-        <circle cx={-5} cy={-79} r={1.8} fill={INK} />
-        <circle cx={5} cy={-79} r={1.8} fill={INK} />
-        <path d="M -6 -71 Q 0 -67 6 -71" {...line} strokeWidth={1.6} />
-        <path d="M -24 -87 Q 0 -91 24 -87 Q 12 -80 0 -82 Q -12 -80 -24 -87 Z" fill="#f2d774" {...ink} strokeWidth={2} />
-        <path d="M -13 -87 Q -12 -99 0 -99 Q 12 -99 13 -87 Z" fill="#f2d774" {...ink} strokeWidth={2} />
-    </>
-);
-
-const Granny = () => (
-    <>
-        <Legs color="#d9d4c5" shoe="#6b4a2c" />
-        <path d="M -15 -62 L -24 -14 H 24 L 15 -62 Q 0 -67 -15 -62 Z" fill="#9c6fb3" {...ink} />
-        <path d="M -20 -60 L 0 -40 L 20 -60 L 14 -66 H -14 Z" fill="#d94f8a" {...ink} strokeWidth={2} />
-        <path d="M -21 -26 H 21" stroke="#7a5691" strokeWidth={2} />
-        <rect x={17} y={-56} width={7} height={22} rx={3} fill="#9c6fb3" {...ink} strokeWidth={2} />
-        <path d="M 21 -34 V 0" stroke="#5a3a22" strokeWidth={3} strokeLinecap="round" />
-        <path d="M 21 -34 Q 21 -40 27 -38" stroke="#5a3a22" strokeWidth={3} fill="none" strokeLinecap="round" />
-        <Face />
-        <circle cx={-6} cy={-78} r={4.4} fill="#fff" fillOpacity={0.6} stroke={INK} strokeWidth={1.4} />
-        <circle cx={6} cy={-78} r={4.4} fill="#fff" fillOpacity={0.6} stroke={INK} strokeWidth={1.4} />
-        <path d="M -1.6 -78 H 1.6" stroke={INK} strokeWidth={1.2} />
-        <circle cx={-6} cy={-78} r={1.5} fill={INK} /><circle cx={6} cy={-78} r={1.5} fill={INK} />
-        <path d="M -5 -70 Q 0 -67 5 -70" {...line} strokeWidth={1.5} />
-        <path d="M -15 -80 Q -17 -96 0 -96 Q 17 -96 15 -80 Q 8 -88 0 -88 Q -8 -88 -15 -80 Z" fill="#cfcfd6" {...ink} strokeWidth={2} />
-        <circle cx={0} cy={-100} r={7} fill="#cfcfd6" {...ink} strokeWidth={2} />
-    </>
-);
-
-const FakeNose = () => (
-    <>
-        <Legs />
-        <path d="M -16 -62 L -16 -26 H 16 L 16 -62 Q 0 -67 -16 -62 Z" fill="#2c3e6e" {...ink} />
-        <path d="M -7 -63 L 0 -38 L 7 -63 Z" fill="#f6f4ee" stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
-        <path d="M 0 -60 L -3 -50 L 0 -40 L 3 -50 Z" fill="#e5484d" stroke={INK} strokeWidth={1} strokeLinejoin="round" />
-        <rect x={-24} y={-60} width={8} height={24} rx={3} fill="#2c3e6e" {...ink} strokeWidth={2} />
-        <rect x={16} y={-60} width={8} height={24} rx={3} fill="#2c3e6e" {...ink} strokeWidth={2} />
-        <Face />
-        <circle cx={-6} cy={-79} r={5} fill="#fff" stroke={INK} strokeWidth={2} />
-        <circle cx={6} cy={-79} r={5} fill="#fff" stroke={INK} strokeWidth={2} />
-        <circle cx={-6} cy={-79} r={1.7} fill={INK} /><circle cx={6} cy={-79} r={1.7} fill={INK} />
-        <path d="M -12 -86 Q -6 -92 -1 -86 M 1 -86 Q 6 -92 12 -86" fill="none" stroke={INK} strokeWidth={3.6} strokeLinecap="round" />
-        <path d="M 0 -80 Q -8 -68 0 -68 Q 6 -68 3 -76 Z" fill="#f0a58a" {...ink} strokeWidth={1.8} />
-        <path d="M -13 -67 Q -5 -71 0 -66 Q 5 -71 13 -67 Q 7 -62 0 -63 Q -7 -62 -13 -67 Z" fill="#14131a" {...ink} strokeWidth={1.2} />
-        <path d="M -14 -84 Q -14 -97 0 -97 Q 14 -97 14 -84 L 9 -90 H -9 Z" fill="#14131a" {...ink} strokeWidth={2} />
-    </>
-);
-
-const Bush = () => (
-    <>
-        <Legs color="#23232c" />
-        <path d="M -30 -20 Q -40 -36 -28 -46 Q -34 -68 -14 -72 Q -8 -92 10 -84 Q 28 -86 28 -66 Q 42 -56 32 -40 Q 38 -22 22 -18 Q 0 -10 -18 -16 Q -26 -14 -30 -20 Z" fill="#2fa84f" {...ink} />
-        <path d="M -16 -56 q 6 -6 12 0 M 8 -38 q 6 -6 12 0 M -12 -30 q 6 -6 12 0 M 12 -66 q 5 -5 10 0" fill="none" stroke="#1d7a38" strokeWidth={2.6} strokeLinecap="round" />
-        <ellipse cx={-5} cy={-50} rx={4.6} ry={5.4} fill="#fff" stroke={INK} strokeWidth={1.6} />
-        <ellipse cx={8} cy={-50} rx={4.6} ry={5.4} fill="#fff" stroke={INK} strokeWidth={1.6} />
-        <g className="spy-peek"><circle cx={-5} cy={-50} r={2} fill={INK} /><circle cx={8} cy={-50} r={2} fill={INK} /></g>
-    </>
-);
-
-const Box = () => (
-    <>
-        <Legs color="#23232c" />
-        <path d="M -26 -16 V -68 H 26 V -16 Z" fill="#c69a5e" {...ink} />
-        <path d="M -26 -68 L -18 -80 H 34 L 26 -68 Z" fill="#d8ad72" {...ink} />
-        <path d="M 26 -68 L 34 -80 V -28 L 26 -16 Z" fill="#a67f48" {...ink} />
-        <path d="M 0 -68 V -50 M -8 -68 H 8" stroke="#8f6c3c" strokeWidth={3} />
-        <rect x={-13} y={-48} width={26} height={9} rx={2} fill="#14131a" />
-        <g className="spy-peek"><circle cx={-6} cy={-43.5} r={2} fill="#fff" /><circle cx={6} cy={-43.5} r={2} fill="#fff" /></g>
-        <text x={0} y={-24} textAnchor="middle" fontSize={8} fontWeight={800} fill="#5c4524" fontFamily="system-ui, sans-serif">THIS WAY UP</text>
-    </>
-);
-
-const DISGUISES = [Trench, Chef, Tourist, Granny, FakeNose, Bush, Box];
-
-function Smoke({ elRef }) {
-    return (
-        <g ref={elRef} className="spy-smoke">
-            {[[0, -50, 26], [-22, -34, 20], [22, -34, 20], [-14, -72, 18], [16, -72, 18], [0, -16, 18]].map(([x, y, r]) => (
-                <circle key={`${x}${y}`} cx={x} cy={y} r={r} fill="#e8e8f0" stroke="#9a9aa8" strokeWidth={2} />
-            ))}
-        </g>
-    );
-}
+// The shared moves. `unit` is how many screen pixels a drawing unit is here.
+const makeMoves = (d, getUnit) => {
+    const place = (a) => {
+        const u = getUnit() * (a.size || 1);
+        a.el.setAttribute('transform', `translate(${a.x} ${a.y + (a.drop || 0) * getUnit() - (a.lift || 0)}) rotate(${a.rot || 0}) scale(${(a.flip || 1) * u} ${u})`);
+    };
+    const walk = async (a, x, speed = 75, gait = 'crew-walking') => {
+        const from = a.x;
+        a.el.classList.add(gait);
+        a.el.setAttribute('data-look', x < from ? 'left' : 'right');
+        await d.tween((Math.abs(x - from) / (speed * getUnit())) * 1000, linear, (t) => { a.x = from + (x - from) * t; place(a); });
+        a.el.classList.remove(gait);
+        a.el.setAttribute('data-look', 'front');
+    };
+    const hop = (a, x, y, height, ms) => {
+        const fromX = a.x;
+        const fromY = a.y;
+        return d.tween(ms, easeInOut, (t) => {
+            a.x = fromX + (x - fromX) * t;
+            a.y = fromY + (y - fromY) * t;
+            a.lift = Math.sin(Math.PI * t) * height * getUnit();
+            place(a);
+        });
+    };
+    const say = async (el, text, x, y, ms) => {
+        el.querySelector('text').textContent = text;
+        el.setAttribute('transform', `translate(${x} ${y}) scale(${Math.max(0.55, getUnit())})`);
+        el.classList.add('is-on');
+        await d.wait(ms);
+        el.classList.remove('is-on');
+    };
+    return { place, walk, hop, say };
+};
 
 export default function SpyShow({ stageRef, screenRef, playerCount = 0 }) {
     const svgRef = useRef(null);
-    const actorEls = useRef([]);
-    const smokeEls = useRef([]);
-    const beamRef = useRef(null);
+    const clipRef = useRef(null);
+    const aRef = useRef(null);
+    const bRef = useRef(null);
+    const bushRef = useRef(null);
+    const carRef = useRef(null);
+    const hatRef = useRef(null);
+    const glassesRef = useRef(null);
+    const caseRef = useRef(null);
+    const powRef = useRef(null);
+    const sayRef = useRef(null);
     const engineRef = useRef(null);
 
     useEffect(() => {
         const svg = svgRef.current;
         if (!svg || !stageRef.current || !screenRef.current) return undefined;
-        const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-        const frames = new Set();
-        const timers = new Set();
-        let dead = false;
-
         let L = null;
         const measure = () => {
             const root = svg.parentElement.getBoundingClientRect();
             const stage = stageRef.current.getBoundingClientRect();
             const screen = screenRef.current.getBoundingClientRect();
             const pill = document.querySelector('.cc-room-code')?.getBoundingClientRect();
-            const usable = stage.width - (pill ? Math.min(pill.width * 0.75, stage.width * 0.2) : 0);
-            const slot = usable / AGENTS;
-            const s = Math.max(0.3, Math.min(stage.height / 128, slot / 62));
             const left = stage.left - root.left;
+            const usable = stage.width - (pill ? Math.min(pill.width * 0.75, stage.width * 0.2) : 0);
             L = {
-                s,
+                u: Math.max(0.35, Math.min(stage.height / 122, usable / 290)),
                 floorY: stage.bottom - root.top - 3,
-                seatX: Array.from({ length: AGENTS }, (_, i) => left + slot * (i + 0.5)),
-                hiddenX: screen.right - root.left - 60 * s,
+                stageTop: stage.top - root.top,
+                left,
+                width: usable,
+                mid: left + usable * 0.5,
+                spotA: left + usable * 0.2,
+                spotB: left + usable * 0.8,
+                bushX: left + usable * 0.5,
+                hiddenX: screen.right - root.left - 60,
+                offRight: root.width + 130,
             };
             svg.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
+            clipRef.current.setAttribute('width', root.width);
+            clipRef.current.setAttribute('height', L.floorY + 1);
         };
-
-        const agents = actorEls.current.map((el, i) => ({ seat: i, x: 0, grow: reduceMotion ? 1 : 0, look: i, busy: false, away: false, el, smoke: smokeEls.current[i] }));
-        const draw = (a) => {
-            a.el.setAttribute('transform', `translate(${a.x} ${L.floorY}) scale(${L.s * a.grow})`);
-            a.smoke.setAttribute('transform', `translate(${a.x} ${L.floorY}) scale(${L.s})`);
-        };
-        const wear = (a, look) => {
-            a.look = look;
-            a.el.querySelectorAll('.spy-look').forEach((g, i) => { g.style.display = i === look ? '' : 'none'; });
-        };
-        const snap = () => agents.forEach((a) => {
-            if (!a.away) a.x = L.seatX[a.seat];
-            draw(a);
-        });
-
-        const wait = (ms) => new Promise((resolve) => {
-            const id = setTimeout(() => { timers.delete(id); resolve(); }, ms);
-            timers.add(id);
-        });
-        const tween = (ms, ease, step) => new Promise((resolve) => {
-            const start = performance.now();
-            let id = requestAnimationFrame(function tick(now) {
-                frames.delete(id);
-                if (dead) return;
-                const t = Math.min(1, (now - start) / ms);
-                step(ease(t));
-                if (t < 1) { id = requestAnimationFrame(tick); frames.add(id); } else resolve();
-            });
-            frames.add(id);
-        });
-
-        // Nobody wears what anyone else on stage has on
-        const freshLook = (a) => {
-            const taken = agents.map((other) => other.look);
-            const choices = DISGUISES.map((_, i) => i).filter((i) => !taken.includes(i));
-            return choices[Math.floor(Math.random() * choices.length)];
-        };
-
-        // 💨 A puff of smoke, and it's somebody else
-        const quickChange = async (a) => {
-            a.smoke.classList.remove('is-on');
-            a.smoke.getBoundingClientRect();   // restart the puff
-            a.smoke.classList.add('is-on');
-            await wait(210);
-            wear(a, freshLook(a));
-        };
-
-        const tiptoe = async (a, toX, ms) => {
-            const from = a.x;
-            a.el.classList.add('crew-walking', 'spy-tiptoe');
-            await tween(ms, linear, (t) => { a.x = from + (toX - from) * t; draw(a); });
-            a.el.classList.remove('crew-walking', 'spy-tiptoe');
-        };
-
-        // Off behind the QR card, and back as somebody new
-        const sneak = async (a) => {
-            a.busy = true;
-            a.away = true;
-            await tiptoe(a, L.hiddenX, 1900);
-            await wait(500);
-            wear(a, freshLook(a));
-            await tiptoe(a, L.seatX[a.seat], 1900);
-            a.away = false;
-            a.busy = false;
-        };
-
-        const changeLoop = async () => {
-            while (!dead) {
-                await wait(rand(...DISGUISE_GAP_MS));
-                const free = agents.filter((a) => !a.busy);
-                if (free.length) await quickChange(free[Math.floor(Math.random() * free.length)]);
-            }
-        };
-        const sneakLoop = async () => {
-            while (!dead) {
-                await wait(rand(...SNEAK_GAP_MS));
-                const free = agents.filter((a) => !a.busy);
-                if (free.length) await sneak(free[Math.floor(Math.random() * free.length)]);
-            }
-        };
-
-        const cheer = () => agents.forEach((a, i) => { if (!a.busy) wait(i * 120).then(() => { if (!dead && !a.busy) quickChange(a); }); });
-
         measure();
-        agents.forEach((a, i) => wear(a, i));
-        snap();
-        svg.classList.add('is-ready');
 
-        const intro = async () => {
-            // One by one they appear in a puff of smoke
-            for (const a of agents) {
-                a.smoke.classList.add('is-on');
-                await wait(190);
-                await tween(260, easeOut, (t) => { a.grow = t; draw(a); });
-                await wait(280);
-            }
-            changeLoop();
-            sneakLoop();
+        const d = makeDirector();
+        const { place, walk, hop, say } = makeMoves(d, () => L.u);
+        const A = { x: L.hiddenX, y: L.floorY, size: 0.94, el: aRef.current };
+        const B = { x: L.offRight, y: L.floorY, size: 1.06, el: bRef.current };
+        const bush = { x: L.bushX, grow: 0, el: bushRef.current };
+        const car = { x: L.offRight + 100, el: carRef.current };
+        const drawBush = () => {
+            bush.el.style.display = bush.grow > 0 ? '' : 'none';
+            bush.el.setAttribute('transform', `translate(${bush.x} ${L.floorY}) scale(${L.u * 1.15} ${L.u * 1.15 * bush.grow})`);
         };
-        if (!reduceMotion) intro();
+        const drawCar = () => {
+            car.el.setAttribute('transform', `translate(${car.x} ${L.floorY}) scale(${L.u * 0.95})`);
+        };
+        const putItem = (el, x, y) => {
+            el.style.display = '';
+            el.setAttribute('transform', `translate(${x} ${y}) scale(${L.u * 0.9})`);
+        };
+        const hide = (...els) => els.forEach((el) => { el.style.display = 'none'; });
+        const headY = (a) => a.y - 112 * L.u * a.size;
+        const bubbleAt = (a, text, ms = 1300) => say(sayRef.current, text, a.x + 8 * L.u, Math.max(L.stageTop + 18 * L.u, headY(a)), ms);
+        const pow = (x, y) => {
+            const burst = powRef.current;
+            burst.setAttribute('transform', `translate(${x} ${y}) scale(${L.u * 1.4})`);
+            burst.classList.remove('is-on');
+            burst.getBoundingClientRect();
+            burst.classList.add('is-on');
+        };
+        const goHome = async () => {
+            await Promise.all([walk(A, L.spotA), walk(B, L.spotB)]);
+        };
 
-        const observer = new ResizeObserver(() => { measure(); snap(); });
+        // 🥸 Two obvious disguises, and two terrible cover stories
+        const announce = async () => {
+            wearGear(A.el, ['nose']);
+            await d.wait(350);
+            await bubbleAt(A, 'NOT A SPY!');
+            wearGear(B.el, ['trench']);
+            await d.wait(350);
+            await bubbleAt(B, 'ME NEITHER');
+            await d.wait(300);
+            wearGear(B.el, ['paper']);
+            await d.wait(900);
+            await bubbleAt(B, 'JUST READING');
+            wearGear(B.el, ['trench']);
+            await d.wait(500);
+        };
+
+        // 🌳 A bush nobody planted, and somebody in it
+        const inTheBush = async () => {
+            await d.tween(600, easeOut, (t) => { bush.grow = t; drawBush(); });
+            await d.wait(200);
+            await walk(A, bush.x - 8 * L.u, 110);
+            await d.tween(240, easeInOut, (t) => { A.drop = 80 * t; place(A); });
+            bush.el.classList.add('is-rustling');
+            await d.wait(800);
+            bush.el.classList.remove('is-rustling');
+            const pop = async (x) => {
+                A.x = bush.x + x * L.u;
+                await d.tween(200, easeOut, (t) => { A.drop = 80 - 44 * t; place(A); });
+                await d.wait(700);
+                await d.tween(160, easeInOut, (t) => { A.drop = 36 + 44 * t; place(A); });
+                await d.wait(450);
+            };
+            await pop(-20);
+            await pop(24);
+            await pop(-4);
+            await d.tween(240, easeOut, (t) => { A.drop = 80 * (1 - t); place(A); });
+            A.drop = 0;
+            place(A);
+            await bubbleAt(A, 'NAILED IT', 900);
+            await walk(A, L.spotA, 110);
+            await d.tween(400, easeInOut, (t) => { bush.grow = 1 - t; drawBush(); });
+        };
+
+        // 💥 They walk into each other (one's reading the paper), and leave in each other's disguises
+        const theBump = async () => {
+            const wearingA = A.wearing || 'nose';
+            const wearingB = wearingA === 'nose' ? 'trench' : 'nose';
+            wearGear(A.el, [wearingA]);
+            wearGear(B.el, ['paper']);
+            const hitX = L.mid;
+            await Promise.all([walk(A, hitX - 18 * L.u, 70), walk(B, hitX + 18 * L.u, 70)]);
+            pow(hitX, L.floorY - 72 * L.u);
+            wearGear(A.el, []);
+            wearGear(B.el, []);
+            A.rot = -14;
+            B.rot = 14;
+            const itemFor = { nose: glassesRef.current, trench: hatRef.current };
+            const fall = (el, fromX, toX) => d.tween(520, linear, (t) => {
+                const y = L.floorY - 80 * L.u * (1 - t) ** 2 - Math.sin(Math.PI * t) * 18 * L.u;
+                putItem(el, fromX + (toX - fromX) * t, y);
+            });
+            await Promise.all([
+                hop(A, hitX - 46 * L.u, L.floorY, 8, 380),
+                hop(B, hitX + 46 * L.u, L.floorY, 8, 380),
+                fall(itemFor[wearingA], hitX - 8 * L.u, hitX + 14 * L.u),
+                fall(itemFor[wearingB], hitX + 8 * L.u, hitX - 14 * L.u),
+            ]);
+            A.rot = 0;
+            B.rot = 0;
+            place(A);
+            place(B);
+            await bubbleAt(A, 'WATCH IT!', 900);
+            // Each dives for the nearest one: the other's
+            A.el.classList.add('spy-scrambling');
+            B.el.classList.add('spy-scrambling');
+            await Promise.all([hop(A, hitX - 16 * L.u, L.floorY, 6, 300), hop(B, hitX + 16 * L.u, L.floorY, 6, 300)]);
+            await d.wait(450);
+            A.el.classList.remove('spy-scrambling');
+            B.el.classList.remove('spy-scrambling');
+            hide(hatRef.current, glassesRef.current);
+            wearGear(A.el, [wearingB]);
+            wearGear(B.el, [wearingA]);
+            A.wearing = wearingB;
+            await d.wait(350);
+            await Promise.all([walk(A, L.spotA, 70), walk(B, L.spotB, 70)]);
+            A.el.setAttribute('data-look', 'right');
+            await bubbleAt(B, '...HUH?', 1000);
+        };
+
+        // 💼 The handoff, like in the movies
+        const theHandoff = async () => {
+            const worn = A.wearing || 'nose';
+            wearGear(A.el, [worn, 'case']);
+            await walk(A, L.mid - 14 * L.u, 65);
+            await d.wait(300);
+            wearGear(A.el, [worn]);
+            putItem(caseRef.current, L.mid + 8 * L.u, L.floorY);
+            await d.wait(300);
+            await bubbleAt(A, '*WHISTLES*', 800);
+            await walk(A, L.spotA, 65);
+            await walk(B, L.mid + 22 * L.u, 80);
+            await d.wait(350);
+            hide(caseRef.current);
+            const wornB = worn === 'nose' ? 'trench' : 'nose';
+            wearGear(B.el, [wornB, 'case']);
+            await bubbleAt(B, 'THE PLANS!', 900);
+            await walk(B, L.spotB, 80);
+            await d.wait(500);
+            wearGear(B.el, [wornB]);
+        };
+
+        // 🚓 The police come looking, and two people suddenly have to read the paper
+        const thePolice = async () => {
+            wearGear(A.el, ['paper']);
+            wearGear(B.el, ['paper']);
+            car.el.style.display = '';
+            car.x = L.offRight + 100;
+            await d.tween(1400, easeOut, (t) => {
+                car.x = L.offRight + 100 + (L.mid - L.offRight - 100) * t;
+                drawCar();
+            });
+            await d.wait(250);
+            await say(sayRef.current, 'HMM...', car.x - 30 * L.u, Math.max(L.stageTop + 18 * L.u, L.floorY - 92 * L.u), 1100);
+            await d.wait(200);
+            const fromX = car.x;
+            await d.tween(1200, (t) => t * t, (t) => { car.x = fromX + (L.hiddenX - 40 - fromX) * t; drawCar(); });
+            hide(car.el);
+            await d.wait(500);
+            await bubbleAt(B, 'PHEW!', 900);
+            const worn = A.wearing || 'nose';
+            wearGear(A.el, [worn]);
+            wearGear(B.el, [worn === 'nose' ? 'trench' : 'nose']);
+            await d.wait(400);
+        };
+
+        const run = async () => {
+            place(A);
+            place(B);
+            drawCar();
+            wearGear(A.el, []);
+            wearGear(B.el, []);
+            await goHome();
+            const scenes = [announce, inTheBush, theBump, theHandoff, thePolice];
+            for (let i = 0; !d.isDead(); i = (i + 1) % scenes.length) {
+                await d.wait(800);
+                await scenes[i]();
+                await d.wait(1400);
+            }
+        };
+
+        svg.classList.add('is-ready');
+        if (reduceMotion()) {
+            A.x = L.spotA;
+            B.x = L.spotB;
+            place(A);
+            place(B);
+            wearGear(A.el, ['nose']);
+            wearGear(B.el, ['trench']);
+        } else {
+            run();
+        }
+
+        const observer = new ResizeObserver(() => {
+            measure();
+            bush.x = L.bushX;
+            A.y = L.floorY;
+            B.y = L.floorY;
+            place(A);
+            place(B);
+            drawBush();
+            drawCar();
+        });
         observer.observe(svg.parentElement);
         observer.observe(stageRef.current);
 
-        engineRef.current = { cheer };
+        engineRef.current = { greet: () => bubbleAt(B, 'WHO WAS THAT?', 1000) };
         return () => {
-            dead = true;
             engineRef.current = null;
             observer.disconnect();
-            frames.forEach((id) => cancelAnimationFrame(id));
-            timers.forEach((id) => clearTimeout(id));
+            d.stop();
         };
     }, []);
 
-    // Someone new joined: everybody changes
+    // Someone new joined: the spies notice, a little late
     const lastCount = useRef(playerCount);
     useEffect(() => {
-        if (playerCount > lastCount.current) engineRef.current?.cheer();
+        if (playerCount > lastCount.current) engineRef.current?.greet();
         lastCount.current = playerCount;
     }, [playerCount]);
 
     return (
         <svg ref={svgRef} className="cc-crew spy-show" aria-hidden="true" preserveAspectRatio="none">
+            <defs>
+                <clipPath id="spy-floor"><rect ref={clipRef} x={0} y={0} width={0} height={0} /></clipPath>
+            </defs>
             <g className="crew-world">
-                {Array.from({ length: AGENTS }, (_, i) => (
-                    <g key={i}>
-                        <g ref={(el) => { actorEls.current[i] = el; }} className="crew-actor spy-agent">
-                            <g className="crew-fig">
-                                {DISGUISES.map((Look, look) => <g key={look} className="spy-look" style={{ display: 'none' }}><Look /></g>)}
-                            </g>
-                        </g>
-                        <Smoke elRef={(el) => { smokeEls.current[i] = el; }} />
-                    </g>
-                ))}
+                <g clipPath="url(#spy-floor)">
+                    <Spy elRef={aRef} {...SPY_A} />
+                </g>
+                <Bush elRef={bushRef} />
+                <Spy elRef={bRef} {...SPY_B} />
+                <DroppedHat elRef={hatRef} />
+                <DroppedGlasses elRef={glassesRef} />
+                <DroppedCase elRef={caseRef} />
+                <PoliceCar elRef={carRef} />
             </g>
+            <g ref={powRef} className="crew-pow">
+                <path d="M 0 -13 L 3.5 -5 L 12 -7 L 6 0 L 12 7 L 3.5 5 L 0 13 L -3.5 5 L -12 7 L -6 0 L -12 -7 L -3.5 -5 Z" fill="#ffd23f" stroke="#16161d" strokeWidth={2} strokeLinejoin="round" />
+            </g>
+            <SpyBubble elRef={sayRef} />
+        </svg>
+    );
+}
+
+/** 🪂 The rules screen: two planes, two parachutes, and a stroll along the bottom */
+export function SpyRulesShow() {
+    const svgRef = useRef(null);
+    const aRef = useRef(null);
+    const bRef = useRef(null);
+    const planeARef = useRef(null);
+    const planeBRef = useRef(null);
+
+    useEffect(() => {
+        const svg = svgRef.current;
+        let W = 0;
+        let H = 0;
+        let u = 1;
+        const measure = () => {
+            const box = svg.getBoundingClientRect();
+            W = box.width;
+            H = box.height;
+            u = Math.max(0.5, H * 0.14 / 100);
+            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        };
+        measure();
+        const d = makeDirector();
+        const { place, walk } = makeMoves(d, () => u);
+        const A = { x: -200, y: 0, size: 0.94, el: aRef.current };
+        const B = { x: -200, y: 0, size: 1.06, el: bRef.current };
+        wearGear(A.el, ['nose']);
+        wearGear(B.el, ['trench']);
+        const floor = () => H - 6;
+        const drawPlane = (el, x, y, flip) => {
+            el.setAttribute('transform', `translate(${x} ${y}) scale(${flip * u * 0.9} ${u * 0.9})`);
+        };
+
+        // One plane crosses the top of the screen; at `dropAt` of the way across, out comes a spy
+        const arrive = async (spy, planeEl, fromLeft, height, dropAt) => {
+            const startX = fromLeft ? -130 * u : W + 130 * u;
+            const endX = fromLeft ? W + 130 * u : -130 * u;
+            planeEl.style.display = '';
+            planeEl.classList.add('is-empty');
+            const jumpX = startX + (endX - startX) * dropAt;
+            const planeFlight = d.tween(4200, linear, (t) => drawPlane(planeEl, startX + (endX - startX) * t, height, fromLeft ? -1 : 1));
+            await d.wait(4200 * dropAt);
+            if (d.isDead()) return;
+            wearGear(spy.el, [spy === A ? 'nose' : 'trench', 'chute']);
+            spy.x = jumpX;
+            spy.y = height + 20 * u;
+            const startY = spy.y;
+            await d.tween(3000, linear, (t) => {
+                spy.y = startY + (floor() - startY) * t;
+                spy.rot = Math.sin(t * Math.PI * 4) * 6;
+                place(spy);
+            });
+            spy.rot = 0;
+            wearGear(spy.el, [spy === A ? 'nose' : 'trench']);
+            place(spy);
+            await planeFlight;
+            planeEl.style.display = 'none';
+        };
+
+        const run = async () => {
+            while (!d.isDead()) {
+                await Promise.all([
+                    arrive(A, planeARef.current, true, H * 0.09, 0.28),
+                    d.wait(900).then(() => arrive(B, planeBRef.current, false, H * 0.16, 0.3)),
+                ]);
+                await d.wait(300);
+                // Across the bottom of the screen, in opposite directions, and off
+                await Promise.all([walk(A, W + 90 * u, 130), walk(B, -90 * u, 130)]);
+                await d.wait(1200);
+            }
+        };
+
+        svg.classList.add('is-ready');
+        if (reduceMotion()) {
+            A.x = W * 0.3;
+            B.x = W * 0.7;
+            A.y = floor();
+            B.y = floor();
+            place(A);
+            place(B);
+        } else {
+            place(A);
+            place(B);
+            run();
+        }
+        const observer = new ResizeObserver(measure);
+        observer.observe(svg);
+        return () => {
+            observer.disconnect();
+            d.stop();
+        };
+    }, []);
+
+    return (
+        <svg ref={svgRef} className="cc-crew spy-rules-show" aria-hidden="true" preserveAspectRatio="none">
+            <Plane planeRef={planeARef} />
+            <Plane planeRef={planeBRef} />
+            <Spy elRef={aRef} {...SPY_A} />
+            <Spy elRef={bRef} {...SPY_B} />
+        </svg>
+    );
+}
+
+/** 🚓 The end credits: the spies try to sneak off, the police pull up, and that's that */
+export function SpyArrest({ onDone }) {
+    const svgRef = useRef(null);
+    const aRef = useRef(null);
+    const bRef = useRef(null);
+    const copRef = useRef(null);
+    const carRef = useRef(null);
+    const sayRef = useRef(null);
+
+    useEffect(() => {
+        const box = svgRef.current.getBoundingClientRect();
+        const extra = box.height ? Math.max(0, (box.width / (box.height / 100) - 400) / 2) : 0;
+        const offLeft = -extra - 60;
+        const offRight = 400 + extra + 140;
+        const FLOOR = 96;
+        const S = 0.7;
+        const d = makeDirector();
+        const { place, walk, say } = makeMoves(d, () => S);
+        const A = { x: offRight + 60, y: FLOOR, size: 0.94, el: aRef.current };
+        const B = { x: offRight, y: FLOOR, size: 1.06, el: bRef.current };
+        const cop = { x: 0, y: FLOOR, size: 1, el: copRef.current };
+        const car = { x: offLeft - 100, el: carRef.current };
+        const drawCar = () => car.el.setAttribute('transform', `translate(${car.x} ${FLOOR}) scale(${S})`);
+
+        wearGear(A.el, ['nose']);
+        wearGear(B.el, ['trench']);
+        place(A);
+        place(B);
+        drawCar();
+        if (reduceMotion()) { onDone?.(); return () => d.stop(); }
+
+        const run = async () => {
+            await d.wait(1200);
+            // They tiptoe in from the right, very pleased with themselves
+            await Promise.all([walk(B, 240, 90), walk(A, 300, 90)]);
+            // And here's the police, heading them off
+            car.el.style.display = '';
+            await d.tween(1100, easeOut, (t) => { car.x = offLeft - 100 + (130 - offLeft + 100) * t; drawCar(); });
+            wearGear(A.el, ['nose', 'hands']);
+            wearGear(B.el, ['trench', 'hands']);
+            A.el.classList.add('quiz-scared');
+            B.el.classList.add('quiz-scared');
+            cop.x = 130;
+            place(cop);
+            cop.el.style.display = '';
+            await walk(cop, 196, 70);
+            cop.el.setAttribute('data-look', 'right');
+            await say(sayRef.current, 'BUSTED!', 150, 22, 1500);
+            A.el.classList.remove('quiz-scared');
+            B.el.classList.remove('quiz-scared');
+            // Off to the car, in a sorry little line
+            await Promise.all([walk(cop, 130, 50), walk(B, 178, 50), walk(A, 216, 50)]);
+            [cop, A, B].forEach((p) => { p.el.style.display = 'none'; });
+            car.el.classList.add('has-prisoners');
+            await d.wait(500);
+            await d.tween(1600, (t) => t * t, (t) => { car.x = 130 + (offLeft - 100 - 130) * t; drawCar(); });
+            await d.wait(600);
+            onDone?.();
+        };
+        run();
+        return () => d.stop();
+    }, []);
+
+    return (
+        <svg ref={svgRef} className="cc-crew cc-round-scene-art" viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+            <Spy elRef={aRef} {...SPY_A} />
+            <Spy elRef={bRef} {...SPY_B} />
+            <Officer elRef={copRef} />
+            <PoliceCar elRef={carRef} />
+            <SpyBubble elRef={sayRef} />
         </svg>
     );
 }

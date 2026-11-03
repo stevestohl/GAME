@@ -43,6 +43,7 @@ const DRAW_RESULTS_TIME = 8 * SECOND;
 const MATCH_COMPARE_TIME = 9 * SECOND;  // the answers light up one after another
 const MATCH_RESULTS_TIME = 8 * SECOND;
 const SCOREBOARD_TIME = 7 * SECOND;
+const NOBODY_TIME = 6 * SECOND;         // "Awww... is it just me here?"
 const GRACE = 1500;                     // a last-second tap still counts
 
 const MEME_WIN_POINTS = 100;            // every caption tied for the most votes
@@ -282,7 +283,9 @@ export default function registerMixupNamespace(MNS) {
             .map((p) => ({ id: randomToken(), text: p.caption, playerId: p.id, name: p.name, votes: 0 }))
             .sort(() => Math.random() - 0.5);
 
-        // Nothing (or only one caption) to vote on: straight to the results
+        if (round.captions.length === 0) return nobodyAnswered(roomCode);
+
+        // Only one caption: nothing to vote on, straight to the results
         if (round.captions.length < 2) return showMemeResults(roomCode);
 
         room.gameState = 'meme_vote';
@@ -336,6 +339,8 @@ export default function registerMixupNamespace(MNS) {
             if (drawer) { drawer.score += DRAW_DRAWER_POINTS; drawer.roundPoints += DRAW_DRAWER_POINTS; }
         }
 
+        if (!guesserId && !(round.guesses || []).length) return nobodyAnswered(roomCode);
+
         room.gameState = 'draw_results';
         room.endTime = null;
         schedule(roomCode, room, 'draw_results', DRAW_RESULTS_TIME, () => showScoreboard(roomCode));
@@ -351,6 +356,7 @@ export default function registerMixupNamespace(MNS) {
         clearTimer(room);
 
         const writers = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder);
+        if (!writers.some((p) => (p.matchList || []).some(Boolean))) return nobodyAnswered(roomCode);
         round.board = compareLists(writers.map((p) => ({ seat: p.joinOrder, name: p.name, list: p.matchList || [] })), MATCH_CARD.id);
         round.board.forEach((entry) => {
             const player = writers.find((p) => p.joinOrder === entry.seat);
@@ -371,6 +377,21 @@ export default function registerMixupNamespace(MNS) {
             room.gameState = 'match_results';
             schedule(roomCode, room, 'match_results', MATCH_RESULTS_TIME, () => showScoreboard(roomCode));
             broadcast(roomCode);
+        });
+        broadcast(roomCode);
+    };
+
+    // --- Nobody played the round: a sad little moment, then on to the next round (or the final scores) ---
+    const nobodyAnswered = (roomCode) => {
+        const room = activeMixupRooms[roomCode];
+        if (!room) return;
+        clearTimer(room);
+        room.gameState = 'nobody';
+        room.endTime = null;
+        schedule(roomCode, room, 'nobody', NOBODY_TIME, () => {
+            if (room.currentRound >= room.totalRounds) return showScoreboard(roomCode);
+            room.currentRound += 1;
+            startRound(roomCode);
         });
         broadcast(roomCode);
     };

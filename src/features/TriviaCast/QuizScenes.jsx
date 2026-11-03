@@ -23,7 +23,7 @@ const easeIn = (t) => t * t;
 const linear = (t) => t;
 
 // Timers that all stop together when the scene leaves
-const makeDirector = () => {
+export const makeDirector = () => {
     const frames = new Set();
     const timers = new Set();
     let dead = false;

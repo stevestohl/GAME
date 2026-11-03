@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Avatar } from '../../avatars.jsx';
 import { startCreditsMarch } from '../../celebrationSounds.js';
+import { SpyArrest } from './SpyShow.jsx';
 
 // 🐍 Snake Snack: the lobby game on the players' phones (the server side is sockets/snakeGame.js).
 // Swipe on the board to steer. Eat the other players' avatars to grow; the edges wrap around, so the only way
@@ -241,39 +242,51 @@ export default function SnakeSnack({ socket, roomCode, room }) {
     );
 }
 
-/** 🎬 After the final scores are read: the lobby game's results roll up the TV, to a march. Nobody played? No credits. */
+/** 🎬 After the final scores are read: the lobby game's results roll up the TV to a march, while the police finally catch the spies */
 export function SnakeCredits({ snake, onDone }) {
     const players = Object.values(snake?.scores || {})
         .filter((s) => s.eaten > 0 || s.crashes > 0)
         .sort((a, b) => b.eaten - a.eaten || b.longest - a.longest);
     const hasPlayers = players.length > 0;
 
-    useEffect(() => {
-        if (!hasPlayers) { onDone?.(); return undefined; }
-        return startCreditsMarch();
-    }, [hasPlayers]);
-    if (!hasPlayers) return null;
+    useEffect(() => startCreditsMarch(), []);
 
-    const longest = players.reduce((best, s) => (s.longest > best.longest ? s : best), players[0]);
+    // They finish when the credits have rolled and the spies have been taken away, whichever's last
+    const [rollDone, setRollDone] = useState(false);
+    const [arrestDone, setArrestDone] = useState(false);
+    useEffect(() => {
+        if (rollDone && arrestDone) onDone?.();
+    }, [rollDone, arrestDone]);
+
+    const longest = hasPlayers ? players.reduce((best, s) => (s.longest > best.longest ? s : best), players[0]) : null;
     return (
-        <div className="tp-credits" aria-live="polite">
-            <div className="tp-credits-roll" style={{ animationDuration: `${12 + players.length * 2}s` }} onAnimationEnd={onDone}>
-                <div className="tp-credits-kicker">And in the lobby...</div>
-                <h2>🐍 Snake Snack</h2>
-                <div className="tp-credits-best">Biggest appetite: <strong>{players[0].name}</strong></div>
-                {longest.longest > 0 && <div className="tp-credits-sub">Longest snake: {longest.name}, {longest.longest} long</div>}
-                <div className="tp-credits-heading">Final scores</div>
-                {players.map((s) => (
-                    <div key={s.name} className="tp-credits-line">
-                        <Avatar id={s.avatar} name={s.name} size={44} />
-                        <span className="tp-credits-name">{s.name}</span>
-                        <span className="tp-credits-role">
-                            ate {s.eaten}{s.timesEaten ? ` · eaten ${s.timesEaten}` : ''}{s.crashes ? ` · bit self ${s.crashes}` : ''}
-                        </span>
-                    </div>
-                ))}
+        <div className="tp-credits tp-chase-spy" aria-live="polite">
+            <div className="tp-chase-floor" />
+            <div className="tp-credits-roll" style={{ animationDuration: `${16 + players.length * 2}s` }} onAnimationEnd={() => setRollDone(true)}>
+                {hasPlayers && (
+                    <>
+                        <div className="tp-credits-kicker">And in the lobby...</div>
+                        <h2>🐍 Snake Snack</h2>
+                        <div className="tp-credits-best">Biggest appetite: <strong>{players[0].name}</strong></div>
+                        {longest.longest > 0 && <div className="tp-credits-sub">Longest snake: {longest.name}, {longest.longest} long</div>}
+                        <div className="tp-credits-heading">Final scores</div>
+                        {players.map((s) => (
+                            <div key={s.name} className="tp-credits-line">
+                                <Avatar id={s.avatar} name={s.name} size={44} />
+                                <span className="tp-credits-name">{s.name}</span>
+                                <span className="tp-credits-role">
+                                    ate {s.eaten}{s.timesEaten ? ` · eaten ${s.timesEaten}` : ''}{s.crashes ? ` · bit self ${s.crashes}` : ''}
+                                </span>
+                            </div>
+                        ))}
+                    </>
+                )}
+                <div className="tp-credits-heading">Featuring</div>
+                <div className="tp-credits-line"><span className="tp-credits-name">Agent Oops</span><span className="tp-credits-role">as Not a Spy</span></div>
+                <div className="tp-credits-line"><span className="tp-credits-name">Agent Whoops</span><span className="tp-credits-role">as Also Not a Spy</span></div>
                 <div className="tp-credits-end">Thanks for playing!</div>
             </div>
+            <div className="cc-round-scene"><SpyArrest onDone={() => setArrestDone(true)} /></div>
         </div>
     );
 }
