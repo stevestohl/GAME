@@ -3,6 +3,7 @@ import { Card, Button, ProgressBar } from 'react-bootstrap';
 import { triviaCastSocket as socket } from '../../socket';
 import { speak, stopVoice } from '../../voice.js';
 import { playRevealSounds } from '../../celebrationSounds.js';
+import { QuizRulesScene } from './QuizScenes.jsx';
 
 // 🎙️ What the host voice says while the rules are on screen
 export const TRIVIA_CAST_RULES_NARRATION = [
@@ -244,6 +245,11 @@ export function TriviaCastRulesTV({ roomCode }) {
 
                                     <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 6rem)', lineHeight: 1 }}>
                                         {Math.max(timeLeft, 0)}s
+                                    </div>
+
+                                    {/* ⚾ Meanwhile, under the countdown... */}
+                                    <div className="cc-rules-abduct">
+                                        <QuizRulesScene />
                                     </div>
 
                                     <Button variant='light' size='sm' className='w-100 fw-bold mt-auto py-2 shadow-sm' style={{ fontSize: '0.9rem' }} onClick={handleNext}>

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Lincoln, BabeRuth, Cleopatra, Earhart, Plane, Podium, JungleBack, JungleFront, Dinosaur } from './QuizCast.jsx';
+import { Lincoln, BabeRuth, Cleopatra, Earhart, Plane, Podium, JungleBack, JungleFront, Dinosaur, Ball, Litter, Bearer } from './QuizCast.jsx';
 
-// 🎓 Trivia Cast's lobby show, in the space under the players card: four podiums grow out of the floor, then
-// Abraham Lincoln, Babe Ruth and Cleopatra grow up behind theirs, and Amelia Earhart flies in to take the last.
+// 🎓 Trivia Cast's lobby show, in the space under the players card: four podiums grow out of the floor, then the
+// contestants make their entrances. Abraham Lincoln grows far too big behind his and shrinks back, Babe Ruth runs
+// in to catch a fly ball, Cleopatra is carried in, and Amelia Earhart flies in to take the last.
 // Every so often the ground shakes, a jungle and a volcano push up behind them and a T. rex springs out and
 // roars. Everyone runs for it behind the QR card (Earhart gets a lift), the jungle sinks away and they all come back.
 //
@@ -31,6 +32,10 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
     const podiumEls = useRef([]);
     const actorEls = useRef([]);
     const planeRef = useRef(null);
+    const ballRef = useRef(null);
+    const litterRef = useRef(null);
+    const bearerEls = useRef([]);
+    const caughtRef = useRef(null);
     const backRef = useRef(null);
     const frontRef = useRef(null);
     const dinoRef = useRef(null);
@@ -91,6 +96,9 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
         const earhart = actors[3];
         const plane = { x: 0, y: 0, rot: 0, on: false, el: planeRef.current };
         const jungle = { grow: 0 };
+        // 👑 Cleopatra's ride, and the two who carry it
+        const litter = { x: 0, flip: 1, on: false, el: litterRef.current };
+        const bearers = bearerEls.current.map((el) => ({ x: 0, y: 0, rot: 0, lift: 0, grow: 1, flip: 1, el }));
         const dino = { y: 0, on: false, el: dinoRef.current };
         let eventRunning = false;
 
@@ -111,6 +119,16 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
             dino.el.style.display = dino.on ? '' : 'none';
             dino.el.setAttribute('transform', `translate(${L.dinoX} ${L.floorY + dino.y * L.dinoSize}) scale(${L.dinoSize})`);
         };
+        const drawLitter = () => {
+            litter.el.style.display = litter.on ? '' : 'none';
+            litter.el.setAttribute('transform', `translate(${litter.x} ${L.floorY}) scale(${L.s})`);
+            bearers.forEach((b, i) => {
+                b.el.style.display = litter.on ? '' : 'none';
+                b.x = litter.x + (i ? 58 : -58) * L.s;
+                b.y = L.floorY;
+                draw(b);
+            });
+        };
         const look = (a, where) => a.el.setAttribute('data-look', where);
 
         // Put everything where it belongs (first draw, and after the screen changes size)
@@ -122,6 +140,7 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
                 draw(a);
             });
             drawPlane();
+            drawLitter();
             drawJungle();
             drawDino();
         };
@@ -159,7 +178,6 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
                 draw(a);
             });
         };
-        const growUp = (a) => tween(700, springy, (t) => { a.grow = t; draw(a); });
         const flash = (i) => {
             const panel = podiums[i].el;
             panel.classList.remove('is-lit');
@@ -182,6 +200,94 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
                 .then(() => tween(460, linear, (t) => { a.lift = Math.sin(Math.PI * t) * 12 * L.s; draw(a); }))
                 .then(() => { a.lift = 0; draw(a); a.busy = false; });
         });
+
+        // 🎩 Lincoln shoots up behind the podium, far too big, and shrinks back down to size
+        const lincolnEnters = async () => {
+            const a = actors[0];
+            a.spot = 'seat';
+            a.x = L.seatX[0];
+            a.y = L.floorY;
+            look(a, 'front');
+            flash(0);
+            await tween(850, easeOut, (t) => { a.grow = t * 1.6; draw(a); });
+            await wait(350);
+            await tween(800, springy, (t) => { a.grow = 1.6 - 0.6 * t; draw(a); });
+            a.grow = 1;
+            draw(a);
+        };
+
+        // ⚾ Ruth comes running in from behind the QR card, eyes on a fly ball, catches it and takes the podium
+        const ruthEnters = async () => {
+            const a = actors[1];
+            const ball = ballRef.current;
+            const catchX = L.seatX[1] + 26 * L.s;
+            const fromX = L.seatX[1] + 110 * L.s;
+            const topY = L.stageTop - 10 * L.s;
+            const catchY = L.floorY - 106 * L.s;
+            a.spot = 'moving';
+            a.grow = 1;
+            a.x = L.hiddenX;
+            a.y = L.floorY;
+            draw(a);
+            ball.style.display = '';
+            const fly = tween(1500, easeIn, (t) => {
+                ball.setAttribute('transform', `translate(${fromX + (catchX - fromX) * t} ${topY + (catchY - topY) * t}) scale(${L.s * 1.3})`);
+            });
+            a.el.classList.add('crew-bumping');
+            await walkTo(a, catchX, (Math.abs(catchX - a.x) / L.s) / 1.5, 'crew-running');
+            await fly;
+            ball.style.display = 'none';
+            flash(1);
+            bubble(caughtRef.current, a.x - 14 * L.s, L.floorY - 132 * L.s, 900);
+            await wait(450);
+            a.el.classList.remove('crew-bumping');
+            await walkTo(a, L.seatX[1], 60);
+            a.spot = 'seat';
+            look(a, 'front');
+        };
+
+        // 👑 Cleopatra is carried in, steps down to her podium, and her ride goes home
+        const cleopatraEnters = async () => {
+            const a = actors[2];
+            const x = L.seatX[2];
+            litter.on = true;
+            litter.x = L.offRight + 60 * L.s;
+            a.spot = 'moving';
+            a.grow = 1;
+            a.y = L.floorY - 70 * L.s;
+            look(a, 'left');
+            const ride = (from, to, ms) => tween(ms, linear, (t) => {
+                litter.x = from + (to - from) * t;
+                drawLitter();
+                if (a.spot === 'moving') { a.x = litter.x; draw(a); }
+            });
+            bearers.forEach((b) => { b.flip = 1; b.el.classList.add('crew-walking'); });
+            await ride(litter.x, x, 2300);
+            bearers.forEach((b) => b.el.classList.remove('crew-walking'));
+            await wait(300);
+            a.spot = 'stepping';
+            await hop(a, x, L.floorY, 8, 520);
+            a.spot = 'seat';
+            look(a, 'front');
+            flash(2);
+            await wait(250);
+            bearers.forEach((b) => { b.flip = -1; b.el.classList.add('crew-walking'); });
+            await ride(litter.x, L.offRight + 60 * L.s, 1700);
+            bearers.forEach((b) => b.el.classList.remove('crew-walking'));
+            litter.on = false;
+            drawLitter();
+        };
+
+        // The entrances, one after another
+        const enter = async () => {
+            await lincolnEnters();
+            await wait(250);
+            await ruthEnters();
+            await wait(250);
+            await cleopatraEnters();
+            await wait(200);
+            await flyIn();
+        };
 
         // ✈️ The plane comes in from the right, slows over the last podium, Earhart hops down, and it flies on
         const flyIn = async () => {
@@ -310,20 +416,8 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
             svg.classList.remove('is-rumbling');
             await wait(1200);
 
-            // The coast is clear: they creep back to their podiums, and the plane drops Earhart off
-            await Promise.all(walkers.map(async (a) => {
-                await wait(a.seat * 500);
-                a.grow = 1;
-                a.x = L.hiddenX;
-                a.y = L.floorY;
-                draw(a);
-                a.spot = 'moving';
-                await walkTo(a, L.seatX[a.seat], 90);
-                a.spot = 'seat';
-                look(a, 'front');
-                flash(a.seat);
-            }));
-            await flyIn();
+            // The coast is clear: they all make their entrances again
+            await enter();
             actors.forEach((a) => { a.busy = false; });
             eventRunning = false;
             cheer();
@@ -338,23 +432,14 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
             timers.add(id);
         };
 
-        // --- The show: the podiums grow, then three of the contestants, then Earhart flies in ---
+        // --- The show: the podiums grow, then the contestants make their entrances ---
         const intro = async () => {
             await Promise.all(podiums.map(async (p, i) => {
                 await wait(i * 260);
                 await tween(650, springy, (t) => { p.grow = t; drawPodium(p, i); });
             }));
             await wait(350);
-            for (const a of actors.slice(0, 3)) {
-                a.spot = 'seat';
-                a.x = L.seatX[a.seat];
-                a.y = L.floorY;
-                growUp(a);
-                flash(a.seat);
-                await wait(520);
-            }
-            await wait(500);
-            await flyIn();
+            await enter();
             actors.forEach((a) => { a.busy = false; });
             cheer();
             dinoNow(rand(...FIRST_DINO_MS));
@@ -402,11 +487,19 @@ export default function QuizShow({ stageRef, screenRef, playerCount = 0 }) {
                 <JungleFront frontRef={frontRef} />
                 {SEATS.map(({ name, Actor }, i) => <Actor key={name} elRef={(el) => { actorEls.current[i] = el; }} />)}
                 {SEATS.map(({ name, letter, color }, i) => <Podium key={name} letter={letter} color={color} elRef={(el) => { podiumEls.current[i] = el; }} />)}
+                <Litter elRef={litterRef} />
+                <Bearer elRef={(el) => { bearerEls.current[0] = el; }} />
+                <Bearer elRef={(el) => { bearerEls.current[1] = el; }} />
                 <Plane planeRef={planeRef} />
+                <Ball elRef={ballRef} />
             </g>
             <g ref={roarRef} className="crew-bark">
                 <path d={speech} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
                 <text {...label}>ROAR!</text>
+            </g>
+            <g ref={caughtRef} className="crew-bark">
+                <path d={speech.replace('H 40', 'H 58')} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
+                <text {...label} x={27}>GOT IT!</text>
             </g>
             <g ref={yikesRef} className="crew-bark">
                 <path d={speech} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />

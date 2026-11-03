@@ -2362,6 +2362,80 @@ html.cast-screen {
 .cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }
 @keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }
 
+.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }
+@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }
+/* 🙇 Taking a bow, tipping over from the feet */
+.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }
+.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }
+@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }
+@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }
+
+/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */
+.qf-finale {
+  position: fixed;
+  inset: 0;
+  z-index: 10003;
+  overflow: hidden;
+  pointer-events: none;     /* the Play Again / Home buttons underneath still work */
+}
+.qf-stage {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);
+}
+.qf-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22vh;
+  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);
+  border-top: 3px solid #241509;
+}
+.qf-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 52%;
+  background:
+    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);
+  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);
+  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);
+}
+.qf-curtain::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3vh;
+  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);
+  background-size: 7.5vw 100%;
+}
+.qf-curtain-left { left: 0; }
+.qf-curtain-right { right: 0; }
+.qf-valance {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 11vh;
+  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);
+  border-bottom: 0.8vh solid #e8bd4a;
+  border-radius: 0 0 50% 50% / 0 0 22% 22%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  transition: transform 1.5s ease;
+}
+/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */
+.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }
+.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }
+.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }
+.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }
+.qf-open .qf-curtain-left { transform: translateX(-74%); }
+.qf-open .qf-curtain-right { transform: translateX(74%); }
+.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }
+
 @media (prefers-reduced-motion: reduce) {
   .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }
   .cc-snow { display: none; }

@@ -175,25 +175,29 @@ export function playCelebration(seconds = 3) {
 const STAGGER = 0.35;        // seconds between one wrong answer and the next
 const RIGHT_ANSWER_AT = 2.15;
 
-// 💥 A crack, then the pieces burst and tinkle down
+// 💥 A sharp crack, a big smash, and a long shower of tinkling pieces
 const glassBreak = (ctx, out, t) => {
-    noise(ctx, out, t, { vol: 0.12, decay: 0.05, type: 'highpass', freq: 3500, q: 0.7 });   // the crack
+    noise(ctx, out, t, { vol: 0.3, decay: 0.05, type: 'highpass', freq: 3500, q: 0.7 });   // the crack
     const smash = t + 0.45;
-    noise(ctx, out, smash, { vol: 0.5, decay: 0.28, type: 'highpass', freq: 2600, q: 0.6 });
-    noise(ctx, out, smash, { vol: 0.28, decay: 0.12, type: 'bandpass', freq: 900, q: 0.8 });
-    for (let i = 0; i < 16; i++) {
-        const at = smash + 0.02 + Math.random() * 0.75;
-        const osc = ctx.createOscillator();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(3200 + Math.random() * 5200, at);
-        const gain = ctx.createGain();
-        const vol = 0.09 * (1 - (at - smash) / 1.1);
-        gain.gain.setValueAtTime(vol, at);
-        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.09 + Math.random() * 0.12);
-        osc.connect(gain);
-        gain.connect(out);
-        osc.start(at);
-        osc.stop(at + 0.25);
+    noise(ctx, out, smash, { vol: 0.9, decay: 0.32, type: 'highpass', freq: 2400, q: 0.6 });
+    noise(ctx, out, smash, { vol: 0.5, decay: 0.14, type: 'bandpass', freq: 850, q: 0.8 });
+    for (let i = 0; i < 34; i++) {
+        const at = smash + 0.01 + Math.random() ** 1.5 * 1.05;
+        const fade = 1 - (at - smash) / 1.2;
+        // Each shard rings at two unrelated pitches, which is what makes it sound like glass and not a bell
+        const pitch = 2600 + Math.random() * 6400;
+        [pitch, pitch * 1.47].forEach((freq, partial) => {
+            const osc = ctx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, at);
+            const gain = ctx.createGain();
+            gain.gain.setValueAtTime((partial ? 0.07 : 0.16) * fade, at);
+            gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.06 + Math.random() * 0.16);
+            osc.connect(gain);
+            gain.connect(out);
+            osc.start(at);
+            osc.stop(at + 0.26);
+        });
     }
 };
 
@@ -220,25 +224,71 @@ const footsteps = (ctx, out, t) => {
     }
 };
 
-// 🟢 Chompy's teeth going through the card, one crunchy bite per snap of his jaws
+// 🟢 Chompy, eating with his mouth open: a wet crunch and an off-key honk on every snap of his jaws, a bit
+// flatter each time, then a very rude burp
 const chomps = (ctx, out, t) => {
     const start = t + 0.2;
     const biteEvery = 0.36;      // his jaws (.tc-jaw)
-    for (let i = 0; i < 5; i++) {
+    const bites = 5;
+    const honks = [233, 277, 208, 262, 196];   // deliberately no tune at all
+    for (let i = 0; i < bites; i++) {
         const at = start + i * biteEvery;
-        noise(ctx, out, at, { vol: 0.34, decay: 0.09, type: 'bandpass', freq: 1900 + Math.random() * 700, q: 0.9 });
+        noise(ctx, out, at, { vol: 0.5, decay: 0.09, type: 'bandpass', freq: 1700 + Math.random() * 900, q: 0.9 });
         const jaw = ctx.createOscillator();
-        jaw.type = 'square';
-        jaw.frequency.setValueAtTime(190, at);
-        jaw.frequency.exponentialRampToValueAtTime(85, at + 0.1);
+        jaw.type = 'sawtooth';
+        jaw.frequency.setValueAtTime(honks[i], at);
+        jaw.frequency.exponentialRampToValueAtTime(honks[i] * 0.45, at + 0.2);
+        const wobble = ctx.createOscillator();
+        const depth = ctx.createGain();
+        wobble.frequency.setValueAtTime(34, at);
+        depth.gain.setValueAtTime(honks[i] * 0.12, at);
+        wobble.connect(depth);
+        depth.connect(jaw.frequency);
+        const nasal = ctx.createBiquadFilter();
+        nasal.type = 'bandpass';
+        nasal.frequency.setValueAtTime(1150, at);
+        nasal.Q.setValueAtTime(2.4, at);
         const gain = ctx.createGain();
-        gain.gain.setValueAtTime(0.12, at);
-        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.12);
-        jaw.connect(gain);
+        gain.gain.setValueAtTime(0.0001, at);
+        gain.gain.exponentialRampToValueAtTime(0.6, at + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.22);
+        jaw.connect(nasal);
+        nasal.connect(gain);
         gain.connect(out);
         jaw.start(at);
-        jaw.stop(at + 0.14);
+        wobble.start(at);
+        jaw.stop(at + 0.24);
+        wobble.stop(at + 0.24);
     }
+};
+
+// 🤢 Only once, after the last wrong answer goes down
+const burp = (ctx, out, t) => {
+    const growl = ctx.createOscillator();
+    growl.type = 'sawtooth';
+    growl.frequency.setValueAtTime(92, t);
+    growl.frequency.linearRampToValueAtTime(128, t + 0.12);
+    growl.frequency.exponentialRampToValueAtTime(58, t + 0.5);
+    const wobble = ctx.createOscillator();
+    const depth = ctx.createGain();
+    wobble.frequency.setValueAtTime(23, t);
+    depth.gain.setValueAtTime(30, t);
+    wobble.connect(depth);
+    depth.connect(growl.frequency);
+    const throat = ctx.createBiquadFilter();
+    throat.type = 'lowpass';
+    throat.frequency.setValueAtTime(820, t);
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.8, t + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.52);
+    growl.connect(throat);
+    throat.connect(gain);
+    gain.connect(out);
+    growl.start(t);
+    wobble.start(t);
+    growl.stop(t + 0.55);
+    wobble.stop(t + 0.55);
 };
 
 const REVEAL_SOUNDS = { shatter: glassBreak, walk: footsteps, chomp: chomps };
@@ -259,6 +309,7 @@ export function playRevealSounds(effect, sides = []) {
         }
         if (sound) sound(ctx, pan || out, start + i * STAGGER);
     });
+    if (effect === 'chomp' && sides.length) burp(ctx, out, start + (sides.length - 1) * STAGGER + 2.05);
 
     // ✨ And the right answer zooms in
     [[76, 0], [79, 0.09], [84, 0.18]].forEach(([note, at]) => {
@@ -277,6 +328,43 @@ export function playRevealSounds(effect, sides = []) {
     });
 
     setTimeout(() => out.disconnect(), 6000);
+}
+
+// 👏 A theatre full of people clapping, a few at a time, a little ahead of the clock. Returns the function that
+// fades it out. The caster's 🔇 mutes it like the rest.
+const APPLAUSE_VOLUME = 0.5;
+const CLAPS_PER_SECOND = 34;
+
+export function startApplause() {
+    const ctx = getAudioContext();
+    if (!ctx) return () => {};
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+
+    const out = ctx.createGain();
+    const level = () => (isMusicMuted() ? 0.0001 : APPLAUSE_VOLUME);
+    out.gain.setValueAtTime(0.0001, ctx.currentTime);
+    out.gain.setTargetAtTime(level(), ctx.currentTime, 0.5);
+    out.connect(ctx.destination);
+    const stopWatchingMute = onMusicMuteChange(() => out.gain.setTargetAtTime(level(), ctx.currentTime, 0.05));
+
+    let from = ctx.currentTime + 0.05;
+    const batch = 0.25;
+    const clapMore = () => {
+        for (let i = 0; i < CLAPS_PER_SECOND * batch; i++) {
+            noise(ctx, out, from + Math.random() * batch, { vol: 0.05 + Math.random() * 0.12, decay: 0.025 + Math.random() * 0.03, freq: 1100 + Math.random() * 2400, q: 1.1 });
+        }
+        from += batch;
+    };
+    clapMore();
+    const timer = setInterval(clapMore, batch * 1000);
+
+    return () => {
+        clearInterval(timer);
+        stopWatchingMute();
+        out.gain.cancelScheduledValues(ctx.currentTime);
+        out.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.5);
+        setTimeout(() => out.disconnect(), 3000);
+    };
 }
 
 // 🎺 The end credits' march: eight bars in C major, round and round until the credits finish.

@@ -15,6 +15,8 @@ import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
 import CouchCastRoundIntro from '../CouchCast/CouchCastRoundIntro.jsx';
 import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
+import QuizFinale from './QuizFinale.jsx';
+import { QuizRoundScene, SCENE_MS as ROUND_SCENE_MS } from './QuizScenes.jsx';
 import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION, roundKicker, roundIntroLine } from './TriviaCastScreensTV.jsx';
 
 // Phone controller
@@ -58,6 +60,7 @@ export default function TriviaCastManager() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const gameState = room?.gameState;
+    const [showFinale, setShowFinale] = useState(false);   // 🎭 the curtain call, after the final scores
 
     // 🎨 Background follows the question deck, and covers the nav bar on the TV
     useSetBackgroundTheme(triviaCastTheme(room?.expansion), true);
@@ -126,10 +129,13 @@ export default function TriviaCastManager() {
         if (voiceMoment.startsWith('round-intro')) {
             // 🎬 The card stays up while the narrator calls the round, then it's on to the question
             const round = room.currentRound;
+            const startedAt = Date.now();
             let isCurrent = true;
             let timer;
             speak(roundIntroLine(round, room.totalRounds), code).then((spoken) => {
-                if (isCurrent) timer = setTimeout(() => socket.emit('round_intro_read', { roomCode: code, round }), spoken ? 500 : 3000);
+                // ...and the cast's bit along the bottom gets to finish
+                const sceneLeft = ROUND_SCENE_MS - (Date.now() - startedAt);
+                if (isCurrent) timer = setTimeout(() => socket.emit('round_intro_read', { roomCode: code, round }), Math.max(spoken ? 500 : 3000, sceneLeft));
             });
             return () => {
                 isCurrent = false;
@@ -142,7 +148,18 @@ export default function TriviaCastManager() {
         } else if (voiceMoment.startsWith('reveal')) {
             // Read the question again, then the answer (the question is already cached, so it's instant)
             speak([room.question.text, `The answer is: ${room.correctAnswer}.`], code);
-        } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
+        } else if (voiceMoment === 'game-over') {
+            // 🎭 The final scores get read, then the curtain comes down
+            let isCurrent = true;
+            let timer;
+            Promise.resolve(recap ? speak(recap.spoken, code) : false).then((spoken) => {
+                if (isCurrent) timer = setTimeout(() => setShowFinale(true), spoken ? 1000 : 6000);
+            });
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
+        } else if (voiceMoment.startsWith('scores')) {
             if (recap) speak(recap.spoken, code);
             // Get the next round's line ready behind it
             if (!room.isGameOver) preloadVoice(roundIntroLine(room.currentRound + 1, room.totalRounds), code);
@@ -152,6 +169,7 @@ export default function TriviaCastManager() {
 
     // 🔁 End of the game: the caster picks what happens next
     const handlePlayAgain = () => {
+        setShowFinale(false);
         startLobbyMusic(lobbyTrack);   // this tap lets the lobby music play again
         socket.emit('playAgain', { roomCode: room?.roomCode });
     };
@@ -218,7 +236,7 @@ export default function TriviaCastManager() {
                 return <TriviaCastRulesTV roomCode={room.roomCode} />;
 
             case 'round_intro':
-                return <CouchCastRoundIntro round={room.currentRound} totalRounds={room.totalRounds} kicker={roundKicker(room.currentRound, room.totalRounds)} tagline="Up next, get ready!" />;
+                return <CouchCastRoundIntro round={room.currentRound} totalRounds={room.totalRounds} kicker={roundKicker(room.currentRound, room.totalRounds)} tagline="Up next, get ready!" scene={<QuizRoundScene round={room.currentRound} />} />;
 
             case 'question':
             case 'reveal':
@@ -251,6 +269,7 @@ export default function TriviaCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
+            {showFinale && gameState === 'scoreboard' && <QuizFinale scores={room?.attack?.scores} onDone={() => setShowFinale(false)} />}
             {room && <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />}
 
             {isSoundLocked && (

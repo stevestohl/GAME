@@ -63,9 +63,6 @@ export function BabeRuth({ elRef }) {
     return (
         <g ref={elRef} className="crew-actor quiz-ruth" data-look="front">
             <g className="crew-fig">
-                {/* The bat, behind everything */}
-                <path d="M 16 -48 L 35 -102" stroke={INK} strokeWidth={8.5} strokeLinecap="round" />
-                <path d="M 16 -48 L 35 -102" stroke="#c6924f" strokeWidth={5.5} strokeLinecap="round" />
                 <g className="crew-leg crew-leg-l">
                     <rect x={-15} y={-30} width={12} height={18} fill={flannel} {...ink} strokeWidth={2} />
                     <rect x={-15} y={-14} width={12} height={9} fill="#1b2a4e" {...ink} strokeWidth={2} />
@@ -83,6 +80,11 @@ export function BabeRuth({ elRef }) {
                 <rect x={-20} y={-31} width={40} height={5} fill="#1b2a4e" stroke={INK} strokeWidth={1.4} />
                 <rect x={-28} y={-60} width={9} height={22} rx={3} fill={flannel} {...ink} strokeWidth={2} />
                 <circle cx={-23.5} cy={-36} r={4.4} fill={skin} {...ink} strokeWidth={1.6} />
+                {/* The bat, in hand: it swings about the hand (QuizScenes.jsx) */}
+                <g className="quiz-bat">
+                    <path d="M 23.5 -41 L 40 -100" stroke={INK} strokeWidth={8.5} strokeLinecap="round" />
+                    <path d="M 23.5 -41 L 40 -100" stroke="#c6924f" strokeWidth={5.5} strokeLinecap="round" />
+                </g>
                 <g className="crew-arm-bump">
                     <rect x={19} y={-60} width={9} height={18} rx={3} fill={flannel} {...ink} strokeWidth={2} />
                     <circle cx={23.5} cy={-41} r={4.4} fill={skin} {...ink} strokeWidth={1.6} />
@@ -208,6 +210,93 @@ export function Earhart({ elRef }) {
                 <circle cx={-5.5} cy={-95} r={4.2} fill="#9fd5e8" {...ink} strokeWidth={1.6} />
                 <circle cx={5.5} cy={-95} r={4.2} fill="#9fd5e8" {...ink} strokeWidth={1.6} />
             </g>
+        </g>
+    );
+}
+
+export function Ball({ elRef }) {
+    return (
+        <g ref={elRef} className="quiz-ball" style={{ display: 'none' }}>
+            <circle r={4} fill="#fbf9f2" stroke={INK} strokeWidth={1.3} />
+            <path d="M -2 -3 Q 0 0 -2 3 M 2 -3 Q 0 0 2 3" fill="none" stroke="#c8242c" strokeWidth={0.9} />
+        </g>
+    );
+}
+
+export function Litter({ elRef }) {
+    // Cleopatra's ride: long carrying poles at shoulder height (y = -68) and a gilded box she stands in, feet on y = -70
+    return (
+        <g ref={elRef} className="quiz-litter">
+            <rect x={-74} y={-70} width={148} height={6} rx={3} fill="#7a4a26" {...ink} strokeWidth={2} />
+            <path d="M -38 -98 H 38 L 34 -68 H -34 Z" fill="#e8b93c" {...ink} />
+            <path d="M -32 -92 H 32 L 29 -74 H -29 Z" fill="#2f7fd1" stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
+            <path d="M -24 -83 L -16 -89 L -8 -83 L -16 -77 Z M 8 -83 L 16 -89 L 24 -83 L 16 -77 Z" fill="#e8b93c" stroke={INK} strokeWidth={1.1} strokeLinejoin="round" />
+            <circle cx={0} cy={-83} r={4} fill="#e5484d" stroke={INK} strokeWidth={1.1} />
+            <path d="M -42 -102 L -36 -96 L -42 -94 Z M 42 -102 L 36 -96 L 42 -94 Z" fill="#e8b93c" stroke={INK} strokeWidth={1.1} strokeLinejoin="round" />
+        </g>
+    );
+}
+
+export function Bearer({ elRef }) {
+    // A hard-working litter carrier in a kilt and a striped headcloth, one arm up to steady the pole
+    const skin = '#c98f62';
+    return (
+        <g ref={elRef} className="crew-actor quiz-bearer" data-look="front">
+            <g className="crew-fig">
+                <g className="crew-leg crew-leg-l">
+                    <rect x={-10} y={-32} width={8} height={28} fill={skin} {...ink} strokeWidth={1.8} />
+                    <path d="M -2 0 H -15 Q -15 -5 -10 -5 H -2 Z" fill="#b9975b" {...ink} strokeWidth={1.5} />
+                </g>
+                <g className="crew-leg crew-leg-r">
+                    <rect x={2} y={-32} width={8} height={28} fill={skin} {...ink} strokeWidth={1.8} />
+                    <path d="M 2 0 H 15 Q 15 -5 10 -5 H 2 Z" fill="#b9975b" {...ink} strokeWidth={1.5} />
+                </g>
+                <path d="M -14 -38 L -17 -20 H 17 L 14 -38 Z" fill="#f6f2e4" {...ink} strokeWidth={2} />
+                <path d="M -14 -64 Q -16 -48 -14 -36 H 14 Q 16 -48 14 -64 Q 0 -68 -14 -64 Z" fill={skin} {...ink} />
+                <rect x={-15} y={-40} width={30} height={4.5} fill="#e8b93c" stroke={INK} strokeWidth={1.2} />
+                <path d="M -14 -62 L -22 -76 M 14 -62 L 22 -76" stroke={INK} strokeWidth={7.5} strokeLinecap="round" />
+                <path d="M -14 -62 L -22 -76 M 14 -62 L 22 -76" stroke={skin} strokeWidth={4.5} strokeLinecap="round" />
+                <rect x={-3} y={-70} width={6} height={7} fill={skin} {...ink} strokeWidth={1.7} />
+                <path d="M -12 -90 V -76 Q -12 -67 0 -66 Q 12 -67 12 -76 V -90 Z" fill={skin} {...ink} />
+                <g className="crew-eyes">
+                    <circle cx={-5} cy={-81} r={1.7} fill={INK} />
+                    <circle cx={5} cy={-81} r={1.7} fill={INK} />
+                </g>
+                <path d="M -4 -72 Q 0 -70 4 -72" {...line} strokeWidth={1.4} />
+                {/* The headcloth */}
+                <path d="M -13 -85 Q -14 -100 0 -100 Q 14 -100 13 -85 L 19 -66 L 12 -68 L 11 -85 Q 0 -89 -11 -85 L -12 -68 L -19 -66 Z" fill="#f2d774" {...ink} strokeWidth={1.8} />
+                <path d="M -15 -78 L -12 -77 M -17 -72 L -13 -71 M 15 -78 L 12 -77 M 17 -72 L 13 -71 M -6 -98 L -6 -89 M 6 -98 L 6 -89" stroke="#2f7fd1" strokeWidth={1.4} />
+            </g>
+        </g>
+    );
+}
+
+// 🎭 A box at the theatre, with the party behind its front (centered on x = 200, floor at y = 96)
+export function TheatreBoxBack({ elRef }) {
+    return (
+        <g ref={elRef} style={{ display: 'none' }}>
+            <rect x={94} y={10} width={212} height={86} fill="#24121c" stroke={INK} strokeWidth={2.2} />
+            <path d="M 94 10 H 306 V 24 Q 279 44 253 24 Q 226 44 200 24 Q 174 44 147 24 Q 121 44 94 24 Z" fill="#a81f28" stroke={INK} strokeWidth={2} strokeLinejoin="round" />
+            <path d="M 94 10 H 306" stroke="#e8b93c" strokeWidth={3} />
+            <rect x={86} y={6} width={13} height={90} fill="#7a1820" stroke={INK} strokeWidth={2} />
+            <rect x={301} y={6} width={13} height={90} fill="#7a1820" stroke={INK} strokeWidth={2} />
+        </g>
+    );
+}
+
+export function TheatreBoxFront({ elRef }) {
+    return (
+        <g ref={elRef} style={{ display: 'none' }}>
+            <rect x={90} y={62} width={220} height={34} fill="#6c3f2a" stroke={INK} strokeWidth={2.2} />
+            <rect x={86} y={58} width={228} height={6} rx={3} fill="#e8b93c" stroke={INK} strokeWidth={1.6} />
+            {/* Bunting along the front */}
+            {[120, 170, 230, 280].map((x) => (
+                <g key={x}>
+                    <path d={`M ${x - 24} 65 Q ${x} 88 ${x + 24} 65 Z`} fill="#c8242c" stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
+                    <path d={`M ${x - 18} 65 Q ${x} 81 ${x + 18} 65 Z`} fill="#fbf9f2" />
+                    <path d={`M ${x - 11} 65 Q ${x} 74 ${x + 11} 65 Z`} fill="#27509b" />
+                </g>
+            ))}
         </g>
     );
 }
