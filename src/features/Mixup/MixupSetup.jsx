@@ -5,13 +5,17 @@ import MixupTile from './MixupTile.jsx';
 import { createMixupRoom } from './mixupCreate.js';
 import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import DeckCard from '../Menu/DeckCard.jsx';
+import { MIXUP_DECKS } from '../../cardDecks.js';
+import { useGameVisibility } from '../../gameVisibility.js';
 
 export const MIXUP_ROUND_OPTIONS = [9, 12, 15];
 
 /**
- * 🎪 Temple Mix Up setup: what the game is, how many rounds, and start.
+ * 🎪 Temple Mix Up setup: what the game is, how many rounds, how hard, then tap a deck to start.
  */
 export default function MixupSetup() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(MIXUP_ROUND_OPTIONS[0]);
@@ -76,21 +80,30 @@ export default function MixupSetup() {
                     </div>
 
                     <LevelPicker value={level} onChange={setLevel} disabled={isCreatingRoom} />
-                    <div className="mb-3" />
 
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-100 fw-bold py-3 shadow-sm"
-                        disabled={isCreatingRoom}
-                        onClick={() => createMixupRoom(navigate, setIsCreatingRoom, { totalRounds, level })}
-                    >
-                        Start a Mix Up room
-                    </Button>
+                    <div className="d-flex align-items-center mt-3 mb-2">
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                        <span className="mx-2 small fw-bold text-muted text-uppercase">Then Tap a Deck to Start</span>
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                    </div>
+
+                    <Row className="g-2">
+                        {visibleDecks('mixup', MIXUP_DECKS).map((deck, i) => (
+                            <Col xs={6} key={deck.id}>
+                                <DeckCard
+                                    deck={deck}
+                                    index={i}
+                                    disabled={isCreatingRoom}
+                                    onClick={() => createMixupRoom(navigate, setIsCreatingRoom, { totalRounds, level, expansion: deck.id })}
+                                    ariaLabel={`Create a Temple Mix Up room with the ${deck.title}`}
+                                />
+                            </Col>
+                        ))}
+                    </Row>
 
                     <Button
                         variant="outline-secondary"
-                        className="w-100 fw-bold mt-2"
+                        className="w-100 fw-bold mt-3"
                         disabled={isCreatingRoom}
                         onClick={() => navigate('/home')}
                     >

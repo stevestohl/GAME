@@ -19,6 +19,7 @@ import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { normalizeLevel } from "../db/drawCards.js";
 import { drawListCategories } from "../db/listCategories.js";
+import { findGame } from "../db/gameCatalog.js";
 import { pickMemes, pickPictionaryPrompts, markMemeUsed, markPromptUsed } from "../db/drawMixup.js";
 import { normalizeItem, isSameItem, compareLists, getCard } from "./listMatching.js";
 import { startRoomJanitor } from "./roomJanitor.js";
@@ -193,9 +194,9 @@ export default function registerMixupNamespace(MNS) {
     const planGame = async (room) => {
         const each = room.totalRounds / 3;
         const [memes, prompts, topics] = await Promise.all([
-            pickMemes(each),
-            pickPictionaryPrompts(each, room.level),
-            drawListCategories('core', each),
+            pickMemes(each, room.expansion),
+            pickPictionaryPrompts(each, room.level, room.expansion),
+            drawListCategories(room.expansion, each),
         ]);
         const plan = [];
         ROUND_TYPES.forEach((type) => {
@@ -567,6 +568,7 @@ export default function registerMixupNamespace(MNS) {
                 gameState: 'lobby',
                 totalRounds,
                 level: normalizeLevel(data.level),
+                expansion: findGame('mixup').decks.some((d) => d.id === data.expansion) ? data.expansion : 'core',
                 currentRound: 1,
                 plan: [],
                 round: null,

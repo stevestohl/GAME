@@ -5,9 +5,11 @@
 // The file is a list:
 //   [
 //     { "text": "pizza", "difficulty": "easy" },
-//     { "text": "lighthouse", "difficulty": "medium", "alsoAccept": ["light house"] }
+//     { "text": "lighthouse", "difficulty": "medium", "alsoAccept": ["light house"] },
+//     { "text": "snowman", "difficulty": "easy", "expansion": "holiday" }
 //   ]
-// Safe to run again: a prompt already saved (same text, any capitals) is skipped.
+// No `expansion` means the core deck.
+// Safe to run again: a prompt already saved in that deck (same text, any capitals) is skipped.
 import "dotenv/config";
 import fs from "fs";
 import mongoose from "mongoose";
@@ -21,13 +23,14 @@ const run = async () => {
 
     await mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS);
 
-    const have = new Set((await PictionaryPrompt.find({}, { text: 1 }).lean()).map((p) => p.text.toLowerCase()));
+    const keyFor = (deck, text) => `${deck || 'core'}/${text.toLowerCase()}`;
+    const have = new Set((await PictionaryPrompt.find({}, { text: 1, expansion: 1 }).lean()).map((p) => keyFor(p.expansion, p.text)));
     const fresh = [];
-    entries.forEach(({ text, difficulty = 'easy', alsoAccept = [] }) => {
+    entries.forEach(({ text, difficulty = 'easy', alsoAccept = [], expansion = 'core' }) => {
         const clean = String(text || '').trim();
-        if (!clean || have.has(clean.toLowerCase())) return;
-        have.add(clean.toLowerCase());
-        fresh.push({ text: clean, difficulty, alsoAccept });
+        if (!clean || have.has(keyFor(expansion, clean))) return;
+        have.add(keyFor(expansion, clean));
+        fresh.push({ text: clean, difficulty, alsoAccept, expansion });
     });
     if (fresh.length) await PictionaryPrompt.insertMany(fresh);
 

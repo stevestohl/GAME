@@ -5,9 +5,11 @@ import mongoose from "mongoose";
 // Prompts cycle like the memes: the least-used ones come up first.
 //   - hide a prompt:  set `active` to false
 //   - `alsoAccept`:   other answers that count as right, e.g. "pizza" for "slice of pizza"
+//   - `expansion`:    which deck it's in (prompts saved without one count as core)
 const PictionaryPromptSchema = new mongoose.Schema({
     text: { type: String, required: [true, 'Prompt text required'], trim: true },
     difficulty: { type: String, enum: ['easy', 'medium', 'hard'], default: 'easy' },
+    expansion: { type: String, default: 'core' },
     alsoAccept: { type: [String], default: [] },
     active: { type: Boolean, default: true },
     timesUsed: { type: Number, default: 0 },

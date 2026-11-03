@@ -139,7 +139,9 @@ export const listContent = async (req, res) => {
             match[field] = { $regex: `^${escapeRegex(String(value))}`, $options: 'i' };
             continue;
         }
-        if (filter === 'createdBy' && value === 'system') match.$and = [...(match.$and || []), { $or: [{ createdBy: 'system' }, { createdBy: { $exists: false } }] }];
+        // Older content with no deck counts as core (an account that doesn't manage core gets stopped just below)
+        if (filter === 'deck' && value === 'core' && (!decks || decks.includes('core'))) match[field] = { $in: ['core', null] };
+        else if (filter === 'createdBy' && value === 'system') match.$and = [...(match.$and || []), { $or: [{ createdBy: 'system' }, { createdBy: { $exists: false } }] }];
         else match[field] = String(value);
     }
     // Picked a deck in the filter that this account doesn't manage: nothing to show

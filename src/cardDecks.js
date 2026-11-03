@@ -93,6 +93,28 @@ export const LIST_DECKS = [
     },
 ];
 
+// Temple Mix Up: each deck has its own memes and drawing words, and shares its list topics with List Cast
+export const MIXUP_DECKS = [
+    {
+        id: 'core',
+        title: 'Core Deck',
+        tag: 'The Original',
+        icon: 'core',
+        description: 'Popular memes, everyday drawings and lists for any crowd.',
+        colors: ['#93a7f0', '#3a53c4'],
+    },
+    {
+        id: 'holiday',
+        title: 'Holiday',
+        tag: 'Seasonal',
+        icon: 'holiday',
+        description: 'Festive memes, wintry drawings and lists to fill a stocking.',
+        colors: ['#3ecf83', '#0c5c38'],
+        background: 'linear-gradient(160deg, #35b873 0%, #178a52 50%, #0b5433 100%)',
+        startsHidden: true,   // don't flash it at visitors before the server's answer arrives
+    },
+];
+
 // How long a game can be. The first number in each list is the default.
 export const ROUND_OPTIONS = [3, 5, 7, 10];        // Couch Cast and Prompt 2: rounds
 export const QUESTION_OPTIONS = [5, 10, 15, 20];   // Trivia: questions

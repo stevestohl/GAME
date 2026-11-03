@@ -12,22 +12,35 @@ const pickLeastUsed = (Model, count, excludeIds = [], match = {}) => Model.aggre
     { $project: { shuffle: 0 } },
 ]);
 
-export const pickMemes = (count) => pickLeastUsed(MixupMeme, count);
+// One deck's content ('core' also matches anything saved without a deck)
+const inDeck = (deck) => ({ expansion: deck === 'core' ? { $in: ['core', null] } : deck });
+
+// A deck too small for the game is topped up from core, so a round never comes up empty
+export const pickMemes = async (count, deck = 'core') => {
+    const memes = await pickLeastUsed(MixupMeme, count, [], inDeck(deck));
+    if (memes.length >= count || deck === 'core') return memes;
+    return [...memes, ...await pickLeastUsed(MixupMeme, count - memes.length, [], inDeck('core'))];
+};
 
 // `level`: 'easy', 'medium' or 'hard' tries that level first, then borrows from the closest one. 'mixed' deals evenly
 // from all three (or least-used-first would hand a game nothing but whichever level was added most recently).
-export const pickPictionaryPrompts = async (count, level = 'mixed') => {
+// `deck`: its prompts come first, topped up from core if it's too small.
+export const pickPictionaryPrompts = async (count, level = 'mixed', deck = 'core') => {
     const clean = normalizeLevel(level);
     const prompts = [];
-    const take = async (difficulty, howMany) => {
-        if (howMany <= 0) return;
-        prompts.push(...await pickLeastUsed(PictionaryPrompt, howMany, prompts.map((p) => p._id), { difficulty }));
+    const dealFrom = async (from, wanted) => {
+        const take = async (difficulty, howMany) => {
+            if (howMany <= 0) return;
+            prompts.push(...await pickLeastUsed(PictionaryPrompt, howMany, prompts.map((p) => p._id), { difficulty, ...inDeck(from) }));
+        };
+        if (clean === 'mixed') {
+            const levels = ['easy', 'medium', 'hard'];
+            for (let i = 0; i < levels.length; i++) await take(levels[i], Math.ceil((wanted - i) / levels.length));
+        }
+        for (const difficulty of LEVEL_ORDER[clean] || LEVEL_ORDER.medium) await take(difficulty, count - prompts.length);
     };
-    if (clean === 'mixed') {
-        const levels = ['easy', 'medium', 'hard'];
-        for (let i = 0; i < levels.length; i++) await take(levels[i], Math.ceil((count - i) / levels.length));
-    }
-    for (const difficulty of LEVEL_ORDER[clean] || LEVEL_ORDER.medium) await take(difficulty, count - prompts.length);
+    await dealFrom(deck, count);
+    if (prompts.length < count && deck !== 'core') await dealFrom('core', count - prompts.length);
     return prompts.sort(() => Math.random() - 0.5);
 };
 

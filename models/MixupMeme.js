@@ -9,9 +9,11 @@ import mongoose from "mongoose";
 // first. `timesUsed` and `lastUsedAt` go up each time a meme is played in a round.
 //   - hide a meme:   set `active` to false (it stops coming up, but isn't deleted)
 //   - your own meme: insert a document with `name`, `url` (a blank picture), `width` and `height`
+//   - `expansion`:   which deck it's in (memes saved without one count as core)
 const MixupMemeSchema = new mongoose.Schema({
     name: { type: String, required: [true, 'Meme name required'], trim: true },
     url: { type: String, required: [true, 'Image link required'], trim: true },
+    expansion: { type: String, default: 'core' },
     width: { type: Number },
     height: { type: Number },
     boxCount: { type: Number },                  // how many text boxes the meme normally has (for reference)

@@ -23280,17 +23280,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
 /* harmony import */ var _mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixupCreate.js */ "./src/features/Mixup/mixupCreate.js");
 /* harmony import */ var _Menu_LevelPicker_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/LevelPicker.jsx */ "./src/features/Menu/LevelPicker.jsx");
 /* harmony import */ var _Menu_RoundsPicker_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/RoundsPicker.jsx */ "./src/features/Menu/RoundsPicker.jsx");
+/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
+/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
+/* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../gameVisibility.js */ "./src/gameVisibility.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -23304,13 +23307,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
 var MIXUP_ROUND_OPTIONS = [9, 12, 15];
 
 /**
- * 🎪 Temple Mix Up setup: what the game is, how many rounds, and start.
+ * 🎪 Temple Mix Up setup: what the game is, how many rounds, how hard, then tap a deck to start.
  */
 function MixupSetup() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_7__.useGameVisibility)(),
+    visibleDecks = _useGameVisibility.visibleDecks;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isCreatingRoom = _useState2[0],
@@ -23331,23 +23339,23 @@ function MixupSetup() {
   var each = totalRounds / 3;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
     className: "main-card-header"
-  }, "Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+  }, "Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
     className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "bg-light border-0 shadow-sm m-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
     className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "g-2 align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 4
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     className: "w-100 rounded shadow-sm"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     xs: 8,
     className: "text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -23385,33 +23393,47 @@ function MixupSetup() {
     onChange: setLevel,
     disabled: isCreatingRoom
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-3"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    variant: "primary",
-    size: "lg",
-    className: "w-100 fw-bold py-3 shadow-sm",
-    disabled: isCreatingRoom,
-    onClick: function onClick() {
-      return (0,_mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__.createMixupRoom)(navigate, setIsCreatingRoom, {
-        totalRounds: totalRounds,
-        level: level
-      });
-    }
-  }, "Start a Mix Up room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    className: "d-flex align-items-center mt-3 mb-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-2 small fw-bold text-muted text-uppercase"
+  }, "Then Tap a Deck to Start"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "flex-grow-1 my-0 opacity-25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "g-2"
+  }, visibleDecks('mixup', _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__.MIXUP_DECKS).map(function (deck, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      xs: 6,
+      key: deck.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      deck: deck,
+      index: i,
+      disabled: isCreatingRoom,
+      onClick: function onClick() {
+        return (0,_mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__.createMixupRoom)(navigate, setIsCreatingRoom, {
+          totalRounds: totalRounds,
+          level: level,
+          expansion: deck.id
+        });
+      },
+      ariaLabel: "Create a Temple Mix Up room with the ".concat(deck.title)
+    }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     variant: "outline-secondary",
-    className: "w-100 fw-bold mt-2",
+    className: "w-100 fw-bold mt-3",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return navigate('/home');
     }
-  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -38550,6 +38572,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CARD_DECKS": () => (/* binding */ CARD_DECKS),
 /* harmony export */   "LIST_DECKS": () => (/* binding */ LIST_DECKS),
 /* harmony export */   "LIST_ROUND_OPTIONS": () => (/* binding */ LIST_ROUND_OPTIONS),
+/* harmony export */   "MIXUP_DECKS": () => (/* binding */ MIXUP_DECKS),
 /* harmony export */   "QUESTION_OPTIONS": () => (/* binding */ QUESTION_OPTIONS),
 /* harmony export */   "ROUND_OPTIONS": () => (/* binding */ ROUND_OPTIONS),
 /* harmony export */   "TRIVIA_DECKS": () => (/* binding */ TRIVIA_DECKS)
@@ -38635,6 +38658,25 @@ var LIST_DECKS = [{
   icon: 'halloween',
   description: 'Monsters, candy and creepy places.',
   colors: ['#ff9a3d', '#5b2a86']
+}];
+
+// Temple Mix Up: each deck has its own memes and drawing words, and shares its list topics with List Cast
+var MIXUP_DECKS = [{
+  id: 'core',
+  title: 'Core Deck',
+  tag: 'The Original',
+  icon: 'core',
+  description: 'Popular memes, everyday drawings and lists for any crowd.',
+  colors: ['#93a7f0', '#3a53c4']
+}, {
+  id: 'holiday',
+  title: 'Holiday',
+  tag: 'Seasonal',
+  icon: 'holiday',
+  description: 'Festive memes, wintry drawings and lists to fill a stocking.',
+  colors: ['#3ecf83', '#0c5c38'],
+  background: 'linear-gradient(160deg, #35b873 0%, #178a52 50%, #0b5433 100%)',
+  startsHidden: true // don't flash it at visitors before the server's answer arrives
 }];
 
 // How long a game can be. The first number in each list is the default.
@@ -39946,7 +39988,9 @@ function createMixupRoom(navigate, setIsCreatingRoom) {
     _ref$totalRounds = _ref.totalRounds,
     totalRounds = _ref$totalRounds === void 0 ? 9 : _ref$totalRounds,
     _ref$level = _ref.level,
-    level = _ref$level === void 0 ? 'mixed' : _ref$level;
+    level = _ref$level === void 0 ? 'mixed' : _ref$level,
+    _ref$expansion = _ref.expansion,
+    expansion = _ref$expansion === void 0 ? 'core' : _ref$expansion;
   // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
   (0,_fullscreen_js__WEBPACK_IMPORTED_MODULE_2__.enterFullscreen)();
   (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
@@ -39962,7 +40006,8 @@ function createMixupRoom(navigate, setIsCreatingRoom) {
     return _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.emit('createRoom', {
       playerName: 'Caster',
       totalRounds: totalRounds,
-      level: level
+      level: level,
+      expansion: expansion
     });
   };
   _socket_js__WEBPACK_IMPORTED_MODULE_0__.mixupSocket.off('roomCreated');
