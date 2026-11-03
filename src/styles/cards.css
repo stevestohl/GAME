@@ -1206,7 +1206,7 @@
     flex-shrink: 0;
 }
 
-/* 👑 The room leader's start button in Trivia Cast's phone lobby: pinned just under the nav bar */
+/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */
 .tc-leader-bar {
   position: sticky;
   top: 64px;
@@ -1290,6 +1290,35 @@
 .aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }
 .aa-leader.is-me { background: #ffd36e; }
 .aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */
+.sn-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),
+    linear-gradient(180deg, #123a2a, #0b2a2f);
+}
+.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }
+.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }
+.sn-seg-alt { background: #a6e84e; }
+.sn-seg.is-dead { background: #e5484d; }
+.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }
+.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }
+.sn-apple { display: block; text-align: center; }
+.sn-message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 42%;
+  z-index: 3;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
 
 /* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */
 .cc-crew.gt-party-scene {

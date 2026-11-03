@@ -13,6 +13,7 @@
 //   pictionary: draw -> draw_results
 //   trivia:     trivia -> trivia_results
 // then scoreboard -> the next round's intro (or the final standings).
+import { newSnake, snakeEat, snakeCrash, snakePlayerGone } from "./snakeGame.js";
 import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { drawTriviaQuestions } from "../db/drawCards.js";
@@ -123,6 +124,7 @@ const getSafeRoom = (room) => {
         totalRounds: room.totalRounds,
         endTime: room.endTime,
         isGameOver: room.isGameOver,
+        snake: room.snake ? { scores: room.snake.scores } : null,   // 🐍 the lobby game's scores
         minPlayers: MIN_PLAYERS,
         round: roundView,
         players,
@@ -462,6 +464,7 @@ export default function registerMixupNamespace(MNS) {
         room.hostId = leader ? leader.id : null;
 
         room.gameId = randomUUID();
+        room.snake = newSnake();      // 🐍 a fresh lobby game too
         room.gameState = 'lobby';
         room.currentRound = 1;
         room.isGameOver = false;
@@ -519,6 +522,7 @@ export default function registerMixupNamespace(MNS) {
                 endTime: null,
                 timerId: null,
                 isGameOver: false,
+                snake: newSnake(),
                 playerCount: 0,
                 players: {
                     [socket.id]: {
@@ -535,6 +539,29 @@ export default function registerMixupNamespace(MNS) {
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode });
         }));
+
+        // ---------- 🐍 Events: The lobby game ----------
+        // Scores can change many times a second: send them a few times a second at most
+        const sendSnakeScores = (roomCode, room) => {
+            if (room.snakeTimer) return;
+            room.snakeTimer = setTimeout(() => {
+                room.snakeTimer = null;
+                if (activeMixupRooms[roomCode]) broadcast(roomCode);
+            }, 250);
+        };
+        socket.on('snake_eat', ({ roomCode, targetId, length } = {}) => {
+            const room = activeMixupRooms[roomCode];
+            if (!room) return;
+            const target = snakeEat(room, socket.id, targetId, length);
+            if (!target) return;
+            socket.to(target.id).emit('snake_gotcha', { name: room.players[socket.id].name });
+            sendSnakeScores(roomCode, room);
+        });
+        socket.on('snake_crash', ({ roomCode, length } = {}) => {
+            const room = activeMixupRooms[roomCode];
+            if (room && snakeCrash(room, socket.id, length)) sendSnakeScores(roomCode, room);
+        });
+        socket.on('disconnect', () => snakePlayerGone(socket.id));
 
         // ---------- Event: Joining (phones, and the TV after a refresh) ----------
         socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar } = {}) => {

@@ -6,6 +6,7 @@ import { playChime } from '../../chime.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { DrawingPad, DrawingView } from './DrawingCanvas.jsx';
 import { MemeImage, ROUND_LOOKS, useCountdown } from './MixupScreensTV.jsx';
+import SnakeSnack from './SnakeSnack.jsx';
 import '../../styles/mixup.css';
 import { getMyAvatar } from '../../avatars.jsx';
 
@@ -104,23 +105,28 @@ export default function MixupPlayer({ roomCode, playerName }) {
         // ===================== LOBBY / RULES =====================
         case 'lobby':
             return (
-                <Frame title="You're In!">
-                    <p className="text-muted">Look up at the TV. {players.length} player{players.length === 1 ? '' : 's'} so far.</p>
-                    {error && <Alert variant="warning" className="py-2">{error}</Alert>}
-                    {isLeader ? (
-                        <div className="p-3 border border-warning rounded bg-white shadow-sm">
-                            <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
-                            <Button variant="primary" size="lg" className="w-100 fw-bold py-3" onClick={() => { setError(''); socket.emit('startGame', { roomCode }); }}>
+                <>
+                    {/* 👑 Pinned under the nav bar, so the leader can't scroll away from it */}
+                    {isLeader && (
+                        <div className="tc-leader-bar">
+                            <span className="fw-bold text-dark small">👑 Room Leader</span>
+                            <Button variant="primary" className="fw-bold flex-grow-1" onClick={() => { setError(''); socket.emit('startGame', { roomCode }); }}>
                                 All in!
                             </Button>
-                            {players.length < room.minPlayers && <p className="small text-muted mt-2 mb-0">You need at least {room.minPlayers} players.</p>}
-                        </div>
-                    ) : (
-                        <div className="p-3 border rounded bg-light text-muted">
-                            Waiting for <strong>{players.find((p) => p.id === room.hostId)?.name || 'the leader'}</strong> to start the game...
                         </div>
                     )}
-                </Frame>
+                    <Frame title="You're In!">
+                        {error && <Alert variant="warning" className="py-2">{error}</Alert>}
+                        {isLeader && players.length < room.minPlayers && <p className="small text-muted mb-1">You need at least {room.minPlayers} players.</p>}
+                        {!isLeader && (
+                            <div className="p-2 border rounded bg-light text-muted small">
+                                Waiting for <strong>{players.find((p) => p.id === room.hostId)?.name || 'the leader'}</strong> to start the game...
+                            </div>
+                        )}
+                        {/* 🐍 Something to do while everyone joins */}
+                        <SnakeSnack socket={socket} roomCode={roomCode} room={room} />
+                    </Frame>
+                </>
             );
         case 'rules':
             return (

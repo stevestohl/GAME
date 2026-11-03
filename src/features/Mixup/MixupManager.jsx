@@ -16,6 +16,7 @@ import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, TriviaTV, MIXUP_RULES_NARRATION, ROUND_LOOKS } from './MixupScreensTV.jsx';
 import MixupPlayer from './MixupPlayer.jsx';
+import { SnakeCredits } from './SnakeSnack.jsx';
 import { usePlayerSounds, useTvChime } from '../../playerSounds.js';
 
 /**
@@ -92,6 +93,7 @@ function MixupTV({ roomCode, casterName }) {
     }, [roomCode, casterName]);
 
     // 🏆 The score recap: on the scoreboard headline and read by the narrator
+    const [showCredits, setShowCredits] = useState(false);   // 🎬 the Snake Snack credits, after the final scores
     const recap = useMemo(() => {
         if (gameState !== 'scoreboard' || !room) return null;
         const players = Object.values(room.players).filter((p) => !p.isCaster);
@@ -135,9 +137,21 @@ function MixupTV({ roomCode, casterName }) {
             speak(`The answer is ${round.correctAnswer}.`, code);
         } else if (voiceMoment.startsWith('trivia')) {
             speak(round.question.text, code);
+        } else if (voiceMoment === 'game-over') {
+            // 🎬 The final scores get read, then the lobby game's credits roll
+            let isCurrent = true;
+            let timer;
+            Promise.resolve(recap ? speak(recap.spoken, code) : false).then((spoken) => {
+                if (isCurrent) timer = setTimeout(() => setShowCredits(true), spoken ? 1000 : 6000);
+            });
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
         } else if (recap) {
             speak(recap.spoken, code);
         }
+        return undefined;
     }, [voiceMoment]);
 
     // ⏳ Timer music while people are writing, voting, drawing or answering
@@ -165,6 +179,7 @@ function MixupTV({ roomCode, casterName }) {
 
     // 🔁 End of the game: the caster picks what happens next
     const handlePlayAgain = () => {
+        setShowCredits(false);
         startLobbyMusic();
         socket.emit('playAgain', { roomCode: room?.roomCode });
     };
@@ -189,7 +204,7 @@ function MixupTV({ roomCode, casterName }) {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} />;
+                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
             case 'rules':
                 return <MixupRulesTV roomCode={room.roomCode} totalRounds={room.totalRounds} />;
             case 'intro':
@@ -231,6 +246,7 @@ function MixupTV({ roomCode, casterName }) {
                 </Alert>
             )}
             {renderGamePhase()}
+            {showCredits && gameState === 'scoreboard' && <SnakeCredits snake={room?.snake} onDone={() => setShowCredits(false)} />}
             {isSoundLocked && (
                 <button type="button" className="cc-sound-button" onClick={handleTurnSoundOn}>
                     🔇 Tap to turn sound back on
