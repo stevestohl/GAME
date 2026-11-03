@@ -6598,7 +6598,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 // 🦇 The Halloween deck runs the same show with its own cast (HalloweenCrew.jsx): a gothic couch, and
 // a witch who casts with her wand, the HOA president and a vampire. All three chase off a tiny ghost,
-// and Sasquatch comes out of a castle instead of over a mountain. A black chandelier sways above, and
+// and Frankenstein's monster comes out of a castle in place of Sasquatch on his mountain. A black chandelier sways above, and
 // a few bats fly by now and then.
 
 // Who sits where, left to right: `caster` is nearest the screen and `chaser` is in the middle
@@ -7107,7 +7107,7 @@ function CouchCrew(_ref) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 bubble = barkRef.current;
-                bubble.setAttribute('transform', "translate(".concat(dog.x + 16 * L.s, " ").concat(dog.y - dog.lift - 104 * L.s, ") scale(").concat(L.s, ")"));
+                bubble.setAttribute('transform', "translate(".concat(dog.x + (isHalloween ? 30 : 16) * L.s, " ").concat(dog.y - dog.lift - 104 * L.s, ") scale(").concat(L.s, ")"));
                 bubble.classList.add('is-on');
                 _context7.next = 5;
                 return wait(900);
@@ -7783,14 +7783,15 @@ function CouchCrew(_ref) {
     if (playerCount > lastCount.current) (_engineRef$current = engineRef.current) === null || _engineRef$current === void 0 ? void 0 : _engineRef$current.cheer();
     lastCount.current = playerCount;
   }, [playerCount]);
-  var _ref17 = isHalloween ? [_HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Witch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.HoaPresident, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Vampire, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Ghost, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Castle, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.GothicCouch] : [Robot, Dog, Alien, Cat, Mountain, Couch],
-    _ref18 = _slicedToArray(_ref17, 6),
+  var _ref17 = isHalloween ? [_HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Witch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.HoaPresident, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Vampire, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Ghost, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Castle, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.GothicCouch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.FrankensteinMonster] : [Robot, Dog, Alien, Cat, Mountain, Couch, Sasquatch],
+    _ref18 = _slicedToArray(_ref17, 7),
     Caster = _ref18[0],
     Chaser = _ref18[1],
     Third = _ref18[2],
     Pest = _ref18[3],
     Hill = _ref18[4],
-    TheCouch = _ref18[5];
+    TheCouch = _ref18[5],
+    Visitor = _ref18[6];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     ref: svgRef,
     className: "cc-crew ".concat(isHalloween ? 'cc-crew-halloween' : ''),
@@ -7825,7 +7826,7 @@ function CouchCrew(_ref) {
     elRef: actorEls.third
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Pest, {
     elRef: actorEls.cat
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Sasquatch, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Visitor, {
     elRef: actorEls.sasquatch
   })), isHalloween && Array.from({
     length: BAT_COUNT
@@ -8847,7 +8848,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // 🐈 The crew's last bit, along the bottom of the end credits (Core deck, on the TV): the cat strolls
 // on, and all three chase it off the screen. Now and then the cat comes back with backup: a giant cat,
 // little cat riding on its head, chases the whole crew off the other way.
-// 👻 The Halloween deck plays it with its own crew and a tiny ghost, whose backup is a giant ghost.
+// 👻 The Halloween deck plays it with its own crew and a tiny ghost. They always chase it off the
+// screen, then come running back with a giant ghost after them, tiny ghost on its head, yelling BOO!
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 
@@ -9113,7 +9115,7 @@ function CreditsChase(_ref6) {
               case 5:
                 cat.el.classList.remove('crew-cat-swat');
                 bark = barkRef.current;
-                bark.setAttribute('transform', "translate(".concat(dog.x + 16 * S, " ").concat(dog.y - 104 * S, ") scale(").concat(S, ")"));
+                bark.setAttribute('transform', "translate(".concat(dog.x + (isHalloween ? 30 : 16) * S, " ").concat(dog.y - 104 * S, ") scale(").concat(S, ")"));
                 bark.classList.add('is-on');
                 _context2.next = 11;
                 return wait(550);
@@ -9160,7 +9162,7 @@ function CreditsChase(_ref6) {
     // 🐈‍⬛ ...until the floor starts shaking, and the cat comes back with a much bigger cat
     var giantScene = /*#__PURE__*/function () {
       var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var ride, from, stopAt, away;
+        var ride, from, away;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -9182,38 +9184,37 @@ function CreditsChase(_ref6) {
                 cat.flip = -1;
                 cat.size = 0.55;
                 ride = function ride() {
-                  cat.x = giant.x + (isHalloween ? 0 : 16 * GIANT);
-                  cat.y = giant.y - giant.lift - (isHalloween ? 39 : 38) * GIANT;
+                  cat.x = giant.x + 16 * GIANT;
+                  cat.y = giant.y - giant.lift - 38 * GIANT;
                   draw(cat);
                 };
                 from = giant.x;
                 giant.el.classList.add('crew-walking');
-                stopAt = isHalloween ? 15 : -20; // the ghost's face is in its middle, so it comes further on
-                _context4.next = 16;
+                _context4.next = 15;
                 return tween(1100, function (t) {
-                  giant.x = from + (stopAt - from) * t;
+                  giant.x = from + (-20 - from) * t;
                   draw(giant);
                   ride();
                 });
-              case 16:
+              case 15:
                 giant.el.classList.remove('crew-walking');
                 svgRef.current.classList.remove('is-rumbling');
                 meowRef.current.classList.add('is-on');
-                (isHalloween ? playBoo : playMeow)();
-                _context4.next = 22;
+                playMeow();
+                _context4.next = 21;
                 return Promise.all(crew.map(function (a) {
                   return hop(a, 300, 22);
                 }));
-              case 22:
-                _context4.next = 24;
+              case 21:
+                _context4.next = 23;
                 return wait(250);
-              case 24:
+              case 23:
                 meowRef.current.classList.remove('is-on');
 
                 // Run! The dog was closest, so it's last out
                 away = giant.x;
                 giant.el.classList.add('crew-running');
-                _context4.next = 29;
+                _context4.next = 28;
                 return Promise.all([walk(alien, OFF_R + 30, 1100), wait(80).then(function () {
                   return walk(robot, OFF_R + 30, 1200);
                 }), wait(160).then(function () {
@@ -9225,7 +9226,7 @@ function CreditsChase(_ref6) {
                     ride();
                   });
                 })]);
-              case 29:
+              case 28:
               case "end":
                 return _context4.stop();
             }
@@ -9236,9 +9237,76 @@ function CreditsChase(_ref6) {
         return _ref10.apply(this, arguments);
       };
     }();
+
+    // 👻 They chase the tiny ghost off the screen... and back they come, with a giant one after them
+    var ghostScene = /*#__PURE__*/function () {
+      var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        var ride, bubble, follow, yelled, fromX, toX;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return chaseScene();
+              case 2:
+                _context5.next = 4;
+                return wait(900);
+              case 4:
+                // The tiny ghost has fetched help, and rides on top of it
+                cat.flip = -1;
+                cat.size = 0.55;
+                ride = function ride() {
+                  cat.x = giant.x;
+                  cat.y = giant.y - 44 * GIANT; // the giant bobs up and down, so a little above its head
+                  draw(cat);
+                };
+                ride();
+                bubble = meowRef.current;
+                follow = function follow() {
+                  return bubble.setAttribute('transform', "translate(".concat(giant.x + 72, " -62) scale(1.6)"));
+                };
+                yelled = false;
+                fromX = giant.x;
+                toX = OFF_R + 170;
+                _context5.next = 15;
+                return Promise.all([walk(alien, OFF_R + 30, 2100), wait(170).then(function () {
+                  return walk(robot, OFF_R + 30, 2200);
+                }), wait(340).then(function () {
+                  return walk(dog, OFF_R + 30, 2300);
+                }), wait(800).then(function () {
+                  return tween(3000, function (t) {
+                    giant.x = fromX + (toX - fromX) * t;
+                    draw(giant);
+                    ride();
+                    follow();
+                    // Well on screen, and right behind them
+                    if (!yelled && giant.x > 30) {
+                      yelled = true;
+                      bubble.classList.add('is-on');
+                      playBoo();
+                      var id = setTimeout(function () {
+                        timers["delete"](id);
+                        bubble.classList.remove('is-on');
+                      }, 1200);
+                      timers.add(id);
+                    }
+                  });
+                })]);
+              case 15:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+      return function ghostScene() {
+        return _ref11.apply(this, arguments);
+      };
+    }();
     [].concat(crew, [cat, giant]).forEach(draw);
     wait(START_MS).then(function () {
-      if (!dead) (Math.random() < GIANT_CHANCE ? giantScene : chaseScene)();
+      if (dead) return;
+      if (isHalloween) ghostScene();else (Math.random() < GIANT_CHANCE ? giantScene : chaseScene)();
     });
     return function () {
       dead = true;
@@ -9252,12 +9320,12 @@ function CreditsChase(_ref6) {
   }, []);
   var bubble = "M -4 -14 H 40 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z";
   var wideBubble = bubble.replace('H 40', 'H 82');
-  var _ref11 = isHalloween ? [_HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.HoaPresident, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.Witch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.Vampire, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.Ghost] : [_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Dog, _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Robot, _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Alien, _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Cat],
-    _ref12 = _slicedToArray(_ref11, 4),
-    First = _ref12[0],
-    Second = _ref12[1],
-    Third = _ref12[2],
-    Pest = _ref12[3];
+  var _ref12 = isHalloween ? [_HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.HoaPresident, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.Witch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.Vampire, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_4__.Ghost] : [_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Dog, _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Robot, _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Alien, _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Cat],
+    _ref13 = _slicedToArray(_ref12, 4),
+    First = _ref13[0],
+    Second = _ref13[1],
+    Third = _ref13[2],
+    Pest = _ref13[3];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     ref: svgRef,
     className: "cc-crew cc-round-scene-art ".concat(isHalloween ? 'cc-crew-halloween' : ''),
@@ -9266,9 +9334,7 @@ function CreditsChase(_ref6) {
     "aria-hidden": "true"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     className: "crew-world"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Pest, {
-    elRef: catRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Third, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Third, {
     elRef: alienRef
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Second, {
     elRef: robotRef
@@ -9276,6 +9342,8 @@ function CreditsChase(_ref6) {
     elRef: dogRef
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Pest, {
     elRef: giantRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Pest, {
+    elRef: catRef
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: barkRef,
     className: "crew-bark"
@@ -9311,7 +9379,7 @@ function CreditsChase(_ref6) {
     fontWeight: 900,
     fill: _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.INK,
     fontFamily: "system-ui, sans-serif"
-  }, isHalloween ? 'BOO.' : 'MEOW.')));
+  }, isHalloween ? 'BOO!' : 'MEOW.')));
 }
 
 /***/ }),
@@ -9328,6 +9396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "BroomWitch": () => (/* binding */ BroomWitch),
 /* harmony export */   "Castle": () => (/* binding */ Castle),
 /* harmony export */   "Chandelier": () => (/* binding */ Chandelier),
+/* harmony export */   "FrankensteinMonster": () => (/* binding */ FrankensteinMonster),
 /* harmony export */   "Ghost": () => (/* binding */ Ghost),
 /* harmony export */   "GothicCouch": () => (/* binding */ GothicCouch),
 /* harmony export */   "HoaPresident": () => (/* binding */ HoaPresident),
@@ -9574,7 +9643,7 @@ function Witch(_ref) {
 }
 function HoaPresident(_ref2) {
   var elRef = _ref2.elRef;
-  // Pressed khakis, a lanyard, a clipboard and a list of your violations
+  // Pressed khakis, a lanyard, a clipboard, a list of your violations, and a crown so you know who's in charge
   var skin = '#d9b08c';
   var polo = '#5d7a8c';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
@@ -9763,7 +9832,50 @@ function HoaPresident(_ref2) {
     stroke: "#77777c",
     strokeWidth: 1.4,
     fill: "none"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 -106 L -20 -120 L -10 -112 L 0 -123 L 10 -112 L 20 -120 L 17 -106 Z",
+    fill: "#e0b04a"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -20,
+    cy: -120,
+    r: 1.8,
+    fill: "#b5332f",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -123,
+    r: 1.8,
+    fill: "#b5332f",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 20,
+    cy: -120,
+    r: 1.8,
+    fill: "#b5332f",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -17,
+    y: -107,
+    width: 34,
+    height: 13,
+    rx: 1.5,
+    fill: "#e0b04a"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: 0,
+    y: -96.8,
+    textAnchor: "middle",
+    fontSize: 11,
+    fontWeight: 900,
+    fill: INK,
+    fontFamily: "system-ui, sans-serif"
+  }, "HOA"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     className: "crew-eyes"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
     cx: -6.5,
@@ -10369,6 +10481,194 @@ function BroomWitch() {
     strokeWidth: 1.2
   })));
 }
+function FrankensteinMonster(_ref13) {
+  var elRef = _ref13.elRef;
+  // Comes out of the castle instead of Sasquatch: a huge lumbering patchwork of a man, side-on-ish and
+  // facing left, drawn to the same size and with the fist-bump arm in the same place
+  var skin = '#7f9c6a';
+  var dark = '#5f7a50';
+  var jacket = '#2c2c36';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-sasquatch crew-monster"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 28,
+    y: -98,
+    width: 13,
+    height: 44,
+    rx: 3,
+    fill: jacket
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 34.5,
+    cy: -49,
+    r: 7,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -22,
+    y: -44,
+    width: 17,
+    height: 34,
+    fill: "#3d3d4a"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -36 0 V -8 Q -36 -14 -28 -14 H -3 V 0 Z",
+    fill: "#14131a"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -36 -3 H -3",
+    stroke: "#3a3a48",
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 5,
+    y: -44,
+    width: 17,
+    height: 34,
+    fill: "#3d3d4a"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -9 0 V -8 Q -9 -14 -1 -14 H 24 V 0 Z",
+    fill: "#14131a"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -9 -3 H 24",
+    stroke: "#3a3a48",
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -32 -102 L -34 -40 L -24 -36 L -16 -41 L -6 -36 L 4 -41 L 14 -36 L 24 -41 L 34 -40 L 32 -102 Q 0 -110 -32 -102 Z",
+    fill: jacket
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -10 -105 L -14 -44 H 6 L 8 -105 Z",
+    fill: "#55525e",
+    stroke: INK,
+    strokeWidth: 1.6,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -11 -92 h 16 M -12 -78 h 17 M -13 -64 h 18 M -13 -50 h 18",
+    stroke: "#3a3845",
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -14,
+    y: -112,
+    width: 22,
+    height: 12,
+    fill: dark
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -24,
+    y: -110,
+    width: 10,
+    height: 6,
+    rx: 1,
+    fill: "#9aa3ad"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 8,
+    y: -110,
+    width: 10,
+    height: 6,
+    rx: 1,
+    fill: "#9aa3ad"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -23,
+    y: -143,
+    width: 40,
+    height: 35,
+    rx: 3,
+    fill: skin
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -25 -128 V -146 H 19 V -130 L 15 -135 L 11 -131 L 6 -136 L 1 -132 L -4 -136 L -9 -132 L -14 -136 L -19 -131 Z",
+    fill: "#14131a"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 2 -128 L 15 -124 M 5 -131 l -2 5 M 9 -130 l -2 5 M 13 -129 l -2 5"
+  }, line, {
+    strokeWidth: 1.3
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -14,
+    cy: -122,
+    rx: 3.6,
+    ry: 3,
+    fill: "#e8e6c8",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -3,
+    cy: -122,
+    rx: 3.6,
+    ry: 3,
+    fill: "#e8e6c8",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -14,
+    cy: -122,
+    r: 1.5,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -3,
+    cy: -122,
+    r: 1.5,
+    fill: INK
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -20 -126 H 3"
+  }, line, {
+    strokeWidth: 3.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -9 -120 L -11 -115 H -7"
+  }, line, {
+    strokeWidth: 1.5
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 -112 H -1"
+  }, line, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -114 v 4 M -9 -114 v 4 M -4 -114 v 4"
+  }, line, {
+    strokeWidth: 1.1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "sq-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -41,
+    y: -98,
+    width: 13,
+    height: 34,
+    rx: 3,
+    fill: jacket
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -40,
+    y: -66,
+    width: 11,
+    height: 7,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -34.5,
+    cy: -55,
+    r: 8,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -40 -57 h 4 M -40 -53 h 4",
+    stroke: INK,
+    strokeWidth: 1.2,
+    strokeLinecap: "round"
+  }))));
+}
 
 /***/ }),
 
@@ -10662,7 +10962,7 @@ function RoundCatScene(_ref) {
                 return wait(150);
               case 5:
                 bubble = barkRef.current;
-                bubble.setAttribute('transform', "translate(".concat(hero.x + 16 * S, " ").concat(hero.y - 104 * S, ") scale(").concat(S, ")"));
+                bubble.setAttribute('transform', "translate(".concat(hero.x + 30 * S, " ").concat(hero.y - 104 * S, ") scale(").concat(S, ")"));
                 bubble.classList.add('is-on');
                 _context3.next = 10;
                 return wait(600);

@@ -133,7 +133,7 @@ export default function RoundCatScene({ round, theme = 'core' }) {
             look('left');
             await wait(150);
             const bubble = barkRef.current;
-            bubble.setAttribute('transform', `translate(${hero.x + 16 * S} ${hero.y - 104 * S}) scale(${S})`);
+            bubble.setAttribute('transform', `translate(${hero.x + 30 * S} ${hero.y - 104 * S}) scale(${S})`);
             bubble.classList.add('is-on');
             await wait(600);
             const ticket = ticketRef.current;

@@ -7,7 +7,8 @@ import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
 // 🐈 The crew's last bit, along the bottom of the end credits (Core deck, on the TV): the cat strolls
 // on, and all three chase it off the screen. Now and then the cat comes back with backup: a giant cat,
 // little cat riding on its head, chases the whole crew off the other way.
-// 👻 The Halloween deck plays it with its own crew and a tiny ghost, whose backup is a giant ghost.
+// 👻 The Halloween deck plays it with its own crew and a tiny ghost. They always chase it off the
+// screen, then come running back with a giant ghost after them, tiny ghost on its head, yelling BOO!
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 
@@ -197,7 +198,7 @@ export default function CreditsChase({ theme = 'core' }) {
             await Promise.all([wait(700), crewRun([310, 365, 420], 900, 90)]);
             cat.el.classList.remove('crew-cat-swat');
             const bark = barkRef.current;
-            bark.setAttribute('transform', `translate(${dog.x + 16 * S} ${dog.y - 104 * S}) scale(${S})`);
+            bark.setAttribute('transform', `translate(${dog.x + (isHalloween ? 30 : 16) * S} ${dog.y - 104 * S}) scale(${S})`);
             bark.classList.add('is-on');
             await wait(550);
             bark.classList.remove('is-on');
@@ -222,19 +223,18 @@ export default function CreditsChase({ theme = 'core' }) {
             cat.flip = -1;
             cat.size = 0.55;
             const ride = () => {
-                cat.x = giant.x + (isHalloween ? 0 : 16 * GIANT);
-                cat.y = giant.y - giant.lift - (isHalloween ? 39 : 38) * GIANT;
+                cat.x = giant.x + 16 * GIANT;
+                cat.y = giant.y - giant.lift - 38 * GIANT;
                 draw(cat);
             };
             const from = giant.x;
             giant.el.classList.add('crew-walking');
-            const stopAt = isHalloween ? 15 : -20;   // the ghost's face is in its middle, so it comes further on
-            await tween(1100, (t) => { giant.x = from + (stopAt - from) * t; draw(giant); ride(); });
+            await tween(1100, (t) => { giant.x = from + (-20 - from) * t; draw(giant); ride(); });
             giant.el.classList.remove('crew-walking');
             svgRef.current.classList.remove('is-rumbling');
 
             meowRef.current.classList.add('is-on');
-            (isHalloween ? playBoo : playMeow)();
+            playMeow();
             await Promise.all(crew.map((a) => hop(a, 300, 22)));
             await wait(250);
             meowRef.current.classList.remove('is-on');
@@ -254,9 +254,51 @@ export default function CreditsChase({ theme = 'core' }) {
             ]);
         };
 
+        // 👻 They chase the tiny ghost off the screen... and back they come, with a giant one after them
+        const ghostScene = async () => {
+            await chaseScene();
+            await wait(900);
+
+            // The tiny ghost has fetched help, and rides on top of it
+            cat.flip = -1;
+            cat.size = 0.55;
+            const ride = () => {
+                cat.x = giant.x;
+                cat.y = giant.y - 44 * GIANT;   // the giant bobs up and down, so a little above its head
+                draw(cat);
+            };
+            ride();
+            const bubble = meowRef.current;
+            const follow = () => bubble.setAttribute('transform', `translate(${giant.x + 72} -62) scale(1.6)`);
+            let yelled = false;
+            const fromX = giant.x;
+            const toX = OFF_R + 170;
+            await Promise.all([
+                walk(alien, OFF_R + 30, 2100),
+                wait(170).then(() => walk(robot, OFF_R + 30, 2200)),
+                wait(340).then(() => walk(dog, OFF_R + 30, 2300)),
+                wait(800).then(() => tween(3000, (t) => {
+                    giant.x = fromX + (toX - fromX) * t;
+                    draw(giant);
+                    ride();
+                    follow();
+                    // Well on screen, and right behind them
+                    if (!yelled && giant.x > 30) {
+                        yelled = true;
+                        bubble.classList.add('is-on');
+                        playBoo();
+                        const id = setTimeout(() => { timers.delete(id); bubble.classList.remove('is-on'); }, 1200);
+                        timers.add(id);
+                    }
+                })),
+            ]);
+        };
+
         [...crew, cat, giant].forEach(draw);
         wait(START_MS).then(() => {
-            if (!dead) (Math.random() < GIANT_CHANCE ? giantScene : chaseScene)();
+            if (dead) return;
+            if (isHalloween) ghostScene();
+            else (Math.random() < GIANT_CHANCE ? giantScene : chaseScene)();
         });
 
         return () => {
@@ -272,11 +314,11 @@ export default function CreditsChase({ theme = 'core' }) {
     return (
         <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <g className="crew-world">
-                <Pest elRef={catRef} />
                 <Third elRef={alienRef} />
                 <Second elRef={robotRef} />
                 <First elRef={dogRef} />
                 <Pest elRef={giantRef} />
+                <Pest elRef={catRef} />
             </g>
             <g ref={barkRef} className="crew-bark">
                 <path d={isHalloween ? wideBubble : bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
@@ -284,7 +326,7 @@ export default function CreditsChase({ theme = 'core' }) {
             </g>
             <g ref={meowRef} className="crew-bark" transform="translate(112 -62) scale(1.6)">
                 <path d={bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{isHalloween ? 'BOO.' : 'MEOW.'}</text>
+                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{isHalloween ? 'BOO!' : 'MEOW.'}</text>
             </g>
         </svg>
     );

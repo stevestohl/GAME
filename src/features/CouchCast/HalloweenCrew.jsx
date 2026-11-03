@@ -66,7 +66,7 @@ export function Witch({ elRef }) {
 }
 
 export function HoaPresident({ elRef }) {
-    // Pressed khakis, a lanyard, a clipboard and a list of your violations
+    // Pressed khakis, a lanyard, a clipboard, a list of your violations, and a crown so you know who's in charge
     const skin = '#d9b08c';
     const polo = '#5d7a8c';
     return (
@@ -107,6 +107,13 @@ export function HoaPresident({ elRef }) {
                 {/* A helmet of grey hair, with a side parting you could rule a line by */}
                 <path d="M -17 -78 Q -20 -98 0 -99 Q 20 -98 17 -78 L 14 -82 Q 13 -89 -3 -90 Q -12 -89 -14 -83 Z" fill="#a8a8ac" {...ink} strokeWidth={2} />
                 <path d="M -3 -98 Q -5 -94 -3 -90" stroke="#77777c" strokeWidth={1.4} fill="none" />
+                {/* The crown, in case there's any doubt */}
+                <path d="M -17 -106 L -20 -120 L -10 -112 L 0 -123 L 10 -112 L 20 -120 L 17 -106 Z" fill="#e0b04a" {...ink} strokeWidth={2} />
+                <circle cx={-20} cy={-120} r={1.8} fill="#b5332f" stroke={INK} strokeWidth={1} />
+                <circle cx={0} cy={-123} r={1.8} fill="#b5332f" stroke={INK} strokeWidth={1} />
+                <circle cx={20} cy={-120} r={1.8} fill="#b5332f" stroke={INK} strokeWidth={1} />
+                <rect x={-17} y={-107} width={34} height={13} rx={1.5} fill="#e0b04a" {...ink} strokeWidth={2} />
+                <text x={0} y={-96.8} textAnchor="middle" fontSize={11} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">HOA</text>
                 <g className="crew-eyes">
                     <circle cx={-6.5} cy={-80} r={2.8} fill="#f4efe4" />
                     <circle cx={6.5} cy={-80} r={2.8} fill="#f4efe4" />
@@ -311,6 +318,61 @@ export function BroomWitch() {
             <circle cx={-5} cy={-15.5} r={1.1} fill="#e6d94a" stroke={INK} strokeWidth={0.6} />
             <path d="M -8 -18 Q -2 -33 6 -35 L 5 -29 Q 7 -24 6 -18 Z" fill="#26202e" {...ink} strokeWidth={1.4} />
             <path d="M -13 -17 Q -1 -21 11 -17 Q -1 -14 -13 -17 Z" fill="#1d1a24" {...ink} strokeWidth={1.2} />
+        </g>
+    );
+}
+
+export function FrankensteinMonster({ elRef }) {
+    // Comes out of the castle instead of Sasquatch: a huge lumbering patchwork of a man, side-on-ish and
+    // facing left, drawn to the same size and with the fist-bump arm in the same place
+    const skin = '#7f9c6a';
+    const dark = '#5f7a50';
+    const jacket = '#2c2c36';
+    return (
+        <g ref={elRef} className="crew-actor crew-sasquatch crew-monster">
+            <g className="crew-fig">
+                <rect x={28} y={-98} width={13} height={44} rx={3} fill={jacket} {...ink} />
+                <circle cx={34.5} cy={-49} r={7} fill={skin} {...ink} strokeWidth={1.8} />
+                <g className="crew-leg crew-leg-l">
+                    <rect x={-22} y={-44} width={17} height={34} fill="#3d3d4a" {...ink} />
+                    <path d="M -36 0 V -8 Q -36 -14 -28 -14 H -3 V 0 Z" fill="#14131a" {...ink} />
+                    <path d="M -36 -3 H -3" stroke="#3a3a48" strokeWidth={1.4} />
+                </g>
+                <g className="crew-leg crew-leg-r">
+                    <rect x={5} y={-44} width={17} height={34} fill="#3d3d4a" {...ink} />
+                    <path d="M -9 0 V -8 Q -9 -14 -1 -14 H 24 V 0 Z" fill="#14131a" {...ink} />
+                    <path d="M -9 -3 H 24" stroke="#3a3a48" strokeWidth={1.4} />
+                </g>
+                {/* A jacket two sizes too small, with a ragged hem */}
+                <path d="M -32 -102 L -34 -40 L -24 -36 L -16 -41 L -6 -36 L 4 -41 L 14 -36 L 24 -41 L 34 -40 L 32 -102 Q 0 -110 -32 -102 Z" fill={jacket} {...ink} />
+                <path d="M -10 -105 L -14 -44 H 6 L 8 -105 Z" fill="#55525e" stroke={INK} strokeWidth={1.6} strokeLinejoin="round" />
+                <path d="M -11 -92 h 16 M -12 -78 h 17 M -13 -64 h 18 M -13 -50 h 18" stroke="#3a3845" strokeWidth={1.4} />
+                {/* The neck, and the bolts */}
+                <rect x={-14} y={-112} width={22} height={12} fill={dark} {...ink} strokeWidth={2} />
+                <rect x={-24} y={-110} width={10} height={6} rx={1} fill="#9aa3ad" {...ink} strokeWidth={1.6} />
+                <rect x={8} y={-110} width={10} height={6} rx={1} fill="#9aa3ad" {...ink} strokeWidth={1.6} />
+                {/* The great square head, flat on top */}
+                <rect x={-23} y={-143} width={40} height={35} rx={3} fill={skin} {...ink} />
+                <path d="M -25 -128 V -146 H 19 V -130 L 15 -135 L 11 -131 L 6 -136 L 1 -132 L -4 -136 L -9 -132 L -14 -136 L -19 -131 Z" fill="#14131a" {...ink} strokeWidth={1.8} />
+                {/* Stitches across the brow */}
+                <path d="M 2 -128 L 15 -124 M 5 -131 l -2 5 M 9 -130 l -2 5 M 13 -129 l -2 5" {...line} strokeWidth={1.3} />
+                <g className="crew-eyes">
+                    <ellipse cx={-14} cy={-122} rx={3.6} ry={3} fill="#e8e6c8" stroke={INK} strokeWidth={1.2} />
+                    <ellipse cx={-3} cy={-122} rx={3.6} ry={3} fill="#e8e6c8" stroke={INK} strokeWidth={1.2} />
+                    <g className="crew-pupils"><circle cx={-14} cy={-122} r={1.5} fill={INK} /><circle cx={-3} cy={-122} r={1.5} fill={INK} /></g>
+                </g>
+                <path d="M -20 -126 H 3" {...line} strokeWidth={3.4} />
+                <path d="M -9 -120 L -11 -115 H -7" {...line} strokeWidth={1.5} />
+                <path d="M -17 -112 H -1" {...line} strokeWidth={2} />
+                <path d="M -14 -114 v 4 M -9 -114 v 4 M -4 -114 v 4" {...line} strokeWidth={1.1} />
+                {/* The fist-bump arm (the near one) */}
+                <g className="sq-arm-bump">
+                    <rect x={-41} y={-98} width={13} height={34} rx={3} fill={jacket} {...ink} />
+                    <rect x={-40} y={-66} width={11} height={7} fill={skin} {...ink} strokeWidth={1.8} />
+                    <circle cx={-34.5} cy={-55} r={8} fill={skin} {...ink} strokeWidth={1.8} />
+                    <path d="M -40 -57 h 4 M -40 -53 h 4" stroke={INK} strokeWidth={1.2} strokeLinecap="round" />
+                </g>
+            </g>
         </g>
     );
 }

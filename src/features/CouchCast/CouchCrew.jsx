@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, Bat } from './HalloweenCrew.jsx';
+import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, Bat, FrankensteinMonster } from './HalloweenCrew.jsx';
 
 // 🛋️ The Couch Cast crew (Core deck lobby): a couch on little legs crawls in and sits down, then a
 // robot, a dog and an alien wander in, hop onto it, and the robot casts to "the screen", which is
@@ -16,7 +16,7 @@ import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, B
 //
 // 🦇 The Halloween deck runs the same show with its own cast (HalloweenCrew.jsx): a gothic couch, and
 // a witch who casts with her wand, the HOA president and a vampire. All three chase off a tiny ghost,
-// and Sasquatch comes out of a castle instead of over a mountain. A black chandelier sways above, and
+// and Frankenstein's monster comes out of a castle in place of Sasquatch on his mountain. A black chandelier sways above, and
 // a few bats fly by now and then.
 
 // Who sits where, left to right: `caster` is nearest the screen and `chaser` is in the middle
@@ -248,7 +248,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         // 🐕 "WOOF!" over the dog's head ("VIOLATION!" over the HOA president's)
         const bark = async (dog) => {
             const bubble = barkRef.current;
-            bubble.setAttribute('transform', `translate(${dog.x + 16 * L.s} ${dog.y - dog.lift - 104 * L.s}) scale(${L.s})`);
+            bubble.setAttribute('transform', `translate(${dog.x + (isHalloween ? 30 : 16) * L.s} ${dog.y - dog.lift - 104 * L.s}) scale(${L.s})`);
             bubble.classList.add('is-on');
             await wait(900);
             bubble.classList.remove('is-on');
@@ -555,9 +555,9 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         lastCount.current = playerCount;
     }, [playerCount]);
 
-    const [Caster, Chaser, Third, Pest, Hill, TheCouch] = isHalloween
-        ? [Witch, HoaPresident, Vampire, Ghost, Castle, GothicCouch]
-        : [Robot, Dog, Alien, Cat, Mountain, Couch];
+    const [Caster, Chaser, Third, Pest, Hill, TheCouch, Visitor] = isHalloween
+        ? [Witch, HoaPresident, Vampire, Ghost, Castle, GothicCouch, FrankensteinMonster]
+        : [Robot, Dog, Alien, Cat, Mountain, Couch, Sasquatch];
 
     return (
         <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''}`} aria-hidden="true" preserveAspectRatio="none">
@@ -577,7 +577,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <Chaser elRef={actorEls.chaser} />
                 <Third elRef={actorEls.third} />
                 <Pest elRef={actorEls.cat} />
-                <Sasquatch elRef={actorEls.sasquatch} />
+                <Visitor elRef={actorEls.sasquatch} />
             </g>
 
             {isHalloween && Array.from({ length: BAT_COUNT }, (_, i) => <Bat key={i} elRef={(el) => { batRefs.current[i] = el; }} />)}
