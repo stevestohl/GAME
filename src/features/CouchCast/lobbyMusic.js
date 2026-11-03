@@ -1,20 +1,96 @@
 // 🎵 The lobby music for the TV games: one shared player per track.
 // It's started by the tap that creates the room (browsers only allow sound after a tap),
 // so it's already playing by the time the lobby appears.
+//
+// The songs play through the page's Web Audio (the same audio the timer music uses), not an
+// <audio> tag: on iPhones a playing video pauses any <audio> tag, and the TV runs a hidden
+// keep-awake video the whole time (hooks/useWakeLock.js), so the lobby song cut out after a
+// few seconds. Web Audio plays alongside the video.
+import { getAudioContext } from '../../chime.js';
 import { startTimerMusic, stopTimerMusic, playingTimerTrackId } from '../../timerMusic.js';
 import { isMusicMuted, onMusicMuteChange } from '../../musicMute.js';
 
+const VOLUME = 0.4;
+
+// All the song files go through one volume knob, which the music switch (musicMute.js) turns down;
+// the made-in-the-browser songs mute themselves
+let output = null;
+const getOutput = () => {
+    const ctx = getAudioContext();
+    if (!ctx) return null;
+    if (!output) {
+        output = ctx.createGain();
+        output.gain.value = isMusicMuted() ? 0 : VOLUME;
+        output.connect(ctx.destination);
+    }
+    return output;
+};
+
+onMusicMuteChange((muted) => {
+    if (output) output.gain.setTargetAtTime(muted ? 0 : VOLUME, output.context.currentTime, 0.1);
+});
+
+// The phone shuts the page's audio off while it's hidden (switching apps, opening Control Center to
+// start mirroring...): switch it back on when the page comes back, if a lobby song is meant to be playing
+document.addEventListener('visibilitychange', () => {
+    const ctx = getAudioContext();
+    if (document.visibilityState !== 'visible' || !ctx || ctx.state === 'running') return;
+    if (Object.values(TRACKS).some((track) => !track.paused)) ctx.resume().catch(() => {});
+});
+
+// A looping song file, with the same play(), pause(), paused and load() as an <audio> tag
 const makeTrack = (src) => {
-    const audio = new Audio(src);
-    audio.loop = true;
-    audio.volume = 0.4;
-    audio.preload = 'none'; // don't download it for visitors who never open a cast game
-    audio.muted = isMusicMuted();
-    return audio;
+    let song = null;       // the downloaded, decoded song
+    let loading = null;
+    let source = null;     // what's playing it right now
+    let wanted = false;    // play() was asked for (it may still be downloading)
+
+    const download = () => {
+        const ctx = getAudioContext();
+        if (!ctx) return Promise.reject(new Error('No Web Audio in this browser'));
+        if (!loading) {
+            loading = fetch(src)
+                .then((res) => res.arrayBuffer())
+                .then((data) => new Promise((resolve, reject) => ctx.decodeAudioData(data, resolve, reject)))
+                .then((decoded) => { song = decoded; return decoded; })
+                .catch((err) => { loading = null; throw err; });
+        }
+        return loading;
+    };
+
+    return {
+        get paused() { return !wanted; },
+        play() {
+            wanted = true;
+            const ctx = getAudioContext();
+            // Inside a tap, this is what lets the sound out (phones keep it shut until then)
+            if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
+            return download().then(() => {
+                const out = getOutput();
+                if (!wanted || source || !out) return;
+                source = out.context.createBufferSource();
+                source.buffer = song;
+                source.loop = true;
+                source.connect(out);
+                source.start();
+            });
+        },
+        pause() {
+            wanted = false;
+            if (source) {
+                source.stop();
+                source.disconnect();
+                source = null;
+            }
+        },
+        currentTime: 0,                                // (the songs always start from the top)
+        preload: 'none',                               // don't download it for visitors who never open a cast game
+        load() { download().catch(() => {}); },
+    };
 };
 
 // A song made in the browser (see LOBBY_SYNTH_TRACKS in timerMusic.js), dressed up to work
-// like the <audio> tracks above: play(), pause(), paused, load()
+// like the song files above: play(), pause(), paused, load()
 const makeSynthTrack = (trackId) => ({
     get paused() { return playingTimerTrackId() !== trackId; },
     play() {
@@ -36,11 +112,6 @@ const TRACKS = {
     triviaCast: makeTrack('/audio/TriviaCastLobbyMusic.mp3'), // Trivia Cast
     halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),   // any game played with a Halloween deck
 };
-
-// 🔇 The music switch (musicMute.js) mutes the song files; the made-in-the-browser songs mute themselves
-onMusicMuteChange((muted) => {
-    Object.values(TRACKS).forEach((audio) => { if (audio instanceof Audio) audio.muted = muted; });
-});
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song,
 // List Cast, Trivia Cast and Couch Cast have their own, and everything else plays the usual lobby music

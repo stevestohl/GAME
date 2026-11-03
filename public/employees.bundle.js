@@ -28263,37 +28263,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "startLobbyMusic": () => (/* binding */ startLobbyMusic),
 /* harmony export */   "stopLobbyMusic": () => (/* binding */ stopLobbyMusic)
 /* harmony export */ });
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _musicMute_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../musicMute.js */ "./src/musicMute.js");
+/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _musicMute_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../musicMute.js */ "./src/musicMute.js");
 // 🎵 The lobby music for the TV games: one shared player per track.
 // It's started by the tap that creates the room (browsers only allow sound after a tap),
 // so it's already playing by the time the lobby appears.
+//
+// The songs play through the page's Web Audio (the same audio the timer music uses), not an
+// <audio> tag: on iPhones a playing video pauses any <audio> tag, and the TV runs a hidden
+// keep-awake video the whole time (hooks/useWakeLock.js), so the lobby song cut out after a
+// few seconds. Web Audio plays alongside the video.
 
 
+
+var VOLUME = 0.4;
+
+// All the song files go through one volume knob, which the music switch (musicMute.js) turns down;
+// the made-in-the-browser songs mute themselves
+var output = null;
+var getOutput = function getOutput() {
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (!ctx) return null;
+  if (!output) {
+    output = ctx.createGain();
+    output.gain.value = (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_2__.isMusicMuted)() ? 0 : VOLUME;
+    output.connect(ctx.destination);
+  }
+  return output;
+};
+(0,_musicMute_js__WEBPACK_IMPORTED_MODULE_2__.onMusicMuteChange)(function (muted) {
+  if (output) output.gain.setTargetAtTime(muted ? 0 : VOLUME, output.context.currentTime, 0.1);
+});
+
+// The phone shuts the page's audio off while it's hidden (switching apps, opening Control Center to
+// start mirroring...): switch it back on when the page comes back, if a lobby song is meant to be playing
+document.addEventListener('visibilitychange', function () {
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (document.visibilityState !== 'visible' || !ctx || ctx.state === 'running') return;
+  if (Object.values(TRACKS).some(function (track) {
+    return !track.paused;
+  })) ctx.resume()["catch"](function () {});
+});
+
+// A looping song file, with the same play(), pause(), paused and load() as an <audio> tag
 var makeTrack = function makeTrack(src) {
-  var audio = new Audio(src);
-  audio.loop = true;
-  audio.volume = 0.4;
-  audio.preload = 'none'; // don't download it for visitors who never open a cast game
-  audio.muted = (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.isMusicMuted)();
-  return audio;
+  var song = null; // the downloaded, decoded song
+  var loading = null;
+  var source = null; // what's playing it right now
+  var wanted = false; // play() was asked for (it may still be downloading)
+
+  var download = function download() {
+    var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+    if (!ctx) return Promise.reject(new Error('No Web Audio in this browser'));
+    if (!loading) {
+      loading = fetch(src).then(function (res) {
+        return res.arrayBuffer();
+      }).then(function (data) {
+        return new Promise(function (resolve, reject) {
+          return ctx.decodeAudioData(data, resolve, reject);
+        });
+      }).then(function (decoded) {
+        song = decoded;
+        return decoded;
+      })["catch"](function (err) {
+        loading = null;
+        throw err;
+      });
+    }
+    return loading;
+  };
+  return {
+    get paused() {
+      return !wanted;
+    },
+    play: function play() {
+      wanted = true;
+      var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+      // Inside a tap, this is what lets the sound out (phones keep it shut until then)
+      if (ctx && ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+      return download().then(function () {
+        var out = getOutput();
+        if (!wanted || source || !out) return;
+        source = out.context.createBufferSource();
+        source.buffer = song;
+        source.loop = true;
+        source.connect(out);
+        source.start();
+      });
+    },
+    pause: function pause() {
+      wanted = false;
+      if (source) {
+        source.stop();
+        source.disconnect();
+        source = null;
+      }
+    },
+    currentTime: 0,
+    // (the songs always start from the top)
+    preload: 'none',
+    // don't download it for visitors who never open a cast game
+    load: function load() {
+      download()["catch"](function () {});
+    }
+  };
 };
 
 // A song made in the browser (see LOBBY_SYNTH_TRACKS in timerMusic.js), dressed up to work
-// like the <audio> tracks above: play(), pause(), paused, load()
+// like the song files above: play(), pause(), paused, load()
 var makeSynthTrack = function makeSynthTrack(trackId) {
   return {
     get paused() {
-      return (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_0__.playingTimerTrackId)() !== trackId;
+      return (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_1__.playingTimerTrackId)() !== trackId;
     },
     play: function play() {
-      (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_0__.startTimerMusic)({
+      (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_1__.startTimerMusic)({
         trackId: trackId
       });
       return Promise.resolve();
     },
     pause: function pause() {
-      if ((0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_0__.playingTimerTrackId)() === trackId) (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_0__.stopTimerMusic)();
+      if ((0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_1__.playingTimerTrackId)() === trackId) (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_1__.stopTimerMusic)();
     },
     currentTime: 0,
     preload: 'none',
@@ -28310,13 +28401,6 @@ var TRACKS = {
   // Trivia Cast
   halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3') // any game played with a Halloween deck
 };
-
-// 🔇 The music switch (musicMute.js) mutes the song files; the made-in-the-browser songs mute themselves
-(0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.onMusicMuteChange)(function (muted) {
-  Object.values(TRACKS).forEach(function (audio) {
-    if (audio instanceof Audio) audio.muted = muted;
-  });
-});
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song,
 // List Cast, Trivia Cast and Couch Cast have their own, and everything else plays the usual lobby music
