@@ -16,6 +16,7 @@
 //              Does it count or not? (One-on-One skips the vote.)
 //   results -> every scoring answer earns POINTS_PER_ITEM (Threefold: per player matched)
 //   scoreboard -> then the next round (or the final standings)
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import { drawListCategories } from "../db/listCategories.js";
@@ -396,7 +397,7 @@ export default function registerListsNamespace(LNS) {
         // ---------- Event: Room Creation ----------
         // List Cast: the TV makes the room and sits in it as the caster.
         // Listopia: the creator's phone makes the room, then joins it as the first player (the room leader).
-        socket.on('createRoom', (data = {}) => {
+        socket.on('createRoom', guardCreateRoom((data) => (data.mode === 'cast' ? 'listcast' : 'listopia'), socket, (data) => {
             leaveOtherRooms(socket);
             const mode = data.mode === 'cast' ? 'cast' : 'phones';
             const roomCode = makeRoomCode(mode);
@@ -437,7 +438,7 @@ export default function registerListsNamespace(LNS) {
             }
 
             socket.emit('roomCreated', { roomCode });
-        });
+        }));
 
         // ---------- Event: Room Joining (phones, and the TV after a refresh) ----------
         socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar } = {}) => {

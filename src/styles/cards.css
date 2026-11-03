@@ -1188,10 +1188,68 @@
     flex-shrink: 0;
 }
 
-/* Small phones: icons only in the pills */
+/* 🔑 The sign-in key, after the pills (gold when signed in) */
+.gt-nav-pills { margin-left: auto; }
+.gt-key {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(10, 16, 50, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: background 0.25s, color 0.25s;
+}
+.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
+.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }
+.gt-key-box { position: relative; flex-shrink: 0; }
+.gt-key-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 150px;
+    padding: 6px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);
+    text-align: left;
+    z-index: 1;
+}
+.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }
+.gt-key-menu button {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    color: #22348f;
+    font-weight: 600;
+    text-align: left;
+}
+.gt-key-menu button:hover { background: #eef1fb; }
+/* On a game or deck only the owner and admins can see */
+.gt-hidden-badge {
+    display: inline-block;
+    padding: 0.05rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #2a2006;
+    background: var(--gt-gold, #ffd36e);
+}
+.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }
+
+/* Small phones: icons only in the pills, and just the logo, so the key fits */
 @media (max-width: 420px) {
     .gt-pill-label { display: none; }
-    .gt-pill { padding: 8px 12px; }
+    .gt-pill { padding: 8px 10px; }
+    .gt-brand-text { display: none; }
 }
 
 /* =========================================================

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import KeyButton from './KeyButton.jsx';
 
 /**
  * 🧭 Frosted-glass navigation bar.
@@ -7,6 +8,7 @@ import { NavLink, Link } from 'react-router-dom';
  * The active section lights up in the Join Room blue.
  *
  * Links: /home (Game-Cast, TV games), /temple (Game-Temple, phone-only games) and /barhome (bartending).
+ * The key at the far right is for signing in (managers and content creators).
  */
 
 const TempleIcon = () => (
@@ -65,6 +67,7 @@ export default function NavBar() {
                         </NavLink>
                     ))}
                 </nav>
+                <KeyButton />
             </div>
         </header>
     );

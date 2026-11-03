@@ -1,3 +1,4 @@
+import { useGameVisibility } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,7 @@ import DeckCard from '../Menu/DeckCard.jsx';
  * then lets the caster pick which card deck (expansion) the room will use.
  */
 export default function CouchCastDeckSelect() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
@@ -85,7 +87,7 @@ export default function CouchCastDeckSelect() {
 
                     {/* 🃏 Card decks (expansions) */}
                     <Row className="g-2">
-                        {CARD_DECKS.map((deck, i) => (
+                        {visibleDecks('couchcast', CARD_DECKS).map((deck, i) => (
                             <Col xs={6} key={deck.id}>
                                 <DeckCard
                                     deck={deck}

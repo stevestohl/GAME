@@ -13,6 +13,7 @@
 //   pictionary: draw -> draw_results
 //   trivia:     trivia -> trivia_results
 // then scoreboard -> the next round's intro (or the final standings).
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { drawTriviaQuestions } from "../db/drawCards.js";
 import { pickMemes, pickPictionaryPrompts, markMemeUsed, markPromptUsed } from "../db/drawMixup.js";
@@ -500,7 +501,7 @@ export default function registerMixupNamespace(MNS) {
     MNS.on('connection', (socket) => {
 
         // ---------- Event: The TV makes a room ----------
-        socket.on('createRoom', (data = {}) => {
+        socket.on('createRoom', guardCreateRoom('mixup', socket, (data) => {
             leaveOtherRooms(socket);
             const roomCode = makeRoomCode();
             const totalRounds = ROUND_OPTIONS.includes(Number(data.totalRounds)) ? Number(data.totalRounds) : ROUND_OPTIONS[0];
@@ -533,7 +534,7 @@ export default function registerMixupNamespace(MNS) {
             };
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode });
-        });
+        }));
 
         // ---------- Event: Joining (phones, and the TV after a refresh) ----------
         socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar } = {}) => {

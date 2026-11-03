@@ -4,6 +4,7 @@ import { listUsers, createUser, updateUser, deleteUser } from '../controllers/ad
 import { MANAGED_GAMES } from '../db/adminCatalog.js'
 import { listSources, listContent, createContent, updateContent, deleteContent } from '../controllers/admin_content_controller.js'
 import { topResponses } from '../controllers/admin_dashboard_controller.js'
+import { visibleGames, updateVisibility } from '../controllers/admin_visibility_controller.js'
 
 // 🔐 The admin API behind game-temple.org/admin. Everything except signing in needs a valid token.
 const router = express.Router()
@@ -15,6 +16,9 @@ const safe = (handler) => (req, res, next) => Promise.resolve(handler(req, res, 
 });
 
 router.post('/login', safe(login))
+
+// 🎮 Open to everyone: the games and decks this visitor may see (a sign-in token shows hidden ones too)
+router.get('/visible-games', safe(visibleGames))
 
 router.use(safe(requireAdmin))
 router.get('/me', me)
@@ -29,6 +33,9 @@ router.delete('/content/:source/:id', safe(deleteContent))
 
 // Dashboard: limited to the decks each account manages (checked inside each handler)
 router.get('/dashboard/couchcast/top-responses', safe(topResponses))
+
+// Hiding and showing games and decks: owner only
+router.put('/visibility', requireOwner, safe(updateVisibility))
 
 // Accounts: owner only
 router.get('/users', requireOwner, safe(listUsers))

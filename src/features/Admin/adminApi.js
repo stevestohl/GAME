@@ -1,19 +1,10 @@
-// 🔐 Talking to the admin API (routes/admin.js). The sign-in token lives in sessionStorage,
-// so it's gone when the browser tab closes, and it expires on the server after 8 hours anyway.
+// 🔐 Talking to the admin API (routes/admin.js). The sign-in token is kept in src/auth.js.
+import { getToken, setToken } from '../../auth.js';
+
+export { getToken };
+
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API = `${isLocal ? 'http://localhost:5005' : 'https://game-temple-backend.onrender.com'}/api/admin`;
-const TOKEN_KEY = 'gtAdminToken';
-
-export const getToken = () => {
-    try { return sessionStorage.getItem(TOKEN_KEY); } catch { return null; }
-};
-const setToken = (token) => {
-    try {
-        if (token) sessionStorage.setItem(TOKEN_KEY, token);
-        else sessionStorage.removeItem(TOKEN_KEY);
-    } catch { /* private mode */ }
-};
-
 // Any request; throws an Error with the server's message. A 401 means "sign in again".
 export async function adminFetch(path, { method = 'GET', body } = {}) {
     const token = getToken();

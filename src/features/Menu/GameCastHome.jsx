@@ -5,9 +5,10 @@ import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 import { ListCastTile } from '../Lists/ListTiles.jsx';
-// import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';   // 🔀 Re-Shuffled tile is dormant (see the bottom of the game list)
+import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
 import GameRow from './GameRow.jsx';
+import { useGameVisibility } from '../../gameVisibility.js';
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
 
@@ -97,6 +98,7 @@ function HowToCast() {
 export default function GameCastHome() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { canSeeGame, isGameHidden } = useGameVisibility();
 
     // 🍞 "That game has ended" and friends land here
     const [toastMsg, setToastMsg] = useState(location.state?.toastMessage || '');
@@ -183,7 +185,8 @@ export default function GameCastHome() {
                         <Col xs={12}>
                             <Row className="g-1">
                                 {/* 🛋️ Couch Cast — text left, button right */}
-                                <GameRow
+                                {canSeeGame('couchcast') && <GameRow
+                                    hidden={isGameHidden('couchcast')}
                                     title="Couch Cast"
                                     players="3+ players"
                                     description="An Apples to Apples–style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone."
@@ -197,11 +200,12 @@ export default function GameCastHome() {
                                     >
                                         <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={imgStyle} />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
                                 {/* 📺❔ Trivia Cast — button left, text right */}
-                                <GameRow
+                                {canSeeGame('triviacast') && <GameRow
                                     flip
+                                    hidden={isGameHidden('triviacast')}
                                     title="Trivia Cast"
                                     players="2+ players"
                                     description="Trivia night on the big screen. Questions show on the TV and everyone answers on their phone."
@@ -215,10 +219,11 @@ export default function GameCastHome() {
                                     >
                                         <TriviaCastTile />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
                                 {/* 📺📝 List Cast — text left, button right */}
-                                <GameRow
+                                {canSeeGame('listcast') && <GameRow
+                                    hidden={isGameHidden('listcast')}
                                     title="List Cast"
                                     players="3+ players"
                                     description="Write a list on your phone and try not to match anyone. Matching answers get crossed out on the TV, then everyone votes on the rest."
@@ -232,11 +237,12 @@ export default function GameCastHome() {
                                     >
                                         <ListCastTile />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
                                 {/* 🎪 Temple Mix Up — button left, text right */}
-                                <GameRow
+                                {canSeeGame('mixup') && <GameRow
                                     flip
+                                    hidden={isGameHidden('mixup')}
                                     title="Temple Mix Up!"
                                     players="3+ players"
                                     description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
@@ -250,14 +256,12 @@ export default function GameCastHome() {
                                     >
                                         <MixupTile />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
-                                {/* 🔀 Couch Cast Re-Shuffled: dormant until its next version is ready.
-                                    Couch Cast now plays this game; the Re-Shuffled code stays (/reshuffled)
-                                    for the next version. To bring the tile back, un-comment this and the
-                                    ReshuffledTile import at the top.
-                                <GameRow
-                                    flip
+                                {/* 🔀 Couch Cast Re-Shuffled: hidden from the public until its next version is
+                                    ready (switch it on from the Games tab in /admin). */}
+                                {canSeeGame('reshuffled') && <GameRow
+                                    hidden={isGameHidden('reshuffled')}
                                     title="Couch Cast Re-Shuffled"
                                     players="3+ players"
                                     description="Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank."
@@ -271,8 +275,7 @@ export default function GameCastHome() {
                                     >
                                         <ReshuffledTile />
                                     </Button>
-                                </GameRow>
-                                */}
+                                </GameRow>}
                             </Row>
                         </Col>
 

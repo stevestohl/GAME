@@ -1,6 +1,7 @@
 // 📺 Trivia Cast: trivia with a shared TV screen.
 // One device casts the questions and scores to the TV; everyone answers on their phone.
 // It uses the same question decks as Trivia (see drawTriviaQuestions).
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import TriviaAnswer from "../models/TriviaAnswer.js";
@@ -330,7 +331,7 @@ export default function registerTriviaCastNamespace(TCNS) {
         console.log(`[Trivia Cast] Connected: ${socket.id}`);
 
         // ---------- Event: Room Creation (the TV) ----------
-        socket.on('createRoom', (data = {}) => {
+        socket.on('createRoom', guardCreateRoom('triviacast', socket, (data) => {
             leaveOtherRooms(socket);
             const roomCode = makeRoomCode();
 
@@ -364,7 +365,7 @@ export default function registerTriviaCastNamespace(TCNS) {
 
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode });
-        });
+        }));
 
         // ---------- Event: Room Joining (phones, and the TV after a refresh) ----------
         socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar } = {}) => {

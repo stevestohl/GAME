@@ -1,3 +1,4 @@
+import { useGameVisibility } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,7 @@ import RoundsPicker from '../Menu/RoundsPicker.jsx';
  * then the caster picks how many rounds and which deck.
  */
 export default function ListCastSetup() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(LIST_ROUND_OPTIONS[0]);
@@ -77,7 +79,7 @@ export default function ListCastSetup() {
                     </div>
 
                     <Row className="g-2">
-                        {LIST_DECKS.map((deck, i) => (
+                        {visibleDecks('listcast', LIST_DECKS).map((deck, i) => (
                             <Col xs={6} key={deck.id}>
                                 <DeckCard
                                     deck={deck}

@@ -7,6 +7,7 @@ import triviaImg from '../../assets/logos/Trivia_Button.jpeg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import HeroLogo from './HeroLogo.jsx';
 import GameRow from './GameRow.jsx';
+import { useGameVisibility } from '../../gameVisibility.js';
 import { ListopiaTile } from '../Lists/ListTiles.jsx';
 
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
@@ -18,6 +19,7 @@ import Prompt2CreateScreen from '../Prompt2/Prompt2CreateButton.jsx';
 
 export default function Home() {
     const navigate = useNavigate();
+    const { canSeeGame, isGameHidden } = useGameVisibility();
     const location = useLocation();
 
     // Loading states
@@ -144,7 +146,8 @@ export default function Home() {
                         <Col xs={12}>
                             <Row className="g-1">
                                 {/* ❔ Trivia — text left, button right */}
-                                <GameRow
+                                {canSeeGame('trivia') && <GameRow
+                                    hidden={isGameHidden('trivia')}
                                     title="Trivia"
                                     players="2+ players"
                                     description="Put your knowledge to the test. Everyone answers the same questions on their own device, and the best scores rise to the top of the leaderboard."
@@ -159,11 +162,12 @@ export default function Home() {
                                     >
                                         <img src={triviaImg} alt="Trivia" className="w-100 h-100" style={imgStyle} />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
                                 {/* Prompt 2 — button left, text right */}
-                                <GameRow
+                                {canSeeGame('prompt2') && <GameRow
                                     flip
+                                    hidden={isGameHidden('prompt2')}
                                     title="Prompt 2"
                                     players="3+ players"
                                     description="All the fun of Couch Cast, no TV required. A rotating judge reads a prompt, everyone plays their best card, and the whole game runs right on your phones."
@@ -178,10 +182,11 @@ export default function Home() {
                                     >
                                         <img src={prompt2Img} alt="Prompt 2" className="w-100 h-100" style={imgStyle} />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
                                 {/* 📱📝 Listopia — text left, button right */}
-                                <GameRow
+                                {canSeeGame('listopia') && <GameRow
+                                    hidden={isGameHidden('listopia')}
                                     title="Listopia"
                                     players="3+ players"
                                     description="All the fun of List Cast, no TV required. Write a list, watch the matches get crossed out, and vote on the rest, all on your phones."
@@ -196,11 +201,12 @@ export default function Home() {
                                     >
                                         <ListopiaTile />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
 
                                 {/* ❌⭕ Tic-Tac-Toe — button left, text right */}
-                                <GameRow
+                                {canSeeGame('tictactoe') && <GameRow
                                     flip
+                                    hidden={isGameHidden('tictactoe')}
                                     title="Tic-Tac-Toe"
                                     players="2 players"
                                     description="The timeless classic, head to head. Take turns on your own devices — first to get three in a row wins."
@@ -215,7 +221,7 @@ export default function Home() {
                                     >
                                         <img src={tttImg} alt="Tic-Tac-Toe" className="w-100 h-100" style={imgStyle} />
                                     </Button>
-                                </GameRow>
+                                </GameRow>}
                             </Row>
                         </Col>
                     </Row>

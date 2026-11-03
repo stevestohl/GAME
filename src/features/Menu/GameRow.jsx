@@ -5,12 +5,13 @@ import { Card, Row, Col } from 'react-bootstrap';
  * One game "row" on the Game-Cast and Game-Temple pages: a light card with a description
  * on one side and a square button on the other. `flip` swaps the sides so rows alternate down the page.
  */
-export default function GameRow({ title, players, description, flip, children }) {
+export default function GameRow({ title, players, description, flip, hidden, children }) {
     const info = (
         <Col xs={7} className="d-flex flex-column justify-content-center text-start">
             <div className="fw-bold mb-1">
                 {title}
                 {players && <span className="text-muted fw-normal small ms-2">{players}</span>}
+                {hidden && <span className="gt-hidden-badge ms-2">Hidden</span>}
             </div>
             <div className="small text-secondary lh-sm">{description}</div>
         </Col>

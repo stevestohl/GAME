@@ -85,6 +85,7 @@ export default function DeckCard({ deck, index = 0, selected, disabled, onClick,
             }}
         >
             <span className="cc-deck-tag">{selected ? '✓ Selected' : deck.tag}</span>
+            {deck.hidden && <span className="gt-hidden-badge cc-deck-hidden">Hidden</span>}
             <svg viewBox="0 0 100 100" className="cc-deck-icon" aria-hidden="true">
                 {ICONS[deck.icon] || ICONS.core}
             </svg>

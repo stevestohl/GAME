@@ -1,3 +1,4 @@
+import { useGameVisibility, useKeepDeckVisible } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Form, Button, InputGroup, Spinner, Row, Col } from 'react-bootstrap';
@@ -8,10 +9,12 @@ import RoundsPicker from '../Menu/RoundsPicker.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
 
 export default function Prompt2CreateScreen() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [playerName, setPlayerName] = useState('');
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [expansion, setExpansion] = useState('core');
+    useKeepDeckVisible(visibleDecks('prompt2', CARD_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
 
     // Pull saved name on mount
@@ -125,7 +128,7 @@ export default function Prompt2CreateScreen() {
                         <Form.Group className='mb-4 text-start'>
                             <Form.Label className='fw-bold text-secondary small'>Card Deck</Form.Label>
                             <Row className="g-2">
-                                {CARD_DECKS.map((deck, i) => (
+                                {visibleDecks('prompt2', CARD_DECKS).map((deck, i) => (
                                     <Col xs={6} key={deck.id}>
                                         <DeckCard
                                             deck={deck}

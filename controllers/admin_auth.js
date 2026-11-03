@@ -7,7 +7,7 @@ import AdminUser from "../models/AdminUser.js";
 // Needs ADMIN_JWT_SECRET: a long random string, set in .env.local (local) and in Render's
 // Environment settings (live). Never commit it. Without it, admin sign-in is switched off.
 
-const TOKEN_HOURS = 8;
+const TOKEN_DAYS = 14;                   // how long you stay signed in on a device (Sign out ends it sooner)
 const MAX_FAILS = 5;                    // wrong passwords in a row for one username...
 const MAX_FAILS_PER_ADDRESS = 20;       // ...or from one internet address (a whole household shares one)...
 const LOCK_MINUTES = 15;                // ...lock it for this long
@@ -68,8 +68,20 @@ export const login = async (req, res) => {
     user.lastLoginAt = new Date();
     await user.save();
 
-    const token = jwt.sign({ sub: String(user._id), v: user.tokenVersion }, secret(), { expiresIn: `${TOKEN_HOURS}h` });
+    const token = jwt.sign({ sub: String(user._id), v: user.tokenVersion }, secret(), { expiresIn: `${TOKEN_DAYS}d` });
     res.json({ token, user: user.toSafe() });
+};
+
+/** The account a sign-in token belongs to, or null if it's missing, expired or no longer valid */
+export const userFromToken = async (token) => {
+    if (!token || !secret()) return null;
+    try {
+        const payload = jwt.verify(token, secret());
+        const user = await AdminUser.findById(payload.sub);
+        return user && user.active && user.tokenVersion === payload.v ? user : null;
+    } catch {
+        return null;
+    }
 };
 
 // ---------- Middleware: must be signed in ----------
@@ -81,11 +93,8 @@ export const requireAdmin = async (req, res, next) => {
         const token = header.startsWith('Bearer ') ? header.slice(7) : null;
         if (!token) return res.status(401).json({ message: 'Please sign in.' });
 
-        const payload = jwt.verify(token, secret());
-        const user = await AdminUser.findById(payload.sub);
-        if (!user || !user.active || user.tokenVersion !== payload.v) {
-            return res.status(401).json({ message: 'Please sign in again.' });
-        }
+        const user = await userFromToken(token);
+        if (!user) return res.status(401).json({ message: 'Please sign in again.' });
         req.adminUser = user;
         next();
     } catch {

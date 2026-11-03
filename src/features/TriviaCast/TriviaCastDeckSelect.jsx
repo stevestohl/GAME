@@ -1,3 +1,4 @@
+import { useGameVisibility } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,7 @@ import RoundsPicker from '../Menu/RoundsPicker.jsx';
  * then the caster picks how many questions and which deck.
  */
 export default function TriviaCastDeckSelect() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
@@ -81,7 +83,7 @@ export default function TriviaCastDeckSelect() {
 
                     {/* 🃏 Question decks (expansions) */}
                     <Row className="g-2">
-                        {TRIVIA_DECKS.map((deck, i) => (
+                        {visibleDecks('triviacast', TRIVIA_DECKS).map((deck, i) => (
                             <Col xs={4} key={deck.id}>
                                 <DeckCard
                                     compact

@@ -1,3 +1,4 @@
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { drawTriviaQuestions, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import { startRoomJanitor } from "./roomJanitor.js";
 /**
@@ -47,7 +48,7 @@ export default function registerTriviaNamespace(namespace) {
         console.log(`Trivia User Connected: ${socket.id}`);
 
         // --- Event: Room Creation ---
-        socket.on('createRoom', (data = {}) => {
+        socket.on('createRoom', guardCreateRoom('trivia', socket, (data) => {
             const { roomCode, players } = createRoomLogic(
                 socket,
                 activeRooms,
@@ -56,7 +57,7 @@ export default function registerTriviaNamespace(namespace) {
             );
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
-        });
+        }));
 
         // --- Event: Room Joining ---
         socket.on('joinRoom', ({ roomCode, playerName, sessionToken }) => {

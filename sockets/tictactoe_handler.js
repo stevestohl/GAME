@@ -1,3 +1,4 @@
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { startRoomJanitor } from "./roomJanitor.js";
 // In-memory state storage for Tic-Tac-Toe game rooms
 const activeTictactoeRooms = {};
@@ -23,7 +24,7 @@ export default function registerTicTacToeNamespace(namespace) {
     console.log("SERVER: A client reached the Tic-Tac-Toe engine!");
     
     // 1. Room Creation
-    socket.on('createRoom', ({ hostName }) => {
+    socket.on('createRoom', guardCreateRoom('tictactoe', socket, ({ hostName }) => {
       const roomCode = generateTttRoomCode();
 
       activeTictactoeRooms[roomCode] = {
@@ -39,7 +40,7 @@ export default function registerTicTacToeNamespace(namespace) {
       console.log(`SERVER: Room ${roomCode} created by ${hostName}`);
       socket.join(roomCode);
       socket.emit('roomCreated', { roomCode });
-    });
+    }));
 
     // 2. Room Joining
     socket.on('joinRoom', (payload) => {

@@ -4,6 +4,7 @@
 // Hands are dealt with a mix of "thing" and "action" cards so every prompt has answers that fit,
 // and the phones show each card in the form that reads best in the chosen prompt.
 // Room codes start with "S". Nothing in here touches the live Couch Cast game.
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto"
 import { normalizeExpansion, normalizeRounds } from "../db/drawCards.js"
 import { drawReshuffled } from "../db/drawReshuffled.js"
@@ -590,14 +591,14 @@ export default function registerReshuffledNamespace(CCNS) {
         console.log(`[Re-Shuffled Socket]\n Player Connected: ${socket.id}`);
 
         // ----------Event: Room Creation-----------
-        socket.on('createRoom', (data) => {
+        socket.on('createRoom', guardCreateRoom('reshuffled', socket, (data) => {
             const nameToUse = data.playerName || 'Caster';
             const expansion = normalizeExpansion(data.expansion);
             leaveOtherRooms(socket);
             const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse, expansion, normalizeRounds(data.totalRounds, DEFAULT_ROUNDS));
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
-        });
+        }));
 
         // --- Event: Room Joining ---
         socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar }) => {

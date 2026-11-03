@@ -1,3 +1,4 @@
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { drawCards, normalizeExpansion, normalizeRounds } from "../db/drawCards.js";
 import { recordPromptRound } from "../db/recordPromptRound.js";
@@ -57,13 +58,13 @@ export default function registerPrompt2Namespace(promptNS) {
         console.log(`[Prompt2 Socket] Player connected: ${socket.id}`);
 
     // ---- Event: Room Creation ------
-    socket.on('createRoom', (data) => {
+    socket.on('createRoom', guardCreateRoom('prompt2', socket, (data) => {
         const nameToUse = data.playerName || 'Host';
         const { roomCode, players } = createRoomLogic(socket, activePrompt2Rooms, nameToUse, normalizeExpansion(data.expansion), normalizeRounds(data.totalRounds));
         
     socket.join(roomCode); 
     socket.emit('roomcreated', { roomCode, players });
-});
+}));
 
     // --- Event: Room Joining ---
     socket.on('joinRoom', ({ roomCode, playerName, playerId }) => {

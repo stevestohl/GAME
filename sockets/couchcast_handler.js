@@ -4,6 +4,7 @@
 // and the phones show each card in the form that reads best in the chosen prompt.
 // This started as a copy of Couch Cast Re-Shuffled (sockets/reshuffled_handler.js), which is kept
 // on its own (and off the home screen) so it can grow into its own version later.
+import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto"
 import { normalizeExpansion, normalizeRounds } from "../db/drawCards.js"
 import { drawReshuffled } from "../db/drawReshuffled.js"
@@ -676,14 +677,14 @@ export default function registerCCNamespace(CCNS) {
         console.log(`[CastCouch Socket]\n Player Connected: ${socket.id}`);
 
         // ----------Event: Room Creation-----------
-        socket.on('createRoom', (data) => {
+        socket.on('createRoom', guardCreateRoom('couchcast', socket, (data) => {
             const nameToUse = data.playerName || 'Caster';
             const expansion = normalizeExpansion(data.expansion);
             leaveOtherRooms(socket);
             const { roomCode, players } = createRoomLogic(socket, activeCCRooms, nameToUse, expansion, normalizeRounds(data.totalRounds, DEFAULT_ROUNDS));
             socket.join(roomCode);
             socket.emit('roomCreated', { roomCode, players });
-        });
+        }));
 
         // --- Event: Room Joining ---
         socket.on('joinRoom', ({ roomCode, playerName, playerId, avatar }) => {

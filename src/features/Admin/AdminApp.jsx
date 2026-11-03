@@ -4,11 +4,14 @@ import { adminFetch, signIn, signOut, getToken } from './adminApi.js';
 import UsersPage from './UsersPage.jsx';
 import ContentPage from './ContentPage.jsx';
 import DashboardPage from './DashboardPage.jsx';
+import GamesPage from './GamesPage.jsx';
+import { onAuthChange } from '../../auth.js';
 
 /**
  * 🔐 game-temple.org/admin. Sign in, then:
  *   Dashboard -> reports (top Couch Cast responses so far)
  *   Content   -> edit cards, questions and topics for the games and decks you manage (stage 3)
+ *   Games     -> owner only: hide and show games and decks
  *   Users     -> owner only: add accounts and choose which games/decks each admin manages
  */
 export default function AdminApp() {
@@ -25,6 +28,9 @@ export default function AdminApp() {
             .catch(() => setUser(null))
             .finally(() => setChecking(false));
     }, []);
+
+    // Signed out somewhere else (the key in the nav bar, or an expired token)
+    useEffect(() => onAuthChange(() => { if (!getToken()) setUser(null); }), []);
 
     useEffect(() => {
         if (user) adminFetch('/catalog').then(({ games }) => setCatalog(games)).catch(() => {});
@@ -58,12 +64,15 @@ export default function AdminApp() {
                     <Nav variant="tabs" activeKey={tab} onSelect={(key) => setTab(key)} className="mb-3">
                         <Nav.Item><Nav.Link eventKey="dashboard">📊 Dashboard</Nav.Link></Nav.Item>
                         <Nav.Item><Nav.Link eventKey="content">🃏 Content</Nav.Link></Nav.Item>
+                        {isOwner && <Nav.Item><Nav.Link eventKey="games">🎮 Games</Nav.Link></Nav.Item>}
                         {isOwner && <Nav.Item><Nav.Link eventKey="users">👥 Users</Nav.Link></Nav.Item>}
                     </Nav>
 
                     {tab === 'dashboard' && <DashboardPage />}
 
                     {tab === 'content' && <ContentPage />}
+
+                    {tab === 'games' && isOwner && <GamesPage />}
 
                     {tab === 'users' && isOwner && <UsersPage me={user} catalog={catalog} />}
                 </Card.Body>

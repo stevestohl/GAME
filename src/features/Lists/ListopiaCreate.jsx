@@ -1,3 +1,4 @@
+import { useGameVisibility, useKeepDeckVisible } from '../../gameVisibility.js';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Form, Button, InputGroup, Spinner, Row, Col } from 'react-bootstrap';
@@ -13,10 +14,12 @@ import { createListRoom } from './listsCreate.js';
  * Whoever makes the room plays too (no TV needed).
  */
 export default function ListopiaCreate() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [playerName, setPlayerName] = useState('');
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [expansion, setExpansion] = useState('core');
+    useKeepDeckVisible(visibleDecks('listopia', LIST_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(LIST_ROUND_OPTIONS[0]);
 
     useEffect(() => {
@@ -91,7 +94,7 @@ export default function ListopiaCreate() {
                         <Form.Group className="mb-4 text-start">
                             <Form.Label className="fw-bold text-secondary small">List Deck</Form.Label>
                             <Row className="g-2">
-                                {LIST_DECKS.map((deck, i) => (
+                                {visibleDecks('listopia', LIST_DECKS).map((deck, i) => (
                                     <Col xs={6} key={deck.id}>
                                         <DeckCard
                                             deck={deck}

@@ -1,3 +1,4 @@
+import { useGameVisibility, useKeepDeckVisible } from '../../gameVisibility.js';
 import React, { useEffect, useState } from 'react';
 import { Card, Form, Button, InputGroup, Modal, Spinner, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -43,10 +44,12 @@ export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, 
 }
 
 export default function TriviaCreateScreen() {
+    const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [hostName, setHostName] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [expansion, setExpansion] = useState('core');
+    useKeepDeckVisible(visibleDecks('trivia', TRIVIA_DECKS), expansion, setExpansion);
     const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
 
     useEffect(() => {
@@ -116,7 +119,7 @@ export default function TriviaCreateScreen() {
                                 Question Deck
                             </Form.Label>
                             <Row className="g-2">
-                                {TRIVIA_DECKS.map((deck, i) => (
+                                {visibleDecks('trivia', TRIVIA_DECKS).map((deck, i) => (
                                     <Col xs={4} key={deck.id}>
                                         <DeckCard
                                             compact

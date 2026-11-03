@@ -22,6 +22,7 @@ import ReshuffledDeckSelect from './features/Reshuffled/ReshuffledDeckSelect.jsx
 import MixupManager from './features/Mixup/MixupManager.jsx'
 import MixupSetup from './features/Mixup/MixupSetup.jsx'
 import AdminApp from './features/Admin/AdminApp.jsx'
+import { useGameVisibility } from './gameVisibility.js'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
 import TicTacToeCreateScreen from './features/TicTacToe/TicTacToeCreateScreen.jsx'
 // import TriviaWaitingRoom from './features/Trivia/TriviaWaitingRoom.jsx'
@@ -34,6 +35,13 @@ import ListCastSetup from './features/Lists/ListCastSetup.jsx'
 import ListopiaManager from './features/Lists/ListopiaManager.jsx'
 import ListopiaCreate from './features/Lists/ListopiaCreate.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
+
+// 🙈 The page that starts a game: visitors who can't see that game go back to the menu (joining a room stays open)
+function GameGate({ game, children }) {
+    const { confirmed, canSeeGame } = useGameVisibility();
+    if (confirmed && !canSeeGame(game)) return <Navigate replace to="/home" state={{ toastMessage: "That game isn't available right now." }} />;
+    return children;
+}
 
 export default function Contents() {
     const NotFound = () => <h1>Page Not Found</h1>
@@ -48,9 +56,9 @@ export default function Contents() {
             
             {/* Direct routing to game board */}
             <Route path="/tictactoe" element={<TicTacToe />} />
-            <Route path="/tictactoe-create" element={<TicTacToeCreateScreen />} /> 
+            <Route path="/tictactoe-create" element={<GameGate game="tictactoe"><TicTacToeCreateScreen /></GameGate>} /> 
             <Route path="/trivia" element={<TriviaManager />} />
-            <Route path="/trivia-create" element={<TriviaCreateScreen />} />
+            <Route path="/trivia-create" element={<GameGate game="trivia"><TriviaCreateScreen /></GameGate>} />
             
             {/* Flashcard & Tools Routes */}
             <Route path="/flashcards" element={<Flashcards />} />
@@ -59,24 +67,24 @@ export default function Contents() {
 
             {/* Manager Routes */}
             <Route path="/prompt2" element={<Prompt2GameManager />} />
-            <Route path="/prompt2-create" element={<Prompt2CreateScreen />} />
+            <Route path="/prompt2-create" element={<GameGate game="prompt2"><Prompt2CreateScreen /></GameGate>} />
             <Route path="/couchcast" element={<CouchCastManager />} />
             <Route path="/couchcast-setup" element={<CouchCastManager />} />
-            <Route path="/couchcast-decks" element={<CouchCastDeckSelect />} />
+            <Route path="/couchcast-decks" element={<GameGate game="couchcast"><CouchCastDeckSelect /></GameGate>} />
             {/* 🔀 Couch Cast Re-Shuffled: experimental, not linked from any menu yet */}
             <Route path="/reshuffled" element={<ReshuffledManager />} />
-            <Route path="/reshuffled-decks" element={<ReshuffledDeckSelect />} />
+            <Route path="/reshuffled-decks" element={<GameGate game="reshuffled"><ReshuffledDeckSelect /></GameGate>} />
             {/* 🎪 Temple Mix Up */}
             <Route path="/mixup" element={<MixupManager />} />
-            <Route path="/mixup-setup" element={<MixupSetup />} />
+            <Route path="/mixup-setup" element={<GameGate game="mixup"><MixupSetup /></GameGate>} />
             {/* 🔐 Admin site (sign-in required; the server checks every request) */}
             <Route path="/admin" element={<AdminApp />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />
-            <Route path="/triviacast-decks" element={<TriviaCastDeckSelect />} />
+            <Route path="/triviacast-decks" element={<GameGate game="triviacast"><TriviaCastDeckSelect /></GameGate>} />
             <Route path="/listcast" element={<ListCastManager />} />
-            <Route path="/listcast-setup" element={<ListCastSetup />} />
+            <Route path="/listcast-setup" element={<GameGate game="listcast"><ListCastSetup /></GameGate>} />
             <Route path="/listopia" element={<ListopiaManager />} />
-            <Route path="/listopia-create" element={<ListopiaCreate />} />
+            <Route path="/listopia-create" element={<GameGate game="listopia"><ListopiaCreate /></GameGate>} />
 
             {/* NEW: Mobile Player Join Route via QR Code */}
             <Route path="/play" element={<CouchCastManager />} />
