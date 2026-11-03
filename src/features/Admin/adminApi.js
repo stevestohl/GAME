@@ -32,6 +32,24 @@ export async function adminFetch(path, { method = 'GET', body } = {}) {
     return data;
 }
 
+// Sends a picture straight to our Cloudinary account, with the server's permission. Returns its link.
+export async function uploadPicture(sourceId, file) {
+    const { cloudName, apiKey, fields } = await adminFetch(`/content/${sourceId}/upload`, { method: 'POST' });
+    const form = new FormData();
+    form.append('file', file);
+    form.append('api_key', apiKey);
+    Object.entries(fields).forEach(([key, value]) => form.append(key, value));
+    let response;
+    try {
+        response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, { method: 'POST', body: form });
+    } catch {
+        throw new Error("Couldn't reach the picture storage. Check your connection and try again.");
+    }
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error?.message || `The upload didn't work (${response.status}).`);
+    return data.secure_url;
+}
+
 export async function signIn(username, password) {
     const data = await adminFetch('/login', { method: 'POST', body: { username, password } });
     setToken(data.token);

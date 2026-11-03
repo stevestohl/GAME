@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Table, Form, Button, Alert, Spinner, Badge, InputGroup } from 'react-bootstrap';
-import { adminFetch } from './adminApi.js';
+import { adminFetch, uploadPicture } from './adminApi.js';
 
 const COLUMN_LABELS = { deck: 'Deck', createdBy: 'Created by', updatedAt: 'Last edited' };
 const PAGE_SIZE = 30;
+const PICTURE_TYPES = 'image/jpeg,image/png,image/webp,image/gif';   // what the server's upload signature allows
+const MAX_PICTURE_MB = 10;
 
 const formatDate = (value) => (value ? new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '—');
 
@@ -19,6 +21,7 @@ export default function ContentGrid({ source }) {
     const [search, setSearch] = useState('');
     const [query, setQuery] = useState({ page: 1, sort: source.titleField, dir: 'asc', search: '', filters: {} });
     const [editing, setEditing] = useState(null);     // { id, draft } (id 'new' = the add row)
+    const [uploading, setUploading] = useState(false);
     const searchTimer = useRef(null);
     const isOwner = source.decks === null;
 
@@ -60,6 +63,20 @@ export default function ContentGrid({ source }) {
             else draft[key] = '';
         });
         return draft;
+    };
+
+    const handlePicture = async (key, file) => {
+        if (!file) return;
+        if (file.size > MAX_PICTURE_MB * 1024 * 1024) return setError(`That picture is too big: the limit is ${MAX_PICTURE_MB} MB.`);
+        setError('');
+        setUploading(true);
+        try {
+            setDraft(key, await uploadPicture(source.id, file));
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setUploading(false);
+        }
     };
 
     const save = async () => {
@@ -134,7 +151,14 @@ export default function ContentGrid({ source }) {
             return (
                 <>
                     {value && <img src={value} alt="" className="admin-thumb mb-1" />}
-                    <Form.Control size="sm" style={{ minWidth: '180px' }} value={value || ''} placeholder="https://..." aria-label={field.label} onChange={(e) => setDraft(col, e.target.value)} />
+                    {field.upload && (
+                        <label className={`btn btn-sm btn-outline-primary w-100 mb-1 ${uploading ? 'disabled' : ''}`}>
+                            {uploading ? <><Spinner size="sm" animation="border" /> Uploading...</> : '📷 Upload a picture'}
+                            <input type="file" hidden accept={PICTURE_TYPES} disabled={uploading} aria-label={`Upload ${field.label}`}
+                                onChange={(e) => { handlePicture(col, e.target.files[0]); e.target.value = ''; }} />
+                        </label>
+                    )}
+                    <Form.Control size="sm" style={{ minWidth: '180px' }} value={value || ''} placeholder={field.upload ? 'or paste a link: https://...' : 'https://...'} aria-label={field.label} onChange={(e) => setDraft(col, e.target.value)} />
                 </>
             );
         }
@@ -147,7 +171,7 @@ export default function ContentGrid({ source }) {
         <>
             {source.columns.map((col) => <td key={col}>{editCell(col)}</td>)}
             <td className="text-nowrap">
-                <Button size="sm" variant="success" className="me-1" onClick={save}>Save</Button>
+                <Button size="sm" variant="success" className="me-1" disabled={uploading} onClick={save}>Save</Button>
                 <Button size="sm" variant="outline-secondary" onClick={() => setEditing(null)}>Cancel</Button>
             </td>
         </>

@@ -11,6 +11,7 @@ import MixupMeme from "../models/MixupMeme.js";
 //             No deckField: the content has no decks, so anyone with access to the game can edit all of it.
 //   fields    the editable fields (besides the deck): how to show and check each one. kind is one of
 //               text (long: a big box), choice, list (one per line), tags (pick several), bool, url
+//             `upload` (on a url): gets an upload button, and pasted links are copied to our own storage
 //             `path`: where it lives if it's not the field's own name ("forms.verb")
 //             `level`: tidies older values ("Easy") in the grid and its filter
 //             `read` / `write`: for fields that don't map one-to-one onto the document
@@ -101,7 +102,7 @@ export const CONTENT_SOURCES = {
         deckField: 'expansion',
         fields: {
             name: { label: 'Meme name', kind: 'text', required: true, max: 100 },
-            url: { label: 'Picture', kind: 'url', required: true, max: 500 },
+            url: { label: 'Picture', kind: 'url', upload: true, required: true, max: 500 },
             active: { label: 'In play', kind: 'bool' },
         },
         columns: ['url', 'name', 'deck', 'active', 'createdBy'],

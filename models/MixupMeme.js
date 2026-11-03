@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 
 // 🖼️ A blank meme template for Temple Mix Up's meme rounds (collection `mixupmemes`).
 // Copied from Imgflip's list of the 100 most popular templates by `npm run seed:memes`
-// (safe to re-run any time to pick up new popular memes). The TV shows the picture straight
-// from Imgflip's image link, with the players' captions drawn on top by the game.
+// (safe to re-run any time to pick up new popular memes), or added by admins, whose pictures live in
+// our Cloudinary account (db/pictureStore.js). The TV shows the picture straight from its link, with
+// the players' captions drawn on top by the game.
 //
 // Memes cycle: every meme is used once before any comes back, by picking the least-used ones
 // first. `timesUsed` and `lastUsedAt` go up each time a meme is played in a round.

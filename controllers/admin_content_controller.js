@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { CONTENT_SOURCES, describeSource } from "../db/adminContent.js";
 import { DECK_ID } from "../db/adminCatalog.js";
+import { canStorePictures, signUpload, keepPicture } from "../db/pictureStore.js";
 
 // 🃏 The Content tab's API: list (paged, searched, filtered, sorted), add, edit and delete content,
 // always limited to the decks the signed-in account manages for that game (the owner manages all).
@@ -100,6 +101,21 @@ const checkFields = (source, body, { partial }) => {
     return { values };
 };
 
+// A pasted picture link becomes our own copy (only when it's new: an untouched link stays as it is).
+// Returns an error message if the picture can't be read.
+const keepPictures = async (source, values, doc) => {
+    for (const [key, field] of Object.entries(source.fields)) {
+        if (!field.upload || !values[key] || values[key] === doc?.[key]) continue;
+        try {
+            values[key] = await keepPicture(values[key]);
+        } catch (err) {
+            console.error('[Pictures] Could not copy a picture:', err.error?.message || err.message);
+            return "Couldn't read a picture at that link. Check it opens as just the picture, or save the picture and use Upload.";
+        }
+    }
+    return null;
+};
+
 const checkDeck = (deck, decks) => {
     const clean = String(deck || '').trim().toLowerCase();
     if (!DECK_ID.test(clean)) return { error: 'Deck names are lowercase letters, numbers and dashes, like "jeffinitely".' };
@@ -197,6 +213,15 @@ export const listContent = async (req, res) => {
     res.json({ rows: docs.map((d) => toRow(d, source)), total, page, pages, limit, facets, decks });
 };
 
+// ---------- POST /api/admin/content/:source/upload: permission for the browser to send one picture ----------
+export const signContentUpload = (req, res) => {
+    const found = getSource(req, res);
+    if (!found) return;
+    if (!Object.values(found.source.fields).some((field) => field.upload)) return res.status(405).json({ message: "This content doesn't have pictures." });
+    if (!canStorePictures()) return res.status(503).json({ message: "Picture uploads aren't set up on the server yet. Paste a link for now." });
+    res.json(signUpload());
+};
+
 // ---------- POST /api/admin/content/:source ----------
 export const createContent = async (req, res) => {
     const found = getSource(req, res);
@@ -208,6 +233,8 @@ export const createContent = async (req, res) => {
     if (error) return res.status(400).json({ message: error });
     const deckCheck = source.deckField ? checkDeck(req.body?.deck, decks) : {};
     if (deckCheck.error) return res.status(400).json({ message: deckCheck.error });
+    const pictureError = await keepPictures(source, values, null);
+    if (pictureError) return res.status(400).json({ message: pictureError });
 
     const now = new Date();
     const doc = { ...source.defaults };
@@ -239,6 +266,8 @@ export const updateContent = async (req, res) => {
 
     const { values, error } = checkFields(source, req.body || {}, { partial: true });
     if (error) return res.status(400).json({ message: error });
+    const pictureError = await keepPictures(source, values, doc);
+    if (pictureError) return res.status(400).json({ message: pictureError });
     const changes = {};
     Object.entries(values).forEach(([key, value]) => {
         const field = source.fields[key];

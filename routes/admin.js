@@ -2,7 +2,7 @@ import express from 'express'
 import { login, me, requireAdmin, requireOwner } from '../controllers/admin_auth.js'
 import { listUsers, createUser, updateUser, deleteUser } from '../controllers/admin_users_controller.js'
 import { MANAGED_GAMES } from '../db/adminCatalog.js'
-import { listSources, listContent, createContent, updateContent, deleteContent } from '../controllers/admin_content_controller.js'
+import { listSources, listContent, createContent, updateContent, deleteContent, signContentUpload } from '../controllers/admin_content_controller.js'
 import { topResponses } from '../controllers/admin_dashboard_controller.js'
 import { visibleGames, updateVisibility } from '../controllers/admin_visibility_controller.js'
 
@@ -28,6 +28,7 @@ router.get('/catalog', (req, res) => res.json({ games: MANAGED_GAMES }))
 router.get('/content', listSources)
 router.get('/content/:source', safe(listContent))
 router.post('/content/:source', safe(createContent))
+router.post('/content/:source/upload', safe(signContentUpload))
 router.patch('/content/:source/:id', safe(updateContent))
 router.delete('/content/:source/:id', safe(deleteContent))
 

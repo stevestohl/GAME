@@ -1281,10 +1281,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Table.js");
 /* harmony import */ var _adminApi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./adminApi.js */ "./src/features/Admin/adminApi.js");
@@ -1314,6 +1314,8 @@ var COLUMN_LABELS = {
   updatedAt: 'Last edited'
 };
 var PAGE_SIZE = 30;
+var PICTURE_TYPES = 'image/jpeg,image/png,image/webp,image/gif'; // what the server's upload signature allows
+var MAX_PICTURE_MB = 10;
 var formatDate = function formatDate(value) {
   return value ? new Date(value).toLocaleDateString(undefined, {
     month: 'short',
@@ -1360,6 +1362,10 @@ function ContentGrid(_ref) {
     _useState12 = _slicedToArray(_useState11, 2),
     editing = _useState12[0],
     setEditing = _useState12[1]; // { id, draft } (id 'new' = the add row)
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState14 = _slicedToArray(_useState13, 2),
+    uploading = _useState14[0],
+    setUploading = _useState14[1];
   var searchTimer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var isOwner = source.decks === null;
 
@@ -1469,30 +1475,79 @@ function ContentGrid(_ref) {
     });
     return draft;
   };
-  var save = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var id, draft;
+  var handlePicture = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(key, file) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              id = editing.id, draft = editing.draft;
-              setError('');
-              _context.prev = 2;
-              if (!(id === 'new')) {
-                _context.next = 8;
+              if (file) {
+                _context.next = 2;
                 break;
               }
-              _context.next = 6;
+              return _context.abrupt("return");
+            case 2:
+              if (!(file.size > MAX_PICTURE_MB * 1024 * 1024)) {
+                _context.next = 4;
+                break;
+              }
+              return _context.abrupt("return", setError("That picture is too big: the limit is ".concat(MAX_PICTURE_MB, " MB.")));
+            case 4:
+              setError('');
+              setUploading(true);
+              _context.prev = 6;
+              _context.t0 = setDraft;
+              _context.t1 = key;
+              _context.next = 11;
+              return (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.uploadPicture)(source.id, file);
+            case 11:
+              _context.t2 = _context.sent;
+              (0, _context.t0)(_context.t1, _context.t2);
+              _context.next = 18;
+              break;
+            case 15:
+              _context.prev = 15;
+              _context.t3 = _context["catch"](6);
+              setError(_context.t3.message);
+            case 18:
+              _context.prev = 18;
+              setUploading(false);
+              return _context.finish(18);
+            case 21:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[6, 15, 18, 21]]);
+    }));
+    return function handlePicture(_x, _x2) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+  var save = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var id, draft;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              id = editing.id, draft = editing.draft;
+              setError('');
+              _context2.prev = 2;
+              if (!(id === 'new')) {
+                _context2.next = 8;
+                break;
+              }
+              _context2.next = 6;
               return (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)("/content/".concat(source.id), {
                 method: 'POST',
                 body: draft
               });
             case 6:
-              _context.next = 10;
+              _context2.next = 10;
               break;
             case 8:
-              _context.next = 10;
+              _context2.next = 10;
               return (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)("/content/".concat(source.id, "/").concat(id), {
                 method: 'PATCH',
                 body: draft
@@ -1500,58 +1555,58 @@ function ContentGrid(_ref) {
             case 10:
               setEditing(null);
               reload();
-              _context.next = 17;
+              _context2.next = 17;
               break;
             case 14:
-              _context.prev = 14;
-              _context.t0 = _context["catch"](2);
-              setError(_context.t0.message);
+              _context2.prev = 14;
+              _context2.t0 = _context2["catch"](2);
+              setError(_context2.t0.message);
             case 17:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee, null, [[2, 14]]);
+      }, _callee2, null, [[2, 14]]);
     }));
     return function save() {
-      return _ref6.apply(this, arguments);
+      return _ref7.apply(this, arguments);
     };
   }();
   var remove = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(row) {
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(row) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               if (window.confirm("Delete this ".concat(source.noun, "?\n\n\"").concat(row[source.titleField], "\""))) {
-                _context2.next = 2;
+                _context3.next = 2;
                 break;
               }
-              return _context2.abrupt("return");
+              return _context3.abrupt("return");
             case 2:
               setError('');
-              _context2.prev = 3;
-              _context2.next = 6;
+              _context3.prev = 3;
+              _context3.next = 6;
               return (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)("/content/".concat(source.id, "/").concat(row.id), {
                 method: 'DELETE'
               });
             case 6:
               reload();
-              _context2.next = 12;
+              _context3.next = 12;
               break;
             case 9:
-              _context2.prev = 9;
-              _context2.t0 = _context2["catch"](3);
-              setError(_context2.t0.message);
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](3);
+              setError(_context3.t0.message);
             case 12:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2, null, [[3, 9]]);
+      }, _callee3, null, [[3, 9]]);
     }));
-    return function remove(_x) {
-      return _ref7.apply(this, arguments);
+    return function remove(_x3) {
+      return _ref8.apply(this, arguments);
     };
   }();
   var hasFilters = query.search || Object.values(query.filters).some(Boolean);
@@ -1662,13 +1717,28 @@ function ContentGrid(_ref) {
         src: value,
         alt: "",
         className: "admin-thumb mb-1"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+      }), field.upload && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "btn btn-sm btn-outline-primary w-100 mb-1 ".concat(uploading ? 'disabled' : '')
+      }, uploading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        size: "sm",
+        animation: "border"
+      }), " Uploading...") : '📷 Upload a picture', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "file",
+        hidden: true,
+        accept: PICTURE_TYPES,
+        disabled: uploading,
+        "aria-label": "Upload ".concat(field.label),
+        onChange: function onChange(e) {
+          handlePicture(col, e.target.files[0]);
+          e.target.value = '';
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
         size: "sm",
         style: {
           minWidth: '180px'
         },
         value: value || '',
-        placeholder: "https://...",
+        placeholder: field.upload ? 'or paste a link: https://...' : 'https://...',
         "aria-label": field.label,
         onChange: function onChange(e) {
           return setDraft(col, e.target.value);
@@ -1697,12 +1767,13 @@ function ContentGrid(_ref) {
       }, editCell(col));
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
       className: "text-nowrap"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "sm",
       variant: "success",
       className: "me-1",
+      disabled: uploading,
       onClick: save
-    }, "Save"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, "Save"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "sm",
       variant: "outline-secondary",
       onClick: function onClick() {
@@ -1715,7 +1786,7 @@ function ContentGrid(_ref) {
   var showCell = function showCell(col, row) {
     var field = source.fields[col];
     var value = row[col];
-    if (col === 'deck') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    if (col === 'deck') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       bg: "light",
       text: "dark",
       className: "border"
@@ -1723,7 +1794,7 @@ function ContentGrid(_ref) {
     if (col === 'updatedAt') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       title: row.updatedBy ? "by ".concat(row.updatedBy) : ''
     }, formatDate(value));
-    if (col === 'type') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    if (col === 'type') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       bg: value === 'prompt' ? 'primary' : 'secondary'
     }, value);
     if ((field === null || field === void 0 ? void 0 : field.kind) === 'bool') return value ? '✅' : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -1744,28 +1815,28 @@ function ContentGrid(_ref) {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-wrap gap-2 align-items-center mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     size: "sm",
     style: {
       maxWidth: '340px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "\uD83D\uDD0D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Text, null, "\uD83D\uDD0D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Control, {
     placeholder: "Search ".concat(source.noun, "s..."),
     value: search,
     onChange: function onChange(e) {
       return handleSearch(e.target.value);
     },
     "aria-label": "Search"
-  })), hasFilters && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  })), hasFilters && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "sm",
     variant: "link",
     onClick: clearAll
   }, "Clear search & filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "ms-auto d-flex align-items-center gap-2"
-  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     size: "sm",
     animation: "border"
-  }), source.canAdd && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), source.canAdd && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "sm",
     variant: "primary",
     disabled: (editing === null || editing === void 0 ? void 0 : editing.id) === 'new',
@@ -1839,7 +1910,7 @@ function ContentGrid(_ref) {
       }, showCell(col, row));
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
       className: "text-nowrap"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "sm",
       variant: "outline-primary",
       className: "me-1",
@@ -1851,7 +1922,7 @@ function ContentGrid(_ref) {
         });
       },
       "aria-label": "Edit"
-    }, "\u270F\uFE0F"), source.canDelete && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, "\u270F\uFE0F"), source.canDelete && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "sm",
       variant: "outline-danger",
       disabled: !!editing,
@@ -1869,7 +1940,7 @@ function ContentGrid(_ref) {
     className: "small text-muted"
   }, data.total ? "Showing ".concat(first, "\u2013").concat(last, " of ").concat(data.total) : 'Nothing to show'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex gap-1 align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "sm",
     variant: "outline-secondary",
     disabled: data.page <= 1,
@@ -1877,7 +1948,7 @@ function ContentGrid(_ref) {
       return goTo(1);
     },
     "aria-label": "First page"
-  }, "\xAB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "\xAB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "sm",
     variant: "outline-secondary",
     disabled: data.page <= 1,
@@ -1886,14 +1957,14 @@ function ContentGrid(_ref) {
     }
   }, "\u2039 Prev"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "small px-2"
-  }, "Page ", data.page, " of ", data.pages), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Page ", data.page, " of ", data.pages), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "sm",
     variant: "outline-secondary",
     disabled: data.page >= data.pages,
     onClick: function onClick() {
       return goTo(data.page + 1);
     }
-  }, "Next \u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Next \u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "sm",
     variant: "outline-secondary",
     disabled: data.page >= data.pages,
@@ -39370,10 +39441,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "adminFetch": () => (/* binding */ adminFetch),
 /* harmony export */   "getToken": () => (/* reexport safe */ _auth_js__WEBPACK_IMPORTED_MODULE_0__.getToken),
 /* harmony export */   "signIn": () => (/* binding */ signIn),
-/* harmony export */   "signOut": () => (/* binding */ signOut)
+/* harmony export */   "signOut": () => (/* binding */ signOut),
+/* harmony export */   "uploadPicture": () => (/* binding */ uploadPicture)
 /* harmony export */ });
 /* harmony import */ var _auth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auth.js */ "./src/auth.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -39389,6 +39467,8 @@ var API = "".concat(isLocal ? 'http://localhost:5005' : 'https://game-temple-bac
 function adminFetch(_x) {
   return _adminFetch.apply(this, arguments);
 }
+
+// Sends a picture straight to our Cloudinary account, with the server's permission. Returns its link.
 function _adminFetch() {
   _adminFetch = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(path) {
     var _ref,
@@ -39457,17 +39537,83 @@ function _adminFetch() {
   }));
   return _adminFetch.apply(this, arguments);
 }
-function signIn(_x2, _x3) {
-  return _signIn.apply(this, arguments);
+function uploadPicture(_x2, _x3) {
+  return _uploadPicture.apply(this, arguments);
 }
-function _signIn() {
-  _signIn = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(username, password) {
-    var data;
+function _uploadPicture() {
+  _uploadPicture = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sourceId, file) {
+    var _data$error;
+    var _yield$adminFetch, cloudName, apiKey, fields, form, response, data;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
+            return adminFetch("/content/".concat(sourceId, "/upload"), {
+              method: 'POST'
+            });
+          case 2:
+            _yield$adminFetch = _context2.sent;
+            cloudName = _yield$adminFetch.cloudName;
+            apiKey = _yield$adminFetch.apiKey;
+            fields = _yield$adminFetch.fields;
+            form = new FormData();
+            form.append('file', file);
+            form.append('api_key', apiKey);
+            Object.entries(fields).forEach(function (_ref2) {
+              var _ref3 = _slicedToArray(_ref2, 2),
+                key = _ref3[0],
+                value = _ref3[1];
+              return form.append(key, value);
+            });
+            _context2.prev = 10;
+            _context2.next = 13;
+            return fetch("https://api.cloudinary.com/v1_1/".concat(cloudName, "/image/upload"), {
+              method: 'POST',
+              body: form
+            });
+          case 13:
+            response = _context2.sent;
+            _context2.next = 19;
+            break;
+          case 16:
+            _context2.prev = 16;
+            _context2.t0 = _context2["catch"](10);
+            throw new Error("Couldn't reach the picture storage. Check your connection and try again.");
+          case 19:
+            _context2.next = 21;
+            return response.json()["catch"](function () {
+              return {};
+            });
+          case 21:
+            data = _context2.sent;
+            if (response.ok) {
+              _context2.next = 24;
+              break;
+            }
+            throw new Error(((_data$error = data.error) === null || _data$error === void 0 ? void 0 : _data$error.message) || "The upload didn't work (".concat(response.status, ")."));
+          case 24:
+            return _context2.abrupt("return", data.secure_url);
+          case 25:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[10, 16]]);
+  }));
+  return _uploadPicture.apply(this, arguments);
+}
+function signIn(_x4, _x5) {
+  return _signIn.apply(this, arguments);
+}
+function _signIn() {
+  _signIn = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(username, password) {
+    var data;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
             return adminFetch('/login', {
               method: 'POST',
               body: {
@@ -39476,15 +39622,15 @@ function _signIn() {
               }
             });
           case 2:
-            data = _context2.sent;
+            data = _context3.sent;
             (0,_auth_js__WEBPACK_IMPORTED_MODULE_0__.setToken)(data.token);
-            return _context2.abrupt("return", data.user);
+            return _context3.abrupt("return", data.user);
           case 5:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return _signIn.apply(this, arguments);
 }
