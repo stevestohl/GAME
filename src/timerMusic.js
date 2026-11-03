@@ -79,6 +79,8 @@ const noise = (ctx, out, t, { vol = 0.1, decay = 0.05, type = 'highpass', freq =
     src.stop(t + decay + 0.05);
 };
 
+const SILVER_RAIN_BPM = 118;
+
 // The sound of a big room: two seconds and a bit of fading noise (one for each ear), kept for each audio context
 const hallSounds = new WeakMap();
 const getHallSound = (ctx) => {
@@ -147,7 +149,7 @@ const inst = {
         reverb.connect(level);
         level.connect(out);
         const delay = ctx.createDelay(1);
-        delay.delayTime.value = 0.469;
+        delay.delayTime.value = (60 / SILVER_RAIN_BPM) * 0.75;   // a dotted 8th note behind the voice
         const feedback = ctx.createGain();
         feedback.gain.value = 0.42;
         delay.connect(feedback);
@@ -413,21 +415,22 @@ export const SPOOKY_TIMER_TRACKS = [
 // ---------------------------------------------------------------------------------------------
 export const LOBBY_SYNTH_TRACKS = [
     {
-        // Trivia Cast's lobby: our own tune in a misty, Celtic new-age style. Plucked strings patter away like
-        // rain under a swelling choir, with one soaring voice echoing around a big hall. A 32-bar loop:
-        //   bars 1-4    the rain and the choir
+        // Trivia Cast's lobby: our own tune in a misty, Celtic new-age style, with some get-up-and-go. Plucked
+        // strings race along like rain under a swelling choir and a frame drum, with one soaring voice echoing
+        // around a big hall. A 32-bar loop:
+        //   bars 1-4    the rain, the choir and the drums
         //   bars 5-12   the voice comes in
         //   bars 13-20  it climbs higher, with a harmony and bells
-        //   bars 21-24  it all thins out, back to the rain
+        //   bars 21-24  the voice rests while the drums keep going, building back up
         //   bars 25-32  the first tune again, an octave doubled, with the drum
         id: 'silver-rain',
         name: 'Silver Rain',
-        bpm: 96,
+        bpm: SILVER_RAIN_BPM,
         swing: 0,
         play(ctx, out, step, t) {
             const pos = step % 16;
             const bar = Math.floor(step / 16) % 32;
-            const beat = 60 / 96;
+            const beat = 60 / SILVER_RAIN_BPM;
             // [bass, choir, the notes the strings pick through]
             const D = [38, [62, 66, 69, 74], [74, 78, 81, 86]];
             const A = [33, [61, 64, 69, 73], [73, 76, 81, 85]];
@@ -444,17 +447,25 @@ export const LOBBY_SYNTH_TRACKS = [
             // The choir holds each bar's chord, swelling into the next
             if (pos === 0) inst.choir(ctx, out, t, chord[1], beat * 4, section === 'rain' || section === 'intro' ? 0.018 : 0.025);
 
-            // The rain: strings picking up and down the chord, the odd extra note between
-            const quiet = section === 'intro' || section === 'rain' ? 0.75 : 1;
-            const picks = { 0: 0, 2: 2, 4: 1, 6: 3, 7: 2, 8: 0, 10: 2, 12: 1, 14: 3, 15: 1 };
-            if (picks[pos] !== undefined) inst.pluck(ctx, out, t, chord[2][picks[pos]], (pos % 4 === 0 ? 0.075 : 0.05) * quiet);
+            // The rain: strings running up and down the chord on every 16th note
+            const quiet = section === 'intro' || section === 'rain' ? 0.8 : 1;
+            const picks = [0, 2, 1, 3, 2, 0, 3, 1, 0, 2, 1, 3, 2, 3, 1, 2];
+            inst.pluck(ctx, out, t, chord[2][picks[pos]], (pos % 4 === 0 ? 0.075 : pos % 2 === 0 ? 0.055 : 0.04) * quiet);
 
-            // The bass: low and long, on the beat
-            if (pos === 0) inst.bass(ctx, out, t, chord[0], 0.26, 1.1);
-            if (pos === 8) inst.bass(ctx, out, t, chord[0] + 12, 0.14, 0.7);
+            // The bass: a galloping pulse, with the octave for a lift
+            [[0, 0, 0.3], [3, 0, 0.16], [6, 0, 0.18], [8, 12, 0.2], [11, 0, 0.16], [14, 7, 0.18]].forEach(([p, interval, vol]) => {
+                if (p === pos) inst.bass(ctx, out, t, chord[0] + interval, vol, 0.3);
+            });
 
-            // The drum, far away, marking out the big moments
-            if (pos === 0 && (bar === 0 || bar === 12 || bar === 16 || (section === 'last' && bar % 2 === 0))) inst.boom(ctx, out, t, 0.26);
+            // The frame drum and a shaker keep it moving; the big drum marks out each new part
+            [[0, 0.3], [6, 0.16], [8, 0.24], [11, 0.14]].forEach(([p, vol]) => {
+                if (p === pos) inst.kick(ctx, out, t, vol);
+            });
+            if (pos === 4 || pos === 12) inst.snare(ctx, out, t, 0.06);
+            inst.hat(ctx, out, t, pos % 4 === 2 ? 0.035 : 0.016);
+            if (pos === 0 && (bar % 4 === 0)) inst.boom(ctx, out, t, 0.3);
+            // Into each new part, a roll on the drum
+            if (bar % 8 === 3 && pos >= 12) inst.snare(ctx, out, t, 0.03 + (pos - 12) * 0.015);
 
             // The voice: [16th in the bar, note, length in beats]
             const VERSE_TUNE = [
