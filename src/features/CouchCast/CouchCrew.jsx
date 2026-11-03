@@ -596,7 +596,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
 
 // --- The drawings (feet at 0,0; up is negative y) ---
 
-function Couch({ couchRef }) {
+export function Couch({ couchRef }) {
     // A well-loved thrift-store couch: worn rust velour, a patch, and a lumpy cushion
     return (
         <g ref={couchRef}>

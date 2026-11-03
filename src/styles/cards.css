@@ -1188,6 +1188,49 @@
     flex-shrink: 0;
 }
 
+/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */
+.cc-crew.gt-party-scene {
+  position: static;
+  visibility: visible;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);
+}
+.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }
+@keyframes gps-glow { to { opacity: 0.6; } }
+.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }
+@keyframes gps-flicker {
+  0%, 100% { opacity: 0.9; }
+  12% { opacity: 0.72; }
+  20% { opacity: 0.95; }
+  55% { opacity: 0.8; }
+  62% { opacity: 0.95; }
+}
+.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }
+.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }
+.gt-party-scene .gps-card-2 { animation-delay: -4s; }
+@keyframes gps-card {
+  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }
+  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }
+.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }
+@keyframes gps-bounce { to { transform: translateY(-5px); } }
+.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }
+@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }
+.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }
+.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }
+.gt-party-scene .gps-float-2 { animation-delay: 1s; }
+.gt-party-scene .gps-float-3 { animation-delay: 2s; }
+@keyframes gps-float {
+  0% { opacity: 0; transform: translateY(14px); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-34px); }
+}
+
 /* 🔑 The sign-in key, after the pills (gold when signed in) */
 .gt-nav-pills { margin-left: auto; }
 .gt-key {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Button, Toast, ToastContainer } from 'react-bootstrap';
+import { Card, Row, Col, Button, Modal, Toast, ToastContainer } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
 import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
@@ -8,6 +8,7 @@ import { ListCastTile } from '../Lists/ListTiles.jsx';
 import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
 import GameRow from './GameRow.jsx';
+import CastPartyScene from './CastPartyScene.jsx';
 import { useGameVisibility } from '../../gameVisibility.js';
 import burglarEmpty from '../../assets/logos/Burglar_Alone.png';
 import burglarWithButton from '../../assets/logos/Burglar_with_Button.png';
@@ -58,7 +59,7 @@ const STEPS = [
     {
         icon: 'choose',
         title: 'Choose a game',
-        text: 'On that same device, pick one of the games below.',
+        text: 'On that same device, pick one of the games on this page.',
     },
     {
         icon: 'cast',
@@ -67,11 +68,13 @@ const STEPS = [
     },
 ];
 
-function HowToCast() {
+function HowToSetUp({ show, onClose }) {
     return (
-        <Card className="border-0 shadow-sm gt-cast-steps">
-            <Card.Body className="p-2">
-                <div className="gt-cast-steps-title">How to play on your TV</div>
+        <Modal show={show} onHide={onClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title className="fw-bold fs-5">How to set up</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="gt-cast-steps p-2">
                 <ol className="gt-cast-steps-list">
                     {STEPS.map((step, i) => (
                         <li key={step.icon} className="gt-cast-step">
@@ -86,19 +89,20 @@ function HowToCast() {
                         </li>
                     ))}
                 </ol>
-            </Card.Body>
-        </Card>
+            </Modal.Body>
+        </Modal>
     );
 }
 
 /**
  * 📺 Game-Cast: the landing page. Games that put a shared screen on the TV,
- * with a quick "how to cast" guide at the top.
+ * with a party scene at the top and the "how to cast" steps a tap away.
  */
 export default function GameCastHome() {
     const navigate = useNavigate();
     const location = useLocation();
     const { canSeeGame, isGameHidden } = useGameVisibility();
+    const [showSetup, setShowSetup] = useState(false);
 
     // 🍞 "That game has ended" and friends land here
     const [toastMsg, setToastMsg] = useState(location.state?.toastMessage || '');
@@ -148,7 +152,13 @@ export default function GameCastHome() {
                 <Card.Header className="main-card-header">GAME-CAST</Card.Header>
 
                 <Card.Body className="p-2">
-                    <HowToCast />
+                    <CastPartyScene />
+                    <div className="text-center mt-1">
+                        <Button variant="link" size="sm" className="fw-bold" onClick={() => setShowSetup(true)}>
+                            How to set up
+                        </Button>
+                    </div>
+                    <HowToSetUp show={showSetup} onClose={() => setShowSetup(false)} />
 
                     <Row className="g-2 mt-2">
                         <Col xs={12}>
