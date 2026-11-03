@@ -9,6 +9,7 @@ import Prompt2ResponseSelectionScreen from './Prompt2ResponseSelectionScreen';
 import Prompt2JudgingScreen from './Prompt2JudgingScreen.jsx';
 import Prompt2Scoreboard from './Prompt2Scoreboard.jsx';
 import RoundWinnerScreen from './Prompt2RoundWinner.jsx';
+import { playChime } from '../../chime.js';
 
 export default function Prompt2GameManager() {
     // Back to the menu if the server closes this room
@@ -114,6 +115,15 @@ socket.on('room_updated', (data) => {
     const isHost = roomData?.hostId === socket.id || roomData?.players?.[socket.id]?.isPlayerHost === true;
     const playersArray = roomData?.players ? Object.values(roomData.players) : [];
 
+    // 🔔 It's your turn: the judge picking a prompt or a winner, or starting the next round; everyone else, answering
+    const round = roomData?.currentRound;
+    let myTurn = null;
+    if (isHost && ['prompt_selection', 'judging', 'winner_reveal'].includes(gameState)) myTurn = `${gameState}-${round}`;
+    if (!isHost && gameState === 'writing') myTurn = `writing-${round}`;
+    useEffect(() => {
+        if (myTurn) playChime();
+    }, [myTurn]);
+
     // =========================================================================
     // SOCKET EVENT HANDLERS
     // These trigger the backend updates. The backend will then 
@@ -181,6 +191,9 @@ socket.on('room_updated', (data) => {
                     totalPlayers={totalPlayersCount}
                     onSubmitResponse={handleSubmitResponse}
                     onRevealChoices={handleRevealChoices}
+                    onReshuffle={() => socket.emit('new_hand', { roomCode })}
+                    hasUsedWriteIn={!!roomData?.players?.[socket.id]?.hasUsedWriteIn}
+                    myScore={roomData?.players?.[socket.id]?.score || 0}
                 />
             );
             

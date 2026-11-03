@@ -175,7 +175,7 @@ export function MemeTV({ room }) {
 
     let heading = 'Caption this!';
     if (state === 'meme_vote') heading = 'Vote for the funniest!';
-    if (state === 'meme_results') heading = winners.length > 1 ? "It's a tie!" : winners.length ? 'The funniest caption...' : 'Nobody wrote a caption!';
+    if (state === 'meme_results') heading = round.greatMinds ? '🧠 Great minds think alike! Double points!' : winners.length > 1 ? "It's a tie!" : winners.length ? 'The funniest caption...' : 'Nobody wrote a caption!';
 
     return (
         <div className="fullscreen-gameplay-container">
@@ -207,9 +207,9 @@ export function MemeTV({ room }) {
                                 const isWinner = (round.winnerIds || []).includes(c.id);
                                 return (
                                     <div key={c.id} className={`mx-caption-card ${isWinner ? 'winner' : ''}`}>
-                                        <span className="mx-caption-votes">{isWinner ? '👑' : ''} {c.votes} {c.votes === 1 ? 'vote' : 'votes'}</span>
+                                        <span className="mx-caption-votes">{isWinner ? '👑' : ''} {round.greatMinds ? (isWinner ? 'Great minds!' : '') : `${c.votes} ${c.votes === 1 ? 'vote' : 'votes'}`}</span>
                                         <span>{c.text}</span>
-                                        <span className="mx-caption-name">{c.name}{isWinner ? ' · +100' : ''}</span>
+                                        <span className="mx-caption-name">{c.name}{isWinner ? ` · +${round.greatMinds ? 200 : 100}` : ''}</span>
                                     </div>
                                 );
                             })}

@@ -3,9 +3,18 @@ import { Card, Button, Row, Col, Badge, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { tictactoeSocket as socket } from '../../socket.js';
 
-import xIcon from '../../assets/logos/X.png'; 
-import oIcon from '../../assets/logos/O.png'; 
 import WinnerGif from '../../assets/logos/fireworks5.gif';
+
+// ❌⭕ Drawn in code, so they appear the instant they're played: neon blue outlines for both
+function Mark({ value }) {
+    return (
+        <svg viewBox="0 0 100 100" className="ttt-mark ttt-neon" role="img" aria-label={value}>
+            {value === 'X'
+                ? <path d="M22 22 L78 78 M78 22 L22 78" />
+                : <circle cx="50" cy="50" r="30" />}
+        </svg>
+    );
+}
 
 export default function TictactoeGameScreen({ roomCode, roomData, playerRole, playerName, opponentName }) {
     const navigate = useNavigate();
@@ -112,26 +121,13 @@ export default function TictactoeGameScreen({ roomCode, roomData, playerRole, pl
                                     return (
                                         <Col xs={4} key={index}>
                                             <Button 
-                                                variant={squareValue ? "light" : "outline-secondary"} 
-                                                className="w-100 d-flex align-items-center justify-content-center p-0 overflow-hidden" 
+                                                variant="dark"
+                                                className="ttt-square w-100 d-flex align-items-center justify-content-center p-0 overflow-hidden" 
                                                 style={{ height: '90px' }} 
                                                 onClick={() => handleSquareClick(index)}
                                                 disabled={!isMyTurn && !squareValue}
                                             >
-                                                {squareValue === 'X' && (
-                                                    <img 
-                                                        src={xIcon} 
-                                                        alt="X" 
-                                                        style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-                                                    />
-                                                )}
-                                                {squareValue === 'O' && (
-                                                    <img 
-                                                        src={oIcon} 
-                                                        alt="O" 
-                                                        style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-                                                    />
-                                                )}
+                                                {squareValue && <Mark value={squareValue} />}
                                             </Button>
                                         </Col>
                                     );

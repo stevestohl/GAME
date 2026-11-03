@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Badge, Button, ProgressBar } from 'react-bootstrap';
+import { Card, Badge, Button, Form, ProgressBar } from 'react-bootstrap';
+
+const RESHUFFLE_COST = 50;   // the server takes it off the score; it can go below zero
 
 export default function Prompt2ResponseSelectionScreen({
   isHost,
@@ -8,7 +10,10 @@ export default function Prompt2ResponseSelectionScreen({
   submittedCount = 0,
   totalPlayers = 4,
   onSubmitResponse,
-  onRevealChoices
+  onRevealChoices,
+  onReshuffle,
+  hasUsedWriteIn = false,
+  myScore = 0
 }) {
   // 1. Keep these as state - they belong to this component's lifecycle
   const [responses, setResponses] = useState([]);
@@ -16,6 +21,9 @@ export default function Prompt2ResponseSelectionScreen({
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [loading, setLoading] = useState(!isHost);
   const [error, setError] = useState(null);
+  const [writeIn, setWriteIn] = useState('');
+  const [dealNumber, setDealNumber] = useState(0);        // goes up for a reshuffle: deals a new hand
+  const [confirmReshuffle, setConfirmReshuffle] = useState(false);
 
   // 2. Define your backend base URL
 
@@ -48,7 +56,28 @@ export default function Prompt2ResponseSelectionScreen({
     };
 
     fetchResponses();
-  }, [isHost, expansion]);
+  }, [isHost, expansion, dealNumber]);
+
+  // 🔄 Reshuffle: a whole new hand, for points. First tap asks, second tap pays.
+  const handleReshuffle = () => {
+    if (!confirmReshuffle) {
+      setConfirmReshuffle(true);
+      return;
+    }
+    setConfirmReshuffle(false);
+    setSelectedIdx(null);
+    onReshuffle?.();
+    setDealNumber((n) => n + 1);
+  };
+
+  // ✍️ The write-in: one per game
+  const handleSendWriteIn = (e) => {
+    e.preventDefault();
+    const text = writeIn.trim();
+    if (!text) return;
+    setHasSubmitted(true);
+    onSubmitResponse?.({ text, isWriteIn: true });
+  };
 
   // Handle Player Submission
   const handleSubmit = () => {
@@ -148,6 +177,28 @@ export default function Prompt2ResponseSelectionScreen({
               >
                 Submit Answer
               </Button>
+
+              {!hasUsedWriteIn && (
+                <Form onSubmit={handleSendWriteIn} className="mt-3 text-start">
+                  <Form.Label className="small fw-bold text-muted text-uppercase mb-1">Or write your own (one per game)</Form.Label>
+                  <div className="d-flex gap-2">
+                    <Form.Control
+                      type="text"
+                      value={writeIn}
+                      maxLength={120}
+                      placeholder="Your own answer..."
+                      aria-label="Write your own answer"
+                      onChange={(e) => setWriteIn(e.target.value)}
+                    />
+                    <Button type="submit" variant="primary" className="fw-bold" disabled={!writeIn.trim()}>Send</Button>
+                  </div>
+                </Form>
+              )}
+
+              <Button variant={confirmReshuffle ? 'danger' : 'outline-secondary'} className="w-100 mt-2 fw-bold" onClick={handleReshuffle}>
+                {confirmReshuffle ? `Yes, spend ${RESHUFFLE_COST} points` : `🔀 Re-shuffle my cards (-${RESHUFFLE_COST} points)`}
+              </Button>
+              <div className="small text-muted text-center">You have {myScore} points</div>
             </div>
           )}
         </Card.Body>

@@ -227,7 +227,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
                 <Frame title={roundTitle}>
                     <div className="mx-phone-intro-icon">{iWon ? '🏆' : winners.length ? '😂' : '🦗'}</div>
                     <h3 className="fw-bold">
-                        {iWon ? 'Your caption won! +100' : winners.length ? `${winners.map((w) => w.name).join(' & ')} ${winners.length > 1 ? 'tie!' : 'wins!'}` : 'No captions this time'}
+                        {round.greatMinds && iWon ? '🧠 Great minds think alike! +200' : round.greatMinds ? '🧠 Great minds think alike!' : iWon ? 'Your caption won! +100' : winners.length ? `${winners.map((w) => w.name).join(' & ')} ${winners.length > 1 ? 'tie!' : 'wins!'}` : 'No captions this time'}
                     </h3>
                     {winners[0] && <MemeImage meme={round.meme} caption={winners[0].text} className="mx-meme-small mt-2" />}
                 </Frame>

@@ -6,6 +6,9 @@ import { startRoomJanitor } from "./roomJanitor.js";
 
 const activePrompt2Rooms = {}; 
 
+const NEW_HAND_COST = 50;   // 🔄 what a new set of answer cards costs (scores can go below zero)
+const MAX_WRITE_IN = 120;
+
 const createRoomLogic = (socket, roomsObject, playerName, expansion, totalRounds) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let finalRoomCode;
@@ -176,6 +179,13 @@ export default function registerPrompt2Namespace(promptNS) {
             const room = activePrompt2Rooms[roomCode];
             const player = room?.players[socket.id];
             if (player && socket.id !== room.hostId) {
+                // ✍️ One write-in per game, cleaned up by the server
+                if (answer?.isWriteIn) {
+                    const text = String(answer.text || '').trim().slice(0, MAX_WRITE_IN);
+                    if (!text || player.hasUsedWriteIn) return;
+                    player.hasUsedWriteIn = true;
+                    answer = { text, isWriteIn: true };
+                }
                 player.currentAnswer = answer;
                 player.hasSubmitted = true;
                 player.answeredAt = Date.now();
@@ -197,6 +207,15 @@ export default function registerPrompt2Namespace(promptNS) {
                 }
                 promptNS.to(roomCode).emit('room_updated', room);
             }
+        });
+
+        // --- 🔄 Event: A player pays for new answer cards (their phone deals itself a new hand) ---
+        socket.on('new_hand', ({ roomCode } = {}) => {
+            const room = activePrompt2Rooms[roomCode];
+            const player = room?.players[socket.id];
+            if (!player || room.gameState !== 'writing' || socket.id === room.hostId || player.hasSubmitted) return;
+            player.score -= NEW_HAND_COST;
+            promptNS.to(roomCode).emit('room_updated', room);
         });
 
         // --- Event: Reveal Choices (for the judge) ---

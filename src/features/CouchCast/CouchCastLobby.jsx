@@ -12,12 +12,26 @@ import SpyShow from '../Mixup/SpyShow.jsx';
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's decks;
 // `crewTheme` says which cast, and the Holiday deck also gets snow). `scoreFor`: a player's lobby game score, if the game has one
 // `quizShow`: game show contestants take the couch's spot under the players card (Trivia Cast)
-// `spyShow`: secret agents in ever-changing disguises do the same (Temple Mix Up)
+// `spyShow`: two bad spies do the same (Temple Mix Up), and the players show four at a time, scrolling through the rest
 export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, quizShow = false, spyShow = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
   const screenRef = useRef(null);   // the QR card: the crew's "TV"
   const qrRef = useRef(null);
+  const playersRef = useRef(null);
+
+  // 📜 Nobody can scroll a TV: when there are more players than fit, the list moves along by itself
+  useEffect(() => {
+    if (!spyShow) return undefined;
+    const timer = setInterval(() => {
+      const list = playersRef.current;
+      if (!list || list.scrollHeight <= list.clientHeight + 2) return;
+      const row = list.firstElementChild?.getBoundingClientRect().height || 40;
+      const isAtEnd = list.scrollTop + list.clientHeight >= list.scrollHeight - 2;
+      list.scrollTo({ top: isAtEnd ? 0 : list.scrollTop + row, behavior: 'smooth' });
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [spyShow]);
 
   useEffect(() => {
     // Check orientation on load and resize
@@ -44,7 +58,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
   // A little smaller when the list goes two to a row above the couch, so more rows fit
   const hasStage = crew || quizShow || spyShow;   // something lives under the players card
-  const avatarSize = hasStage && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
+  const avatarSize = spyShow ? 'clamp(24px, 6vh, 56px)' : hasStage && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
 
@@ -132,7 +146,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     Players ({activePlayers.length}):
                   </h5>
                   
-                  <ListGroup className={`mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 ${hasStage && activePlayers.length > 4 ? 'cc-lobby-players-grid' : ''}`} style={{ minHeight: 0 }}>
+                  <ListGroup ref={playersRef} className={`mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 ${spyShow || (hasStage && activePlayers.length > 4) ? 'cc-lobby-players-grid' : ''}`} style={{ minHeight: 0 }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
                         <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>

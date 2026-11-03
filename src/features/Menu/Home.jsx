@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner, Toast, ToastContainer } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
 import prompt2Img from '../../assets/logos/Prompt_2_Button.jpeg';
-import tttImg from '../../assets/logos/Tic_Tac_Toe_Button.jpeg';
+import TicTacToeTile from '../TicTacToe/TicTacToeTile.jsx';
 import triviaImg from '../../assets/logos/Trivia_Button.jpeg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import HeroLogo from './HeroLogo.jsx';
@@ -219,7 +219,7 @@ export default function Home() {
                                         aria-label="Create a Tic-Tac-Toe room"
                                         style={{ '--shimmer-delay': '2s', ...squareStyle }}
                                     >
-                                        <img src={tttImg} alt="Tic-Tac-Toe" className="w-100 h-100" style={imgStyle} />
+                                        <TicTacToeTile />
                                     </Button>
                                 </GameRow>}
                             </Row>

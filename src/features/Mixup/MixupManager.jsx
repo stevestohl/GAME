@@ -136,7 +136,8 @@ function MixupTV({ roomCode, casterName }) {
             speak('Time to vote! Pick the funniest caption. Not your own!', code);
         } else if (voiceMoment.startsWith('meme-results')) {
             const winners = (round.captions || []).filter((c) => (round.winnerIds || []).includes(c.id));
-            if (winners.length === 1) speak([`The funniest caption goes to ${winners[0].name}.`, winners[0].text], code);
+            if (round.greatMinds) speak([`Great minds think alike! Double points for ${winners.map((w) => w.name).join(' and ')}!`, winners[0].text], code);
+            else if (winners.length === 1) speak([`The funniest caption goes to ${winners[0].name}.`, winners[0].text], code);
             else if (winners.length > 1) speak(`It's a tie! ${winners.map((w) => w.name).join(' and ')} both score.`, code);
             else speak('Nobody wrote a caption that time!', code);
         } else if (voiceMoment.startsWith('draw-results')) {
@@ -162,7 +163,11 @@ function MixupTV({ roomCode, casterName }) {
 
     // ⏳ Timer music while people are writing, voting, drawing or answering
     const isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
-    useTimerMusic(isTimerPhase, { endTime: room?.endTime, key: `${gameState}-${n}` });
+    useTimerMusic(isTimerPhase, {
+        endTime: room?.endTime,
+        key: `${gameState}-${n}`,
+        trackId: gameState === 'match_write' ? 'grandfather-clock' : null,   // ⏰ the list rounds tick away the whole time
+    });
 
     // Fetch the rules narration while everyone is still joining, so it starts instantly
     const lobbyRoomCode = room?.roomCode;

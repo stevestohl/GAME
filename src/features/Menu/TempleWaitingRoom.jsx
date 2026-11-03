@@ -154,10 +154,10 @@ function TicTacToePicture() {
     return (
         <svg viewBox="0 0 300 92">
             <path d="M 128 8 V 84 M 172 8 V 84 M 102 32 H 198 M 102 60 H 198" stroke="#fff" strokeWidth={5} strokeLinecap="round" />
-            <path className="tw-mark tw-delay-0" d={x(116, 20)} stroke="#ffd23f" strokeWidth={6} strokeLinecap="round" pathLength="1" fill="none" />
-            <circle className="tw-mark tw-delay-1" cx={150} cy={46} r={10} stroke="#ff8fa3" strokeWidth={6} fill="none" pathLength="1" />
-            <path className="tw-mark tw-delay-2" d={x(184, 20)} stroke="#ffd23f" strokeWidth={6} strokeLinecap="round" pathLength="1" fill="none" />
-            <circle className="tw-mark tw-delay-3" cx={116} cy={72} r={10} stroke="#ff8fa3" strokeWidth={6} fill="none" pathLength="1" />
+            <path className="tw-mark tw-delay-0" d={x(116, 20)} stroke="#2de2ff" strokeWidth={6} strokeLinecap="round" pathLength="1" fill="none" />
+            <circle className="tw-mark tw-delay-1" cx={150} cy={46} r={10} stroke="#2de2ff" strokeWidth={6} fill="none" pathLength="1" />
+            <path className="tw-mark tw-delay-2" d={x(184, 20)} stroke="#2de2ff" strokeWidth={6} strokeLinecap="round" pathLength="1" fill="none" />
+            <circle className="tw-mark tw-delay-3" cx={116} cy={72} r={10} stroke="#2de2ff" strokeWidth={6} fill="none" pathLength="1" />
         </svg>
     );
 }

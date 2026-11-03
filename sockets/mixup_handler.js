@@ -107,6 +107,7 @@ const getSafeRoom = (room) => {
             if (state === 'meme_vote') roundView.captions = round.captions.map(({ id, text }) => ({ id, text }));
             if (state === 'meme_results' || state === 'scoreboard') roundView.captions = round.captions;
             if (state === 'meme_results' || state === 'scoreboard') roundView.winnerIds = round.winnerIds || [];
+            if (state === 'meme_results' || state === 'scoreboard') roundView.greatMinds = !!round.greatMinds;
         }
         if (round.type === 'draw') {
             roundView.drawerId = round.drawerId;
@@ -285,6 +286,15 @@ export default function registerMixupNamespace(MNS) {
 
         if (round.captions.length === 0) return nobodyAnswered(roomCode);
 
+        // 🧠 Two or more wrote the same thing: great minds! They win outright, for double points, with no vote
+        const keys = round.captions.map((c) => normalizeItem(c.text));
+        const twins = round.captions.filter((c, i) => keys[i] && keys.some((key, j) => j !== i && (key === keys[i] || isSameItem(key, keys[i]))));
+        if (twins.length) {
+            round.greatMinds = true;
+            round.winnerIds = twins.map((c) => c.id);
+            return showMemeResults(roomCode);
+        }
+
         // Only one caption: nothing to vote on, straight to the results
         if (round.captions.length < 2) return showMemeResults(roomCode);
 
@@ -304,15 +314,18 @@ export default function registerMixupNamespace(MNS) {
         // Count the votes (a lone caption wins by default)
         round.captions.forEach((c) => { c.votes = Object.values(room.players).filter((p) => p.vote === c.id).length; });
         const top = Math.max(0, ...round.captions.map((c) => c.votes));
-        round.winnerIds = round.captions.length === 1
-            ? [round.captions[0].id]
-            : round.captions.filter((c) => top > 0 && c.votes === top).map((c) => c.id);
+        if (!round.greatMinds) {
+            round.winnerIds = round.captions.length === 1
+                ? [round.captions[0].id]
+                : round.captions.filter((c) => top > 0 && c.votes === top).map((c) => c.id);
+        }
+        const winPoints = round.greatMinds ? MEME_WIN_POINTS * 2 : MEME_WIN_POINTS;
 
         round.captions.filter((c) => round.winnerIds.includes(c.id)).forEach((c) => {
             const author = room.players[c.playerId];
             if (author) {
-                author.score += MEME_WIN_POINTS;
-                author.roundPoints += MEME_WIN_POINTS;
+                author.score += winPoints;
+                author.roundPoints += winPoints;
             }
         });
         round.captions.sort((a, b) => b.votes - a.votes);
