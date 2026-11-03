@@ -1784,6 +1784,8 @@ html.cast-screen {
   height: 8px;
   background: #6b8f3a;
 }
+/* A clear gap: a tap meant for the game mustn't land on the start button */
+.tp-start { margin-top: 0.9rem; }
 .tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }
 .tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }
 .tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }
@@ -1834,6 +1836,16 @@ html.cast-screen {
 .tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }
 .tp-credits-role { opacity: 0.85; }
 .tp-credits-end { margin-top: 1.6rem; font-style: italic; }
+/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */
+.tp-chase-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30vh;
+  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);
+}
+.tp-credits .crew-cat [stroke="#16161d"] { stroke: #e8e8f2; }
 
 /* 🎬 Between rounds: "Round 3" on the TV, "Next: Round 3" on the phones (CouchCastRoundIntro.jsx) */
 .cc-round-intro {

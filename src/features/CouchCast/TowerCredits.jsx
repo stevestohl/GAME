@@ -1,9 +1,11 @@
 import React from 'react';
 import { Avatar } from '../../avatars.jsx';
+import CreditsChase from './CreditsChase.jsx';
 
 // 🎬 The end credits: after the final scores are read, the lobby's Tower Party results roll up the
 // screen like the end of a movie (on the TV and every phone). Nobody played? No credits.
-export default function TowerCredits({ tower, onDone }) {
+// `chase`: the crew chases the cat along the bottom while they roll (Couch Cast's Core deck, on the TV)
+export default function TowerCredits({ tower, onDone, chase = false }) {
     const crew = Object.values(tower?.stats || {})
         .filter((s) => s.stacked > 0)
         .sort((a, b) => b.stacked - a.stacked || b.perfects - a.perfects);
@@ -11,9 +13,11 @@ export default function TowerCredits({ tower, onDone }) {
 
     // Longer credits for a bigger crew, so everyone can read their line
     const seconds = 12 + crew.length * 2;
+    const showChase = chase && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
     return (
         <div className="tp-credits" aria-live="polite">
+            {showChase && <div className="tp-chase-floor" />}
             <div className="tp-credits-roll" style={{ animationDuration: `${seconds}s` }} onAnimationEnd={onDone}>
                 <div className="tp-credits-kicker">And in the lobby...</div>
                 <h2>🏗️ Tower Party</h2>
@@ -31,6 +35,7 @@ export default function TowerCredits({ tower, onDone }) {
                 ))}
                 <div className="tp-credits-end">Thanks for building it together!</div>
             </div>
+            {showChase && <div className="cc-round-scene"><CreditsChase /></div>}
         </div>
     );
 }

@@ -474,7 +474,7 @@ export default function CouchCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
-            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} onDone={() => setShowCredits(false)} />}
+            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} chase={hasCrew} onDone={() => setShowCredits(false)} />}
             {roomData && (
                 <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />
             )}

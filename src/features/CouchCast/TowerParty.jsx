@@ -15,7 +15,8 @@ const LAST_MESSAGES = {
     skipped: (name) => `${name} let it pass`,
 };
 
-export default function TowerParty({ socket, roomCode, roomData }) {
+// `children`: the Room Leader's start button, right under the game so it can't be scrolled past and forgotten
+export default function TowerParty({ socket, roomCode, roomData, children }) {
     const tower = roomData?.tower;
     const players = Object.values(roomData?.players || {})
         .filter((p) => !p.isCaster && p.isConnected !== false)
@@ -103,6 +104,8 @@ export default function TowerParty({ socket, roomCode, roomData }) {
                     )
                 )}
             </button>
+
+            {children && <div className="tp-start">{children}</div>}
 
             <div className={`tp-turn ${isMyTurn && !dropped ? 'is-my-turn' : ''}`}>
                 {isMyTurn && !dropped && 'Your turn! Tap to drop 👇'}

@@ -218,6 +218,12 @@ useEffect(() => {
     const hostPlayer = roomData.hostId ? roomData.players[roomData.hostId] : null;
     const hostName = hostPlayer ? hostPlayer.name : 'the host';
 
+    const startButton = (
+        <Button variant={roomData.expansion === 'halloween' ? 'success' : 'primary'} size="lg" className="w-100 fw-bold py-2 fs-5 shadow-sm" onClick={handleStartGame}>
+            All in!
+        </Button>
+    );
+
     // ⏸️ The caster paused the game: "Paused" covers whatever this phone was showing
     const renderPhase = () => {
         switch (gameState) {
@@ -230,10 +236,9 @@ useEffect(() => {
                             
                                 {isHost ? (
                                     <div className="p-3 border border-warning rounded bg-white shadow-sm">
-                                        <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
-                                        <Button variant={roomData.expansion === 'halloween' ? 'success' : 'primary'} size="lg" className="w-100 fw-bold py-3 fs-5 shadow-sm" onClick={handleStartGame}>
-                                            All in!
-                                        </Button>
+                                        <p className="fw-bold text-dark mb-0">👑 You are the Room Leader</p>
+                                        {/* Normally under the tower, where the leader is looking; without one it stays here */}
+                                        {!roomData.tower && <div className="mt-3">{startButton}</div>}
                                     </div>
                                 ) : (
                                     <div className="p-3 border border-dashed rounded bg-light text-muted fs-6">
@@ -242,7 +247,9 @@ useEffect(() => {
                                 )}
 
                                 {/* 🏗️ Something to do together while everyone joins */}
-                                <TowerParty socket={socket} roomCode={roomCode} roomData={roomData} />
+                                <TowerParty socket={socket} roomCode={roomCode} roomData={roomData}>
+                                    {isHost && startButton}
+                                </TowerParty>
                             </Card.Body>
                         </Card>
                     </Container>
