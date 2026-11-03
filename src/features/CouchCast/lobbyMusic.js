@@ -26,6 +26,30 @@ const getOutput = () => {
     return output;
 };
 
+// 🎶 Songs pass through here on the way to the volume knob, so a visualizer can listen in (it's before
+// the knob, so it keeps dancing when the music's muted)
+let songInput = null;
+let analyser = null;
+const getSongInput = () => {
+    if (!songInput) {
+        const ctx = getAudioContext();
+        if (!ctx) return null;
+        songInput = ctx.createGain();
+        analyser = ctx.createAnalyser();
+        analyser.fftSize = 1024;
+        analyser.smoothingTimeConstant = 0.72;
+        songInput.connect(analyser);
+        songInput.connect(getOutput());
+    }
+    return songInput;
+};
+
+/** The live sound of the lobby song, for LobbyVisualizer.jsx (null if this browser has no Web Audio) */
+export function lobbyAnalyser() {
+    getSongInput();
+    return analyser;
+}
+
 onMusicMuteChange((muted) => {
     if (output) output.gain.setTargetAtTime(muted ? 0 : VOLUME, output.context.currentTime, 0.1);
 });
@@ -66,7 +90,7 @@ const makeTrack = (src) => {
             // Inside a tap, this is what lets the sound out (phones keep it shut until then)
             if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
             return download().then(() => {
-                const out = getOutput();
+                const out = getSongInput();
                 if (!wanted || source || !out) return;
                 source = out.context.createBufferSource();
                 source.buffer = song;

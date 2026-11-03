@@ -185,7 +185,7 @@ export default function TriviaCastManager() {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Trivia Cast Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} scoreFor={(player) => room.attack?.scores?.[player.name]?.hits} />;
+                return <CouchCastLobby title="Trivia Cast Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} visualizer scoreFor={(player) => room.attack?.scores?.[player.name]?.hits} />;
 
             case 'rules':
                 return <TriviaCastRulesTV roomCode={room.roomCode} />;

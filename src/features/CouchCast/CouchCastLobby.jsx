@@ -5,10 +5,12 @@ import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
 import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
+import LobbyVisualizer from '../TriviaCast/LobbyVisualizer.jsx';
 
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's Core and
 // Halloween decks; `crewTheme` says which cast). `scoreFor`: a player's lobby game score, if the game has one
-export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor }) {
+// `visualizer`: a music visualizer takes the couch's spot under the players card (Trivia Cast)
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, visualizer = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
   const screenRef = useRef(null);   // the QR card: the crew's "TV"
@@ -38,7 +40,8 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
   // A little smaller when the list goes two to a row above the couch, so more rows fit
-  const avatarSize = crew && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
+  const hasStage = crew || visualizer;   // something lives under the players card
+  const avatarSize = hasStage && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
 
@@ -113,7 +116,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
 
           {/* --- RIGHT COLUMN: PLAYERS FLOATING CARD (and with the crew, the couch underneath) --- */}
           <div className="col-6 d-flex flex-column h-100">
-            <div className="shining-border-wrapper" style={crew ? { height: 'auto', flex: '1 1 0', minHeight: 0 } : undefined}>
+            <div className="shining-border-wrapper" style={hasStage ? { height: 'auto', flex: '1 1 0', minHeight: 0 } : undefined}>
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
                 <Card.Body className="d-flex flex-column" style={{ padding: 'clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
                   <h5 
@@ -123,7 +126,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     Players ({activePlayers.length}):
                   </h5>
                   
-                  <ListGroup className={`mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 ${crew && activePlayers.length > 4 ? 'cc-lobby-players-grid' : ''}`} style={{ minHeight: 0 }}>
+                  <ListGroup className={`mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 ${hasStage && activePlayers.length > 4 ? 'cc-lobby-players-grid' : ''}`} style={{ minHeight: 0 }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
                         <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
@@ -156,7 +159,11 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
               </Card>
             </div>
             {/* The couch's spot gives up room as the players list grows */}
-            {crew && <div ref={stageRef} className="cc-crew-stage" style={{ '--crowd': Math.max(0, activePlayers.length - 4) }} />}
+            {hasStage && (
+              <div ref={stageRef} className="cc-crew-stage" style={{ '--crowd': Math.max(0, activePlayers.length - 4) }}>
+                {visualizer && !isPortrait && <LobbyVisualizer />}
+              </div>
+            )}
           </div>
           
         </div>
