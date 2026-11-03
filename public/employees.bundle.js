@@ -19333,23 +19333,7 @@ function GameCastHome() {
     style: _objectSpread({
       '--shimmer-delay': '0.8s'
     }, squareStyle)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))), canSeeGame('listcast') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    hidden: isGameHidden('listcast'),
-    title: "List Cast",
-    players: "3+ players",
-    description: "Write a list on your phone and try not to match anyone. Matching answers get crossed out on the TV, then everyone votes on the rest."
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
-    variant: "primary",
-    className: gameImgBtnClass,
-    onClick: function onClick() {
-      return navigate('/listcast-setup');
-    },
-    "aria-label": "Set up a List Cast game",
-    style: _objectSpread({
-      '--shimmer-delay': '1.2s'
-    }, squareStyle)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Lists_ListTiles_jsx__WEBPACK_IMPORTED_MODULE_4__.ListCastTile, null))), canSeeGame('mixup') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    flip: true,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))), canSeeGame('mixup') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     hidden: isGameHidden('mixup'),
     title: "Temple Mix Up!",
     players: "3+ players",
@@ -19362,9 +19346,24 @@ function GameCastHome() {
     },
     "aria-label": "Set up a Temple Mix Up game",
     style: _objectSpread({
+      '--shimmer-delay': '1.2s'
+    }, squareStyle)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null))), canSeeGame('listcast') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    hidden: isGameHidden('listcast'),
+    title: "List Cast",
+    players: "3+ players",
+    description: "Write a list on your phone and try not to match anyone. Matching answers get crossed out on the TV, then everyone votes on the rest."
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    variant: "primary",
+    className: gameImgBtnClass,
+    onClick: function onClick() {
+      return navigate('/listcast-setup');
+    },
+    "aria-label": "Set up a List Cast game",
+    style: _objectSpread({
       '--shimmer-delay': '1.6s'
     }, squareStyle)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null))), canSeeGame('reshuffled') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Lists_ListTiles_jsx__WEBPACK_IMPORTED_MODULE_4__.ListCastTile, null))), canSeeGame('reshuffled') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     hidden: isGameHidden('reshuffled'),
     title: "Couch Cast Re-Shuffled",
     players: "3+ players",

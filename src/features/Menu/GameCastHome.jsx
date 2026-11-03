@@ -231,6 +231,24 @@ export default function GameCastHome() {
                                     </Button>
                                 </GameRow>}
 
+                                {/* 🎪 Temple Mix Up — text left, button right */}
+                                {canSeeGame('mixup') && <GameRow
+                                    hidden={isGameHidden('mixup')}
+                                    title="Temple Mix Up!"
+                                    players="3+ players"
+                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        onClick={() => navigate('/mixup-setup')}
+                                        aria-label="Set up a Temple Mix Up game"
+                                        style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
+                                    >
+                                        <MixupTile />
+                                    </Button>
+                                </GameRow>}
+
                                 {/* 📺📝 List Cast — text left, button right */}
                                 {canSeeGame('listcast') && <GameRow
                                     hidden={isGameHidden('listcast')}
@@ -243,28 +261,9 @@ export default function GameCastHome() {
                                         className={gameImgBtnClass}
                                         onClick={() => navigate('/listcast-setup')}
                                         aria-label="Set up a List Cast game"
-                                        style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
-                                    >
-                                        <ListCastTile />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* 🎪 Temple Mix Up — button left, text right */}
-                                {canSeeGame('mixup') && <GameRow
-                                    flip
-                                    hidden={isGameHidden('mixup')}
-                                    title="Temple Mix Up!"
-                                    players="3+ players"
-                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/mixup-setup')}
-                                        aria-label="Set up a Temple Mix Up game"
                                         style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
                                     >
-                                        <MixupTile />
+                                        <ListCastTile />
                                     </Button>
                                 </GameRow>}
 
