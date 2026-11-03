@@ -36,7 +36,7 @@ export default function ContentPage() {
                     {sources.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
                 </Form.Select>
                 <span className="small text-muted">
-                    {source.decks === null ? 'All decks' : `Your decks: ${source.decks.join(', ')}`}
+                    {source.decks === null || !source.hasDeck ? 'All decks' : `Your decks: ${source.decks.join(', ')}`}
                 </span>
             </div>
             <ContentGrid key={source.id} source={source} />

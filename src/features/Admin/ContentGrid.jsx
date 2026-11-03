@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Table, Form, Button, Alert, Spinner, Badge, InputGroup } from 'react-bootstrap';
 import { adminFetch } from './adminApi.js';
 
-const COLUMN_LABELS = { text: 'Card text', type: 'Type', deck: 'Deck', createdBy: 'Created by', updatedAt: 'Last edited' };
+const COLUMN_LABELS = { deck: 'Deck', createdBy: 'Created by', updatedAt: 'Last edited' };
 const PAGE_SIZE = 30;
 
 const formatDate = (value) => (value ? new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '—');
@@ -17,7 +17,7 @@ export default function ContentGrid({ source }) {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('');
-    const [query, setQuery] = useState({ page: 1, sort: 'text', dir: 'asc', search: '', filters: {} });
+    const [query, setQuery] = useState({ page: 1, sort: source.titleField, dir: 'asc', search: '', filters: {} });
     const [editing, setEditing] = useState(null);     // { id, draft } (id 'new' = the add row)
     const searchTimer = useRef(null);
     const isOwner = source.decks === null;
@@ -48,9 +48,17 @@ export default function ContentGrid({ source }) {
     // Decks this account can put content in: the owner can also type a brand-new deck name
     const deckChoices = isOwner ? (data?.facets?.deck || []).map((f) => f.value) : source.decks;
 
+    const labelFor = (col) => source.fields[col]?.label || COLUMN_LABELS[col] || col;
+    const setDraft = (key, value) => setEditing((ed) => ({ ...ed, draft: { ...ed.draft, [key]: value } }));
+
     const blankDraft = () => {
-        const draft = { deck: query.filters.deck || deckChoices?.[0] || 'core' };
-        Object.entries(source.fields).forEach(([key, field]) => { draft[key] = field.kind === 'choice' ? (query.filters[key] || field.choices[0]) : ''; });
+        const draft = source.hasDeck ? { deck: query.filters.deck || deckChoices?.[0] || 'core' } : {};
+        Object.entries(source.fields).forEach(([key, field]) => {
+            if (field.kind === 'choice') draft[key] = query.filters[key] || (field.allowBlank ? '' : field.choices[0]);
+            else if (field.kind === 'bool') draft[key] = field.defaultValue ?? true;
+            else if (field.kind === 'list' || field.kind === 'tags') draft[key] = [];
+            else draft[key] = '';
+        });
         return draft;
     };
 
@@ -68,7 +76,7 @@ export default function ContentGrid({ source }) {
     };
 
     const remove = async (row) => {
-        if (!window.confirm(`Delete this ${source.noun}?\n\n"${row.text}"`)) return;
+        if (!window.confirm(`Delete this ${source.noun}?\n\n"${row[source.titleField]}"`)) return;
         setError('');
         try {
             await adminFetch(`/content/${source.id}/${row.id}`, { method: 'DELETE' });
@@ -83,51 +91,80 @@ export default function ContentGrid({ source }) {
     const last = data ? Math.min(data.total, data.page * data.limit) : 0;
 
     // The edit form, used both for a row being edited and for the "add" row
+    const editCell = (col) => {
+        const field = source.fields[col];
+        const value = editing.draft[col];
+        if (col === 'deck') {
+            return isOwner ? (
+                <>
+                    <Form.Control size="sm" list={`deck-options-${source.id}`} value={value} onChange={(e) => setDraft(col, e.target.value)} aria-label="Deck" style={{ minWidth: '110px' }} />
+                    <datalist id={`deck-options-${source.id}`}>{deckChoices.map((d) => <option key={d} value={d} />)}</datalist>
+                </>
+            ) : (
+                <Form.Select size="sm" value={value} onChange={(e) => setDraft(col, e.target.value)} aria-label="Deck">
+                    {deckChoices.map((d) => <option key={d} value={d}>{d}</option>)}
+                </Form.Select>
+            );
+        }
+        if (!field) return <span className="text-muted small">—</span>;
+        if (field.kind === 'choice') {
+            return (
+                <Form.Select size="sm" value={value || ''} onChange={(e) => setDraft(col, e.target.value)} aria-label={field.label}>
+                    {field.allowBlank && <option value="">—</option>}
+                    {field.choices.map((c) => <option key={c} value={c}>{c}</option>)}
+                </Form.Select>
+            );
+        }
+        if (field.kind === 'bool') {
+            return <Form.Check type="switch" checked={!!value} onChange={(e) => setDraft(col, e.target.checked)} aria-label={field.label} />;
+        }
+        if (field.kind === 'tags') {
+            const tags = value || [];
+            return field.choices.map((c) => (
+                <Form.Check key={c} type="checkbox" label={c} checked={tags.includes(c)} onChange={(e) => setDraft(col, e.target.checked ? [...tags, c] : tags.filter((t) => t !== c))} />
+            ));
+        }
+        if (field.kind === 'list') {
+            return (
+                <Form.Control as="textarea" rows={3} size="sm" style={{ minWidth: '160px' }} value={Array.isArray(value) ? value.join('\n') : value || ''} placeholder="One per line" aria-label={field.label}
+                    onChange={(e) => setDraft(col, e.target.value)} />
+            );
+        }
+        if (field.kind === 'url') {
+            return (
+                <>
+                    {value && <img src={value} alt="" className="admin-thumb mb-1" />}
+                    <Form.Control size="sm" style={{ minWidth: '180px' }} value={value || ''} placeholder="https://..." aria-label={field.label} onChange={(e) => setDraft(col, e.target.value)} />
+                </>
+            );
+        }
+        return (
+            <Form.Control as={field.long ? 'textarea' : 'input'} rows={field.long ? 2 : undefined} size="sm" style={{ minWidth: '130px' }} value={value || ''} maxLength={field.max} aria-label={field.label}
+                onChange={(e) => setDraft(col, e.target.value)} />
+        );
+    };
     const editCells = () => (
         <>
-            {source.columns.map((col) => {
-                if (col === 'text') {
-                    return (
-                        <td key={col}>
-                            <Form.Control as="textarea" rows={2} size="sm" value={editing.draft.text} maxLength={source.fields.text.max}
-                                onChange={(e) => setEditing((ed) => ({ ...ed, draft: { ...ed.draft, text: e.target.value } }))} aria-label="Card text" autoFocus />
-                        </td>
-                    );
-                }
-                if (source.fields[col]?.kind === 'choice') {
-                    return (
-                        <td key={col}>
-                            <Form.Select size="sm" value={editing.draft[col]} onChange={(e) => setEditing((ed) => ({ ...ed, draft: { ...ed.draft, [col]: e.target.value } }))} aria-label={COLUMN_LABELS[col]}>
-                                {source.fields[col].choices.map((c) => <option key={c} value={c}>{c}</option>)}
-                            </Form.Select>
-                        </td>
-                    );
-                }
-                if (col === 'deck') {
-                    return (
-                        <td key={col}>
-                            {isOwner ? (
-                                <>
-                                    <Form.Control size="sm" list={`deck-options-${source.id}`} value={editing.draft.deck}
-                                        onChange={(e) => setEditing((ed) => ({ ...ed, draft: { ...ed.draft, deck: e.target.value } }))} aria-label="Deck" />
-                                    <datalist id={`deck-options-${source.id}`}>{deckChoices.map((d) => <option key={d} value={d} />)}</datalist>
-                                </>
-                            ) : (
-                                <Form.Select size="sm" value={editing.draft.deck} onChange={(e) => setEditing((ed) => ({ ...ed, draft: { ...ed.draft, deck: e.target.value } }))} aria-label="Deck">
-                                    {deckChoices.map((d) => <option key={d} value={d}>{d}</option>)}
-                                </Form.Select>
-                            )}
-                        </td>
-                    );
-                }
-                return <td key={col} className="text-muted small">—</td>;
-            })}
+            {source.columns.map((col) => <td key={col}>{editCell(col)}</td>)}
             <td className="text-nowrap">
                 <Button size="sm" variant="success" className="me-1" onClick={save}>Save</Button>
                 <Button size="sm" variant="outline-secondary" onClick={() => setEditing(null)}>Cancel</Button>
             </td>
         </>
     );
+
+    // A cell when it's not being edited
+    const showCell = (col, row) => {
+        const field = source.fields[col];
+        const value = row[col];
+        if (col === 'deck') return <Badge bg="light" text="dark" className="border">{value}</Badge>;
+        if (col === 'updatedAt') return <span title={row.updatedBy ? `by ${row.updatedBy}` : ''}>{formatDate(value)}</span>;
+        if (col === 'type') return <Badge bg={value === 'prompt' ? 'primary' : 'secondary'}>{value}</Badge>;
+        if (field?.kind === 'bool') return value ? '✅' : <span className="text-muted">Off</span>;
+        if (field?.kind === 'url') return <img src={value} alt={row.name || ''} className="admin-thumb" loading="lazy" />;
+        if (Array.isArray(value)) return value.join(' · ') || <span className="text-muted">—</span>;
+        return value || <span className="text-muted">—</span>;
+    };
 
     return (
         <div>
@@ -140,9 +177,11 @@ export default function ContentGrid({ source }) {
                 {hasFilters && <Button size="sm" variant="link" onClick={clearAll}>Clear search &amp; filters</Button>}
                 <div className="ms-auto d-flex align-items-center gap-2">
                     {loading && <Spinner size="sm" animation="border" />}
+                    {source.canAdd && (
                     <Button size="sm" variant="primary" disabled={editing?.id === 'new'} onClick={() => setEditing({ id: 'new', draft: blankDraft() })}>
                         ➕ Add {source.noun}
                     </Button>
+                    )}
                 </div>
             </div>
 
@@ -153,16 +192,16 @@ export default function ContentGrid({ source }) {
                     <thead>
                         <tr>
                             {source.columns.map((col) => (
-                                <th key={col} className={col === 'text' ? 'w-50' : 'text-nowrap'}>
+                                <th key={col} className={col === source.titleField ? 'w-50' : 'text-nowrap'}>
                                     {source.sortable.includes(col) ? (
-                                        <button type="button" className="admin-sort" onClick={() => setSort(col)} aria-label={`Sort by ${COLUMN_LABELS[col]}`}>
-                                            {COLUMN_LABELS[col]} {query.sort === col ? (query.dir === 'asc' ? '▲' : '▼') : <span className="text-muted">↕</span>}
+                                        <button type="button" className="admin-sort" onClick={() => setSort(col)} aria-label={`Sort by ${labelFor(col)}`}>
+                                            {labelFor(col)} {query.sort === col ? (query.dir === 'asc' ? '▲' : '▼') : <span className="text-muted">↕</span>}
                                         </button>
-                                    ) : COLUMN_LABELS[col]}
+                                    ) : labelFor(col)}
                                     {source.filters.includes(col) && (
                                         <Form.Select size="sm" className="mt-1 admin-filter" value={query.filters[col] || ''} onChange={(e) => setFilter(col, e.target.value)} aria-label={`Filter by ${COLUMN_LABELS[col]}`}>
                                             <option value="">All</option>
-                                            {(data?.facets?.[col] || []).map((f) => <option key={f.value} value={f.value}>{f.value} ({f.count})</option>)}
+                                            {(data?.facets?.[col] || []).map((f) => <option key={f.value} value={f.value}>{f.value === 'true' ? 'Yes' : f.value === 'false' ? 'No' : f.value} ({f.count})</option>)}
                                         </Form.Select>
                                     )}
                                 </th>
@@ -177,16 +216,13 @@ export default function ContentGrid({ source }) {
                         ) : (
                             <tr key={row.id}>
                                 {source.columns.map((col) => (
-                                    <td key={col} className={col === 'text' ? '' : 'text-nowrap small'}>
-                                        {col === 'type' ? <Badge bg={row.type === 'prompt' ? 'primary' : 'secondary'}>{row.type}</Badge>
-                                            : col === 'deck' ? <Badge bg="light" text="dark" className="border">{row.deck}</Badge>
-                                                : col === 'updatedAt' ? <span title={row.updatedBy ? `by ${row.updatedBy}` : ''}>{formatDate(row.updatedAt)}</span>
-                                                    : row[col]}
+                                    <td key={col} className={col === source.titleField || source.fields[col]?.kind === 'list' ? '' : 'small'}>
+                                        {showCell(col, row)}
                                     </td>
                                 ))}
                                 <td className="text-nowrap">
                                     <Button size="sm" variant="outline-primary" className="me-1" disabled={!!editing} onClick={() => setEditing({ id: row.id, draft: { ...row } })} aria-label="Edit">✏️</Button>
-                                    <Button size="sm" variant="outline-danger" disabled={!!editing} onClick={() => remove(row)} aria-label="Delete">🗑️</Button>
+                                    {source.canDelete && <Button size="sm" variant="outline-danger" disabled={!!editing} onClick={() => remove(row)} aria-label="Delete">🗑️</Button>}
                                 </td>
                             </tr>
                         )))}
