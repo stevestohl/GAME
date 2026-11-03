@@ -35,7 +35,7 @@ router.delete('/content/:source/:id', safe(deleteContent))
 router.get('/dashboard/couchcast/top-responses', safe(topResponses))
 
 // Hiding and showing games and decks: owner only
-router.put('/visibility', requireOwner, safe(updateVisibility))
+router.patch('/visibility', requireOwner, safe(updateVisibility))
 
 // Accounts: owner only
 router.get('/users', requireOwner, safe(listUsers))

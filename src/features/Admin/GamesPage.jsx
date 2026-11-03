@@ -20,7 +20,7 @@ export default function GamesPage() {
         setSaving(deck ? `${game}/${deck}` : game);
         setError('');
         try {
-            const data = await adminFetch('/visibility', { method: 'PUT', body: { game, deck, hidden } });
+            const data = await adminFetch('/visibility', { method: 'PATCH', body: { game, deck, hidden } });
             setGames(data.games);
             setVisibleGames(data.games);
         } catch (err) {

@@ -2118,7 +2118,7 @@ function GamesPage() {
               _context.prev = 2;
               _context.next = 5;
               return (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)('/visibility', {
-                method: 'PUT',
+                method: 'PATCH',
                 body: {
                   game: game,
                   deck: deck,

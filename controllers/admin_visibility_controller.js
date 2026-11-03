@@ -11,7 +11,7 @@ export const visibleGames = async (req, res) => {
     res.json({ games: await gamesFor(user), canSeeHidden: !!user });
 };
 
-// ---------- PUT /api/admin/visibility { game, deck?, hidden } (owner only) ----------
+// ---------- PATCH /api/admin/visibility { game, deck?, hidden } (owner only) ----------
 export const updateVisibility = async (req, res) => {
     const { game: gameId, deck: deckId, hidden } = req.body || {};
     const game = findGame(gameId);
