@@ -5,6 +5,7 @@ import { triviaCastSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
 import { getMyAvatar } from '../../avatars.jsx';
+import AvatarAttack from './AvatarAttack.jsx';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -120,17 +121,19 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
         case 'lobby':
             return frame("You're In!", (
                 <>
-                    <p className="text-muted mb-3">Look up at the TV.</p>
-                    {me.isPlayerHost ? (
-                        <div className="p-3 border border-warning rounded bg-white shadow-sm">
-                            <p className="fw-bold text-dark mb-3">👑 You are the Room Leader</p>
-                            <Button variant="success" size="lg" className="w-100 fw-bold py-3" onClick={() => socket.emit('startGame', { roomCode })}>
+                    {!me.isPlayerHost && (
+                        <div className="p-2 border border-dashed rounded bg-light text-muted small">
+                            Waiting for <strong>{leader?.name || 'the room leader'}</strong> to start the game...
+                        </div>
+                    )}
+                    {/* 👾 Something to do while everyone joins */}
+                    <AvatarAttack socket={socket} roomCode={roomCode} room={room} />
+                    {me.isPlayerHost && (
+                        <div className="p-2 mt-2 border border-warning rounded bg-white shadow-sm">
+                            <p className="fw-bold text-dark small mb-2">👑 You are the Room Leader</p>
+                            <Button variant="success" size="lg" className="w-100 fw-bold" onClick={() => socket.emit('startGame', { roomCode })}>
                                 Everyone's in!
                             </Button>
-                        </div>
-                    ) : (
-                        <div className="p-3 border border-dashed rounded bg-light text-muted">
-                            Waiting for <strong>{leader?.name || 'the room leader'}</strong> to start the game...
                         </div>
                     )}
                 </>

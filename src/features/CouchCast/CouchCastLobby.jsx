@@ -7,8 +7,8 @@ import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
 
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's Core and
-// Halloween decks; `crewTheme` says which cast)
-export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core' }) {
+// Halloween decks; `crewTheme` says which cast). `scoreFor`: a player's lobby game score, if the game has one
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
   const screenRef = useRef(null);   // the QR card: the crew's "TV"
@@ -130,6 +130,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                           <Avatar id={player.avatar} name={player.name} size={56} style={{ width: avatarSize, height: avatarSize }} />
                           <span className="text-truncate">{player.name}</span>
                         </span>
+                        {scoreFor?.(player) > 0 && <span className="fw-bold ms-auto me-2 text-nowrap">🎯 {scoreFor(player)}</span>}
                         {player.isPlayerHost && (
                           <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)' }}>Host</Badge>
                         )}
