@@ -12,6 +12,7 @@ import { useTimerMusic } from '../../timerMusic.js';
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
+import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION } from './TriviaCastScreensTV.jsx';
 
@@ -141,8 +142,16 @@ export default function TriviaCastManager() {
         navigate('/home', { state: { toastMessage: 'Thanks for playing!' } });
     };
 
-    // ⏳ Tick-tock music while everyone answers
-    useTimerMusic(gameState === 'question', { endTime: room?.endTime, key: room?.currentRound });
+    // ⏸️ The caster can pause a running game: the server stops every clock, the phones show "Paused"
+    const isPaused = !!room?.isPaused;
+    const canPause = gameState === 'question' || gameState === 'reveal' || (gameState === 'scoreboard' && !room?.isGameOver);
+    const handleTogglePause = () => socket.emit('set_paused', { roomCode: room?.roomCode, paused: !isPaused });
+    useEffect(() => {
+        if (isPaused) stopVoice();
+    }, [isPaused]);
+
+    // ⏳ Tick-tock music while everyone answers (it stops for a pause)
+    useTimerMusic(gameState === 'question' && !isPaused, { endTime: room?.endTime, key: room?.currentRound });
 
     // Fetch the rules narration while everyone is still joining, so it starts instantly
     const lobbyRoomCode = room?.roomCode;
@@ -219,6 +228,9 @@ export default function TriviaCastManager() {
             )}
 
             {renderGamePhase()}
+
+            {isPaused && <CouchCastPausedOverlay isCaster />}
+            {room && <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />}
 
             {isSoundLocked && (
                 <button type="button" className="cc-sound-button" onClick={handleTurnSoundOn}>

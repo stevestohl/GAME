@@ -28447,10 +28447,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
@@ -28459,12 +28459,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 /* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
 /* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
-/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
+/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -28483,6 +28484,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
+
 
 
 
@@ -28507,7 +28509,7 @@ function TriviaCastManager() {
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -28516,7 +28518,7 @@ function TriviaCastManager() {
   }
 
   // --- TV STATE ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -28530,7 +28532,7 @@ function TriviaCastManager() {
   // 🎨 Background follows the question deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_14__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_15__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
   var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('triviaCast', room === null || room === void 0 ? void 0 : room.expansion);
 
   // --- SOCKET LISTENERS ---
@@ -28576,7 +28578,7 @@ function TriviaCastManager() {
     var players = Object.values(room.players).filter(function (p) {
       return !p.isCaster;
     });
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_12__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_13__.scoreRecap)({
       players: players,
       roundHadWinner: players.some(function (p) {
         return (p.lastPoints || 0) > 0;
@@ -28618,8 +28620,21 @@ function TriviaCastManager() {
     });
   };
 
-  // ⏳ Tick-tock music while everyone answers
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(gameState === 'question', {
+  // ⏸️ The caster can pause a running game: the server stops every clock, the phones show "Paused"
+  var isPaused = !!(room !== null && room !== void 0 && room.isPaused);
+  var canPause = gameState === 'question' || gameState === 'reveal' || gameState === 'scoreboard' && !(room !== null && room !== void 0 && room.isGameOver);
+  var handleTogglePause = function handleTogglePause() {
+    return _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('set_paused', {
+      roomCode: room === null || room === void 0 ? void 0 : room.roomCode,
+      paused: !isPaused
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isPaused) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+  }, [isPaused]);
+
+  // ⏳ Tick-tock music while everyone answers (it stops for a pause)
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(gameState === 'question' && !isPaused, {
     endTime: room === null || room === void 0 ? void 0 : room.endTime,
     key: room === null || room === void 0 ? void 0 : room.currentRound
   });
@@ -28627,7 +28642,7 @@ function TriviaCastManager() {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -28660,7 +28675,7 @@ function TriviaCastManager() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -28682,21 +28697,21 @@ function TriviaCastManager() {
           }
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.TriviaCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.TriviaCastRulesTV, {
           roomCode: room.roomCode
         });
       case 'question':
       case 'reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_10__.TriviaCastQuestionTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_11__.TriviaCastQuestionTV, {
           room: room
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           players: playersArray,
           isGameOver: room.isGameOver,
           nextLabel: "Next question coming up...",
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -28707,19 +28722,25 @@ function TriviaCastManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
       zIndex: 10002
     }
-  }, errorMessage), renderGamePhase(), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_9__.CouchCastPausedOverlay, {
+    isCaster: true
+  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    canPause: canPause || isPaused,
+    isPaused: isPaused,
+    onTogglePause: handleTogglePause
+  }), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "button",
     className: "cc-sound-button",
     onClick: handleTurnSoundOn
@@ -28742,23 +28763,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _AvatarAttack_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AvatarAttack.jsx */ "./src/features/TriviaCast/AvatarAttack.jsx");
+/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -28777,7 +28800,7 @@ function TriviaCastPlayer(_ref) {
   var _room$players, _room$question, _room$question2;
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -28876,21 +28899,21 @@ function TriviaCastPlayer(_ref) {
   var frame = function frame(title, body) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "page-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       className: "main-card"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Header, {
       className: "main-card-header"
-    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
       className: "p-3"
     }, body)));
   };
 
   // ---------- Couldn't join ----------
   if (error) {
-    return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       variant: "warning",
       className: "fw-bold"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "primary",
       className: "w-100 fw-bold",
       onClick: function onClick() {
@@ -28903,7 +28926,7 @@ function TriviaCastPlayer(_ref) {
   if (!room || !me) {
     return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "py-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       animation: "border",
       variant: "primary"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
@@ -28911,6 +28934,9 @@ function TriviaCastPlayer(_ref) {
     }, "Connecting to room ", roomCode, "...")));
   }
   var leader = room.players[room.hostId];
+
+  // ⏸️ The caster paused the game
+  if (room.isPaused) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_6__.CouchCastPausedOverlay, null);
   switch (gameState) {
     case 'lobby':
       return frame("You're In!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, !me.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -28923,7 +28949,7 @@ function TriviaCastPlayer(_ref) {
         className: "p-2 mt-2 border border-warning rounded bg-white shadow-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "fw-bold text-dark small mb-2"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
         variant: "success",
         size: "lg",
         className: "w-100 fw-bold",
@@ -28940,7 +28966,7 @@ function TriviaCastPlayer(_ref) {
         className: "text-primary fw-bold mb-2"
       }, "Get Ready!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "text-muted mb-3"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
         animation: "grow",
         variant: "warning"
       })));
@@ -29016,10 +29042,10 @@ function TriviaCastPlayer(_ref) {
           className: "display-3 mb-2"
         }, room.isGameOver && myRank === 1 ? '🏆' : '📊'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
           className: "fw-bold text-dark mb-1"
-        }, room.isGameOver && myRank === 1 ? 'You won!' : "You're #".concat(myRank, " of ").concat(ranked.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        }, room.isGameOver && myRank === 1 ? 'You won!' : "You're #".concat(myRank, " of ").concat(ranked.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           bg: "primary",
           className: "fs-5 rounded-pill px-3 py-2 mb-3"
-        }, me.score, " pts"), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }, me.score, " pts"), room.isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
           variant: "primary",
           className: "w-100 fw-bold",
           onClick: function onClick() {
@@ -29030,7 +29056,7 @@ function TriviaCastPlayer(_ref) {
         }, "Next question coming up...")));
       }
     default:
-      return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      return frame('Trivia Cast', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
         animation: "grow",
         variant: "warning"
       }));

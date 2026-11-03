@@ -63,6 +63,7 @@ const getSafeRoom = (room) => {
         endTime: room.endTime,
         isGameOver: room.isGameOver,
         attack: room.attack ? { scores: room.attack.scores } : null,   // 👾 the lobby game's scores
+        isPaused: !!room.isPaused,
         players,
         question: isPlaying && question ? {
             text: question.question,
@@ -71,6 +72,53 @@ const getSafeRoom = (room) => {
         } : null,
         correctAnswer: isAnswerPublic && question ? question.correct_answer : null,
     };
+};
+
+// ⏸️ Each room runs one clock at a time (the question, the reveal, the scoreboard). Starting one through
+// here remembers what it will do and when, so the caster can pause and pick up exactly where it left off.
+const setRoomTimer = (room, fn, ms) => {
+    if (room.timerId) clearTimeout(room.timerId);
+    room.timerId = null;
+    room.timerFn = fn;
+    if (room.isPaused) {
+        room.pausedTimerLeft = ms;
+        return;
+    }
+    room.timerDueAt = Date.now() + ms;
+    room.timerId = setTimeout(() => {
+        room.timerId = null;
+        room.timerFn = null;
+        fn();
+    }, ms);
+};
+
+const pauseRoom = (room) => {
+    if (room.isPaused) return;
+    const now = Date.now();
+    room.isPaused = true;
+    room.pausedAt = now;
+    room.pausedTimerLeft = room.timerId ? Math.max(0, room.timerDueAt - now) : null;
+    if (room.timerId) clearTimeout(room.timerId);
+    room.timerId = null;
+    // The screens count down to endTime: with none, every countdown holds still
+    room.pausedEndTimeLeft = room.endTime ? Math.max(0, room.endTime - now) : null;
+    room.endTime = null;
+};
+
+const resumeRoom = (room) => {
+    if (!room.isPaused) return;
+    const now = Date.now();
+    const pausedFor = now - room.pausedAt;
+    // Speed bonuses and the saved answer times shouldn't include the break
+    if (room.questionStartedAt) room.questionStartedAt += pausedFor;
+    Object.values(room.players).forEach((p) => { if (p.answeredAt) p.answeredAt += pausedFor; });
+    const { pausedTimerLeft, pausedEndTimeLeft } = room;
+    room.isPaused = false;   // first, so the clock below really starts
+    room.pausedAt = null;
+    room.pausedTimerLeft = null;
+    room.pausedEndTimeLeft = null;
+    if (pausedEndTimeLeft !== null) room.endTime = now + pausedEndTimeLeft;
+    if (room.timerFn && pausedTimerLeft !== null) setRoomTimer(room, room.timerFn, pausedTimerLeft);
 };
 
 const makeRoomCode = () => {
@@ -151,7 +199,7 @@ export default function registerTriviaCastNamespace(TCNS) {
         room.gameState = 'question';
         room.questionStartedAt = Date.now();
         room.endTime = room.questionStartedAt + QUESTION_TIME;
-        room.timerId = setTimeout(() => revealAnswer(roomCode), QUESTION_TIME + 500);
+        setRoomTimer(room, () => revealAnswer(roomCode), QUESTION_TIME + 500);
 
         broadcast(roomCode);
     };
@@ -187,7 +235,7 @@ export default function registerTriviaCastNamespace(TCNS) {
         room.endTime = null;
         broadcast(roomCode);
 
-        setTimeout(() => showScoreboard(roomCode, room), REVEAL_TIME);
+        setRoomTimer(room, () => showScoreboard(roomCode, room), REVEAL_TIME);
     };
 
     // --- Scores between questions; after the last question this is the final screen ---
@@ -200,7 +248,7 @@ export default function registerTriviaCastNamespace(TCNS) {
 
         if (room.isGameOver) return; // stay on the final standings
 
-        setTimeout(() => {
+        setRoomTimer(room, () => {
             if (activeTCRooms[roomCode] !== room || room.gameState !== 'scoreboard') return;
             room.questionIndex += 1;
             startQuestion(roomCode);
@@ -225,8 +273,8 @@ export default function registerTriviaCastNamespace(TCNS) {
             }, 5 * 60 * 1000);
         }
 
-        // Everyone who is still here has answered: no need to wait for the clock
-        if (room.gameState === 'question') {
+        // Everyone who is still here has answered: no need to wait for the clock (a pause waits until it's over)
+        if (room.gameState === 'question' && !room.isPaused) {
             const remaining = answeringPlayers(room);
             if (remaining.length > 0 && remaining.every(p => p.hasAnswered)) revealAnswer(roomCode);
         }
@@ -288,6 +336,8 @@ export default function registerTriviaCastNamespace(TCNS) {
         room.hostId = leader ? leader.id : null;
 
         room.gameId = randomUUID();   // a new game in the saved stats
+        room.isPaused = false;
+        room.pausedAt = null;
         room.gameState = 'lobby';
         room.attack = newAttack();    // 👾 a fresh lobby game too
         room.questions = null;        // a fresh set is drawn when the game starts
@@ -498,12 +548,28 @@ export default function registerTriviaCastNamespace(TCNS) {
             closeRoom(roomCode, 'Thanks for playing! The host ended the game.');
         });
 
+        // ---------- ⏸️ Event: The caster pauses (or un-pauses) the game: every clock stops, and nobody can answer ----------
+        socket.on('set_paused', ({ roomCode, paused } = {}) => {
+            const room = activeTCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            if (!['question', 'reveal', 'scoreboard'].includes(room.gameState) || room.isGameOver) return;
+            if (paused) pauseRoom(room); else resumeRoom(room);
+            console.log(`[Trivia Cast] Room ${roomCode}: ${room.isPaused ? 'paused' : 'back on'}.`);
+            // Everyone still here answered (or left) during the break: no need to wait for the clock
+            const remaining = answeringPlayers(room);
+            if (!room.isPaused && room.gameState === 'question' && remaining.length > 0 && remaining.every(p => p.hasAnswered)) {
+                revealAnswer(roomCode);
+            } else {
+                broadcast(roomCode);
+            }
+        });
+
         // ---------- Event: A player taps an answer ----------
         socket.on('submit_answer', ({ roomCode, answer } = {}) => {
             const room = activeTCRooms[roomCode];
             const player = room?.players[socket.id];
             if (!room || !player || player.isCaster) return;
-            if (room.gameState !== 'question' || player.hasAnswered) return;
+            if (room.gameState !== 'question' || player.hasAnswered || room.isPaused) return;
             if (!room.options.includes(answer)) return;
 
             player.currentAnswer = answer;

@@ -6,6 +6,7 @@ import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.
 import { playChime } from '../../chime.js';
 import { getMyAvatar } from '../../avatars.jsx';
 import AvatarAttack from './AvatarAttack.jsx';
+import { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -116,6 +117,9 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
     }
 
     const leader = room.players[room.hostId];
+
+    // ⏸️ The caster paused the game
+    if (room.isPaused) return <CouchCastPausedOverlay />;
 
     switch (gameState) {
         case 'lobby':
