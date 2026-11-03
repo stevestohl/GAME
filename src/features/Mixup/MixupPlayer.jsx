@@ -7,11 +7,12 @@ import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { DrawingPad, DrawingView } from './DrawingCanvas.jsx';
 import { MemeImage, ROUND_LOOKS, useCountdown } from './MixupScreensTV.jsx';
 import SnakeSnack from './SnakeSnack.jsx';
+import ListBoard from '../Lists/ListBoard.jsx';
 import '../../styles/mixup.css';
 import { getMyAvatar } from '../../avatars.jsx';
 
 /**
- * 📱 Temple Mix Up on a player's phone: write captions, vote, draw or guess, answer trivia.
+ * 📱 Temple Mix Up on a player's phone: write captions, vote, draw or guess, match the group's answers.
  * The TV shows everything big; the phone is the controller.
  */
 export default function MixupPlayer({ roomCode, playerName }) {
@@ -21,11 +22,13 @@ export default function MixupPlayer({ roomCode, playerName }) {
     const [error, setError] = useState('');
     const [caption, setCaption] = useState('');
     const [guess, setGuess] = useState('');
+    const [answers, setAnswers] = useState(['', '', '']);
+    const answerTimer = useRef(null);
     const [guessFeedback, setGuessFeedback] = useState(null);   // 'wrong' | 'right'
     const [myGuesses, setMyGuesses] = useState([]);
     const lastRound = useRef(null);
 
-    useSetBackgroundTheme(mixupTheme(room?.round?.type));
+    useSetBackgroundTheme(mixupTheme(room?.round?.type, !room || room.gameState === 'lobby'));
 
     // --- Join, and stay joined through refreshes and network blips ---
     useEffect(() => {
@@ -69,6 +72,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
         if (!roundKey || roundKey === lastRound.current) return;
         lastRound.current = roundKey;
         setCaption('');
+        setAnswers(['', '', '']);
         setGuess('');
         setGuessFeedback(null);
         setMyGuesses([]);
@@ -76,6 +80,19 @@ export default function MixupPlayer({ roomCode, playerName }) {
     }, [roundKey]);
 
     const timeLeft = useCountdown(room?.endTime);
+
+    // A refresh mid-round: pick the answers back up from the server
+    useEffect(() => {
+        if (mine.matchList?.length) setAnswers([0, 1, 2].map((i) => mine.matchList[i] || ''));
+    }, [mine.matchList]);
+
+    // Answers are saved as they're typed, so what's written when the clock runs out still counts
+    const handleAnswerChange = (index, value) => {
+        const next = answers.map((item, i) => (i === index ? value : item));
+        setAnswers(next);
+        clearTimeout(answerTimer.current);
+        answerTimer.current = setTimeout(() => socket.emit('update_answers', { roomCode, items: next }), 300);
+    };
 
     if (error && !room) {
         return (
@@ -136,7 +153,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
             return (
                 <Frame title="How to Play">
                     <div className="mx-phone-rules text-start">
-                        {['meme', 'draw', 'trivia'].map((type) => (
+                        {['meme', 'draw', 'match'].map((type) => (
                             <div key={type} className="mb-2"><span className="me-2">{ROUND_LOOKS[type].icon}</span><strong>{ROUND_LOOKS[type].title}</strong> {ROUND_LOOKS[type].blurb}</div>
                         ))}
                     </div>
@@ -269,29 +286,62 @@ export default function MixupPlayer({ roomCode, playerName }) {
             );
         }
 
-        // ===================== TRIVIA =====================
-        case 'trivia':
-            if (me.hasSubmitted) return <Waiting title={roundTitle} icon="🔒" text="Answer locked in! Waiting for everyone else..." />;
+        // ===================== THREEFOLD =====================
+        case 'match_write': {
+            if (me.hasSubmitted) return <Waiting title={roundTitle} icon="🔒" text="Answers locked in! Waiting for everyone else..." />;
+            const filled = answers.filter((item) => item.trim()).length;
             return (
                 <Frame title={roundTitle} right={clock}>
-                    <h5 className="fw-bold mb-3 lh-base">{round.question.text}</h5>
-                    <div className="d-flex flex-column gap-2">
-                        {round.question.options.map((option, i) => (
-                            <Button key={option} variant="outline-primary" className="text-start p-3 text-wrap fw-bold bg-white text-dark cc-tap-option" onClick={() => socket.emit('submit_answer', { roomCode, option })}>
-                                <span className="me-2 text-primary">{String.fromCharCode(65 + i)}.</span>{option}
-                            </Button>
+                    <div className="mx-phone-topic"><span>The list</span>{round.topic}</div>
+                    <p className="small text-muted mb-2">Write what everyone else will write! You score for every player who matches you.</p>
+                    <div className="d-flex flex-column gap-2 mb-3">
+                        {answers.map((item, i) => (
+                            <Form.Control
+                                key={i}
+                                type="text"
+                                value={item}
+                                placeholder={`Answer ${i + 1}`}
+                                maxLength={40}
+                                autoComplete="off"
+                                aria-label={`Answer ${i + 1}`}
+                                className="fw-semibold"
+                                onChange={(e) => handleAnswerChange(i, e.target.value)}
+                            />
                         ))}
                     </div>
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        className="w-100 fw-bold"
+                        disabled={filled === 0}
+                        onClick={() => {
+                            clearTimeout(answerTimer.current);
+                            socket.emit('submit_answers', { roomCode, items: answers });
+                        }}
+                    >
+                        {filled === 0 ? 'Write at least one answer' : `I'm done (${filled} of 3)`}
+                    </Button>
                 </Frame>
             );
-        case 'trivia_results':
+        }
+        case 'match_compare':
+        case 'match_results': {
+            const mySeat = me.seat;
+            const myEntry = round.board?.find((entry) => entry.seat === mySeat);
             return (
                 <Frame title={roundTitle}>
-                    <div className="mx-phone-intro-icon">{me.lastCorrect ? '🎉' : '😬'}</div>
-                    <h3 className="fw-bold">{me.lastCorrect ? 'Correct! +100' : 'Not this time'}</h3>
-                    <p className="fs-5 mb-0">The answer: <strong>{round.correctAnswer}</strong></p>
+                    <div className="mx-phone-topic"><span>The list</span>{round.topic}</div>
+                    {room.gameState === 'match_results' && <h3 className="fw-bold mb-2">{myEntry?.points ? `You matched! +${myEntry.points}` : 'No matches this time'}</h3>}
+                    <ListBoard
+                        board={myEntry ? [myEntry] : []}
+                        phase={room.gameState === 'match_compare' ? 'compare' : 'results'}
+                        mySeat={mySeat}
+                        pointsPerItem={round.pointsPerItem}
+                        listSize={round.listSize}
+                    />
                 </Frame>
             );
+        }
 
         // ===================== SCORES =====================
         case 'scoreboard': {

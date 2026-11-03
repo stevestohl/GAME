@@ -1,15 +1,15 @@
 import { mixupSocket } from "../../socket.js";
 import { unlockVoice } from "../../voice.js";
 import { enterFullscreen } from "../../fullscreen.js";
-import { startLobbyMusic, stopLobbyMusic } from "../CouchCast/lobbyMusic.js";
+import { startLobbyMusic, stopLobbyMusic, lobbyTrackFor } from "../CouchCast/lobbyMusic.js";
 
 
 /** Creates a Temple Mix Up room (this device becomes the TV), then opens it */
-export function createMixupRoom(navigate, setIsCreatingRoom, { totalRounds = 9 } = {}) {
+export function createMixupRoom(navigate, setIsCreatingRoom, { totalRounds = 9, level = 'mixed' } = {}) {
     // We're inside a tap: the moment browsers allow fullscreen and sound to be switched on
     enterFullscreen();
     unlockVoice();
-    startLobbyMusic();
+    startLobbyMusic(lobbyTrackFor('mixup'));
     setIsCreatingRoom(true);
 
     const timeout = setTimeout(() => {
@@ -19,7 +19,7 @@ export function createMixupRoom(navigate, setIsCreatingRoom, { totalRounds = 9 }
         alert("The server is taking too long to wake up. Please try again.");
     }, 60000);
 
-    const emitCreate = () => mixupSocket.emit('createRoom', { playerName: 'Caster', totalRounds });
+    const emitCreate = () => mixupSocket.emit('createRoom', { playerName: 'Caster', totalRounds, level });
 
     mixupSocket.off('roomCreated');
     mixupSocket.once('roomCreated', ({ roomCode }) => {

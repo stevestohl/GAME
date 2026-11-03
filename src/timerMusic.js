@@ -415,6 +415,61 @@ export const SPOOKY_TIMER_TRACKS = [
 // ---------------------------------------------------------------------------------------------
 export const LOBBY_SYNTH_TRACKS = [
     {
+        // Temple Mix Up's lobby: our own sneaky spy tune. A twangy bass line creeps along under brushed drums and
+        // vibes, and muted trumpets answer a reverby surf guitar. A 16-bar loop:
+        //   bars 1-4    just the bass and the drums, tiptoeing in
+        //   bars 5-8    the guitar sneaks in
+        //   bars 9-12   the trumpets chase it
+        //   bars 13-16  the guitar comes back, with the trumpets stabbing behind it
+        id: 'secret-mission',
+        name: 'Secret Mission',
+        bpm: 126,
+        swing: 0.18,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 16;
+            const part = Math.floor(bar / 4);
+            const { reverb } = inst.hall(ctx, out);
+
+            // Am Am Dm Am | F E7 Am Am: the bass walks a two-bar creep that shifts with the chord
+            const shift = [0, 0, 5, 0, -4, -5, 0, 0][bar % 8];
+            const creep = [[0, 33], [3, 33], [6, 36], [8, 33], [10, 38], [12, 39], [14, 40]];
+            creep.forEach(([p, note]) => { if (p === pos) inst.pulse(ctx, out, t, note + 12 + shift, 0.34, 0.24); });
+            if (pos === 0 || pos === 8) inst.bass(ctx, out, t, 33 + shift, 0.34, 0.3);
+
+            // Brushes and a light hat, with a rimshot on the back beat
+            if (pos % 4 === 2) inst.hat(ctx, out, t, 0.05);
+            if (pos === 4 || pos === 12) inst.tick(ctx, out, t, 1700, 0.13);
+            inst.brush(ctx, out, t, pos % 4 === 0 ? 0.05 : 0.02);
+            if (pos === 0 && bar % 2 === 0) inst.kick(ctx, out, t, 0.22);
+
+            // Vibes on the off-beats, once things get going
+            const vibes = [[69, 72, 76], [69, 72, 76], [69, 74, 77], [69, 72, 76], [69, 72, 77], [68, 71, 76], [69, 72, 76], [69, 72, 76]][bar % 8];
+            if (part > 0 && pos === 6) vibes.forEach((note) => inst.bell(ctx, reverb, t, note, 0.035));
+
+            // The guitar: [16th in the bar, note, length in beats]
+            const GUITAR = [
+                [[0, 76, 1.5], [6, 79, 0.5], [8, 81, 1], [12, 79, 0.5], [14, 76, 0.5]],
+                [[0, 75, 1], [4, 76, 2.5]],
+                [[0, 77, 1.5], [6, 81, 0.5], [8, 84, 1], [12, 81, 0.5], [14, 77, 0.5]],
+                [[0, 76, 3], [14, 72, 0.5]],
+            ];
+            const guitar = (p) => GUITAR[bar % 4].filter(([at]) => at === p);
+            if (part === 1 || part === 3) {
+                guitar(pos).forEach(([, note, beats]) => {
+                    inst.pluck(ctx, out, t, note, 0.15);
+                    tone(ctx, reverb, t, { freq: midi(note), type: 'sawtooth', vol: 0.08, attack: 0.005, decay: beats * 0.45, filter: 1900 });
+                });
+            }
+
+            // The trumpets
+            const HORNS = [[[2, [64, 69, 72]], [5, [64, 69, 72]]], [[2, [65, 69, 72]], [8, [64, 68, 71]]], [[2, [64, 69, 72]], [5, [64, 69, 72]], [10, [65, 69, 72]]], [[0, [64, 68, 71]], [4, [64, 69, 72]]]];
+            if (part === 2 || (part === 3 && pos >= 8)) {
+                HORNS[bar % 4].forEach(([p, notes]) => { if (p === pos) inst.stab(ctx, out, t, notes, 0.075); });
+            }
+        },
+    },
+    {
         // Trivia Cast's lobby: our own tune in a misty, Celtic new-age style, with some get-up-and-go. Plucked
         // strings race along like rain under a swelling choir and a frame drum, with one soaring voice echoing
         // around a big hall. A 32-bar loop:

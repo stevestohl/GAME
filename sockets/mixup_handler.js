@@ -3,22 +3,24 @@
 //                  then everyone votes for the funniest (not their own). Most votes wins; ties all win.
 //   2. Pictionary: one player draws on their phone, the TV shows it live, everyone else
 //                  types guesses. The first right guess wins (and the drawer scores too).
-//   3. Trivia:     the trivia questions, four answers each, like Trivia Cast.
-// 9, 12 or 15 rounds: an equal number of each, played in blocks (all memes, then Pictionary, then trivia).
+//   3. Threefold:  the list topics from List Cast. Everyone writes up to three answers, and scores for every
+//                  other player who wrote the same thing (Listography's Threefold card, with no vote).
+// 9, 12 or 15 rounds: an equal number of each, played in blocks (all memes, then Pictionary, then Threefold).
 // Memes come from Imgflip's popular blank templates and Pictionary prompts from MongoDB; both cycle
 // (least-used first) so they don't repeat until every one has been played. Room codes start with "M".
 //
 // Round flow:  intro (the round's title card)
 //   meme:       meme_write -> meme_vote -> meme_results
 //   pictionary: draw -> draw_results
-//   trivia:     trivia -> trivia_results
+//   threefold:  match_write -> match_compare -> match_results
 // then scoreboard -> the next round's intro (or the final standings).
 import { newSnake, snakeEat, snakeCrash, snakePlayerGone } from "./snakeGame.js";
 import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
-import { drawTriviaQuestions } from "../db/drawCards.js";
+import { normalizeLevel } from "../db/drawCards.js";
+import { drawListCategories } from "../db/listCategories.js";
 import { pickMemes, pickPictionaryPrompts, markMemeUsed, markPromptUsed } from "../db/drawMixup.js";
-import { normalizeItem, isSameItem } from "./listMatching.js";
+import { normalizeItem, isSameItem, compareLists, getCard } from "./listMatching.js";
 import { startRoomJanitor } from "./roomJanitor.js";
 
 const activeMixupRooms = {};
@@ -29,7 +31,7 @@ export const getMixupRoom = (roomCode) => activeMixupRooms[roomCode] || null;
 // --- Game settings ---
 export const ROUND_OPTIONS = [9, 12, 15];
 const MIN_PLAYERS = 3;
-const ROUND_TYPES = ['meme', 'draw', 'trivia'];
+const ROUND_TYPES = ['meme', 'draw', 'match'];
 
 const SECOND = 1000;
 const INTRO_TIME = 5 * SECOND;          // the round's title card
@@ -38,18 +40,21 @@ const MEME_VOTE_TIME = 30 * SECOND;
 const MEME_RESULTS_TIME = 10 * SECOND;
 const DRAW_TIME = 80 * SECOND;
 const DRAW_RESULTS_TIME = 8 * SECOND;
-const TRIVIA_TIME = 20 * SECOND;
-const TRIVIA_RESULTS_TIME = 8 * SECOND;
+const MATCH_COMPARE_TIME = 9 * SECOND;  // the answers light up one after another
+const MATCH_RESULTS_TIME = 8 * SECOND;
 const SCOREBOARD_TIME = 7 * SECOND;
 const GRACE = 1500;                     // a last-second tap still counts
 
 const MEME_WIN_POINTS = 100;            // every caption tied for the most votes
 const DRAW_GUESS_POINTS = 100;          // the first right guess
 const DRAW_DRAWER_POINTS = 50;          // the drawer, when someone guesses it
-const TRIVIA_POINTS = 100;
+const MATCH_POINTS = 50;                // for every other player who wrote your answer
 
 const MAX_CAPTION = 120;
 const MAX_GUESS = 40;
+const MAX_ANSWER = 40;
+const MATCH_CARD = getCard('threefold');
+const MATCH_WRITE_TIME = MATCH_CARD.writingSeconds * SECOND;
 const MAX_DRAW_POINTS = 25000;          // a whole drawing (keeps memory in check)
 
 const randomToken = () => Math.random().toString(36).slice(2, 10);
@@ -68,7 +73,7 @@ const isRightGuess = (guess, prompt) => {
 };
 
 // What the screens are allowed to see. Captions stay anonymous until the results,
-// the Pictionary word is only revealed afterwards, and the trivia answer only at the reveal.
+// the Pictionary word is only revealed afterwards, and everyone's answers only once the writing's over.
 const getSafeRoom = (room) => {
     if (!room) return null;
     const state = room.gameState;
@@ -87,10 +92,9 @@ const getSafeRoom = (room) => {
             isConnected: p.isConnected,
             joinOrder: p.joinOrder,
             roundPoints: p.roundPoints || 0,
-            hasSubmitted: !!p.hasSubmitted,   // caption written / trivia answered
+            hasSubmitted: !!p.hasSubmitted,   // caption written / answers locked in
+            itemCount: (p.matchList || []).filter(Boolean).length,
             hasVoted: !!p.hasVoted,
-            lastCorrect: state === 'trivia_results' ? !!p.lastCorrect : null,
-            lastPoints: state === 'trivia_results' ? (p.lastCorrect ? TRIVIA_POINTS : 0) : 0,
         };
     });
 
@@ -110,9 +114,11 @@ const getSafeRoom = (room) => {
             roundView.guessedBy = round.guessedById ? room.players[round.guessedById]?.name || round.guessedByName : null;
             if (state === 'draw_results' || state === 'scoreboard') roundView.word = round.prompt.text;
         }
-        if (round.type === 'trivia' && state !== 'intro') {
-            roundView.question = { text: round.question.question, category: round.question.category, options: round.options };
-            if (state === 'trivia_results' || state === 'scoreboard') roundView.correctAnswer = round.question.correct_answer;
+        if (round.type === 'match' && state !== 'intro') {
+            roundView.topic = round.topic;
+            roundView.listSize = MATCH_CARD.listSize;
+            roundView.pointsPerItem = MATCH_POINTS;
+            if (state === 'match_compare' || state === 'match_results' || state === 'scoreboard') roundView.board = round.board;
         }
     }
 
@@ -176,7 +182,7 @@ export default function registerMixupNamespace(MNS) {
             caption: player.caption || '',
             myCaptionId: round.type === 'meme' ? (round.captions || []).find((c) => c.playerId === player.id)?.id || null : null,
             vote: player.vote || null,
-            triviaAnswer: player.triviaAnswer || null,
+            matchList: player.matchList || [],
             drawWord: round.type === 'draw' && round.drawerId === player.id && room.gameState === 'draw' ? round.prompt.text : null,
         });
     };
@@ -184,10 +190,10 @@ export default function registerMixupNamespace(MNS) {
     // --- Plan the whole game: the right number of each round type, in blocks ---
     const planGame = async (room) => {
         const each = room.totalRounds / 3;
-        const [memes, prompts, questions] = await Promise.all([
+        const [memes, prompts, topics] = await Promise.all([
             pickMemes(each),
-            pickPictionaryPrompts(each),
-            drawTriviaQuestions('core', each),
+            pickPictionaryPrompts(each, room.level),
+            drawListCategories('core', each),
         ]);
         const plan = [];
         ROUND_TYPES.forEach((type) => {
@@ -195,7 +201,7 @@ export default function registerMixupNamespace(MNS) {
                 const base = { type, typeNumber: i + 1, typeCount: each };
                 if (type === 'meme') plan.push({ ...base, meme: memes[i % Math.max(1, memes.length)] });
                 if (type === 'draw') plan.push({ ...base, prompt: prompts[i % Math.max(1, prompts.length)] });
-                if (type === 'trivia') plan.push({ ...base, question: questions[i % Math.max(1, questions.length)] });
+                if (type === 'match') plan.push({ ...base, topic: topics[i % Math.max(1, topics.length)] });
             }
         });
         return plan;
@@ -214,8 +220,7 @@ export default function registerMixupNamespace(MNS) {
             p.hasSubmitted = false;
             p.vote = null;
             p.hasVoted = false;
-            p.triviaAnswer = null;
-            p.lastCorrect = false;
+            p.matchList = [];
         });
 
         // Pictionary: the next player in turn draws (everyone gets a go)
@@ -255,11 +260,9 @@ export default function registerMixupNamespace(MNS) {
             room.endTime = Date.now() + DRAW_TIME;
             schedule(roomCode, room, 'draw', DRAW_TIME + GRACE, () => endDrawing(roomCode));
         } else {
-            round.options = [...round.question.incorrect_answers.flat(), round.question.correct_answer]
-                .sort(() => Math.random() - 0.5);
-            room.gameState = 'trivia';
-            room.endTime = Date.now() + TRIVIA_TIME;
-            schedule(roomCode, room, 'trivia', TRIVIA_TIME + GRACE, () => endTrivia(roomCode));
+            room.gameState = 'match_write';
+            room.endTime = Date.now() + MATCH_WRITE_TIME;
+            schedule(roomCode, room, 'match_write', MATCH_WRITE_TIME + GRACE, () => compareAnswers(roomCode));
         }
         broadcast(roomCode);
 
@@ -339,21 +342,36 @@ export default function registerMixupNamespace(MNS) {
         broadcast(roomCode);
     };
 
-    // ===================== TRIVIA =====================
-    const endTrivia = (roomCode) => {
+    // ===================== THREEFOLD =====================
+    // Same rules as List Cast's Threefold card, minus the vote: every other player who wrote your answer scores you points
+    const compareAnswers = (roomCode) => {
         const room = activeMixupRooms[roomCode];
-        if (!room || room.gameState !== 'trivia') return;
+        if (!room || room.gameState !== 'match_write') return;
         const round = room.round;
         clearTimer(room);
 
-        Object.values(room.players).forEach((p) => {
-            p.lastCorrect = !!p.triviaAnswer && p.triviaAnswer === round.question.correct_answer;
-            if (p.lastCorrect) { p.score += TRIVIA_POINTS; p.roundPoints += TRIVIA_POINTS; }
+        const writers = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder);
+        round.board = compareLists(writers.map((p) => ({ seat: p.joinOrder, name: p.name, list: p.matchList || [] })), MATCH_CARD.id);
+        round.board.forEach((entry) => {
+            const player = writers.find((p) => p.joinOrder === entry.seat);
+            entry.points = 0;
+            entry.items.forEach((item) => {
+                item.counts = item.status === 'scored';
+                entry.points += (item.points || 0) * MATCH_POINTS;
+            });
+            if (player) {
+                player.score += entry.points;
+                player.roundPoints += entry.points;
+            }
         });
 
-        room.gameState = 'trivia_results';
+        room.gameState = 'match_compare';
         room.endTime = null;
-        schedule(roomCode, room, 'trivia_results', TRIVIA_RESULTS_TIME, () => showScoreboard(roomCode));
+        schedule(roomCode, room, 'match_compare', MATCH_COMPARE_TIME, () => {
+            room.gameState = 'match_results';
+            schedule(roomCode, room, 'match_results', MATCH_RESULTS_TIME, () => showScoreboard(roomCode));
+            broadcast(roomCode);
+        });
         broadcast(roomCode);
     };
 
@@ -387,7 +405,7 @@ export default function registerMixupNamespace(MNS) {
             // Only players with someone else's caption to vote for need to vote
             const canVote = here.filter((p) => room.round.captions.some((c) => c.playerId !== p.id));
             if (canVote.every((p) => p.hasVoted)) showMemeResults(roomCode);
-        } else if (room.gameState === 'trivia' && here.every((p) => p.hasSubmitted)) endTrivia(roomCode);
+        } else if (room.gameState === 'match_write' && here.every((p) => p.hasSubmitted)) compareAnswers(roomCode);
     };
 
     // --- A phone (or the TV) dropped out of a room ---
@@ -456,7 +474,7 @@ export default function registerMixupNamespace(MNS) {
             p.hasSubmitted = false;
             p.vote = null;
             p.hasVoted = false;
-            p.triviaAnswer = null;
+            p.matchList = [];
             p.lastCorrect = false;
         });
         const leader = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder)[0];
@@ -514,6 +532,7 @@ export default function registerMixupNamespace(MNS) {
                 gameId: randomUUID(),
                 gameState: 'lobby',
                 totalRounds,
+                level: normalizeLevel(data.level),
                 currentRound: 1,
                 plan: [],
                 round: null,
@@ -750,13 +769,23 @@ export default function registerMixupNamespace(MNS) {
             broadcast(roomCode);
         });
 
-        // ---------- Trivia: an answer ----------
-        socket.on('submit_answer', ({ roomCode, option } = {}) => {
+        // ---------- Threefold: answers, saved as they're typed, then locked in ----------
+        const saveAnswers = (room, player, items) => {
+            player.matchList = (Array.isArray(items) ? items : []).slice(0, MATCH_CARD.listSize)
+                .map((item) => (typeof item === 'string' ? item.trim().slice(0, MAX_ANSWER) : ''));
+        };
+        socket.on('update_answers', ({ roomCode, items } = {}) => {
             const room = activeMixupRooms[roomCode];
             const player = room?.players[socket.id];
-            if (!room || !player || player.isCaster || room.gameState !== 'trivia' || player.hasSubmitted) return;
-            if (!room.round.options.includes(option)) return;
-            player.triviaAnswer = option;
+            if (!room || !player || player.isCaster || room.gameState !== 'match_write' || player.hasSubmitted) return;
+            saveAnswers(room, player, items);
+            broadcast(roomCode);
+        });
+        socket.on('submit_answers', ({ roomCode, items } = {}) => {
+            const room = activeMixupRooms[roomCode];
+            const player = room?.players[socket.id];
+            if (!room || !player || player.isCaster || room.gameState !== 'match_write' || player.hasSubmitted) return;
+            saveAnswers(room, player, items);
             player.hasSubmitted = true;
             broadcast(roomCode);
             checkEveryoneDone(roomCode);

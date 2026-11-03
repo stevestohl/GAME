@@ -3,7 +3,7 @@ import Temple_Trivia from "../models/Temple_Trivia.js";
 
 // Cleans up a deck name coming from the client; anything unusable becomes 'core'
 // 🎚️ Trivia levels: which to try, in order, when a level runs short ('mixed' takes anything)
-const LEVEL_ORDER = {
+export const LEVEL_ORDER = {
     easy: ['easy', 'medium', 'hard'],
     medium: ['medium', 'easy', 'hard'],
     hard: ['hard', 'medium', 'easy'],

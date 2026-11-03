@@ -3,7 +3,7 @@ import { Card, Button, ProgressBar } from 'react-bootstrap';
 import { mixupSocket as socket } from '../../socket.js';
 import { speak, stopVoice } from '../../voice.js';
 import { DrawingView } from './DrawingCanvas.jsx';
-import { TriviaCastQuestionTV } from '../TriviaCast/TriviaCastScreensTV.jsx';
+import ListBoard from '../Lists/ListBoard.jsx';
 import '../../styles/mixup.css';
 
 // 🎙️ What the host voice says while the rules are on screen
@@ -11,7 +11,7 @@ export const MIXUP_RULES_NARRATION = [
     "Welcome to Temple Mix Up! Three games in one.",
     "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.",
     "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.",
-    "And to finish, trivia. Tap the right answer before time runs out.",
+    "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group.",
     "Let's mix it up!",
 ];
 
@@ -21,7 +21,7 @@ const NARRATION_GRACE_SECONDS = 20;
 export const ROUND_LOOKS = {
     meme: { icon: '🖼️', title: 'Meme It!', blurb: 'Write the funniest caption on your phone.' },
     draw: { icon: '✏️', title: 'Draw It!', blurb: 'One draws, everyone else guesses. First right guess wins!' },
-    trivia: { icon: '❓', title: 'Know It!', blurb: 'Tap the right answer before time runs out.' },
+    match: { icon: '🤝', title: 'Match It!', blurb: 'Write three answers, and match as many people as you can.' },
 };
 
 export function useCountdown(endTime) {
@@ -104,7 +104,7 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
             <div className="d-flex flex-column h-100 p-3 pb-4 w-100">
                 <h2 className="fullscreen-gameplay-header text-center">How To Play Temple Mix Up!</h2>
                 <div className="mx-rules-grid flex-grow-1" style={{ minHeight: 0 }}>
-                    {['meme', 'draw', 'trivia'].map((type, i) => (
+                    {['meme', 'draw', 'match'].map((type, i) => (
                         <div key={type} className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100 mx-rule-card">
                                 <Card.Body className="d-flex flex-column align-items-center text-center">
@@ -114,7 +114,7 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
                                     <div className="mx-rule-text">
                                         {type === 'meme' && <>Caption the meme on your phone, then vote for the funniest (not your own). <strong>Most votes: +100.</strong> Ties all score.</>}
                                         {type === 'draw' && <>One player draws on their phone, the rest type guesses. <strong>First right guess: +100</strong>, and the artist gets <strong>+50</strong>.</>}
-                                        {type === 'trivia' && <>Tap the right answer before the clock runs out. <strong>Right answer: +100.</strong></>}
+                                        {type === 'match' && <>Write up to three answers on your phone. <strong>+50 for every player who wrote the same thing.</strong></>}
                                     </div>
                                 </Card.Body>
                             </Card>
@@ -274,19 +274,54 @@ export function DrawTV({ room }) {
 }
 
 // ======================================================================================
-// ❓ Trivia: Trivia Cast's own question screen, fed this round's question
+// 🤝 Threefold: everyone writes, then the answers that match light up
 // ======================================================================================
-export function TriviaTV({ room }) {
+export function MatchTV({ room }) {
     const round = room.round;
-    const players = {};
-    Object.values(room.players).forEach((p) => { players[p.id] = { ...p, hasAnswered: p.hasSubmitted }; });
-    const view = {
-        ...room,
-        players,
-        currentRound: round.typeNumber,
-        totalRounds: round.typeCount,
-        question: round.question,
-        correctAnswer: round.correctAnswer || null,
-    };
-    return <TriviaCastQuestionTV room={view} />;
+    const state = room.gameState;
+    const players = Object.values(room.players).filter((p) => !p.isCaster && p.isConnected);
+    const doneCount = players.filter((p) => p.hasSubmitted).length;
+    const isWriting = state === 'match_write';
+
+    return (
+        <div className="fullscreen-gameplay-container">
+            <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: '1150px' }}>
+                <h2 className="fullscreen-gameplay-header mb-0">Threefold {round.typeNumber} of {round.typeCount}</h2>
+                <div className="mx-match-topic">
+                    <span className="mx-match-label">The list</span>
+                    {round.topic}
+                </div>
+                {isWriting ? (
+                    <div className="flex-grow-1 d-flex flex-column justify-content-center" style={{ minHeight: 0 }}>
+                        <div className="mx-strip text-center mb-3">Write up to 3 answers on your phone. Match as many people as you can!</div>
+                        <div className="ls-writers">
+                            {players.map((p) => (
+                                <div key={p.id} className={`ls-writer ${p.hasSubmitted ? 'done' : ''}`}>
+                                    <span>{p.hasSubmitted ? '✅' : '✏️'} {p.name}</span>
+                                    <span className="ls-writer-dots">
+                                        {[0, 1, 2].map((i) => <span key={i} className={`ls-writer-dot ${i < p.itemCount ? 'filled' : ''}`} />)}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="flex-grow-1" style={{ minHeight: 0 }}>
+                        <ListBoard
+                            board={round.board || []}
+                            phase={state === 'match_compare' ? 'compare' : 'results'}
+                            variant="tv"
+                            pointsPerItem={round.pointsPerItem}
+                            listSize={round.listSize}
+                        />
+                    </div>
+                )}
+                {isWriting && (
+                    <div className="flex-shrink-0" style={{ paddingRight: '7rem' }}>
+                        <ClockStrip endTime={room.endTime} left={`${doneCount} of ${players.length} done`} />
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 }

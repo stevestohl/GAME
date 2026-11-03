@@ -171,6 +171,39 @@ const ICONS = {
         <path d="M50 8 V92 M14 29 L86 71 M14 71 L86 29 M50 22 L40 12 M50 22 L60 12 M50 78 L40 88 M50 78 L60 88 M24 34 L11 38 M24 34 L20 21 M76 66 L89 62 M76 66 L80 79 M24 66 L11 62 M24 66 L20 79 M76 34 L89 38 M76 34 L80 21" />
     ),
 
+    // 🕵️ Spies
+    fedora: (
+        <>
+            <path d="M6 66 Q50 82 94 66 Q74 60 72 56 L28 56 Q26 60 6 66 Z" />
+            <path d="M28 56 Q24 26 38 22 Q50 28 62 22 Q76 26 72 56 Z" />
+            <path d="M27 48 Q50 56 73 48" className="gt-icon-dot" />
+        </>
+    ),
+    magnifier: (
+        <>
+            <circle cx="42" cy="42" r="26" />
+            <path d="M62 62 L88 88" />
+            <path d="M28 34 Q32 24 42 24" />
+        </>
+    ),
+    shades: (
+        <>
+            <path d="M6 38 H94" />
+            <path d="M10 38 Q10 64 28 64 Q44 64 44 38 Z" className="gt-icon-dot" />
+            <path d="M56 38 Q56 64 72 64 Q90 64 90 38 Z" className="gt-icon-dot" />
+        </>
+    ),
+    briefcase: (
+        <>
+            <rect x="10" y="34" width="80" height="50" rx="6" />
+            <path d="M36 34 V24 a4 4 0 0 1 4 -4 H60 a4 4 0 0 1 4 4 V34" />
+            <rect x="44" y="50" width="12" height="12" rx="2" className="gt-icon-dot" />
+        </>
+    ),
+    keyhole: (
+        <path d="M50 12 a22 22 0 0 1 12 40 L72 88 H28 L38 52 A22 22 0 0 1 50 12 Z" />
+    ),
+
     // 🎃 Halloween
     pumpkin: (
         <>
@@ -250,6 +283,17 @@ const HOLIDAY_FLOATERS = [
     { icon: 'gift',      top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 10 },
 ];
 
+const SPY_FLOATERS = [
+    { icon: 'fedora',    top: '12%', left: '3%',  size: 170, dur: 38, delay: 0,   rot: -10 },
+    { icon: 'magnifier', top: '58%', left: '79%', size: 170, dur: 44, delay: -8,  rot: 10 },
+    { icon: 'shades',    top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: -8 },
+    { icon: 'keyhole',   top: '8%',  left: '82%', size: 110, dur: 48, delay: -20, rot: -8 },
+    { icon: 'briefcase', top: '42%', left: '90%', size: 80,  dur: 30, delay: -5,  rot: 12 },
+    { icon: 'magnifier', top: '38%', left: '-1%', size: 90,  dur: 42, delay: -26, rot: 6 },
+    { icon: 'fedora',    top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: 10 },
+    { icon: 'shades',    top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: -6 },
+];
+
 const TRIVIA_FLOATERS = [
     { icon: 'question',   top: '12%', left: '4%',  size: 170, dur: 38, delay: 0,   rot: -12 },
     { icon: 'castScreen', top: '60%', left: '78%', size: 190, dur: 44, delay: -8,  rot: 12 },
@@ -289,6 +333,7 @@ const THEMES = {
     couchcast: COUCHCAST_FLOATERS,
     halloween: HALLOWEEN_FLOATERS,
     holiday: HOLIDAY_FLOATERS,
+    spy: SPY_FLOATERS,
     trivia: TRIVIA_FLOATERS,
     animals: ANIMALS_FLOATERS,
     lists: LISTS_FLOATERS,

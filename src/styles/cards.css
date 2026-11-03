@@ -243,6 +243,12 @@
   background-size: 400% 400%;
 }
 
+/* 🕵️ The spy lobby: the shimmer runs amber and black */
+[data-gt-theme="spy"] .shining-border-wrapper::before {
+  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);
+  background-size: 400% 400%;
+}
+
 /* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */
 [data-gt-theme="halloween"] .shining-border-wrapper::before {
   background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);
@@ -1023,6 +1029,18 @@
     --gt-ice:      #eefff5;
     --gt-bg-accent: #d6333c;
     --gt-bg-vignette: rgba(3, 24, 16, 0.5);
+}
+
+/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */
+.gt-bg.theme-spy {
+    --gt-navy:     #06070d;
+    --gt-blue-800: #10131f;
+    --gt-blue-500: #1d2233;
+    --gt-blue-400: #2b3147;
+    --gt-blue-300: #6a7290;
+    --gt-ice:      #e8e6da;
+    --gt-bg-accent: #d6a83c;
+    --gt-bg-vignette: rgba(0, 0, 0, 0.6);
 }
 
 /* 🐾 Animals deck: same recipe, forest-green palette */
@@ -2480,6 +2498,20 @@ html.cast-screen {
 .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }
 @keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }
 @keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }
+
+/* 🕵️ Temple Mix Up's lobby show (SpyShow.jsx): puffs of smoke, shifty eyes and a very careful walk */
+.cc-crew .spy-smoke { opacity: 0; pointer-events: none; }
+.cc-crew .spy-smoke.is-on { animation: spy-puff 0.65s ease-out; }
+@keyframes spy-puff {
+  0% { opacity: 0; transform-origin: 0 0; }
+  18% { opacity: 1; }
+  60% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }
+@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }
+.cc-crew .spy-tiptoe.crew-walking .crew-leg-l { animation-duration: 0.5s; }
+.cc-crew .spy-tiptoe.crew-walking .crew-leg-r { animation-duration: 0.5s; }
 
 /* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */
 .qf-finale {

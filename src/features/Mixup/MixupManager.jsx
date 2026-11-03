@@ -7,14 +7,15 @@ import useWakeLock from '../../hooks/useWakeLock.js';
 import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
-import { startLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic } from '../../timerMusic.js';
 import { scoreRecap } from '../../scoreRecap.js';
 
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
+import CouchCastCasterControls from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
-import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, TriviaTV, MIXUP_RULES_NARRATION, ROUND_LOOKS } from './MixupScreensTV.jsx';
+import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, MatchTV, MIXUP_RULES_NARRATION, ROUND_LOOKS } from './MixupScreensTV.jsx';
 import MixupPlayer from './MixupPlayer.jsx';
 import { SnakeCredits } from './SnakeSnack.jsx';
 import { usePlayerSounds, useTvChime } from '../../playerSounds.js';
@@ -48,8 +49,10 @@ const introLine = (room) => {
     const round = room.round;
     if (round.type === 'meme') return `Round ${room.currentRound}. Meme time! Write the funniest caption you can.`;
     if (round.type === 'draw') return `Round ${room.currentRound}. Pictionary! ${round.drawerName}, you're drawing. Everyone else, get guessing!`;
-    return `Round ${room.currentRound}. Trivia time!`;
+    return `Round ${room.currentRound}. Threefold! Match as many people as you can.`;
 };
+
+const lobbyTrack = lobbyTrackFor('mixup');
 
 function MixupTV({ roomCode, casterName }) {
     const navigate = useNavigate();
@@ -58,7 +61,7 @@ function MixupTV({ roomCode, casterName }) {
     const gameState = room?.gameState;
 
     // 🎨 Background follows the block of rounds, and covers the nav bar on the TV
-    useSetBackgroundTheme(mixupTheme(room?.round?.type), true);
+    useSetBackgroundTheme(mixupTheme(room?.round?.type, !room || room.gameState === 'lobby'), true);
     // 🔊 Each player's own sound: when they join, and each time they answer
     usePlayerSounds(room?.roomCode, room?.players);
     // 🔔 Voting is open: chime on the TV, where everyone hears it
@@ -112,8 +115,7 @@ function MixupTV({ roomCode, casterName }) {
     else if (gameState === 'meme_vote') voiceMoment = `vote-${n}`;
     else if (gameState === 'meme_results') voiceMoment = `meme-results-${n}`;
     else if (gameState === 'draw_results') voiceMoment = `draw-results-${n}`;
-    else if (gameState === 'trivia' && room.round?.question) voiceMoment = `trivia-${n}`;
-    else if (gameState === 'trivia_results') voiceMoment = `trivia-results-${n}`;
+    else if (gameState === 'match_write' && room.round?.topic) voiceMoment = `match-${n}`;
     else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : `scores-${n}`;
 
     useEffect(() => {
@@ -133,10 +135,8 @@ function MixupTV({ roomCode, casterName }) {
             else speak('Nobody wrote a caption that time!', code);
         } else if (voiceMoment.startsWith('draw-results')) {
             speak(round.guessedBy ? `${round.guessedBy} got it! It was ${round.word}.` : `Time's up! It was ${round.word}.`, code);
-        } else if (voiceMoment.startsWith('trivia-results')) {
-            speak(`The answer is ${round.correctAnswer}.`, code);
-        } else if (voiceMoment.startsWith('trivia')) {
-            speak(round.question.text, code);
+        } else if (voiceMoment.startsWith('match')) {
+            speak(`The list is: ${round.topic}.`, code);
         } else if (voiceMoment === 'game-over') {
             // 🎬 The final scores get read, then the lobby game's credits roll
             let isCurrent = true;
@@ -155,7 +155,7 @@ function MixupTV({ roomCode, casterName }) {
     }, [voiceMoment]);
 
     // ⏳ Timer music while people are writing, voting, drawing or answering
-    const isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'trivia'].includes(gameState);
+    const isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
     useTimerMusic(isTimerPhase, { endTime: room?.endTime, key: `${gameState}-${n}` });
 
     // Fetch the rules narration while everyone is still joining, so it starts instantly
@@ -173,14 +173,14 @@ function MixupTV({ roomCode, casterName }) {
     }, []);
     const handleTurnSoundOn = () => {
         unlockVoice();
-        if (gameState === 'lobby') startLobbyMusic();
+        if (gameState === 'lobby') startLobbyMusic(lobbyTrack);
         setIsSoundLocked(false);
     };
 
     // 🔁 End of the game: the caster picks what happens next
     const handlePlayAgain = () => {
         setShowCredits(false);
-        startLobbyMusic();
+        startLobbyMusic(lobbyTrack);
         socket.emit('playAgain', { roomCode: room?.roomCode });
     };
     const handleGoHome = () => {
@@ -204,7 +204,7 @@ function MixupTV({ roomCode, casterName }) {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
+                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} spyShow scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
             case 'rules':
                 return <MixupRulesTV roomCode={room.roomCode} totalRounds={room.totalRounds} />;
             case 'intro':
@@ -216,13 +216,14 @@ function MixupTV({ roomCode, casterName }) {
             case 'draw':
             case 'draw_results':
                 return <DrawTV room={room} />;
-            case 'trivia':
-            case 'trivia_results':
-                return <TriviaTV room={room} />;
+            case 'match_write':
+            case 'match_compare':
+            case 'match_results':
+                return <MatchTV room={room} />;
             case 'scoreboard': {
                 // Rounds come in blocks of each type: work out what's next from the round number
                 const each = room.totalRounds / 3;
-                const nextLook = ROUND_LOOKS[['meme', 'draw', 'trivia'][Math.floor(room.currentRound / each)]];
+                const nextLook = ROUND_LOOKS[['meme', 'draw', 'match'][Math.floor(room.currentRound / each)]];
                 return (
                     <CouchCastScoreboardTV
                         players={playersArray}
@@ -247,6 +248,7 @@ function MixupTV({ roomCode, casterName }) {
             )}
             {renderGamePhase()}
             {showCredits && gameState === 'scoreboard' && <SnakeCredits snake={room?.snake} onDone={() => setShowCredits(false)} />}
+            {room && <CouchCastCasterControls />}
             {isSoundLocked && (
                 <button type="button" className="cc-sound-button" onClick={handleTurnSoundOn}>
                     🔇 Tap to turn sound back on

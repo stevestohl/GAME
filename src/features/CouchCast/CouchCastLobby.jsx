@@ -7,11 +7,13 @@ import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
 import Snowfall from './Snowfall.jsx';
 import QuizShow from '../TriviaCast/QuizShow.jsx';
+import SpyShow from '../Mixup/SpyShow.jsx';
 
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's decks;
 // `crewTheme` says which cast, and the Holiday deck also gets snow). `scoreFor`: a player's lobby game score, if the game has one
 // `quizShow`: game show contestants take the couch's spot under the players card (Trivia Cast)
-export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, quizShow = false }) {
+// `spyShow`: secret agents in ever-changing disguises do the same (Temple Mix Up)
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, quizShow = false, spyShow = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
   const screenRef = useRef(null);   // the QR card: the crew's "TV"
@@ -41,14 +43,15 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
   // A little smaller when the list goes two to a row above the couch, so more rows fit
-  const hasStage = crew || quizShow;   // something lives under the players card
+  const hasStage = crew || quizShow || spyShow;   // something lives under the players card
   const avatarSize = hasStage && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
 
   return (
- <div className={`fullscreen-gameplay-container cc-lobby ${crew ? `has-crew crew-${crewTheme}` : ''} ${quizShow ? 'has-crew' : ''}`}>
+ <div className={`fullscreen-gameplay-container cc-lobby ${crew ? `has-crew crew-${crewTheme}` : ''} ${quizShow || spyShow ? 'has-crew' : ''}`}>
   {crew && crewTheme === 'holiday' && !isPortrait && <Snowfall />}
+  {spyShow && !isPortrait && <SpyShow stageRef={stageRef} screenRef={screenRef} playerCount={activePlayers.length} />}
   {quizShow && !isPortrait && <QuizShow stageRef={stageRef} screenRef={screenRef} playerCount={activePlayers.length} />}
   {crew && !isPortrait && <CouchCrew stageRef={stageRef} screenRef={screenRef} qrRef={qrRef} playerCount={activePlayers.length} theme={crewTheme} />}
   

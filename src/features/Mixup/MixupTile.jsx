@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * 🎪 Game tile for Temple Mix Up, drawn in code to match the other cast tiles: a blue glass square
- * with the three round types on it (a meme picture, a pencil and a question mark) and the name.
+ * with the three round types on it (a meme picture, a pencil and a numbered list) and the name.
  */
 export default function MixupTile({ className = 'w-100 h-100', style }) {
     return (
@@ -23,10 +23,12 @@ export default function MixupTile({ className = 'w-100 h-100', style }) {
                 <path d="M92 92 L128 44 L138 52 L102 100 L90 104 Z" />
                 <path d="M122 52 L132 60" strokeWidth="4" />
                 <path d="M84 116 q8 -8 14 0 t14 0" strokeWidth="4" />
-                {/* A question mark */}
-                <path d="M152 52 q0 -14 14 -14 q14 0 14 13 q0 10 -12 15 q-3 2 -3 9" />
+                {/* A list of three */}
+                <path d="M160 48 H184 M160 68 H184 M160 88 H184" />
             </g>
-            <circle cx="165" cy="92" r="4" fill="#fff" />
+            <circle cx="150" cy="48" r="4" fill="#fff" />
+            <circle cx="150" cy="68" r="4" fill="#fff" />
+            <circle cx="150" cy="88" r="4" fill="#fff" />
             <text x="100" y="152" textAnchor="middle" fill="#fff" fontSize="25" fontWeight="700" fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
                 Temple
             </text>

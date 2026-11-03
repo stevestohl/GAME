@@ -236,7 +236,7 @@ export default function GameCastHome() {
                                     hidden={isGameHidden('mixup')}
                                     title="Temple Mix Up!"
                                     players="3+ players"
-                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then a trivia showdown."
+                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
                                 >
                                     <Button
                                         variant="primary"

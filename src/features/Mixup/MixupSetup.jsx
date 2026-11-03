@@ -3,7 +3,7 @@ import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import MixupTile from './MixupTile.jsx';
 import { createMixupRoom } from './mixupCreate.js';
-import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
 
 export const MIXUP_ROUND_OPTIONS = [9, 12, 15];
@@ -15,12 +15,12 @@ export default function MixupSetup() {
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(MIXUP_ROUND_OPTIONS[0]);
+    const [level, setLevel] = useState(DEFAULT_LEVEL);
 
     useEffect(() => {
         document.body.style.overflow = 'unset';
         document.body.classList.remove('modal-open');
         document.body.style.paddingRight = '';
-        preloadLobbyMusic();
     }, []);
 
     const each = totalRounds / 3;
@@ -44,7 +44,7 @@ export default function MixupSetup() {
                                     </div>
                                     <div className="small text-secondary lh-sm">
                                         Three games in one: caption a meme and vote for the funniest, draw and guess
-                                        Pictionary-style, then a trivia showdown. Cast one extra device to the TV as the main screen.
+                                        Pictionary-style, then match your friends' answers in Threefold. Cast one extra device to the TV as the main screen.
                                     </div>
                                 </Col>
                             </Row>
@@ -66,15 +66,24 @@ export default function MixupSetup() {
                     />
 
                     <p className="small text-muted text-center mt-2 mb-3">
-                        🖼️ {each} meme rounds, then ✏️ {each} Pictionary, then ❓ {each} trivia.
+                        🖼️ {each} meme rounds, then ✏️ {each} Pictionary, then 🤝 {each} Threefold.
                     </p>
+
+                    <div className="d-flex align-items-center mb-2">
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Hard to Draw?</span>
+                        <hr className="flex-grow-1 my-0 opacity-25" />
+                    </div>
+
+                    <LevelPicker value={level} onChange={setLevel} disabled={isCreatingRoom} />
+                    <div className="mb-3" />
 
                     <Button
                         variant="primary"
                         size="lg"
                         className="w-100 fw-bold py-3 shadow-sm"
                         disabled={isCreatingRoom}
-                        onClick={() => createMixupRoom(navigate, setIsCreatingRoom, { totalRounds })}
+                        onClick={() => createMixupRoom(navigate, setIsCreatingRoom, { totalRounds, level })}
                     >
                         Start a Mix Up room
                     </Button>

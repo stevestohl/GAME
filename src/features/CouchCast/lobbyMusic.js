@@ -112,6 +112,7 @@ const TRACKS = {
     triviaCast: makeSynthTrack('silver-rain'),                // Trivia Cast
     halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),   // any game played with a Halloween deck
     holiday: makeSynthTrack('holiday-medley'),                // Couch Cast's Holiday deck
+    mixup: makeSynthTrack('secret-mission'),                  // Temple Mix Up
 };
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song, the Holiday deck its carols,
@@ -122,6 +123,7 @@ export function lobbyTrackFor(game, expansion) {
     if (game === 'couchCast') return 'couchCast';
     if (game === 'listCast') return 'listCast';
     if (game === 'triviaCast') return 'triviaCast';
+    if (game === 'mixup') return 'mixup';
     return 'default';
 }
 

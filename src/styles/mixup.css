@@ -221,3 +221,20 @@
 @media (prefers-reduced-motion: reduce) {
     .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }
 }
+
+/* 🤝 Threefold */
+.mx-match-topic {
+    margin: 1vh 0;
+    padding: clamp(0.4rem, 2vh, 1rem) 1rem;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 800;
+    font-size: clamp(1.2rem, 6vh, 2.8rem);
+    line-height: 1.15;
+    color: #fff;
+    background: rgba(10, 18, 60, 0.55);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
+.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }
+.mx-phone-topic span { font-size: 0.62rem; }
