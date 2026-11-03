@@ -79,6 +79,22 @@ const noise = (ctx, out, t, { vol = 0.1, decay = 0.05, type = 'highpass', freq =
     src.stop(t + decay + 0.05);
 };
 
+// The sound of a big room: two seconds and a bit of fading noise (one for each ear), kept for each audio context
+const hallSounds = new WeakMap();
+const getHallSound = (ctx) => {
+    let sound = hallSounds.get(ctx);
+    if (sound) return sound;
+    const seconds = 2.6;
+    sound = ctx.createBuffer(2, Math.floor(ctx.sampleRate * seconds), ctx.sampleRate);
+    for (let ear = 0; ear < 2; ear++) {
+        const data = sound.getChannelData(ear);
+        for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) ** 3 * 0.35;
+    }
+    hallSounds.set(ctx, sound);
+    return sound;
+};
+const halls = new WeakMap();   // one hall per song playing
+
 const inst = {
     // A wooden clock "tick" (high) or "tock" (low)
     tick: (ctx, out, t, freq = 2000, vol = 0.25) => {
@@ -119,6 +135,105 @@ const inst = {
     bell: (ctx, out, t, note, vol = 0.12) => {
         tone(ctx, out, t, { freq: midi(note), vol, decay: 1.6 });
         tone(ctx, out, t, { freq: midi(note) * 2.76, vol: vol * 0.3, decay: 0.8 });
+    },
+    // ⛪ A big soft hall with a long echo, for the lobby song below. Everything sent here washes back into `out`.
+    hall: (ctx, out) => {
+        let hall = halls.get(out);
+        if (hall) return hall;
+        const reverb = ctx.createConvolver();
+        reverb.buffer = getHallSound(ctx);
+        const level = ctx.createGain();
+        level.gain.value = 0.7;
+        reverb.connect(level);
+        level.connect(out);
+        const delay = ctx.createDelay(1);
+        delay.delayTime.value = 0.469;
+        const feedback = ctx.createGain();
+        feedback.gain.value = 0.42;
+        delay.connect(feedback);
+        feedback.connect(delay);
+        delay.connect(reverb);
+        hall = { reverb, echo: delay };
+        halls.set(out, hall);
+        return hall;
+    },
+    // 🎶 A choir holding a chord: slow to swell, slow to fade, mostly heard through the hall
+    choir: (ctx, out, t, notes, length, vol = 0.03) => {
+        const { reverb } = inst.hall(ctx, out);
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1300, t);
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.linearRampToValueAtTime(vol, t + length * 0.35);
+        gain.gain.setValueAtTime(vol, t + length * 0.7);
+        gain.gain.linearRampToValueAtTime(0.0001, t + length + 0.8);
+        filter.connect(gain);
+        gain.connect(out);
+        gain.connect(reverb);
+        notes.forEach((note, i) => [-7, 7].forEach((detune) => {
+            const osc = ctx.createOscillator();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(midi(note), t);
+            osc.detune.setValueAtTime(detune + i, t);
+            osc.connect(filter);
+            osc.start(t);
+            osc.stop(t + length + 0.9);
+        }));
+    },
+    // 🎤 One wordless voice, up high: it slides into each note, with a little vibrato once it's settled
+    voice: (ctx, out, t, note, length, vol = 0.1, from = null) => {
+        const { reverb, echo } = inst.hall(ctx, out);
+        const lfo = ctx.createOscillator();
+        const depth = ctx.createGain();
+        lfo.frequency.setValueAtTime(5, t);
+        depth.gain.setValueAtTime(0, t);
+        depth.gain.linearRampToValueAtTime(midi(note) * 0.008, t + Math.min(0.7, length * 0.6));
+        lfo.connect(depth);
+        const formant = ctx.createBiquadFilter();
+        formant.type = 'bandpass';
+        formant.frequency.setValueAtTime(1050, t);
+        formant.Q.setValueAtTime(0.6, t);
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.linearRampToValueAtTime(vol, t + 0.22);
+        gain.gain.setValueAtTime(vol, t + Math.max(0.22, length - 0.3));
+        gain.gain.linearRampToValueAtTime(0.0001, t + length + 0.35);
+        ['triangle', 'sine'].forEach((type, i) => {
+            const osc = ctx.createOscillator();
+            osc.type = type;
+            osc.frequency.setValueAtTime(midi(from ?? note) * (i + 1), t);
+            osc.frequency.exponentialRampToValueAtTime(midi(note) * (i + 1), t + 0.14);
+            depth.connect(osc.frequency);
+            osc.connect(i ? gain : formant);
+            osc.start(t);
+            osc.stop(t + length + 0.4);
+        });
+        formant.connect(gain);
+        gain.connect(out);
+        gain.connect(reverb);
+        gain.connect(echo);
+        lfo.start(t);
+        lfo.stop(t + length + 0.4);
+    },
+    // 🎻 Plucked strings, short and bright, with a touch of the hall
+    pluck: (ctx, out, t, note, vol = 0.08) => {
+        const { reverb } = inst.hall(ctx, out);
+        tone(ctx, out, t, { freq: midi(note), type: 'sawtooth', vol, attack: 0.003, decay: 0.15, filter: 2400 });
+        tone(ctx, reverb, t, { freq: midi(note), type: 'triangle', vol: vol * 0.7, attack: 0.003, decay: 0.15 });
+    },
+    // 🥁 A deep, far-off drum
+    boom: (ctx, out, t, vol = 0.3) => {
+        const { reverb } = inst.hall(ctx, out);
+        const osc = ctx.createOscillator();
+        osc.frequency.setValueAtTime(92, t);
+        osc.frequency.exponentialRampToValueAtTime(52, t + 0.3);
+        const gain = envelope(ctx, t, vol, 0.008, 0.85);
+        osc.connect(gain);
+        gain.connect(out);
+        gain.connect(reverb);
+        osc.start(t);
+        osc.stop(t + 0.95);
     },
     // 🔔 Sleigh bells: a bright shake with a little ring on top
     sleighBells: (ctx, out, t, vol = 0.05) => {
@@ -297,6 +412,75 @@ export const SPOOKY_TIMER_TRACKS = [
 // are never picked at random for a timer; lobbyMusic.js plays them by id.
 // ---------------------------------------------------------------------------------------------
 export const LOBBY_SYNTH_TRACKS = [
+    {
+        // Trivia Cast's lobby: our own tune in a misty, Celtic new-age style. Plucked strings patter away like
+        // rain under a swelling choir, with one soaring voice echoing around a big hall. A 32-bar loop:
+        //   bars 1-4    the rain and the choir
+        //   bars 5-12   the voice comes in
+        //   bars 13-20  it climbs higher, with a harmony and bells
+        //   bars 21-24  it all thins out, back to the rain
+        //   bars 25-32  the first tune again, an octave doubled, with the drum
+        id: 'silver-rain',
+        name: 'Silver Rain',
+        bpm: 96,
+        swing: 0,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 32;
+            const beat = 60 / 96;
+            // [bass, choir, the notes the strings pick through]
+            const D = [38, [62, 66, 69, 74], [74, 78, 81, 86]];
+            const A = [33, [61, 64, 69, 73], [73, 76, 81, 85]];
+            const Bm = [35, [62, 66, 71, 74], [74, 78, 83, 86]];
+            const G = [31, [62, 67, 71, 74], [74, 79, 83, 86]];
+            const VERSE = [D, A, Bm, G, D, A, G, A];
+            const CHORUS = [G, D, A, Bm, G, D, A, A];
+            const section = bar < 4 ? 'intro' : bar < 12 ? 'verse' : bar < 20 ? 'chorus' : bar < 24 ? 'rain' : 'last';
+            let chord = VERSE[bar % 8];
+            if (section === 'chorus') chord = CHORUS[(bar - 12) % 8];
+            if (section === 'verse') chord = VERSE[bar - 4];
+            if (section === 'last') chord = VERSE[bar - 24];
+
+            // The choir holds each bar's chord, swelling into the next
+            if (pos === 0) inst.choir(ctx, out, t, chord[1], beat * 4, section === 'rain' || section === 'intro' ? 0.018 : 0.025);
+
+            // The rain: strings picking up and down the chord, the odd extra note between
+            const quiet = section === 'intro' || section === 'rain' ? 0.75 : 1;
+            const picks = { 0: 0, 2: 2, 4: 1, 6: 3, 7: 2, 8: 0, 10: 2, 12: 1, 14: 3, 15: 1 };
+            if (picks[pos] !== undefined) inst.pluck(ctx, out, t, chord[2][picks[pos]], (pos % 4 === 0 ? 0.075 : 0.05) * quiet);
+
+            // The bass: low and long, on the beat
+            if (pos === 0) inst.bass(ctx, out, t, chord[0], 0.26, 1.1);
+            if (pos === 8) inst.bass(ctx, out, t, chord[0] + 12, 0.14, 0.7);
+
+            // The drum, far away, marking out the big moments
+            if (pos === 0 && (bar === 0 || bar === 12 || bar === 16 || (section === 'last' && bar % 2 === 0))) inst.boom(ctx, out, t, 0.26);
+
+            // The voice: [16th in the bar, note, length in beats]
+            const VERSE_TUNE = [
+                [[0, 69, 3], [12, 71, 1]], [[0, 73, 2], [8, 76, 2]], [[0, 74, 3], [12, 73, 1]], [[0, 71, 4]],
+                [[0, 78, 2], [8, 76, 1], [12, 74, 1]], [[0, 76, 3], [12, 73, 1]], [[0, 74, 2], [8, 71, 2]], [[0, 69, 4]],
+            ];
+            const CHORUS_TUNE = [
+                [[0, 83, 3], [12, 81, 1]], [[0, 78, 4]], [[0, 76, 2], [8, 81, 2]], [[0, 78, 4]],
+                [[0, 79, 2], [8, 78, 1], [12, 76, 1]], [[0, 78, 3], [12, 81, 1]], [[0, 76, 2], [8, 73, 2]], [[0, 76, 4]],
+            ];
+            const sing = (tune, shift = 0, vol = 0.1) => tune.forEach(([p, note, beats], i) => {
+                if (p === pos) inst.voice(ctx, out, t, note + shift, beats * beat, vol, i > 0 ? tune[i - 1][1] + shift : null);
+            });
+            if (section === 'verse') sing(VERSE_TUNE[bar - 4]);
+            if (section === 'chorus') {
+                sing(CHORUS_TUNE[bar - 12]);
+                sing(CHORUS_TUNE[bar - 12], -5, 0.05);   // the harmony, underneath
+                if (pos === 8 && bar % 2 === 1) inst.bell(ctx, inst.hall(ctx, out).reverb, t, chord[2][3], 0.07);
+            }
+            if (section === 'last') {
+                sing(VERSE_TUNE[bar - 24]);
+                sing(VERSE_TUNE[bar - 24], 12, 0.045);   // doubled up high
+            }
+            if (section === 'rain' && pos === 8) inst.bell(ctx, inst.hall(ctx, out).reverb, t, chord[2][bar % 4], 0.08);
+        },
+    },
     {
         // 🎄 The Holiday deck: four carols, one after another (see holidaySongs.js), over sleigh bells
         id: 'holiday-medley',
