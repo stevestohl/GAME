@@ -12,9 +12,10 @@ import { useTimerMusic } from '../../timerMusic.js';
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
+import CouchCastRoundIntro from '../CouchCast/CouchCastRoundIntro.jsx';
 import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
-import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION } from './TriviaCastScreensTV.jsx';
+import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION, roundKicker, roundIntroLine } from './TriviaCastScreensTV.jsx';
 
 // Phone controller
 import TriviaCastPlayer from './TriviaCastPlayer.jsx';
@@ -100,7 +101,8 @@ export default function TriviaCastManager() {
 
     // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
     let voiceMoment = null;
-    if (gameState === 'question' && room.question) voiceMoment = `question-${room.currentRound}`;
+    if (gameState === 'round_intro') voiceMoment = `round-intro-${room.currentRound}`;
+    else if (gameState === 'question' && room.question) voiceMoment = `question-${room.currentRound}`;
     else if (gameState === 'reveal' && room.correctAnswer) voiceMoment = `reveal-${room.currentRound}`;
     else if (gameState === 'scoreboard' && room.isGameOver) voiceMoment = 'game-over';
     else if (gameState === 'scoreboard') voiceMoment = `scores-${room.currentRound}`;
@@ -121,6 +123,19 @@ export default function TriviaCastManager() {
         if (!voiceMoment || !room) return;
         const code = room.roomCode;
 
+        if (voiceMoment.startsWith('round-intro')) {
+            // 🎬 The card stays up while the narrator calls the round, then it's on to the question
+            const round = room.currentRound;
+            let isCurrent = true;
+            let timer;
+            speak(roundIntroLine(round, room.totalRounds), code).then((spoken) => {
+                if (isCurrent) timer = setTimeout(() => socket.emit('round_intro_read', { roomCode: code, round }), spoken ? 500 : 3000);
+            });
+            return () => {
+                isCurrent = false;
+                clearTimeout(timer);
+            };
+        }
         if (voiceMoment.startsWith('question')) {
             // Two lines, so the question on its own is cached and re-reading it at the reveal is free
             speak([`Question ${room.currentRound}.`, room.question.text], code);
@@ -129,7 +144,10 @@ export default function TriviaCastManager() {
             speak([room.question.text, `The answer is: ${room.correctAnswer}.`], code);
         } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
             if (recap) speak(recap.spoken, code);
+            // Get the next round's line ready behind it
+            if (!room.isGameOver) preloadVoice(roundIntroLine(room.currentRound + 1, room.totalRounds), code);
         }
+        return undefined;
     }, [voiceMoment]);
 
     // 🔁 End of the game: the caster picks what happens next
@@ -144,7 +162,7 @@ export default function TriviaCastManager() {
 
     // ⏸️ The caster can pause a running game: the server stops every clock, the phones show "Paused"
     const isPaused = !!room?.isPaused;
-    const canPause = gameState === 'question' || gameState === 'reveal' || (gameState === 'scoreboard' && !room?.isGameOver);
+    const canPause = gameState === 'round_intro' || gameState === 'question' || gameState === 'reveal' || (gameState === 'scoreboard' && !room?.isGameOver);
     const handleTogglePause = () => socket.emit('set_paused', { roomCode: room?.roomCode, paused: !isPaused });
     useEffect(() => {
         if (isPaused) stopVoice();
@@ -198,6 +216,9 @@ export default function TriviaCastManager() {
 
             case 'rules':
                 return <TriviaCastRulesTV roomCode={room.roomCode} />;
+
+            case 'round_intro':
+                return <CouchCastRoundIntro round={room.currentRound} totalRounds={room.totalRounds} kicker={roundKicker(room.currentRound, room.totalRounds)} tagline="Up next, get ready!" />;
 
             case 'question':
             case 'reveal':

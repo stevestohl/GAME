@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, ProgressBar } from 'react-bootstrap';
 import { triviaCastSocket as socket } from '../../socket';
 import { speak, stopVoice } from '../../voice.js';
+import { playRevealSounds } from '../../celebrationSounds.js';
 
 // 🎙️ What the host voice says while the rules are on screen
 export const TRIVIA_CAST_RULES_NARRATION = [
@@ -14,6 +15,18 @@ export const TRIVIA_CAST_RULES_NARRATION = [
 const NARRATION_GRACE_SECONDS = 20;
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+// 🎬 The "Round 3" screen between questions: what it says at the milestones, and what the narrator says
+const isHalfway = (round, total) => round === Math.floor(total / 2) + 1 && round < total;
+export const roundKicker = (round, total) => {
+    if (round >= total) return 'Final round!';
+    return isHalfway(round, total) ? 'Halfway there!' : null;
+};
+export const roundIntroLine = (round, total) => {
+    if (round >= total) return 'Final round! Get ready!';
+    if (isHalfway(round, total)) return `We're halfway through! Round ${round}, up next. Get ready!`;
+    return `Round ${round}, up next. Get ready!`;
+};
 
 // 🎬 How the wrong answers leave the screen at the reveal. Each question uses the next one,
 // so a game shows them all: smashed like glass, walking off on little legs, or eaten by Chompy.
@@ -260,6 +273,16 @@ export function TriviaCastQuestionTV({ room }) {
     const answeredCount = players.filter((p) => p.hasAnswered).length;
     const winners = players.filter((p) => p.lastCorrect).sort((a, b) => b.lastPoints - a.lastPoints);
     const revealEffect = REVEAL_EFFECTS[(Math.max(1, room.currentRound) - 1) % REVEAL_EFFECTS.length];
+
+    // 🔊 The wrong answers smash, stroll or get eaten, out loud
+    const revealKey = isReveal ? room.currentRound : null;
+    useEffect(() => {
+        if (revealKey === null || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+        const sides = question.options
+            .map((option, i) => (option === correctAnswer ? null : (i % 2 === 0 ? -1 : 1)))
+            .filter((side) => side !== null);
+        playRevealSounds(revealEffect, sides);
+    }, [revealKey]);
 
     // The full answering time, taken from the first tick, so the bar starts full
     const totalTime = useRef(null);

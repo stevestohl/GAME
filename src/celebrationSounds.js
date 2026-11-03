@@ -169,6 +169,116 @@ export function playCelebration(seconds = 3) {
     });
 }
 
+// 🔊 Trivia Cast's reveal: sounds for how the wrong answers leave (TriviaCastScreensTV.jsx, whose timings
+// these follow, and the .tc-fx-* animations in cards.css), then a bright "ta-da" for the right one.
+// `sides`: one per wrong answer, in the order they go: -1 heads left, 1 heads right.
+const STAGGER = 0.35;        // seconds between one wrong answer and the next
+const RIGHT_ANSWER_AT = 2.15;
+
+// 💥 A crack, then the pieces burst and tinkle down
+const glassBreak = (ctx, out, t) => {
+    noise(ctx, out, t, { vol: 0.12, decay: 0.05, type: 'highpass', freq: 3500, q: 0.7 });   // the crack
+    const smash = t + 0.45;
+    noise(ctx, out, smash, { vol: 0.5, decay: 0.28, type: 'highpass', freq: 2600, q: 0.6 });
+    noise(ctx, out, smash, { vol: 0.28, decay: 0.12, type: 'bandpass', freq: 900, q: 0.8 });
+    for (let i = 0; i < 16; i++) {
+        const at = smash + 0.02 + Math.random() * 0.75;
+        const osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(3200 + Math.random() * 5200, at);
+        const gain = ctx.createGain();
+        const vol = 0.09 * (1 - (at - smash) / 1.1);
+        gain.gain.setValueAtTime(vol, at);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.09 + Math.random() * 0.12);
+        osc.connect(gain);
+        gain.connect(out);
+        osc.start(at);
+        osc.stop(at + 0.25);
+    }
+};
+
+// 🦵 Little shoes on a hard floor, fading away as the card strolls off
+const footsteps = (ctx, out, t) => {
+    const start = t + 0.5;
+    const stepEvery = 0.28;      // the legs' swing (.tc-leg)
+    const steps = 8;
+    for (let i = 0; i < steps; i++) {
+        const at = start + i * stepEvery;
+        const fade = 1 - i / steps;
+        const isHeel = i % 2 === 0;
+        noise(ctx, out, at, { vol: 0.42 * fade, decay: 0.05, type: 'bandpass', freq: isHeel ? 1500 : 1150, q: 1.4 });
+        const thud = ctx.createOscillator();
+        thud.frequency.setValueAtTime(isHeel ? 170 : 140, at);
+        thud.frequency.exponentialRampToValueAtTime(70, at + 0.07);
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.32 * fade, at);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.09);
+        thud.connect(gain);
+        gain.connect(out);
+        thud.start(at);
+        thud.stop(at + 0.1);
+    }
+};
+
+// 🟢 Chompy's teeth going through the card, one crunchy bite per snap of his jaws
+const chomps = (ctx, out, t) => {
+    const start = t + 0.2;
+    const biteEvery = 0.36;      // his jaws (.tc-jaw)
+    for (let i = 0; i < 5; i++) {
+        const at = start + i * biteEvery;
+        noise(ctx, out, at, { vol: 0.34, decay: 0.09, type: 'bandpass', freq: 1900 + Math.random() * 700, q: 0.9 });
+        const jaw = ctx.createOscillator();
+        jaw.type = 'square';
+        jaw.frequency.setValueAtTime(190, at);
+        jaw.frequency.exponentialRampToValueAtTime(85, at + 0.1);
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.12, at);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.12);
+        jaw.connect(gain);
+        gain.connect(out);
+        jaw.start(at);
+        jaw.stop(at + 0.14);
+    }
+};
+
+const REVEAL_SOUNDS = { shatter: glassBreak, walk: footsteps, chomp: chomps };
+
+export function playRevealSounds(effect, sides = []) {
+    const output = startOutput();
+    if (!output) return;
+    const { ctx, out } = output;
+    const start = ctx.currentTime + 0.03;
+    const sound = REVEAL_SOUNDS[effect];
+
+    sides.forEach((side, i) => {
+        // Each one comes from its own side of the room, where the speakers allow it
+        const pan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+        if (pan) {
+            pan.pan.setValueAtTime(side * 0.55, start);
+            pan.connect(out);
+        }
+        if (sound) sound(ctx, pan || out, start + i * STAGGER);
+    });
+
+    // ✨ And the right answer zooms in
+    [[76, 0], [79, 0.09], [84, 0.18]].forEach(([note, at]) => {
+        const t = start + RIGHT_ANSWER_AT + at;
+        const osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(midi(note), t);
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.22, t + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
+        osc.connect(gain);
+        gain.connect(out);
+        osc.start(t);
+        osc.stop(t + 0.75);
+    });
+
+    setTimeout(() => out.disconnect(), 6000);
+}
+
 // 🎺 The end credits' march: eight bars in C major, round and round until the credits finish.
 // Each bar: the horns' chord, then the tune as [beat in the bar, length in beats, note]
 const MARCH_BEAT = 0.5;          // seconds

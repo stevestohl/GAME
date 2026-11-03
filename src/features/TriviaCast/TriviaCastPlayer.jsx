@@ -6,6 +6,8 @@ import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.
 import { playChime } from '../../chime.js';
 import { getMyAvatar } from '../../avatars.jsx';
 import AvatarAttack from './AvatarAttack.jsx';
+import CouchCastRoundIntro from '../CouchCast/CouchCastRoundIntro.jsx';
+import { roundKicker } from './TriviaCastScreensTV.jsx';
 import { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -151,6 +153,9 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
                     <Spinner animation="grow" variant="warning" />
                 </div>
             ));
+
+        case 'round_intro':
+            return <CouchCastRoundIntro round={room.currentRound} totalRounds={room.totalRounds} isPhone kicker={roundKicker(room.currentRound, room.totalRounds)} />;
 
         case 'question':
             if (me.hasAnswered || myPick) {

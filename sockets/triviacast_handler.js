@@ -17,6 +17,7 @@ export const getTriviaCastRoom = (roomCode) => activeTCRooms[roomCode] || null;
 const QUESTION_TIME = 25 * 1000;    // time to answer
 const REVEAL_TIME = 7 * 1000;       // the right answer on screen
 const SCOREBOARD_TIME = 6 * 1000;   // scores between questions
+const ROUND_INTRO_BACKUP_MS = 8 * 1000;   // the "Round 3" card, if the TV never says it's done
 const DEFAULT_QUESTIONS = 5;
 
 // --- Scoring ---
@@ -250,9 +251,21 @@ export default function registerTriviaCastNamespace(TCNS) {
 
         setRoomTimer(room, () => {
             if (activeTCRooms[roomCode] !== room || room.gameState !== 'scoreboard') return;
-            room.questionIndex += 1;
-            startQuestion(roomCode);
+            startRoundIntro(roomCode, room);
         }, SCOREBOARD_TIME);
+    };
+
+    // --- 🎬 "Round 3" on the TV and "Next: Round 3" on the phones, while the narrator calls it ---
+    const startRoundIntro = (roomCode, room) => {
+        room.questionIndex += 1;
+        room.gameState = 'round_intro';
+        room.endTime = null;
+        // The TV says when the narrator is done ('round_intro_read'); this is the backup for a TV that never does
+        setRoomTimer(room, () => {
+            if (activeTCRooms[roomCode] !== room || room.gameState !== 'round_intro') return;
+            startQuestion(roomCode);
+        }, ROUND_INTRO_BACKUP_MS);
+        broadcast(roomCode);
     };
 
     // --- A phone (or the TV) dropped out of a room ---
@@ -552,7 +565,7 @@ export default function registerTriviaCastNamespace(TCNS) {
         socket.on('set_paused', ({ roomCode, paused } = {}) => {
             const room = activeTCRooms[roomCode];
             if (!room || !room.players[socket.id]?.isCaster) return;
-            if (!['question', 'reveal', 'scoreboard'].includes(room.gameState) || room.isGameOver) return;
+            if (!['round_intro', 'question', 'reveal', 'scoreboard'].includes(room.gameState) || room.isGameOver) return;
             if (paused) pauseRoom(room); else resumeRoom(room);
             console.log(`[Trivia Cast] Room ${roomCode}: ${room.isPaused ? 'paused' : 'back on'}.`);
             // Everyone still here answered (or left) during the break: no need to wait for the clock
@@ -562,6 +575,17 @@ export default function registerTriviaCastNamespace(TCNS) {
             } else {
                 broadcast(roomCode);
             }
+        });
+
+        // ---------- 🎬 Event: The TV finished announcing the round: on to the question ----------
+        socket.on('round_intro_read', ({ roomCode, round } = {}) => {
+            const room = activeTCRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster || room.isPaused) return;
+            if (room.gameState !== 'round_intro' || room.questionIndex + 1 !== round) return;
+            if (room.timerId) clearTimeout(room.timerId);
+            room.timerId = null;
+            room.timerFn = null;
+            startQuestion(roomCode);
         });
 
         // ---------- Event: A player taps an answer ----------
