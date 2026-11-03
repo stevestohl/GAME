@@ -87,7 +87,8 @@ export const listContent = async (req, res) => {
         if (filter === 'createdBy' && value === 'system') match.$and = [...(match.$and || []), { $or: [{ createdBy: 'system' }, { createdBy: { $exists: false } }] }];
         else match[field] = String(value);
     }
-    if (decks && match[deckField] && !decks.includes(match[deckField])) match[deckField] = { $in: [] };
+    // Picked a deck in the filter that this account doesn't manage: nothing to show
+    if (decks && typeof match[deckField] === 'string' && !decks.includes(match[deckField])) match[deckField] = { $in: [] };
     const search = String(req.query.search || '').trim().slice(0, 100);
     if (search) {
         const pattern = new RegExp(escapeRegex(search), 'i');
