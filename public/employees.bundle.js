@@ -22320,6 +22320,7 @@ var introLine = function introLine(room) {
   if (round.type === 'draw') return "".concat(opening, " Pictionary! ").concat(round.drawerName, ", you're drawing. Everyone else, get guessing!");
   return "".concat(opening, " Threefold! Match as many people as you can.");
 };
+var VOICE_LIST_REVIEW = "Here's a review of the lists!";
 var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__.lobbyTrackFor)('mixup');
 function MixupTV(_ref) {
   var _room$round, _room$round2;
@@ -22399,7 +22400,7 @@ function MixupTV(_ref) {
   // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
   var n = room === null || room === void 0 ? void 0 : room.currentRound;
   var voiceMoment = null;
-  if (gameState === 'intro' && room.round) voiceMoment = "intro-".concat(n);else if (gameState === 'nobody') voiceMoment = "nobody-".concat(n);else if (gameState === 'meme_vote') voiceMoment = "vote-".concat(n);else if (gameState === 'meme_results') voiceMoment = "meme-results-".concat(n);else if (gameState === 'draw_results') voiceMoment = "draw-results-".concat(n);else if (gameState === 'match_write' && (_room$round2 = room.round) !== null && _room$round2 !== void 0 && _room$round2.topic) voiceMoment = "match-".concat(n);else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : "scores-".concat(n);
+  if (gameState === 'intro' && room.round) voiceMoment = "intro-".concat(n);else if (gameState === 'nobody') voiceMoment = "nobody-".concat(n);else if (gameState === 'meme_vote') voiceMoment = "vote-".concat(n);else if (gameState === 'meme_results') voiceMoment = "meme-results-".concat(n);else if (gameState === 'draw_results') voiceMoment = "draw-results-".concat(n);else if (gameState === 'match_write' && (_room$round2 = room.round) !== null && _room$round2 !== void 0 && _room$round2.topic) voiceMoment = "match-".concat(n);else if (gameState === 'match_compare') voiceMoment = "list-review-".concat(n);else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : "scores-".concat(n);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.stopVoice)();
     if (!voiceMoment || !room) return;
@@ -22424,6 +22425,8 @@ function MixupTV(_ref) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(round.guessedBy ? "".concat(round.guessedBy, " got it! It was ").concat(round.word, ".") : "Time's up! It was ".concat(round.word, "."), code);
     } else if (voiceMoment.startsWith('match')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)("The list is: ".concat(round.topic, "."), code);
+    } else if (voiceMoment.startsWith('list-review')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(VOICE_LIST_REVIEW, code);
     } else if (voiceMoment === 'game-over') {
       // 🎬 The final scores get read, then the lobby game's credits roll
       var isCurrent = true;
@@ -22444,17 +22447,19 @@ function MixupTV(_ref) {
   }, [voiceMoment]);
 
   // ⏳ Timer music while people are writing, voting, drawing or answering
-  var isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
+  // 📋 Then the judging music under Threefold's review of the lists, one track from the answers lighting up to the results (no clock, so no hurry-up tick)
+  var isListReview = gameState === 'match_compare' || gameState === 'match_results';
+  var isTimerPhase = isListReview || ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
   (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.useTimerMusic)(isTimerPhase, {
-    endTime: room === null || room === void 0 ? void 0 : room.endTime,
-    key: "".concat(gameState, "-").concat(n),
-    trackId: gameState === 'match_write' ? 'grandfather-clock' : null // ⏰ the list rounds tick away the whole time
+    endTime: isListReview ? null : room === null || room === void 0 ? void 0 : room.endTime,
+    key: isListReview ? "list-review-".concat(n) : "".concat(gameState, "-").concat(n),
+    trackId: isListReview ? _timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.JUDGING_TRACK : gameState === 'match_write' ? 'grandfather-clock' : null // ⏰ the list rounds tick away the whole time
   });
 
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!']), lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!', VOICE_LIST_REVIEW]), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen

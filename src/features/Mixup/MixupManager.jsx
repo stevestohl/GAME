@@ -10,7 +10,7 @@ import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
-import { useTimerMusic } from '../../timerMusic.js';
+import { useTimerMusic, JUDGING_TRACK } from '../../timerMusic.js';
 import { scoreRecap } from '../../scoreRecap.js';
 
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
@@ -56,6 +56,8 @@ const introLine = (room) => {
     if (round.type === 'draw') return `${opening} Pictionary! ${round.drawerName}, you're drawing. Everyone else, get guessing!`;
     return `${opening} Threefold! Match as many people as you can.`;
 };
+
+const VOICE_LIST_REVIEW = "Here's a review of the lists!";
 
 const lobbyTrack = lobbyTrackFor('mixup');
 
@@ -120,6 +122,7 @@ function MixupTV({ roomCode, casterName }) {
     else if (gameState === 'meme_results') voiceMoment = `meme-results-${n}`;
     else if (gameState === 'draw_results') voiceMoment = `draw-results-${n}`;
     else if (gameState === 'match_write' && room.round?.topic) voiceMoment = `match-${n}`;
+    else if (gameState === 'match_compare') voiceMoment = `list-review-${n}`;
     else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : `scores-${n}`;
 
     useEffect(() => {
@@ -144,6 +147,8 @@ function MixupTV({ roomCode, casterName }) {
             speak(round.guessedBy ? `${round.guessedBy} got it! It was ${round.word}.` : `Time's up! It was ${round.word}.`, code);
         } else if (voiceMoment.startsWith('match')) {
             speak(`The list is: ${round.topic}.`, code);
+        } else if (voiceMoment.startsWith('list-review')) {
+            speak(VOICE_LIST_REVIEW, code);
         } else if (voiceMoment === 'game-over') {
             // 🎬 The final scores get read, then the lobby game's credits roll
             let isCurrent = true;
@@ -162,17 +167,19 @@ function MixupTV({ roomCode, casterName }) {
     }, [voiceMoment]);
 
     // ⏳ Timer music while people are writing, voting, drawing or answering
-    const isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
+    // 📋 Then the judging music under Threefold's review of the lists, one track from the answers lighting up to the results (no clock, so no hurry-up tick)
+    const isListReview = gameState === 'match_compare' || gameState === 'match_results';
+    const isTimerPhase = isListReview || ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
     useTimerMusic(isTimerPhase, {
-        endTime: room?.endTime,
-        key: `${gameState}-${n}`,
-        trackId: gameState === 'match_write' ? 'grandfather-clock' : null,   // ⏰ the list rounds tick away the whole time
+        endTime: isListReview ? null : room?.endTime,
+        key: isListReview ? `list-review-${n}` : `${gameState}-${n}`,
+        trackId: isListReview ? JUDGING_TRACK : gameState === 'match_write' ? 'grandfather-clock' : null,   // ⏰ the list rounds tick away the whole time
     });
 
     // Fetch the rules narration while everyone is still joining, so it starts instantly
     const lobbyRoomCode = room?.roomCode;
     useEffect(() => {
-        if (lobbyRoomCode) preloadVoice([...MIXUP_RULES_NARRATION, 'Time to vote! Pick the funniest caption. Not your own!'], lobbyRoomCode);
+        if (lobbyRoomCode) preloadVoice([...MIXUP_RULES_NARRATION, 'Time to vote! Pick the funniest caption. Not your own!', VOICE_LIST_REVIEW], lobbyRoomCode);
     }, [lobbyRoomCode]);
 
     // 🔇 After a page refresh the browser mutes us until someone taps the screen
