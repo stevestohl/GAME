@@ -4,6 +4,7 @@ import { Container, Alert, Spinner } from 'react-bootstrap';
 import { listsSocket as socket } from '../../socket';
 
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useRoomGone from '../../hooks/useRoomGone.js';
 import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
@@ -58,6 +59,7 @@ function ListCastTV({ roomCode, casterName }) {
     const navigate = useNavigate();
     const [room, setRoom] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    useRoomGone(socket, roomCode, !!room);
     const gameState = room?.gameState;
 
     // 🎨 Background follows the deck, and covers the nav bar on the TV

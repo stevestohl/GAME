@@ -5,6 +5,7 @@ import { couchCastSocket as socket } from "../../socket";
 
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useRoomGone from '../../hooks/useRoomGone.js';
 import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
@@ -90,6 +91,7 @@ export default function CouchCastManager() {
     const [gameState, setGameState] = useState('creating');
     const [roomData, setRoomData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
+    useRoomGone(socket, urlRoomCode, !!roomData);
     
     // Phase-specific state for the TV (the clocks count down to roomData.endTime)
     const [currentPrompt, setCurrentPrompt] = useState(null);

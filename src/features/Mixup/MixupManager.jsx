@@ -4,6 +4,7 @@ import { Container, Alert, Spinner } from 'react-bootstrap';
 import { mixupSocket as socket } from '../../socket.js';
 
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useRoomGone from '../../hooks/useRoomGone.js';
 import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
@@ -61,6 +62,7 @@ function MixupTV({ roomCode, casterName }) {
     const navigate = useNavigate();
     const [room, setRoom] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    useRoomGone(socket, roomCode, !!room);
     const gameState = room?.gameState;
 
     // 🎨 Background follows the block of rounds, and covers the nav bar on the TV
@@ -78,11 +80,9 @@ function MixupTV({ roomCode, casterName }) {
             setErrorMessage(msg);
             setTimeout(() => setErrorMessage(''), 5000);
         };
-        const handleClosed = ({ message } = {}) => navigate('/home', { state: { toastMessage: message || 'That game has ended.' } });
 
         socket.on('room_updated', handleRoomUpdate);
         socket.on('joinError', handleJoinError);
-        socket.on('room_closed', handleClosed);
         if (roomCode) {
             socket.on('connect', joinMyRoom);
             if (socket.connected) joinMyRoom();
@@ -94,7 +94,6 @@ function MixupTV({ roomCode, casterName }) {
             socket.off('connect', joinMyRoom);
             socket.off('room_updated', handleRoomUpdate);
             socket.off('joinError', handleJoinError);
-            socket.off('room_closed', handleClosed);
         };
     }, [roomCode, casterName]);
 

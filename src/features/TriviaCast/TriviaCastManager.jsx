@@ -4,6 +4,7 @@ import { Container, Alert, Spinner } from 'react-bootstrap';
 import { triviaCastSocket as socket } from '../../socket';
 
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useRoomGone from '../../hooks/useRoomGone.js';
 import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
@@ -61,6 +62,7 @@ export default function TriviaCastManager() {
     const navigate = useNavigate();
     const [room, setRoom] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
+    useRoomGone(socket, urlRoomCode, !!room);
 
     const gameState = room?.gameState;
     const [showFinale, setShowFinale] = useState(false);   // 🎭 the curtain call, after the final scores

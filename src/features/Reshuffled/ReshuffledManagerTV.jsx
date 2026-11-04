@@ -5,6 +5,7 @@ import { reshuffledSocket as socket } from "../../socket";
 
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
+import useRoomGone from '../../hooks/useRoomGone.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
@@ -65,6 +66,7 @@ export default function ReshuffledManager() {
     const [gameState, setGameState] = useState('creating');
     const [roomData, setRoomData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
+    useRoomGone(socket, urlRoomCode, !!roomData);
     
     // Phase-specific state for the TV
     const [endTime, setEndTime] = useState(null);

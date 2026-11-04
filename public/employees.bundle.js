@@ -4227,36 +4227,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
-/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
-/* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
-/* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
-/* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
-/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./CouchCastRules.jsx */ "./src/features/CouchCast/CouchCastRules.jsx");
-/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
-/* harmony import */ var _CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
-/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
-/* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./TowerCredits.jsx */ "./src/features/CouchCast/TowerCredits.jsx");
-/* harmony import */ var _CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./CouchCastRoundIntro.jsx */ "./src/features/CouchCast/CouchCastRoundIntro.jsx");
-/* harmony import */ var _RoundCatScene_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./RoundCatScene.jsx */ "./src/features/CouchCast/RoundCatScene.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
-/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
+/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
+/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _serverClock_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../serverClock.js */ "./src/serverClock.js");
+/* harmony import */ var _CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CouchCastWritingTV.jsx */ "./src/features/CouchCast/CouchCastWritingTV.jsx");
+/* harmony import */ var _CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CouchCastJudgingTV.jsx */ "./src/features/CouchCast/CouchCastJudgingTV.jsx");
+/* harmony import */ var _CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CouchCastWinnerRevealTV.jsx */ "./src/features/CouchCast/CouchCastWinnerRevealTV.jsx");
+/* harmony import */ var _CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./CouchCastRules.jsx */ "./src/features/CouchCast/CouchCastRules.jsx");
+/* harmony import */ var _CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./CouchCastPromptSelection.jsx */ "./src/features/CouchCast/CouchCastPromptSelection.jsx");
+/* harmony import */ var _CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
+/* harmony import */ var _CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./CouchCastPlayerSetup.jsx */ "./src/features/CouchCast/CouchCastPlayerSetup.jsx");
+/* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./TowerCredits.jsx */ "./src/features/CouchCast/TowerCredits.jsx");
+/* harmony import */ var _CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./CouchCastRoundIntro.jsx */ "./src/features/CouchCast/CouchCastRoundIntro.jsx");
+/* harmony import */ var _RoundCatScene_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./RoundCatScene.jsx */ "./src/features/CouchCast/RoundCatScene.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -4273,6 +4274,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 // Lock Screen to keep phone screen awake
+
 
 
 
@@ -4342,7 +4344,7 @@ function CouchCastManager() {
   var _roomData$players, _roomData$players$roo;
   (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
   // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
-  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
+  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
 
   // Grab the room code, player name, and role from the URL!
   var searchParams = new URLSearchParams(window.location.search);
@@ -4352,7 +4354,7 @@ function CouchCastManager() {
 
   // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4361,7 +4363,7 @@ function CouchCastManager() {
   }
 
   // --- TV STATE MANAGEMENT ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_27__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_28__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('creating'),
     _useState2 = _slicedToArray(_useState, 2),
     gameState = _useState2[0],
@@ -4374,6 +4376,7 @@ function CouchCastManager() {
     _useState6 = _slicedToArray(_useState5, 2),
     errorMessage = _useState6[0],
     setErrorMessage = _useState6[1];
+  (0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket, urlRoomCode, !!roomData);
 
   // Phase-specific state for the TV (the clocks count down to roomData.endTime)
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -4398,10 +4401,10 @@ function CouchCastManager() {
     setShowCredits = _useState16[1]; // 🎬 the Tower Party credits, after the final scores
 
   // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_25__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
-  var lobbyTrack = (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('couchCast', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_26__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
+  var lobbyTrack = (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.lobbyTrackFor)('couchCast', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
   var hasCrew = !!roomData; // 🛋️ the Couch Cast crew shows up in every deck
   var crewTheme = ['halloween', 'holiday'].includes(roomData === null || roomData === void 0 ? void 0 : roomData.expansion) ? roomData.expansion : 'core';
 
@@ -4416,7 +4419,7 @@ function CouchCastManager() {
   // 🏆 The score recap: on the scoreboard headline and read by the narrator
   var recap = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     if (gameState !== 'scoreboard' || !roomData) return null;
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_20__.scoreRecap)({
       players: Object.values(roomData.players).filter(function (p) {
         return !p.isCaster;
       }),
@@ -4428,7 +4431,7 @@ function CouchCastManager() {
   }, [gameState, roomData, roundResults, round]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // The screen changed: stop whatever was being said
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
     if (!voiceMoment || !roomData) return;
     var code = roomData.roomCode;
     var promptText = (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt;
@@ -4438,10 +4441,10 @@ function CouchCastManager() {
       var timer = null;
       var introRound = round;
       var startedAt = Date.now();
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(roundIntroLine(introRound), code).then(function (spoken) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(roundIntroLine(introRound), code).then(function (spoken) {
         if (!isCurrent) return;
         // 🐈 With the crew on screen, let their bit with the cat finish too
-        var sceneLeft = hasCrew ? _RoundCatScene_jsx__WEBPACK_IMPORTED_MODULE_24__.SCENE_MS - (Date.now() - startedAt) : 0;
+        var sceneLeft = hasCrew ? _RoundCatScene_jsx__WEBPACK_IMPORTED_MODULE_25__.SCENE_MS - (Date.now() - startedAt) : 0;
         timer = setTimeout(function () {
           return _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('round_intro_read', {
             roomCode: code,
@@ -4450,39 +4453,39 @@ function CouchCastManager() {
         }, Math.max(spoken ? 600 : 3000, sceneLeft));
       });
       // Get the judge's line ready behind it
-      if (judgeName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(vibeLine(judgeName), code);
+      if (judgeName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(vibeLine(judgeName), code);
       return function () {
         isCurrent = false;
         clearTimeout(timer);
       };
     } else if (voiceMoment.startsWith('picking')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(vibeLine(judgeName), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(vibeLine(judgeName), code);
     } else if (voiceMoment.startsWith('judging')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(judgingLine(judgeName), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(judgingLine(judgeName), code);
     } else if (voiceMoment.startsWith('prompt')) {
       // The judge never picked: the narrator teases them before reading the prompt
       var lines = promptAutoPicked ? [VOICE_TOO_SLOW[Math.floor(Math.random() * VOICE_TOO_SLOW.length)], VOICE_PROMPT_INTRO, promptText] : [VOICE_PROMPT_INTRO, promptText];
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(lines, code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(lines, code);
       // Get the judge's line ready while everyone writes
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(judgingLine(judgeName), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(judgingLine(judgeName), code);
     } else if (voiceMoment.startsWith('winner')) {
       var _roundResults$winning = roundResults.winningSubmission,
         playerName = _roundResults$winning.playerName,
         answer = _roundResults$winning.answer;
       // Read the whole card: the prompt with the winning answer in the blank
-      var _fillBlank = (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_18__.fillBlank)(currentPrompt, answer),
+      var _fillBlank = (0,_fillBlank_js__WEBPACK_IMPORTED_MODULE_19__.fillBlank)(currentPrompt, answer),
         sentence = _fillBlank.sentence;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
       // Get the next judge's line ready while the confetti falls
-      if (!roundResults.isGameOver && roundResults.nextHostName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(vibeLine(roundResults.nextHostName), code);
+      if (!roundResults.isGameOver && roundResults.nextHostName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(vibeLine(roundResults.nextHostName), code);
     } else if (voiceMoment.startsWith('scores')) {
       // ⏭️ The scores, then what comes next ("It's half time!"), then straight on to the next round.
       // (No voice at all: give everyone a few seconds to read the scoreboard instead.)
       var _isCurrent = true;
       var _timer = null;
       var scoresRound = round;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(roundIntroLine(scoresRound + 1), code);
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([recap === null || recap === void 0 ? void 0 : recap.spoken, recap === null || recap === void 0 ? void 0 : recap.nextUp], code).then(function (spoken) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(roundIntroLine(scoresRound + 1), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)([recap === null || recap === void 0 ? void 0 : recap.spoken, recap === null || recap === void 0 ? void 0 : recap.nextUp], code).then(function (spoken) {
         if (!_isCurrent) return;
         _timer = setTimeout(function () {
           return _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('scores_read', {
@@ -4502,7 +4505,7 @@ function CouchCastManager() {
       var emptyRound = round;
       var call = VOICE_ANYONE_THERE[Math.floor(Math.random() * VOICE_ANYONE_THERE.length)];
       var isLastRound = round >= (roomData.totalRounds || 3);
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([].concat(_toConsumableArray(call), [isLastRound ? VOICE_MOVING_ON_LAST : VOICE_MOVING_ON]), code).then(function (spoken) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)([].concat(_toConsumableArray(call), [isLastRound ? VOICE_MOVING_ON_LAST : VOICE_MOVING_ON]), code).then(function (spoken) {
         if (!_isCurrent2) return;
         _timer2 = setTimeout(function () {
           return _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('no_answers_read', {
@@ -4520,14 +4523,14 @@ function CouchCastManager() {
       // then the lobby's Tower Party credits roll (here and on every phone)
       var _isCurrent3 = true;
       var _timer3 = setTimeout(function () {
-        Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code) : null).then(function () {
+        Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code) : null).then(function () {
           if (!_isCurrent3) return;
           setShowCredits(true);
           _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('credits_roll', {
             roomCode: code
           });
         });
-      }, _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_20__.FINALE_DRUMROLL_MS + 600);
+      }, _CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_21__.FINALE_DRUMROLL_MS + 600);
       return function () {
         _isCurrent3 = false;
         clearTimeout(_timer3);
@@ -4538,7 +4541,7 @@ function CouchCastManager() {
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.emit('playAgain', {
       roomCode: roomData === null || roomData === void 0 ? void 0 : roomData.roomCode
     });
@@ -4564,7 +4567,7 @@ function CouchCastManager() {
     });
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (isPaused) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+    if (isPaused) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
   }, [isPaused]);
 
   // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes, and the judging
@@ -4572,11 +4575,11 @@ function CouchCastManager() {
   // starts a fresh track when the game resumes.
   var isJudgingMusic = gameState === 'judging' && !!(submissions !== null && submissions !== void 0 && submissions.length);
   var isTimerPhase = (gameState === 'prompt_selection' || gameState === 'writing' || isJudgingMusic) && !isPaused;
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(isTimerPhase, {
-    endTime: (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_8__.toDeviceTime)(roomData === null || roomData === void 0 ? void 0 : roomData.endTime),
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_8__.useTimerMusic)(isTimerPhase, {
+    endTime: (0,_serverClock_js__WEBPACK_IMPORTED_MODULE_9__.toDeviceTime)(roomData === null || roomData === void 0 ? void 0 : roomData.endTime),
     // the music's hurry-up tick runs on this device's clock
     key: "".concat(gameState, "-").concat(round),
-    trackId: isJudgingMusic ? _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.JUDGING_TRACK : null,
+    trackId: isJudgingMusic ? _timerMusic_js__WEBPACK_IMPORTED_MODULE_8__.JUDGING_TRACK : null,
     theme: (roomData === null || roomData === void 0 ? void 0 : roomData.expansion) === 'halloween' ? 'halloween' : null // 🎃 spooky tracks for the Halloween deck
   });
 
@@ -4584,12 +4587,12 @@ function CouchCastManager() {
   var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!lobbyRoomCode) return;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_14__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW, _toConsumableArray(_scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__.NEXT_UP_LINES), ["Hey, anyone there?", 'Hello?', VOICE_MOVING_ON, VOICE_MOVING_ON_LAST]), lobbyRoomCode);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)([].concat(_toConsumableArray(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_15__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW, _toConsumableArray(_scoreRecap_js__WEBPACK_IMPORTED_MODULE_20__.NEXT_UP_LINES), ["Hey, anyone there?", 'Hello?', VOICE_MOVING_ON, VOICE_MOVING_ON_LAST]), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // The first judge is known once the rules are showing: get their line ready too
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (gameState === 'rules' && judgeName && lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(vibeLine(judgeName), lobbyRoomCode);
+    if (gameState === 'rules' && judgeName && lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(vibeLine(judgeName), lobbyRoomCode);
   }, [gameState, judgeName, lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen.
@@ -4600,7 +4603,7 @@ function CouchCastManager() {
     setIsSoundLocked = _useState18[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.canPlaySound)().then(function (allowed) {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.canPlaySound)().then(function (allowed) {
       if (isCurrent) setIsSoundLocked(!allowed);
     });
     return function () {
@@ -4608,14 +4611,14 @@ function CouchCastManager() {
     };
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.unlockVoice)();
-    if (gameState === 'lobby') (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.unlockVoice)();
+    if (gameState === 'lobby') (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
   // Leaving the game: stop talking
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return _voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice;
+    return _voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice;
   }, []);
 
   // --- SOCKET LISTENERS (TV ONLY) ---
@@ -4700,7 +4703,7 @@ function CouchCastManager() {
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -4710,7 +4713,7 @@ function CouchCastManager() {
     var playersArray = Object.values(roomData.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           roomCode: roomData.roomCode,
           players: playersArray,
           musicTrack: lobbyTrack,
@@ -4718,13 +4721,13 @@ function CouchCastManager() {
           crewTheme: crewTheme
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
           roomCode: roomData.roomCode,
           crew: true,
           crewTheme: crewTheme
         });
       case 'round_intro':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_23__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], {
           round: roomData.currentRound,
           totalRounds: roomData.totalRounds,
           crew: hasCrew,
@@ -4732,7 +4735,7 @@ function CouchCastManager() {
         });
       case 'prompt_selection':
         var pickerName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
           isCastScreen: true,
           judgeName: pickerName,
           roomCode: roomData.roomCode,
@@ -4740,7 +4743,7 @@ function CouchCastManager() {
           endTime: roomData.endTime
         });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWritingTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           currentPrompt: currentPrompt,
           endTime: roomData.endTime,
           players: playersArray,
@@ -4748,14 +4751,14 @@ function CouchCastManager() {
         });
       case 'judging':
         var _judgeName = ((_roomData$players$roo3 = roomData.players[roomData.hostId]) === null || _roomData$players$roo3 === void 0 ? void 0 : _roomData$players$roo3.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
           currentPrompt: currentPrompt,
           submissions: submissions,
           judgeName: _judgeName,
           endTime: roomData.endTime
         });
       case 'winner_reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
           currentPrompt: currentPrompt,
           winner: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winner,
           winningSubmission: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winningSubmission // 👈 AND PASSED IT HERE
@@ -4764,14 +4767,14 @@ function CouchCastManager() {
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
           players: playersArray,
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver // 👈 Also passed isGameOver here!
           ,
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
           nextLabel: recap === null || recap === void 0 ? void 0 : recap.nextUp,
           celebrate: true,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_21__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_22__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -4785,30 +4788,30 @@ function CouchCastManager() {
   return (
     /*#__PURE__*/
     // 🎃 A Halloween-deck game: everyone's avatar shows up in costume
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_26__.AvatarTheme, {
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_27__.AvatarTheme, {
       theme: (roomData === null || roomData === void 0 ? void 0 : roomData.expansion) === 'halloween' ? 'halloween' : null
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__["default"], {
       fluid: true,
       className: "p-0",
       style: {
         minHeight: '100vh'
       }
-    }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__["default"], {
+    }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_31__["default"], {
       variant: "danger",
       className: "text-center m-2 position-absolute w-100",
       style: {
         zIndex: 10002
       }
-    }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_16__.CouchCastPausedOverlay, {
+    }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_17__.CouchCastPausedOverlay, {
       isCaster: true
-    }), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_22__["default"], {
+    }), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_23__["default"], {
       tower: roomData === null || roomData === void 0 ? void 0 : roomData.tower,
       chase: hasCrew,
       chaseTheme: crewTheme,
       onDone: function onDone() {
         return setShowCredits(false);
       }
-    }), roomData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }), roomData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], {
       canPause: canPause || isPaused,
       isPaused: isPaused,
       onTogglePause: handleTogglePause
@@ -15539,26 +15542,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
-/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
-/* harmony import */ var _ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ListScreensTV.jsx */ "./src/features/Lists/ListScreensTV.jsx");
-/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
-/* harmony import */ var _ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ListPlayer.jsx */ "./src/features/Lists/ListPlayer.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
+/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _ListRules_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ListRules.jsx */ "./src/features/Lists/ListRules.jsx");
+/* harmony import */ var _ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ListScreensTV.jsx */ "./src/features/Lists/ListScreensTV.jsx");
+/* harmony import */ var _ListCards_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ListCards.jsx */ "./src/features/Lists/ListCards.jsx");
+/* harmony import */ var _ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./ListPlayer.jsx */ "./src/features/Lists/ListPlayer.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -15569,6 +15573,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -15601,13 +15606,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function ListCastManager() {
   (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
   // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
-  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
+  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
   var searchParams = new URLSearchParams(window.location.search);
   var urlRoomCode = (searchParams.get('room') || '').toUpperCase();
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListPlayer_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName,
       mode: "cast"
@@ -15624,7 +15629,7 @@ function ListCastTV(_ref) {
   var _room$voterSeats;
   var roomCode = _ref.roomCode,
     casterName = _ref.casterName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_17__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_18__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -15633,15 +15638,16 @@ function ListCastTV(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     errorMessage = _useState4[0],
     setErrorMessage = _useState4[1];
+  (0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_socket__WEBPACK_IMPORTED_MODULE_1__.listsSocket, roomCode, !!room);
   var gameState = room === null || room === void 0 ? void 0 : room.gameState;
 
   // 🎨 Background follows the deck, and covers the nav bar on the TV
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.listsTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.listsTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_16__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_17__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
   // 🔔 Voting is open: chime on the TV, where everyone hears it
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_16__.useTvChime)((room === null || room === void 0 ? void 0 : room.gameState) === 'voting' ? "voting-".concat(room.currentRound) : null);
-  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('listCast', room === null || room === void 0 ? void 0 : room.expansion);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_17__.useTvChime)((room === null || room === void 0 ? void 0 : room.gameState) === 'voting' ? "voting-".concat(room.currentRound) : null);
+  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.lobbyTrackFor)('listCast', room === null || room === void 0 ? void 0 : room.expansion);
 
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -15688,7 +15694,7 @@ function ListCastTV(_ref) {
     var players = Object.values(room.players).filter(function (p) {
       return !p.isCaster;
     });
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_8__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_9__.scoreRecap)({
       players: players,
       roundHadWinner: players.some(function (p) {
         return (p.roundPoints || 0) > 0;
@@ -15698,26 +15704,26 @@ function ListCastTV(_ref) {
     });
   }, [gameState, room]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
     if (!voiceMoment || !room) return;
     var code = room.roomCode;
     if (voiceMoment.startsWith('card')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)((0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_14__.cardAnnouncement)(room.card), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)((0,_ListCards_jsx__WEBPACK_IMPORTED_MODULE_15__.cardAnnouncement)(room.card), code);
     } else if (voiceMoment.startsWith('writing')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)("".concat(room.category, ". Go!"), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)("".concat(room.category, ". Go!"), code);
     } else if (voiceMoment.startsWith('voting')) {
       var _room$card;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(((_room$card = room.card) === null || _room$card === void 0 ? void 0 : _room$card.id) === 'threefold' ? 'Time to vote! Do those matches really count?' : 'Time to vote! Does everything left really count?', code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(((_room$card = room.card) === null || _room$card === void 0 ? void 0 : _room$card.id) === 'threefold' ? 'Time to vote! Do those matches really count?' : 'Time to vote! Does everything left really count?', code);
     } else if (voiceMoment.startsWith('votes-in')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)('The votes are in!', code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)('The votes are in!', code);
     } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
-      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code);
+      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code);
     }
   }, [voiceMoment]);
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.listsSocket.emit('playAgain', {
       roomCode: room === null || room === void 0 ? void 0 : room.roomCode
     });
@@ -15734,7 +15740,7 @@ function ListCastTV(_ref) {
   };
 
   // ⏳ Tick-tock music while everyone writes their lists
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(gameState === 'writing', {
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_8__.useTimerMusic)(gameState === 'writing', {
     endTime: room === null || room === void 0 ? void 0 : room.endTime,
     key: room === null || room === void 0 ? void 0 : room.currentRound
   });
@@ -15742,7 +15748,7 @@ function ListCastTV(_ref) {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)([].concat(_toConsumableArray(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_12__.LIST_CAST_RULES_NARRATION), _toConsumableArray(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_14__.ALL_CARD_ANNOUNCEMENTS), ['The votes are in!']), lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)([].concat(_toConsumableArray(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_13__.LIST_CAST_RULES_NARRATION), _toConsumableArray(_ListCards_jsx__WEBPACK_IMPORTED_MODULE_15__.ALL_CARD_ANNOUNCEMENTS), ['The votes are in!']), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -15752,7 +15758,7 @@ function ListCastTV(_ref) {
     setIsSoundLocked = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.canPlaySound)().then(function (allowed) {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.canPlaySound)().then(function (allowed) {
       if (isCurrent) setIsSoundLocked(!allowed);
     });
     return function () {
@@ -15760,20 +15766,20 @@ function ListCastTV(_ref) {
     };
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.unlockVoice)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
   // Leaving the game: stop talking
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return _voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice;
+    return _voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice;
   }, []);
   var renderGamePhase = function renderGamePhase() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -15783,39 +15789,39 @@ function ListCastTV(_ref) {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           title: "List Cast Room Created",
           roomCode: room.roomCode,
           players: playersArray,
           musicTrack: lobbyTrack
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_12__.ListCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListRules_jsx__WEBPACK_IMPORTED_MODULE_13__.ListCastRulesTV, {
           roomCode: room.roomCode,
           pointsPerItem: room.pointsPerItem,
           listSize: room.listSize
         });
       case 'card':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.ListCardTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.ListCardTV, {
           room: room
         });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.ListWritingTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.ListWritingTV, {
           room: room
         });
       case 'compare':
       case 'voting':
       case 'results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.ListBoardTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ListScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.ListBoardTV, {
           room: room
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
           players: playersArray,
           isGameOver: room.isGameOver,
           nextLabel: "Next list coming up...",
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -15826,13 +15832,13 @@ function ListCastTV(_ref) {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -21850,26 +21856,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
-/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
-/* harmony import */ var _MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./MixupPlayer.jsx */ "./src/features/Mixup/MixupPlayer.jsx");
-/* harmony import */ var _SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./SnakeSnack.jsx */ "./src/features/Mixup/SnakeSnack.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
+/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
+/* harmony import */ var _MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./MixupPlayer.jsx */ "./src/features/Mixup/MixupPlayer.jsx");
+/* harmony import */ var _SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./SnakeSnack.jsx */ "./src/features/Mixup/SnakeSnack.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -21900,6 +21907,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 /**
  * 🎪 Temple Mix Up. One address, two jobs:
  *   role=caster -> the TV screen (this component)
@@ -21908,12 +21916,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function MixupManager() {
   (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
   // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
-  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
+  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
   var searchParams = new URLSearchParams(window.location.search);
   var roomCode = (searchParams.get('room') || '').toUpperCase();
   var name = searchParams.get('name') || 'Caster';
   if (searchParams.get('role') === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
       roomCode: roomCode,
       playerName: name
     }), roomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -21929,18 +21937,18 @@ function MixupManager() {
 // What the narrator says to open each round
 var introLine = function introLine(room) {
   var round = room.round;
-  var kicker = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.roundKicker)(room.currentRound, room.totalRounds);
+  var kicker = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.roundKicker)(room.currentRound, room.totalRounds);
   var opening = kicker === 'Final round!' ? 'Final round!' : "".concat(kicker === '⅓ of the way there!' ? 'A third of the way there! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! ' : '', "Round ").concat(room.currentRound, ".");
   if (round.type === 'meme') return "".concat(opening, " Meme time! Write the funniest caption you can.");
   if (round.type === 'draw') return "".concat(opening, " Pictionary! ").concat(round.drawerName, ", you're drawing. Everyone else, get guessing!");
   return "".concat(opening, " Threefold! Match as many people as you can.");
 };
-var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('mixup');
+var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.lobbyTrackFor)('mixup');
 function MixupTV(_ref) {
   var _room$round, _room$round2;
   var roomCode = _ref.roomCode,
     casterName = _ref.casterName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_17__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_18__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -21949,14 +21957,15 @@ function MixupTV(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     errorMessage = _useState4[0],
     setErrorMessage = _useState4[1];
+  (0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket, roomCode, !!room);
   var gameState = room === null || room === void 0 ? void 0 : room.gameState;
 
   // 🎨 Background follows the block of rounds, and covers the nav bar on the TV
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.mixupTheme)(room === null || room === void 0 ? void 0 : (_room$round = room.round) === null || _room$round === void 0 ? void 0 : _room$round.type, !room || room.gameState === 'lobby'), true);
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.mixupTheme)(room === null || room === void 0 ? void 0 : (_room$round = room.round) === null || _room$round === void 0 ? void 0 : _room$round.type, !room || room.gameState === 'lobby'), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_16__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_17__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
   // 🔔 Voting is open: chime on the TV, where everyone hears it
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_16__.useTvChime)((room === null || room === void 0 ? void 0 : room.gameState) === 'meme_vote' ? "vote-".concat(room.currentRound) : null);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_17__.useTvChime)((room === null || room === void 0 ? void 0 : room.gameState) === 'meme_vote' ? "vote-".concat(room.currentRound) : null);
 
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -21975,18 +21984,8 @@ function MixupTV(_ref) {
         return setErrorMessage('');
       }, 5000);
     };
-    var handleClosed = function handleClosed() {
-      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        message = _ref2.message;
-      return navigate('/home', {
-        state: {
-          toastMessage: message || 'That game has ended.'
-        }
-      });
-    };
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('room_updated', handleRoomUpdate);
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('joinError', handleJoinError);
-    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('room_closed', handleClosed);
     if (roomCode) {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.on('connect', joinMyRoom);
       if (_socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.connected) joinMyRoom();else _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.connect();
@@ -21997,7 +21996,6 @@ function MixupTV(_ref) {
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('connect', joinMyRoom);
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('room_updated', handleRoomUpdate);
       _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('joinError', handleJoinError);
-      _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.off('room_closed', handleClosed);
     };
   }, [roomCode, casterName]);
 
@@ -22011,7 +22009,7 @@ function MixupTV(_ref) {
     var players = Object.values(room.players).filter(function (p) {
       return !p.isCaster;
     });
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_8__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_9__.scoreRecap)({
       players: players,
       roundHadWinner: players.some(function (p) {
         return (p.roundPoints || 0) > 0;
@@ -22026,34 +22024,34 @@ function MixupTV(_ref) {
   var voiceMoment = null;
   if (gameState === 'intro' && room.round) voiceMoment = "intro-".concat(n);else if (gameState === 'nobody') voiceMoment = "nobody-".concat(n);else if (gameState === 'meme_vote') voiceMoment = "vote-".concat(n);else if (gameState === 'meme_results') voiceMoment = "meme-results-".concat(n);else if (gameState === 'draw_results') voiceMoment = "draw-results-".concat(n);else if (gameState === 'match_write' && (_room$round2 = room.round) !== null && _room$round2 !== void 0 && _room$round2.topic) voiceMoment = "match-".concat(n);else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : "scores-".concat(n);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
     if (!voiceMoment || !room) return;
     var code = room.roomCode;
     var round = room.round;
     if (voiceMoment.startsWith('intro')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(introLine(room), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(introLine(room), code);
     } else if (voiceMoment.startsWith('nobody')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)((0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.nobodyLine)(n, room.totalRounds), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)((0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.nobodyLine)(n, room.totalRounds), code);
     } else if (voiceMoment.startsWith('vote')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)('Time to vote! Pick the funniest caption. Not your own!', code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)('Time to vote! Pick the funniest caption. Not your own!', code);
     } else if (voiceMoment.startsWith('meme-results')) {
       var winners = (round.captions || []).filter(function (c) {
         return (round.winnerIds || []).includes(c.id);
       });
-      if (round.greatMinds) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(["Great minds think alike! Double points for ".concat(winners.map(function (w) {
+      if (round.greatMinds) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(["Great minds think alike! Double points for ".concat(winners.map(function (w) {
         return w.name;
-      }).join(' and '), "!"), winners[0].text], code);else if (winners.length === 1) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(["The funniest caption goes to ".concat(winners[0].name, "."), winners[0].text], code);else if (winners.length > 1) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)("It's a tie! ".concat(winners.map(function (w) {
+      }).join(' and '), "!"), winners[0].text], code);else if (winners.length === 1) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(["The funniest caption goes to ".concat(winners[0].name, "."), winners[0].text], code);else if (winners.length > 1) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)("It's a tie! ".concat(winners.map(function (w) {
         return w.name;
-      }).join(' and '), " both score."), code);else (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)('Nobody wrote a caption that time!', code);
+      }).join(' and '), " both score."), code);else (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)('Nobody wrote a caption that time!', code);
     } else if (voiceMoment.startsWith('draw-results')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(round.guessedBy ? "".concat(round.guessedBy, " got it! It was ").concat(round.word, ".") : "Time's up! It was ".concat(round.word, "."), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(round.guessedBy ? "".concat(round.guessedBy, " got it! It was ").concat(round.word, ".") : "Time's up! It was ".concat(round.word, "."), code);
     } else if (voiceMoment.startsWith('match')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)("The list is: ".concat(round.topic, "."), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)("The list is: ".concat(round.topic, "."), code);
     } else if (voiceMoment === 'game-over') {
       // 🎬 The final scores get read, then the lobby game's credits roll
       var isCurrent = true;
       var timer;
-      Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code) : false).then(function (spoken) {
+      Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code) : false).then(function (spoken) {
         if (isCurrent) timer = setTimeout(function () {
           return setShowCredits(true);
         }, spoken ? 1000 : 6000);
@@ -22063,14 +22061,14 @@ function MixupTV(_ref) {
         clearTimeout(timer);
       };
     } else if (recap) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code);
     }
     return undefined;
   }, [voiceMoment]);
 
   // ⏳ Timer music while people are writing, voting, drawing or answering
   var isTimerPhase = ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(isTimerPhase, {
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_8__.useTimerMusic)(isTimerPhase, {
     endTime: room === null || room === void 0 ? void 0 : room.endTime,
     key: "".concat(gameState, "-").concat(n),
     trackId: gameState === 'match_write' ? 'grandfather-clock' : null // ⏰ the list rounds tick away the whole time
@@ -22079,7 +22077,7 @@ function MixupTV(_ref) {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!']), lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!']), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -22089,7 +22087,7 @@ function MixupTV(_ref) {
     setIsSoundLocked = _useState8[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.canPlaySound)().then(function (allowed) {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.canPlaySound)().then(function (allowed) {
       if (isCurrent) setIsSoundLocked(!allowed);
     });
     return function () {
@@ -22097,15 +22095,15 @@ function MixupTV(_ref) {
     };
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.unlockVoice)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
     setShowCredits(false);
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack);
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack);
     _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('playAgain', {
       roomCode: room === null || room === void 0 ? void 0 : room.roomCode
     });
@@ -22123,13 +22121,13 @@ function MixupTV(_ref) {
 
   // Leaving the game: stop talking
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return _voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice;
+    return _voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice;
   }, []);
   var renderGamePhase = function renderGamePhase() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -22139,7 +22137,7 @@ function MixupTV(_ref) {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           title: "Temple Mix Up Room Created",
           roomCode: room.roomCode,
           players: playersArray,
@@ -22151,46 +22149,46 @@ function MixupTV(_ref) {
           }
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.MixupRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.MixupRulesTV, {
           roomCode: room.roomCode,
           totalRounds: room.totalRounds
         });
       case 'intro':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.RoundIntroTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.RoundIntroTV, {
           room: room
         });
       case 'meme_write':
       case 'meme_vote':
       case 'meme_results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.MemeTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.MemeTV, {
           room: room
         });
       case 'draw':
       case 'draw_results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.DrawTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.DrawTV, {
           room: room
         });
       case 'nobody':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.NobodyTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.NobodyTV, {
           room: room
         });
       case 'match_write':
       case 'match_compare':
       case 'match_results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.MatchTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.MatchTV, {
           room: room
         });
       case 'scoreboard':
         {
           // Rounds come in blocks of each type: work out what's next from the round number
           var each = room.totalRounds / 3;
-          var nextLook = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_13__.ROUND_LOOKS[['meme', 'draw', 'match'][Math.floor(room.currentRound / each)]];
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          var nextLook = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_14__.ROUND_LOOKS[['meme', 'draw', 'match'][Math.floor(room.currentRound / each)]];
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
             players: playersArray,
             isGameOver: room.isGameOver,
             nextLabel: nextLook ? "Next up: ".concat(nextLook.icon, " ").concat(nextLook.title) : 'Next round coming up...',
             headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-            endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
               onPlayAgain: handlePlayAgain,
               onGoHome: handleGoHome
             })
@@ -22202,24 +22200,24 @@ function MixupTV(_ref) {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
       zIndex: 10002
     }
-  }, errorMessage), renderGamePhase(), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_15__.SnakeCredits, {
+  }, errorMessage), renderGamePhase(), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_16__.SnakeCredits, {
     snake: room === null || room === void 0 ? void 0 : room.snake,
     onDone: function onDone() {
       return setShowCredits(false);
     }
-  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "button",
     className: "cc-sound-button",
     onClick: handleTurnSoundOn
@@ -28214,28 +28212,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ReshuffledLobby.jsx */ "./src/features/Reshuffled/ReshuffledLobby.jsx");
-/* harmony import */ var _ReshuffledWritingTV_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ReshuffledWritingTV.jsx */ "./src/features/Reshuffled/ReshuffledWritingTV.jsx");
-/* harmony import */ var _ReshuffledJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReshuffledJudgingTV.jsx */ "./src/features/Reshuffled/ReshuffledJudgingTV.jsx");
-/* harmony import */ var _ReshuffledWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ReshuffledWinnerRevealTV.jsx */ "./src/features/Reshuffled/ReshuffledWinnerRevealTV.jsx");
-/* harmony import */ var _ReshuffledScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ReshuffledScoreboardTV.jsx */ "./src/features/Reshuffled/ReshuffledScoreboardTV.jsx");
-/* harmony import */ var _ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ReshuffledRules.jsx */ "./src/features/Reshuffled/ReshuffledRules.jsx");
-/* harmony import */ var _ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ReshuffledPromptSelection.jsx */ "./src/features/Reshuffled/ReshuffledPromptSelection.jsx");
-/* harmony import */ var _ReshuffledPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ReshuffledPlayerSetup.jsx */ "./src/features/Reshuffled/ReshuffledPlayerSetup.jsx");
-/* harmony import */ var _CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../CouchCast/fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ReshuffledLobby.jsx */ "./src/features/Reshuffled/ReshuffledLobby.jsx");
+/* harmony import */ var _ReshuffledWritingTV_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReshuffledWritingTV.jsx */ "./src/features/Reshuffled/ReshuffledWritingTV.jsx");
+/* harmony import */ var _ReshuffledJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ReshuffledJudgingTV.jsx */ "./src/features/Reshuffled/ReshuffledJudgingTV.jsx");
+/* harmony import */ var _ReshuffledWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ReshuffledWinnerRevealTV.jsx */ "./src/features/Reshuffled/ReshuffledWinnerRevealTV.jsx");
+/* harmony import */ var _ReshuffledScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ReshuffledScoreboardTV.jsx */ "./src/features/Reshuffled/ReshuffledScoreboardTV.jsx");
+/* harmony import */ var _ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ReshuffledRules.jsx */ "./src/features/Reshuffled/ReshuffledRules.jsx");
+/* harmony import */ var _ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ReshuffledPromptSelection.jsx */ "./src/features/Reshuffled/ReshuffledPromptSelection.jsx");
+/* harmony import */ var _ReshuffledPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ReshuffledPlayerSetup.jsx */ "./src/features/Reshuffled/ReshuffledPlayerSetup.jsx");
+/* harmony import */ var _CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../CouchCast/fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -28252,6 +28251,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 // Lock Screen to keep phone screen awake
+
 
 
 
@@ -28295,7 +28295,7 @@ function ReshuffledManager() {
 
   // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -28304,7 +28304,7 @@ function ReshuffledManager() {
   }
 
   // --- TV STATE MANAGEMENT ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_19__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_20__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('creating'),
     _useState2 = _slicedToArray(_useState, 2),
     gameState = _useState2[0],
@@ -28317,6 +28317,7 @@ function ReshuffledManager() {
     _useState6 = _slicedToArray(_useState5, 2),
     errorMessage = _useState6[0],
     setErrorMessage = _useState6[1];
+  (0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket, urlRoomCode, !!roomData);
 
   // Phase-specific state for the TV
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -28341,10 +28342,10 @@ function ReshuffledManager() {
     setPromptAutoPicked = _useState16[1];
 
   // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_3__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_18__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
-  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.lobbyTrackFor)('reshuffled', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_19__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
+  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('reshuffled', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
 
   // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
   var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
@@ -28357,7 +28358,7 @@ function ReshuffledManager() {
   // 🏆 The score recap: on the scoreboard headline and read by the narrator
   var recap = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     if (gameState !== 'scoreboard' || !roomData) return null;
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_16__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_17__.scoreRecap)({
       players: Object.values(roomData.players).filter(function (p) {
         return !p.isCaster;
       }),
@@ -28368,34 +28369,34 @@ function ReshuffledManager() {
   }, [gameState, roomData, roundResults, round]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // The screen changed: stop whatever was being said
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice)();
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
     if (!voiceMoment || !roomData) return;
     var code = roomData.roomCode;
     var promptText = (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt;
     if (voiceMoment.startsWith('picking')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(vibeLine(judgeName), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(vibeLine(judgeName), code);
     } else if (voiceMoment.startsWith('prompt')) {
       // The judge never picked: the narrator teases them before reading the prompt
       var lines = promptAutoPicked ? [VOICE_TOO_SLOW[Math.floor(Math.random() * VOICE_TOO_SLOW.length)], VOICE_PROMPT_INTRO, promptText] : [VOICE_PROMPT_INTRO, promptText];
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(lines, code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(lines, code);
     } else if (voiceMoment.startsWith('winner')) {
       var _roundResults$winning = roundResults.winningSubmission,
         playerName = _roundResults$winning.playerName,
         answer = _roundResults$winning.answer;
       // Read the whole card: the prompt with the winning answer in the blank
-      var _fillBlank = (0,_CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_15__.fillBlank)(currentPrompt, answer),
+      var _fillBlank = (0,_CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_16__.fillBlank)(currentPrompt, answer),
         sentence = _fillBlank.sentence;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
       // Get the next judge's line ready while the confetti falls
-      if (!roundResults.isGameOver && roundResults.nextHostName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(vibeLine(roundResults.nextHostName), code);
+      if (!roundResults.isGameOver && roundResults.nextHostName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(vibeLine(roundResults.nextHostName), code);
     } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
-      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.speak)(recap.spoken, code);
+      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code);
     }
   }, [voiceMoment]);
 
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('playAgain', {
       roomCode: roomData === null || roomData === void 0 ? void 0 : roomData.roomCode
     });
@@ -28417,7 +28418,7 @@ function ReshuffledManager() {
     return gameState === 'prompt_selection' ? Date.now() + 15 * 1000 : null;
   }, [gameState, round]);
   var isTimerPhase = gameState === 'prompt_selection' || gameState === 'writing';
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_6__.useTimerMusic)(isTimerPhase, {
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(isTimerPhase, {
     endTime: gameState === 'writing' ? endTime : promptPickEnd,
     key: "".concat(gameState, "-").concat(round)
   });
@@ -28426,12 +28427,12 @@ function ReshuffledManager() {
   var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!lobbyRoomCode) return;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)([].concat(_toConsumableArray(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_12__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW), lobbyRoomCode);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)([].concat(_toConsumableArray(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_13__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // The first judge is known once the rules are showing: get their line ready too
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (gameState === 'rules' && judgeName && lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.preloadVoice)(vibeLine(judgeName), lobbyRoomCode);
+    if (gameState === 'rules' && judgeName && lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(vibeLine(judgeName), lobbyRoomCode);
   }, [gameState, judgeName, lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen.
@@ -28442,7 +28443,7 @@ function ReshuffledManager() {
     setIsSoundLocked = _useState18[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.canPlaySound)().then(function (allowed) {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.canPlaySound)().then(function (allowed) {
       if (isCurrent) setIsSoundLocked(!allowed);
     });
     return function () {
@@ -28450,14 +28451,14 @@ function ReshuffledManager() {
     };
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_4__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.startLobbyMusic)(lobbyTrack);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.unlockVoice)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
   // Leaving the game: stop talking
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return _voice_js__WEBPACK_IMPORTED_MODULE_4__.stopVoice;
+    return _voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice;
   }, []);
 
   // --- SOCKET LISTENERS (TV ONLY) ---
@@ -28544,7 +28545,7 @@ function ReshuffledManager() {
     if (gameState === 'creating' || !roomData) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -28554,25 +28555,25 @@ function ReshuffledManager() {
     var playersArray = Object.values(roomData.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
           roomCode: roomData.roomCode,
           players: playersArray,
           musicTrack: lobbyTrack
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
           roomCode: roomData.roomCode
         });
       case 'prompt_selection':
         var pickerName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
           isCastScreen: true,
           judgeName: pickerName,
           roomCode: roomData.roomCode,
           prompts: roomData.promptOptions
         });
       case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWritingTV_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWritingTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
           currentPrompt: currentPrompt,
           endTime: endTime,
           players: playersArray,
@@ -28580,14 +28581,14 @@ function ReshuffledManager() {
         });
       case 'judging':
         var _judgeName = ((_roomData$players$roo3 = roomData.players[roomData.hostId]) === null || _roomData$players$roo3 === void 0 ? void 0 : _roomData$players$roo3.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           currentPrompt: currentPrompt,
           submissions: submissions,
           judgeName: _judgeName,
           endTime: roomData.endTime
         });
       case 'winner_reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           currentPrompt: currentPrompt,
           winner: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winner,
           winningSubmission: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winningSubmission // 👈 AND PASSED IT HERE
@@ -28596,12 +28597,12 @@ function ReshuffledManager() {
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
           players: playersArray,
           isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver // 👈 Also passed isGameOver here!
           ,
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -28612,13 +28613,13 @@ function ReshuffledManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -36271,35 +36272,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
-/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastRoundIntro.jsx */ "./src/features/CouchCast/CouchCastRoundIntro.jsx");
-/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _CouchCast_CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CouchCast/CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
-/* harmony import */ var _QuizFinale_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./QuizFinale.jsx */ "./src/features/TriviaCast/QuizFinale.jsx");
-/* harmony import */ var _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
-/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
-/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
+/* harmony import */ var _hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useHideBrowserBar.js */ "./src/hooks/useHideBrowserBar.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
+/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/CouchCastRoundIntro.jsx */ "./src/features/CouchCast/CouchCastRoundIntro.jsx");
+/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _CouchCast_CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../CouchCast/CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
+/* harmony import */ var _QuizFinale_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./QuizFinale.jsx */ "./src/features/TriviaCast/QuizFinale.jsx");
+/* harmony import */ var _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
+/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
+/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -36337,13 +36340,13 @@ function TriviaCastManager() {
   var _room$attack2;
   (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
   // 📱 iPhone: room to swipe the browser bar away (the TV screen only, not the players' phones)
-  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_3__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
+  (0,_hooks_useHideBrowserBar_js__WEBPACK_IMPORTED_MODULE_4__["default"])(new URLSearchParams(window.location.search).get('role') !== 'guest');
   var searchParams = new URLSearchParams(window.location.search);
   var urlRoomCode = (searchParams.get('room') || '').toUpperCase();
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -36352,7 +36355,7 @@ function TriviaCastManager() {
   }
 
   // --- TV STATE ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_20__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -36361,6 +36364,7 @@ function TriviaCastManager() {
     _useState4 = _slicedToArray(_useState3, 2),
     errorMessage = _useState4[0],
     setErrorMessage = _useState4[1];
+  (0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket, urlRoomCode, !!room);
   var gameState = room === null || room === void 0 ? void 0 : room.gameState;
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
@@ -36368,10 +36372,10 @@ function TriviaCastManager() {
     setShowFinale = _useState6[1]; // 🎭 the curtain call, after the final scores
 
   // 🎨 Background follows the question deck, and covers the nav bar on the TV
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_19__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
-  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.lobbyTrackFor)('triviaCast', room === null || room === void 0 ? void 0 : room.expansion);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_20__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
+  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.lobbyTrackFor)('triviaCast', room === null || room === void 0 ? void 0 : room.expansion);
 
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -36416,7 +36420,7 @@ function TriviaCastManager() {
     var players = Object.values(room.players).filter(function (p) {
       return !p.isCaster;
     });
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_17__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__.scoreRecap)({
       players: players,
       roundHadWinner: players.some(function (p) {
         return (p.lastPoints || 0) > 0;
@@ -36426,7 +36430,7 @@ function TriviaCastManager() {
     });
   }, [gameState, room]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
     if (!voiceMoment || !room) return;
     var code = room.roomCode;
     if (voiceMoment.startsWith('round-intro')) {
@@ -36435,9 +36439,9 @@ function TriviaCastManager() {
       var startedAt = Date.now();
       var isCurrent = true;
       var timer;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.roundIntroLine)(round, room.totalRounds), code).then(function (spoken) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.roundIntroLine)(round, room.totalRounds), code).then(function (spoken) {
         // ...and the cast's bit along the bottom gets to finish
-        var sceneLeft = _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_14__.SCENE_MS - (Date.now() - startedAt);
+        var sceneLeft = _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_15__.SCENE_MS - (Date.now() - startedAt);
         if (isCurrent) timer = setTimeout(function () {
           return _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('round_intro_read', {
             roomCode: code,
@@ -36452,29 +36456,29 @@ function TriviaCastManager() {
     }
     if (voiceMoment.startsWith('question')) {
       // Two lines, so the question on its own is cached and re-reading it at the reveal is free
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(["Question ".concat(room.currentRound, "."), room.question.text], code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(["Question ".concat(room.currentRound, "."), room.question.text], code);
     } else if (voiceMoment.startsWith('reveal')) {
       // Read the question again, then the answer (the question is already cached, so it's instant)
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)([room.question.text, "The answer is: ".concat(room.correctAnswer, ".")], code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)([room.question.text, "The answer is: ".concat(room.correctAnswer, ".")], code);
     } else if (voiceMoment === 'game-over') {
       // 🥁 The narrator waits for the drum roll and announces the champion over the cheers, the fireworks
       // get their moment, then the curtain comes down
       var _isCurrent = true;
       var _timer = setTimeout(function () {
-        Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code) : false).then(function (spoken) {
+        Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code) : false).then(function (spoken) {
           if (_isCurrent) _timer = setTimeout(function () {
             return setShowFinale(true);
           }, spoken ? CHAMPION_MOMENT_MS : 7000);
         });
-      }, _CouchCast_CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_12__.FINALE_DRUMROLL_MS + 600);
+      }, _CouchCast_CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_13__.FINALE_DRUMROLL_MS + 600);
       return function () {
         _isCurrent = false;
         clearTimeout(_timer);
       };
     } else if (voiceMoment.startsWith('scores')) {
-      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.speak)(recap.spoken, code);
+      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code);
       // Get the next round's line ready behind it
-      if (!room.isGameOver) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.roundIntroLine)(room.currentRound + 1, room.totalRounds), code);
+      if (!room.isGameOver) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.roundIntroLine)(room.currentRound + 1, room.totalRounds), code);
     }
     return undefined;
   }, [voiceMoment]);
@@ -36482,7 +36486,7 @@ function TriviaCastManager() {
   // 🔁 End of the game: the caster picks what happens next
   var handlePlayAgain = function handlePlayAgain() {
     setShowFinale(false);
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
     _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('playAgain', {
       roomCode: room === null || room === void 0 ? void 0 : room.roomCode
     });
@@ -36508,11 +36512,11 @@ function TriviaCastManager() {
     });
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (isPaused) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice)();
+    if (isPaused) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
   }, [isPaused]);
 
   // ⏳ Tick-tock music while everyone answers (it stops for a pause)
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_7__.useTimerMusic)(gameState === 'question' && !isPaused, {
+  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_8__.useTimerMusic)(gameState === 'question' && !isPaused, {
     endTime: room === null || room === void 0 ? void 0 : room.endTime,
     key: room === null || room === void 0 ? void 0 : room.currentRound
   });
@@ -36520,7 +36524,7 @@ function TriviaCastManager() {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -36530,7 +36534,7 @@ function TriviaCastManager() {
     setIsSoundLocked = _useState8[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.canPlaySound)().then(function (allowed) {
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.canPlaySound)().then(function (allowed) {
       if (isCurrent) setIsSoundLocked(!allowed);
     });
     return function () {
@@ -36538,14 +36542,14 @@ function TriviaCastManager() {
     };
   }, []);
   var handleTurnSoundOn = function handleTurnSoundOn() {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_5__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_6__.startLobbyMusic)(lobbyTrack);
+    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.unlockVoice)();
+    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack);
     setIsSoundLocked(false);
   };
 
   // Leaving the game: stop talking
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return _voice_js__WEBPACK_IMPORTED_MODULE_5__.stopVoice;
+    return _voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice;
   }, []);
 
   // --- TV RENDER ---
@@ -36553,7 +36557,7 @@ function TriviaCastManager() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -36563,7 +36567,7 @@ function TriviaCastManager() {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
           title: "Trivia Cast Room Created",
           roomCode: room.roomCode,
           players: playersArray,
@@ -36575,32 +36579,32 @@ function TriviaCastManager() {
           }
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.TriviaCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.TriviaCastRulesTV, {
           roomCode: room.roomCode
         });
       case 'round_intro':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
           round: room.currentRound,
           totalRounds: room.totalRounds,
-          kicker: (0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.roundKicker)(room.currentRound, room.totalRounds),
+          kicker: (0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.roundKicker)(room.currentRound, room.totalRounds),
           tagline: "Up next, get ready!",
-          scene: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_14__.QuizRoundScene, {
+          scene: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_15__.QuizRoundScene, {
             round: room.currentRound
           })
         });
       case 'question':
       case 'reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.TriviaCastQuestionTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.TriviaCastQuestionTV, {
           room: room
         });
       case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
           players: playersArray,
           isGameOver: room.isGameOver,
           celebrate: true,
           nextLabel: "Next question coming up...",
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -36611,26 +36615,26 @@ function TriviaCastManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
     fluid: true,
     className: "p-0",
     style: {
       minHeight: '100vh'
     }
-  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
+  }, errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_24__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
       zIndex: 10002
     }
-  }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_10__.CouchCastPausedOverlay, {
+  }, errorMessage), renderGamePhase(), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_11__.CouchCastPausedOverlay, {
     isCaster: true
-  }), showFinale && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizFinale_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), showFinale && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizFinale_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
     scores: room === null || room === void 0 ? void 0 : (_room$attack2 = room.attack) === null || _room$attack2 === void 0 ? void 0 : _room$attack2.scores,
     onDone: function onDone() {
       return setShowFinale(false);
     }
-  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
     canPause: canPause || isPaused,
     isPaused: isPaused,
     onTogglePause: handleTogglePause
@@ -40780,6 +40784,72 @@ function useRoomClosed(socket) {
       return socket.off('room_closed', handleRoomClosed);
     };
   }, [socket, navigate]);
+}
+
+/***/ }),
+
+/***/ "./src/hooks/useRoomGone.js":
+/*!**********************************!*\
+  !*** ./src/hooks/useRoomGone.js ***!
+  \**********************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useRoomGone)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+
+
+
+// How long a TV waits to hear about its room before giving up (a refresh of a live game answers right away)
+var NO_ANSWER_MS = 15000;
+
+// 📺 Browsers love to bring back the last page, so a TV link can come back long after its game ended.
+// When this TV's room is gone (or never answers), head to the menu instead of "Powering up" forever.
+// `replace` keeps the dead link out of the history, so Back doesn't land on it again.
+function useRoomGone(socket, roomCode, hasRoom) {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+  var hasLeft = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var goHome = function goHome(message) {
+      // Some TVs read the code from the address bar, so leaving makes it look like there's no code at all:
+      // only the first trip home counts, or that second one would wipe out the message
+      if (hasLeft.current) return;
+      hasLeft.current = true;
+      navigate('/home', {
+        replace: true,
+        state: {
+          toastMessage: message
+        }
+      });
+    };
+    if (!roomCode) {
+      goHome();
+      return undefined;
+    }
+    var handleJoinError = function handleJoinError(msg) {
+      if (msg === 'Room not found!') goHome('That game has ended.');
+    };
+    // A device that just started a new game can still hear its old room closing: only ours counts
+    var handleRoomClosed = function handleRoomClosed() {
+      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        closedCode = _ref.roomCode,
+        message = _ref.message;
+      if ((closedCode === null || closedCode === void 0 ? void 0 : closedCode.toUpperCase()) === roomCode.toUpperCase()) goHome(message || 'That game has ended.');
+    };
+    socket.on('joinError', handleJoinError);
+    socket.on('room_closed', handleRoomClosed);
+    var noAnswer = hasRoom ? null : setTimeout(function () {
+      return goHome("We couldn't find that game.");
+    }, NO_ANSWER_MS);
+    return function () {
+      socket.off('joinError', handleJoinError);
+      socket.off('room_closed', handleRoomClosed);
+      clearTimeout(noAnswer);
+    };
+  }, [socket, roomCode, hasRoom, navigate]);
 }
 
 /***/ }),
