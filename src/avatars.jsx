@@ -1,5 +1,6 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useRef } from 'react';
 import { HALLOWEEN_AVATARS, COSTUME_FOR } from './halloweenAvatars.jsx';
+import { MORE_AVATARS } from './moreAvatars.jsx';
 
 /**
  * 🙂 Player avatars for the cast games. Players pick one on the Join Room screen; the phone
@@ -163,6 +164,7 @@ export const AVATARS = [
             </>
         ),
     },
+    ...MORE_AVATARS,
 ];
 
 const BY_ID = Object.fromEntries(AVATARS.map((a) => [a.id, a]));
@@ -280,8 +282,16 @@ export function setMyAvatar(id) {
 
 /** A grid of avatars to tap (Join Room screen) */
 export function AvatarPicker({ value, onChange }) {
+    // The list scrolls inside its box: start with this phone's pick in view
+    const boxRef = useRef(null);
+    useEffect(() => {
+        const box = boxRef.current;
+        const picked = box?.querySelector('.gt-avatar-choice.selected');
+        if (picked) box.scrollTop = picked.offsetTop - (box.clientHeight - picked.offsetHeight) / 2;
+    }, []);
+
     return (
-        <div className="gt-avatar-picker" role="radiogroup" aria-label="Pick your avatar">
+        <div ref={boxRef} className="gt-avatar-picker" role="radiogroup" aria-label="Pick your avatar">
             {AVATARS.map((avatar) => (
                 <button
                     key={avatar.id}
