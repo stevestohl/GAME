@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Spinner, Alert, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ROOM_NOT_FOUND, joinAgain } from '../../hooks/useRoomGone.js';
 import { mixupSocket as socket } from '../../socket.js';
 import { playChime } from '../../chime.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
@@ -40,7 +41,13 @@ export default function MixupPlayer({ roomCode, playerName }) {
         const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId, avatar: getMyAvatar() });
         const handleRoom = (update) => { if (update?.roomCode === roomCode) setRoom(update); };
         const handleMyState = (state) => setMine((prev) => ({ ...prev, ...state }));
-        const handleJoinError = (msg) => setError(msg);
+        const handleJoinError = (msg) => {
+            if (msg === ROOM_NOT_FOUND) {
+                navigate(...joinAgain(roomCode));
+                return;
+            }
+            setError(msg);
+        };
         const handleClosed = ({ message } = {}) => navigate('/home', { state: { toastMessage: message || 'That game has ended.' } });
         const handleGuessResult = ({ correct }) => {
             setGuessFeedback(correct ? 'right' : 'wrong');

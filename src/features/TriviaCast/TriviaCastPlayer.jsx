@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Spinner, Alert, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ROOM_NOT_FOUND, joinAgain } from '../../hooks/useRoomGone.js';
 import { triviaCastSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
@@ -36,7 +37,13 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
 
         const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId, avatar: getMyAvatar() });
         const handleRoomUpdate = (update) => { if (update?.roomCode === roomCode) setRoom(update); };
-        const handleJoinError = (message) => setError(message);
+        const handleJoinError = (message) => {
+            if (message === ROOM_NOT_FOUND) {
+                navigate(...joinAgain(roomCode));
+                return;
+            }
+            setError(message);
+        };
         const handleRoomClosed = ({ message }) => {
             navigate('/home', { state: { toastMessage: message || 'That game has ended.' } });
         };

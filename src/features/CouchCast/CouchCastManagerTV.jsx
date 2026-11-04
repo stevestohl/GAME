@@ -6,6 +6,7 @@ import { couchCastSocket as socket } from "../../socket";
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
 import useRoomGone from '../../hooks/useRoomGone.js';
+import ConnectionLost from '../Menu/ConnectionLost.jsx';
 import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
@@ -468,6 +469,7 @@ export default function CouchCastManager() {
         // 🎃 A Halloween-deck game: everyone's avatar shows up in costume
         <AvatarTheme theme={roomData?.expansion === 'halloween' ? 'halloween' : null}>
         <Container fluid className="p-0" style={{ minHeight: '100vh'}}>
+            <ConnectionLost socket={socket} />
             {errorMessage && (
                 <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 10002 }}>
                     {errorMessage}

@@ -6,6 +6,7 @@ import { reshuffledSocket as socket } from "../../socket";
 // Lock Screen to keep phone screen awake
 import useWakeLock from '../../hooks/useWakeLock.js';
 import useRoomGone from '../../hooks/useRoomGone.js';
+import ConnectionLost from '../Menu/ConnectionLost.jsx';
 import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
@@ -350,6 +351,7 @@ export default function ReshuffledManager() {
 
     return (
         <Container fluid className="p-0" style={{ minHeight: '100vh'}}>
+            <ConnectionLost socket={socket} />
             {errorMessage && (
                 <Alert variant="danger" className="text-center m-2 position-absolute w-100" style={{ zIndex: 10002 }}>
                     {errorMessage}

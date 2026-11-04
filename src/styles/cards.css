@@ -702,6 +702,25 @@
   .cc-sound-button { animation: none; }
 }
 
+/* 📡 The TV lost its connection to the server */
+.cc-connection-lost {
+  position: fixed;
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  padding: 0.5rem 1.25rem;
+  border-radius: 1rem;
+  border: 2px solid var(--gt-gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 3vh, 1.3rem);
+  text-align: center;
+  background: rgba(150, 20, 30, 0.95);
+}
+
 /* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */
 .cc-room-code {
   position: fixed;

@@ -3,6 +3,7 @@ import { Container, Spinner, Alert, Card, Button, Form } from 'react-bootstrap';
 import { reshuffledSocket as socket } from '../../socket';
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+import { ROOM_NOT_FOUND, joinAgain } from '../../hooks/useRoomGone.js';
 
 // 🎮 Import your mobile screens
 import ReshuffledScoreboard from './ReshuffledScoreboard.jsx';
@@ -38,6 +39,10 @@ useEffect(() => {
         
         // 2. NEW LISTENER FOR THE TOAST!
         const handleJoinError = (errorMessage) => {
+            if (errorMessage === ROOM_NOT_FOUND) {
+                navigate(...joinAgain(roomCode));
+                return;
+            }
             toast.error(errorMessage, {
                 toastId: 'joinError', // the same message never stacks
                 position: "top-center",

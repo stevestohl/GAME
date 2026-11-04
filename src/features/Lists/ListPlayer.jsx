@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Spinner, Alert, Badge, Form, ListGroup, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ROOM_NOT_FOUND, joinAgain } from '../../hooks/useRoomGone.js';
 import { listsSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, listsTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
@@ -51,6 +52,10 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
         const joinMyRoom = () => socket.emit('joinRoom', { roomCode, playerName, playerId, avatar: getMyAvatar() });
         const handleRoomUpdate = (update) => { if (update?.roomCode === roomCode) setRoom(update); };
         const handleJoinError = (message) => {
+            if (message === ROOM_NOT_FOUND) {
+                navigate(...joinAgain(roomCode));
+                return;
+            }
             // "Need more players" just means the start button was early: stay in the room
             if (message && message.startsWith('You need')) return;
             setError(message);

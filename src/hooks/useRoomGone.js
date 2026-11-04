@@ -1,6 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+export const ROOM_NOT_FOUND = 'Room not found!';
+
+// 📱 Where a player's phone goes when its room doesn't exist: a new name wouldn't help, the code is the problem.
+// Use it as navigate(...joinAgain(roomCode)). The join page starts empty, so they can type the right code.
+export const joinAgain = (roomCode) => ['/join', {
+    replace: true,
+    state: { toastMessage: `We couldn't find room ${roomCode}. It may have ended, so double-check the code.` },
+}];
+
 // How long a TV waits to hear about its room before giving up (a refresh of a live game answers right away)
 const NO_ANSWER_MS = 15000;
 
@@ -25,7 +34,7 @@ export default function useRoomGone(socket, roomCode, hasRoom) {
         }
 
         const handleJoinError = (msg) => {
-            if (msg === 'Room not found!') goHome('That game has ended.');
+            if (msg === ROOM_NOT_FOUND) goHome('That game has ended.');
         };
         // A device that just started a new game can still hear its old room closing: only ours counts
         const handleRoomClosed = ({ roomCode: closedCode, message } = {}) => {
