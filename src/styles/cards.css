@@ -142,6 +142,96 @@
   border: 2px dashed #ccc;
 }
 
+/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */
+.cc-scores { text-align: left; }
+.cc-scores-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.25rem;
+  border-bottom: 1px solid #dfe3ea;
+}
+.cc-scores-row:last-child { border-bottom: 0; }
+.cc-scores-rank {
+  flex: 0 0 1.25rem;
+  text-align: center;
+  font-weight: 700;
+  color: #6c757d;
+}
+.cc-scores-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  font-weight: 700;
+  color: #212529;
+}
+.cc-scores-points {
+  flex: 0 0 auto;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #014eb6;
+}
+/* This player's own name: the home page's tile, with the burglar centered on it */
+.cc-scores-loot {
+  position: relative;
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+}
+.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }
+
+/* 🌟 The deck's character at the top of the scores */
+.cc-mascot {
+  display: block;
+  width: 110px;
+  height: auto;
+  margin: 0 auto 0.5rem;
+  overflow: visible;
+}
+.cc-mascot-bob {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;
+}
+@keyframes cc-mascot-bob {
+  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }
+  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }
+}
+.cc-mascot-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;
+}
+.cc-mascot-sparkle-late { animation-delay: 0.45s; }
+.cc-mascot-sparkle-later { animation-delay: 0.9s; }
+@keyframes cc-mascot-sparkle {
+  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }
+  50%      { transform: scale(1) rotate(45deg); opacity: 1; }
+}
+/* The candle inside the pumpkin */
+.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }
+.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }
+@keyframes cc-mascot-flicker {
+  0%, 100% { fill: #ffe14d; }
+  20%      { fill: #ffb52e; }
+  35%      { fill: #fff27a; }
+  55%      { fill: #ff9f1f; }
+  70%      { fill: #ffe14d; }
+  85%      { fill: #ffc533; }
+}
+.cc-mascot-swing {
+  transform-origin: 60px 4px;
+  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;
+}
+@keyframes cc-mascot-swing {
+  from { transform: rotate(-9deg); }
+  to   { transform: rotate(9deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }
+  .cc-mascot-sparkle { opacity: 1; }
+}
+
 /* -------------------------------- */
 /* 📱 STICKY SCROLL HACK FOR MOBILE  */
 /* -------------------------------- */
@@ -2275,7 +2365,7 @@ html.cast-screen {
   /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */
   height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);
 }
-/* More than four players: two to a row, so everyone still fits above the couch */
+/* Lobby players go two to a row, so everyone fits */
 .cc-lobby-players-grid {
   display: grid !important;
   grid-template-columns: 1fr 1fr;

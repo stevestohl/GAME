@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Spinner, Alert, Badge } from 'react-bootstrap';
+import { Card, Button, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { ROOM_NOT_FOUND, joinAgain } from '../../hooks/useRoomGone.js';
 import { triviaCastSocket as socket } from '../../socket';
@@ -7,6 +7,7 @@ import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.
 import { playChime } from '../../chime.js';
 import { getMyAvatar } from '../../avatars.jsx';
 import AvatarAttack from './AvatarAttack.jsx';
+import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScoreboard.jsx';
 import CouchCastRoundIntro from '../CouchCast/CouchCastRoundIntro.jsx';
 import { roundKicker } from './TriviaCastScreensTV.jsx';
 import { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
@@ -26,6 +27,7 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
 
     // 🎨 Background follows the question deck
     useSetBackgroundTheme(triviaCastTheme(room?.expansion));
+    useEffect(preloadBurglar, []);
 
     useEffect(() => {
         // A saved ID lets this phone get its seat back after a refresh or a dropped connection
@@ -221,27 +223,7 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
             ));
 
         case 'scoreboard': {
-            const ranked = Object.values(room.players)
-                .filter((p) => !p.isCaster)
-                .sort((a, b) => (b.score || 0) - (a.score || 0));
-            const myRank = ranked.findIndex((p) => p.id === me.id) + 1;
-
-            return frame(room.isGameOver ? 'Final Scores' : 'Scores', (
-                <div className="py-2">
-                    <h1 className="display-3 mb-2">{room.isGameOver && myRank === 1 ? '🏆' : '📊'}</h1>
-                    <h3 className="fw-bold text-dark mb-1">
-                        {room.isGameOver && myRank === 1 ? 'You won!' : `You're #${myRank} of ${ranked.length}`}
-                    </h3>
-                    <Badge bg="primary" className="fs-5 rounded-pill px-3 py-2 mb-3">{me.score} pts</Badge>
-                    {room.isGameOver ? (
-                        <Button variant="primary" className="w-100 fw-bold" onClick={() => navigate('/home')}>
-                            Back to Home
-                        </Button>
-                    ) : (
-                        <p className="text-muted mb-0">Next question coming up...</p>
-                    )}
-                </div>
-            ));
+            return <CouchCastScoreboard playerData={me} players={Object.values(room.players)} isGameOver={room.isGameOver} expansion={room.expansion} nextLabel="Next question coming up..." />;
         }
 
         default:

@@ -3,6 +3,7 @@ import { Card, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
+import useAutoScrollList from '../../hooks/useAutoScrollList.js';
 import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
 import Snowfall from './Snowfall.jsx';
@@ -12,7 +13,8 @@ import SpyShow from '../Mixup/SpyShow.jsx';
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's decks;
 // `crewTheme` says which cast, and the Holiday deck also gets snow). `scoreFor`: a player's lobby game score, if the game has one
 // `quizShow`: game show contestants take the couch's spot under the players card (Trivia Cast)
-// `spyShow`: two bad spies do the same (Temple Mix Up), and the players show four at a time, scrolling through the rest
+// `spyShow`: two bad spies do the same (Temple Mix Up)
+// Players go two to a row with small avatars, scrolling if there are more than fit, and "Waiting for..." sits beside "Players" to leave them room
 export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, quizShow = false, spyShow = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
@@ -20,18 +22,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const qrRef = useRef(null);
   const playersRef = useRef(null);
 
-  // 📜 Nobody can scroll a TV: when there are more players than fit, the list moves along by itself
-  useEffect(() => {
-    if (!spyShow) return undefined;
-    const timer = setInterval(() => {
-      const list = playersRef.current;
-      if (!list || list.scrollHeight <= list.clientHeight + 2) return;
-      const row = list.firstElementChild?.getBoundingClientRect().height || 40;
-      const isAtEnd = list.scrollTop + list.clientHeight >= list.scrollHeight - 2;
-      list.scrollTo({ top: isAtEnd ? 0 : list.scrollTop + row, behavior: 'smooth' });
-    }, 2500);
-    return () => clearInterval(timer);
-  }, [spyShow]);
+  useAutoScrollList(playersRef);
 
   useEffect(() => {
     // Check orientation on load and resize
@@ -56,10 +47,24 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const activePlayers = players.filter(player => !player.isCaster);
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
-  // A little smaller when the list goes two to a row above the couch, so more rows fit
   const hasStage = crew || quizShow || spyShow;   // something lives under the players card
-  const avatarSize = spyShow ? 'clamp(24px, 6vh, 56px)' : hasStage && activePlayers.length > 4 ? 'clamp(28px, 7vh, 64px)' : 'clamp(40px, 8vh, 64px)';
+  const avatarSize = 'clamp(20px, 4vh, 32px)';
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
+
+  const waitingLine = (
+    <div 
+      className="text-dark fw-semibold px-2 py-1 border border-primary border-dashed rounded text-center text-truncate"
+      style={{ 
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        fontSize: 'clamp(0.7rem, 1.7vh, 1rem)',
+        minWidth: 0,   // beside the title: a long name gets cut off, not the title
+      }}
+    >
+      {activePlayers.length < 1 
+        ? "Waiting for players..." 
+        : `Waiting for ${hostName}...`}
+    </div>
+  );
 
 
   return (
@@ -138,15 +143,18 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
           <div className="col-6 d-flex flex-column h-100">
             <div className="shining-border-wrapper" style={hasStage ? { height: 'auto', flex: '1 1 0', minHeight: 0 } : undefined}>
               <Card className="fullscreen-gameplay-card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
-                <Card.Body className="d-flex flex-column" style={{ padding: 'clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
-                  <h5 
-                    className="text-start mb-2 fw-semibold flex-shrink-0 text-dark"
-                    style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)' }}
-                  >
-                    Players ({activePlayers.length}):
-                  </h5>
+                <Card.Body className="d-flex flex-column" style={{ padding: 'clamp(0.4rem, 1.5vh, 1rem) clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
+                  <div className="d-flex justify-content-between align-items-center gap-2 flex-shrink-0 mb-1">
+                    <h5 
+                      className="text-start mb-0 fw-semibold flex-shrink-0 text-dark"
+                      style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)' }}
+                    >
+                      Players ({activePlayers.length}):
+                    </h5>
+                    {waitingLine}
+                  </div>
                   
-                  <ListGroup ref={playersRef} className={`mb-2 text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 ${spyShow || (hasStage && activePlayers.length > 4) ? 'cc-lobby-players-grid' : ''}`} style={{ minHeight: 0 }}>
+                  <ListGroup ref={playersRef} className="text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid" style={{ minHeight: 0 }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
                         <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
@@ -160,21 +168,10 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                       </ListGroupItem>
                     ))}
                     {activePlayers.length === 0 && (
-                      <div className="text-secondary fst-italic mt-1" style={{ fontSize: 'clamp(0.8rem, 1.8vh, 1.1rem)' }}>No players yet...</div>
+                      <div className="text-secondary fst-italic mt-1" style={{ fontSize: 'clamp(0.8rem, 1.8vh, 1.1rem)', gridColumn: '1 / -1' }}>No players yet...</div>
                     )}
                   </ListGroup>
 
-                  <div 
-                    className="text-dark fw-semibold px-2 py-1 border border-primary border-dashed rounded text-center flex-shrink-0" 
-                    style={{ 
-                      backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                      fontSize: 'clamp(0.7rem, 1.7vh, 1rem)' 
-                    }}
-                  >
-                    {activePlayers.length < 1 
-                      ? "Waiting for players..." 
-                      : `Waiting for ${hostName}...`}
-                  </div>
                 </Card.Body>
               </Card>
             </div>

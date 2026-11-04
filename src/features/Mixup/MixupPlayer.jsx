@@ -8,6 +8,7 @@ import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { DrawingPad, DrawingView } from './DrawingCanvas.jsx';
 import { MemeImage, ROUND_LOOKS, useCountdown, roundKicker } from './MixupScreensTV.jsx';
 import SnakeSnack from './SnakeSnack.jsx';
+import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScoreboard.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
 import '../../styles/mixup.css';
 import { getMyAvatar } from '../../avatars.jsx';
@@ -30,6 +31,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
     const lastRound = useRef(null);
 
     useSetBackgroundTheme(mixupTheme(room?.round?.type, !room || room.gameState === 'lobby'));
+    useEffect(preloadBurglar, []);
 
     // --- Join, and stay joined through refreshes and network blips ---
     useEffect(() => {
@@ -362,18 +364,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
 
         // ===================== SCORES =====================
         case 'scoreboard': {
-            const ranked = [...players].sort((a, b) => (b.score || 0) - (a.score || 0));
-            const place = ranked.findIndex((p) => p.id === socket.id) + 1;
-            return (
-                <Frame title={room.isGameOver ? 'Final Scores' : roundTitle}>
-                    <div className="mx-phone-intro-icon">{room.isGameOver ? (place === 1 ? '👑' : '🎉') : '📊'}</div>
-                    <h3 className="fw-bold mb-1">{me.score || 0} points</h3>
-                    <p className="text-muted">{place ? `You're #${place} of ${ranked.length}` : ''}</p>
-                    {room.isGameOver && (
-                        <Button variant="outline-secondary" className="w-100 fw-bold" onClick={() => navigate('/home')}>Back to Home</Button>
-                    )}
-                </Frame>
-            );
+            return <CouchCastScoreboard playerData={me} players={players} isGameOver={room.isGameOver} expansion={room.expansion} />;
         }
         default:
             return <Frame title="Temple Mix Up"><Spinner animation="border" /></Frame>;

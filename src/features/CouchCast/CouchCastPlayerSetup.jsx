@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROOM_NOT_FOUND, joinAgain } from '../../hooks/useRoomGone.js';
 
 // 🎮 Import your mobile screens
-import CouchCastScoreboard from './CouchCastScoreboard.jsx';
+import CouchCastScoreboard, { preloadBurglar } from './CouchCastScoreboard.jsx';
 import CouchCastPromptSelection from './CouchCastPromptSelection.jsx';
 import CouchCastWritingPlayer from './CouchCastWritingPlayer.jsx';
 import CouchCastJudging from './CouchCastJudging.jsx'; // 👈 IMPORTED OUR JUDGING COMPONENT
@@ -33,6 +33,8 @@ export default function CouchCastPlayerSetup({ roomCode, playerName }) {
     const [submissions, setSubmissions] = useState([]); // 👈 Added state to hold the anonymous answers for the judge
     const [retryName, setRetryName] = useState('');
     const [showCredits, setShowCredits] = useState(false);
+
+    useEffect(preloadBurglar, []);
 
 useEffect(() => {
         // 1. Generate or grab a persistent Player ID for backend reconnection
@@ -359,6 +361,7 @@ useEffect(() => {
                         playerData={playerData} 
                         players={Object.values(roomData.players)} 
                         isGameOver={roundResults?.isGameOver}
+                        expansion={roomData.expansion}
                     />
                 );
 

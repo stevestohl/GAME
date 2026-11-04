@@ -13,6 +13,7 @@ import { RoundCard, CardChip, cardWritingTip } from './ListCards.jsx';
 import '../../styles/lists.css';
 import { getMyAvatar } from '../../avatars.jsx';
 import TempleWaitingRoom from '../Menu/TempleWaitingRoom.jsx';
+import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScoreboard.jsx';
 
 const blankList = (size) => Array.from({ length: size }, () => '');
 
@@ -39,6 +40,7 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
     // 🔵 Listopia's waiting room stays blue, whichever deck it's playing
     const isBlueLobby = isListopia && (!room || room.gameState === 'lobby');
     useSetBackgroundTheme(isBlueLobby ? 'home' : listsTheme(room?.expansion));
+    useEffect(() => { if (!isListopia) preloadBurglar(); }, [isListopia]);
 
     // ---------- Connect & listen ----------
     useEffect(() => {
@@ -494,6 +496,11 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
 
         // ===================== SCOREBOARD =====================
         case 'scoreboard': {
+            // List Cast has a TV to look at; Listopia keeps its own screen, played on phones alone
+            if (!isListopia) {
+                return <CouchCastScoreboard playerData={me} players={players} isGameOver={room.isGameOver} expansion={room.expansion} nextLabel="Next list coming up..." />;
+            }
+
             const ranked = [...players].sort((a, b) => (b.score || 0) - (a.score || 0));
             // Same score, same place
             const rankOf = (p) => 1 + ranked.filter((o) => (o.score || 0) > (p.score || 0)).length;
