@@ -41,10 +41,23 @@ final class CastCoordinator {
 
     // MARK: - The phone
 
-    /// The phone went to a new page (the website changes pages without reloading, so this follows the address)
+    /// The room whose "Play on TV" guide was turned down, so it doesn't keep coming back for that game
+    private var playingOnPhone: String?
+
+    /// The phone went to a new page (the website changes pages without reloading, so this follows the address).
+    /// A game just started: it goes to the TV, or with no TV yet, the phone shows how to connect one.
     func phoneDidShow(_ url: URL) {
-        guard isTVConnected, let room = roomCode(ofTVPage: url) else { return }
-        moveToTV(url, room: room)
+        guard let room = roomCode(ofTVPage: url) else { return }
+        if isTVConnected {
+            moveToTV(url, room: room)
+        } else if room != playingOnPhone {
+            phone?.showConnectGuide(room: room)
+        }
+    }
+
+    /// "No TV? Show the game on this phone": the old way, with this phone mirrored or held up as the screen
+    func playOnPhone(room: String) {
+        playingOnPhone = room
     }
 
     // MARK: - The TV

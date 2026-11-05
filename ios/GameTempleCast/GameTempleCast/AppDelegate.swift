@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 
 /**
  * 📺 Game Temple, as an iPhone app. The phone runs the website, and when a TV is connected over AirPlay,
@@ -10,6 +11,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // A game is running on the TV: the phone shouldn't go to sleep under it
         application.isIdleTimerDisabled = true
+        // 🔊 The narrator and music are the point, not background noise: play them even with the phone on silent,
+        // and send them over AirPlay to the TV (iOS otherwise treats web sound as ambient, which silent mutes)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            castLog.error("Couldn't set up sound: \(error.localizedDescription, privacy: .public)")
+        }
         return true
     }
 

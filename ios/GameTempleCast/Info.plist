@@ -5,11 +5,33 @@
 	<!-- The site the app runs (a launch argument can override it for testing: -GTBaseURL http://localhost:5005) -->
 	<key>GTBaseURL</key>
 	<string>https://game-temple.org</string>
-	<!-- Two screens: the phone, and a connected TV (the scene delegates are picked in AppDelegate.swift) -->
+	<!-- Two screens: the phone, and a connected TV. iOS only gives the TV its own screen (instead of a copy
+	     of the phone's) to an app that supports more than one scene and names one for the TV's role. -->
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Phone</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).PhoneSceneDelegate</string>
+				</dict>
+			</array>
+			<key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>TV</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).TVSceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 	<!-- Testing against the server on this Mac -->
 	<key>NSAppTransportSecurity</key>

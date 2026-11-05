@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import AVFoundation
 
 final class PhoneSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -15,6 +16,9 @@ final class PhoneSceneDelegate: UIResponder, UIWindowSceneDelegate {
         #if DEBUG
         // The simulator can't always attach a TV: -GTFakeTV YES draws one in a corner of the phone instead
         if UserDefaults.standard.bool(forKey: "GTFakeTV") { phone.showPretendTV() }
+        // -GTFakeTVAfter 10: the pretend TV arrives 10 seconds in, to test "Play on TV" waiting for it
+        let delay = UserDefaults.standard.double(forKey: "GTFakeTVAfter")
+        if delay > 0 { DispatchQueue.main.asyncAfter(deadline: .now() + delay) { phone.showPretendTV() } }
         #endif
     }
 }
@@ -93,6 +97,34 @@ final class PhoneViewController: UIViewController {
 
     func tvConnectionChanged() {
         remoteButton.isHidden = !CastCoordinator.shared.isTVConnected
+        // The TV came on while "Play on TV" was waiting: say so, then let the game move over
+        if CastCoordinator.shared.isTVConnected, let guide = connectGuide {
+            connectGuide = nil
+            guide.showConnected { [weak guide] in guide?.dismiss(animated: true) }
+        }
+    }
+
+    // MARK: - 📺 Play on TV
+
+    private weak var connectGuide: ConnectTVViewController?
+
+    /// A game started with no TV connected: show how to connect one, and wait
+    func showConnectGuide(room: String) {
+        guard connectGuide == nil, presentedViewController == nil else { return }
+        let guide = ConnectTVViewController()
+        guide.onUsePhone = { [weak self, weak guide] in
+            CastCoordinator.shared.playOnPhone(room: room)
+            if self?.connectGuide === guide { self?.connectGuide = nil }
+            guide?.dismiss(animated: true)
+        }
+        if let sheet = guide.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+        }
+        // Swiping it away means the same as "No TV? Show the game on this phone"
+        guide.presentationController?.delegate = self
+        connectGuide = guide
+        present(guide, animated: true)
     }
 
     @objc private func openRemote() {
@@ -107,9 +139,30 @@ final class PhoneViewController: UIViewController {
             for button in buttons {
                 sheet.addAction(UIAlertAction(title: button.label, style: .default) { _ in tv.tapButton(id: button.id) })
             }
+            sheet.addAction(UIAlertAction(title: "🔊 Sound check", style: .default) { [weak self] _ in self?.runSoundCheck(on: tv) })
             sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             sheet.popoverPresentationController?.sourceView = self.remoteButton
             self.present(sheet, animated: true)
         }
+    }
+
+    /// Plays a test sound from the TV's page, then shows what happened, and where iOS is sending sound
+    private func runSoundCheck(on tv: TVViewController) {
+        tv.soundCheck { [weak self] report in
+            let session = AVAudioSession.sharedInstance()
+            let outputs = session.currentRoute.outputs.map { "\($0.portName) (\($0.portType.rawValue))" }.joined(separator: ", ")
+            let message = "You should have heard a beep, then a few seconds of music, on the TV.\n\n\(report)\nSound is going to: \(outputs.isEmpty ? "nowhere" : outputs)\nSound mode: \(session.category.rawValue.replacingOccurrences(of: "AVAudioSessionCategory", with: ""))"
+            castLog.notice("Sound check: \(message, privacy: .public)")
+            let alert = UIAlertController(title: "Sound check", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(alert, animated: true)
+        }
+    }
+}
+
+extension PhoneViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        guard let guide = presentationController.presentedViewController as? ConnectTVViewController else { return }
+        guide.onUsePhone?()
     }
 }

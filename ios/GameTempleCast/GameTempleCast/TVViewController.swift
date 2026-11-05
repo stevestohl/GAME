@@ -25,9 +25,10 @@ final class TVSceneDelegate: UIResponder, UIWindowSceneDelegate {
  * touch this screen, so its buttons are pressed through the phone's TV remote.
  */
 final class TVViewController: UIViewController {
-    private let webView = WebViews.make()
+    private let webView = WebViews.make(isTV: true)
     private let waiting = UILabel()
     private var urlWatch: NSKeyValueObservation?
+    private var soundWake: Timer?
 
     struct RemoteButton { let id: String; let label: String }
 
@@ -58,10 +59,19 @@ final class TVViewController: UIViewController {
         waiting.isHidden = true
         webView.isHidden = false
         webView.load(URLRequest(url: url))
+        // 🔊 The timer music and sound effects come from the page's audio engine, which only starts after a tap,
+        // and nobody can tap a TV. The page switches it on for any tap, and a tap sent from the app counts:
+        // so send one now and then (it's also how the sound comes back if iOS ever pauses it).
+        soundWake?.invalidate()
+        soundWake = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
+            self?.webView.evaluateJavaScript(WebViews.wakeSoundScript)
+        }
     }
 
     func showWaiting() {
         loadViewIfNeeded()
+        soundWake?.invalidate()
+        soundWake = nil
         webView.isHidden = true
         waiting.isHidden = false
         webView.load(URLRequest(url: URL(string: "about:blank")!))
@@ -80,5 +90,15 @@ final class TVViewController: UIViewController {
 
     func tapButton(id: String) {
         webView.evaluateJavaScript(WebViews.tapButtonScript(id: id))
+    }
+
+    /// 🔊 Plays a beep, then a few seconds of lobby music, from the TV's page, and reports whether each was allowed
+    func soundCheck(_ done: @escaping (String) -> Void) {
+        let musicURL = CastCoordinator.shared.baseURL.appendingPathComponent("audio/LobbyMusic.mp3").absoluteString
+        webView.callAsyncJavaScript(WebViews.soundCheckScript, arguments: ["musicURL": musicURL], in: nil, in: .page) { result in
+            let rows = (try? result.get()) as? [String: Any] ?? [:]
+            func text(_ key: String) -> String { rows[key] as? String ?? "didn't run" }
+            done("Beep: \(text("beep"))\nMusic file: \(text("music"))\nThe TV's music button: \(text("musicSwitch"))")
+        }
     }
 }
