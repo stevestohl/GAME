@@ -3,6 +3,7 @@ import ListCategory from "../models/ListCategory.js";
 import Temple_Trivia from "../models/Temple_Trivia.js";
 import PictionaryPrompt from "../models/PictionaryPrompt.js";
 import MixupMeme from "../models/MixupMeme.js";
+import { TOPCAKE_SOURCES } from "./topcakeContent.js";
 
 // 🃏 What the admin site's Content tab can edit, one entry per "content source" (a collection of
 // cards/questions/topics shared by one or more games). Each source names:
@@ -146,6 +147,7 @@ export const CONTENT_SOURCES = {
         defaults: {},
         titleField: 'text',
     },
+    ...TOPCAKE_SOURCES,
 };
 
 // The parts of a source the admin screens need (no Mongoose model)

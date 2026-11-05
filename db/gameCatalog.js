@@ -20,4 +20,11 @@ export const GAMES = [
     { id: 'tictactoe', name: 'Tic-Tac-Toe', section: 'Game-Temple', decks: [] },
 ];
 
+// The tabs in the nav bar. Hiding one only takes its button away: its page and games still work from a direct link.
+export const SITE_TABS = [
+    { id: 'home', name: 'Game-Cast' },
+    { id: 'temple', name: 'Game-Temple' },
+    { id: 'barhome', name: 'Bar Training' },
+];
+
 export const findGame = (id) => GAMES.find((g) => g.id === id);

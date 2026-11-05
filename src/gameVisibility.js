@@ -8,16 +8,17 @@ import { getToken, onAuthChange } from './auth.js';
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const URL = `${isLocal ? 'http://localhost:5005' : 'https://game-temple-backend.onrender.com'}/api/admin/visible-games`;
 const CACHE_KEY = 'gtVisibleGames';
+const TABS_CACHE_KEY = 'gtVisibleTabs';
 const REFRESH_MS = 30000;
 
 // Before the first answer: everything shows except the games hidden by default
 const STARTS_HIDDEN = ['reshuffled'];
 
-const readCache = () => {
-    try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch { return null; }
+const readCache = (key) => {
+    try { return JSON.parse(localStorage.getItem(key)); } catch { return null; }
 };
 
-let state = { games: readCache(), confirmed: false };
+let state = { games: readCache(CACHE_KEY), tabs: readCache(TABS_CACHE_KEY), confirmed: false };
 let lastFetch = 0;
 const listeners = new Set();
 
@@ -27,9 +28,12 @@ const publish = (next) => {
 };
 
 /** Use the server's answer (it's also what the owner's switches get back) */
-export const setVisibleGames = (games) => {
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify(games)); } catch { /* private mode */ }
-    publish({ games, confirmed: true });
+export const setVisibleGames = (games, tabs = state.tabs) => {
+    try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify(games));
+        localStorage.setItem(TABS_CACHE_KEY, JSON.stringify(tabs));
+    } catch { /* private mode */ }
+    publish({ games, tabs, confirmed: true });
 };
 
 let requestNumber = 0;
@@ -41,8 +45,8 @@ const refresh = async () => {
         const token = getToken();
         const response = await fetch(URL, { headers: token ? { Authorization: `Bearer ${token}` } : {} });
         if (!response.ok) return;
-        const { games } = await response.json();
-        if (mine === requestNumber) setVisibleGames(games);   // signing in or out mid-request: only the newest counts
+        const { games, tabs } = await response.json();
+        if (mine === requestNumber) setVisibleGames(games, tabs);   // signing in or out mid-request: only the newest counts
     } catch {
         // The server's asleep or unreachable: keep what we have
     }
@@ -50,7 +54,7 @@ const refresh = async () => {
 
 onAuthChange(() => {
     // Signed in or out: what was showing no longer applies
-    publish({ games: state.games, confirmed: false });
+    publish({ ...state, confirmed: false });
     refresh();
 });
 
@@ -80,6 +84,9 @@ export function useGameVisibility() {
         canSeeGame: (id) => (current.games ? !!entryFor(id) : !STARTS_HIDDEN.includes(id)),
         isGameHidden: (id) => (current.games ? !!entryFor(id)?.hidden : STARTS_HIDDEN.includes(id)),
         visibleDecks: (id, decks) => describeDecks(entryFor(id), decks),
+        // The nav bar's tabs (all showing until the server has answered)
+        canSeeTab: (id) => !current.tabs || current.tabs.some((tab) => tab.id === id),
+        isTabHidden: (id) => !!current.tabs?.find((tab) => tab.id === id)?.hidden,
     };
 }
 

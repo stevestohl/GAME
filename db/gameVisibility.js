@@ -1,5 +1,7 @@
 import SiteSettings from "../models/SiteSettings.js";
-import { GAMES, findGame } from "./gameCatalog.js";
+import { GAMES, SITE_TABS, findGame } from "./gameCatalog.js";
+import { TOPCAKE_GAMES } from "./topcakeCatalog.js";
+import { topcakeDb } from "./topcakeDb.js";
 import { userFromToken } from "../controllers/admin_auth.js";
 
 // 🙈 Which games and decks are hidden from the public. The owner and admins can still see and play
@@ -24,7 +26,7 @@ const isHidden = (map, game, deck) => {
 // The owner and admins can see hidden games (later, buyers would be a third kind of account: they can't)
 const canSeeHidden = (user) => !!user && (user.role === 'owner' || user.role === 'admin');
 
-const describe = (map) => GAMES.map((game) => ({
+const describe = (map, games = GAMES) => games.map((game) => ({
     id: game.id,
     name: game.name,
     section: game.section,
@@ -44,6 +46,41 @@ export const setHidden = async (gameId, deckId, hidden) => {
     const key = keyFor(gameId, deckId);
     await SiteSettings.updateOne({ _id: 'site' }, { $set: { [`hidden.${key}`]: hidden } }, { upsert: true });
     (await load()).set(key, hidden);
+};
+
+// The nav bar's tabs are saved with the same choices, as "tab:home"
+const tabKey = (id) => `tab:${id}`;
+
+/** The nav bar's tabs this person may see */
+export const tabsFor = async (user) => {
+    const map = await load();
+    const all = SITE_TABS.map(({ id, name }) => ({ id, name, hidden: !!map.get(tabKey(id)) }));
+    return canSeeHidden(user) ? all : all.filter((tab) => !tab.hidden);
+};
+
+/** Owner only (checked by the route): hide or show a tab */
+export const setTabHidden = async (id, hidden) => {
+    const key = tabKey(id);
+    await SiteSettings.updateOne({ _id: 'site' }, { $set: { [`hidden.${key}`]: hidden } }, { upsert: true });
+    (await load()).set(key, hidden);
+};
+
+// 🎂 TopCake's choices live in its own database, where its server reads them
+const topcakeSettings = () => topcakeDb().collection('sitesettings');
+
+/** Owner only: TopCake's games and decks, for its switches */
+export const topcakeGames = async () => {
+    const doc = await topcakeSettings().findOne({ _id: 'site' });
+    return describe(new Map(Object.entries(doc?.hidden || {})), TOPCAKE_GAMES);
+};
+
+/** Owner only: hide or show one of TopCake's games or decks */
+export const setTopcakeHidden = async (gameId, deckId, hidden) => {
+    await topcakeSettings().updateOne(
+        { _id: 'site' },
+        { $set: { [`hidden.${keyFor(gameId, deckId)}`]: hidden, updatedAt: new Date() } },
+        { upsert: true },
+    );
 };
 
 /**

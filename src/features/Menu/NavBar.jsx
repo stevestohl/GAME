@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import KeyButton from './KeyButton.jsx';
+import { useGameVisibility } from '../../gameVisibility.js';
 
 /**
  * 🧭 Frosted-glass navigation bar.
@@ -37,12 +38,15 @@ const MartiniIcon = () => (
 );
 
 const LINKS = [
-    { to: '/home', label: 'Game-Cast', Icon: CastIcon },
-    { to: '/temple', label: 'Game-Temple', Icon: TempleIcon },
-    { to: '/barhome', label: 'Bar Training', Icon: MartiniIcon },
+    { id: 'home', to: '/home', label: 'Game-Cast', Icon: CastIcon },
+    { id: 'temple', to: '/temple', label: 'Game-Temple', Icon: TempleIcon },
+    { id: 'barhome', to: '/barhome', label: 'Bar Training', Icon: MartiniIcon },
 ];
 
 export default function NavBar() {
+    // The owner can hide a tab in /admin (the owner and admins still see it, dashed)
+    const { canSeeTab, isTabHidden } = useGameVisibility();
+
     return (
         <header className="gt-nav">
             <div className="gt-nav-inner">
@@ -56,11 +60,12 @@ export default function NavBar() {
                 </Link>
 
                 <nav className="gt-nav-pills" aria-label="Main">
-                    {LINKS.map(({ to, label, Icon }) => (
+                    {LINKS.filter(({ id }) => canSeeTab(id)).map(({ id, to, label, Icon }) => (
                         <NavLink
                             key={to}
                             to={to}
-                            className={({ isActive }) => `gt-pill ${isActive ? 'active' : ''}`}
+                            className={({ isActive }) => `gt-pill ${isActive ? 'active' : ''} ${isTabHidden(id) ? 'is-hidden' : ''}`}
+                            title={isTabHidden(id) ? `${label} (hidden from the public)` : undefined}
                         >
                             <Icon />
                             <span className="gt-pill-label">{label}</span>

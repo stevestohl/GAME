@@ -1574,6 +1574,7 @@
     border: 1px solid rgba(255, 255, 255, 0.14);
     transition: background 0.25s, color 0.25s;
 }
+.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }
 .gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
 .gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }
 .gt-key-box { position: relative; flex-shrink: 0; }
