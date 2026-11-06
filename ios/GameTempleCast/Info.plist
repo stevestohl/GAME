@@ -33,6 +33,9 @@
 			</array>
 		</dict>
 	</dict>
+	<!-- The app only uses standard HTTPS, which is exempt, so App Store Connect doesn't ask about encryption on every upload -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<!-- Testing against the server on this Mac -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
