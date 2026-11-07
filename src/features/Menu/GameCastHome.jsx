@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Toast, ToastContainer } from 'react-bootstrap';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
@@ -293,6 +293,10 @@ export default function GameCastHome() {
                             <Button variant="link" size="sm" className="p-0 fw-bold align-baseline" onClick={() => navigate('/temple')}>
                                 Play phone-only games on Game-Temple →
                             </Button>
+                        </Col>
+
+                        <Col xs={12} className="text-center mb-1">
+                            <Link to="/privacy" className="small gt-privacy-link">Privacy policy</Link>
                         </Col>
                     </Row>
                 </Card.Body>

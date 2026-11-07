@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Modal, Spinner, Toast, ToastContainer } from 'react-bootstrap';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import prompt2Img from '../../assets/logos/Prompt_2_Button.jpeg';
 import TicTacToeTile from '../TicTacToe/TicTacToeTile.jsx';
 import triviaImg from '../../assets/logos/Trivia_Button.jpeg';
@@ -225,6 +225,9 @@ export default function Home() {
                             </Row>
                         </Col>
                     </Row>
+                    <div className="text-center mt-2 mb-1">
+                        <Link to="/privacy" className="small gt-privacy-link">Privacy policy</Link>
+                    </div>
                 </Card.Body>
             </Card>
 

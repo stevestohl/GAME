@@ -35,6 +35,7 @@ import ListCastSetup from './features/Lists/ListCastSetup.jsx'
 import ListopiaManager from './features/Lists/ListopiaManager.jsx'
 import ListopiaCreate from './features/Lists/ListopiaCreate.jsx'
 import UniversalJoinScreen from './features/Menu/UniversalJoinForm.jsx'
+import PrivacyPolicy from './features/Menu/PrivacyPolicy.jsx'
 
 // 🙈 The page that starts a game: visitors who can't see that game go back to the menu (joining a room stays open)
 function GameGate({ game, children }) {
@@ -53,6 +54,7 @@ export default function Contents() {
             <Route path="/temple" element={<Home />} />
             <Route path="/barhome" element={<BarHome />} />
             <Route path="/join" element={<UniversalJoinScreen />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
             
             {/* Direct routing to game board */}
             <Route path="/tictactoe" element={<TicTacToe />} />

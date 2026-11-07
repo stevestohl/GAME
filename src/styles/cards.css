@@ -2781,3 +2781,23 @@ html.cast-screen {
 .cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }
 .cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }
 @keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }
+
+/* =========================================================
+   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)
+   ========================================================= */
+.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }
+.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }
+.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }
+.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }
+.gt-privacy li { margin-bottom: 0.3rem; }
+.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }
+.gt-privacy-short {
+    background: rgba(74, 102, 216, 0.08);
+    border-left: 4px solid #4a66d8;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-weight: 600;
+}
+/* The small "Privacy policy" link at the bottom of the home pages */
+.gt-privacy-link { color: #6b7090; text-decoration: underline; }
+.gt-privacy-link:hover { color: #4a66d8; }
