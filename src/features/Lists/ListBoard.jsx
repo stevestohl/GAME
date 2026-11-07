@@ -99,8 +99,11 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
 
         return (
             <li key={item.id} className={classes.join(' ')} style={revealIds.includes(item.id) ? { '--strike-delay': strikeDelay(item.id) } : undefined}>
-                {mark}
-                <span className="ls-item-text">{item.text}</span>
+                {/* The mark and the answer stay together; the note can drop under them (lists.css) */}
+                <span className="ls-item-main">
+                    {mark}
+                    <span className="ls-item-text">{item.text}</span>
+                </span>
                 {note && <span className="ls-item-note">{note}</span>}
             </li>
         );

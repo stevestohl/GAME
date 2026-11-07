@@ -67,11 +67,14 @@
 .ls-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15em; }
 .ls-empty { color: #8a8fa8; font-style: italic; font-weight: 500; }
 
+/* The answer (with its ✓/✗) and its note share a line when they fit. When they don't, the note
+   drops onto its own line under the answer, so a long note never squeezes the answer to one letter a line. */
 .ls-item {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.4em;
+  gap: 0.05em 0.4em;
   min-width: 0;
   padding: 0.12em 0.35em;
   border-radius: 8px;
@@ -85,13 +88,22 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+.ls-item-main {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  flex: 0 1 auto;
+  min-width: 0;
+}
 .ls-item-note {
-  flex-shrink: 0;
+  flex: 0 1 auto;
+  min-width: 0;
   margin-left: auto;
   font-size: 0.72em;
   font-weight: 600;
   color: #6b7090;
-  white-space: nowrap;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 .ls-item-mark { flex-shrink: 0; }
 

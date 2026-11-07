@@ -38,6 +38,19 @@ final class TVViewController: UIViewController {
         webView.frame = view.bounds
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.isHidden = true
+        // Nobody scrolls a TV, and there's nothing on it to keep clear of
+        webView.scrollView.isScrollEnabled = false
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
+        // ⌨️ A web view makes room for the keyboard, but iOS reports the phone's keyboard in the phone's screen
+        // coordinates, and those land on the TV's screen too. So typing on the phone pushed the TV's page up and
+        // left a white bar under it, which stayed after the keyboard closed: "closed" is just below the phone's
+        // screen (y 874 or so), still inside a 1080-point TV. The TV has no keyboard, so its web view doesn't listen.
+        let keyboardNotes: [NSNotification.Name] = [
+            UIResponder.keyboardWillShowNotification, UIResponder.keyboardDidShowNotification,
+            UIResponder.keyboardWillHideNotification, UIResponder.keyboardDidHideNotification,
+            UIResponder.keyboardWillChangeFrameNotification, UIResponder.keyboardDidChangeFrameNotification,
+        ]
+        for name in keyboardNotes { NotificationCenter.default.removeObserver(webView, name: name, object: nil) }
         view.addSubview(webView)
 
         waiting.text = "🏛️ Game Temple\n\nStart a Game-Cast game on your phone"
