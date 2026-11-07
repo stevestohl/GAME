@@ -1,22 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
-import { Card, Form, Button, Alert, InputGroup, Toast, ToastContainer } from 'react-bootstrap';
-import { AvatarPicker, getMyAvatar, setMyAvatar } from '../../avatars.jsx';
+import { Card, Form, Toast, ToastContainer } from 'react-bootstrap';
+import { Avatar, AvatarPicker, getMyAvatar, setMyAvatar } from '../../avatars.jsx';
 import { getRandomFunnyName } from '../../funnyNames.js';
+import '../../styles/join.css';
+
+/**
+ * 🚪 Join a Room: type the 4-letter code from the TV (or arrive with ?room=ABCD from its QR code),
+ * pick a name and an avatar, and jump in. The first letter of the code says which game it is.
+ *
+ * It fits on one phone screen: the avatar grid takes whatever height is left and scrolls inside its own box
+ * (styles in src/styles/join.css). The way home is the Game Temple logo in the nav bar.
+ */
+
+const CODE_LENGTH = 4;
 
 export default function UniversalJoinScreen() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const [toastMsg, setToastMsg] = useState(location.state?.toastMessage || '');
     // Accepts 'room' or 'roomCode' from URL parameters
-    const urlRoomCode = searchParams.get('room') || searchParams.get('roomCode');
+    const urlRoomCode = (searchParams.get('room') || searchParams.get('roomCode') || '').toUpperCase().trim();
 
-    const [roomCode, setRoomCode] = useState(urlRoomCode || '');
+    const [roomCode, setRoomCode] = useState(urlRoomCode);
+    const [codeFocused, setCodeFocused] = useState(false);
     const [playerName, setPlayerName] = useState('');
     const [avatar, setAvatar] = useState(() => getMyAvatar());
     const [error, setError] = useState('');
+    const [diceRolls, setDiceRolls] = useState(0);
+    const codeInputRef = useRef(null);
 
     useEffect(() => {
         const savedName = localStorage.getItem('templePlayerName');
@@ -24,9 +38,7 @@ export default function UniversalJoinScreen() {
     }, []);
 
     useEffect(() => {
-        if (urlRoomCode) {
-            setRoomCode(urlRoomCode.toUpperCase().trim());
-        }
+        if (urlRoomCode) setRoomCode(urlRoomCode);
     }, [urlRoomCode]);
 
     useEffect(() => {
@@ -36,57 +48,69 @@ export default function UniversalJoinScreen() {
         }
     }, [location]);
 
+    const handleCodeChange = (e) => {
+        setError('');
+        setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, CODE_LENGTH));
+    };
+
     const handleRandomizeName = () => {
         setPlayerName(getRandomFunnyName());
+        setDiceRolls((n) => n + 1);
     };
 
     const handleJoin = (e) => {
         e.preventDefault();
         setError('');
-        
+
         const code = roomCode.toUpperCase().trim();
-        if (!playerName.trim() || code.length !== 4) {
-            setError('Please enter a valid 4-letter room code and your nickname.');
+        if (code.length !== CODE_LENGTH) {
+            setError("Enter the 4-letter room code shown on the host's screen.");
+            codeInputRef.current?.focus();
+            return;
+        }
+        if (!playerName.trim()) {
+            setError('Pick a nickname (or roll the dice for one).');
             return;
         }
 
+        const name = encodeURIComponent(playerName.trim());
         const prefix = code.charAt(0);
         let targetRoute = '';
 
         switch (prefix) {
             case 'C':
-                targetRoute = `/couchcast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/couchcast?room=${code}&role=guest&name=${name}`;
                 break;
             case 'M':
                 // Temple Mix Up
-                targetRoute = `/mixup?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/mixup?room=${code}&role=guest&name=${name}`;
                 break;
             case 'S':
                 // Couch Cast Re-Shuffled (experimental)
-                targetRoute = `/reshuffled?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/reshuffled?room=${code}&role=guest&name=${name}`;
                 break;
             case 'Q':
-                targetRoute = `/triviacast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/triviacast?room=${code}&role=guest&name=${name}`;
                 break;
             case 'L':
-                targetRoute = `/listcast?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/listcast?room=${code}&role=guest&name=${name}`;
                 break;
             case 'O':
-                targetRoute = `/listopia?room=${code}&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/listopia?room=${code}&name=${name}`;
                 break;
             case 'P':
-                targetRoute = `/prompt2?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/prompt2?room=${code}&role=guest&name=${name}`;
                 break;
             case 'T':
-                targetRoute = `/tictactoe?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                targetRoute = `/tictactoe?room=${code}&role=guest&name=${name}`;
                 break;
             case 'R':
-                // FIXED: Now properly routes to the TriviaManager with guest credentials
-                targetRoute = `/trivia?room=${code}&role=guest&name=${encodeURIComponent(playerName.trim())}`;
+                // Routes to the TriviaManager with guest credentials
+                targetRoute = `/trivia?room=${code}&role=guest&name=${name}`;
                 break;
             default:
                 setError(`Hmm, we don't recognize a game starting with '${prefix}'. Check the TV!`);
-                return; 
+                return;
         }
 
         localStorage.setItem('templePlayerName', playerName.trim());
@@ -94,17 +118,21 @@ export default function UniversalJoinScreen() {
         navigate(targetRoute);
     };
 
+    const locked = !!urlRoomCode;
+    // The tile the next letter goes in (none once all four are typed)
+    const activeSlot = codeFocused && roomCode.length < CODE_LENGTH ? roomCode.length : -1;
+
     return (
-        <div className="page-container">
+        <div className="page-container gt-join">
 
             {/* Floating Toast Notification */}
-            <ToastContainer 
-                style={{ 
-                    position: 'fixed', 
-                    top: '20px', 
-                    left: '50%', 
-                    transform: 'translateX(-50%)', 
-                    zIndex: 99999 
+            <ToastContainer
+                style={{
+                    position: 'fixed',
+                    top: '20px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 99999
                 }}
             >
                 <Toast show={!!toastMsg} onClose={() => setToastMsg('')} delay={4000} autohide bg="danger">
@@ -114,99 +142,95 @@ export default function UniversalJoinScreen() {
                 </Toast>
             </ToastContainer>
 
-            <Card className='main-card'>
-                <Card.Header className='main-card-header'>
+            <Card className="main-card gt-join-card">
+                <Card.Header className="main-card-header">
                     Join a Room
                 </Card.Header>
-                <Card.Body className='p-4 text-center'>
-                    <div className='mb-4'>
-                        {/* One line, sized to fit a phone, so the Jump In button shows without scrolling */}
-                        <h2 className='fw-bold text-primary mb-1 text-nowrap' style={{ fontSize: 'clamp(1.2rem, 6.5vw, 2rem)' }}>
-                            {urlRoomCode ? `Joining Room ${urlRoomCode.toUpperCase()}` : 'Enter Room Code Here!'}
-                        </h2>
-                    </div>
+                <Card.Body className="gt-join-body">
+                    <Form onSubmit={handleJoin} className="gt-join-form" noValidate>
 
-                    {error && <Alert variant="danger">{error}</Alert>}
-
-                    <Form onSubmit={handleJoin}>
-                    
-                    {/* Room Code entry */}
-                    <Form.Group className='mb-3 text-start'>
-                        <div className="d-flex justify-content-between align-items-center">
-                            <Form.Label className='fw-bold text-secondary small mb-0'>Room Code</Form.Label>
-                            {urlRoomCode && (
-                                <span className="text-success small fw-bold">
-                                    ✅ Room Verified & Locked
-                                </span>
-                            )}
-                        </div>
-                        <Form.Control 
-                            size="lg"
-                            type="text" 
-                            placeholder="4-Letter Code" 
-                            value={roomCode}
-                            onChange={(e) => setRoomCode(e.target.value.toUpperCase().trim())}
-                            maxLength={4}
-                            className={`text-center fw-bold fs-4 ${urlRoomCode ? 'bg-light text-success' : ''}`}
-                            style={{ letterSpacing: '4px' }}
-                            disabled={!!urlRoomCode}
-                            required
-                        />
-                        {urlRoomCode && (
-                            <Form.Text className="text-muted text-center d-block mt-1">
-                                You're joining room <strong>{urlRoomCode.toUpperCase()}</strong>. Just pick your name and jump in!
-                            </Form.Text>
-                        )}
-                    </Form.Group>
-
-                        <Form.Group className='mb-4 text-start'>              
-                            <Form.Label className='fw-bold text-secondary small'>Your Name</Form.Label>
-                            <InputGroup>
-                                <Form.Control 
-                                    size="lg"
-                                    type="text" 
-                                    placeholder="Enter your nickname" 
-                                    value={playerName}
-                                    onChange={(e) => setPlayerName(e.target.value)}
-                                    maxLength={12}
-                                    className='text-center fw-bold'
-                                    required
+                        {/* 🔤 Room code: four tiles, one real input on top of them */}
+                        <div className="gt-join-section">
+                            <div className="gt-join-label-row">
+                                <label htmlFor="gt-join-code" className="gt-join-label">Room code</label>
+                                {locked
+                                    ? <span className="gt-join-chip">✓ From your link</span>
+                                    : <span className="gt-join-hint">Shown on the host's screen</span>}
+                            </div>
+                            <div className={`gt-code ${locked ? 'is-locked' : ''}`}>
+                                {Array.from({ length: CODE_LENGTH }, (_, i) => (
+                                    <span
+                                        key={`${i}-${roomCode[i] || ''}`}
+                                        className={`gt-code-slot ${roomCode[i] ? 'is-filled' : ''} ${i === activeSlot ? 'is-active' : ''}`}
+                                        aria-hidden="true"
+                                    >
+                                        {roomCode[i] || ''}
+                                    </span>
+                                ))}
+                                <input
+                                    id="gt-join-code"
+                                    ref={codeInputRef}
+                                    className="gt-code-input"
+                                    type="text"
+                                    value={roomCode}
+                                    onChange={handleCodeChange}
+                                    onFocus={() => setCodeFocused(true)}
+                                    onBlur={() => setCodeFocused(false)}
+                                    maxLength={CODE_LENGTH}
+                                    autoComplete="off"
+                                    autoCorrect="off"
+                                    autoCapitalize="characters"
+                                    spellCheck={false}
+                                    enterKeyHint="go"
+                                    aria-label="4-letter room code"
+                                    disabled={locked}
                                 />
-                                <Button 
-                                    variant="outline-primary" 
-                                    type="button"
-                                    onClick={handleRandomizeName}
-                                    title="Generate Random Name"
-                                    className="px-3 fs-5"
-                                >
-                                    🎲
-                                </Button>
-                            </InputGroup>
-                        </Form.Group>
+                            </div>
+                        </div>
 
-                        {/* 🙂 Your avatar: shown next to your name on the TV */}
-                        <Form.Group className='mb-4 text-start'>
-                            <Form.Label className='fw-bold text-secondary small'>Pick Your Avatar</Form.Label>
+                        {/* 🙂 You: your avatar and your name, as the TV will show them */}
+                        <div className="gt-join-section">
+                            <label htmlFor="gt-join-name" className="gt-join-label">Your name</label>
+                            <div className="gt-join-player">
+                                <Avatar id={avatar} size={52} />
+                                <div className="gt-join-name">
+                                    <Form.Control
+                                        id="gt-join-name"
+                                        className="gt-join-input"
+                                        type="text"
+                                        placeholder="Your nickname"
+                                        value={playerName}
+                                        onChange={(e) => { setError(''); setPlayerName(e.target.value); }}
+                                        maxLength={12}
+                                        autoComplete="off"
+                                        autoCorrect="off"
+                                        spellCheck={false}
+                                        enterKeyHint="go"
+                                    />
+                                    <button
+                                        type="button"
+                                        className="gt-join-dice"
+                                        onClick={handleRandomizeName}
+                                        title="Random name"
+                                        aria-label="Random name"
+                                    >
+                                        <span key={diceRolls} className={`gt-join-dice-face ${diceRolls ? 'is-rolling' : ''}`} aria-hidden="true">🎲</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 🎭 Avatar: shown next to your name on the TV */}
+                        <div className="gt-join-section gt-join-avatars">
+                            <span className="gt-join-label">Avatar</span>
                             <AvatarPicker value={avatar} onChange={setAvatar} />
-                        </Form.Group>
+                        </div>
 
-                        <Button 
-                            variant='primary' 
-                            size='lg' 
-                            className='w-100 fw-bold shadow-sm mb-2' 
-                            type="submit"
-                        >
+                        {error && <div className="gt-join-error" role="alert">{error}</div>}
+
+                        <button type="submit" className="gt-join-go glass-btn">
                             Jump In!
-                        </Button>
-
-                        <Button 
-                            variant='outline-secondary' 
-                            size='sm' 
-                            className='w-100 mt-2'
-                            onClick={() => navigate('/')}
-                        >
-                            Back to Home
-                        </Button>
+                        </button>
                     </Form>
                 </Card.Body>
             </Card>

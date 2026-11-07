@@ -1,0 +1,278 @@
+/* =========================================================
+   🚪 JOIN A ROOM (src/features/Menu/UniversalJoinForm.jsx)
+   One screen on a phone: the card fills the space under the nav bar,
+   and only the avatar grid scrolls (inside its own box).
+   ========================================================= */
+
+.gt-join.page-container {
+  padding: 12px;
+  /* The nav bar is 64px plus its 1px border */
+  min-height: calc(100vh - 65px);
+  min-height: calc(100dvh - 65px);
+}
+
+.gt-join-card.main-card {
+  margin: 0;                       /* index.html gives every .card 20px */
+  overflow: hidden;
+  /* Fill the screen under the nav bar, never more. On a very short screen (landscape) it stops shrinking and the page scrolls instead */
+  max-height: max(430px, calc(100vh - 65px - 24px));
+  max-height: max(430px, calc(100dvh - 65px - 24px));
+}
+
+.gt-join-body.card-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.gt-join-form {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.gt-join-section { flex: 0 0 auto; }
+
+.gt-join-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.gt-join-label {
+  display: block;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+.gt-join-label-row .gt-join-label { margin: 0; }
+.gt-join-section > .gt-join-label { margin-bottom: 6px; }
+
+.gt-join-hint {
+  font-size: 0.75rem;
+  color: #9aa1b0;
+}
+
+.gt-join-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #137a4c;
+  background: #e6f6ee;
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+/* ---------- 🔤 Room code: four letter tiles over one real input ---------- */
+.gt-code {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.gt-code-slot {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f4f6fc;
+  border: 2px solid #e1e6f4;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gt-navy, #141f57);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.gt-code-slot.is-filled {
+  background: #fff;
+  border-color: var(--gt-blue-300, #93a7f0);
+  animation: gt-code-pop 0.18s ease-out;
+}
+.gt-code-slot.is-active {
+  background: #fff;
+  border-color: var(--gt-blue-500, #4a66d8);
+  box-shadow: 0 0 0 4px rgba(74, 102, 216, 0.16);
+}
+/* A blinking caret in the next empty tile */
+.gt-code-slot.is-active::after {
+  content: '';
+  width: 2px;
+  height: 45%;
+  border-radius: 1px;
+  background: var(--gt-blue-500, #4a66d8);
+  animation: gt-code-caret 1s steps(1) infinite;
+}
+@keyframes gt-code-caret { 50% { opacity: 0; } }
+@keyframes gt-code-pop {
+  0%   { transform: scale(0.9); }
+  70%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* The real input covers the tiles: typing, pasting and the keyboard all work as normal, but its own text is invisible */
+.gt-code-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: transparent;
+  font-size: 16px;                 /* 16px or more, or an iPhone zooms in when it's tapped */
+  letter-spacing: 0;
+  cursor: text;
+}
+.gt-code-input::selection { background: transparent; }
+.gt-code-input:disabled { cursor: default; }
+
+/* Code from the QR code / invite link: locked in, in green */
+.gt-code.is-locked .gt-code-slot {
+  background: #eefaf3;
+  border-color: #9fdcbc;
+  color: #137a4c;
+  animation: none;
+}
+
+/* ---------- 🙂 You: avatar preview + name ---------- */
+.gt-join-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gt-join-player .gt-avatar { flex-shrink: 0; }
+
+.gt-join-name {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.gt-join-input.form-control {
+  height: 52px;
+  padding: 0 56px 0 16px;
+  border-radius: 14px;
+  border: 2px solid #e1e6f4;
+  background: #f4f6fc;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gt-navy, #141f57);
+}
+.gt-join-input.form-control:focus {
+  background: #fff;
+  border-color: var(--gt-blue-500, #4a66d8);
+  box-shadow: 0 0 0 4px rgba(74, 102, 216, 0.16);
+}
+
+.gt-join-dice {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(20, 31, 87, 0.18);
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: box-shadow 0.15s ease;
+}
+.gt-join-dice:hover { box-shadow: 0 2px 8px rgba(20, 31, 87, 0.25); }
+.gt-join-dice:focus-visible { outline: 2px solid var(--gt-blue-500, #4a66d8); outline-offset: 2px; }
+.gt-join-dice-face { display: inline-block; }
+.gt-join-dice-face.is-rolling { animation: gt-dice-roll 0.45s ease-out; }
+@keyframes gt-dice-roll {
+  0%   { transform: rotate(0) scale(1); }
+  50%  { transform: rotate(200deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ---------- 🎭 Avatar grid: takes whatever height is left, and scrolls inside ---------- */
+.gt-join-avatars {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.gt-join .gt-avatar-picker {
+  flex: 0 1 auto;
+  min-height: 64px;                /* at least one row */
+  max-height: none;                /* phones: fill the screen, so Jump In! sits at the bottom, under your thumb */
+  padding: 8px 6px;
+  border: 0;
+  border-radius: 16px;
+  background: #f4f6fc;
+  overscroll-behavior: contain;    /* the end of the grid doesn't drag the page */
+  /* Fade out at the bottom edge, to show there's more */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+}
+
+/* Tablets and computers: a tidy box, not a wall of faces */
+@media (min-width: 576px) {
+  .gt-join .gt-avatar-picker { max-height: 340px; }
+}
+
+/* The picked avatar: ringed in the site's blue */
+.gt-join .gt-avatar-choice.selected { border-color: var(--gt-blue-500, #4a66d8); }
+.gt-join .gt-avatar-choice:focus-visible { outline-color: var(--gt-blue-500, #4a66d8); }
+
+/* ---------- ⚠️ Error + 🚀 Jump In ---------- */
+.gt-join-error {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #fdecee;
+  color: #b4232c;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.gt-join-go {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 56px;
+  border: 0;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, var(--gt-blue-400, #6f88e6), var(--gt-blue-600, #3a53c4));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px rgba(58, 83, 196, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+.gt-join-go:hover { filter: brightness(1.06); }
+.gt-join-go:active { transform: translateY(1px) scale(0.99); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 12px rgba(58, 83, 196, 0.35); }
+.gt-join-go:focus-visible { outline: 3px solid var(--gt-blue-300, #93a7f0); outline-offset: 2px; }
+
+/* Smaller phones (iPhone SE and friends): a little tighter */
+@media (max-height: 700px) {
+  .gt-join-body.card-body { padding: 14px; }
+  .gt-join-form { gap: 12px; }
+  .gt-code-slot { height: 56px; font-size: 1.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gt-code-slot,
+  .gt-code-slot.is-filled,
+  .gt-join-dice-face.is-rolling { animation: none; transition: none; }
+  .gt-code-slot.is-active::after { animation: none; }
+}

@@ -263,9 +263,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Page() {
+  // 100dvh, not 100vh: on an iPhone 100vh is taller than the screen while Safari's toolbar shows, which made short pages scroll
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
-      minHeight: '100vh',
+      minHeight: '100dvh',
       width: '100%'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_AnimatedBackground_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_NavBar_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Contents_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_toastify__WEBPACK_IMPORTED_MODULE_5__.ToastContainer, null));
@@ -21863,16 +21864,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _funnyNames_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../funnyNames.js */ "./src/funnyNames.js");
+/* harmony import */ var _styles_join_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/join.css */ "./src/styles/join.css");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -21884,45 +21883,63 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+/**
+ * 🚪 Join a Room: type the 4-letter code from the TV (or arrive with ?room=ABCD from its QR code),
+ * pick a name and an avatar, and jump in. The first letter of the code says which game it is.
+ *
+ * It fits on one phone screen: the avatar grid takes whatever height is left and scrolls inside its own box
+ * (styles in src/styles/join.css). The way home is the Game Temple logo in the nav bar.
+ */
+
+var CODE_LENGTH = 4;
 function UniversalJoinScreen() {
   var _location$state;
-  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useSearchParams)(),
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useSearchParams)(),
     _useSearchParams2 = _slicedToArray(_useSearchParams, 1),
     searchParams = _useSearchParams2[0];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.toastMessage) || ''),
     _useState2 = _slicedToArray(_useState, 2),
     toastMsg = _useState2[0],
     setToastMsg = _useState2[1];
   // Accepts 'room' or 'roomCode' from URL parameters
-  var urlRoomCode = searchParams.get('room') || searchParams.get('roomCode');
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(urlRoomCode || ''),
+  var urlRoomCode = (searchParams.get('room') || searchParams.get('roomCode') || '').toUpperCase().trim();
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(urlRoomCode),
     _useState4 = _slicedToArray(_useState3, 2),
     roomCode = _useState4[0],
     setRoomCode = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    playerName = _useState6[0],
-    setPlayerName = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
+    codeFocused = _useState6[0],
+    setCodeFocused = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    playerName = _useState8[0],
+    setPlayerName = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
       return (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.getMyAvatar)();
     }),
-    _useState8 = _slicedToArray(_useState7, 2),
-    avatar = _useState8[0],
-    setAvatar = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState10 = _slicedToArray(_useState9, 2),
-    error = _useState10[0],
-    setError = _useState10[1];
+    avatar = _useState10[0],
+    setAvatar = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    error = _useState12[0],
+    setError = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState14 = _slicedToArray(_useState13, 2),
+    diceRolls = _useState14[0],
+    setDiceRolls = _useState14[1];
+  var codeInputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var savedName = localStorage.getItem('templePlayerName');
     setPlayerName(savedName || (0,_funnyNames_js__WEBPACK_IMPORTED_MODULE_2__.getRandomFunnyName)());
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (urlRoomCode) {
-      setRoomCode(urlRoomCode.toUpperCase().trim());
-    }
+    if (urlRoomCode) setRoomCode(urlRoomCode);
   }, [urlRoomCode]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var _location$state2;
@@ -21931,49 +21948,63 @@ function UniversalJoinScreen() {
       window.history.replaceState({}, document.title);
     }
   }, [location]);
+  var handleCodeChange = function handleCodeChange(e) {
+    setError('');
+    setRoomCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, CODE_LENGTH));
+  };
   var handleRandomizeName = function handleRandomizeName() {
     setPlayerName((0,_funnyNames_js__WEBPACK_IMPORTED_MODULE_2__.getRandomFunnyName)());
+    setDiceRolls(function (n) {
+      return n + 1;
+    });
   };
   var handleJoin = function handleJoin(e) {
     e.preventDefault();
     setError('');
     var code = roomCode.toUpperCase().trim();
-    if (!playerName.trim() || code.length !== 4) {
-      setError('Please enter a valid 4-letter room code and your nickname.');
+    if (code.length !== CODE_LENGTH) {
+      var _codeInputRef$current;
+      setError("Enter the 4-letter room code shown on the host's screen.");
+      (_codeInputRef$current = codeInputRef.current) === null || _codeInputRef$current === void 0 ? void 0 : _codeInputRef$current.focus();
       return;
     }
+    if (!playerName.trim()) {
+      setError('Pick a nickname (or roll the dice for one).');
+      return;
+    }
+    var name = encodeURIComponent(playerName.trim());
     var prefix = code.charAt(0);
     var targetRoute = '';
     switch (prefix) {
       case 'C':
-        targetRoute = "/couchcast?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/couchcast?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'M':
         // Temple Mix Up
-        targetRoute = "/mixup?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/mixup?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'S':
         // Couch Cast Re-Shuffled (experimental)
-        targetRoute = "/reshuffled?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/reshuffled?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'Q':
-        targetRoute = "/triviacast?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/triviacast?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'L':
-        targetRoute = "/listcast?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/listcast?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'O':
-        targetRoute = "/listopia?room=".concat(code, "&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/listopia?room=".concat(code, "&name=").concat(name);
         break;
       case 'P':
-        targetRoute = "/prompt2?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/prompt2?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'T':
-        targetRoute = "/tictactoe?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        targetRoute = "/tictactoe?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'R':
-        // FIXED: Now properly routes to the TriviaManager with guest credentials
-        targetRoute = "/trivia?room=".concat(code, "&role=guest&name=").concat(encodeURIComponent(playerName.trim()));
+        // Routes to the TriviaManager with guest credentials
+        targetRoute = "/trivia?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       default:
         setError("Hmm, we don't recognize a game starting with '".concat(prefix, "'. Check the TV!"));
@@ -21983,9 +22014,12 @@ function UniversalJoinScreen() {
     (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.setMyAvatar)(avatar);
     navigate(targetRoute);
   };
+  var locked = !!urlRoomCode;
+  // The tile the next letter goes in (none once all four are typed)
+  var activeSlot = codeFocused && roomCode.length < CODE_LENGTH ? roomCode.length : -1;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "page-container gt-join"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     style: {
       position: 'fixed',
       top: '20px',
@@ -21993,7 +22027,7 @@ function UniversalJoinScreen() {
       transform: 'translateX(-50%)',
       zIndex: 99999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     show: !!toastMsg,
     onClose: function onClose() {
       return setToastMsg('');
@@ -22001,91 +22035,111 @@ function UniversalJoinScreen() {
     delay: 4000,
     autohide: true,
     bg: "danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "fw-bold text-white text-center px-4 py-2"
-  }, "\u26A0\uFE0F ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Header, {
+  }, "\u26A0\uFE0F ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: "main-card gt-join-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Header, {
     className: "main-card-header"
-  }, "Join a Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
-    className: "p-4 text-center"
+  }, "Join a Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
+    className: "gt-join-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    onSubmit: handleJoin,
+    className: "gt-join-form",
+    noValidate: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold text-primary mb-1 text-nowrap",
-    style: {
-      fontSize: 'clamp(1.2rem, 6.5vw, 2rem)'
-    }
-  }, urlRoomCode ? "Joining Room ".concat(urlRoomCode.toUpperCase()) : 'Enter Room Code Here!')), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    variant: "danger"
-  }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    onSubmit: handleJoin
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
-    className: "mb-3 text-start"
+    className: "gt-join-section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-between align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
-    className: "fw-bold text-secondary small mb-0"
-  }, "Room Code"), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-success small fw-bold"
-  }, "\u2705 Room Verified & Locked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
-    size: "lg",
+    className: "gt-join-label-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "gt-join-code",
+    className: "gt-join-label"
+  }, "Room code"), locked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "gt-join-chip"
+  }, "\u2713 From your link") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "gt-join-hint"
+  }, "Shown on the host's screen")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-code ".concat(locked ? 'is-locked' : '')
+  }, Array.from({
+    length: CODE_LENGTH
+  }, function (_, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      key: "".concat(i, "-").concat(roomCode[i] || ''),
+      className: "gt-code-slot ".concat(roomCode[i] ? 'is-filled' : '', " ").concat(i === activeSlot ? 'is-active' : ''),
+      "aria-hidden": "true"
+    }, roomCode[i] || '');
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    id: "gt-join-code",
+    ref: codeInputRef,
+    className: "gt-code-input",
     type: "text",
-    placeholder: "4-Letter Code",
     value: roomCode,
-    onChange: function onChange(e) {
-      return setRoomCode(e.target.value.toUpperCase().trim());
+    onChange: handleCodeChange,
+    onFocus: function onFocus() {
+      return setCodeFocused(true);
     },
-    maxLength: 4,
-    className: "text-center fw-bold fs-4 ".concat(urlRoomCode ? 'bg-light text-success' : ''),
-    style: {
-      letterSpacing: '4px'
+    onBlur: function onBlur() {
+      return setCodeFocused(false);
     },
-    disabled: !!urlRoomCode,
-    required: true
-  }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Text, {
-    className: "text-muted text-center d-block mt-1"
-  }, "You're joining room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, urlRoomCode.toUpperCase()), ". Just pick your name and jump in!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
-    className: "mb-4 text-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
-    className: "fw-bold text-secondary small"
-  }, "Your Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
-    size: "lg",
+    maxLength: CODE_LENGTH,
+    autoComplete: "off",
+    autoCorrect: "off",
+    autoCapitalize: "characters",
+    spellCheck: false,
+    enterKeyHint: "go",
+    "aria-label": "4-letter room code",
+    disabled: locked
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-join-section"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "gt-join-name",
+    className: "gt-join-label"
+  }, "Your name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-join-player"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
+    id: avatar,
+    size: 52
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-join-name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
+    id: "gt-join-name",
+    className: "gt-join-input",
     type: "text",
-    placeholder: "Enter your nickname",
+    placeholder: "Your nickname",
     value: playerName,
     onChange: function onChange(e) {
-      return setPlayerName(e.target.value);
+      setError('');
+      setPlayerName(e.target.value);
     },
     maxLength: 12,
-    className: "text-center fw-bold",
-    required: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    variant: "outline-primary",
+    autoComplete: "off",
+    autoCorrect: "off",
+    spellCheck: false,
+    enterKeyHint: "go"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "button",
+    className: "gt-join-dice",
     onClick: handleRandomizeName,
-    title: "Generate Random Name",
-    className: "px-3 fs-5"
-  }, "\uD83C\uDFB2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
-    className: "mb-4 text-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
-    className: "fw-bold text-secondary small"
-  }, "Pick Your Avatar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.AvatarPicker, {
+    title: "Random name",
+    "aria-label": "Random name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    key: diceRolls,
+    className: "gt-join-dice-face ".concat(diceRolls ? 'is-rolling' : ''),
+    "aria-hidden": "true"
+  }, "\uD83C\uDFB2"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-join-section gt-join-avatars"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "gt-join-label"
+  }, "Avatar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.AvatarPicker, {
     value: avatar,
     onChange: setAvatar
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    variant: "primary",
-    size: "lg",
-    className: "w-100 fw-bold shadow-sm mb-2",
-    type: "submit"
-  }, "Jump In!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    variant: "outline-secondary",
-    size: "sm",
-    className: "w-100 mt-2",
-    onClick: function onClick() {
-      return navigate('/');
-    }
-  }, "Back to Home")))));
+  })), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "gt-join-error",
+    role: "alert"
+  }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "submit",
+    className: "gt-join-go glass-btn"
+  }, "Jump In!")))));
 }
 
 /***/ }),
@@ -40672,6 +40726,32 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/join.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/join.css ***!
+  \*******************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/* =========================================================\n   🚪 JOIN A ROOM (src/features/Menu/UniversalJoinForm.jsx)\n   One screen on a phone: the card fills the space under the nav bar,\n   and only the avatar grid scrolls (inside its own box).\n   ========================================================= */\n\n.gt-join.page-container {\n  padding: 12px;\n  /* The nav bar is 64px plus its 1px border */\n  min-height: calc(100vh - 65px);\n  min-height: calc(100dvh - 65px);\n}\n\n.gt-join-card.main-card {\n  margin: 0;                       /* index.html gives every .card 20px */\n  overflow: hidden;\n  /* Fill the screen under the nav bar, never more. On a very short screen (landscape) it stops shrinking and the page scrolls instead */\n  max-height: max(430px, calc(100vh - 65px - 24px));\n  max-height: max(430px, calc(100dvh - 65px - 24px));\n}\n\n.gt-join-body.card-body {\n  flex: 1 1 auto;\n  min-height: 0;\n  display: flex;\n  flex-direction: column;\n  padding: 16px;\n}\n\n.gt-join-form {\n  flex: 1 1 auto;\n  min-height: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 14px;\n  text-align: left;\n}\n\n.gt-join-section { flex: 0 0 auto; }\n\n.gt-join-label-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 6px;\n}\n.gt-join-label {\n  display: block;\n  margin: 0;\n  font-size: 0.72rem;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: #6b7280;\n}\n.gt-join-label-row .gt-join-label { margin: 0; }\n.gt-join-section > .gt-join-label { margin-bottom: 6px; }\n\n.gt-join-hint {\n  font-size: 0.75rem;\n  color: #9aa1b0;\n}\n\n.gt-join-chip {\n  font-size: 0.72rem;\n  font-weight: 700;\n  color: #137a4c;\n  background: #e6f6ee;\n  border-radius: 999px;\n  padding: 2px 10px;\n  white-space: nowrap;\n}\n\n/* ---------- 🔤 Room code: four letter tiles over one real input ---------- */\n.gt-code {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 10px;\n}\n.gt-code-slot {\n  height: 64px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 14px;\n  background: #f4f6fc;\n  border: 2px solid #e1e6f4;\n  font-size: 2rem;\n  font-weight: 800;\n  color: var(--gt-navy, #141f57);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, transform 0.15s ease;\n}\n.gt-code-slot.is-filled {\n  background: #fff;\n  border-color: var(--gt-blue-300, #93a7f0);\n  animation: gt-code-pop 0.18s ease-out;\n}\n.gt-code-slot.is-active {\n  background: #fff;\n  border-color: var(--gt-blue-500, #4a66d8);\n  box-shadow: 0 0 0 4px rgba(74, 102, 216, 0.16);\n}\n/* A blinking caret in the next empty tile */\n.gt-code-slot.is-active::after {\n  content: '';\n  width: 2px;\n  height: 45%;\n  border-radius: 1px;\n  background: var(--gt-blue-500, #4a66d8);\n  animation: gt-code-caret 1s steps(1) infinite;\n}\n@keyframes gt-code-caret { 50% { opacity: 0; } }\n@keyframes gt-code-pop {\n  0%   { transform: scale(0.9); }\n  70%  { transform: scale(1.06); }\n  100% { transform: scale(1); }\n}\n\n/* The real input covers the tiles: typing, pasting and the keyboard all work as normal, but its own text is invisible */\n.gt-code-input {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  border: 0;\n  outline: none;\n  background: transparent;\n  color: transparent;\n  -webkit-text-fill-color: transparent;\n  caret-color: transparent;\n  font-size: 16px;                 /* 16px or more, or an iPhone zooms in when it's tapped */\n  letter-spacing: 0;\n  cursor: text;\n}\n.gt-code-input::selection { background: transparent; }\n.gt-code-input:disabled { cursor: default; }\n\n/* Code from the QR code / invite link: locked in, in green */\n.gt-code.is-locked .gt-code-slot {\n  background: #eefaf3;\n  border-color: #9fdcbc;\n  color: #137a4c;\n  animation: none;\n}\n\n/* ---------- 🙂 You: avatar preview + name ---------- */\n.gt-join-player {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.gt-join-player .gt-avatar { flex-shrink: 0; }\n\n.gt-join-name {\n  position: relative;\n  flex: 1 1 auto;\n  min-width: 0;\n}\n.gt-join-input.form-control {\n  height: 52px;\n  padding: 0 56px 0 16px;\n  border-radius: 14px;\n  border: 2px solid #e1e6f4;\n  background: #f4f6fc;\n  font-size: 1.15rem;\n  font-weight: 700;\n  color: var(--gt-navy, #141f57);\n}\n.gt-join-input.form-control:focus {\n  background: #fff;\n  border-color: var(--gt-blue-500, #4a66d8);\n  box-shadow: 0 0 0 4px rgba(74, 102, 216, 0.16);\n}\n\n.gt-join-dice {\n  position: absolute;\n  top: 50%;\n  right: 6px;\n  width: 40px;\n  height: 40px;\n  transform: translateY(-50%);\n  display: grid;\n  place-items: center;\n  border: 0;\n  border-radius: 11px;\n  background: #fff;\n  box-shadow: 0 1px 3px rgba(20, 31, 87, 0.18);\n  font-size: 1.25rem;\n  line-height: 1;\n  transition: box-shadow 0.15s ease;\n}\n.gt-join-dice:hover { box-shadow: 0 2px 8px rgba(20, 31, 87, 0.25); }\n.gt-join-dice:focus-visible { outline: 2px solid var(--gt-blue-500, #4a66d8); outline-offset: 2px; }\n.gt-join-dice-face { display: inline-block; }\n.gt-join-dice-face.is-rolling { animation: gt-dice-roll 0.45s ease-out; }\n@keyframes gt-dice-roll {\n  0%   { transform: rotate(0) scale(1); }\n  50%  { transform: rotate(200deg) scale(1.2); }\n  100% { transform: rotate(360deg) scale(1); }\n}\n\n/* ---------- 🎭 Avatar grid: takes whatever height is left, and scrolls inside ---------- */\n.gt-join-avatars {\n  flex: 1 1 auto;\n  min-height: 0;\n  display: flex;\n  flex-direction: column;\n}\n.gt-join .gt-avatar-picker {\n  flex: 0 1 auto;\n  min-height: 64px;                /* at least one row */\n  max-height: none;                /* phones: fill the screen, so Jump In! sits at the bottom, under your thumb */\n  padding: 8px 6px;\n  border: 0;\n  border-radius: 16px;\n  background: #f4f6fc;\n  overscroll-behavior: contain;    /* the end of the grid doesn't drag the page */\n  /* Fade out at the bottom edge, to show there's more */\n  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);\n  mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);\n}\n\n/* Tablets and computers: a tidy box, not a wall of faces */\n@media (min-width: 576px) {\n  .gt-join .gt-avatar-picker { max-height: 340px; }\n}\n\n/* The picked avatar: ringed in the site's blue */\n.gt-join .gt-avatar-choice.selected { border-color: var(--gt-blue-500, #4a66d8); }\n.gt-join .gt-avatar-choice:focus-visible { outline-color: var(--gt-blue-500, #4a66d8); }\n\n/* ---------- ⚠️ Error + 🚀 Jump In ---------- */\n.gt-join-error {\n  flex: 0 0 auto;\n  margin: 0;\n  padding: 8px 12px;\n  border-radius: 12px;\n  background: #fdecee;\n  color: #b4232c;\n  font-size: 0.9rem;\n  font-weight: 600;\n  text-align: center;\n}\n\n.gt-join-go {\n  flex: 0 0 auto;\n  width: 100%;\n  height: 56px;\n  border: 0;\n  border-radius: 16px;\n  color: #fff;\n  font-size: 1.25rem;\n  font-weight: 800;\n  letter-spacing: 0.02em;\n  background: linear-gradient(180deg, var(--gt-blue-400, #6f88e6), var(--gt-blue-600, #3a53c4));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px rgba(58, 83, 196, 0.35);\n  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;\n}\n.gt-join-go:hover { filter: brightness(1.06); }\n.gt-join-go:active { transform: translateY(1px) scale(0.99); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 12px rgba(58, 83, 196, 0.35); }\n.gt-join-go:focus-visible { outline: 3px solid var(--gt-blue-300, #93a7f0); outline-offset: 2px; }\n\n/* Smaller phones (iPhone SE and friends): a little tighter */\n@media (max-height: 700px) {\n  .gt-join-body.card-body { padding: 14px; }\n  .gt-join-form { gap: 12px; }\n  .gt-code-slot { height: 56px; font-size: 1.75rem; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .gt-code-slot,\n  .gt-code-slot.is-filled,\n  .gt-join-dice-face.is-rolling { animation: none; transition: none; }\n  .gt-code-slot.is-active::after { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/join.css"],"names":[],"mappings":"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","sourcesContent":["/* =========================================================\n   🚪 JOIN A ROOM (src/features/Menu/UniversalJoinForm.jsx)\n   One screen on a phone: the card fills the space under the nav bar,\n   and only the avatar grid scrolls (inside its own box).\n   ========================================================= */\n\n.gt-join.page-container {\n  padding: 12px;\n  /* The nav bar is 64px plus its 1px border */\n  min-height: calc(100vh - 65px);\n  min-height: calc(100dvh - 65px);\n}\n\n.gt-join-card.main-card {\n  margin: 0;                       /* index.html gives every .card 20px */\n  overflow: hidden;\n  /* Fill the screen under the nav bar, never more. On a very short screen (landscape) it stops shrinking and the page scrolls instead */\n  max-height: max(430px, calc(100vh - 65px - 24px));\n  max-height: max(430px, calc(100dvh - 65px - 24px));\n}\n\n.gt-join-body.card-body {\n  flex: 1 1 auto;\n  min-height: 0;\n  display: flex;\n  flex-direction: column;\n  padding: 16px;\n}\n\n.gt-join-form {\n  flex: 1 1 auto;\n  min-height: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 14px;\n  text-align: left;\n}\n\n.gt-join-section { flex: 0 0 auto; }\n\n.gt-join-label-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 6px;\n}\n.gt-join-label {\n  display: block;\n  margin: 0;\n  font-size: 0.72rem;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: #6b7280;\n}\n.gt-join-label-row .gt-join-label { margin: 0; }\n.gt-join-section > .gt-join-label { margin-bottom: 6px; }\n\n.gt-join-hint {\n  font-size: 0.75rem;\n  color: #9aa1b0;\n}\n\n.gt-join-chip {\n  font-size: 0.72rem;\n  font-weight: 700;\n  color: #137a4c;\n  background: #e6f6ee;\n  border-radius: 999px;\n  padding: 2px 10px;\n  white-space: nowrap;\n}\n\n/* ---------- 🔤 Room code: four letter tiles over one real input ---------- */\n.gt-code {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 10px;\n}\n.gt-code-slot {\n  height: 64px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 14px;\n  background: #f4f6fc;\n  border: 2px solid #e1e6f4;\n  font-size: 2rem;\n  font-weight: 800;\n  color: var(--gt-navy, #141f57);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, transform 0.15s ease;\n}\n.gt-code-slot.is-filled {\n  background: #fff;\n  border-color: var(--gt-blue-300, #93a7f0);\n  animation: gt-code-pop 0.18s ease-out;\n}\n.gt-code-slot.is-active {\n  background: #fff;\n  border-color: var(--gt-blue-500, #4a66d8);\n  box-shadow: 0 0 0 4px rgba(74, 102, 216, 0.16);\n}\n/* A blinking caret in the next empty tile */\n.gt-code-slot.is-active::after {\n  content: '';\n  width: 2px;\n  height: 45%;\n  border-radius: 1px;\n  background: var(--gt-blue-500, #4a66d8);\n  animation: gt-code-caret 1s steps(1) infinite;\n}\n@keyframes gt-code-caret { 50% { opacity: 0; } }\n@keyframes gt-code-pop {\n  0%   { transform: scale(0.9); }\n  70%  { transform: scale(1.06); }\n  100% { transform: scale(1); }\n}\n\n/* The real input covers the tiles: typing, pasting and the keyboard all work as normal, but its own text is invisible */\n.gt-code-input {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  border: 0;\n  outline: none;\n  background: transparent;\n  color: transparent;\n  -webkit-text-fill-color: transparent;\n  caret-color: transparent;\n  font-size: 16px;                 /* 16px or more, or an iPhone zooms in when it's tapped */\n  letter-spacing: 0;\n  cursor: text;\n}\n.gt-code-input::selection { background: transparent; }\n.gt-code-input:disabled { cursor: default; }\n\n/* Code from the QR code / invite link: locked in, in green */\n.gt-code.is-locked .gt-code-slot {\n  background: #eefaf3;\n  border-color: #9fdcbc;\n  color: #137a4c;\n  animation: none;\n}\n\n/* ---------- 🙂 You: avatar preview + name ---------- */\n.gt-join-player {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.gt-join-player .gt-avatar { flex-shrink: 0; }\n\n.gt-join-name {\n  position: relative;\n  flex: 1 1 auto;\n  min-width: 0;\n}\n.gt-join-input.form-control {\n  height: 52px;\n  padding: 0 56px 0 16px;\n  border-radius: 14px;\n  border: 2px solid #e1e6f4;\n  background: #f4f6fc;\n  font-size: 1.15rem;\n  font-weight: 700;\n  color: var(--gt-navy, #141f57);\n}\n.gt-join-input.form-control:focus {\n  background: #fff;\n  border-color: var(--gt-blue-500, #4a66d8);\n  box-shadow: 0 0 0 4px rgba(74, 102, 216, 0.16);\n}\n\n.gt-join-dice {\n  position: absolute;\n  top: 50%;\n  right: 6px;\n  width: 40px;\n  height: 40px;\n  transform: translateY(-50%);\n  display: grid;\n  place-items: center;\n  border: 0;\n  border-radius: 11px;\n  background: #fff;\n  box-shadow: 0 1px 3px rgba(20, 31, 87, 0.18);\n  font-size: 1.25rem;\n  line-height: 1;\n  transition: box-shadow 0.15s ease;\n}\n.gt-join-dice:hover { box-shadow: 0 2px 8px rgba(20, 31, 87, 0.25); }\n.gt-join-dice:focus-visible { outline: 2px solid var(--gt-blue-500, #4a66d8); outline-offset: 2px; }\n.gt-join-dice-face { display: inline-block; }\n.gt-join-dice-face.is-rolling { animation: gt-dice-roll 0.45s ease-out; }\n@keyframes gt-dice-roll {\n  0%   { transform: rotate(0) scale(1); }\n  50%  { transform: rotate(200deg) scale(1.2); }\n  100% { transform: rotate(360deg) scale(1); }\n}\n\n/* ---------- 🎭 Avatar grid: takes whatever height is left, and scrolls inside ---------- */\n.gt-join-avatars {\n  flex: 1 1 auto;\n  min-height: 0;\n  display: flex;\n  flex-direction: column;\n}\n.gt-join .gt-avatar-picker {\n  flex: 0 1 auto;\n  min-height: 64px;                /* at least one row */\n  max-height: none;                /* phones: fill the screen, so Jump In! sits at the bottom, under your thumb */\n  padding: 8px 6px;\n  border: 0;\n  border-radius: 16px;\n  background: #f4f6fc;\n  overscroll-behavior: contain;    /* the end of the grid doesn't drag the page */\n  /* Fade out at the bottom edge, to show there's more */\n  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);\n  mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);\n}\n\n/* Tablets and computers: a tidy box, not a wall of faces */\n@media (min-width: 576px) {\n  .gt-join .gt-avatar-picker { max-height: 340px; }\n}\n\n/* The picked avatar: ringed in the site's blue */\n.gt-join .gt-avatar-choice.selected { border-color: var(--gt-blue-500, #4a66d8); }\n.gt-join .gt-avatar-choice:focus-visible { outline-color: var(--gt-blue-500, #4a66d8); }\n\n/* ---------- ⚠️ Error + 🚀 Jump In ---------- */\n.gt-join-error {\n  flex: 0 0 auto;\n  margin: 0;\n  padding: 8px 12px;\n  border-radius: 12px;\n  background: #fdecee;\n  color: #b4232c;\n  font-size: 0.9rem;\n  font-weight: 600;\n  text-align: center;\n}\n\n.gt-join-go {\n  flex: 0 0 auto;\n  width: 100%;\n  height: 56px;\n  border: 0;\n  border-radius: 16px;\n  color: #fff;\n  font-size: 1.25rem;\n  font-weight: 800;\n  letter-spacing: 0.02em;\n  background: linear-gradient(180deg, var(--gt-blue-400, #6f88e6), var(--gt-blue-600, #3a53c4));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px rgba(58, 83, 196, 0.35);\n  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;\n}\n.gt-join-go:hover { filter: brightness(1.06); }\n.gt-join-go:active { transform: translateY(1px) scale(0.99); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 12px rgba(58, 83, 196, 0.35); }\n.gt-join-go:focus-visible { outline: 3px solid var(--gt-blue-300, #93a7f0); outline-offset: 2px; }\n\n/* Smaller phones (iPhone SE and friends): a little tighter */\n@media (max-height: 700px) {\n  .gt-join-body.card-body { padding: 14px; }\n  .gt-join-form { gap: 12px; }\n  .gt-code-slot { height: 56px; font-size: 1.75rem; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .gt-code-slot,\n  .gt-code-slot.is-filled,\n  .gt-join-dice-face.is-rolling { animation: none; transition: none; }\n  .gt-code-slot.is-active::after { animation: none; }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/lists.css":
 /*!********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/lists.css ***!
@@ -40772,6 +40852,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_cards_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_cards_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_cards_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./src/styles/join.css":
+/*!*****************************!*\
+  !*** ./src/styles/join.css ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_join_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./join.css */ "./node_modules/css-loader/dist/cjs.js!./src/styles/join.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_join_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_join_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_join_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_join_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
