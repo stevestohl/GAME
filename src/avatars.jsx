@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef } from 'react';
 import { HALLOWEEN_AVATARS, COSTUME_FOR } from './halloweenAvatars.jsx';
 import { MORE_AVATARS } from './moreAvatars.jsx';
+import { PARTY_AVATARS } from './partyAvatars.jsx';
 
 /**
  * 🙂 Player avatars for the cast games. Players pick one on the Join Room screen; the phone
@@ -165,6 +166,7 @@ export const AVATARS = [
         ),
     },
     ...MORE_AVATARS,
+    ...PARTY_AVATARS,
 ];
 
 const BY_ID = Object.fromEntries(AVATARS.map((a) => [a.id, a]));
