@@ -107,7 +107,7 @@ export default function CouchCastManager() {
     usePlayerSounds(roomData?.roomCode, roomData?.players);
     const lobbyTrack = lobbyTrackFor('couchCast', roomData?.expansion);
     const hasCrew = !!roomData;   // 🛋️ the Couch Cast crew shows up in every deck
-    const crewTheme = ['halloween', 'holiday'].includes(roomData?.expansion) ? roomData.expansion : 'core';
+    const crewTheme = ['halloween', 'holiday', 'jeffinitely'].includes(roomData?.expansion) ? roomData.expansion : 'core';
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
     const round = roomData?.currentRound;

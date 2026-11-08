@@ -4575,7 +4575,7 @@ function CouchCastManager() {
   (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_27__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
   var lobbyTrack = (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__.lobbyTrackFor)('couchCast', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
   var hasCrew = !!roomData; // 🛋️ the Couch Cast crew shows up in every deck
-  var crewTheme = ['halloween', 'holiday'].includes(roomData === null || roomData === void 0 ? void 0 : roomData.expansion) ? roomData.expansion : 'core';
+  var crewTheme = ['halloween', 'holiday', 'jeffinitely'].includes(roomData === null || roomData === void 0 ? void 0 : roomData.expansion) ? roomData.expansion : 'core';
 
   // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
   var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
@@ -7478,6 +7478,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HalloweenCrew.jsx */ "./src/features/CouchCast/HalloweenCrew.jsx");
 /* harmony import */ var _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HolidayCrew.jsx */ "./src/features/CouchCast/HolidayCrew.jsx");
+/* harmony import */ var _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./JeffCrew.jsx */ "./src/features/CouchCast/JeffCrew.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -7494,6 +7495,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -7524,9 +7526,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 // 🎄 The Holiday deck runs the Core show with the crew dressed up (HolidayCrew.jsx). In place of
 // Sasquatch's mountain, Santa lands beside the couch in a sleigh that flies on its own.
+//
+// 📼 The Jeffinitely deck (JeffCrew.jsx) has four on a longer plaid couch: Mullet Mitch, Aerobics Angie, Disco
+// Duke and Boomer the Boombox. They play the Jeffcom, a knock-off console on the floor, in place of the cast:
+// Mitch pushes the cartridge in, the screen just fuzzes, so he pulls it out, blows on it, and pushes it back in,
+// and the QR card flickers on like an old TV. Then everyone plays (holding controllers) whenever they're seated.
+// Pixel, a keychain pet, is the pest all four chase off, and Dial-Up Dana rolls in on her computer desk and
+// climbs out of the monitor in place of Sasquatch.
 
 // Who sits where, left to right: `caster` is nearest the screen and `chaser` is in the middle
 var SEATS = ['caster', 'chaser', 'third'];
+var JEFF_SEATS = ['caster', 'chaser', 'third', 'fourth'];
 var BAT_COUNT = 3;
 var HIP = 30; // where a character bends to sit (units up from its feet)
 var SEAT_TOP = 44; // the couch cushions' top (units up from the floor)
@@ -7553,7 +7563,12 @@ function CouchCrew(_ref) {
     theme = _ref$theme === void 0 ? 'core' : _ref$theme;
   var isHalloween = theme === 'halloween';
   var isHoliday = theme === 'holiday';
-  var hasProjector = !isHalloween; // the witch has a wand instead
+  var isJeff = theme === 'jeffinitely';
+  var hasProjector = !isHalloween && !isJeff; // the witch has a wand instead, and Jeffinitely has the Jeffcom
+  var hasWand = isHalloween;
+  var seats = isJeff ? JEFF_SEATS : SEATS;
+  var couchWidth = isJeff ? 240 : 200; // couch units, arm to arm
+  var seatOffsets = isJeff ? [-75, -25, 25, 75] : [-50, 0, 50];
   var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var lightRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var couchRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
@@ -7564,10 +7579,12 @@ function CouchCrew(_ref) {
   var mountainRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var chandelierRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var batRefs = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
+  var consoleRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var actorEls = {
     caster: (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
     chaser: (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
     third: (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
+    fourth: (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
     cat: (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
     sasquatch: (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null)
   };
@@ -7589,13 +7606,14 @@ function CouchCrew(_ref) {
       var stage = stageRef.current.getBoundingClientRect();
       var screen = screenRef.current.getBoundingClientRect();
       var qr = ((qrRef === null || qrRef === void 0 ? void 0 : qrRef.current) || screenRef.current).getBoundingClientRect();
-      var cs = Math.max(0.4, Math.min(stage.width * 0.92 / 200, stage.height / 128));
+      var cs = Math.max(0.4, Math.min(stage.width * 0.92 / couchWidth, stage.height / 128));
+      var half = couchWidth / 2 + 4; // the couch's half-width, with a little room
       // Toward the screen side of its spot, clear of the room code pill in the bottom corner
-      var cx = stage.left - root.left + Math.min(stage.width / 2, 104 * cs + 8);
+      var cx = stage.left - root.left + Math.min(stage.width / 2, half * cs + 8);
       var floorY = stage.bottom - root.top - 2;
       var s = cs * 0.95; // character scale
       // ⛰️ The free ground to the right of the couch (no mountain if there's hardly any)
-      var couchRight = cx + 104 * cs;
+      var couchRight = cx + half * cs;
       var free = stage.right - root.left - 6 - couchRight;
       var mountain = free >= 80 * cs ? {
         x: couchRight + free / 2,
@@ -7603,7 +7621,8 @@ function CouchCrew(_ref) {
         sx: Math.min(free, 260 * cs) / 200,
         sy: Math.min(stage.height * 0.74, 150 * cs) / 160,
         // low enough that Sasquatch fits on the peak
-        sleigh: Math.min(free / 225, stage.height / 140, cs)
+        sleigh: Math.min(free / 225, stage.height / 140, cs),
+        desk: Math.min(free / 118, (stage.height - 4) / 114, cs) // 🖥️ Dana's computer
       } : null;
       L = {
         width: root.width,
@@ -7613,7 +7632,7 @@ function CouchCrew(_ref) {
         cx: cx,
         floorY: floorY,
         stageTop: stage.top - root.top,
-        seatX: [-50, 0, 50].map(function (u) {
+        seatX: seatOffsets.map(function (u) {
           return cx + u * cs;
         }),
         seatY: floorY - SEAT_TOP * cs + HIP * s,
@@ -7627,7 +7646,7 @@ function CouchCrew(_ref) {
         },
         mountain: mountain,
         // Sasquatch up close: a head taller than the crew, but never taller than the couch's spot
-        sqSize: Math.min(cs * 0.95, (stage.height - 4) / 146) / s,
+        sqSize: isJeff ? 1 : Math.min(cs * 0.95, (stage.height - 4) / 146) / s,
         // 🕯️ The chandelier hangs in the top corner, above the QR card
         chandelierX: root.width * 0.085,
         chandelierSize: Math.min(root.height * 0.19, root.width * 0.1) / 100
@@ -7643,7 +7662,7 @@ function CouchCrew(_ref) {
       y: 0,
       el: couchRef.current
     };
-    var actors = Object.fromEntries(SEATS.map(function (name, i) {
+    var actors = Object.fromEntries(seats.map(function (name, i) {
       return [name, {
         name: name,
         seat: i,
@@ -7694,6 +7713,21 @@ function CouchCrew(_ref) {
       flip: 1,
       on: false,
       landed: false
+    };
+    // 🖥️ On the Jeffinitely deck it's Dana's computer desk, which rolls in (see deskIn)
+    var desk = {
+      x: 0,
+      on: false,
+      landed: false
+    };
+    // 🎮 The Jeffcom, on the floor in front of the couch, and whether it's working yet
+    var jeffcom = {
+      el: consoleRef.current
+    };
+    var gaming = false;
+    var drawConsole = function drawConsole() {
+      var _jeffcom$el;
+      return (_jeffcom$el = jeffcom.el) === null || _jeffcom$el === void 0 ? void 0 : _jeffcom$el.setAttribute('transform', "translate(".concat(L.cx + 2 * L.cs, " ").concat(L.floorY, ") scale(").concat(L.cs, ")"));
     };
     var chandelier = {
       drop: reduceMotion ? 1 : 0,
@@ -7751,9 +7785,17 @@ function CouchCrew(_ref) {
       }
       drawMountain();
       drawChandelier();
+      drawConsole();
     };
     var drawMountain = function drawMountain() {
       var m = L.mountain;
+      if (isJeff) {
+        mountain.el.style.display = m && desk.on ? '' : 'none';
+        if (!m) return;
+        if (desk.landed) desk.x = m.x;
+        mountain.el.setAttribute('transform', "translate(".concat(desk.x, " ").concat(L.floorY, ") scale(").concat(m.desk, ")"));
+        return;
+      }
       if (isHoliday) {
         mountain.el.style.display = m && sleigh.on ? '' : 'none';
         if (!m) return;
@@ -7853,7 +7895,8 @@ function CouchCrew(_ref) {
               case 2:
                 a.spot = 'seat';
                 look(a, 'left');
-              case 4:
+                if (gaming) a.el.classList.add('crew-gaming');
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -7871,9 +7914,10 @@ function CouchCrew(_ref) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 a.spot = 'floor';
-                _context3.next = 3;
+                a.el.classList.remove('crew-gaming');
+                _context3.next = 4;
                 return hop(a, L.seatX[a.seat] - 8 * L.cs, L.floorY, 16, 380);
-              case 3:
+              case 4:
               case "end":
                 return _context3.stop();
             }
@@ -8015,66 +8059,197 @@ function CouchCrew(_ref) {
     };
 
     // 🪄 The witch raises her wand: a lightning bolt cracks across to the QR code, which lights up
-    var cast = /*#__PURE__*/function () {
-      var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+    // 🎮 Everyone on the couch picks up a controller (or puts it down, for a visitor)
+    var setGaming = function setGaming(on) {
+      gaming = on;
+      Object.values(actors).forEach(function (a) {
+        return a.el.classList.toggle('crew-gaming', on && a.spot === 'seat');
+      });
+    };
+    // 📼 The Jeffcom: Mitch pushes the cartridge in and the screen just fuzzes. So out it comes, he blows on
+    // it, pushes it back in, and the QR card flickers on like an old TV. Then everybody plays.
+    var bootUp = /*#__PURE__*/function () {
+      var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
         var _qrRef$current2;
-        var witch, bolt, until;
-        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        var mitch, con, qr, reach, nextOver;
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                if (!hasProjector) {
-                  _context5.next = 4;
+                mitch = actors.caster;
+                con = jeffcom.el.classList;
+                qr = qrRef === null || qrRef === void 0 ? void 0 : (_qrRef$current2 = qrRef.current) === null || _qrRef$current2 === void 0 ? void 0 : _qrRef$current2.classList;
+                reach = /*#__PURE__*/function () {
+                  var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(then) {
+                    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                      while (1) {
+                        switch (_context5.prev = _context5.next) {
+                          case 0:
+                            mitch.el.classList.add('crew-reaching');
+                            _context5.next = 3;
+                            return wait(320);
+                          case 3:
+                            then();
+                            _context5.next = 6;
+                            return wait(280);
+                          case 6:
+                            mitch.el.classList.remove('crew-reaching');
+                          case 7:
+                          case "end":
+                            return _context5.stop();
+                        }
+                      }
+                    }, _callee5);
+                  }));
+                  return function reach(_x5) {
+                    return _ref11.apply(this, arguments);
+                  };
+                }();
+                _context6.next = 6;
+                return standUp(mitch);
+              case 6:
+                // In front of the others on the couch while he's down at the console, then back in his place after
+                nextOver = mitch.el.nextSibling;
+                mitch.el.parentNode.insertBefore(mitch.el, jeffcom.el);
+                _context6.next = 10;
+                return walkTo(mitch, L.cx - 34 * L.cs);
+              case 10:
+                // just left of the console
+                look(mitch, 'right');
+                _context6.next = 13;
+                return reach(function () {
+                  return con.add('is-in', 'is-powered');
+                });
+              case 13:
+                qr === null || qr === void 0 ? void 0 : qr.add('cc-qr-static');
+                look(mitch, 'left');
+                _context6.next = 17;
+                return wait(1500);
+              case 17:
+                look(mitch, 'front'); // ...really?
+                _context6.next = 20;
+                return wait(600);
+              case 20:
+                _context6.next = 22;
+                return reach(function () {
+                  return con.remove('is-in');
+                });
+              case 22:
+                _context6.next = 24;
+                return wait(200);
+              case 24:
+                con.add('is-empty');
+                mitch.el.classList.add('crew-blowing');
+                _context6.next = 28;
+                return wait(1800);
+              case 28:
+                // two good puffs
+                mitch.el.classList.remove('crew-blowing');
+                _context6.next = 31;
+                return wait(300);
+              case 31:
+                con.remove('is-empty');
+                look(mitch, 'right');
+                _context6.next = 35;
+                return reach(function () {
+                  return con.add('is-in');
+                });
+              case 35:
+                qr === null || qr === void 0 ? void 0 : qr.remove('cc-qr-static');
+                qr === null || qr === void 0 ? void 0 : qr.add('cc-qr-on');
+                look(mitch, 'left');
+                _context6.next = 40;
+                return wait(1000);
+              case 40:
+                _context6.next = 42;
+                return walkTo(mitch, L.seatX[mitch.seat] - 8 * L.cs);
+              case 42:
+                gaming = true;
+                _context6.next = 45;
+                return sitDown(mitch);
+              case 45:
+                mitch.el.parentNode.insertBefore(mitch.el, nextOver);
+                setGaming(true);
+              case 47:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+      return function bootUp() {
+        return _ref10.apply(this, arguments);
+      };
+    }();
+    var cast = /*#__PURE__*/function () {
+      var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        var _qrRef$current3;
+        var witch, bolt, until;
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                if (!isJeff) {
+                  _context7.next = 4;
                   break;
                 }
-                _context5.next = 3;
-                return project();
+                _context7.next = 3;
+                return bootUp();
               case 3:
-                return _context5.abrupt("return");
+                return _context7.abrupt("return");
               case 4:
+                if (!hasProjector) {
+                  _context7.next = 8;
+                  break;
+                }
+                _context7.next = 7;
+                return project();
+              case 7:
+                return _context7.abrupt("return");
+              case 8:
                 witch = actors.caster;
                 bolt = boltRef.current;
                 witch.el.classList.add('crew-casting');
-                _context5.next = 9;
+                _context7.next = 13;
                 return wait(400);
-              case 9:
+              case 13:
                 // the wand arm swings up
                 drawBolt(false);
                 bolt.classList.add('is-on', 'is-striking');
-                _context5.next = 13;
+                _context7.next = 17;
                 return wait(170);
-              case 13:
+              case 17:
                 // it strikes from the wand to the code
-                qrRef === null || qrRef === void 0 ? void 0 : (_qrRef$current2 = qrRef.current) === null || _qrRef$current2 === void 0 ? void 0 : _qrRef$current2.classList.add('cc-qr-on');
+                qrRef === null || qrRef === void 0 ? void 0 : (_qrRef$current3 = qrRef.current) === null || _qrRef$current3 === void 0 ? void 0 : _qrRef$current3.classList.add('cc-qr-on');
                 // Then it crackles for a couple of seconds: a fresh zigzag every few frames
                 until = performance.now() + 2400;
                 drawBolt();
-              case 16:
+              case 20:
                 if (!(performance.now() < until)) {
-                  _context5.next = 22;
+                  _context7.next = 26;
                   break;
                 }
-                _context5.next = 19;
+                _context7.next = 23;
                 return wait(rand(70, 140));
-              case 19:
+              case 23:
                 drawBolt();
-                _context5.next = 16;
+                _context7.next = 20;
                 break;
-              case 22:
-                bolt.classList.remove('is-on', 'is-striking');
-                _context5.next = 25;
-                return wait(150);
-              case 25:
-                witch.el.classList.remove('crew-casting');
               case 26:
+                bolt.classList.remove('is-on', 'is-striking');
+                _context7.next = 29;
+                return wait(150);
+              case 29:
+                witch.el.classList.remove('crew-casting');
+              case 30:
               case "end":
-                return _context5.stop();
+                return _context7.stop();
             }
           }
-        }, _callee5);
+        }, _callee7);
       }));
       return function cast() {
-        return _ref10.apply(this, arguments);
+        return _ref12.apply(this, arguments);
       };
     }();
 
@@ -8098,34 +8273,34 @@ function CouchCrew(_ref) {
 
     // 👀 Someone gets up, walks behind the QR card and peeks out from its edge, then comes back
     var peek = /*#__PURE__*/function () {
-      var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(a) {
+      var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(a) {
         var hidden, times, _loop, n;
-        return _regeneratorRuntime().wrap(function _callee6$(_context7) {
+        return _regeneratorRuntime().wrap(function _callee8$(_context9) {
           while (1) {
-            switch (_context7.prev = _context7.next) {
+            switch (_context9.prev = _context9.next) {
               case 0:
                 a.busy = true;
                 eventRunning = true;
-                _context7.next = 4;
+                _context9.next = 4;
                 return standUp(a);
               case 4:
                 hidden = L.screenRight - 42 * L.s; // all the way behind the card
-                _context7.next = 7;
+                _context9.next = 7;
                 return walkTo(a, hidden);
               case 7:
                 times = Math.random() < 0.4 ? 2 : 1;
                 _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop(n) {
                   var fromX;
-                  return _regeneratorRuntime().wrap(function _loop$(_context6) {
+                  return _regeneratorRuntime().wrap(function _loop$(_context8) {
                     while (1) {
-                      switch (_context6.prev = _context6.next) {
+                      switch (_context8.prev = _context8.next) {
                         case 0:
-                          _context6.next = 2;
+                          _context8.next = 2;
                           return wait(rand(400, 900));
                         case 2:
                           // Lean out past the card's edge, have a look around the room, lean back
                           fromX = a.x;
-                          _context6.next = 5;
+                          _context8.next = 5;
                           return tween(420, easeOut, function (t) {
                             a.x = fromX + 20 * L.s * t;
                             a.rot = 15 * t;
@@ -8133,10 +8308,10 @@ function CouchCrew(_ref) {
                           });
                         case 5:
                           look(a, n === 0 ? 'right' : 'front');
-                          _context6.next = 8;
+                          _context8.next = 8;
                           return wait(rand(1300, 2000));
                         case 8:
-                          _context6.next = 10;
+                          _context8.next = 10;
                           return tween(360, easeInOut, function (t) {
                             a.x = fromX + 20 * L.s * (1 - t);
                             a.rot = 15 * (1 - t);
@@ -8144,7 +8319,7 @@ function CouchCrew(_ref) {
                           });
                         case 10:
                         case "end":
-                          return _context6.stop();
+                          return _context8.stop();
                       }
                     }
                   }, _loop);
@@ -8152,35 +8327,35 @@ function CouchCrew(_ref) {
                 n = 0;
               case 10:
                 if (!(n < times)) {
-                  _context7.next = 15;
+                  _context9.next = 15;
                   break;
                 }
-                return _context7.delegateYield(_loop(n), "t0", 12);
+                return _context9.delegateYield(_loop(n), "t0", 12);
               case 12:
                 n++;
-                _context7.next = 10;
+                _context9.next = 10;
                 break;
               case 15:
-                _context7.next = 17;
+                _context9.next = 17;
                 return wait(500);
               case 17:
-                _context7.next = 19;
+                _context9.next = 19;
                 return walkTo(a, L.seatX[a.seat] - 8 * L.cs);
               case 19:
-                _context7.next = 21;
+                _context9.next = 21;
                 return sitDown(a);
               case 21:
                 a.busy = false;
                 eventRunning = false;
               case 23:
               case "end":
-                return _context7.stop();
+                return _context9.stop();
             }
           }
-        }, _callee6);
+        }, _callee8);
       }));
-      return function peek(_x5) {
-        return _ref11.apply(this, arguments);
+      return function peek(_x6) {
+        return _ref13.apply(this, arguments);
       };
     }();
     var peekNow = function peekNow() {
@@ -8198,40 +8373,40 @@ function CouchCrew(_ref) {
 
     // 🐕 "WOOF!" over the dog's head ("VIOLATION!" over the HOA president's)
     var bark = /*#__PURE__*/function () {
-      var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(dog) {
+      var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(dog) {
         var bubble;
-        return _regeneratorRuntime().wrap(function _callee7$(_context8) {
+        return _regeneratorRuntime().wrap(function _callee9$(_context10) {
           while (1) {
-            switch (_context8.prev = _context8.next) {
+            switch (_context10.prev = _context10.next) {
               case 0:
                 bubble = barkRef.current;
                 bubble.setAttribute('transform', "translate(".concat(dog.x + (isHalloween ? 30 : 16) * L.s, " ").concat(dog.y - dog.lift - 104 * L.s, ") scale(").concat(L.s, ")"));
                 bubble.classList.add('is-on');
-                _context8.next = 5;
+                _context10.next = 5;
                 return wait(900);
               case 5:
                 bubble.classList.remove('is-on');
               case 6:
               case "end":
-                return _context8.stop();
+                return _context10.stop();
             }
           }
-        }, _callee7);
+        }, _callee9);
       }));
-      return function bark(_x6) {
-        return _ref12.apply(this, arguments);
+      return function bark(_x7) {
+        return _ref14.apply(this, arguments);
       };
     }();
 
     // 🐈 A cat slinks in and goes for the screen; the dog isn't having it
     // (👻 On the Halloween deck it's a tiny ghost, and all three go after it)
-    var chasers = isHalloween ? Object.values(actors) : [actors.chaser];
+    var chasers = isHalloween || isJeff ? Object.values(actors) : [actors.chaser];
     var catVisit = /*#__PURE__*/function () {
-      var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+      var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
         var dog, lookLeft;
-        return _regeneratorRuntime().wrap(function _callee9$(_context10) {
+        return _regeneratorRuntime().wrap(function _callee11$(_context12) {
           while (1) {
-            switch (_context10.prev = _context10.next) {
+            switch (_context12.prev = _context12.next) {
               case 0:
                 dog = actors.chaser;
                 eventRunning = true;
@@ -8252,24 +8427,25 @@ function CouchCrew(_ref) {
                   });
                 }, 1600);
                 timers.add(lookLeft);
-                _context10.next = 11;
+                _context12.next = 11;
                 return walkTo(cat, L.screenRight + 6 * L.s, 70);
               case 11:
                 // right up against the screen's edge
 
                 // It sits by the screen and paws at it
                 cat.el.classList.add('crew-cat-swat');
-                _context10.next = 14;
+                _context12.next = 14;
                 return wait(1300);
               case 14:
-                _context10.next = 16;
+                _context12.next = 16;
                 return bark(dog);
               case 16:
                 cat.el.classList.remove('crew-cat-swat');
                 chasers.forEach(function (a) {
                   a.spot = 'floor';
-                });
-                _context10.next = 20;
+                  a.el.classList.remove('crew-gaming');
+                }); // (controllers down!)
+                _context12.next = 20;
                 return Promise.all([].concat(_toConsumableArray(chasers.map(function (a) {
                   return hop(a, a.x - 6 * L.cs, L.floorY, 14, 320);
                 })), [hop(cat, cat.x, cat.y, 22, 300).then(function () {
@@ -8280,7 +8456,7 @@ function CouchCrew(_ref) {
                 chasers.forEach(function (a) {
                   a.rot = 8;
                 }); // leaning into the run
-                _context10.next = 23;
+                _context12.next = 23;
                 return Promise.all([walkTo(cat, L.offRight, 300, 'crew-running')].concat(_toConsumableArray(chasers.map(function (a, i) {
                   return wait(250 + i * 180).then(function () {
                     return walkTo(a, L.offRight + 40 * L.cs, 230, 'crew-running');
@@ -8293,36 +8469,36 @@ function CouchCrew(_ref) {
                 draw(cat);
 
                 // A moment off-screen, then back to the couch, very pleased with themselves
-                _context10.next = 29;
+                _context12.next = 29;
                 return wait(1400);
               case 29:
-                _context10.next = 31;
+                _context12.next = 31;
                 return Promise.all(chasers.map( /*#__PURE__*/function () {
-                  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(a, i) {
-                    return _regeneratorRuntime().wrap(function _callee8$(_context9) {
+                  var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(a, i) {
+                    return _regeneratorRuntime().wrap(function _callee10$(_context11) {
                       while (1) {
-                        switch (_context9.prev = _context9.next) {
+                        switch (_context11.prev = _context11.next) {
                           case 0:
                             a.rot = 0;
-                            _context9.next = 3;
+                            _context11.next = 3;
                             return wait(i * 500);
                           case 3:
-                            _context9.next = 5;
+                            _context11.next = 5;
                             return walkTo(a, L.seatX[a.seat] - 8 * L.cs, 85);
                           case 5:
-                            _context9.next = 7;
+                            _context11.next = 7;
                             return sitDown(a);
                           case 7:
                             a.busy = false;
                           case 8:
                           case "end":
-                            return _context9.stop();
+                            return _context11.stop();
                         }
                       }
-                    }, _callee8);
+                    }, _callee10);
                   }));
-                  return function (_x7, _x8) {
-                    return _ref14.apply(this, arguments);
+                  return function (_x8, _x9) {
+                    return _ref16.apply(this, arguments);
                   };
                 }()));
               case 31:
@@ -8330,13 +8506,13 @@ function CouchCrew(_ref) {
                 cheer();
               case 33:
               case "end":
-                return _context10.stop();
+                return _context12.stop();
             }
           }
-        }, _callee9);
+        }, _callee11);
       }));
       return function catVisit() {
-        return _ref13.apply(this, arguments);
+        return _ref15.apply(this, arguments);
       };
     }();
     var catNow = function catNow(delay) {
@@ -8358,33 +8534,33 @@ function CouchCrew(_ref) {
 
     // 🦇 A few bats flap across the top of the room, behind the cards
     var batFlight = /*#__PURE__*/function () {
-      var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+      var _ref17 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
         var leftToRight, fromX, toX, baseY, swoop;
-        return _regeneratorRuntime().wrap(function _callee11$(_context12) {
+        return _regeneratorRuntime().wrap(function _callee13$(_context14) {
           while (1) {
-            switch (_context12.prev = _context12.next) {
+            switch (_context14.prev = _context14.next) {
               case 0:
                 leftToRight = Math.random() < 0.5;
                 fromX = leftToRight ? -40 : L.width + 40;
                 toX = leftToRight ? L.width + 40 : -40;
                 baseY = L.height * rand(0.08, 0.26);
                 swoop = L.height * rand(0.04, 0.1);
-                _context12.next = 7;
+                _context14.next = 7;
                 return Promise.all(batRefs.current.map( /*#__PURE__*/function () {
-                  var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(el, i) {
+                  var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(el, i) {
                     var size, offset, ms, wiggle;
-                    return _regeneratorRuntime().wrap(function _callee10$(_context11) {
+                    return _regeneratorRuntime().wrap(function _callee12$(_context13) {
                       while (1) {
-                        switch (_context11.prev = _context11.next) {
+                        switch (_context13.prev = _context13.next) {
                           case 0:
-                            _context11.next = 2;
+                            _context13.next = 2;
                             return wait(i * rand(200, 500));
                           case 2:
                             size = rand(0.75, 1.25) * L.cs;
                             offset = rand(-0.05, 0.05) * L.height;
                             ms = rand(3200, 4600);
                             wiggle = rand(0, Math.PI * 2);
-                            _context11.next = 8;
+                            _context13.next = 8;
                             return tween(ms, linear, function (t) {
                               var x = fromX + (toX - fromX) * t;
                               var y = baseY + offset + Math.sin(t * Math.PI * 3 + wiggle) * swoop;
@@ -8394,69 +8570,69 @@ function CouchCrew(_ref) {
                             el.setAttribute('transform', 'translate(-200 -200)');
                           case 9:
                           case "end":
-                            return _context11.stop();
+                            return _context13.stop();
                         }
                       }
-                    }, _callee10);
+                    }, _callee12);
                   }));
-                  return function (_x9, _x10) {
-                    return _ref16.apply(this, arguments);
+                  return function (_x10, _x11) {
+                    return _ref18.apply(this, arguments);
                   };
                 }()));
               case 7:
               case "end":
-                return _context12.stop();
+                return _context14.stop();
             }
           }
-        }, _callee11);
+        }, _callee13);
       }));
       return function batFlight() {
-        return _ref15.apply(this, arguments);
+        return _ref17.apply(this, arguments);
       };
     }();
     var batsNow = function batsNow(delay) {
-      var id = setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-        return _regeneratorRuntime().wrap(function _callee12$(_context13) {
+      var id = setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+        return _regeneratorRuntime().wrap(function _callee14$(_context15) {
           while (1) {
-            switch (_context13.prev = _context13.next) {
+            switch (_context15.prev = _context15.next) {
               case 0:
                 timers["delete"](id);
                 if (!dead) {
-                  _context13.next = 3;
+                  _context15.next = 3;
                   break;
                 }
-                return _context13.abrupt("return");
+                return _context15.abrupt("return");
               case 3:
-                _context13.next = 5;
+                _context15.next = 5;
                 return batFlight();
               case 5:
                 batsNow(rand(18000, 40000));
               case 6:
               case "end":
-                return _context13.stop();
+                return _context15.stop();
             }
           }
-        }, _callee12);
+        }, _callee14);
       })), delay);
       timers.add(id);
     };
 
     // ⛰️ Walk a path of { x, y, size } points (Sasquatch on the mountain: smaller is further away)
     var walkPath = /*#__PURE__*/function () {
-      var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(a, points, speed) {
+      var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(a, points, speed) {
         var _iterator, _step, _loop2;
-        return _regeneratorRuntime().wrap(function _callee13$(_context15) {
+        return _regeneratorRuntime().wrap(function _callee15$(_context17) {
           while (1) {
-            switch (_context15.prev = _context15.next) {
+            switch (_context17.prev = _context17.next) {
               case 0:
                 a.el.classList.add('crew-walking');
                 _iterator = _createForOfIteratorHelper(points);
-                _context15.prev = 2;
+                _context17.prev = 2;
                 _loop2 = /*#__PURE__*/_regeneratorRuntime().mark(function _loop2() {
                   var p, from, dist;
-                  return _regeneratorRuntime().wrap(function _loop2$(_context14) {
+                  return _regeneratorRuntime().wrap(function _loop2$(_context16) {
                     while (1) {
-                      switch (_context14.prev = _context14.next) {
+                      switch (_context16.prev = _context16.next) {
                         case 0:
                           p = _step.value;
                           from = {
@@ -8467,7 +8643,7 @@ function CouchCrew(_ref) {
                           a.flip = p.x < from.x ? 1 : -1;
                           // Far away, a step covers less of the screen
                           dist = Math.hypot(p.x - from.x, p.y - from.y) / ((from.size + p.size) / 2 / L.sqSize);
-                          _context14.next = 6;
+                          _context16.next = 6;
                           return tween(Math.max(250, dist / (speed * L.cs) * 1000), linear, function (t) {
                             a.x = from.x + (p.x - from.x) * t;
                             a.y = from.y + (p.y - from.y) * t;
@@ -8476,7 +8652,7 @@ function CouchCrew(_ref) {
                           });
                         case 6:
                         case "end":
-                          return _context14.stop();
+                          return _context16.stop();
                       }
                     }
                   }, _loop2);
@@ -8484,35 +8660,35 @@ function CouchCrew(_ref) {
                 _iterator.s();
               case 5:
                 if ((_step = _iterator.n()).done) {
-                  _context15.next = 9;
+                  _context17.next = 9;
                   break;
                 }
-                return _context15.delegateYield(_loop2(), "t0", 7);
+                return _context17.delegateYield(_loop2(), "t0", 7);
               case 7:
-                _context15.next = 5;
+                _context17.next = 5;
                 break;
               case 9:
-                _context15.next = 14;
+                _context17.next = 14;
                 break;
               case 11:
-                _context15.prev = 11;
-                _context15.t1 = _context15["catch"](2);
-                _iterator.e(_context15.t1);
+                _context17.prev = 11;
+                _context17.t1 = _context17["catch"](2);
+                _iterator.e(_context17.t1);
               case 14:
-                _context15.prev = 14;
+                _context17.prev = 14;
                 _iterator.f();
-                return _context15.finish(14);
+                return _context17.finish(14);
               case 17:
                 a.el.classList.remove('crew-walking');
               case 18:
               case "end":
-                return _context15.stop();
+                return _context17.stop();
             }
           }
-        }, _callee13, null, [[2, 11, 14, 17]]);
+        }, _callee15, null, [[2, 11, 14, 17]]);
       }));
-      return function walkPath(_x11, _x12, _x13) {
-        return _ref18.apply(this, arguments);
+      return function walkPath(_x12, _x13, _x14) {
+        return _ref20.apply(this, arguments);
       };
     }();
     // 💥 A little burst where two fists meet
@@ -8527,41 +8703,48 @@ function CouchCrew(_ref) {
       return svg.classList.toggle('is-rumbling', on);
     };
 
-    // 🎅 "HO HO HO!" over the sleigh (kept low enough to clear the players card)
+    // 🎅 "HO HO HO!" over the sleigh (kept low enough to clear the players card); "EEEE-KSSHH!" over Dana's modem
     var hoHoHo = /*#__PURE__*/function () {
-      var _ref19 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
-        var k, bubble, y;
-        return _regeneratorRuntime().wrap(function _callee14$(_context16) {
+      var _ref21 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
+        var x,
+          k,
+          bubble,
+          y,
+          left,
+          _args18 = arguments;
+        return _regeneratorRuntime().wrap(function _callee16$(_context18) {
           while (1) {
-            switch (_context16.prev = _context16.next) {
+            switch (_context18.prev = _context18.next) {
               case 0:
-                k = L.mountain.sleigh;
+                x = _args18.length > 0 && _args18[0] !== undefined ? _args18[0] : sleigh.x;
+                k = _args18.length > 1 && _args18[1] !== undefined ? _args18[1] : L.mountain.sleigh;
                 bubble = hoHoRef.current;
-                y = Math.max(L.stageTop + 16 * L.s, L.floorY - 128 * k);
-                bubble.setAttribute('transform', "translate(".concat(sleigh.x - 8 * k, " ").concat(y, ") scale(").concat(L.s, ")"));
+                y = Math.max(L.stageTop + 16 * L.s, L.floorY - 128 * k); // ...but never past the right edge of the screen
+                left = Math.min(x - 8 * k, L.width - (bubble.getBBox().width + 4) * L.s);
+                bubble.setAttribute('transform', "translate(".concat(left, " ").concat(y, ") scale(").concat(L.s, ")"));
                 bubble.classList.add('is-on');
-                _context16.next = 7;
+                _context18.next = 9;
                 return wait(1300);
-              case 7:
+              case 9:
                 bubble.classList.remove('is-on');
-              case 8:
+              case 10:
               case "end":
-                return _context16.stop();
+                return _context18.stop();
             }
           }
-        }, _callee14);
+        }, _callee16);
       }));
       return function hoHoHo() {
-        return _ref19.apply(this, arguments);
+        return _ref21.apply(this, arguments);
       };
     }();
     // 🛷 The sleigh swoops down from the right, level with the couch, and lands in the free space beside it
     var sleighIn = /*#__PURE__*/function () {
-      var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
+      var _ref22 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
         var m, fromX, fromY;
-        return _regeneratorRuntime().wrap(function _callee15$(_context17) {
+        return _regeneratorRuntime().wrap(function _callee17$(_context19) {
           while (1) {
-            switch (_context17.prev = _context17.next) {
+            switch (_context19.prev = _context19.next) {
               case 0:
                 m = L.mountain;
                 fromX = L.width + 130 * m.sleigh;
@@ -8569,7 +8752,7 @@ function CouchCrew(_ref) {
                 sleigh.on = true;
                 sleigh.flip = 1;
                 mountain.el.classList.add('is-flying');
-                _context17.next = 8;
+                _context19.next = 8;
                 return tween(2600, easeOut, function (t) {
                   sleigh.x = fromX + (m.x - fromX) * t;
                   sleigh.y = fromY + (L.floorY - fromY) * Math.pow(t, 2) + Math.sin(t * Math.PI * 3) * 6 * L.cs * (1 - t);
@@ -8580,46 +8763,46 @@ function CouchCrew(_ref) {
                 mountain.el.classList.remove('is-flying');
                 sleigh.landed = true;
                 drawMountain();
-                _context17.next = 13;
+                _context19.next = 13;
                 return wait(350);
               case 13:
-                _context17.next = 15;
+                _context19.next = 15;
                 return hoHoHo();
               case 15:
               case "end":
-                return _context17.stop();
+                return _context19.stop();
             }
           }
-        }, _callee15);
+        }, _callee17);
       }));
       return function sleighIn() {
-        return _ref20.apply(this, arguments);
+        return _ref22.apply(this, arguments);
       };
     }();
     // ...and takes off again: it turns to face the way out, and climbs away
     var sleighOut = /*#__PURE__*/function () {
-      var _ref21 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
+      var _ref23 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
         var m, toX, fromX, fromY;
-        return _regeneratorRuntime().wrap(function _callee16$(_context18) {
+        return _regeneratorRuntime().wrap(function _callee18$(_context20) {
           while (1) {
-            switch (_context18.prev = _context18.next) {
+            switch (_context20.prev = _context20.next) {
               case 0:
                 m = L.mountain;
                 sleigh.landed = false;
                 toX = L.width + 130 * m.sleigh;
                 fromX = sleigh.x;
                 fromY = sleigh.y;
-                _context18.next = 7;
+                _context20.next = 7;
                 return hoHoHo();
               case 7:
-                _context18.next = 9;
+                _context20.next = 9;
                 return tween(350, easeInOut, function (t) {
                   sleigh.flip = 1 - 2 * t || 0.01;
                   drawMountain();
                 });
               case 9:
                 mountain.el.classList.add('is-flying');
-                _context18.next = 12;
+                _context20.next = 12;
                 return tween(2400, function (t) {
                   return t * t;
                 }, function (t) {
@@ -8635,21 +8818,133 @@ function CouchCrew(_ref) {
                 drawMountain();
               case 16:
               case "end":
-                return _context18.stop();
+                return _context20.stop();
             }
           }
-        }, _callee16);
+        }, _callee18);
       }));
       return function sleighOut() {
-        return _ref21.apply(this, arguments);
+        return _ref23.apply(this, arguments);
       };
     }();
-    var sasquatchVisit = /*#__PURE__*/function () {
-      var _ref22 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
-        var m, near, groundY, start, slope, k, fistReach, _i2, _arr2, name, a;
-        return _regeneratorRuntime().wrap(function _callee17$(_context19) {
+
+    // 🖥️ Dana's desk rolls in from the right, the modem screeches, and the screen comes on
+    var deskIn = /*#__PURE__*/function () {
+      var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
+        var m, fromX;
+        return _regeneratorRuntime().wrap(function _callee19$(_context21) {
           while (1) {
-            switch (_context19.prev = _context19.next) {
+            switch (_context21.prev = _context21.next) {
+              case 0:
+                m = L.mountain;
+                fromX = L.width + 70 * m.desk;
+                desk.on = true;
+                desk.landed = false;
+                mountain.el.classList.add('is-rolling');
+                _context21.next = 7;
+                return tween(2400, easeOut, function (t) {
+                  desk.x = fromX + (m.x - fromX) * t;
+                  drawMountain();
+                });
+              case 7:
+                mountain.el.classList.remove('is-rolling');
+                desk.landed = true;
+                drawMountain();
+                _context21.next = 12;
+                return wait(300);
+              case 12:
+                mountain.el.classList.add('is-on');
+                _context21.next = 15;
+                return hoHoHo(desk.x + 30 * m.desk, m.desk);
+              case 15:
+                _context21.next = 17;
+                return wait(700);
+              case 17:
+              case "end":
+                return _context21.stop();
+            }
+          }
+        }, _callee19);
+      }));
+      return function deskIn() {
+        return _ref24.apply(this, arguments);
+      };
+    }();
+    // ...the screen goes off, and it rolls away again
+    var deskOut = /*#__PURE__*/function () {
+      var _ref25 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20() {
+        var m, fromX, toX;
+        return _regeneratorRuntime().wrap(function _callee20$(_context22) {
+          while (1) {
+            switch (_context22.prev = _context22.next) {
+              case 0:
+                m = L.mountain;
+                mountain.el.classList.remove('is-on');
+                _context22.next = 4;
+                return wait(500);
+              case 4:
+                desk.landed = false;
+                fromX = desk.x;
+                toX = L.width + 70 * m.desk;
+                mountain.el.classList.add('is-rolling');
+                _context22.next = 10;
+                return tween(2000, function (t) {
+                  return t * t;
+                }, function (t) {
+                  desk.x = fromX + (toX - fromX) * t;
+                  drawMountain();
+                });
+              case 10:
+                mountain.el.classList.remove('is-rolling');
+                desk.on = false;
+                drawMountain();
+              case 13:
+              case "end":
+                return _context22.stop();
+            }
+          }
+        }, _callee20);
+      }));
+      return function deskOut() {
+        return _ref25.apply(this, arguments);
+      };
+    }();
+    // 💾 Dana pops out of the screen (growing as she comes), or climbs back in (shrinking away)
+    var throughScreen = function throughScreen(a, out) {
+      var m = L.mountain;
+      var k = m.desk;
+      var inScreen = {
+        x: desk.x,
+        y: L.floorY - 64 * k,
+        size: 34 * k / (100 * L.s)
+      };
+      var onFloor = {
+        x: m.left + 8 * L.cs,
+        y: L.floorY + 3 * L.cs,
+        size: 1
+      };
+      var _ref26 = out ? [inScreen, onFloor] : [{
+          x: a.x,
+          y: a.y,
+          size: a.size
+        }, inScreen],
+        _ref27 = _slicedToArray(_ref26, 2),
+        from = _ref27[0],
+        to = _ref27[1];
+      return tween(900, easeInOut, function (t) {
+        a.x = from.x + (to.x - from.x) * t;
+        a.y = from.y + (to.y - from.y) * t;
+        a.size = from.size + (to.size - from.size) * t;
+        a.lift = Math.sin(Math.PI * t) * 26 * L.cs;
+        draw(a);
+      });
+    };
+    var sasquatchVisit = /*#__PURE__*/function () {
+      var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21() {
+        var m, near, groundY, start, slope, k, fistReach, _iterator2, _step2, name, a;
+        return _regeneratorRuntime().wrap(function _callee21$(_context23) {
+          while (1) {
+            switch (_context23.prev = _context23.next) {
               case 0:
                 eventRunning = true;
                 Object.values(actors).forEach(function (a) {
@@ -8694,13 +8989,31 @@ function CouchCrew(_ref) {
                   y: groundY,
                   size: near
                 }] : [];
-                if (!(m && isHoliday)) {
-                  _context19.next = 22;
+                if (isJeff) setGaming(false); // pause! someone's here
+                if (!(m && isJeff)) {
+                  _context23.next = 19;
                   break;
                 }
-                _context19.next = 10;
+                _context23.next = 11;
+                return deskIn();
+              case 11:
+                sasquatch.spot = 'mountain';
+                sasquatch.flip = 1;
+                sasquatch.el.classList.add('is-arriving');
+                _context23.next = 16;
+                return throughScreen(sasquatch, true);
+              case 16:
+                sasquatch.el.classList.remove('is-arriving');
+                _context23.next = 64;
+                break;
+              case 19:
+                if (!(m && isHoliday)) {
+                  _context23.next = 34;
+                  break;
+                }
+                _context23.next = 22;
                 return sleighIn();
-              case 10:
+              case 22:
                 k = m.sleigh;
                 mountain.el.classList.add('is-empty');
                 sasquatch.spot = 'floor';
@@ -8709,38 +9022,38 @@ function CouchCrew(_ref) {
                 sasquatch.size = near;
                 sasquatch.flip = 1;
                 draw(sasquatch);
-                _context19.next = 20;
+                _context23.next = 32;
                 return hop(sasquatch, m.left + 8 * L.cs, groundY, 18, 520);
-              case 20:
-                _context19.next = 52;
+              case 32:
+                _context23.next = 64;
                 break;
-              case 22:
+              case 34:
                 if (!m) {
-                  _context19.next = 46;
+                  _context23.next = 58;
                   break;
                 }
                 // The ground shakes and a mountain pushes up beside the couch
                 rumble(true);
-                _context19.next = 26;
+                _context23.next = 38;
                 return tween(1700, function (t) {
                   return 1 - Math.pow(1 - t, 3) + Math.sin(t * Math.PI * 3) * 0.04 * (1 - t);
                 }, function (t) {
                   mountain.grow = t;
                   drawMountain();
                 });
-              case 26:
+              case 38:
                 rumble(false);
-                _context19.next = 29;
+                _context23.next = 41;
                 return wait(500);
-              case 29:
+              case 41:
                 if (!isHalloween) {
-                  _context19.next = 33;
+                  _context23.next = 45;
                   break;
                 }
                 mountain.el.classList.add('is-open'); // the castle door swings open
-                _context19.next = 33;
+                _context23.next = 45;
                 return wait(600);
-              case 33:
+              case 45:
                 // He steps over the peak (or out of the door), small and far away
                 sasquatch.spot = 'mountain';
                 sasquatch.x = start.x;
@@ -8748,149 +9061,195 @@ function CouchCrew(_ref) {
                 sasquatch.size = start.size;
                 draw(sasquatch);
                 sasquatch.el.classList.add('is-arriving');
-                _context19.next = 41;
+                _context23.next = 53;
                 return wait(500);
-              case 41:
+              case 53:
                 sasquatch.el.classList.remove('is-arriving');
-                _context19.next = 44;
+                _context23.next = 56;
                 return walkPath(sasquatch, slope, 34);
-              case 44:
-                _context19.next = 52;
+              case 56:
+                _context23.next = 64;
                 break;
-              case 46:
+              case 58:
                 // No room for a mountain: he just strides in
                 sasquatch.spot = 'floor';
                 sasquatch.x = L.offRight;
                 sasquatch.y = groundY;
                 sasquatch.size = near;
-                _context19.next = 52;
-                return walkTo(sasquatch, L.seatX[2] + 130 * L.s, 60);
-              case 52:
+                _context23.next = 64;
+                return walkTo(sasquatch, L.seatX[seats.length - 1] + 130 * L.s, 60);
+              case 64:
                 sasquatch.spot = 'floor';
 
                 // Fist bumps down the couch: alien, dog, robot
-                fistReach = 127; // how far right of a character he stands so the fists meet (character units)
-                _i2 = 0, _arr2 = ['third', 'chaser', 'caster'];
-              case 55:
-                if (!(_i2 < _arr2.length)) {
-                  _context19.next = 81;
+                // (Dana's the crew's size, so she stands closer, and jumps up to reach)
+                fistReach = isJeff ? 85 : 127; // how far right of a character he stands so the fists meet (character units)
+                _iterator2 = _createForOfIteratorHelper(_toConsumableArray(seats).reverse());
+                _context23.prev = 67;
+                _iterator2.s();
+              case 69:
+                if ((_step2 = _iterator2.n()).done) {
+                  _context23.next = 96;
                   break;
                 }
-                name = _arr2[_i2];
+                name = _step2.value;
                 a = actors[name];
-                _context19.next = 60;
+                _context23.next = 74;
                 return walkTo(sasquatch, a.x + fistReach * L.s, 55);
-              case 60:
+              case 74:
                 sasquatch.flip = 1;
+                if (isJeff) sasquatch.lift = sasquatch.y - L.seatY;
                 draw(sasquatch);
                 look(a, 'right');
                 a.el.classList.add('crew-bumping');
                 sasquatch.el.classList.add('sq-bumping');
-                _context19.next = 67;
+                _context23.next = 82;
                 return wait(300);
-              case 67:
+              case 82:
                 pow(a.x + 46 * L.s, a.y - 74 * L.s);
                 a.lift = 3 * L.cs;
                 draw(a);
-                _context19.next = 72;
+                _context23.next = 87;
                 return wait(450);
-              case 72:
+              case 87:
                 a.lift = 0;
                 draw(a);
                 a.el.classList.remove('crew-bumping');
                 sasquatch.el.classList.remove('sq-bumping');
-                _context19.next = 78;
+                if (isJeff) {
+                  sasquatch.lift = 0;
+                  draw(sasquatch);
+                }
+                _context23.next = 94;
                 return wait(350);
-              case 78:
-                _i2++;
-                _context19.next = 55;
+              case 94:
+                _context23.next = 69;
                 break;
-              case 81:
+              case 96:
+                _context23.next = 101;
+                break;
+              case 98:
+                _context23.prev = 98;
+                _context23.t0 = _context23["catch"](67);
+                _iterator2.e(_context23.t0);
+              case 101:
+                _context23.prev = 101;
+                _iterator2.f();
+                return _context23.finish(101);
+              case 104:
                 // And off he goes, back over the mountain (or out the way he came)
                 Object.values(actors).forEach(function (a) {
                   return look(a, 'right');
                 });
-                if (!(m && isHoliday)) {
-                  _context19.next = 91;
+                if (!(m && isJeff)) {
+                  _context23.next = 114;
                   break;
                 }
-                _context19.next = 85;
+                _context23.next = 108;
                 return walkTo(sasquatch, m.left + 8 * L.cs, 55);
-              case 85:
-                sasquatch.flip = -1;
-                _context19.next = 88;
-                return hop(sasquatch, m.x - 30 * m.sleigh, L.floorY - 40 * m.sleigh, 18, 520);
-              case 88:
-                mountain.el.classList.remove('is-empty');
-                _context19.next = 104;
-                break;
-              case 91:
-                if (!m) {
-                  _context19.next = 102;
-                  break;
-                }
-                _context19.next = 94;
-                return walkTo(sasquatch, m.left + 8 * L.cs, 55);
-              case 94:
-                _context19.next = 96;
-                return walkPath(sasquatch, [].concat(slope).reverse().slice(1).concat(start), 34);
-              case 96:
+              case 108:
                 sasquatch.el.classList.add('is-leaving');
-                _context19.next = 99;
-                return wait(500);
-              case 99:
+                _context23.next = 111;
+                return throughScreen(sasquatch, false);
+              case 111:
                 sasquatch.el.classList.remove('is-leaving');
-                _context19.next = 104;
+                _context23.next = 136;
                 break;
-              case 102:
-                _context19.next = 104;
+              case 114:
+                if (!(m && isHoliday)) {
+                  _context23.next = 123;
+                  break;
+                }
+                _context23.next = 117;
+                return walkTo(sasquatch, m.left + 8 * L.cs, 55);
+              case 117:
+                sasquatch.flip = -1;
+                _context23.next = 120;
+                return hop(sasquatch, m.x - 30 * m.sleigh, L.floorY - 40 * m.sleigh, 18, 520);
+              case 120:
+                mountain.el.classList.remove('is-empty');
+                _context23.next = 136;
+                break;
+              case 123:
+                if (!m) {
+                  _context23.next = 134;
+                  break;
+                }
+                _context23.next = 126;
+                return walkTo(sasquatch, m.left + 8 * L.cs, 55);
+              case 126:
+                _context23.next = 128;
+                return walkPath(sasquatch, [].concat(slope).reverse().slice(1).concat(start), 34);
+              case 128:
+                sasquatch.el.classList.add('is-leaving');
+                _context23.next = 131;
+                return wait(500);
+              case 131:
+                sasquatch.el.classList.remove('is-leaving');
+                _context23.next = 136;
+                break;
+              case 134:
+                _context23.next = 136;
                 return walkTo(sasquatch, L.offRight, 60);
-              case 104:
+              case 136:
                 sasquatch.spot = 'off';
                 sasquatch.x = L.offRight;
+                sasquatch.size = L.sqSize;
+                sasquatch.lift = 0;
                 draw(sasquatch);
-                if (!(m && isHoliday)) {
-                  _context19.next = 112;
+                if (!(m && isJeff)) {
+                  _context23.next = 146;
                   break;
                 }
-                _context19.next = 110;
-                return sleighOut();
-              case 110:
-                _context19.next = 120;
+                _context23.next = 144;
+                return deskOut();
+              case 144:
+                _context23.next = 159;
                 break;
-              case 112:
+              case 146:
+                if (!(m && isHoliday)) {
+                  _context23.next = 151;
+                  break;
+                }
+                _context23.next = 149;
+                return sleighOut();
+              case 149:
+                _context23.next = 159;
+                break;
+              case 151:
                 if (!m) {
-                  _context19.next = 120;
+                  _context23.next = 159;
                   break;
                 }
                 mountain.el.classList.remove('is-open');
-                _context19.next = 116;
+                _context23.next = 155;
                 return wait(isHalloween ? 800 : 400);
-              case 116:
+              case 155:
                 rumble(true);
-                _context19.next = 119;
+                _context23.next = 158;
                 return tween(1200, easeInOut, function (t) {
                   mountain.grow = 1 - t;
                   drawMountain();
                 });
-              case 119:
+              case 158:
                 rumble(false);
-              case 120:
+              case 159:
                 Object.values(actors).forEach(function (a) {
                   a.busy = false;
                   look(a, 'left');
                 });
+                if (isJeff) setGaming(true); // back to the game
                 eventRunning = false;
                 cheer();
-              case 123:
+              case 163:
               case "end":
-                return _context19.stop();
+                return _context23.stop();
             }
           }
-        }, _callee17);
+        }, _callee21, null, [[67, 98, 101, 104]]);
       }));
       return function sasquatchVisit() {
-        return _ref22.apply(this, arguments);
+        return _ref28.apply(this, arguments);
       };
     }();
     var sasquatchNow = function sasquatchNow(delay) {
@@ -8911,11 +9270,11 @@ function CouchCrew(_ref) {
 
     // --- The show ---
     var intro = /*#__PURE__*/function () {
-      var _ref23 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
+      var _ref29 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23() {
         var id;
-        return _regeneratorRuntime().wrap(function _callee19$(_context21) {
+        return _regeneratorRuntime().wrap(function _callee23$(_context25) {
           while (1) {
-            switch (_context21.prev = _context21.next) {
+            switch (_context25.prev = _context25.next) {
               case 0:
                 // 🕯️ The chandelier lowers itself into the room
                 if (chandelier.el) tween(1800, easeOut, function (t) {
@@ -8926,7 +9285,7 @@ function CouchCrew(_ref) {
                 // The couch scuttles in from the right and plops down
                 couch.spot = 'moving';
                 couch.el.classList.add('couch-crawling');
-                _context21.next = 5;
+                _context25.next = 5;
                 return tween(2400, function (t) {
                   return easeOut(t) * 0.25 + t * 0.75;
                 }, function (t) {
@@ -8937,45 +9296,46 @@ function CouchCrew(_ref) {
                 couch.spot = 'home';
                 couch.el.classList.remove('couch-crawling');
                 couch.el.classList.add('couch-plop');
-                _context21.next = 10;
+                if (jeffcom.el) jeffcom.el.style.display = ''; // the console was under it all along
+                _context25.next = 11;
                 return wait(450);
-              case 10:
-                _context21.next = 12;
-                return Promise.all(SEATS.map( /*#__PURE__*/function () {
-                  var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18(name, i) {
+              case 11:
+                _context25.next = 13;
+                return Promise.all(seats.map( /*#__PURE__*/function () {
+                  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22(name, i) {
                     var a;
-                    return _regeneratorRuntime().wrap(function _callee18$(_context20) {
+                    return _regeneratorRuntime().wrap(function _callee22$(_context24) {
                       while (1) {
-                        switch (_context20.prev = _context20.next) {
+                        switch (_context24.prev = _context24.next) {
                           case 0:
                             a = actors[name];
-                            _context20.next = 3;
-                            return wait(i * 750);
+                            _context24.next = 3;
+                            return wait(i * (isJeff ? 1300 : 750));
                           case 3:
                             a.spot = 'floor';
-                            _context20.next = 6;
+                            _context24.next = 6;
                             return walkTo(a, L.seatX[a.seat] - 8 * L.cs);
                           case 6:
-                            _context20.next = 8;
+                            _context24.next = 8;
                             return sitDown(a);
                           case 8:
                           case "end":
-                            return _context20.stop();
+                            return _context24.stop();
                         }
                       }
-                    }, _callee18);
+                    }, _callee22);
                   }));
-                  return function (_x14, _x15) {
-                    return _ref24.apply(this, arguments);
+                  return function (_x15, _x16) {
+                    return _ref30.apply(this, arguments);
                   };
                 }()));
-              case 12:
-                _context21.next = 14;
+              case 13:
+                _context25.next = 15;
                 return wait(500);
-              case 14:
-                _context21.next = 16;
+              case 15:
+                _context25.next = 17;
                 return cast();
-              case 16:
+              case 17:
                 Object.values(actors).forEach(function (a) {
                   a.busy = false;
                 });
@@ -8987,29 +9347,34 @@ function CouchCrew(_ref) {
                 timers.add(id);
                 catNow(rand(26000, 34000));
                 sasquatchNow(rand(60000, 75000));
-              case 22:
+              case 23:
               case "end":
-                return _context21.stop();
+                return _context25.stop();
             }
           }
-        }, _callee19);
+        }, _callee23);
       }));
       return function intro() {
-        return _ref23.apply(this, arguments);
+        return _ref29.apply(this, arguments);
       };
     }();
     if (isHalloween && !reduceMotion) batsNow(rand(10000, 16000));
     measure();
     couch.spot = reduceMotion ? 'home' : 'off';
     if (reduceMotion) {
-      var _qrRef$current3;
+      var _qrRef$current4;
       // No moving about: the crew is already settled on the couch, the code already lit
       Object.values(actors).forEach(function (a) {
         a.spot = 'seat';
         a.busy = false;
         look(a, 'left');
       });
-      qrRef === null || qrRef === void 0 ? void 0 : (_qrRef$current3 = qrRef.current) === null || _qrRef$current3 === void 0 ? void 0 : _qrRef$current3.classList.add('cc-qr-on');
+      qrRef === null || qrRef === void 0 ? void 0 : (_qrRef$current4 = qrRef.current) === null || _qrRef$current4 === void 0 ? void 0 : _qrRef$current4.classList.add('cc-qr-on');
+      if (jeffcom.el) {
+        jeffcom.el.style.display = '';
+        jeffcom.el.classList.add('is-in', 'is-powered');
+        setGaming(true);
+      }
     }
     snap();
     svg.classList.add('is-ready');
@@ -9048,15 +9413,23 @@ function CouchCrew(_ref) {
   var cast = [Robot, Dog, Alien, Cat, Mountain, Couch, Sasquatch];
   if (isHalloween) cast = [_HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Witch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.HoaPresident, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Vampire, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Ghost, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.Castle, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.GothicCouch, _HalloweenCrew_jsx__WEBPACK_IMPORTED_MODULE_1__.FrankensteinMonster];
   if (isHoliday) cast = [_HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.HolidayRobot, _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.HolidayDog, _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.HolidayAlien, _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.HolidayCat, _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.Sleigh, _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.HolidayCouch, _HolidayCrew_jsx__WEBPACK_IMPORTED_MODULE_2__.Santa];
+  if (isJeff) cast = [_JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.MulletMitch, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.AerobicsAngie, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.DiscoDuke, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Pixel, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.DanaComputer, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.JeffCouch, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.DialUpDana, _JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.BoomerBoombox];
   var _cast = cast,
-    _cast2 = _slicedToArray(_cast, 7),
+    _cast2 = _slicedToArray(_cast, 8),
     Caster = _cast2[0],
     Chaser = _cast2[1],
     Third = _cast2[2],
     Pest = _cast2[3],
     Hill = _cast2[4],
     TheCouch = _cast2[5],
-    Visitor = _cast2[6];
+    Visitor = _cast2[6],
+    Fourth = _cast2[7];
+  // What gets shouted: at the pest (the chaser's bubble), and by the visitor's ride
+  var barkText = isHalloween ? 'VIOLATION!' : isJeff ? 'SCRAM, PIXEL!' : 'WOOF!';
+  var shoutText = isJeff ? 'EEEE-KSSHH!' : 'HO HO HO!';
+  var bubbleWidth = function bubbleWidth(text) {
+    return Math.round(text.length * 8.6 - 4);
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, hasProjector && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     ref: lightRef,
     className: "cc-crew is-ready crew-proj",
@@ -9084,7 +9457,7 @@ function CouchCrew(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
     className: "crew-proj-lens",
     r: 0
-  })), !hasProjector && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+  })), hasWand && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     ref: boltRef,
     className: "cc-crew is-ready crew-bolt",
     "aria-hidden": "true",
@@ -9111,7 +9484,7 @@ function CouchCrew(_ref) {
     r: 0
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     ref: svgRef,
-    className: "cc-crew ".concat(isHalloween ? 'cc-crew-halloween' : '', " ").concat(isHoliday ? 'cc-crew-holiday' : ''),
+    className: "cc-crew ".concat(isHalloween ? 'cc-crew-halloween' : '', " ").concat(isHoliday ? 'cc-crew-holiday' : '', " ").concat(isJeff ? 'cc-crew-jeff' : ''),
     "aria-hidden": "true",
     preserveAspectRatio: "none"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
@@ -9130,10 +9503,14 @@ function CouchCrew(_ref) {
     elRef: actorEls.chaser
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Third, {
     elRef: actorEls.third
+  }), Fourth && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Fourth, {
+    elRef: actorEls.fourth
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Pest, {
     elRef: actorEls.cat
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Visitor, {
     elRef: actorEls.sasquatch
+  }), isJeff && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_JeffCrew_jsx__WEBPACK_IMPORTED_MODULE_3__.Jeffcom, {
+    consoleRef: consoleRef
   })), isHalloween && Array.from({
     length: BAT_COUNT
   }, function (_, i) {
@@ -9156,44 +9533,44 @@ function CouchCrew(_ref) {
     ref: hoHoRef,
     className: "crew-bark"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -4 -14 H 82 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z",
+    d: "M -4 -14 H ".concat(bubbleWidth(shoutText), " a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z"),
     fill: "#fff",
     stroke: "#16161d",
     strokeWidth: 2.4,
     strokeLinejoin: "round"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: 39,
+    x: bubbleWidth(shoutText) / 2 - 2,
     y: 4,
     textAnchor: "middle",
     fontSize: 13,
     fontWeight: 900,
     fill: "#16161d",
     fontFamily: "system-ui, sans-serif"
-  }, "HO HO HO!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+  }, shoutText)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: barkRef,
     className: "crew-bark"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -4 -14 H ".concat(isHalloween ? 82 : 40, " a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z"),
+    d: "M -4 -14 H ".concat(bubbleWidth(barkText), " a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z"),
     fill: "#fff",
     stroke: "#16161d",
     strokeWidth: 2.4,
     strokeLinejoin: "round"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: isHalloween ? 39 : 18,
+    x: bubbleWidth(barkText) / 2 - 2,
     y: 4,
     textAnchor: "middle",
     fontSize: 13,
     fontWeight: 900,
     fill: "#16161d",
     fontFamily: "system-ui, sans-serif"
-  }, isHalloween ? 'VIOLATION!' : 'WOOF!'))));
+  }, barkText))));
 }
 
 // --- The drawings (feet at 0,0; up is negative y) ---
 
-function Couch(_ref25) {
-  var couchRef = _ref25.couchRef,
-    children = _ref25.children;
+function Couch(_ref31) {
+  var couchRef = _ref31.couchRef,
+    children = _ref31.children;
   // A well-loved thrift-store couch: worn rust velour, a patch, and a lumpy cushion
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: couchRef
@@ -9276,9 +9653,9 @@ var ink = {
 };
 
 // (`children`: an outfit, drawn on top: see HolidayCrew.jsx)
-function Robot(_ref26) {
-  var elRef = _ref26.elRef,
-    children = _ref26.children;
+function Robot(_ref32) {
+  var elRef = _ref32.elRef,
+    children = _ref32.children;
   // A scrappy vintage machine: dented mustard paint, rusty boots, one red scanner for an eye
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: elRef,
@@ -9487,9 +9864,9 @@ function Robot(_ref26) {
     strokeWidth: 1.4
   })), children));
 }
-function Dog(_ref27) {
-  var elRef = _ref27.elRef,
-    children = _ref27.children;
+function Dog(_ref33) {
+  var elRef = _ref33.elRef,
+    children = _ref33.children;
   // A scruffy mutt: wiry brows, an underbite and a spiked collar, and not impressed by much
   var fur = '#8a7a66';
   var dark = '#4e4338';
@@ -9688,11 +10065,11 @@ function Dog(_ref27) {
     strokeLinejoin: "round"
   }), children));
 }
-function Alien(_ref28) {
-  var elRef = _ref28.elRef,
-    _ref28$hoodie = _ref28.hoodie,
-    hoodie = _ref28$hoodie === void 0 ? '#2b2d42' : _ref28$hoodie,
-    children = _ref28.children;
+function Alien(_ref34) {
+  var elRef = _ref34.elRef,
+    _ref34$hoodie = _ref34.hoodie,
+    hoodie = _ref34$hoodie === void 0 ? '#2b2d42' : _ref34$hoodie,
+    children = _ref34.children;
   // A lanky grey in a hoodie, glowing eyes, smirking at whatever's on
   var skin = '#9fb8a8';
   var pants = '#2b2d42';
@@ -9864,9 +10241,9 @@ function Alien(_ref28) {
     strokeLinecap: "round"
   }), children));
 }
-function Cat(_ref29) {
-  var elRef = _ref29.elRef,
-    children = _ref29.children;
+function Cat(_ref35) {
+  var elRef = _ref35.elRef,
+    children = _ref35.children;
   // A sleek black cat, side-on, facing left (towards the screen)
   var coat = '#26262f';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
@@ -9966,8 +10343,8 @@ function Cat(_ref29) {
     strokeLinecap: "round"
   }), children));
 }
-function Mountain(_ref30) {
-  var mountainRef = _ref30.mountainRef;
+function Mountain(_ref36) {
+  var mountainRef = _ref36.mountainRef;
   // Slate rock, a snowy peak and a few pines; grows up out of the floor (base 200 wide, 160 tall)
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     ref: mountainRef,
@@ -9995,9 +10372,9 @@ function Mountain(_ref30) {
     d: "M -52 -89 L -42 -108 L -32 -95 L -37 -97 L -42 -91 Z",
     fill: "#f4efe4",
     vectorEffect: "non-scaling-stroke"
-  }), [[-74, 0], [-56, 0], [64, 0], [80, 0], [-20, 0]].map(function (_ref31) {
-    var _ref32 = _slicedToArray(_ref31, 1),
-      x = _ref32[0];
+  }), [[-74, 0], [-56, 0], [64, 0], [80, 0], [-20, 0]].map(function (_ref37) {
+    var _ref38 = _slicedToArray(_ref37, 1),
+      x = _ref38[0];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
       key: x,
       d: "M ".concat(x, " 0 L ").concat(x - 7, " 0 L ").concat(x, " -22 L ").concat(x + 7, " 0 Z"),
@@ -10006,8 +10383,8 @@ function Mountain(_ref30) {
     });
   })));
 }
-function Sasquatch(_ref33) {
-  var elRef = _ref33.elRef;
+function Sasquatch(_ref39) {
+  var elRef = _ref39.elRef;
   // Big, shaggy and friendly enough; side-on-ish, facing left (flipped to walk the other way)
   var fur = '#6b4a32';
   var dark = '#4a3222';
@@ -12641,6 +13018,1757 @@ function Sleigh(_ref10) {
     stroke: INK,
     strokeWidth: 1.4
   }));
+}
+
+/***/ }),
+
+/***/ "./src/features/CouchCast/JeffCrew.jsx":
+/*!*********************************************!*\
+  !*** ./src/features/CouchCast/JeffCrew.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AerobicsAngie": () => (/* binding */ AerobicsAngie),
+/* harmony export */   "BoomerBoombox": () => (/* binding */ BoomerBoombox),
+/* harmony export */   "DanaComputer": () => (/* binding */ DanaComputer),
+/* harmony export */   "DialUpDana": () => (/* binding */ DialUpDana),
+/* harmony export */   "DiscoDuke": () => (/* binding */ DiscoDuke),
+/* harmony export */   "JeffCouch": () => (/* binding */ JeffCouch),
+/* harmony export */   "Jeffcom": () => (/* binding */ Jeffcom),
+/* harmony export */   "MulletMitch": () => (/* binding */ MulletMitch),
+/* harmony export */   "Pixel": () => (/* binding */ Pixel)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+// 📼 The Jeffinitely deck's lobby cast (run by the same show as the Core deck, in CouchCrew.jsx): three
+// decades of questionable decisions. Disco Duke ('70s), Aerobics Angie and Mullet Mitch ('80s) and Boomer
+// the Boombox pile onto a plaid couch and play the Jeffcom, a knock-off console that only works once Mitch
+// has blown on the cartridge. Dial-Up Dana ('90s) climbs out of her computer now and then to say hi, and
+// Pixel, a keychain pet, keeps bugging the screen until the gamers chase it off.
+//
+// Each character is drawn like the Core crew: ~100 units tall with its feet at (0, 0), the same class
+// names for the moving parts (legs, eyes, pupils, the fist-bump arm on the right), and the arm on the
+// screen side as `crew-arm-cast`. Gamers hold a controller (`crew-controller`), which shows while they play.
+
+var INK = '#16161d';
+var ink = {
+  stroke: INK,
+  strokeWidth: 2.4,
+  strokeLinejoin: 'round'
+};
+var line = {
+  stroke: INK,
+  strokeLinecap: 'round',
+  fill: 'none'
+};
+
+// 🎮 The Jeffcom's controller, held in both hands in front of the belly (only while playing)
+function Controller(_ref) {
+  var _ref$y = _ref.y,
+    y = _ref$y === void 0 ? -40 : _ref$y;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-controller"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 0 ".concat(y + 7, " q 3 3 0 6 q -3 3 0 6 q 3 3 0 6 q -3 3 0 6")
+  }, line, {
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-controller-pad"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -14,
+    y: y,
+    width: 28,
+    height: 10,
+    rx: 2.5,
+    fill: "#cfcac0"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -12,
+    y: y + 2,
+    width: 24,
+    height: 6,
+    rx: 1.5,
+    fill: "#3a3a44"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -8.5 ".concat(y + 5, " h 5 M -6 ").concat(y + 2.5, " v 5"),
+    stroke: "#cfcac0",
+    strokeWidth: 1.6,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    className: "crew-controller-a",
+    cx: 6,
+    cy: y + 5.5,
+    r: 1.7,
+    fill: "#e2343c"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    className: "crew-controller-b",
+    cx: 10,
+    cy: y + 4.2,
+    r: 1.7,
+    fill: "#e2343c"
+  })));
+}
+function DiscoDuke(_ref2) {
+  var elRef = _ref2.elRef;
+  // A white leisure suit with lapels you could land a plane on, a mirror-ball medallion and an afro to match
+  var skin = '#8d5a3b';
+  var suit = '#f6f2e8';
+  var hair = '#2a1a12';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-duke",
+    "data-look": "left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -13 -30 H -4 L -2 -6 H -16 Z",
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -17,
+    y: -7,
+    width: 16,
+    height: 7,
+    rx: 2,
+    fill: "#b8862e"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -17 -3 H -1",
+    stroke: INK,
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 4 -30 H 13 L 16 -6 H 2 Z",
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 1,
+    y: -7,
+    width: 16,
+    height: 7,
+    rx: 2,
+    fill: "#b8862e"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 1 -3 H 17",
+    stroke: INK,
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -18 -62 Q -21 -44 -17 -28 L 17 -28 Q 21 -44 18 -62 Q 0 -66 -18 -62 Z",
+    fill: suit
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -8 -63 L 0 -44 L 8 -63 Z",
+    fill: "#ff8a2a"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -8 -63 L -14 -62 L -5 -48 Z M 8 -63 L 14 -62 L 5 -48 Z",
+    fill: "#ff8a2a"
+  }, ink, {
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -13 -62 L -4 -42 L -10 -40 Z M 13 -62 L 4 -42 L 10 -40 Z",
+    fill: "#e8e1d0"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -17,
+    y: -32,
+    width: 34,
+    height: 4,
+    fill: "#e8e1d0",
+    stroke: INK,
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -4 -62 Q 0 -54 4 -62",
+    stroke: "#d9a441",
+    strokeWidth: 1.2,
+    fill: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -52,
+    r: 3.4,
+    fill: "#cfd6e0",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -3.4 -52 H 3.4 M 0 -55.4 V -48.6",
+    stroke: "#8a95a5",
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -1.2,
+    cy: -53.3,
+    r: 0.8,
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-cast"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -26,
+    y: -60,
+    width: 8,
+    height: 23,
+    rx: 2,
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -22,
+    cy: -36,
+    r: 3.8,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 18,
+    y: -60,
+    width: 8,
+    height: 23,
+    rx: 2,
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 22,
+    cy: -36,
+    r: 3.8,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Controller, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -3.5,
+    y: -69,
+    width: 7,
+    height: 7,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15 -76 C -30 -78 -30 -100 -18 -104 C -16 -116 2 -120 8 -112 C 20 -116 30 -104 24 -96 C 32 -90 28 -76 15 -76 Z",
+    fill: hair
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -80 Q -15 -92 0 -93 Q 15 -92 14 -80 Q 14 -69 7 -66 Q 0 -63 -7 -66 Q -14 -69 -14 -80 Z",
+    fill: skin
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -14 -84 V -73 L -11 -75 V -84 Z M 14 -84 V -73 L 11 -75 V -84 Z",
+    fill: hair
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -6,
+    cy: -81,
+    rx: 3.4,
+    ry: 3.2,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: 6,
+    cy: -81,
+    rx: 3.4,
+    ry: 3.2,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -6,
+    cy: -80.6,
+    r: 1.8,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 6,
+    cy: -80.6,
+    r: 1.8,
+    fill: INK
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -10 -86.5 L -3 -85.5 M 10 -86.5 L 3 -85.5",
+    stroke: hair,
+    strokeWidth: 2.2,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -7 -73.5 Q -3 -76.5 0 -74.5 Q 3 -76.5 7 -73.5 Q 3 -72.5 0 -73.5 Q -3 -72.5 -7 -73.5 Z",
+    fill: hair
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -4 -70.8 Q 0 -68 4 -70.8"
+  }, line, {
+    strokeWidth: 1.4
+  }))));
+}
+function AerobicsAngie(_ref3) {
+  var elRef = _ref3.elRef;
+  // A neon leotard over pink tights, striped leg warmers, a sweatband and very, very big hair
+  var skin = '#f1c7a5';
+  var hair = '#f2b33d';
+  var leo = '#ff3fa4';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-angie",
+    "data-look": "left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -18 -92 C -30 -84 -28 -66 -22 -56 L -18 -62 L -16 -54 L -12 -64 L 12 -64 L 16 -54 L 18 -62 L 22 -56 C 28 -66 30 -84 18 -92 Z",
+    fill: hair
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -12,
+    y: -30,
+    width: 7,
+    height: 26,
+    fill: "#ff9ccd"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -13.5,
+    y: -18,
+    width: 10,
+    height: 14,
+    rx: 2,
+    fill: "#7cff6b"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -13.5 -14 h 10 M -13.5 -10 h 10",
+    stroke: "#2bb7c9",
+    strokeWidth: 1.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -16 0 Q -16 -5 -10 -5 H -4 V 0 Z",
+    fill: "#fff"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 5,
+    y: -30,
+    width: 7,
+    height: 26,
+    fill: "#ff9ccd"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 3.5,
+    y: -18,
+    width: 10,
+    height: 14,
+    rx: 2,
+    fill: "#7cff6b"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 3.5 -14 h 10 M 3.5 -10 h 10",
+    stroke: "#2bb7c9",
+    strokeWidth: 1.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 16 0 Q 16 -5 10 -5 H 4 V 0 Z",
+    fill: "#fff"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15 -62 Q -18 -46 -14 -34 L -6 -28 L 6 -28 L 14 -34 Q 18 -46 15 -62 Q 0 -66 -15 -62 Z",
+    fill: leo
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -15 -54 L 15 -46",
+    stroke: "#2ee6d6",
+    strokeWidth: 4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -15,
+    y: -38,
+    width: 30,
+    height: 4.5,
+    rx: 1.5,
+    fill: "#2ee6d6",
+    stroke: INK,
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 6,
+    y: -41,
+    width: 8,
+    height: 6,
+    rx: 1,
+    fill: "#3a3a44",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 7.5,
+    y: -39.5,
+    width: 5,
+    height: 2.4,
+    fill: "#ffd23f"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-cast"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -22,
+    y: -60,
+    width: 6,
+    height: 22,
+    rx: 2.5,
+    fill: skin
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -23,
+    y: -43,
+    width: 8,
+    height: 4,
+    rx: 1,
+    fill: "#2ee6d6",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -19,
+    cy: -36,
+    r: 3.4,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 16,
+    y: -60,
+    width: 6,
+    height: 22,
+    rx: 2.5,
+    fill: skin
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 15,
+    y: -43,
+    width: 8,
+    height: 4,
+    rx: 1,
+    fill: "#2ee6d6",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 19,
+    cy: -36,
+    r: 3.4,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Controller, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -3,
+    y: -69,
+    width: 6,
+    height: 7,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -8 -64 Q 0 -60 8 -64",
+    stroke: "#3a3a44",
+    strokeWidth: 1.8,
+    fill: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -8.5,
+    cy: -64,
+    r: 2.6,
+    fill: "#ff8a2a",
+    stroke: INK,
+    strokeWidth: 1.1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 8.5,
+    cy: -64,
+    r: 2.6,
+    fill: "#ff8a2a",
+    stroke: INK,
+    strokeWidth: 1.1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -13 -80 Q -14 -91 0 -92 Q 14 -91 13 -80 Q 13 -69 6 -66 Q 0 -63.5 -6 -66 Q -13 -69 -13 -80 Z",
+    fill: skin
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -5.5,
+    cy: -80,
+    rx: 3.4,
+    ry: 3.4,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: 5.5,
+    cy: -80,
+    rx: 3.4,
+    ry: 3.4,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -79.6,
+    r: 1.9,
+    fill: "#2a6fb8"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -79.6,
+    r: 1.9,
+    fill: "#2a6fb8"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -9 -81 Q -5.5 -86 -2 -81 M 2 -81 Q 5.5 -86 9 -81",
+    stroke: "#4dc3ff",
+    strokeWidth: 1.8,
+    fill: "none",
+    strokeLinecap: "round"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -9 -84.5 q -2 -1 -3 -3 M 9 -84.5 q 2 -1 3 -3"
+  }, line, {
+    strokeWidth: 1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -8,
+    cy: -73,
+    r: 2.4,
+    fill: "#ff7aa8",
+    opacity: 0.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 8,
+    cy: -73,
+    r: 2.4,
+    fill: "#ff7aa8",
+    opacity: 0.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -4 -71 Q 0 -67.5 4 -71 Z",
+    fill: "#c81d5e",
+    stroke: INK,
+    strokeWidth: 1.2,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -16 -84 C -28 -92 -24 -114 -10 -112 C -8 -124 10 -124 12 -112 C 26 -114 28 -92 16 -84 Q 0 -94 -16 -84 Z",
+    fill: hair
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -8 -104 l 3 -4 l 3 4 l 3 -4 l 3 4 M -14 -96 l 3 -3 l 3 3 M 6 -97 l 3 -3 l 3 3",
+    stroke: "#c98a1f",
+    strokeWidth: 1.3,
+    fill: "none",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -15 -88 Q 0 -96 15 -88 L 15 -84 Q 0 -92 -15 -84 Z",
+    fill: "#2ee6d6",
+    stroke: INK,
+    strokeWidth: 1.4,
+    strokeLinejoin: "round"
+  })));
+}
+function MulletMitch(_ref4) {
+  var elRef = _ref4.elRef;
+  // Business in the front, party in the back: a jean jacket over a band tee, high-tops and mirrored shades.
+  // He's the one who gets the console going: the cartridge in his hand only shows while he blows on it.
+  var skin = '#e9b48f';
+  var hair = '#7a4a26';
+  var denim = '#4f7fc4';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-mitch",
+    "data-look": "left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15 -84 Q -20 -66 -14 -58 L -9 -63 L -6 -57 L -2 -64 L 2 -64 L 6 -57 L 9 -63 L 14 -58 Q 20 -66 15 -84 Z",
+    fill: hair
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -13,
+    y: -30,
+    width: 9,
+    height: 24,
+    fill: "#8fb3e3"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -11 -22 l 3 2 M -10 -14 l 2 2",
+    stroke: "#c9dcf4",
+    strokeWidth: 1.4,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 0 V -5 Q -17 -10 -12 -10 H -4 V 0 Z",
+    fill: "#fff"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -17 -3 H -4",
+    stroke: "#e2343c",
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 4,
+    y: -30,
+    width: 9,
+    height: 24,
+    fill: "#8fb3e3"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 6 -22 l 3 2 M 7 -14 l 2 2",
+    stroke: "#c9dcf4",
+    strokeWidth: 1.4,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 17 0 V -5 Q 17 -10 12 -10 H 4 V 0 Z",
+    fill: "#fff"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 4 -3 H 17",
+    stroke: "#e2343c",
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 -62 Q -20 -45 -16 -28 L 16 -28 Q 20 -45 17 -62 Q 0 -66 -17 -62 Z",
+    fill: "#22222a"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 1 -56 L -4 -46 L 0 -46 L -2 -38 L 5 -49 L 1 -49 L 3 -56 Z",
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 0.8,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 -62 Q -20 -45 -16 -28 L -7 -28 L -8 -60 Z M 17 -62 Q 20 -45 16 -28 L 7 -28 L 8 -60 Z",
+    fill: denim
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -15 -50 h 5 M 10 -50 h 5",
+    stroke: "#2e5a99",
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -9 -62 L -13 -68 L -15 -60 Z M 9 -62 L 13 -68 L 15 -60 Z",
+    fill: denim,
+    stroke: INK,
+    strokeWidth: 1.4,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-cast"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -26,
+    y: -60,
+    width: 8,
+    height: 18,
+    rx: 2,
+    fill: denim
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -25,
+    y: -43,
+    width: 6,
+    height: 5,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -22,
+    cy: -36,
+    r: 3.6,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 18,
+    y: -60,
+    width: 8,
+    height: 18,
+    rx: 2,
+    fill: denim
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 19,
+    y: -43,
+    width: 6,
+    height: 5,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 22,
+    cy: -36,
+    r: 3.6,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Controller, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -3.5,
+    y: -69,
+    width: 7,
+    height: 7,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -80 Q -15 -91 0 -92 Q 15 -91 14 -80 Q 14 -69 7 -66 Q 0 -63 -7 -66 Q -14 -69 -14 -80 Z",
+    fill: skin
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15 -82 Q -17 -96 -6 -98 L -4 -102 L 0 -97 L 3 -102 L 6 -97 L 10 -100 L 11 -95 Q 17 -93 15 -82 Q 8 -90 0 -89 Q -8 -90 -15 -82 Z",
+    fill: hair
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -13 -84 H -2 Q -2 -76 -7.5 -76 Q -13 -76 -13 -84 Z M 2 -84 H 13 Q 13 -76 7.5 -76 Q 2 -76 2 -84 Z",
+    fill: "#ff7ac0",
+    stroke: INK,
+    strokeWidth: 1.4,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -13 -81 Q -7.5 -80 -2 -82 V -84 H -13 Z M 2 -82 Q 7.5 -80 13 -81 V -84 H 2 Z",
+    fill: "#46d6ff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -9 -83 l -2 4 M 6 -83 l -2 4",
+    stroke: "#fff",
+    strokeWidth: 1.4,
+    strokeLinecap: "round"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -2 -83 H 2",
+    stroke: INK,
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -6 -72.5 Q 0 -75 6 -72.5",
+    stroke: hair,
+    strokeWidth: 2.4,
+    strokeLinecap: "round",
+    fill: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -3 -69.5 Q 1 -68 4.5 -70.5"
+  }, line, {
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-held-cart"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -19,
+    y: -76,
+    width: 15,
+    height: 11,
+    rx: 1.2,
+    fill: "#8a8a94"
+  }, ink, {
+    strokeWidth: 1.4,
+    transform: "rotate(-8 -11.5 -70.5)"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -16.5,
+    y: -74,
+    width: 10,
+    height: 6,
+    fill: "#ff4f9a",
+    stroke: INK,
+    strokeWidth: 0.8,
+    transform: "rotate(-8 -11.5 -70.5)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5,
+    cy: -66.5,
+    r: 3,
+    fill: skin,
+    stroke: INK,
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-puffs"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    className: "crew-puff crew-puff-1",
+    cx: -23,
+    cy: -72,
+    r: 2.4,
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    className: "crew-puff crew-puff-2",
+    cx: -29,
+    cy: -75,
+    r: 3,
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    className: "crew-puff crew-puff-3",
+    cx: -36,
+    cy: -72,
+    r: 3.6,
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 1
+  }))));
+}
+function BoomerBoombox(_ref5) {
+  var elRef = _ref5.elRef;
+  // A walking boombox: speakers for eyes, a tape deck for a mouth (its reels turn), and a bent antenna
+  var silver = '#c6ccd6';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-boomer",
+    "data-look": "left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -12,
+    y: -32,
+    width: 5,
+    height: 27,
+    fill: "#3a3a44"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 0 Q -17 -6 -11 -6 H -5 V 0 Z",
+    fill: "#ff8a2a"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 7,
+    y: -32,
+    width: 5,
+    height: 27,
+    fill: "#3a3a44"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 17 0 Q 17 -6 11 -6 H 5 V 0 Z",
+    fill: "#ff8a2a"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-cast"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -24 -58 Q -28 -48 -25 -38",
+    stroke: INK,
+    strokeWidth: 5,
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -24 -58 Q -28 -48 -25 -38",
+    stroke: "#3a3a44",
+    strokeWidth: 2.4,
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -25,
+    cy: -36,
+    r: 3.6,
+    fill: "#fff"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 24 -58 Q 28 -48 25 -38",
+    stroke: INK,
+    strokeWidth: 5,
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 24 -58 Q 28 -48 25 -38",
+    stroke: "#3a3a44",
+    strokeWidth: 2.4,
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 25,
+    cy: -36,
+    r: 3.6,
+    fill: "#fff"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    className: "crew-boomer-antenna",
+    d: "M 14 -86 L 22 -108 L 28 -106",
+    stroke: INK,
+    strokeWidth: 1.8,
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 28.5,
+    cy: -106,
+    r: 1.8,
+    fill: "#ff4f9a",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -14 -86 V -94 Q -14 -97 -11 -97 H 11 Q 14 -97 14 -94 V -86",
+    stroke: INK,
+    strokeWidth: 5.5,
+    fill: "none",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -14 -86 V -94 Q -14 -97 -11 -97 H 11 Q 14 -97 14 -94 V -86",
+    stroke: "#3a3a44",
+    strokeWidth: 2.5,
+    fill: "none",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -27,
+    y: -87,
+    width: 54,
+    height: 56,
+    rx: 6,
+    fill: silver
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -24,
+    y: -84,
+    width: 48,
+    height: 7,
+    rx: 2,
+    fill: "#9aa2ae",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -20 -80.5 h 4 M -12 -80.5 h 4 M 8 -80.5 h 12",
+    stroke: "#ff4f9a",
+    strokeWidth: 2,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -14,
+    cy: -63,
+    r: 10,
+    fill: "#2a2a32",
+    stroke: INK,
+    strokeWidth: 1.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 14,
+    cy: -63,
+    r: 10,
+    fill: "#2a2a32",
+    stroke: INK,
+    strokeWidth: 1.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -14,
+    cy: -63,
+    r: 6.5,
+    fill: "none",
+    stroke: "#4a4a56",
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 14,
+    cy: -63,
+    r: 6.5,
+    fill: "none",
+    stroke: "#4a4a56",
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -14,
+    cy: -63,
+    r: 3,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 14,
+    cy: -63,
+    r: 3,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -11,
+    y: -48,
+    width: 22,
+    height: 13,
+    rx: 2,
+    fill: "#1d1d24",
+    stroke: INK,
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -9,
+    y: -46.5,
+    width: 18,
+    height: 9.5,
+    rx: 1,
+    fill: "#ffb347"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -6,
+    y: -44.5,
+    width: 12,
+    height: 5,
+    fill: "#2a2a32"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-boomer-reel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -3.5,
+    cy: -42,
+    r: 1.8,
+    fill: "#f4efe4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -3.5 -43.8 V -40.2",
+    stroke: "#2a2a32",
+    strokeWidth: 0.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-boomer-reel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 3.5,
+    cy: -42,
+    r: 1.8,
+    fill: "#f4efe4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 3.5 -43.8 V -40.2",
+    stroke: "#2a2a32",
+    strokeWidth: 0.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Controller, {
+    y: -34
+  })));
+}
+function DialUpDana(_ref6) {
+  var elRef = _ref6.elRef;
+  // Overalls with one strap down, a flannel round the waist, a beanie and chunky sneakers. She lives in her
+  // computer and climbs out of the monitor to say hi (she's the deck's visitor, like Sasquatch).
+  // Her bump arm is on the left: she comes from the right, so her fist meets theirs.
+  var skin = '#c68863';
+  var hair = '#3b2418';
+  var denim = '#5b7fb5';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-dana",
+    "data-look": "left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15 -86 Q -20 -68 -16 -58 L 16 -58 Q 20 -68 15 -86 Z",
+    fill: hair
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -13,
+    y: -30,
+    width: 10,
+    height: 24,
+    fill: denim
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -19 0 V -5 Q -19 -9 -14 -9 H -2 V 0 Z",
+    fill: "#f4efe4"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -19 -2 H -2",
+    stroke: "#7c4dff",
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 3,
+    y: -30,
+    width: 10,
+    height: 24,
+    fill: denim
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 19 0 V -5 Q 19 -9 14 -9 H 2 V 0 Z",
+    fill: "#f4efe4"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 2 -2 H 19",
+    stroke: "#7c4dff",
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -16 -62 Q -19 -45 -15 -30 L 15 -30 Q 19 -45 16 -62 Q 0 -66 -16 -62 Z",
+    fill: "#f4efe4"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -17 -55 H 17 M -17.5 -48 H 17.5",
+    stroke: "#2bb7c9",
+    strokeWidth: 2.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -13 -48 H 13 L 14 -28 H -14 Z",
+    fill: denim
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -6,
+    y: -45,
+    width: 12,
+    height: 8,
+    rx: 1,
+    fill: "#4a6fa5",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 8 -48 L 11 -62",
+    stroke: denim,
+    strokeWidth: 4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 8 -48 L 11 -62",
+    stroke: INK,
+    strokeWidth: 1,
+    strokeDasharray: "0",
+    opacity: 0.5
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 9,
+    cy: -49,
+    r: 1.4,
+    fill: "#d9a441",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -9 -48 Q -14 -42 -12 -36",
+    stroke: denim,
+    strokeWidth: 3.5,
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -16 -32 L 16 -32 L 18 -24 L 8 -26 L 2 -18 L -2 -26 L -18 -24 Z",
+    fill: "#c8303a"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -12 -32 L -13 -25 M -6 -32 V -27 M 6 -32 V -27 M 12 -32 L 13 -25 M -16 -29 H 16",
+    stroke: "#3a1418",
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "sq-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -25,
+    y: -60,
+    width: 8,
+    height: 22,
+    rx: 3,
+    fill: "#f4efe4"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -25 -53 h 8",
+    stroke: "#2bb7c9",
+    strokeWidth: 2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -21,
+    cy: -36,
+    r: 3.8,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 17,
+    y: -60,
+    width: 8,
+    height: 22,
+    rx: 3,
+    fill: "#f4efe4"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 17 -53 h 8",
+    stroke: "#2bb7c9",
+    strokeWidth: 2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 21,
+    cy: -36,
+    r: 3.8,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 18,
+    y: -34,
+    width: 7,
+    height: 5,
+    rx: 1,
+    fill: "#2a2a32",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 19,
+    y: -33,
+    width: 5,
+    height: 2,
+    fill: "#7cff6b"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -3.5,
+    y: -69,
+    width: 7,
+    height: 7,
+    fill: skin
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -80 Q -15 -91 0 -92 Q 15 -91 14 -80 Q 14 -69 7 -66 Q 0 -63 -7 -66 Q -14 -69 -14 -80 Z",
+    fill: skin
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -6,
+    cy: -80,
+    rx: 3.3,
+    ry: 3.3,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: 6,
+    cy: -80,
+    rx: 3.3,
+    ry: 3.3,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -6,
+    cy: -79.6,
+    r: 1.8,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 6,
+    cy: -79.6,
+    r: 1.8,
+    fill: INK
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -6,
+    cy: -80,
+    r: 5,
+    fill: "none",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 6,
+    cy: -80,
+    r: 5,
+    fill: "none",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -1 -80.5 H 1",
+    stroke: INK,
+    strokeWidth: 1.3
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -4.5 -71 Q 0 -67.5 4.5 -71"
+  }, line, {
+    strokeWidth: 1.5
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -14 -83 Q -10 -88 -4 -86 Q 0 -89 5 -86 Q 10 -88 14 -83 L 14 -88 L -14 -88 Z",
+    fill: hair
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15 -86 Q -16 -102 0 -103 Q 16 -102 15 -86 Z",
+    fill: "#e8b23a"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -16,
+    y: -91,
+    width: 32,
+    height: 6,
+    rx: 2,
+    fill: "#d29a24",
+    stroke: INK,
+    strokeWidth: 1.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -10 -91 V -85 M -4 -91 V -85 M 2 -91 V -85 M 8 -91 V -85",
+    stroke: "#b07e17",
+    strokeWidth: 1
+  })));
+}
+function Pixel(_ref7) {
+  var elRef = _ref7.elRef;
+  // 🥚 The little one: a keychain pet in a plastic egg. Its screen's face blinks, and it beeps at the screen
+  // until somebody chases it off (it's the deck's pest, like the cat). The stubby arm is the one that swats.
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor crew-pixel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", _extends({
+    cx: -5,
+    cy: -2,
+    rx: 4,
+    ry: 2.4,
+    fill: "#ff4f9a"
+  }, ink, {
+    strokeWidth: 1.4
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", _extends({
+    cx: 5,
+    cy: -2,
+    rx: 4,
+    ry: 2.4,
+    fill: "#ff4f9a"
+  }, ink, {
+    strokeWidth: 1.4
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -38,
+    r: 4,
+    fill: "none",
+    stroke: "#b8bec8",
+    strokeWidth: 2.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -38,
+    r: 4,
+    fill: "none",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-cat-paw"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", _extends({
+    cx: -12,
+    cy: -18,
+    rx: 2.6,
+    ry: 4,
+    fill: "#b48cff"
+  }, ink, {
+    strokeWidth: 1.4
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 0 -35 C 12 -35 14 -14 11 -8 Q 6 -3 0 -3 Q -6 -3 -11 -8 C -14 -14 -12 -35 0 -35 Z",
+    fill: "#b48cff"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -6 -30 Q -9 -26 -9 -21",
+    stroke: "#fff",
+    strokeWidth: 1.6,
+    strokeLinecap: "round",
+    fill: "none",
+    opacity: 0.7
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -6.5,
+    y: -26,
+    width: 13,
+    height: 11,
+    rx: 1.5,
+    fill: "#bfe8a0",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -3.5,
+    y: -23,
+    width: 2,
+    height: 2,
+    fill: "#2f4a26"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 1.5,
+    y: -23,
+    width: 2,
+    height: 2,
+    fill: "#2f4a26"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -2.5 -19 h 1 v 1 h 3 v -1 h 1",
+    stroke: "#2f4a26",
+    strokeWidth: 1,
+    fill: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -4,
+    cy: -10,
+    r: 1.4,
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -9,
+    r: 1.4,
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 4,
+    cy: -10,
+    r: 1.4,
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pixel-beep"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -16 -40 l -3 -7 M -20 -34 l -7 -2 M -12 -44 l -1 -7",
+    stroke: "#ffd23f",
+    strokeWidth: 2,
+    strokeLinecap: "round"
+  }))));
+}
+function JeffCouch(_ref8) {
+  var couchRef = _ref8.couchRef;
+  // A '70s plaid couch, big enough for four: mustard and brown, with button-tufted cushions. 240 units wide.
+  var plaid = '#d9a03a';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: couchRef
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "couch-legs"
+  }, [-108, -76, 68, 100].map(function (x) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      key: x,
+      className: "couch-leg",
+      x: x,
+      y: -13,
+      width: 8,
+      height: 13,
+      rx: 2,
+      fill: "#4a2e1a",
+      stroke: INK,
+      strokeWidth: 2
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "couch-body",
+    stroke: INK,
+    strokeWidth: 2.4,
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -118,
+    y: -27,
+    width: 236,
+    height: 16,
+    rx: 4,
+    fill: "#8a4f1f"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -106,
+    y: -92,
+    width: 212,
+    height: 56,
+    rx: 12,
+    fill: plaid
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -84 -90 V -38 M -42 -91 V -37 M 0 -91 V -37 M 42 -91 V -37 M 84 -90 V -38",
+    stroke: "#8a4f1f",
+    strokeWidth: 5,
+    opacity: 0.55
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -104 -76 H 104 M -104 -56 H 104",
+    stroke: "#b5532f",
+    strokeWidth: 4,
+    opacity: 0.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -104 -66 H 104",
+    stroke: "#f4dfa0",
+    strokeWidth: 1.4,
+    opacity: 0.7
+  }), [-75, -25, 25, 75].map(function (x) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      key: x,
+      cx: x,
+      cy: -72,
+      r: 2.4,
+      fill: "#8a4f1f",
+      strokeWidth: 1.4
+    });
+  }), [-99, -49, 1, 51].map(function (x, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+      key: x,
+      d: "M ".concat(x, " -40 q 0 -6 6 -6 h 36 q 6 0 6 6 ").concat(i === 2 ? 'q 0 4 -3 8' : 'v 8', " q 0 8 -6 8 h -36 q -6 0 -6 -8 Z"),
+      fill: "#e6b04e"
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -99 -36 H 97",
+    stroke: "#b5532f",
+    strokeWidth: 1.6,
+    opacity: 0.5
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -124,
+    y: -62,
+    width: 26,
+    height: 46,
+    rx: 9,
+    fill: "#c58a2c"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 98,
+    y: -62,
+    width: 26,
+    height: 46,
+    rx: 9,
+    fill: "#c58a2c"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -111 -58 V -20 M 111 -58 V -20",
+    stroke: "#8a4f1f",
+    strokeWidth: 4,
+    opacity: 0.5
+  })));
+}
+function Jeffcom(_ref9) {
+  var consoleRef = _ref9.consoleRef;
+  // 🎮 The Jeffcom: a knock-off console on the floor in front of the couch (couch units, feet at 0, 0).
+  // `is-in`: the cartridge is pushed in. `is-empty`: it's out, in Mitch's hand. `is-powered`: the light's on.
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: consoleRef,
+    className: "crew-jeffcom",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-jeffcom-cart"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -10,
+    y: -24,
+    width: 20,
+    height: 16,
+    rx: 1.5,
+    fill: "#8a8a94"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -7.5,
+    y: -22,
+    width: 15,
+    height: 8,
+    fill: "#ff4f9a",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -5 -19 h 10 M -5 -16.5 h 6",
+    stroke: "#fff",
+    strokeWidth: 1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -24,
+    y: -14,
+    width: 48,
+    height: 14,
+    rx: 2.5,
+    fill: "#cfcac0"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -12,
+    y: -15.5,
+    width: 24,
+    height: 4,
+    rx: 1,
+    fill: "#3a3a44",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -22,
+    y: -6,
+    width: 44,
+    height: 3,
+    fill: "#3a3a44"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -20,
+    y: -11,
+    width: 6,
+    height: 3,
+    rx: 0.8,
+    fill: "#9b968c",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    className: "crew-jeffcom-light",
+    cx: 18,
+    cy: -9.5,
+    r: 1.6,
+    fill: "#5a1616",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: 2,
+    y: -7.4,
+    textAnchor: "middle",
+    fontSize: 3.6,
+    fontWeight: 900,
+    fill: "#e2343c",
+    fontFamily: "system-ui, sans-serif",
+    stroke: "none"
+  }, "JEFFCOM"));
+}
+function DanaComputer(_ref10) {
+  var mountainRef = _ref10.mountainRef;
+  // 🖥️ Dana's place: a beige computer on a rolling desk, with a modem whose lights blink. It rolls in beside
+  // the couch, the screen comes on, and she climbs out of the monitor (`is-on`: the screen's glowing).
+  // ~116 units wide; the screen's middle is at (0, -82), its bottom edge at y -63.
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: mountainRef,
+    className: "crew-computer",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    stroke: INK,
+    strokeWidth: 2.2,
+    strokeLinejoin: "round"
+  }, [-46, 40].map(function (x) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+      key: x,
+      x: x,
+      y: -45,
+      width: 6,
+      height: 38,
+      fill: "#7a4a26"
+    });
+  }), [-43, 43].map(function (x) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      key: x,
+      className: "crew-computer-wheel",
+      cx: x,
+      cy: -4,
+      r: 3.6,
+      fill: "#2a2a32"
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -56,
+    y: -51,
+    width: 112,
+    height: 7,
+    rx: 2,
+    fill: "#a8683a"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -40,
+    y: -30,
+    width: 80,
+    height: 5,
+    fill: "#8a5530"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 10,
+    y: -44,
+    width: 24,
+    height: 36,
+    rx: 2,
+    fill: "#e3dbc6"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 14,
+    y: -40,
+    width: 16,
+    height: 3,
+    fill: "#bfb69e",
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 14,
+    y: -34,
+    width: 16,
+    height: 3,
+    fill: "#bfb69e",
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 22,
+    cy: -16,
+    r: 2,
+    fill: "#7cff6b",
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -12,
+    y: -58,
+    width: 24,
+    height: 7,
+    fill: "#d6ceb6"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -32,
+    y: -110,
+    width: 64,
+    height: 54,
+    rx: 6,
+    fill: "#e3dbc6"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    className: "crew-computer-screen",
+    x: -24,
+    y: -102,
+    width: 48,
+    height: 39,
+    rx: 4,
+    fill: "#1d2630",
+    strokeWidth: 1.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -30,
+    y: -62,
+    width: 10,
+    height: 2,
+    fill: "#bfb69e",
+    stroke: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 24,
+    cy: -60,
+    r: 1.4,
+    fill: "#7cff6b",
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -30,
+    y: -55,
+    width: 34,
+    height: 5,
+    rx: 1,
+    fill: "#d6ceb6",
+    strokeWidth: 1.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: 34,
+    y: -60,
+    width: 18,
+    height: 9,
+    rx: 1.5,
+    fill: "#2a2a32",
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-computer-modem"
+  }, [37, 41, 45, 49].map(function (x) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      key: x,
+      cx: x,
+      cy: -55.5,
+      r: 1,
+      fill: "#7cff6b"
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-computer-glow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -22,
+    y: -100,
+    width: 44,
+    height: 35,
+    rx: 3,
+    fill: "#3fe0d0",
+    opacity: 0.85
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -16,
+    y: -86,
+    width: 32,
+    height: 6,
+    rx: 1,
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    className: "crew-computer-bar",
+    x: -15,
+    y: -85,
+    width: 30,
+    height: 4,
+    fill: "#7c4dff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: 0,
+    y: -91,
+    textAnchor: "middle",
+    fontSize: 5.5,
+    fontWeight: 900,
+    fill: "#16161d",
+    fontFamily: "system-ui, sans-serif"
+  }, "CONNECTING\u2026")));
 }
 
 /***/ }),
@@ -44417,7 +46545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🕵️ The spy lobby: the shimmer runs amber and black */\n[data-gt-theme=\"spy\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */\n.gt-bg.theme-spy {\n    --gt-navy:     #06070d;\n    --gt-blue-800: #10131f;\n    --gt-blue-500: #1d2233;\n    --gt-blue-400: #2b3147;\n    --gt-blue-300: #6a7290;\n    --gt-ice:      #e8e6da;\n    --gt-bg-accent: #d6a83c;\n    --gt-bg-vignette: rgba(0, 0, 0, 0.6);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */\n.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }\n@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }\n.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }\n.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }\n@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }\n.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }\n.cc-crew .spy-siren-blue { animation-delay: 0.21s; }\n@keyframes spy-siren { 50% { opacity: 0.15; } }\n.cc-crew .spy-car-prisoners { display: none; }\n.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }\n.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }\n@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }\n/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */\n.cc-crew.spy-rules-show { z-index: 5; }\n.mx-rules-with-spies { padding-bottom: 17vh !important; }\n.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"AAAA,mCAAmC;AACnC;EACE,aAAa;EACb,uBAAuB;EACvB,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,sBAAsB,EAAE,qEAAqE;;EAE7F,oCAAoC;EACpC,8BAA8B;;EAE9B,kEAAkE;EAClE,+BAA+B;AACjC;;AAEA,6BAA6B;AAC7B;EACE,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,kBAAkB;EAClB,uBAAuB;EACvB,uDAAuD;AACzD;;AAEA,+BAA+B;AAC/B;EACE,+CAA+C;EAC/C,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,uBAAuB;EACvB,8BAA8B;EAC9B,iCAAiC;EACjC,gBAAgB;EAChB,qBAAqB;EACrB,yBAAyB;EACzB,0BAA0B;AAC5B;;AAEA,4BAA4B;AAC5B;EACE,cAAc;AAChB;;AAEA,uDAAuD;AACvD,uDAAuD;AACvD,uDAAuD;;AAEvD;EACE,uBAAuB;EACvB,6BAA6B;EAC7B,WAAW;AACb;;AAEA,0DAA0D;AAC1D;EACE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,0CAA0C,EAAE,UAAU,EAAE;EAC/D,OAAO,0CAA0C,EAAE,UAAU,EAAE;EAC/D,OAAO,4CAA4C,EAAE,UAAU,EAAE;EACjE,OAAO,4CAA4C,EAAE,UAAU,EAAE;AACnE;;AAEA,+DAA+D;AAC/D;EACE,OAAO,iCAAiC,EAAE,UAAU,EAAE;EACtD,OAAO,+BAA+B,EAAE,UAAU,EAAE;EACpD,OAAO,+BAA+B,EAAE,UAAU,EAAE;EACpD,OAAO,kCAAkC,EAAE,UAAU,EAAE;EACvD,OAAO,kCAAkC,EAAE,UAAU,EAAE;AACzD;;AAEA,2CAA2C;AAC3C;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,kDAAkD;AACpD;;AAEA,0CAA0C;AAC1C;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,kDAAkD;AACpD;;AAEA,wEAAwE;AACxE;EACE,kBAAkB;EAClB,QAAQ;EACR,sBAAsB,IAAI,8CAA8C;EACxE,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,sDAAsD;AACxD;AACA,8DAA8D;AAC9D;EACE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,0CAA0C,KAAK,UAAU,EAAE;EAClE,OAAO,0CAA0C,KAAK,UAAU,EAAE;EAClE,OAAO,4CAA4C,GAAG,UAAU,EAAE;EAClE,OAAO,4CAA4C,GAAG,UAAU,EAAE;EAClE,OAAO,4CAA4C,GAAG,UAAU,EAAE;AACpE;;AAEA,yDAAyD;AACzD;EACE,qBAAqB;EACrB,iBAAiB;EACjB,qBAAqB;EACrB,sBAAsB;EACtB,6BAA6B;EAC7B,WAAW;EACX,2EAA2E;EAC3E,wFAAwF;EACxF,mDAAmD;AACrD;AACA,qEAAqE;AACrE;EACE,WAAW;EACX,uBAAuB;EACvB,gBAAgB;EAChB,uBAAuB;AACzB;;AAEA,+EAA+E;AAC/E,aAAa,gBAAgB,EAAE;AAC/B;EACE,aAAa;EACb,mBAAmB;EACnB,WAAW;EACX,wBAAwB;EACxB,gCAAgC;AAClC;AACA,4BAA4B,gBAAgB,EAAE;AAC9C;EACE,iBAAiB;EACjB,kBAAkB;EAClB,gBAAgB;EAChB,cAAc;AAChB;AACA;EACE,cAAc;EACd,YAAY;EACZ,aAAa;EACb,gBAAgB;EAChB,cAAc;AAChB;AACA;EACE,cAAc;EACd,kBAAkB;EAClB,gBAAgB;EAChB,cAAc;AAChB;AACA,kFAAkF;AAClF;EACE,kBAAkB;EAClB,oBAAoB;EACpB,YAAY;EACZ,eAAe;AACjB;AACA,2BAA2B,wBAAwB,EAAE;;AAErD,qDAAqD;AACrD;EACE,cAAc;EACd,YAAY;EACZ,YAAY;EACZ,qBAAqB;EACrB,iBAAiB;AACnB;AACA;EACE,uBAAuB;EACvB,+BAA+B;EAC/B,4DAA4D;AAC9D;AACA;EACE,OAAO,uDAAuD,EAAE;EAChE,OAAO,uDAAuD,EAAE;AAClE;AACA;EACE,uBAAuB;EACvB,wBAAwB;EACxB,sDAAsD;AACxD;AACA,0BAA0B,sBAAsB,EAAE;AAClD,2BAA2B,qBAAqB,EAAE;AAClD;EACE,WAAW,kCAAkC,EAAE,UAAU,EAAE;EAC3D,WAAW,iCAAiC,EAAE,UAAU,EAAE;AAC5D;AACA,kCAAkC;AAClC,qBAAqB,qDAAqD,EAAE;AAC5E,qBAAqB,mDAAmD,EAAE;AAC1E;EACE,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;AAC5B;AACA;EACE,0BAA0B;EAC1B,8DAA8D;AAChE;AACA;EACE,OAAO,wBAAwB,EAAE;EACjC,OAAO,uBAAuB,EAAE;AAClC;AACA;EACE,2EAA2E,eAAe,EAAE;EAC5F,qBAAqB,UAAU,EAAE;AACnC;;AAEA,qCAAqC;AACrC,sCAAsC;AACtC,qCAAqC;;AAErC,wDAAwD;AACxD;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,cAAc;EACd,uFAAuF;EACvF,6BAA6B;EAC7B,aAAa;EACb,gBAAgB;;EAEhB,yCAAyC;EACzC,aAAa;EACb,sBAAsB;EACtB,mBAAmB,OAAO,oCAAoC;EAC9D,iBAAiB,SAAS,sBAAsB;EAChD,oBAAoB,MAAM,sBAAsB;AAClD;;AAEA,yDAAyD;AACzD;EACE,gBAAgB;EAChB,MAAM;EACN,aAAa,EAAE,sCAAsC;EACrD,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;AAClB;;AAEA,qCAAqC;AACrC,qCAAqC;AACrC,qCAAqC;;AAErC;EACE,KAAK,2BAA2B,EAAE;EAClC,MAAM,6BAA6B,EAAE;EACrC,OAAO,2BAA2B,EAAE;AACtC;;AAEA,uDAAuD;AACvD;EACE,kBAAkB;EAClB,YAAY,EAAE,8BAA8B;EAC5C,qBAAqB;EACrB,sBAAsB;EACtB,WAAW;EACX,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,4CAA4C;EAC5C,UAAU,EAAE,iCAAiC;AAC/C;AACA,0EAA0E;AAC1E;EACE,WAAW;EACX,kBAAkB;EAClB,QAAQ,EAAE,kCAAkC;EAC5C,sBAAsB,EAAE,4BAA4B;EACpD,YAAY,EAAE,sDAAsD;;EAEpE,2BAA2B;EAC3B,uEAAuE;EACvE,0BAA0B;EAC1B,uCAAuC;;EAEvC,mFAAmF;EACnF;;6BAE2B;EAC3B,2BAA2B;EAC3B,uBAAuB;;EAEvB,WAAW,EAAE,qCAAqC;EAClD,oBAAoB,EAAE,8CAA8C;AACtE;;AAEA,qDAAqD;AACrD;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA,yFAAyF;AACzF;EACE,SAAS;AACX;;AAEA,0DAA0D;AAC1D;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA,wDAAwD;AACxD;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA,yEAAyE;AACzE;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA;EACE,UAAU;AACZ;AACA;EACE,yBAAyB;EACzB,kBAAkB;AACpB;;AAEA;EACE,SAAS;EACT,WAAW;EACX,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,YAAY;EACZ,SAAS;EACT,iCAAiC;EACjC,gBAAgB;AAClB;;AAEA;;;;;;;;;;;;;;;;GAgBG;;AAEH;AACA,4BAA4B;EAC1B,uCAAuC;EACvC,2CAA2C;EAC3C,mBAAmB;;EAEnB,8BAA8B;EAC9B,kBAAkB;EAClB,YAAY;EACZ,iBAAiB;EACjB,qBAAqB,EAAE,iCAAiC;EACxD,cAAc;AAChB;;AAEA,2DAA2D;AAC3D;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,WAAW;EACX,kBAAkB;EAClB,cAAc;EACd,eAAe;EACf,qBAAqB;EACrB,qBAAqB;EACrB,oBAAoB;EACpB,WAAW;EACX,yCAAyC;EACzC,iBAAiB;EACjB,gBAAgB;EAChB,qCAAqC;EACrC,0CAA0C;EAC1C,2BAA2B;EAC3B,mCAAmC;EACnC,kFAAkF;AACpF;AACA,sBAAsB,qBAAqB,EAAE;AAC7C;EACE,mCAAmC;EACnC,oCAAoC;EACpC,cAAc;EACd,UAAU;EACV,YAAY;EACZ,eAAe;EACf,qBAAqB;EACrB,sBAAsB;EACtB,gDAAgD;AAClD;AACA,mBAAmB,UAAU,EAAE,YAAY,EAAE;AAC7C;EACE,WAAW,UAAU,EAAE;EACvB,WAAW,aAAa,EAAE;AAC5B;AACA;EACE,oBAAoB,eAAe,EAAE;AACvC;;AAEA,4CAA4C;AAC5C,0EAA0E;AAC1E,0CAA0C,cAAc,EAAE,iBAAiB,EAAE;AAC7E,8CAA8C;AAC9C;EACE,cAAc;EACd,sBAAsB;EACtB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,kBAAkB;EAClB,mBAAmB,IAAI,uFAAuF;EAC9G,+BAA+B;EAC/B,sCAAsC;EACtC,gBAAgB;EAChB,gBAAgB;EAChB,2CAA2C;AAC7C;;AAEA,yDAAyD;AACzD;EACE,oBAAoB;EACpB,sBAAsB;EACtB,oBAAoB;EACpB,gBAAgB;EAChB,sBAAsB;EACtB,qBAAqB;EACrB,8BAA8B;EAC9B,0CAA0C;AAC5C;AACA;EACE,aAAa;EACb,gDAAgD;EAChD,8BAA8B;EAC9B,6BAA6B;AAC/B;AACA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,aAAa;EACb,8DAA8D;EAC9D,mBAAmB;EACnB,WAAW;EACX,gBAAgB;EAChB,qCAAqC;EACrC,iBAAiB;EACjB,gBAAgB;EAChB,2CAA2C;EAC3C,oCAAoC;EACpC,2CAA2C;EAC3C,2BAA2B;EAC3B,mCAAmC;EACnC,0CAA0C;EAC1C,8EAA8E;AAChF;AACA;EACE,cAAc;EACd,aAAa;EACb,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,qBAAqB;EACrB,iBAAiB;EACjB,gBAAgB;AAClB;AACA,kBAAkB,cAAc,EAAE,YAAY,EAAE,uBAAuB,EAAE;AACzE,kBAAkB,cAAc,EAAE;AAClC;EACE,mCAAmC;EACnC,qBAAqB;EACrB,sBAAsB;AACxB;AACA,mBAAmB,YAAY,EAAE;;AAEjC,wFAAwF;AACxF;EACE,kBAAkB;EAClB,aAAa;EACb,aAAa;EACb,YAAY;AACd;AACA;;;2BAG2B,cAAc,EAAE,YAAY,EAAE,aAAa,EAAE;AACxE;;;yBAGyB,cAAc,EAAE,YAAY,EAAE;AACvD,0EAA0E;AAC1E;;gCAEgC,UAAU,EAAE;;AAE5C,gGAAgG;AAChG,mBAAmB,UAAU,EAAE;AAC/B;EACE,kBAAkB;EAClB,UAAU;EACV,sGAAsG;AACxG;AACA;EACE,OAAO,mCAAmC,EAAE;EAC5C,OAAO,sFAAsF,EAAE;AACjG;AACA;EACE,WAAW,4EAA4E,EAAE;EACzF,WAAW,kFAAkF,EAAE;AACjG;;AAEA,2DAA2D;AAC3D,iCAAiC,kBAAkB,EAAE;AACrD;EACE,kBAAkB;EAClB,QAAQ;EACR,aAAa;EACb,gIAAgI;AAClI;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,WAAW;EACX,YAAY;EACZ,UAAU;EACV,YAAY;EACZ,iBAAiB;EACjB,iCAAiC;EACjC,qDAAqD;EACrD,oBAAoB;EACpB,oDAAoD;AACtD;AACA;EACE,WAAW,0BAA0B,EAAE;EACvC,WAAW,+BAA+B,EAAE;EAC5C,WAAW,+BAA+B,EAAE;EAC5C,WAAW,8BAA8B,EAAE;AAC7C;AACA;EACE,OAAO,oCAAoC,EAAE,UAAU,EAAE;EACzD,OAAO,yEAAyE,EAAE,UAAU,EAAE;AAChG;AACA;EACE,OAAO,UAAU,EAAE;EACnB,OAAO,UAAU,EAAE;EACnB,OAAO,UAAU,EAAE;EACnB,OAAO,UAAU,EAAE;AACrB;;AAEA,0EAA0E;AAC1E;EACE,kBAAkB;EAClB,kEAAkE;AACpE;AACA;EACE,kBAAkB;EAClB,SAAS;EACT,UAAU;EACV,QAAQ;EACR,gCAAgC;EAChC,aAAa;EACb,8BAA8B;EAC9B,4BAA4B;EAC5B,uDAAuD;AACzD;AACA;EACE,kBAAkB;EAClB,6BAA6B;EAC7B,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;EAChB,yCAAyC;EACzC,4BAA4B;EAC5B,sFAAsF;AACxF;AACA,gBAAgB,sCAAsC,EAAE;AACxD,iBAAiB;AACjB;EACE,WAAW;EACX,kBAAkB;EAClB,YAAY;EACZ,qBAAqB;EACrB,WAAW;EACX,WAAW;EACX,kBAAkB;EAClB,gBAAgB;EAChB,iDAAiD;AACnD;AACA;EACE,OAAO,oBAAoB,EAAE;EAC7B,OAAO,oBAAoB,EAAE;AAC/B;AACA;EACE,OAAO,yBAAyB,EAAE;EAClC,OAAO,wBAAwB,EAAE;AACnC;AACA;EACE,OAAO,0BAA0B,EAAE;EACnC,OAAO,oDAAoD,EAAE;EAC7D,OAAO,+CAA+C,EAAE;EACxD,OAAO,qDAAqD,EAAE;EAC9D,OAAO,gDAAgD,EAAE;EACzD,OAAO,iDAAiD,EAAE;AAC5D;;AAEA,iEAAiE;AACjE;EACE,4DAA4D;AAC9D;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,OAAO;EACP,WAAW;EACX,mBAAmB;EACnB,UAAU;EACV,iCAAiC;EACjC,mEAAmE;AACrE;AACA,aAAa,WAAW,EAAE,YAAY,EAAE,iBAAiB,EAAE,iDAAiD,EAAE;AAC9G,sCAAsC,kCAAkC,EAAE;AAC1E,iBAAiB,aAAa,EAAE;AAChC,iBAAiB,aAAa,EAAE,YAAY,EAAE,iBAAiB,EAAE;AACjE;EACE,2BAA2B;EAC3B,wDAAwD;AAC1D;AACA,iBAAiB,cAAc,EAAE;AACjC,iBAAiB,aAAa,EAAE;AAChC;EACE,OAAO,uBAAuB,EAAE;EAChC,OAAO,8BAA8B,EAAE;AACzC;AACA;EACE,OAAO,yBAAyB,EAAE;EAClC,OAAO,4BAA4B,EAAE;AACvC;AACA;EACE,OAAO,OAAO,KAAK,UAAU,EAAE,IAAI,mCAAmC;EACtE,OAAO,QAAQ,IAAI,UAAU,EAAE;EAC/B,OAAO,UAAU,EAAE,UAAU,EAAE;EAC/B,OAAO,UAAU,EAAE,UAAU,EAAE;AACjC;;AAEA,gEAAgE;AAChE;EACE,gCAAgC,0BAA0B,EAAE;EAC5D,4CAA4C,YAAY,EAAE;EAC1D,0CAA0C,aAAa,EAAE;AAC3D;;AAEA,4DAA4D;AAC5D;EACE,aAAa;EACb,uBAAuB;EACvB,gCAAgC;EAChC,eAAe;AACjB;AACA;EACE,mCAAmC;EACnC,6CAA6C;EAC7C,oBAAoB;EACpB,2CAA2C;EAC3C,WAAW;EACX,gBAAgB;EAChB,uCAAuC;EACvC,kFAAkF;EAClF,kDAAkD;AACpD;AACA,uBAAuB,qDAAqD,EAAE;AAC9E,uBAAuB,+BAA+B,EAAE,0BAA0B,EAAE,kCAAkC,EAAE;AACxH,sCAAsC,uBAAuB,EAAE;AAC/D,uCAAuC,sBAAsB,EAAE;AAC/D,0BAA0B,YAAY,EAAE;AACxC,+BAA+B,iCAAiC,EAAE,mBAAmB,EAAE;;AAEvF;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,WAAW;EACX,WAAW;EACX,uCAAuC;EACvC,2CAA2C;AAC7C;AACA;EACE,sBAAsB;EACtB,oBAAoB;EACpB,mCAAmC;EACnC,0CAA0C;EAC1C,iBAAiB;AACnB;AACA,yBAAyB,qBAAqB,EAAE,oBAAoB,EAAE;;AAEtE,2DAA2D;AAC3D;EACE,aAAa;EACb,mBAAmB;EACnB,YAAY;EACZ,WAAW;EACX,oBAAoB;EACpB,YAAY;EACZ,qBAAqB;EACrB,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,gBAAgB;EAChB,sFAAsF;EACtF,+BAA+B;AACjC;AACA,wBAAwB,sBAAsB,EAAE;AAChD,+BAA+B,iCAAiC,EAAE,mBAAmB,EAAE;AACvF;EACE,cAAc;EACd,aAAa;EACb,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,qCAAqC;AACvC;AACA,eAAe,qDAAqD,EAAE;AACtE,eAAe,qDAAqD,EAAE;AACtE,eAAe,qDAAqD,EAAE;AACtE,eAAe,qDAAqD,EAAE;;AAEtE,+EAA+E;AAC/E;EACE,eAAe;EACf,SAAS;EACT,cAAc;EACd,2BAA2B;EAC3B,cAAc,UAAU,4DAA4D;EACpF,sBAAsB;EACtB,oBAAoB;EACpB,gCAAgC;EAChC,WAAW;EACX,gBAAgB;EAChB,qCAAqC;EACrC,8BAA8B;EAC9B,2BAA2B;EAC3B,mCAAmC;EACnC,0CAA0C;EAC1C,gDAAgD;AAClD;AACA;EACE,mBAAmB,eAAe,EAAE;AACtC;;AAEA,gDAAgD;AAChD;EACE,eAAe;EACf,WAAW;EACX,SAAS;EACT,2BAA2B;EAC3B,cAAc,UAAU,8DAA8D;EACtF,kBAAkB;EAClB,6BAA6B;EAC7B,uBAAuB;EACvB,mBAAmB;EACnB,gCAAgC;EAChC,WAAW;EACX,gBAAgB;EAChB,sCAAsC;EACtC,kBAAkB;EAClB,mCAAmC;AACrC;;AAEA,yEAAyE;AACzE;EACE,eAAe;EACf,cAAc;EACd,cAAc;EACd,aAAa,WAAW,mDAAmD;EAC3E,wBAAwB;EACxB,oBAAoB;EACpB,WAAW;EACX,uCAAuC;EACvC,sBAAsB;EACtB,+BAA+B;EAC/B,0CAA0C;EAC1C,2BAA2B;EAC3B,mCAAmC;EACnC,oBAAoB;AACtB;AACA;EACE,qBAAqB;EACrB,sBAAsB;EACtB,oBAAoB;AACtB;;AAEA,iCAAiC;AACjC;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,uCAAuC;EACvC,YAAY;EACZ,cAAc,EAAE,qCAAqC;EACrD,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,aAAa;EACb,kBAAkB;EAClB,0BAA0B;AAC5B;;AAEA,4BAA4B;AAC5B;EACE,WAAW;EACX,YAAY;EACZ,WAAW;EACX,mBAAmB;EACnB,8CAA8C;EAC9C,6CAA6C;AAC/C;;AAEA,iDAAiD;AACjD;EACE,KAAK,uBAAuB,EAAE;EAC9B,WAAW,yBAAyB,EAAE,EAAE,yCAAyC;EACjF,OAAO,uBAAuB,EAAE;AAClC;;;AAGA,8CAA8C;AAC9C;EACE,qDAAqD;EACrD,sCAAsC;EACtC,8CAA8C,EAAE,eAAe;EAC/D,qDAAqD;EACrD,uDAAuD;AACzD;;;AAGA,qCAAqC;AACrC;IACI,kBAAkB;IAClB,gBAAgB;IAChB,kBAAkB;AACtB;;AAEA,8DAA8D;AAC9D;IACI,WAAW;IACX,kBAAkB;IAClB,QAAQ;IACR;;;;;KAKC;IACD,sBAAsB;IACtB,oBAAoB;IACpB,UAAU;AACd;;AAEA,wBAAwB;AACxB;IACI,WAAW;IACX,kBAAkB;IAClB,SAAS;IACT,UAAU;IACV,UAAU;IACV,YAAY;IACZ;;;;;KAKC;IACD,wBAAwB;IACxB,gDAAgD;IAChD,yCAAyC;IACzC,oBAAoB;IACpB,UAAU;AACd;;AAEA;IACI,OAAO,UAAU,EAAE;IACnB,OAAO,UAAU,EAAE,IAAI,uBAAuB;IAC9C,OAAO,UAAU,EAAE,IAAI,oCAAoC;AAC/D;;AAEA,gCAAgC;AAChC;IACI,wBAAwB;AAC5B;;AAEA,mCAAmC;AACnC;IACI,eAAe;IACf,aAAa;AACjB;;AAEA,sCAAsC;AACtC;IACI,oBAAoB,eAAe,EAAE,aAAa,EAAE;AACxD;;AAEA,mFAAmF;AACnF;IACI,aAAa;IACb,sBAAsB;IACtB,iCAAiC,IAAI,iDAAiD;IACtF,WAAW;AACf;AACA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,uBAAuB;IACvB,qBAAqB;IACrB,2CAA2C;IAC3C,WAAW;IACX,2EAA2E;IAC3E,qFAAqF;IACrF,aAAa;IACb,2EAA2E;AAC/E;AACA;IACI,UAAU;IACV,4BAA4B;IAC5B,+GAA+G;AACnH;AACA,wCAAwC,sBAAsB,EAAE;AAChE,gCAAgC,iCAAiC,EAAE,mBAAmB,EAAE;AACxF,oBAAoB,iBAAiB,EAAE,gBAAgB,EAAE,gBAAgB,EAAE;AAC3E;IACI,eAAe;IACf,gBAAgB;IAChB,kBAAkB;IAClB,gBAAgB;IAChB,sBAAsB;IACtB,yBAAyB;IACzB,YAAY;AAChB;;AAEA,oFAAoF;AACpF,wBAAwB,mBAAmB,EAAE,sBAAsB,EAAE,YAAY,EAAE;AACnF,qCAAqC,kBAAkB,EAAE,sBAAsB,EAAE,uBAAuB,EAAE;AAC1G,sCAAsC,UAAU,EAAE;AAClD,uCAAuC,kBAAkB,EAAE;AAC3D,sCAAsC,iBAAiB,EAAE,gBAAgB,EAAE;;AAE3E,wEAAwE;AACxE;IACI,WAAW;IACX,mBAAmB;IACnB,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,uBAAuB;IACvB,WAAW;IACX,uBAAuB;IACvB,2CAA2C;IAC3C,mBAAmB;IACnB,WAAW;IACX,kBAAkB;IAClB,6GAA6G;IAC7G,oFAAoF;IACpF,uDAAuD;AAC3D;AACA;IACI,2BAA2B;IAC3B,qFAAqF;AACzF;AACA,sCAAsC,sBAAsB,EAAE;AAC9D;IACI,iCAAiC;IACjC,mBAAmB;AACvB;AACA,yBAAyB,YAAY,EAAE;;AAEvC,mFAAmF;AACnF,sCAAsC,YAAY,EAAE,qBAAqB,EAAE;AAC3E;;IAEI,4BAA4B;IAC5B,+GAA+G;AACnH;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,sBAAsB;IACtB,yBAAyB;IACzB,wBAAwB;IACxB,oBAAoB;IACpB,qCAAqC;IACrC,2CAA2C;AAC/C;AACA;IACI,UAAU;IACV,gBAAgB;IAChB,mBAAmB;IACnB,iBAAiB;IACjB,oDAAoD;AACxD;AACA,0EAA0E;AAC1E;IACI,+BAA+B;IAC/B,iCAAiC;IACjC,iBAAiB;IACjB,sBAAsB;AAC1B;AACA;IACI,UAAU;IACV,iCAAiC;IACjC,iBAAiB;IACjB,qBAAqB;AACzB;AACA;IACI,UAAU;IACV,YAAY;IACZ,eAAe;IACf,qBAAqB;IACrB,sBAAsB;AAC1B;AACA;IACI,UAAU;IACV,YAAY;IACZ,iBAAiB;IACjB,sBAAsB;AAC1B;AACA;IACI,kBAAkB;IAClB,gBAAgB;IAChB,iBAAiB;IACjB,0CAA0C;AAC9C;AACA;IACI,kBAAkB;IAClB,iBAAiB;IACjB,aAAa;AACjB;;AAEA;;;8DAG8D;AAC9D;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;AAC1B;;AAEA;;8DAE8D;AAC9D;IACI,eAAe;IACf,QAAQ;IACR,WAAW,gBAAgB,2BAA2B;IACtD,gBAAgB;IAChB,oBAAoB;IACpB;2HACuH;AAC3H;;AAEA,oFAAoF;AACpF,qBAAqB,aAAa,EAAE;;AAEpC,2DAA2D;AAC3D;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,sCAAsC;AAC1C;;AAEA,kEAAkE;AAClE;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,sCAAsC;AAC1C;;AAEA,qFAAqF;AACrF;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,oCAAoC;AACxC;;AAEA,uDAAuD;AACvD;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,sCAAsC;AAC1C;;AAEA,wBAAwB;AACxB;IACI,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,aAAa;IACb,sBAAsB;AAC1B;AACA;IACI,aAAa,EAAE,cAAc;IAC7B,YAAY,EAAE,aAAa;IAC3B,wEAAwE;IACxE,uDAAuD;AAC3D;AACA;IACI,aAAa,EAAE,cAAc;IAC7B,eAAe,EAAE,cAAc;IAC/B,mEAAmE;IACnE,aAAa;IACb,uDAAuD;AAC3D;AACA;IACI,aAAa,EAAE,cAAc;IAC7B,QAAQ,EAAE,SAAS;IACnB,kFAAkF;IAClF,YAAY;IACZ,+DAA+D;AACnE;AACA;IACI,OAAO,mCAAmC,EAAE;IAC5C,OAAO,4CAA4C,EAAE;AACzD;AACA;IACI,OAAO,qCAAqC,EAAE;IAC9C,OAAO,6CAA6C,EAAE;AAC1D;;AAEA,4BAA4B;AAC5B;IACI,kBAAkB;IAClB,mFAAmF;IACnF,sBAAsB;AAC1B;AACA;IACI,WAAW;IACX,YAAY;IACZ,iBAAiB;IACjB,UAAU;IACV,qBAAqB;IACrB,iBAAiB;IACjB,qBAAqB;IACrB,sBAAsB;IACtB,aAAa;IACb,uDAAuD;AAC3D;AACA;IACI,mBAAmB;IACnB,YAAY;AAChB;AACA;IACI,OAAO,oDAAoD,EAAE;IAC7D,OAAO,iEAAiE,EAAE;IAC1E,OAAO,iEAAiE,EAAE;AAC9E;;AAEA,qDAAqD;AACrD;IACI,kBAAkB;IAClB,QAAQ;IACR,mHAAmH;AACvH;;AAEA;;8DAE8D;AAC9D;IACI,gBAAgB;IAChB,MAAM;IACN,aAAa;IACb,qCAAqC;IACrC,0CAA0C;IAC1C,kDAAkD;IAClD,kDAAkD;IAClD,6CAA6C;AACjD;AACA;IACI,gBAAgB;IAChB,cAAc;IACd,YAAY;IACZ,eAAe;IACf,aAAa;IACb,mBAAmB;IACnB,8BAA8B;IAC9B,SAAS;AACb;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,SAAS;IACT,qBAAqB;IACrB,WAAW;AACf;AACA;IACI,WAAW;IACX,YAAY;IACZ,mBAAmB;IACnB,aAAa;IACb,mBAAmB;IACnB,2EAA2E;IAC3E,sFAAsF;AAC1F;AACA;IACI,WAAW;IACX,YAAY;IACZ,YAAY;AAChB;AACA;IACI,gBAAgB;IAChB,kBAAkB;IAClB,sBAAsB;IACtB,WAAW;AACf;AACA;IACI,gBAAgB;IAChB,gBAAgB;IAChB,yBAAyB;AAC7B;;AAEA;IACI,aAAa;IACb,QAAQ;IACR,YAAY;IACZ,oBAAoB;IACpB,kCAAkC;IAClC,2CAA2C;AAC/C;AACA;IACI,aAAa;IACb,mBAAmB;IACnB,QAAQ;IACR,iBAAiB;IACjB,oBAAoB;IACpB,gCAAgC;IAChC,qBAAqB;IACrB,gBAAgB;IAChB,iBAAiB;IACjB,2DAA2D;AAC/D;AACA;IACI,WAAW;IACX,oCAAoC;AACxC;AACA;IACI,WAAW;IACX,2EAA2E;IAC3E,wFAAwF;AAC5F;AACA;IACI,WAAW;IACX,YAAY;IACZ,UAAU;IACV,oBAAoB;IACpB,iBAAiB;IACjB,qBAAqB;IACrB,sBAAsB;IACtB,cAAc;AAClB;;AAEA,uHAAuH;AACvH;EACE,gBAAgB;EAChB,SAAS;EACT,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,WAAW;EACX,WAAW;EACX,gBAAgB;EAChB,sBAAsB;EACtB,uBAAuB;EACvB,gBAAgB;EAChB,yBAAyB;EACzB,qBAAqB;EACrB,0CAA0C;AAC5C;;AAEA,gFAAgF;AAChF;EACE,kBAAkB;EAClB,eAAe;EACf,mBAAmB;EACnB,qCAAqC;EACrC,0CAA0C;EAC1C,kBAAkB;EAClB,iBAAiB;EACjB,yBAAyB;EACzB,2BAA2B;AAC7B;AACA,aAAa,aAAa,EAAE,8BAA8B,EAAE,qBAAqB,EAAE,qBAAqB,EAAE;AAC1G,YAAY,gBAAgB,EAAE,cAAc,EAAE;AAC9C,YAAY,gBAAgB,EAAE,cAAc,EAAE;AAC9C;EACE,kBAAkB;EAClB,aAAa;EACb,gBAAgB;EAChB,sBAAsB;EACtB;;;;;;6CAM2C;AAC7C;AACA,kCAAkC,kBAAkB,EAAE,OAAO,EAAE,MAAM,EAAE,sBAAsB,EAAE;AAC/F,cAAc,cAAc,EAAE,WAAW,EAAE,iBAAiB,EAAE,eAAe,EAAE;AAC/E,aAAa,UAAU,EAAE,YAAY,EAAE,kBAAkB,EAAE,mBAAmB,EAAE,2BAA2B,EAAE;AAC7G,WAAW,eAAe,EAAE,iBAAiB,EAAE;AAC/C,WAAW,qDAAqD,EAAE;AAClE;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,2BAA2B;EAC3B,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;EAChB,WAAW;EACX,mCAAmC;AACrC;AACA,WAAW,kBAAkB,EAAE,UAAU,EAAE,WAAW,EAAE,QAAQ,EAAE,iBAAiB,EAAE,+BAA+B,EAAE,oBAAoB,EAAE;AAC5I,eAAe,aAAa,EAAE,8BAA8B,EAAE,mBAAmB,EAAE,WAAW,EAAE,kBAAkB,EAAE;AACpH,sBAAsB,SAAS,EAAE,kBAAkB,EAAE,wCAAwC,EAAE;AAC/F;EACE,WAAW;EACX,YAAY;EACZ,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,qDAAqD;EACrD,2CAA2C;AAC7C;AACA,mBAAmB,wBAAwB,EAAE;AAC7C,WAAW,cAAc,EAAE,UAAU,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,gEAAgE,EAAE;AAC/I,kBAAkB,sBAAsB,EAAE;AAC1C,eAAe,oBAAoB,EAAE;AACrC,cAAc,aAAa,EAAE,uBAAuB,EAAE,eAAe,EAAE,WAAW,EAAE,kBAAkB,EAAE;AACxG,aAAa,aAAa,EAAE,mBAAmB,EAAE,YAAY,EAAE,wBAAwB,EAAE,oBAAoB,EAAE,kBAAkB,EAAE,mBAAmB,EAAE;AACxJ,mBAAmB,mBAAmB,EAAE;AACxC,kBAAkB,eAAe,EAAE,gBAAgB,EAAE,uBAAuB,EAAE,mBAAmB,EAAE;;AAEnG,+FAA+F;AAC/F,gCAAgC,gBAAgB,EAAE,qCAAqC,EAAE,oBAAoB,EAAE,qBAAqB,EAAE;;AAEtI,iFAAiF;AACjF,mEAAmE,mBAAmB,EAAE,0CAA0C,EAAE,UAAU,EAAE;AAChJ,YAAY,mFAAmF,EAAE;AACjG,YAAY,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE,UAAU,EAAE,eAAe,EAAE,gBAAgB,EAAE,qBAAqB,EAAE;;AAE7H,8DAA8D;AAC9D;EACE,qBAAqB;EACrB,eAAe;EACf,qBAAqB;EACrB,qDAAqD;EACrD,qDAAqD;EACrD,gBAAgB;AAClB;AACA,kBAAkB,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE;AAC7D,aAAa,aAAa,EAAE,oBAAoB,EAAE,WAAW,EAAE,qBAAqB,EAAE;AACtF;EACE,cAAc;EACd,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,eAAe;EACf,qBAAqB;EACrB,mBAAmB;AACrB;AACA,YAAY,kBAAkB,EAAE,gBAAgB,EAAE,sBAAsB,EAAE,yBAAyB,EAAE,cAAc,EAAE;AACrH,YAAY,qBAAqB,EAAE,mBAAmB,EAAE,iBAAiB,EAAE,oBAAoB,EAAE,WAAW,EAAE,mBAAmB,EAAE,iBAAiB,EAAE;AACtJ,WAAW,qCAAqC,EAAE,gBAAgB,EAAE,sBAAsB,EAAE,iBAAiB,EAAE,cAAc,EAAE;AAC/H;EACE,mBAAmB;EACnB,wBAAwB;EACxB,SAAS;EACT,oBAAoB;EACpB,iBAAiB;EACjB,gBAAgB;EAChB,WAAW;EACX,qDAAqD;AACvD;AACA,SAAS,cAAc,EAAE,+BAA+B,EAAE,qBAAqB,EAAE,gBAAgB,EAAE,6CAA6C,EAAE;AAClJ,eAAe,kBAAkB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,cAAc,EAAE,kBAAkB,EAAE;AAC7G,cAAc,aAAa,EAAE,eAAe,EAAE,YAAY,EAAE;AAC5D,aAAa,aAAa,EAAE,mBAAmB,EAAE,WAAW,EAAE,eAAe,EAAE,yBAAyB,EAAE,oBAAoB,EAAE,mBAAmB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,gCAAgC,EAAE;AAC7N,mBAAmB,mBAAmB,EAAE;AACxC,kBAAkB,gBAAgB,EAAE,uBAAuB,EAAE,mBAAmB,EAAE;AAClF,oBAAoB,OAAO,qBAAqB,EAAE,UAAU,EAAE,EAAE,KAAK,mBAAmB,EAAE,UAAU,EAAE,EAAE;AACxG,aAAa,aAAa,EAAE,mBAAmB,EAAE,uBAAuB,EAAE,WAAW,EAAE,kBAAkB,EAAE,eAAe,EAAE,qBAAqB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,cAAc,EAAE,kCAAkC,EAAE;AAC7O,iBAAiB;AACjB,0BAA0B,gCAAgC,EAAE;AAC5D,0BAA0B,gCAAgC,EAAE;AAC5D,0BAA0B,gCAAgC,EAAE;AAC5D,YAAY,uDAAuD,EAAE;AACrE,sBAAsB,OAAO,0BAA0B,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAC/F,WAAW,uBAAuB,EAAE,0BAA0B,EAAE,4CAA4C,EAAE;AAC9G,qBAAqB,gBAAgB,oBAAoB,EAAE,YAAY,EAAE,EAAE,MAAM,sBAAsB,EAAE,uBAAuB,EAAE,EAAE;AACpI,WAAW,4CAA4C,EAAE;AACzD,qBAAqB,WAAW,wBAAwB,EAAE,EAAE,MAAM,2BAA2B,EAAE,EAAE,MAAM,wBAAwB,EAAE,EAAE;AACnI,aAAa,mBAAmB,EAAE,4CAA4C,EAAE;AAChF,uBAAuB,UAAU,oBAAoB,EAAE,EAAE,WAAW,oBAAoB,EAAE,EAAE,OAAO,oBAAoB,EAAE,EAAE;AAC3H,WAAW,mBAAmB,EAAE,4CAA4C,EAAE;AAC9E,qBAAqB,KAAK,oBAAoB,EAAE,EAAE,WAAW,oBAAoB,EAAE,EAAE,OAAO,oBAAoB,EAAE,EAAE;AACpH;EACE,gBAAgB,0BAA0B,EAAE,oBAAoB,EAAE;AACpE;;AAEA,8EAA8E;AAC9E;EACE,kBAAkB;EAClB,gBAAgB;EAChB,sBAAsB;EACtB,kBAAkB,UAAU,gEAAgE;EAC5F;;6CAE2C;AAC7C;AACA,YAAY,kBAAkB,EAAE,OAAO,EAAE,MAAM,EAAE,sBAAsB,EAAE;AACzE,UAAU,kBAAkB,EAAE,mBAAmB,EAAE,2BAA2B,EAAE;AAChF,cAAc,mBAAmB,EAAE;AACnC,kBAAkB,mBAAmB,EAAE;AACvC,WAAW,UAAU,EAAE,sDAAsD,EAAE;AAC/E,mBAAmB,oCAAoC,EAAE;AACzD,YAAY,cAAc,EAAE,kBAAkB,EAAE;AAChD;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,QAAQ;EACR,UAAU;EACV,gBAAgB;EAChB,kBAAkB;EAClB,WAAW;EACX,yCAAyC;AAC3C;;AAEA,6DAA6D;AAC7D;EACE,gBAAgB;EAChB,mBAAmB;EACnB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,gBAAgB;EAChB,mBAAmB;EACnB,6CAA6C;AAC/C;AACA,+BAA+B,aAAa,EAAE,aAAa,EAAE,uDAAuD,EAAE;AACtH,sBAAsB,KAAK,YAAY,EAAE,EAAE;AAC3C,6BAA6B,2CAA2C,EAAE;AAC1E;EACE,WAAW,YAAY,EAAE;EACzB,MAAM,aAAa,EAAE;EACrB,MAAM,aAAa,EAAE;EACrB,MAAM,YAAY,EAAE;EACpB,MAAM,aAAa,EAAE;AACvB;AACA,4BAA4B,aAAa,EAAE,oCAAoC,EAAE;AACjF,4BAA4B,uBAAuB,EAAE,yBAAyB,EAAE,2CAA2C,EAAE;AAC7H,8BAA8B,oBAAoB,EAAE;AACpD;EACE,gBAAgB,UAAU,EAAE,mCAAmC,EAAE;EACjE,UAAU,UAAU,EAAE,gCAAgC,EAAE;AAC1D;AACA,8BAA8B,yDAAyD,EAAE;AACzF,gCAAgC,sBAAsB,EAAE;AACxD,wBAAwB,KAAK,2BAA2B,EAAE,EAAE;AAC5D,gCAAgC,4CAA4C,EAAE;AAC9E,0BAA0B,KAAK,2CAA2C,EAAE,EAAE;AAC9E,gCAAgC,uBAAuB,EAAE,yBAAyB,EAAE;AACpF,6BAA6B,yCAAyC,EAAE,UAAU,EAAE;AACpF,+BAA+B,mBAAmB,EAAE;AACpD,+BAA+B,mBAAmB,EAAE;AACpD;EACE,KAAK,UAAU,EAAE,2BAA2B,EAAE;EAC9C,MAAM,UAAU,EAAE;EAClB,OAAO,UAAU,EAAE,4BAA4B,EAAE;AACnD;;AAEA,8DAA8D;AAC9D,gBAAgB,iBAAiB,EAAE;AACnC;IACI,WAAW;IACX,YAAY;IACZ,cAAc;IACd,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,kBAAkB;IAClB,gCAAgC;IAChC,kCAAkC;IAClC,2CAA2C;IAC3C,yCAAyC;AAC7C;AACA,qBAAqB,YAAY,EAAE,4CAA4C,EAAE,oBAAoB,EAAE;AACvG,gBAAgB,WAAW,EAAE,oCAAoC,EAAE;AACnE,gBAAgB,cAAc,EAAE,mCAAmC,EAAE,sCAAsC,EAAE;AAC7G,cAAc,kBAAkB,EAAE,cAAc,EAAE;AAClD;IACI,kBAAkB;IAClB,qBAAqB;IACrB,QAAQ;IACR,gBAAgB;IAChB,YAAY;IACZ,mBAAmB;IACnB,gBAAgB;IAChB,8CAA8C;IAC9C,gBAAgB;IAChB,UAAU;AACd;AACA,eAAe,qBAAqB,EAAE,kBAAkB,EAAE,WAAW,EAAE,6BAA6B,EAAE,kBAAkB,EAAE;AAC1H;IACI,cAAc;IACd,WAAW;IACX,iBAAiB;IACjB,SAAS;IACT,kBAAkB;IAClB,gBAAgB;IAChB,cAAc;IACd,gBAAgB;IAChB,gBAAgB;AACpB;AACA,4BAA4B,mBAAmB,EAAE;AACjD,wDAAwD;AACxD;IACI,qBAAqB;IACrB,wBAAwB;IACxB,oBAAoB;IACpB,kBAAkB;IAClB,gBAAgB;IAChB,sBAAsB;IACtB,yBAAyB;IACzB,cAAc;IACd,mCAAmC;AACvC;AACA,kBAAkB,kBAAkB,EAAE,WAAW,EAAE,aAAa,EAAE,UAAU,EAAE;;AAE9E,iFAAiF;AACjF;IACI,iBAAiB,aAAa,EAAE;IAChC,WAAW,iBAAiB,EAAE;AAClC;AACA,qCAAqC;AACrC;IACI,iBAAiB,aAAa,EAAE;AACpC;;AAEA;;8DAE8D;AAC9D;IACI,eAAe;IACf,cAAc;IACd,wDAAwD;AAC5D;AACA;IACI,cAAc;IACd,WAAW;IACX,YAAY;AAChB;;AAEA,kBAAkB,8BAA8B,EAAE;AAClD,kBAAkB,8BAA8B,EAAE;AAClD,kBAAkB,gBAAgB,EAAE,kBAAkB,EAAE;AACxD,kBAAkB,gBAAgB,EAAE,eAAe,EAAE;;AAErD,iBAAiB,oBAAoB,EAAE;AACvC,iBAAiB,uBAAuB,EAAE;AAC1C;IACI,+BAA+B;IAC/B,wBAAwB;IACxB,2CAA2C;AAC/C;AACA;IACI,UAAU,sCAAsC,EAAE;IAClD,YAAY,0CAA0C,EAAE;AAC5D;;AAEA;IACI,UAAU;IACV,YAAY;IACZ,iBAAiB;IACjB,sBAAsB;IACtB,qBAAqB;AACzB;AACA,iBAAiB,UAAU,EAAE;;AAE7B,8BAA8B;AAC9B;IACI,uBAAuB;IACvB,wBAAwB;IACxB,qCAAqC;AACzC;AACA,qBAAqB,KAAK,yBAAyB,EAAE,EAAE;;AAEvD,SAAS;AACT,eAAe,UAAU,EAAE;AAC3B,eAAe,wBAAwB,EAAE;AACzC;IACI,uBAAuB;IACvB,0BAA0B;AAC9B;AACA,aAAa,4DAA4D,EAAE;AAC3E,aAAa,kEAAkE,EAAE;AACjF;IACI,OAAO,qCAAqC,EAAE;IAC9C,OAAO,yCAAyC,EAAE,QAAQ,WAAW;IACrE,OAAO,4CAA4C,EAAE,KAAK,cAAc;IACxE,OAAO,0DAA0D,EAAE,EAAE,SAAS;IAC9E,OAAO,2CAA2C,EAAE,MAAM,kBAAkB;IAC5E,YAAY,wCAAwC,EAAE;AAC1D;AACA;IACI,4BAA4B;IAC5B,uBAAuB;IACvB,wBAAwB;AAC5B;AACA,oBAAoB,8DAA8D,EAAE;AACpF,oBAAoB,oEAAoE,EAAE;AAC1F;IACI,yBAAyB,mBAAmB,IAAI,UAAU,EAAE;IAC5D,yBAAyB,qBAAqB,EAAE,YAAY,EAAE;IAC9D,yBAAyB,sBAAsB,EAAE,YAAY,EAAE;AACnE;;AAEA,kBAAkB;AAClB;IACI,uBAAuB;IACvB,0BAA0B;IAC1B,4CAA4C;AAChD;AACA,gBAAgB,UAAU,EAAE;AAC5B,gBAAgB,aAAa,EAAE;AAC/B;IACI,WAAW,sCAAsC,EAAE;IACnD,WAAW,yCAAyC,EAAE;AAC1D;;AAEA,kBAAkB;AAClB;IACI,gDAAgD;AACpD;AACA;IACI,WAAW,wBAAwB,EAAE;IACrC,WAAW,2BAA2B,EAAE;AAC5C;;AAEA,aAAa;AACb;IACI,UAAU;IACV,uBAAuB;IACvB,wBAAwB;IACxB,+CAA+C;AACnD;AACA,iBAAiB,qBAAqB,EAAE,oBAAoB,EAAE;AAC9D,iBAAiB,qBAAqB,EAAE;AACxC,iBAAiB,qBAAqB,EAAE,mBAAmB,EAAE;AAC7D,iBAAiB,qBAAqB,EAAE,oBAAoB,EAAE;AAC9D;IACI,WAAW,kCAAkC,GAAG,YAAY,EAAE;IAC9D,WAAW,oCAAoC,EAAE,UAAU,EAAE;AACjE;;AAEA,aAAa;AACb;IACI,+BAA+B;IAC/B,uBAAuB;IACvB,wBAAwB;IACxB,qCAAqC;AACzC;AACA,kBAAkB,qBAAqB,EAAE,oBAAoB,EAAE;AAC/D,kBAAkB,qBAAqB,EAAE,mBAAmB,EAAE;AAC9D,kBAAkB,qBAAqB,EAAE;AACzC,kBAAkB,qBAAqB,EAAE,oBAAoB,EAAE;AAC/D,kBAAkB,qBAAqB,EAAE,mBAAmB,EAAE;AAC9D;IACI,OAAO,qCAAqC,OAAO,UAAU,EAAE;IAC/D,OAAO,UAAU,EAAE;IACnB,OAAO,4CAA4C,EAAE,UAAU,EAAE;AACrE;;AAEA;;8DAE8D;AAC9D;IACI;;QAEI,0BAA0B;IAC9B;AACJ;AACA;;;uGAGuG;AACvG;IACI,oCAAoC;IACpC,gCAAgC;IAChC,sBAAsB;AAC1B;AACA;IACI,yBAAyB;AAC7B;;AAEA;;yDAEyD;AACzD;IACI;;QAEI,kCAAkC;QAClC,0BAA0B;QAC1B,wCAAwC;QACxC,gBAAgB;IACpB;AACJ;;AAEA;;8DAE8D;AAC9D,iBAAiB,qDAAqD,EAAE;AACxE;IACI,gBAAgB;IAChB,iBAAiB;IACjB,sBAAsB;IACtB,yBAAyB;IACzB,kCAAkC;IAClC,wBAAwB;AAC5B;AACA;IACI,gBAAgB;IAChB,SAAS;IACT,UAAU;IACV,aAAa;IACb,sBAAsB;IACtB,WAAW;AACf;AACA;IACI,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,eAAe;IACf,mBAAmB;IACnB,gBAAgB;IAChB,4CAA4C;AAChD;AACA;IACI,kBAAkB;IAClB,cAAc;IACd,WAAW;IACX,YAAY;IACZ,mBAAmB;IACnB,aAAa;IACb,mBAAmB;IACnB,qDAAqD;IACrD,qFAAqF;AACzF;AACA;IACI,WAAW;IACX,YAAY;IACZ,UAAU;IACV,YAAY;IACZ,eAAe;IACf,qBAAqB;IACrB,sBAAsB;AAC1B;AACA;IACI,kBAAkB;IAClB,SAAS;IACT,UAAU;IACV,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,aAAa;IACb,mBAAmB;IACnB,kBAAkB;IAClB,gBAAgB;IAChB,8BAA8B;IAC9B,mCAAmC;IACnC,yCAAyC;AAC7C;;AAEA,sCAAsC;AACtC,gEAAgE;AAChE,yBAAyB,gDAAgD,EAAE;AAC3E,oDAAoD,sBAAsB,EAAE;AAC5E,oDAAoD,sBAAsB,EAAE;AAC5E;IACI,WAAW,wBAAwB,EAAE;IACrC,WAAW,2BAA2B,EAAE;AAC5C;;AAEA,0DAA0D;AAC1D,8BAA8B,gDAAgD,EAAE;AAChF,iCAAiC,qBAAqB,EAAE;AACxD,iCAAiC,qBAAqB,EAAE;AACxD;IACI,WAAW,aAAa,EAAE;IAC1B,WAAW,UAAU,EAAE;AAC3B;AACA,kCAAkC,UAAU,EAAE,YAAY,EAAE;;AAE5D,2EAA2E;AAC3E,8BAA8B,+CAA+C,EAAE;AAC/E,iCAAiC,qBAAqB,EAAE;AACxD,iCAAiC,mBAAmB,EAAE;AACtD;IACI,gBAAgB,iBAAiB,EAAE;IACnC,gBAAgB,+BAA+B,EAAE;AACrD;AACA;IACI,UAAU;IACV,uBAAuB;IACvB,0BAA0B;IAC1B,iDAAiD;AACrD;AACA;IACI,WAAW,mCAAmC,EAAE;IAChD,WAAW,4CAA4C,EAAE;IACzD,WAAW,mCAAmC,EAAE;AACpD;;AAEA,8CAA8C;AAC9C,iCAAiC,6CAA6C,EAAE;AAChF;IACI,WAAW,YAAY,EAAE;IACzB,WAAW,qDAAqD,EAAE;AACtE;;AAEA;IACI;;;;qCAIiC,eAAe,EAAE;IAClD,8BAA8B,UAAU,EAAE;AAC9C;;AAEA,8DAA8D;AAC9D,aAAa,kBAAkB,EAAE,wEAAwE,EAAE;AAC3G;IACI,aAAa;IACb,2DAA2D;IAC3D,QAAQ;IACR,qBAAqB;IACrB,sGAAsG;IACtG,iBAAiB;IACjB,gBAAgB;IAChB,YAAY;IACZ,kBAAkB;IAClB,yBAAyB;IACzB,qBAAqB;AACzB;AACA;IACI,6BAA6B;IAC7B,gBAAgB;IAChB,kBAAkB;IAClB,YAAY;IACZ,cAAc;IACd,gCAAgC;AACpC;AACA,6BAA6B,wCAAwC,EAAE,sBAAsB,EAAE;AAC/F,kCAAkC,6CAA6C,EAAE,mBAAmB,EAAE;;AAEtG,sDAAsD;AACtD,eAAe,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE,iBAAiB,EAAE,kBAAkB,EAAE,yBAAyB,EAAE;AAC5H,iBAAiB,mBAAmB,EAAE,mBAAmB,EAAE,gBAAgB,EAAE,MAAM,EAAE,UAAU,EAAE;AACjG,cAAc,SAAS,EAAE,gBAAgB,EAAE,UAAU,EAAE,gBAAgB,EAAE,cAAc,EAAE,mBAAmB,EAAE;AAC9G,oBAAoB,0BAA0B,EAAE;AAChD,gBAAgB,gBAAgB,EAAE,gBAAgB,EAAE;;AAEpD,8CAA8C;AAC9C,cAAc,aAAa,EAAE,sBAAsB,EAAE,SAAS,EAAE;AAChE,iBAAiB,aAAa,EAAE,yDAAyD,EAAE,aAAa,EAAE,mBAAmB,EAAE;AAC/H,mBAAmB,aAAa,EAAE,mBAAmB,EAAE,QAAQ,EAAE,YAAY,EAAE,iBAAiB,EAAE;AAClG,kBAAkB,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE,kBAAkB,EAAE,mBAAmB,EAAE,WAAW,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,oBAAoB,EAAE,mBAAmB,EAAE,uBAAuB,EAAE;AAC7N,mBAAmB,mBAAmB,EAAE,kBAAkB,EAAE,YAAY,EAAE,gBAAgB,EAAE;AAC5F,kBAAkB,YAAY,EAAE,kBAAkB,EAAE,oDAAoD,EAAE,aAAa,EAAE,mBAAmB,EAAE,yBAAyB,EAAE,cAAc,EAAE,eAAe,EAAE,2BAA2B,EAAE;AACvO,uBAAuB,WAAW,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,mBAAmB,EAAE;AAC/F,kBAAkB,mBAAmB,EAAE;AACvC;IACI,iBAAiB,0BAA0B,EAAE;IAC7C,kBAAkB,mBAAmB,EAAE;AAC3C;;AAEA,uFAAuF;AACvF;EACE,eAAe;EACf,WAAW;EACX,cAAc;EACd,cAAc,UAAU,+EAA+E;EACvG,aAAa;EACb,WAAW;AACb;AACA;EACE,+BAA+B;EAC/B,gCAAgC;EAChC,oBAAoB;EACpB,0CAA0C;EAC1C,WAAW;EACX,qCAAqC;EACrC,cAAc;EACd,8BAA8B;EAC9B,2BAA2B;EAC3B,mCAAmC;EACnC,yCAAyC;EACzC,aAAa;EACb,mBAAmB;EACnB,uBAAuB;AACzB;AACA,0BAA0B,8BAA8B,EAAE;AAC1D,kCAAkC,iCAAiC,EAAE,mBAAmB,EAAE;AAC1F,0BAA0B,4BAA4B,EAAE;;AAExD,yEAAyE;AACzE;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,WAAW;EACX,gCAAgC;EAChC,0BAA0B;EAC1B,kCAAkC;AACpC;AACA;EACE,gBAAgB;EAChB,iCAAiC;EACjC,qBAAqB;EACrB,2CAA2C;EAC3C,SAAS;AACX;AACA,uBAAuB,qCAAqC,EAAE,SAAS,EAAE;;AAEzE,8EAA8E;AAC9E;EACE,oBAAoB;EACpB,eAAe;EACf,gBAAgB;EAChB,yCAAyC;EACzC,yEAAyE;AAC3E;;AAEA,0GAA0G;AAC1G;EACE,gCAAgC,kCAAkC,EAAE;EACpE,yBAAyB,4BAA4B,EAAE,iCAAiC,EAAE;EAC1F,uBAAuB,4BAA4B,EAAE;EACrD,uBAAuB,4BAA4B,EAAE;EACrD,2BAA2B,uBAAuB,EAAE;EACpD,uBAAuB,8BAA8B,EAAE,iCAAiC,EAAE;EAC1F,iBAAiB,eAAe,EAAE;AACpC;;AAEA;;;yGAGyG;AACzG;EACE,wBAAwB;AAC1B;AACA,uFAAuF;AACvF;EACE,2BAA2B;AAC7B;;AAEA;;8DAE8D;AAC9D;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,QAAQ;EACR,gBAAgB;EAChB,gCAAgC;EAChC,WAAW;EACX,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,gBAAgB;EAChB,qCAAqC;EACrC,qBAAqB;EACrB,4CAA4C;EAC5C,gDAAgD;AAClD;AACA;EACE,kBAAkB;EAClB,kCAAkC;EAClC,0DAA0D;AAC5D;AACA,yDAAyD;AACzD;EACE,kBAAkB;EAClB,WAAW;EACX,2HAA2H;EAC3H,8DAA8D;AAChE;AACA;EACE,OAAO,sBAAsB,EAAE,YAAY,EAAE;EAC7C,OAAO,sBAAsB,EAAE,UAAU,EAAE;AAC7C;AACA;EACE,OAAO,6CAA6C,EAAE;EACtD,OAAO,4CAA4C,EAAE;AACvD;AACA;EACE,OAAO,2BAA2B,EAAE;EACpC,OAAO,0BAA0B,EAAE;AACrC;;AAEA;EACE,eAAe;EACf,QAAQ;EACR,YAAY;EACZ,cAAc;EACd,aAAa,WAAW,mEAAmE;EAC3F,oBAAoB;AACtB;;AAEA;EACE,kBAAkB;EAClB,cAAc;EACd,6CAA6C;EAC7C,mBAAmB;EACnB,cAAc;EACd,kEAAkE;EAClE,+FAA+F;EAC/F,mIAAmI;AACrI;AACA;EACE,kBAAkB;EAClB,kCAAkC;EAClC,SAAS;EACT,2BAA2B;EAC3B,iCAAiC;EACjC,iDAAiD;EACjD,4DAA4D;AAC9D;AACA;EACE,sCAAsC,IAAI,uBAAuB;EACjE,gBAAgB;EAChB,yBAAyB;EACzB,sBAAsB;EACtB,sCAAsC;AACxC;AACA;EACE,0CAA0C;EAC1C,2CAA2C;EAC3C,sBAAsB;EACtB,kBAAkB;EAClB,yCAAyC;AAC3C;AACA;EACE,gBAAgB;EAChB,qCAAqC;EACrC,gBAAgB;EAChB,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,uCAAuC;AACzC;AACA,sDAAsD;AACtD;EACE,gEAAgE;EAChE,sDAAsD;AACxD;AACA;EACE,OAAO,qBAAqB,EAAE,UAAU,EAAE;EAC1C,OAAO,sBAAsB,EAAE,UAAU,EAAE;EAC3C,OAAO,mBAAmB,EAAE;AAC9B;AACA;EACE,OAAO,+FAA+F,EAAE;EACxG,OAAO,+FAA+F,EAAE;AAC1G;AACA;EACE,OAAO,uDAAuD,EAAE;EAChE,OAAO,yDAAyD,EAAE;AACpE;AACA;EACE,uGAAuG,eAAe,EAAE;AAC1H;;AAEA;;8DAE8D;AAC9D;EACE,gBAAgB;EAChB,gBAAgB;EAChB,mBAAmB;EACnB,qCAAqC;EACrC,0CAA0C;EAC1C,kBAAkB;AACpB;AACA,aAAa,aAAa,EAAE,8BAA8B,EAAE,qBAAqB,EAAE,WAAW,EAAE,qBAAqB,EAAE;AACvH,YAAY,gBAAgB,EAAE,cAAc,EAAE;AAC9C,YAAY,kBAAkB,EAAE,gBAAgB,EAAE,WAAW,EAAE;AAC/D;EACE,kBAAkB;EAClB,cAAc;EACd,WAAW;EACX,aAAa;EACb,gBAAgB;EAChB,SAAS;EACT,sBAAsB;EACtB,UAAU;EACV,0EAA0E;EAC1E,0BAA0B;EAC1B,eAAe;AACjB;AACA,uBAAuB,eAAe,EAAE,mCAAmC,EAAE;AAC7E,qBAAqB,UAAU,EAAE;AACjC;EACE,kBAAkB;EAClB,SAAS;EACT,cAAc;EACd,6BAA6B;AAC/B;AACA,cAAc,gBAAgB,EAAE,kDAAkD,EAAE;AACpF,uFAAuF;AACvF,iBAAiB,sDAAsD,EAAE;AACzE;EACE,OAAO,wCAAwC,EAAE;EACjD,OAAO,wCAAwC,EAAE;AACnD;AACA;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,YAAY;EACZ,WAAW;EACX,mBAAmB;AACrB;AACA,2EAA2E;AAC3E,YAAY,kBAAkB,EAAE;AAChC,WAAW,kBAAkB,EAAE,gBAAgB,EAAE,WAAW,EAAE,iBAAiB,EAAE;AACjF,sBAAsB,cAAc,EAAE,kBAAkB,EAAE;AAC1D,WAAW,kBAAkB,EAAE,WAAW,EAAE,iBAAiB,EAAE;AAC/D,WAAW,aAAa,EAAE,eAAe,EAAE,uBAAuB,EAAE,YAAY,EAAE,kBAAkB,EAAE;AACtG;EACE,aAAa;EACb,mBAAmB;EACnB,YAAY;EACZ,uCAAuC;EACvC,oBAAoB;EACpB,mBAAmB;EACnB,iBAAiB;EACjB,gBAAgB;EAChB,WAAW;AACb;AACA,qBAAqB,mBAAmB,EAAE;AAC1C,WAAW,kBAAkB,EAAE,kBAAkB,EAAE,WAAW,EAAE;;AAEhE,uFAAuF;AACvF;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,gBAAgB;EAChB,oBAAoB,MAAM,wDAAwD;EAClF,+BAA+B,IAAI,wDAAwD;AAC7F;AACA;EACE,kBAAkB;EAClB,SAAS;EACT,SAAS;EACT,uBAAuB;EACvB,kBAAkB;EAClB,WAAW;EACX,yCAAyC;EACzC,0CAA0C;AAC5C;AACA;EACE,OAAO,6BAA6B,EAAE;EACtC,OAAO,+CAA+C,EAAE;AAC1D;AACA,qBAAqB,kBAAkB,EAAE,aAAa,EAAE;AACxD,iBAAiB,gBAAgB,EAAE,mCAAmC,EAAE,uBAAuB,EAAE,8BAA8B,EAAE;AACjI,mBAAmB,uCAAuC,EAAE;AAC5D,kBAAkB,aAAa,EAAE,kBAAkB,EAAE;AACrD,sBAAsB,uBAAuB,EAAE,yBAAyB,EAAE,qBAAqB,EAAE,YAAY,EAAE;AAC/G,mBAAmB,aAAa,EAAE,mBAAmB,EAAE,uBAAuB,EAAE,WAAW,EAAE,gBAAgB,EAAE;AAC/G,mBAAmB,gBAAgB,EAAE,mCAAmC,EAAE;AAC1E,mBAAmB,aAAa,EAAE;AAClC,kBAAkB,kBAAkB,EAAE,kBAAkB,EAAE;AAC1D,8GAA8G;AAC9G;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,+FAA+F;AACjG;AACA,2CAA2C,eAAe,EAAE;;AAE5D,oGAAoG;AACpG;EACE,kBAAkB;EAClB,WAAW;EACX,qEAAqE;AACvE;AACA;EACE,mCAAmC;EACnC,gBAAgB;EAChB,cAAc;EACd,sBAAsB;EACtB,4EAA4E;AAC9E;AACA;EACE,kBAAkB;EAClB,uCAAuC;EACvC,gBAAgB;EAChB,aAAa;AACf;AACA;EACE,qBAAqB;EACrB,mBAAmB;EACnB,sBAAsB;EACtB,oBAAoB;EACpB,mBAAmB;EACnB,cAAc;EACd,gBAAgB;EAChB,qCAAqC;EACrC,yBAAyB;EACzB,sBAAsB;AACxB;AACA;EACE,mBAAmB;EACnB,wBAAwB;EACxB,gBAAgB;EAChB,sBAAsB;EACtB,mBAAmB;EACnB,mBAAmB;EACnB,kBAAkB;EAClB,mDAAmD;EACnD,qEAAqE;AACvE;AACA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,cAAc;EACd,yBAAyB;EACzB,qBAAqB;AACvB;AACA;EACE,sCAAsC;EACtC,mBAAmB;EACnB,gBAAgB;EAChB,cAAc;EACd,gBAAgB;AAClB;AACA;EACE,gBAAgB;AAClB;AACA;EACE,OAAO,UAAU,EAAE,qBAAqB,EAAE;EAC1C,KAAK,UAAU,EAAE,mBAAmB,EAAE;AACxC;;AAEA;wFACwF;AACxF;EACE,kBAAkB;EAClB,QAAQ;EACR,WAAW;EACX,YAAY;EACZ,UAAU;EACV,oBAAoB;EACpB,iBAAiB;EACjB,kBAAkB;AACpB;AACA,oBAAoB,mBAAmB,EAAE;AACzC,0CAA0C,kBAAkB,EAAE,UAAU,EAAE;AAC1E,4CAA4C;AAC5C;EACE,cAAc;EACd,8DAA8D;EAC9D,sHAAsH;EACtH,gEAAgE;AAClE;AACA,oDAAoD;AACpD;EACE,wBAAwB;EACxB,8BAA8B;EAC9B,oBAAoB;EACpB,mBAAmB;AACrB;;AAEA;yFACyF;AACzF;;;;6BAI6B,uBAAuB,EAAE;;AAEtD,4CAA4C;AAC5C,qCAAqC,yDAAyD,EAAE;AAChG,qCAAqC,iEAAiE,EAAE;AACxG,mCAAmC,wDAAwD,EAAE;AAC7F,uBAAuB,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAC9F,4CAA4C;AAC5C,qCAAqC,yDAAyD,EAAE;AAChG,qCAAqC,iEAAiE,EAAE;AACxG,mCAAmC,wDAAwD,EAAE;;AAE7F,2DAA2D;AAC3D,0BAA0B,yBAAyB,EAAE,yDAAyD,EAAE;AAChH,wBAAwB,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAC7F,yBAAyB,wBAAwB,EAAE;AACnD,wCAAwC,wDAAwD,EAAE;AAClG,uBAAuB,OAAO,uBAAuB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;;AAE1F,iFAAiF;AACjF,oDAAoD,yBAAyB,EAAE;AAC/E,oDAAoD,yBAAyB,EAAE;AAC/E,kDAAkD,yBAAyB,EAAE;AAC7E,uCAAuC,qCAAqC,EAAE;AAC9E,sCAAsC,qDAAqD,EAAE;AAC7F,0BAA0B,OAAO,UAAU,EAAE,EAAE,KAAK,UAAU,EAAE,EAAE;AAClE,2EAA2E;AAC3E,iDAAiD,wBAAwB,EAAE,gCAAgC,EAAE;AAC7G,wCAAwC,0BAA0B,EAAE;AACpE,oCAAoC,wBAAwB,EAAE;AAC9D,0BAA0B,UAAU,EAAE,yBAAyB,EAAE;AACjE,gCAAgC,iCAAiC,EAAE;AACnE,sBAAsB,KAAK,UAAU,EAAE,qBAAqB,EAAE,EAAE,MAAM,UAAU,EAAE,qBAAqB,EAAE,EAAE,OAAO,UAAU,EAAE,mBAAmB,EAAE,EAAE;AACrJ,+CAA+C;AAC/C,mCAAmC,sDAAsD,EAAE;AAC3F,yBAAyB,OAAO,mCAAmC,EAAE,EAAE,KAAK,mCAAmC,EAAE,EAAE;;AAEnH,eAAe;AACf,sBAAsB,UAAU,EAAE,8BAA8B,EAAE;AAClE,4BAA4B,UAAU,EAAE;AACxC,sBAAsB,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;;AAE7F,8FAA8F;AAC9F,sBAAsB,yBAAyB,EAAE,mCAAmC,EAAE;AACtF,gCAAgC,wBAAwB,EAAE,qBAAqB,EAAE;AACjF,kCAAkC,wBAAwB,EAAE,qBAAqB,EAAE;AACnF,wBAAwB,gBAAgB,oBAAoB,EAAE,EAAE,MAAM,sBAAsB,EAAE,EAAE;AAChG,wBAAwB,+BAA+B,EAAE;AACzD,2CAA2C,2BAA2B,EAAE;AACxE,4CAA4C,0BAA0B,EAAE;;AAExE,wBAAwB;AACxB,0BAA0B,yBAAyB,EAAE,uDAAuD,EAAE;AAC9G,sBAAsB,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAC3F,+BAA+B,0BAA0B,EAAE,0DAA0D,EAAE;AACvH,yBAAyB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC5F,6BAA6B,4CAA4C,EAAE;AAC3E,wBAAwB,MAAM,aAAa,EAAE,EAAE;;AAE/C,uCAAuC;AACvC,0BAA0B,wBAAwB,EAAE,gCAAgC,EAAE;AACtF,wCAAwC,yBAAyB,EAAE;;AAEnE,8DAA8D;AAC9D,sBAAsB,wBAAwB,EAAE;AAChD,qDAAqD,6DAA6D,EAAE;AACpH,sDAAsD,qEAAqE,EAAE;AAC7H,uCAAuC,wDAAwD,EAAE;AACjG,2BAA2B,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAChG,mCAAmC,0BAA0B,EAAE,oCAAoC,EAAE;AACrG,kCAAkC,0BAA0B,EAAE,uBAAuB,EAAE,oCAAoC,EAAE;AAC7H,wBAAwB,KAAK,mBAAmB,EAAE,EAAE,MAAM,4BAA4B,EAAE,EAAE,OAAO,mBAAmB,EAAE,EAAE;;AAExH,uEAAuE;AACvE;EACE,iCAAiC;EACjC,2DAA2D;AAC7D;AACA;EACE,KAAK,yCAAyC,EAAE;EAChD,MAAM,kDAAkD,EAAE;EAC1D,OAAO,gDAAgD,EAAE;AAC3D;;AAEA;iFACiF;AACjF,iCAAiC,+DAA+D,EAAE;AAClG,8BAA8B,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AACrG,6BAA6B,wBAAwB,EAAE,+BAA+B,EAAE;AACxF,kDAAkD,uBAAuB,EAAE;AAC3E,+BAA+B,0DAA0D,EAAE;AAC3F,yBAAyB,OAAO,UAAU,EAAE,EAAE,KAAK,aAAa,EAAE,EAAE;AACpE,wDAAwD;AACxD,iCAAiC,4DAA4D,EAAE;AAC/F,6BAA6B,OAAO,0BAA0B,EAAE,EAAE,KAAK,yBAAyB,EAAE,EAAE;AACpG,uBAAuB,0BAA0B,EAAE,yDAAyD,EAAE;AAC9G,wCAAwC,wBAAwB,EAAE;AAClE,wBAAwB,OAAO,yBAAyB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAChG,4BAA4B,0BAA0B,EAAE,0DAA0D,EAAE;AACpH,4BAA4B,wBAAwB,EAAE,0DAA0D,EAAE;AAClH,wBAAwB,OAAO,wBAAwB,EAAE,EAAE,KAAK,yBAAyB,EAAE,EAAE;AAC7F,wBAAwB,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAC7F,uBAAuB,UAAU,EAAE;AACnC,6BAA6B,UAAU,EAAE;AACzC,sCAAsC,eAAe,EAAE,qDAAqD,EAAE;AAC9G,4CAA4C,+BAA+B,EAAE,iCAAiC,EAAE;AAChH,kDAAkD,qCAAqC,EAAE;AACzF,mCAAmC,MAAM,+BAA+B,EAAE,EAAE;AAC5E,sCAAsC,8FAA8F,EAAE;AACtI;qGACqG;AACrG,qBAAqB,UAAU,EAAE,UAAU,EAAE,6BAA6B,EAAE;AAC5E,2BAA2B,UAAU,EAAE,0BAA0B,EAAE;AACnE,+BAA+B,UAAU,EAAE,qBAAqB,EAAE,sBAAsB,EAAE,oBAAoB,EAAE;AAChH,2BAA2B,gCAAgC,EAAE,sBAAsB,EAAE;AACrF,2BAA2B,eAAe,EAAE,sDAAsD,EAAE;AACpG,2BAA2B,eAAe,EAAE;AAC5C,qDAAqD,qBAAqB,EAAE,+CAA+C,EAAE;AAC7H,8BAA8B,OAAO,oBAAoB,EAAE,EAAE,KAAK,oBAAoB,EAAE,EAAE;AAC1F,0CAA0C,oDAAoD,EAAE;AAChG,+BAA+B,WAAW,UAAU,EAAE,EAAE,MAAM,YAAY,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE,MAAM,aAAa,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE;AAC7I;EACE,aAAa;EACb,8DAA8D;EAC9D,uBAAuB;EACvB,yBAAyB;AAC3B;AACA,qFAAqF,8DAA8D,EAAE;AACrJ,0CAA0C,qBAAqB,EAAE;AACjE,6BAA6B,OAAO,qBAAqB,EAAE,EAAE,KAAK,qBAAqB,EAAE,EAAE;AAC3F;EACE,+BAA+B;EAC/B,4DAA4D;AAC9D;AACA;EACE,KAAK,0CAA0C,EAAE;EACjD,MAAM,mDAAmD,EAAE;EAC3D,OAAO,iDAAiD,EAAE;AAC5D;;AAEA,mFAAmF;AACnF,qBAAqB,UAAU,EAAE,UAAU,EAAE,6BAA6B,EAAE;AAC5E,2BAA2B,UAAU,EAAE;AACvC,2CAA2C,iDAAiD,EAAE;AAC9F,+BAA+B,WAAW,UAAU,EAAE,EAAE,MAAM,aAAa,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE,MAAM,aAAa,EAAE,EAAE;AAC1H,2BAA2B,aAAa,EAAE,oCAAoC,EAAE;AAChF;EACE,6BAA6B;EAC7B,6DAA6D;AAC/D;AACA;EACE,KAAK,0CAA0C,EAAE;EACjD,MAAM,mDAAmD,EAAE;EAC3D,OAAO,kDAAkD,EAAE;AAC7D;;AAEA;uCACuC;AACvC,sBAAsB,2CAA2C,EAAE;AACnE,wBAAwB,sBAAsB,EAAE;AAChD,uBAAuB,MAAM,aAAa,EAAE,EAAE;AAC9C,0BAA0B,4DAA4D,EAAE;AACxF,2BAA2B,OAAO,aAAa,EAAE,EAAE,KAAK,aAAa,EAAE,EAAE;AACzE,2BAA2B,uBAAuB,EAAE,wBAAwB,EAAE,yDAAyD,EAAE;AACzI,wBAAwB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC3F,iCAAiC,UAAU,EAAE,6BAA6B,EAAE;AAC5E,wDAAwD,UAAU,EAAE,+CAA+C,EAAE;AACrH,0BAA0B,MAAM,aAAa,EAAE,EAAE;AACjD,oDAAoD,aAAa,EAAE;AACnE,6BAA6B,uBAAuB,EAAE,2BAA2B,EAAE,6DAA6D,EAAE;AAClJ,4BAA4B,OAAO,wBAAwB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAChG,oCAAoC,+FAA+F,EAAE;AACrI;EACE,6BAA6B;EAC7B,2DAA2D;AAC7D;AACA;EACE,KAAK,yCAAyC,EAAE;EAChD,MAAM,kDAAkD,EAAE;EAC1D,OAAO,gDAAgD,EAAE;AAC3D;;AAEA,0GAA0G;AAC1G;EACE,kBAAkB;EAClB,QAAQ;EACR,UAAU;EACV,gBAAgB;EAChB,oBAAoB;AACtB;AACA;EACE,kBAAkB;EAClB,UAAU;EACV,kBAAkB;EAClB,gBAAgB;EAChB,sBAAsB;EACtB,sCAAsC;AACxC;AACA;EACE,KAAK,+BAA+B,EAAE;EACtC,MAAM,4CAA4C,EAAE;EACpD,OAAO,mCAAmC,EAAE;AAC9C;;AAEA,4HAA4H;AAC5H,kDAAkD,sCAAsC,EAAE;AAC1F,wBAAwB,MAAM,aAAa,EAAE,EAAE;AAC/C,sBAAsB,uBAAuB,EAAE,yBAAyB,EAAE,mDAAmD,EAAE;AAC/H,uBAAuB,OAAO,oBAAoB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AACtF,kDAAkD,aAAa,EAAE;AACjE,uBAAuB,UAAU,EAAE;AACnC,qCAAqC,UAAU,EAAE,yDAAyD,EAAE;AAC5G,wBAAwB,OAAO,0BAA0B,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AACjG,kCAAkC,qDAAqD,EAAE;AACzF,wBAAwB,OAAO,6BAA6B,EAAE,EAAE,KAAK,4BAA4B,EAAE,EAAE;AACrG,8EAA8E,uBAAuB,EAAE;AACvG,0BAA0B,0BAA0B,EAAE,gCAAgC,EAAE;AACxF,gDAAgD,yBAAyB,EAAE;AAC3E,iDAAiD,oDAAoD,EAAE;AACvG,uBAAuB,OAAO,+BAA+B,EAAE,EAAE,KAAK,+BAA+B,EAAE,EAAE;;AAEzG,8CAA8C,8DAA8D,EAAE;AAC9G,6BAA6B,OAAO,sCAAsC,EAAE,EAAE,KAAK,wCAAwC,EAAE,EAAE;AAC/H,gDAAgD;AAChD,mFAAmF,0BAA0B,EAAE,oCAAoC,EAAE;AACrJ,kDAAkD,6BAA6B,EAAE,wBAAwB,EAAE;AAC3G,sBAAsB,WAAW,oBAAoB,EAAE,EAAE,WAAW,yBAAyB,EAAE,EAAE;AACjG,2BAA2B,WAAW,oBAAoB,EAAE,EAAE,WAAW,yBAAyB,EAAE,EAAE;;AAEtG,gHAAgH;AAChH,qBAAqB,6CAA6C,EAAE;AACpE,sBAAsB,gBAAgB,wBAAwB,EAAE,EAAE,WAAW,2BAA2B,EAAE,EAAE,WAAW,0BAA0B,EAAE,EAAE;AACrJ,4BAA4B,uBAAuB,EAAE,0BAA0B,EAAE;AACjF,kDAAkD,qDAAqD,EAAE;AACzG,wBAAwB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC3F,sBAAsB,4CAA4C,EAAE;AACpE,2BAA2B,sBAAsB,EAAE;AACnD,uBAAuB,MAAM,aAAa,EAAE,EAAE;AAC9C,8BAA8B,aAAa,EAAE;AAC7C,qDAAqD,eAAe,EAAE;AACtE,qCAAqC,0BAA0B,EAAE,uDAAuD,EAAE;AAC1H,0BAA0B,OAAO,sCAAsC,EAAE,EAAE,KAAK,qCAAqC,EAAE,EAAE;AACzH,mGAAmG;AACnG,0BAA0B,UAAU,EAAE;AACtC,uBAAuB,+BAA+B,EAAE;AACxD,gCAAgC,8FAA8F,EAAE;;AAEhI,iHAAiH;AACjH;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,gBAAgB;EAChB,oBAAoB,MAAM,wDAAwD;AACpF;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,sFAAsF;AACxF;AACA;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,6DAA6D;EAC7D,6BAA6B;AAC/B;AACA;EACE,kBAAkB;EAClB,MAAM;EACN,SAAS;EACT,UAAU;EACV;yGACuG;EACvG,uCAAuC;EACvC,2DAA2D;AAC7D;AACA;EACE,WAAW;EACX,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,WAAW;EACX,6DAA6D;EAC7D,2BAA2B;AAC7B;AACA,mBAAmB,OAAO,EAAE;AAC5B,oBAAoB,QAAQ,EAAE;AAC9B;EACE,kBAAkB;EAClB,UAAU;EACV,MAAM;EACN,OAAO;EACP,QAAQ;EACR,YAAY;EACZ,kFAAkF;EAClF,kCAAkC;EAClC,wCAAwC;EACxC,yCAAyC;EACzC,+BAA+B;AACjC;AACA,0GAA0G;AAC1G,6DAA6D,4BAA4B,EAAE;AAC3F,+DAA+D,2BAA2B,EAAE;AAC5F,mDAAmD,4BAA4B,EAAE;AACjF,yHAAyH,wBAAwB,EAAE;AACnJ,4BAA4B,2BAA2B,EAAE;AACzD,6BAA6B,0BAA0B,EAAE;AACzD,6BAA6B,WAAW,EAAE,yCAAyC,EAAE;;AAErF;EACE,oCAAoC,0BAA0B,EAAE,2BAA2B,EAAE;EAC7F,WAAW,aAAa,EAAE;AAC5B;;AAEA,8FAA8F;AAC9F;EACE,cAAc;EACd,aAAa;EACb,WAAW;EACX,iBAAiB;AACnB;AACA;EACE,gBAAgB;EAChB,mBAAmB;EACnB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,gBAAgB;AAClB;AACA;EACE,8BAA8B;EAC9B,+BAA+B;EAC/B,iBAAiB;EACjB,UAAU;EACV,8BAA8B;AAChC;AACA,gCAAgC,UAAU,EAAE,iDAAiD,EAAE;AAC/F,4BAA4B,MAAM,8BAA8B,EAAE,EAAE;AACpE,4BAA4B,2DAA2D,EAAE;AACzF,0BAA0B,OAAO,6BAA6B,EAAE,EAAE,KAAK,4BAA4B,EAAE,EAAE;AACvG,yCAAyC,wDAAwD,EAAE;AACnG,2BAA2B,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC9F,4BAA4B,uBAAuB,EAAE,yBAAyB,EAAE;AAChF,2BAA2B,4CAA4C,EAAE;AACzE,6BAA6B,qBAAqB,EAAE;AACpD,+CAA+C;AAC/C,4CAA4C,uBAAuB,EAAE,0BAA0B,EAAE,oCAAoC,EAAE;AACvI,yBAAyB,KAAK,2BAA2B,EAAE,EAAE,MAAM,2BAA2B,EAAE,EAAE,YAAY,sBAAsB,EAAE,EAAE;;AAExI,yGAAyG;AACzG;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,oBAAoB;AACtB;AACA;EACE,gBAAgB;EAChB,mBAAmB;EACnB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,iBAAiB,IAAI,iFAAiF;AACxG;AACA,wCAAwC,UAAU,EAAE;AACpD,2BAA2B,UAAU,EAAE;AACvC,0BAA0B,0BAA0B,EAAE;AACtD,2CAA2C,4BAA4B,EAAE;AACzE,2CAA2C,6BAA6B,EAAE;AAC1E;EACE,UAAU;EACV,eAAe;EACf,iBAAiB;EACjB,sBAAsB;EACtB,oDAAoD;AACtD;AACA,0BAA0B,UAAU,EAAE;AACtC,4EAA4E;AAC5E,6BAA6B,wBAAwB,EAAE,+BAA+B,EAAE;AACxF,yCAAyC,uBAAuB,EAAE;AAClE,2CAA2C,uDAAuD,EAAE;AACpG,0BAA0B,OAAO,mCAAmC,EAAE,EAAE,KAAK,mCAAmC,EAAE,EAAE;;AAEpH;;8DAE8D;AAC9D,cAAc,4BAA4B,EAAE,cAAc,EAAE,kBAAkB,EAAE,gBAAgB,EAAE;AAClG,iBAAiB,iBAAiB,EAAE,gBAAgB,EAAE,qBAAqB,EAAE,cAAc,EAAE;AAC7F,iBAAiB,kBAAkB,EAAE,gBAAgB,EAAE,uBAAuB,EAAE,cAAc,EAAE;AAChG,iBAAiB,oBAAoB,EAAE,qBAAqB,EAAE;AAC9D,iBAAiB,qBAAqB,EAAE;AACxC,mBAAmB,cAAc,EAAE,kBAAkB,EAAE,mBAAmB,EAAE;AAC5E;IACI,oCAAoC;IACpC,8BAA8B;IAC9B,kBAAkB;IAClB,sBAAsB;IACtB,gBAAgB;AACpB;AACA,oEAAoE;AACpE,mBAAmB,cAAc,EAAE,0BAA0B,EAAE;AAC/D,yBAAyB,cAAc,EAAE","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🕵️ The spy lobby: the shimmer runs amber and black */\n[data-gt-theme=\"spy\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */\n.gt-bg.theme-spy {\n    --gt-navy:     #06070d;\n    --gt-blue-800: #10131f;\n    --gt-blue-500: #1d2233;\n    --gt-blue-400: #2b3147;\n    --gt-blue-300: #6a7290;\n    --gt-ice:      #e8e6da;\n    --gt-bg-accent: #d6a83c;\n    --gt-bg-vignette: rgba(0, 0, 0, 0.6);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */\n.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }\n@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }\n.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }\n.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }\n@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }\n.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }\n.cc-crew .spy-siren-blue { animation-delay: 0.21s; }\n@keyframes spy-siren { 50% { opacity: 0.15; } }\n.cc-crew .spy-car-prisoners { display: none; }\n.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }\n.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }\n@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }\n/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */\n.cc-crew.spy-rules-show { z-index: 5; }\n.mx-rules-with-spies { padding-bottom: 17vh !important; }\n.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🕵️ The spy lobby: the shimmer runs amber and black */\n[data-gt-theme=\"spy\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */\n.gt-bg.theme-spy {\n    --gt-navy:     #06070d;\n    --gt-blue-800: #10131f;\n    --gt-blue-500: #1d2233;\n    --gt-blue-400: #2b3147;\n    --gt-blue-300: #6a7290;\n    --gt-ice:      #e8e6da;\n    --gt-bg-accent: #d6a83c;\n    --gt-bg-vignette: rgba(0, 0, 0, 0.6);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* 📼 The Jeffinitely deck's crew (JeffCrew.jsx): controllers while they play, the Jeffcom's cartridge,\n   Mitch blowing on it, Boomer's turning reels, Pixel beeping, and Dana's computer */\n.cc-crew .crew-controller, .cc-crew .crew-controller-pad, .cc-crew .crew-jeffcom-cart, .cc-crew .crew-held-cart,\n.cc-crew .crew-puff, .cc-crew .crew-boomer-reel, .cc-crew .crew-boomer-antenna, .cc-crew .crew-pixel-beep,\n.cc-crew .crew-computer-bar, .cc-crew .crew-computer-wheel { transform-box: fill-box; }\n/* 🎮 Playing: a controller in both hands, arms in, thumbs going, leaning into it */\n.cc-crew .crew-controller { opacity: 0; transition: opacity 0.25s ease; }\n.cc-crew .crew-gaming .crew-controller { opacity: 1; }\n.cc-crew .crew-gaming .crew-arm-cast { transform: rotate(-34deg); }\n.cc-crew .crew-gaming .crew-arm-bump { transform: rotate(34deg); }\n.cc-crew .crew-gaming .crew-controller-pad { animation: jeff-mash 0.18s steps(2) infinite; }\n@keyframes jeff-mash { 50% { transform: translate(0.6px, 0.8px); } }\n.cc-crew .crew-gaming .crew-controller-a { animation: jeff-button 0.36s steps(1) infinite; }\n.cc-crew .crew-gaming .crew-controller-b { animation: jeff-button 0.36s steps(1) infinite 0.18s; }\n@keyframes jeff-button { 50% { fill: #ffd23f; } }\n.cc-crew .crew-gaming .crew-fig { transform-origin: 50% 100%; animation: jeff-lean 1.6s ease-in-out infinite alternate; }\n.cc-crew .crew-angie.crew-gaming .crew-fig { animation-duration: 1.1s; animation-delay: -0.4s; }\n.cc-crew .crew-duke.crew-gaming .crew-fig { animation-duration: 2.1s; animation-delay: -1s; }\n.cc-crew .crew-boomer.crew-gaming .crew-fig { animation-duration: 1.3s; animation-delay: -0.7s; }\n@keyframes jeff-lean { from { transform: rotate(-4deg); } to { transform: rotate(3deg); } }\n/* Reaching down to the console, and blowing on the cartridge */\n.cc-crew .crew-reaching .crew-arm-bump { transform: rotate(-55deg); }\n.cc-crew .crew-held-cart { opacity: 0; }\n.cc-crew .crew-blowing .crew-held-cart { opacity: 1; }\n.cc-crew .crew-blowing .crew-arm-cast { transform: rotate(-125deg); }\n.cc-crew .crew-puff { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-blowing .crew-puff { animation: jeff-puff 0.9s ease-out infinite; }\n.cc-crew .crew-blowing .crew-puff-2 { animation-delay: 0.08s; }\n.cc-crew .crew-blowing .crew-puff-3 { animation-delay: 0.16s; }\n@keyframes jeff-puff { 0%, 30% { opacity: 0; transform: scale(0.3) translateX(4px); } 45% { opacity: 1; } 100% { opacity: 0; transform: scale(1.2) translateX(-4px); } }\n/* The Jeffcom: the cartridge sits up out of the slot until it's pushed in */\n.cc-crew .crew-jeffcom-cart { transform: translateY(-7px); transition: transform 0.22s ease, opacity 0.15s ease; }\n.cc-crew .crew-jeffcom.is-in .crew-jeffcom-cart { transform: translateY(0); }\n.cc-crew .crew-jeffcom.is-empty .crew-jeffcom-cart { opacity: 0; }\n.cc-crew .crew-jeffcom.is-powered .crew-jeffcom-light { fill: #ff3b3b; filter: drop-shadow(0 0 2px #ff3b3b); }\n/* Boomer: the mixtape's reels go round, and the antenna wobbles */\n.cc-crew .crew-boomer-reel { transform-origin: 50% 50%; animation: jeff-reel 1.2s linear infinite; }\n@keyframes jeff-reel { to { transform: rotate(360deg); } }\n.cc-crew .crew-boomer-antenna { transform-origin: 0% 100%; animation: crew-wobble 1.4s ease-in-out infinite alternate; }\n/* Pixel hops instead of walking, and beeps at the screen */\n.cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }\n.cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }\n@keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-pixel-beep { opacity: 0; }\n.cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }\n@keyframes jeff-beep { 50% { opacity: 1; } }\n/* 🖥️ Dana's computer: the wheels spin as it rolls, the modem blinks, the screen glows and \"connects\" */\n.cc-crew .crew-computer.is-rolling .crew-computer-wheel { animation: crew-bob 0.1s ease-in-out infinite alternate; }\n.cc-crew .crew-computer-glow, .cc-crew .crew-computer-modem { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-computer.is-on .crew-computer-glow { opacity: 1; animation: jeff-crt 0.12s steps(2) 6; }\n.cc-crew .crew-computer.is-on .crew-computer-modem { opacity: 1; animation: crew-bulb 0.3s steps(1) infinite; }\n.cc-crew .crew-computer-bar { transform-origin: 0% 50%; transform: scaleX(0); }\n.cc-crew .crew-computer.is-on .crew-computer-bar { transform: scaleX(1); transition: transform 1.8s steps(6); }\n@keyframes jeff-crt { 50% { opacity: 0.5; } }\n/* Dana fades in from the screen and back into it, and her bump arm is on the left */\n.cc-crew .crew-dana.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-dana.is-leaving { animation: crew-fade-in 0.9s ease-in reverse forwards; }\n.cc-crew .crew-dana.sq-bumping .sq-arm-bump { transform: rotate(120deg); }\n/* 📺 The QR card: fuzz while the cartridge isn't working, then it flickers on like an old tube TV */\n.cc-lobby-qr { position: relative; }\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-static::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  pointer-events: none;\n  opacity: 0.6;\n  background:\n    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 2px, transparent 2px 4px),\n    repeating-radial-gradient(circle at 30% 40%, #fff 0 1px, #777 1px 2px, #222 2px 3px);\n  background-size: 100% 100%, 7px 7px;\n  animation: jeff-static 0.12s steps(3) infinite;\n}\n@keyframes jeff-static {\n  0% { background-position: 0 0, 0 0; }\n  33% { background-position: 0 1px, 3px 5px; }\n  66% { background-position: 0 2px, 6px 2px; }\n}\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on-tube 0.9s ease-out;\n  box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7) !important;\n}\n@keyframes cc-qr-on-tube {\n  0% { transform: scale(1, 0.02); filter: brightness(3); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }\n  25% { transform: scale(1, 0.02); filter: brightness(3); }\n  55% { transform: scale(1, 1.04); filter: brightness(1.6); box-shadow: 0 0 46px 16px rgba(255, 79, 154, 0.95); }\n  70% { transform: scale(1, 1); filter: brightness(1); }\n  80% { filter: brightness(1.3); }\n  100% { filter: brightness(1); box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */\n.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }\n@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }\n.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }\n.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }\n@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }\n.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }\n.cc-crew .spy-siren-blue { animation-delay: 0.21s; }\n@keyframes spy-siren { 50% { opacity: 0.15; } }\n.cc-crew .spy-car-prisoners { display: none; }\n.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }\n.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }\n@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }\n/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */\n.cc-crew.spy-rules-show { z-index: 5; }\n.mx-rules-with-spies { padding-bottom: 17vh !important; }\n.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"AAAA,mCAAmC;AACnC;EACE,aAAa;EACb,uBAAuB;EACvB,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,sBAAsB,EAAE,qEAAqE;;EAE7F,oCAAoC;EACpC,8BAA8B;;EAE9B,kEAAkE;EAClE,+BAA+B;AACjC;;AAEA,6BAA6B;AAC7B;EACE,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,kBAAkB;EAClB,uBAAuB;EACvB,uDAAuD;AACzD;;AAEA,+BAA+B;AAC/B;EACE,+CAA+C;EAC/C,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,uBAAuB;EACvB,8BAA8B;EAC9B,iCAAiC;EACjC,gBAAgB;EAChB,qBAAqB;EACrB,yBAAyB;EACzB,0BAA0B;AAC5B;;AAEA,4BAA4B;AAC5B;EACE,cAAc;AAChB;;AAEA,uDAAuD;AACvD,uDAAuD;AACvD,uDAAuD;;AAEvD;EACE,uBAAuB;EACvB,6BAA6B;EAC7B,WAAW;AACb;;AAEA,0DAA0D;AAC1D;EACE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,0CAA0C,EAAE,UAAU,EAAE;EAC/D,OAAO,0CAA0C,EAAE,UAAU,EAAE;EAC/D,OAAO,4CAA4C,EAAE,UAAU,EAAE;EACjE,OAAO,4CAA4C,EAAE,UAAU,EAAE;AACnE;;AAEA,+DAA+D;AAC/D;EACE,OAAO,iCAAiC,EAAE,UAAU,EAAE;EACtD,OAAO,+BAA+B,EAAE,UAAU,EAAE;EACpD,OAAO,+BAA+B,EAAE,UAAU,EAAE;EACpD,OAAO,kCAAkC,EAAE,UAAU,EAAE;EACvD,OAAO,kCAAkC,EAAE,UAAU,EAAE;AACzD;;AAEA,2CAA2C;AAC3C;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,kDAAkD;AACpD;;AAEA,0CAA0C;AAC1C;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,kDAAkD;AACpD;;AAEA,wEAAwE;AACxE;EACE,kBAAkB;EAClB,QAAQ;EACR,sBAAsB,IAAI,8CAA8C;EACxE,YAAY;EACZ,UAAU;EACV,oBAAoB;AACtB;AACA;EACE,sDAAsD;AACxD;AACA,8DAA8D;AAC9D;EACE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,6CAA6C,EAAE,UAAU,EAAE;EAClE,OAAO,0CAA0C,KAAK,UAAU,EAAE;EAClE,OAAO,0CAA0C,KAAK,UAAU,EAAE;EAClE,OAAO,4CAA4C,GAAG,UAAU,EAAE;EAClE,OAAO,4CAA4C,GAAG,UAAU,EAAE;EAClE,OAAO,4CAA4C,GAAG,UAAU,EAAE;AACpE;;AAEA,yDAAyD;AACzD;EACE,qBAAqB;EACrB,iBAAiB;EACjB,qBAAqB;EACrB,sBAAsB;EACtB,6BAA6B;EAC7B,WAAW;EACX,2EAA2E;EAC3E,wFAAwF;EACxF,mDAAmD;AACrD;AACA,qEAAqE;AACrE;EACE,WAAW;EACX,uBAAuB;EACvB,gBAAgB;EAChB,uBAAuB;AACzB;;AAEA,+EAA+E;AAC/E,aAAa,gBAAgB,EAAE;AAC/B;EACE,aAAa;EACb,mBAAmB;EACnB,WAAW;EACX,wBAAwB;EACxB,gCAAgC;AAClC;AACA,4BAA4B,gBAAgB,EAAE;AAC9C;EACE,iBAAiB;EACjB,kBAAkB;EAClB,gBAAgB;EAChB,cAAc;AAChB;AACA;EACE,cAAc;EACd,YAAY;EACZ,aAAa;EACb,gBAAgB;EAChB,cAAc;AAChB;AACA;EACE,cAAc;EACd,kBAAkB;EAClB,gBAAgB;EAChB,cAAc;AAChB;AACA,kFAAkF;AAClF;EACE,kBAAkB;EAClB,oBAAoB;EACpB,YAAY;EACZ,eAAe;AACjB;AACA,2BAA2B,wBAAwB,EAAE;;AAErD,qDAAqD;AACrD;EACE,cAAc;EACd,YAAY;EACZ,YAAY;EACZ,qBAAqB;EACrB,iBAAiB;AACnB;AACA;EACE,uBAAuB;EACvB,+BAA+B;EAC/B,4DAA4D;AAC9D;AACA;EACE,OAAO,uDAAuD,EAAE;EAChE,OAAO,uDAAuD,EAAE;AAClE;AACA;EACE,uBAAuB;EACvB,wBAAwB;EACxB,sDAAsD;AACxD;AACA,0BAA0B,sBAAsB,EAAE;AAClD,2BAA2B,qBAAqB,EAAE;AAClD;EACE,WAAW,kCAAkC,EAAE,UAAU,EAAE;EAC3D,WAAW,iCAAiC,EAAE,UAAU,EAAE;AAC5D;AACA,kCAAkC;AAClC,qBAAqB,qDAAqD,EAAE;AAC5E,qBAAqB,mDAAmD,EAAE;AAC1E;EACE,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;EAC1B,WAAW,aAAa,EAAE;AAC5B;AACA;EACE,0BAA0B;EAC1B,8DAA8D;AAChE;AACA;EACE,OAAO,wBAAwB,EAAE;EACjC,OAAO,uBAAuB,EAAE;AAClC;AACA;EACE,2EAA2E,eAAe,EAAE;EAC5F,qBAAqB,UAAU,EAAE;AACnC;;AAEA,qCAAqC;AACrC,sCAAsC;AACtC,qCAAqC;;AAErC,wDAAwD;AACxD;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,cAAc;EACd,uFAAuF;EACvF,6BAA6B;EAC7B,aAAa;EACb,gBAAgB;;EAEhB,yCAAyC;EACzC,aAAa;EACb,sBAAsB;EACtB,mBAAmB,OAAO,oCAAoC;EAC9D,iBAAiB,SAAS,sBAAsB;EAChD,oBAAoB,MAAM,sBAAsB;AAClD;;AAEA,yDAAyD;AACzD;EACE,gBAAgB;EAChB,MAAM;EACN,aAAa,EAAE,sCAAsC;EACrD,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;AAClB;;AAEA,qCAAqC;AACrC,qCAAqC;AACrC,qCAAqC;;AAErC;EACE,KAAK,2BAA2B,EAAE;EAClC,MAAM,6BAA6B,EAAE;EACrC,OAAO,2BAA2B,EAAE;AACtC;;AAEA,uDAAuD;AACvD;EACE,kBAAkB;EAClB,YAAY,EAAE,8BAA8B;EAC5C,qBAAqB;EACrB,sBAAsB;EACtB,WAAW;EACX,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,4CAA4C;EAC5C,UAAU,EAAE,iCAAiC;AAC/C;AACA,0EAA0E;AAC1E;EACE,WAAW;EACX,kBAAkB;EAClB,QAAQ,EAAE,kCAAkC;EAC5C,sBAAsB,EAAE,4BAA4B;EACpD,YAAY,EAAE,sDAAsD;;EAEpE,2BAA2B;EAC3B,uEAAuE;EACvE,0BAA0B;EAC1B,uCAAuC;;EAEvC,mFAAmF;EACnF;;6BAE2B;EAC3B,2BAA2B;EAC3B,uBAAuB;;EAEvB,WAAW,EAAE,qCAAqC;EAClD,oBAAoB,EAAE,8CAA8C;AACtE;;AAEA,qDAAqD;AACrD;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA,yFAAyF;AACzF;EACE,SAAS;AACX;;AAEA,0DAA0D;AAC1D;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA,wDAAwD;AACxD;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA,yEAAyE;AACzE;EACE,gFAAgF;EAChF,0BAA0B;AAC5B;;AAEA;EACE,UAAU;AACZ;AACA;EACE,yBAAyB;EACzB,kBAAkB;AACpB;;AAEA;EACE,SAAS;EACT,WAAW;EACX,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,YAAY;EACZ,SAAS;EACT,iCAAiC;EACjC,gBAAgB;AAClB;;AAEA;;;;;;;;;;;;;;;;GAgBG;;AAEH;AACA,4BAA4B;EAC1B,uCAAuC;EACvC,2CAA2C;EAC3C,mBAAmB;;EAEnB,8BAA8B;EAC9B,kBAAkB;EAClB,YAAY;EACZ,iBAAiB;EACjB,qBAAqB,EAAE,iCAAiC;EACxD,cAAc;AAChB;;AAEA,2DAA2D;AAC3D;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,WAAW;EACX,kBAAkB;EAClB,cAAc;EACd,eAAe;EACf,qBAAqB;EACrB,qBAAqB;EACrB,oBAAoB;EACpB,WAAW;EACX,yCAAyC;EACzC,iBAAiB;EACjB,gBAAgB;EAChB,qCAAqC;EACrC,0CAA0C;EAC1C,2BAA2B;EAC3B,mCAAmC;EACnC,kFAAkF;AACpF;AACA,sBAAsB,qBAAqB,EAAE;AAC7C;EACE,mCAAmC;EACnC,oCAAoC;EACpC,cAAc;EACd,UAAU;EACV,YAAY;EACZ,eAAe;EACf,qBAAqB;EACrB,sBAAsB;EACtB,gDAAgD;AAClD;AACA,mBAAmB,UAAU,EAAE,YAAY,EAAE;AAC7C;EACE,WAAW,UAAU,EAAE;EACvB,WAAW,aAAa,EAAE;AAC5B;AACA;EACE,oBAAoB,eAAe,EAAE;AACvC;;AAEA,4CAA4C;AAC5C,0EAA0E;AAC1E,0CAA0C,cAAc,EAAE,iBAAiB,EAAE;AAC7E,8CAA8C;AAC9C;EACE,cAAc;EACd,sBAAsB;EACtB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,kBAAkB;EAClB,mBAAmB,IAAI,uFAAuF;EAC9G,+BAA+B;EAC/B,sCAAsC;EACtC,gBAAgB;EAChB,gBAAgB;EAChB,2CAA2C;AAC7C;;AAEA,yDAAyD;AACzD;EACE,oBAAoB;EACpB,sBAAsB;EACtB,oBAAoB;EACpB,gBAAgB;EAChB,sBAAsB;EACtB,qBAAqB;EACrB,8BAA8B;EAC9B,0CAA0C;AAC5C;AACA;EACE,aAAa;EACb,gDAAgD;EAChD,8BAA8B;EAC9B,6BAA6B;AAC/B;AACA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,aAAa;EACb,8DAA8D;EAC9D,mBAAmB;EACnB,WAAW;EACX,gBAAgB;EAChB,qCAAqC;EACrC,iBAAiB;EACjB,gBAAgB;EAChB,2CAA2C;EAC3C,oCAAoC;EACpC,2CAA2C;EAC3C,2BAA2B;EAC3B,mCAAmC;EACnC,0CAA0C;EAC1C,8EAA8E;AAChF;AACA;EACE,cAAc;EACd,aAAa;EACb,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,qBAAqB;EACrB,iBAAiB;EACjB,gBAAgB;AAClB;AACA,kBAAkB,cAAc,EAAE,YAAY,EAAE,uBAAuB,EAAE;AACzE,kBAAkB,cAAc,EAAE;AAClC;EACE,mCAAmC;EACnC,qBAAqB;EACrB,sBAAsB;AACxB;AACA,mBAAmB,YAAY,EAAE;;AAEjC,wFAAwF;AACxF;EACE,kBAAkB;EAClB,aAAa;EACb,aAAa;EACb,YAAY;AACd;AACA;;;2BAG2B,cAAc,EAAE,YAAY,EAAE,aAAa,EAAE;AACxE;;;yBAGyB,cAAc,EAAE,YAAY,EAAE;AACvD,0EAA0E;AAC1E;;gCAEgC,UAAU,EAAE;;AAE5C,gGAAgG;AAChG,mBAAmB,UAAU,EAAE;AAC/B;EACE,kBAAkB;EAClB,UAAU;EACV,sGAAsG;AACxG;AACA;EACE,OAAO,mCAAmC,EAAE;EAC5C,OAAO,sFAAsF,EAAE;AACjG;AACA;EACE,WAAW,4EAA4E,EAAE;EACzF,WAAW,kFAAkF,EAAE;AACjG;;AAEA,2DAA2D;AAC3D,iCAAiC,kBAAkB,EAAE;AACrD;EACE,kBAAkB;EAClB,QAAQ;EACR,aAAa;EACb,gIAAgI;AAClI;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,WAAW;EACX,YAAY;EACZ,UAAU;EACV,YAAY;EACZ,iBAAiB;EACjB,iCAAiC;EACjC,qDAAqD;EACrD,oBAAoB;EACpB,oDAAoD;AACtD;AACA;EACE,WAAW,0BAA0B,EAAE;EACvC,WAAW,+BAA+B,EAAE;EAC5C,WAAW,+BAA+B,EAAE;EAC5C,WAAW,8BAA8B,EAAE;AAC7C;AACA;EACE,OAAO,oCAAoC,EAAE,UAAU,EAAE;EACzD,OAAO,yEAAyE,EAAE,UAAU,EAAE;AAChG;AACA;EACE,OAAO,UAAU,EAAE;EACnB,OAAO,UAAU,EAAE;EACnB,OAAO,UAAU,EAAE;EACnB,OAAO,UAAU,EAAE;AACrB;;AAEA,0EAA0E;AAC1E;EACE,kBAAkB;EAClB,kEAAkE;AACpE;AACA;EACE,kBAAkB;EAClB,SAAS;EACT,UAAU;EACV,QAAQ;EACR,gCAAgC;EAChC,aAAa;EACb,8BAA8B;EAC9B,4BAA4B;EAC5B,uDAAuD;AACzD;AACA;EACE,kBAAkB;EAClB,6BAA6B;EAC7B,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;EAChB,yCAAyC;EACzC,4BAA4B;EAC5B,sFAAsF;AACxF;AACA,gBAAgB,sCAAsC,EAAE;AACxD,iBAAiB;AACjB;EACE,WAAW;EACX,kBAAkB;EAClB,YAAY;EACZ,qBAAqB;EACrB,WAAW;EACX,WAAW;EACX,kBAAkB;EAClB,gBAAgB;EAChB,iDAAiD;AACnD;AACA;EACE,OAAO,oBAAoB,EAAE;EAC7B,OAAO,oBAAoB,EAAE;AAC/B;AACA;EACE,OAAO,yBAAyB,EAAE;EAClC,OAAO,wBAAwB,EAAE;AACnC;AACA;EACE,OAAO,0BAA0B,EAAE;EACnC,OAAO,oDAAoD,EAAE;EAC7D,OAAO,+CAA+C,EAAE;EACxD,OAAO,qDAAqD,EAAE;EAC9D,OAAO,gDAAgD,EAAE;EACzD,OAAO,iDAAiD,EAAE;AAC5D;;AAEA,iEAAiE;AACjE;EACE,4DAA4D;AAC9D;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,OAAO;EACP,WAAW;EACX,mBAAmB;EACnB,UAAU;EACV,iCAAiC;EACjC,mEAAmE;AACrE;AACA,aAAa,WAAW,EAAE,YAAY,EAAE,iBAAiB,EAAE,iDAAiD,EAAE;AAC9G,sCAAsC,kCAAkC,EAAE;AAC1E,iBAAiB,aAAa,EAAE;AAChC,iBAAiB,aAAa,EAAE,YAAY,EAAE,iBAAiB,EAAE;AACjE;EACE,2BAA2B;EAC3B,wDAAwD;AAC1D;AACA,iBAAiB,cAAc,EAAE;AACjC,iBAAiB,aAAa,EAAE;AAChC;EACE,OAAO,uBAAuB,EAAE;EAChC,OAAO,8BAA8B,EAAE;AACzC;AACA;EACE,OAAO,yBAAyB,EAAE;EAClC,OAAO,4BAA4B,EAAE;AACvC;AACA;EACE,OAAO,OAAO,KAAK,UAAU,EAAE,IAAI,mCAAmC;EACtE,OAAO,QAAQ,IAAI,UAAU,EAAE;EAC/B,OAAO,UAAU,EAAE,UAAU,EAAE;EAC/B,OAAO,UAAU,EAAE,UAAU,EAAE;AACjC;;AAEA,gEAAgE;AAChE;EACE,gCAAgC,0BAA0B,EAAE;EAC5D,4CAA4C,YAAY,EAAE;EAC1D,0CAA0C,aAAa,EAAE;AAC3D;;AAEA,4DAA4D;AAC5D;EACE,aAAa;EACb,uBAAuB;EACvB,gCAAgC;EAChC,eAAe;AACjB;AACA;EACE,mCAAmC;EACnC,6CAA6C;EAC7C,oBAAoB;EACpB,2CAA2C;EAC3C,WAAW;EACX,gBAAgB;EAChB,uCAAuC;EACvC,kFAAkF;EAClF,kDAAkD;AACpD;AACA,uBAAuB,qDAAqD,EAAE;AAC9E,uBAAuB,+BAA+B,EAAE,0BAA0B,EAAE,kCAAkC,EAAE;AACxH,sCAAsC,uBAAuB,EAAE;AAC/D,uCAAuC,sBAAsB,EAAE;AAC/D,0BAA0B,YAAY,EAAE;AACxC,+BAA+B,iCAAiC,EAAE,mBAAmB,EAAE;;AAEvF;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,WAAW;EACX,WAAW;EACX,uCAAuC;EACvC,2CAA2C;AAC7C;AACA;EACE,sBAAsB;EACtB,oBAAoB;EACpB,mCAAmC;EACnC,0CAA0C;EAC1C,iBAAiB;AACnB;AACA,yBAAyB,qBAAqB,EAAE,oBAAoB,EAAE;;AAEtE,2DAA2D;AAC3D;EACE,aAAa;EACb,mBAAmB;EACnB,YAAY;EACZ,WAAW;EACX,oBAAoB;EACpB,YAAY;EACZ,qBAAqB;EACrB,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,gBAAgB;EAChB,sFAAsF;EACtF,+BAA+B;AACjC;AACA,wBAAwB,sBAAsB,EAAE;AAChD,+BAA+B,iCAAiC,EAAE,mBAAmB,EAAE;AACvF;EACE,cAAc;EACd,aAAa;EACb,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,qCAAqC;AACvC;AACA,eAAe,qDAAqD,EAAE;AACtE,eAAe,qDAAqD,EAAE;AACtE,eAAe,qDAAqD,EAAE;AACtE,eAAe,qDAAqD,EAAE;;AAEtE,+EAA+E;AAC/E;EACE,eAAe;EACf,SAAS;EACT,cAAc;EACd,2BAA2B;EAC3B,cAAc,UAAU,4DAA4D;EACpF,sBAAsB;EACtB,oBAAoB;EACpB,gCAAgC;EAChC,WAAW;EACX,gBAAgB;EAChB,qCAAqC;EACrC,8BAA8B;EAC9B,2BAA2B;EAC3B,mCAAmC;EACnC,0CAA0C;EAC1C,gDAAgD;AAClD;AACA;EACE,mBAAmB,eAAe,EAAE;AACtC;;AAEA,gDAAgD;AAChD;EACE,eAAe;EACf,WAAW;EACX,SAAS;EACT,2BAA2B;EAC3B,cAAc,UAAU,8DAA8D;EACtF,kBAAkB;EAClB,6BAA6B;EAC7B,uBAAuB;EACvB,mBAAmB;EACnB,gCAAgC;EAChC,WAAW;EACX,gBAAgB;EAChB,sCAAsC;EACtC,kBAAkB;EAClB,mCAAmC;AACrC;;AAEA,yEAAyE;AACzE;EACE,eAAe;EACf,cAAc;EACd,cAAc;EACd,aAAa,WAAW,mDAAmD;EAC3E,wBAAwB;EACxB,oBAAoB;EACpB,WAAW;EACX,uCAAuC;EACvC,sBAAsB;EACtB,+BAA+B;EAC/B,0CAA0C;EAC1C,2BAA2B;EAC3B,mCAAmC;EACnC,oBAAoB;AACtB;AACA;EACE,qBAAqB;EACrB,sBAAsB;EACtB,oBAAoB;AACtB;;AAEA,iCAAiC;AACjC;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,uCAAuC;EACvC,YAAY;EACZ,cAAc,EAAE,qCAAqC;EACrD,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,aAAa;EACb,kBAAkB;EAClB,0BAA0B;AAC5B;;AAEA,4BAA4B;AAC5B;EACE,WAAW;EACX,YAAY;EACZ,WAAW;EACX,mBAAmB;EACnB,8CAA8C;EAC9C,6CAA6C;AAC/C;;AAEA,iDAAiD;AACjD;EACE,KAAK,uBAAuB,EAAE;EAC9B,WAAW,yBAAyB,EAAE,EAAE,yCAAyC;EACjF,OAAO,uBAAuB,EAAE;AAClC;;;AAGA,8CAA8C;AAC9C;EACE,qDAAqD;EACrD,sCAAsC;EACtC,8CAA8C,EAAE,eAAe;EAC/D,qDAAqD;EACrD,uDAAuD;AACzD;;;AAGA,qCAAqC;AACrC;IACI,kBAAkB;IAClB,gBAAgB;IAChB,kBAAkB;AACtB;;AAEA,8DAA8D;AAC9D;IACI,WAAW;IACX,kBAAkB;IAClB,QAAQ;IACR;;;;;KAKC;IACD,sBAAsB;IACtB,oBAAoB;IACpB,UAAU;AACd;;AAEA,wBAAwB;AACxB;IACI,WAAW;IACX,kBAAkB;IAClB,SAAS;IACT,UAAU;IACV,UAAU;IACV,YAAY;IACZ;;;;;KAKC;IACD,wBAAwB;IACxB,gDAAgD;IAChD,yCAAyC;IACzC,oBAAoB;IACpB,UAAU;AACd;;AAEA;IACI,OAAO,UAAU,EAAE;IACnB,OAAO,UAAU,EAAE,IAAI,uBAAuB;IAC9C,OAAO,UAAU,EAAE,IAAI,oCAAoC;AAC/D;;AAEA,gCAAgC;AAChC;IACI,wBAAwB;AAC5B;;AAEA,mCAAmC;AACnC;IACI,eAAe;IACf,aAAa;AACjB;;AAEA,sCAAsC;AACtC;IACI,oBAAoB,eAAe,EAAE,aAAa,EAAE;AACxD;;AAEA,mFAAmF;AACnF;IACI,aAAa;IACb,sBAAsB;IACtB,iCAAiC,IAAI,iDAAiD;IACtF,WAAW;AACf;AACA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,uBAAuB;IACvB,qBAAqB;IACrB,2CAA2C;IAC3C,WAAW;IACX,2EAA2E;IAC3E,qFAAqF;IACrF,aAAa;IACb,2EAA2E;AAC/E;AACA;IACI,UAAU;IACV,4BAA4B;IAC5B,+GAA+G;AACnH;AACA,wCAAwC,sBAAsB,EAAE;AAChE,gCAAgC,iCAAiC,EAAE,mBAAmB,EAAE;AACxF,oBAAoB,iBAAiB,EAAE,gBAAgB,EAAE,gBAAgB,EAAE;AAC3E;IACI,eAAe;IACf,gBAAgB;IAChB,kBAAkB;IAClB,gBAAgB;IAChB,sBAAsB;IACtB,yBAAyB;IACzB,YAAY;AAChB;;AAEA,oFAAoF;AACpF,wBAAwB,mBAAmB,EAAE,sBAAsB,EAAE,YAAY,EAAE;AACnF,qCAAqC,kBAAkB,EAAE,sBAAsB,EAAE,uBAAuB,EAAE;AAC1G,sCAAsC,UAAU,EAAE;AAClD,uCAAuC,kBAAkB,EAAE;AAC3D,sCAAsC,iBAAiB,EAAE,gBAAgB,EAAE;;AAE3E,wEAAwE;AACxE;IACI,WAAW;IACX,mBAAmB;IACnB,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,uBAAuB;IACvB,WAAW;IACX,uBAAuB;IACvB,2CAA2C;IAC3C,mBAAmB;IACnB,WAAW;IACX,kBAAkB;IAClB,6GAA6G;IAC7G,oFAAoF;IACpF,uDAAuD;AAC3D;AACA;IACI,2BAA2B;IAC3B,qFAAqF;AACzF;AACA,sCAAsC,sBAAsB,EAAE;AAC9D;IACI,iCAAiC;IACjC,mBAAmB;AACvB;AACA,yBAAyB,YAAY,EAAE;;AAEvC,mFAAmF;AACnF,sCAAsC,YAAY,EAAE,qBAAqB,EAAE;AAC3E;;IAEI,4BAA4B;IAC5B,+GAA+G;AACnH;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,sBAAsB;IACtB,yBAAyB;IACzB,wBAAwB;IACxB,oBAAoB;IACpB,qCAAqC;IACrC,2CAA2C;AAC/C;AACA;IACI,UAAU;IACV,gBAAgB;IAChB,mBAAmB;IACnB,iBAAiB;IACjB,oDAAoD;AACxD;AACA,0EAA0E;AAC1E;IACI,+BAA+B;IAC/B,iCAAiC;IACjC,iBAAiB;IACjB,sBAAsB;AAC1B;AACA;IACI,UAAU;IACV,iCAAiC;IACjC,iBAAiB;IACjB,qBAAqB;AACzB;AACA;IACI,UAAU;IACV,YAAY;IACZ,eAAe;IACf,qBAAqB;IACrB,sBAAsB;AAC1B;AACA;IACI,UAAU;IACV,YAAY;IACZ,iBAAiB;IACjB,sBAAsB;AAC1B;AACA;IACI,kBAAkB;IAClB,gBAAgB;IAChB,iBAAiB;IACjB,0CAA0C;AAC9C;AACA;IACI,kBAAkB;IAClB,iBAAiB;IACjB,aAAa;AACjB;;AAEA;;;8DAG8D;AAC9D;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;AAC1B;;AAEA;;8DAE8D;AAC9D;IACI,eAAe;IACf,QAAQ;IACR,WAAW,gBAAgB,2BAA2B;IACtD,gBAAgB;IAChB,oBAAoB;IACpB;2HACuH;AAC3H;;AAEA,oFAAoF;AACpF,qBAAqB,aAAa,EAAE;;AAEpC,2DAA2D;AAC3D;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,sCAAsC;AAC1C;;AAEA,kEAAkE;AAClE;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,sCAAsC;AAC1C;;AAEA,qFAAqF;AACrF;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,oCAAoC;AACxC;;AAEA,uDAAuD;AACvD;IACI,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,sBAAsB;IACtB,uBAAuB;IACvB,sCAAsC;AAC1C;;AAEA,wBAAwB;AACxB;IACI,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,aAAa;IACb,sBAAsB;AAC1B;AACA;IACI,aAAa,EAAE,cAAc;IAC7B,YAAY,EAAE,aAAa;IAC3B,wEAAwE;IACxE,uDAAuD;AAC3D;AACA;IACI,aAAa,EAAE,cAAc;IAC7B,eAAe,EAAE,cAAc;IAC/B,mEAAmE;IACnE,aAAa;IACb,uDAAuD;AAC3D;AACA;IACI,aAAa,EAAE,cAAc;IAC7B,QAAQ,EAAE,SAAS;IACnB,kFAAkF;IAClF,YAAY;IACZ,+DAA+D;AACnE;AACA;IACI,OAAO,mCAAmC,EAAE;IAC5C,OAAO,4CAA4C,EAAE;AACzD;AACA;IACI,OAAO,qCAAqC,EAAE;IAC9C,OAAO,6CAA6C,EAAE;AAC1D;;AAEA,4BAA4B;AAC5B;IACI,kBAAkB;IAClB,mFAAmF;IACnF,sBAAsB;AAC1B;AACA;IACI,WAAW;IACX,YAAY;IACZ,iBAAiB;IACjB,UAAU;IACV,qBAAqB;IACrB,iBAAiB;IACjB,qBAAqB;IACrB,sBAAsB;IACtB,aAAa;IACb,uDAAuD;AAC3D;AACA;IACI,mBAAmB;IACnB,YAAY;AAChB;AACA;IACI,OAAO,oDAAoD,EAAE;IAC7D,OAAO,iEAAiE,EAAE;IAC1E,OAAO,iEAAiE,EAAE;AAC9E;;AAEA,qDAAqD;AACrD;IACI,kBAAkB;IAClB,QAAQ;IACR,mHAAmH;AACvH;;AAEA;;8DAE8D;AAC9D;IACI,gBAAgB;IAChB,MAAM;IACN,aAAa;IACb,qCAAqC;IACrC,0CAA0C;IAC1C,kDAAkD;IAClD,kDAAkD;IAClD,6CAA6C;AACjD;AACA;IACI,gBAAgB;IAChB,cAAc;IACd,YAAY;IACZ,eAAe;IACf,aAAa;IACb,mBAAmB;IACnB,8BAA8B;IAC9B,SAAS;AACb;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,SAAS;IACT,qBAAqB;IACrB,WAAW;AACf;AACA;IACI,WAAW;IACX,YAAY;IACZ,mBAAmB;IACnB,aAAa;IACb,mBAAmB;IACnB,2EAA2E;IAC3E,sFAAsF;AAC1F;AACA;IACI,WAAW;IACX,YAAY;IACZ,YAAY;AAChB;AACA;IACI,gBAAgB;IAChB,kBAAkB;IAClB,sBAAsB;IACtB,WAAW;AACf;AACA;IACI,gBAAgB;IAChB,gBAAgB;IAChB,yBAAyB;AAC7B;;AAEA;IACI,aAAa;IACb,QAAQ;IACR,YAAY;IACZ,oBAAoB;IACpB,kCAAkC;IAClC,2CAA2C;AAC/C;AACA;IACI,aAAa;IACb,mBAAmB;IACnB,QAAQ;IACR,iBAAiB;IACjB,oBAAoB;IACpB,gCAAgC;IAChC,qBAAqB;IACrB,gBAAgB;IAChB,iBAAiB;IACjB,2DAA2D;AAC/D;AACA;IACI,WAAW;IACX,oCAAoC;AACxC;AACA;IACI,WAAW;IACX,2EAA2E;IAC3E,wFAAwF;AAC5F;AACA;IACI,WAAW;IACX,YAAY;IACZ,UAAU;IACV,oBAAoB;IACpB,iBAAiB;IACjB,qBAAqB;IACrB,sBAAsB;IACtB,cAAc;AAClB;;AAEA,uHAAuH;AACvH;EACE,gBAAgB;EAChB,SAAS;EACT,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,WAAW;EACX,WAAW;EACX,gBAAgB;EAChB,sBAAsB;EACtB,uBAAuB;EACvB,gBAAgB;EAChB,yBAAyB;EACzB,qBAAqB;EACrB,0CAA0C;AAC5C;;AAEA,gFAAgF;AAChF;EACE,kBAAkB;EAClB,eAAe;EACf,mBAAmB;EACnB,qCAAqC;EACrC,0CAA0C;EAC1C,kBAAkB;EAClB,iBAAiB;EACjB,yBAAyB;EACzB,2BAA2B;AAC7B;AACA,aAAa,aAAa,EAAE,8BAA8B,EAAE,qBAAqB,EAAE,qBAAqB,EAAE;AAC1G,YAAY,gBAAgB,EAAE,cAAc,EAAE;AAC9C,YAAY,gBAAgB,EAAE,cAAc,EAAE;AAC9C;EACE,kBAAkB;EAClB,aAAa;EACb,gBAAgB;EAChB,sBAAsB;EACtB;;;;;;6CAM2C;AAC7C;AACA,kCAAkC,kBAAkB,EAAE,OAAO,EAAE,MAAM,EAAE,sBAAsB,EAAE;AAC/F,cAAc,cAAc,EAAE,WAAW,EAAE,iBAAiB,EAAE,eAAe,EAAE;AAC/E,aAAa,UAAU,EAAE,YAAY,EAAE,kBAAkB,EAAE,mBAAmB,EAAE,2BAA2B,EAAE;AAC7G,WAAW,eAAe,EAAE,iBAAiB,EAAE;AAC/C,WAAW,qDAAqD,EAAE;AAClE;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,2BAA2B;EAC3B,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;EAChB,WAAW;EACX,mCAAmC;AACrC;AACA,WAAW,kBAAkB,EAAE,UAAU,EAAE,WAAW,EAAE,QAAQ,EAAE,iBAAiB,EAAE,+BAA+B,EAAE,oBAAoB,EAAE;AAC5I,eAAe,aAAa,EAAE,8BAA8B,EAAE,mBAAmB,EAAE,WAAW,EAAE,kBAAkB,EAAE;AACpH,sBAAsB,SAAS,EAAE,kBAAkB,EAAE,wCAAwC,EAAE;AAC/F;EACE,WAAW;EACX,YAAY;EACZ,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,qDAAqD;EACrD,2CAA2C;AAC7C;AACA,mBAAmB,wBAAwB,EAAE;AAC7C,WAAW,cAAc,EAAE,UAAU,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,gEAAgE,EAAE;AAC/I,kBAAkB,sBAAsB,EAAE;AAC1C,eAAe,oBAAoB,EAAE;AACrC,cAAc,aAAa,EAAE,uBAAuB,EAAE,eAAe,EAAE,WAAW,EAAE,kBAAkB,EAAE;AACxG,aAAa,aAAa,EAAE,mBAAmB,EAAE,YAAY,EAAE,wBAAwB,EAAE,oBAAoB,EAAE,kBAAkB,EAAE,mBAAmB,EAAE;AACxJ,mBAAmB,mBAAmB,EAAE;AACxC,kBAAkB,eAAe,EAAE,gBAAgB,EAAE,uBAAuB,EAAE,mBAAmB,EAAE;;AAEnG,+FAA+F;AAC/F,gCAAgC,gBAAgB,EAAE,qCAAqC,EAAE,oBAAoB,EAAE,qBAAqB,EAAE;;AAEtI,iFAAiF;AACjF,mEAAmE,mBAAmB,EAAE,0CAA0C,EAAE,UAAU,EAAE;AAChJ,YAAY,mFAAmF,EAAE;AACjG,YAAY,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE,UAAU,EAAE,eAAe,EAAE,gBAAgB,EAAE,qBAAqB,EAAE;;AAE7H,8DAA8D;AAC9D;EACE,qBAAqB;EACrB,eAAe;EACf,qBAAqB;EACrB,qDAAqD;EACrD,qDAAqD;EACrD,gBAAgB;AAClB;AACA,kBAAkB,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE;AAC7D,aAAa,aAAa,EAAE,oBAAoB,EAAE,WAAW,EAAE,qBAAqB,EAAE;AACtF;EACE,cAAc;EACd,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,eAAe;EACf,qBAAqB;EACrB,mBAAmB;AACrB;AACA,YAAY,kBAAkB,EAAE,gBAAgB,EAAE,sBAAsB,EAAE,yBAAyB,EAAE,cAAc,EAAE;AACrH,YAAY,qBAAqB,EAAE,mBAAmB,EAAE,iBAAiB,EAAE,oBAAoB,EAAE,WAAW,EAAE,mBAAmB,EAAE,iBAAiB,EAAE;AACtJ,WAAW,qCAAqC,EAAE,gBAAgB,EAAE,sBAAsB,EAAE,iBAAiB,EAAE,cAAc,EAAE;AAC/H;EACE,mBAAmB;EACnB,wBAAwB;EACxB,SAAS;EACT,oBAAoB;EACpB,iBAAiB;EACjB,gBAAgB;EAChB,WAAW;EACX,qDAAqD;AACvD;AACA,SAAS,cAAc,EAAE,+BAA+B,EAAE,qBAAqB,EAAE,gBAAgB,EAAE,6CAA6C,EAAE;AAClJ,eAAe,kBAAkB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,cAAc,EAAE,kBAAkB,EAAE;AAC7G,cAAc,aAAa,EAAE,eAAe,EAAE,YAAY,EAAE;AAC5D,aAAa,aAAa,EAAE,mBAAmB,EAAE,WAAW,EAAE,eAAe,EAAE,yBAAyB,EAAE,oBAAoB,EAAE,mBAAmB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,gCAAgC,EAAE;AAC7N,mBAAmB,mBAAmB,EAAE;AACxC,kBAAkB,gBAAgB,EAAE,uBAAuB,EAAE,mBAAmB,EAAE;AAClF,oBAAoB,OAAO,qBAAqB,EAAE,UAAU,EAAE,EAAE,KAAK,mBAAmB,EAAE,UAAU,EAAE,EAAE;AACxG,aAAa,aAAa,EAAE,mBAAmB,EAAE,uBAAuB,EAAE,WAAW,EAAE,kBAAkB,EAAE,eAAe,EAAE,qBAAqB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,cAAc,EAAE,kCAAkC,EAAE;AAC7O,iBAAiB;AACjB,0BAA0B,gCAAgC,EAAE;AAC5D,0BAA0B,gCAAgC,EAAE;AAC5D,0BAA0B,gCAAgC,EAAE;AAC5D,YAAY,uDAAuD,EAAE;AACrE,sBAAsB,OAAO,0BAA0B,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAC/F,WAAW,uBAAuB,EAAE,0BAA0B,EAAE,4CAA4C,EAAE;AAC9G,qBAAqB,gBAAgB,oBAAoB,EAAE,YAAY,EAAE,EAAE,MAAM,sBAAsB,EAAE,uBAAuB,EAAE,EAAE;AACpI,WAAW,4CAA4C,EAAE;AACzD,qBAAqB,WAAW,wBAAwB,EAAE,EAAE,MAAM,2BAA2B,EAAE,EAAE,MAAM,wBAAwB,EAAE,EAAE;AACnI,aAAa,mBAAmB,EAAE,4CAA4C,EAAE;AAChF,uBAAuB,UAAU,oBAAoB,EAAE,EAAE,WAAW,oBAAoB,EAAE,EAAE,OAAO,oBAAoB,EAAE,EAAE;AAC3H,WAAW,mBAAmB,EAAE,4CAA4C,EAAE;AAC9E,qBAAqB,KAAK,oBAAoB,EAAE,EAAE,WAAW,oBAAoB,EAAE,EAAE,OAAO,oBAAoB,EAAE,EAAE;AACpH;EACE,gBAAgB,0BAA0B,EAAE,oBAAoB,EAAE;AACpE;;AAEA,8EAA8E;AAC9E;EACE,kBAAkB;EAClB,gBAAgB;EAChB,sBAAsB;EACtB,kBAAkB,UAAU,gEAAgE;EAC5F;;6CAE2C;AAC7C;AACA,YAAY,kBAAkB,EAAE,OAAO,EAAE,MAAM,EAAE,sBAAsB,EAAE;AACzE,UAAU,kBAAkB,EAAE,mBAAmB,EAAE,2BAA2B,EAAE;AAChF,cAAc,mBAAmB,EAAE;AACnC,kBAAkB,mBAAmB,EAAE;AACvC,WAAW,UAAU,EAAE,sDAAsD,EAAE;AAC/E,mBAAmB,oCAAoC,EAAE;AACzD,YAAY,cAAc,EAAE,kBAAkB,EAAE;AAChD;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,QAAQ;EACR,UAAU;EACV,gBAAgB;EAChB,kBAAkB;EAClB,WAAW;EACX,yCAAyC;AAC3C;;AAEA,6DAA6D;AAC7D;EACE,gBAAgB;EAChB,mBAAmB;EACnB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,gBAAgB;EAChB,mBAAmB;EACnB,6CAA6C;AAC/C;AACA,+BAA+B,aAAa,EAAE,aAAa,EAAE,uDAAuD,EAAE;AACtH,sBAAsB,KAAK,YAAY,EAAE,EAAE;AAC3C,6BAA6B,2CAA2C,EAAE;AAC1E;EACE,WAAW,YAAY,EAAE;EACzB,MAAM,aAAa,EAAE;EACrB,MAAM,aAAa,EAAE;EACrB,MAAM,YAAY,EAAE;EACpB,MAAM,aAAa,EAAE;AACvB;AACA,4BAA4B,aAAa,EAAE,oCAAoC,EAAE;AACjF,4BAA4B,uBAAuB,EAAE,yBAAyB,EAAE,2CAA2C,EAAE;AAC7H,8BAA8B,oBAAoB,EAAE;AACpD;EACE,gBAAgB,UAAU,EAAE,mCAAmC,EAAE;EACjE,UAAU,UAAU,EAAE,gCAAgC,EAAE;AAC1D;AACA,8BAA8B,yDAAyD,EAAE;AACzF,gCAAgC,sBAAsB,EAAE;AACxD,wBAAwB,KAAK,2BAA2B,EAAE,EAAE;AAC5D,gCAAgC,4CAA4C,EAAE;AAC9E,0BAA0B,KAAK,2CAA2C,EAAE,EAAE;AAC9E,gCAAgC,uBAAuB,EAAE,yBAAyB,EAAE;AACpF,6BAA6B,yCAAyC,EAAE,UAAU,EAAE;AACpF,+BAA+B,mBAAmB,EAAE;AACpD,+BAA+B,mBAAmB,EAAE;AACpD;EACE,KAAK,UAAU,EAAE,2BAA2B,EAAE;EAC9C,MAAM,UAAU,EAAE;EAClB,OAAO,UAAU,EAAE,4BAA4B,EAAE;AACnD;;AAEA,8DAA8D;AAC9D,gBAAgB,iBAAiB,EAAE;AACnC;IACI,WAAW;IACX,YAAY;IACZ,cAAc;IACd,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,kBAAkB;IAClB,gCAAgC;IAChC,kCAAkC;IAClC,2CAA2C;IAC3C,yCAAyC;AAC7C;AACA,qBAAqB,YAAY,EAAE,4CAA4C,EAAE,oBAAoB,EAAE;AACvG,gBAAgB,WAAW,EAAE,oCAAoC,EAAE;AACnE,gBAAgB,cAAc,EAAE,mCAAmC,EAAE,sCAAsC,EAAE;AAC7G,cAAc,kBAAkB,EAAE,cAAc,EAAE;AAClD;IACI,kBAAkB;IAClB,qBAAqB;IACrB,QAAQ;IACR,gBAAgB;IAChB,YAAY;IACZ,mBAAmB;IACnB,gBAAgB;IAChB,8CAA8C;IAC9C,gBAAgB;IAChB,UAAU;AACd;AACA,eAAe,qBAAqB,EAAE,kBAAkB,EAAE,WAAW,EAAE,6BAA6B,EAAE,kBAAkB,EAAE;AAC1H;IACI,cAAc;IACd,WAAW;IACX,iBAAiB;IACjB,SAAS;IACT,kBAAkB;IAClB,gBAAgB;IAChB,cAAc;IACd,gBAAgB;IAChB,gBAAgB;AACpB;AACA,4BAA4B,mBAAmB,EAAE;AACjD,wDAAwD;AACxD;IACI,qBAAqB;IACrB,wBAAwB;IACxB,oBAAoB;IACpB,kBAAkB;IAClB,gBAAgB;IAChB,sBAAsB;IACtB,yBAAyB;IACzB,cAAc;IACd,mCAAmC;AACvC;AACA,kBAAkB,kBAAkB,EAAE,WAAW,EAAE,aAAa,EAAE,UAAU,EAAE;;AAE9E,iFAAiF;AACjF;IACI,iBAAiB,aAAa,EAAE;IAChC,WAAW,iBAAiB,EAAE;AAClC;AACA,qCAAqC;AACrC;IACI,iBAAiB,aAAa,EAAE;AACpC;;AAEA;;8DAE8D;AAC9D;IACI,eAAe;IACf,cAAc;IACd,wDAAwD;AAC5D;AACA;IACI,cAAc;IACd,WAAW;IACX,YAAY;AAChB;;AAEA,kBAAkB,8BAA8B,EAAE;AAClD,kBAAkB,8BAA8B,EAAE;AAClD,kBAAkB,gBAAgB,EAAE,kBAAkB,EAAE;AACxD,kBAAkB,gBAAgB,EAAE,eAAe,EAAE;;AAErD,iBAAiB,oBAAoB,EAAE;AACvC,iBAAiB,uBAAuB,EAAE;AAC1C;IACI,+BAA+B;IAC/B,wBAAwB;IACxB,2CAA2C;AAC/C;AACA;IACI,UAAU,sCAAsC,EAAE;IAClD,YAAY,0CAA0C,EAAE;AAC5D;;AAEA;IACI,UAAU;IACV,YAAY;IACZ,iBAAiB;IACjB,sBAAsB;IACtB,qBAAqB;AACzB;AACA,iBAAiB,UAAU,EAAE;;AAE7B,8BAA8B;AAC9B;IACI,uBAAuB;IACvB,wBAAwB;IACxB,qCAAqC;AACzC;AACA,qBAAqB,KAAK,yBAAyB,EAAE,EAAE;;AAEvD,SAAS;AACT,eAAe,UAAU,EAAE;AAC3B,eAAe,wBAAwB,EAAE;AACzC;IACI,uBAAuB;IACvB,0BAA0B;AAC9B;AACA,aAAa,4DAA4D,EAAE;AAC3E,aAAa,kEAAkE,EAAE;AACjF;IACI,OAAO,qCAAqC,EAAE;IAC9C,OAAO,yCAAyC,EAAE,QAAQ,WAAW;IACrE,OAAO,4CAA4C,EAAE,KAAK,cAAc;IACxE,OAAO,0DAA0D,EAAE,EAAE,SAAS;IAC9E,OAAO,2CAA2C,EAAE,MAAM,kBAAkB;IAC5E,YAAY,wCAAwC,EAAE;AAC1D;AACA;IACI,4BAA4B;IAC5B,uBAAuB;IACvB,wBAAwB;AAC5B;AACA,oBAAoB,8DAA8D,EAAE;AACpF,oBAAoB,oEAAoE,EAAE;AAC1F;IACI,yBAAyB,mBAAmB,IAAI,UAAU,EAAE;IAC5D,yBAAyB,qBAAqB,EAAE,YAAY,EAAE;IAC9D,yBAAyB,sBAAsB,EAAE,YAAY,EAAE;AACnE;;AAEA,kBAAkB;AAClB;IACI,uBAAuB;IACvB,0BAA0B;IAC1B,4CAA4C;AAChD;AACA,gBAAgB,UAAU,EAAE;AAC5B,gBAAgB,aAAa,EAAE;AAC/B;IACI,WAAW,sCAAsC,EAAE;IACnD,WAAW,yCAAyC,EAAE;AAC1D;;AAEA,kBAAkB;AAClB;IACI,gDAAgD;AACpD;AACA;IACI,WAAW,wBAAwB,EAAE;IACrC,WAAW,2BAA2B,EAAE;AAC5C;;AAEA,aAAa;AACb;IACI,UAAU;IACV,uBAAuB;IACvB,wBAAwB;IACxB,+CAA+C;AACnD;AACA,iBAAiB,qBAAqB,EAAE,oBAAoB,EAAE;AAC9D,iBAAiB,qBAAqB,EAAE;AACxC,iBAAiB,qBAAqB,EAAE,mBAAmB,EAAE;AAC7D,iBAAiB,qBAAqB,EAAE,oBAAoB,EAAE;AAC9D;IACI,WAAW,kCAAkC,GAAG,YAAY,EAAE;IAC9D,WAAW,oCAAoC,EAAE,UAAU,EAAE;AACjE;;AAEA,aAAa;AACb;IACI,+BAA+B;IAC/B,uBAAuB;IACvB,wBAAwB;IACxB,qCAAqC;AACzC;AACA,kBAAkB,qBAAqB,EAAE,oBAAoB,EAAE;AAC/D,kBAAkB,qBAAqB,EAAE,mBAAmB,EAAE;AAC9D,kBAAkB,qBAAqB,EAAE;AACzC,kBAAkB,qBAAqB,EAAE,oBAAoB,EAAE;AAC/D,kBAAkB,qBAAqB,EAAE,mBAAmB,EAAE;AAC9D;IACI,OAAO,qCAAqC,OAAO,UAAU,EAAE;IAC/D,OAAO,UAAU,EAAE;IACnB,OAAO,4CAA4C,EAAE,UAAU,EAAE;AACrE;;AAEA;;8DAE8D;AAC9D;IACI;;QAEI,0BAA0B;IAC9B;AACJ;AACA;;;uGAGuG;AACvG;IACI,oCAAoC;IACpC,gCAAgC;IAChC,sBAAsB;AAC1B;AACA;IACI,yBAAyB;AAC7B;;AAEA;;yDAEyD;AACzD;IACI;;QAEI,kCAAkC;QAClC,0BAA0B;QAC1B,wCAAwC;QACxC,gBAAgB;IACpB;AACJ;;AAEA;;8DAE8D;AAC9D,iBAAiB,qDAAqD,EAAE;AACxE;IACI,gBAAgB;IAChB,iBAAiB;IACjB,sBAAsB;IACtB,yBAAyB;IACzB,kCAAkC;IAClC,wBAAwB;AAC5B;AACA;IACI,gBAAgB;IAChB,SAAS;IACT,UAAU;IACV,aAAa;IACb,sBAAsB;IACtB,WAAW;AACf;AACA;IACI,aAAa;IACb,mBAAmB;IACnB,YAAY;IACZ,eAAe;IACf,mBAAmB;IACnB,gBAAgB;IAChB,4CAA4C;AAChD;AACA;IACI,kBAAkB;IAClB,cAAc;IACd,WAAW;IACX,YAAY;IACZ,mBAAmB;IACnB,aAAa;IACb,mBAAmB;IACnB,qDAAqD;IACrD,qFAAqF;AACzF;AACA;IACI,WAAW;IACX,YAAY;IACZ,UAAU;IACV,YAAY;IACZ,eAAe;IACf,qBAAqB;IACrB,sBAAsB;AAC1B;AACA;IACI,kBAAkB;IAClB,SAAS;IACT,UAAU;IACV,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,aAAa;IACb,mBAAmB;IACnB,kBAAkB;IAClB,gBAAgB;IAChB,8BAA8B;IAC9B,mCAAmC;IACnC,yCAAyC;AAC7C;;AAEA,sCAAsC;AACtC,gEAAgE;AAChE,yBAAyB,gDAAgD,EAAE;AAC3E,oDAAoD,sBAAsB,EAAE;AAC5E,oDAAoD,sBAAsB,EAAE;AAC5E;IACI,WAAW,wBAAwB,EAAE;IACrC,WAAW,2BAA2B,EAAE;AAC5C;;AAEA,0DAA0D;AAC1D,8BAA8B,gDAAgD,EAAE;AAChF,iCAAiC,qBAAqB,EAAE;AACxD,iCAAiC,qBAAqB,EAAE;AACxD;IACI,WAAW,aAAa,EAAE;IAC1B,WAAW,UAAU,EAAE;AAC3B;AACA,kCAAkC,UAAU,EAAE,YAAY,EAAE;;AAE5D,2EAA2E;AAC3E,8BAA8B,+CAA+C,EAAE;AAC/E,iCAAiC,qBAAqB,EAAE;AACxD,iCAAiC,mBAAmB,EAAE;AACtD;IACI,gBAAgB,iBAAiB,EAAE;IACnC,gBAAgB,+BAA+B,EAAE;AACrD;AACA;IACI,UAAU;IACV,uBAAuB;IACvB,0BAA0B;IAC1B,iDAAiD;AACrD;AACA;IACI,WAAW,mCAAmC,EAAE;IAChD,WAAW,4CAA4C,EAAE;IACzD,WAAW,mCAAmC,EAAE;AACpD;;AAEA,8CAA8C;AAC9C,iCAAiC,6CAA6C,EAAE;AAChF;IACI,WAAW,YAAY,EAAE;IACzB,WAAW,qDAAqD,EAAE;AACtE;;AAEA;IACI;;;;qCAIiC,eAAe,EAAE;IAClD,8BAA8B,UAAU,EAAE;AAC9C;;AAEA,8DAA8D;AAC9D,aAAa,kBAAkB,EAAE,wEAAwE,EAAE;AAC3G;IACI,aAAa;IACb,2DAA2D;IAC3D,QAAQ;IACR,qBAAqB;IACrB,sGAAsG;IACtG,iBAAiB;IACjB,gBAAgB;IAChB,YAAY;IACZ,kBAAkB;IAClB,yBAAyB;IACzB,qBAAqB;AACzB;AACA;IACI,6BAA6B;IAC7B,gBAAgB;IAChB,kBAAkB;IAClB,YAAY;IACZ,cAAc;IACd,gCAAgC;AACpC;AACA,6BAA6B,wCAAwC,EAAE,sBAAsB,EAAE;AAC/F,kCAAkC,6CAA6C,EAAE,mBAAmB,EAAE;;AAEtG,sDAAsD;AACtD,eAAe,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE,iBAAiB,EAAE,kBAAkB,EAAE,yBAAyB,EAAE;AAC5H,iBAAiB,mBAAmB,EAAE,mBAAmB,EAAE,gBAAgB,EAAE,MAAM,EAAE,UAAU,EAAE;AACjG,cAAc,SAAS,EAAE,gBAAgB,EAAE,UAAU,EAAE,gBAAgB,EAAE,cAAc,EAAE,mBAAmB,EAAE;AAC9G,oBAAoB,0BAA0B,EAAE;AAChD,gBAAgB,gBAAgB,EAAE,gBAAgB,EAAE;;AAEpD,8CAA8C;AAC9C,cAAc,aAAa,EAAE,sBAAsB,EAAE,SAAS,EAAE;AAChE,iBAAiB,aAAa,EAAE,yDAAyD,EAAE,aAAa,EAAE,mBAAmB,EAAE;AAC/H,mBAAmB,aAAa,EAAE,mBAAmB,EAAE,QAAQ,EAAE,YAAY,EAAE,iBAAiB,EAAE;AAClG,kBAAkB,cAAc,EAAE,WAAW,EAAE,YAAY,EAAE,kBAAkB,EAAE,mBAAmB,EAAE,WAAW,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,oBAAoB,EAAE,mBAAmB,EAAE,uBAAuB,EAAE;AAC7N,mBAAmB,mBAAmB,EAAE,kBAAkB,EAAE,YAAY,EAAE,gBAAgB,EAAE;AAC5F,kBAAkB,YAAY,EAAE,kBAAkB,EAAE,oDAAoD,EAAE,aAAa,EAAE,mBAAmB,EAAE,yBAAyB,EAAE,cAAc,EAAE,eAAe,EAAE,2BAA2B,EAAE;AACvO,uBAAuB,WAAW,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,mBAAmB,EAAE;AAC/F,kBAAkB,mBAAmB,EAAE;AACvC;IACI,iBAAiB,0BAA0B,EAAE;IAC7C,kBAAkB,mBAAmB,EAAE;AAC3C;;AAEA,uFAAuF;AACvF;EACE,eAAe;EACf,WAAW;EACX,cAAc;EACd,cAAc,UAAU,+EAA+E;EACvG,aAAa;EACb,WAAW;AACb;AACA;EACE,+BAA+B;EAC/B,gCAAgC;EAChC,oBAAoB;EACpB,0CAA0C;EAC1C,WAAW;EACX,qCAAqC;EACrC,cAAc;EACd,8BAA8B;EAC9B,2BAA2B;EAC3B,mCAAmC;EACnC,yCAAyC;EACzC,aAAa;EACb,mBAAmB;EACnB,uBAAuB;AACzB;AACA,0BAA0B,8BAA8B,EAAE;AAC1D,kCAAkC,iCAAiC,EAAE,mBAAmB,EAAE;AAC1F,0BAA0B,4BAA4B,EAAE;;AAExD,yEAAyE;AACzE;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,WAAW;EACX,gCAAgC;EAChC,0BAA0B;EAC1B,kCAAkC;AACpC;AACA;EACE,gBAAgB;EAChB,iCAAiC;EACjC,qBAAqB;EACrB,2CAA2C;EAC3C,SAAS;AACX;AACA,uBAAuB,qCAAqC,EAAE,SAAS,EAAE;;AAEzE,8EAA8E;AAC9E;EACE,oBAAoB;EACpB,eAAe;EACf,gBAAgB;EAChB,yCAAyC;EACzC,yEAAyE;AAC3E;;AAEA,0GAA0G;AAC1G;EACE,gCAAgC,kCAAkC,EAAE;EACpE,yBAAyB,4BAA4B,EAAE,iCAAiC,EAAE;EAC1F,uBAAuB,4BAA4B,EAAE;EACrD,uBAAuB,4BAA4B,EAAE;EACrD,2BAA2B,uBAAuB,EAAE;EACpD,uBAAuB,8BAA8B,EAAE,iCAAiC,EAAE;EAC1F,iBAAiB,eAAe,EAAE;AACpC;;AAEA;;;yGAGyG;AACzG;EACE,wBAAwB;AAC1B;AACA,uFAAuF;AACvF;EACE,2BAA2B;AAC7B;;AAEA;;8DAE8D;AAC9D;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,QAAQ;EACR,gBAAgB;EAChB,gCAAgC;EAChC,WAAW;EACX,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,gBAAgB;EAChB,qCAAqC;EACrC,qBAAqB;EACrB,4CAA4C;EAC5C,gDAAgD;AAClD;AACA;EACE,kBAAkB;EAClB,kCAAkC;EAClC,0DAA0D;AAC5D;AACA,yDAAyD;AACzD;EACE,kBAAkB;EAClB,WAAW;EACX,2HAA2H;EAC3H,8DAA8D;AAChE;AACA;EACE,OAAO,sBAAsB,EAAE,YAAY,EAAE;EAC7C,OAAO,sBAAsB,EAAE,UAAU,EAAE;AAC7C;AACA;EACE,OAAO,6CAA6C,EAAE;EACtD,OAAO,4CAA4C,EAAE;AACvD;AACA;EACE,OAAO,2BAA2B,EAAE;EACpC,OAAO,0BAA0B,EAAE;AACrC;;AAEA;EACE,eAAe;EACf,QAAQ;EACR,YAAY;EACZ,cAAc;EACd,aAAa,WAAW,mEAAmE;EAC3F,oBAAoB;AACtB;;AAEA;EACE,kBAAkB;EAClB,cAAc;EACd,6CAA6C;EAC7C,mBAAmB;EACnB,cAAc;EACd,kEAAkE;EAClE,+FAA+F;EAC/F,mIAAmI;AACrI;AACA;EACE,kBAAkB;EAClB,kCAAkC;EAClC,SAAS;EACT,2BAA2B;EAC3B,iCAAiC;EACjC,iDAAiD;EACjD,4DAA4D;AAC9D;AACA;EACE,sCAAsC,IAAI,uBAAuB;EACjE,gBAAgB;EAChB,yBAAyB;EACzB,sBAAsB;EACtB,sCAAsC;AACxC;AACA;EACE,0CAA0C;EAC1C,2CAA2C;EAC3C,sBAAsB;EACtB,kBAAkB;EAClB,yCAAyC;AAC3C;AACA;EACE,gBAAgB;EAChB,qCAAqC;EACrC,gBAAgB;EAChB,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,uCAAuC;AACzC;AACA,sDAAsD;AACtD;EACE,gEAAgE;EAChE,sDAAsD;AACxD;AACA;EACE,OAAO,qBAAqB,EAAE,UAAU,EAAE;EAC1C,OAAO,sBAAsB,EAAE,UAAU,EAAE;EAC3C,OAAO,mBAAmB,EAAE;AAC9B;AACA;EACE,OAAO,+FAA+F,EAAE;EACxG,OAAO,+FAA+F,EAAE;AAC1G;AACA;EACE,OAAO,uDAAuD,EAAE;EAChE,OAAO,yDAAyD,EAAE;AACpE;AACA;EACE,uGAAuG,eAAe,EAAE;AAC1H;;AAEA;;8DAE8D;AAC9D;EACE,gBAAgB;EAChB,gBAAgB;EAChB,mBAAmB;EACnB,qCAAqC;EACrC,0CAA0C;EAC1C,kBAAkB;AACpB;AACA,aAAa,aAAa,EAAE,8BAA8B,EAAE,qBAAqB,EAAE,WAAW,EAAE,qBAAqB,EAAE;AACvH,YAAY,gBAAgB,EAAE,cAAc,EAAE;AAC9C,YAAY,kBAAkB,EAAE,gBAAgB,EAAE,WAAW,EAAE;AAC/D;EACE,kBAAkB;EAClB,cAAc;EACd,WAAW;EACX,aAAa;EACb,gBAAgB;EAChB,SAAS;EACT,sBAAsB;EACtB,UAAU;EACV,0EAA0E;EAC1E,0BAA0B;EAC1B,eAAe;AACjB;AACA,uBAAuB,eAAe,EAAE,mCAAmC,EAAE;AAC7E,qBAAqB,UAAU,EAAE;AACjC;EACE,kBAAkB;EAClB,SAAS;EACT,cAAc;EACd,6BAA6B;AAC/B;AACA,cAAc,gBAAgB,EAAE,kDAAkD,EAAE;AACpF,uFAAuF;AACvF,iBAAiB,sDAAsD,EAAE;AACzE;EACE,OAAO,wCAAwC,EAAE;EACjD,OAAO,wCAAwC,EAAE;AACnD;AACA;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,YAAY;EACZ,WAAW;EACX,mBAAmB;AACrB;AACA,2EAA2E;AAC3E,YAAY,kBAAkB,EAAE;AAChC,WAAW,kBAAkB,EAAE,gBAAgB,EAAE,WAAW,EAAE,iBAAiB,EAAE;AACjF,sBAAsB,cAAc,EAAE,kBAAkB,EAAE;AAC1D,WAAW,kBAAkB,EAAE,WAAW,EAAE,iBAAiB,EAAE;AAC/D,WAAW,aAAa,EAAE,eAAe,EAAE,uBAAuB,EAAE,YAAY,EAAE,kBAAkB,EAAE;AACtG;EACE,aAAa;EACb,mBAAmB;EACnB,YAAY;EACZ,uCAAuC;EACvC,oBAAoB;EACpB,mBAAmB;EACnB,iBAAiB;EACjB,gBAAgB;EAChB,WAAW;AACb;AACA,qBAAqB,mBAAmB,EAAE;AAC1C,WAAW,kBAAkB,EAAE,kBAAkB,EAAE,WAAW,EAAE;;AAEhE,uFAAuF;AACvF;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,gBAAgB;EAChB,oBAAoB,MAAM,wDAAwD;EAClF,+BAA+B,IAAI,wDAAwD;AAC7F;AACA;EACE,kBAAkB;EAClB,SAAS;EACT,SAAS;EACT,uBAAuB;EACvB,kBAAkB;EAClB,WAAW;EACX,yCAAyC;EACzC,0CAA0C;AAC5C;AACA;EACE,OAAO,6BAA6B,EAAE;EACtC,OAAO,+CAA+C,EAAE;AAC1D;AACA,qBAAqB,kBAAkB,EAAE,aAAa,EAAE;AACxD,iBAAiB,gBAAgB,EAAE,mCAAmC,EAAE,uBAAuB,EAAE,8BAA8B,EAAE;AACjI,mBAAmB,uCAAuC,EAAE;AAC5D,kBAAkB,aAAa,EAAE,kBAAkB,EAAE;AACrD,sBAAsB,uBAAuB,EAAE,yBAAyB,EAAE,qBAAqB,EAAE,YAAY,EAAE;AAC/G,mBAAmB,aAAa,EAAE,mBAAmB,EAAE,uBAAuB,EAAE,WAAW,EAAE,gBAAgB,EAAE;AAC/G,mBAAmB,gBAAgB,EAAE,mCAAmC,EAAE;AAC1E,mBAAmB,aAAa,EAAE;AAClC,kBAAkB,kBAAkB,EAAE,kBAAkB,EAAE;AAC1D,8GAA8G;AAC9G;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,+FAA+F;AACjG;AACA,2CAA2C,eAAe,EAAE;;AAE5D,oGAAoG;AACpG;EACE,kBAAkB;EAClB,WAAW;EACX,qEAAqE;AACvE;AACA;EACE,mCAAmC;EACnC,gBAAgB;EAChB,cAAc;EACd,sBAAsB;EACtB,4EAA4E;AAC9E;AACA;EACE,kBAAkB;EAClB,uCAAuC;EACvC,gBAAgB;EAChB,aAAa;AACf;AACA;EACE,qBAAqB;EACrB,mBAAmB;EACnB,sBAAsB;EACtB,oBAAoB;EACpB,mBAAmB;EACnB,cAAc;EACd,gBAAgB;EAChB,qCAAqC;EACrC,yBAAyB;EACzB,sBAAsB;AACxB;AACA;EACE,mBAAmB;EACnB,wBAAwB;EACxB,gBAAgB;EAChB,sBAAsB;EACtB,mBAAmB;EACnB,mBAAmB;EACnB,kBAAkB;EAClB,mDAAmD;EACnD,qEAAqE;AACvE;AACA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,cAAc;EACd,yBAAyB;EACzB,qBAAqB;AACvB;AACA;EACE,sCAAsC;EACtC,mBAAmB;EACnB,gBAAgB;EAChB,cAAc;EACd,gBAAgB;AAClB;AACA;EACE,gBAAgB;AAClB;AACA;EACE,OAAO,UAAU,EAAE,qBAAqB,EAAE;EAC1C,KAAK,UAAU,EAAE,mBAAmB,EAAE;AACxC;;AAEA;wFACwF;AACxF;EACE,kBAAkB;EAClB,QAAQ;EACR,WAAW;EACX,YAAY;EACZ,UAAU;EACV,oBAAoB;EACpB,iBAAiB;EACjB,kBAAkB;AACpB;AACA,oBAAoB,mBAAmB,EAAE;AACzC,0CAA0C,kBAAkB,EAAE,UAAU,EAAE;AAC1E,4CAA4C;AAC5C;EACE,cAAc;EACd,8DAA8D;EAC9D,sHAAsH;EACtH,gEAAgE;AAClE;AACA,oDAAoD;AACpD;EACE,wBAAwB;EACxB,8BAA8B;EAC9B,oBAAoB;EACpB,mBAAmB;AACrB;;AAEA;yFACyF;AACzF;;;;6BAI6B,uBAAuB,EAAE;;AAEtD,4CAA4C;AAC5C,qCAAqC,yDAAyD,EAAE;AAChG,qCAAqC,iEAAiE,EAAE;AACxG,mCAAmC,wDAAwD,EAAE;AAC7F,uBAAuB,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAC9F,4CAA4C;AAC5C,qCAAqC,yDAAyD,EAAE;AAChG,qCAAqC,iEAAiE,EAAE;AACxG,mCAAmC,wDAAwD,EAAE;;AAE7F,2DAA2D;AAC3D,0BAA0B,yBAAyB,EAAE,yDAAyD,EAAE;AAChH,wBAAwB,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAC7F,yBAAyB,wBAAwB,EAAE;AACnD,wCAAwC,wDAAwD,EAAE;AAClG,uBAAuB,OAAO,uBAAuB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;;AAE1F,iFAAiF;AACjF,oDAAoD,yBAAyB,EAAE;AAC/E,oDAAoD,yBAAyB,EAAE;AAC/E,kDAAkD,yBAAyB,EAAE;AAC7E,uCAAuC,qCAAqC,EAAE;AAC9E,sCAAsC,qDAAqD,EAAE;AAC7F,0BAA0B,OAAO,UAAU,EAAE,EAAE,KAAK,UAAU,EAAE,EAAE;AAClE,2EAA2E;AAC3E,iDAAiD,wBAAwB,EAAE,gCAAgC,EAAE;AAC7G,wCAAwC,0BAA0B,EAAE;AACpE,oCAAoC,wBAAwB,EAAE;AAC9D,0BAA0B,UAAU,EAAE,yBAAyB,EAAE;AACjE,gCAAgC,iCAAiC,EAAE;AACnE,sBAAsB,KAAK,UAAU,EAAE,qBAAqB,EAAE,EAAE,MAAM,UAAU,EAAE,qBAAqB,EAAE,EAAE,OAAO,UAAU,EAAE,mBAAmB,EAAE,EAAE;AACrJ,+CAA+C;AAC/C,mCAAmC,sDAAsD,EAAE;AAC3F,yBAAyB,OAAO,mCAAmC,EAAE,EAAE,KAAK,mCAAmC,EAAE,EAAE;;AAEnH,eAAe;AACf,sBAAsB,UAAU,EAAE,8BAA8B,EAAE;AAClE,4BAA4B,UAAU,EAAE;AACxC,sBAAsB,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;;AAE7F,8FAA8F;AAC9F,sBAAsB,yBAAyB,EAAE,mCAAmC,EAAE;AACtF,gCAAgC,wBAAwB,EAAE,qBAAqB,EAAE;AACjF,kCAAkC,wBAAwB,EAAE,qBAAqB,EAAE;AACnF,wBAAwB,gBAAgB,oBAAoB,EAAE,EAAE,MAAM,sBAAsB,EAAE,EAAE;AAChG,wBAAwB,+BAA+B,EAAE;AACzD,2CAA2C,2BAA2B,EAAE;AACxE,4CAA4C,0BAA0B,EAAE;;AAExE,wBAAwB;AACxB,0BAA0B,yBAAyB,EAAE,uDAAuD,EAAE;AAC9G,sBAAsB,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAC3F,+BAA+B,0BAA0B,EAAE,0DAA0D,EAAE;AACvH,yBAAyB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC5F,6BAA6B,4CAA4C,EAAE;AAC3E,wBAAwB,MAAM,aAAa,EAAE,EAAE;;AAE/C,uCAAuC;AACvC,0BAA0B,wBAAwB,EAAE,gCAAgC,EAAE;AACtF,wCAAwC,yBAAyB,EAAE;;AAEnE,8DAA8D;AAC9D,sBAAsB,wBAAwB,EAAE;AAChD,qDAAqD,6DAA6D,EAAE;AACpH,sDAAsD,qEAAqE,EAAE;AAC7H,uCAAuC,wDAAwD,EAAE;AACjG,2BAA2B,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAChG,mCAAmC,0BAA0B,EAAE,oCAAoC,EAAE;AACrG,kCAAkC,0BAA0B,EAAE,uBAAuB,EAAE,oCAAoC,EAAE;AAC7H,wBAAwB,KAAK,mBAAmB,EAAE,EAAE,MAAM,4BAA4B,EAAE,EAAE,OAAO,mBAAmB,EAAE,EAAE;;AAExH,uEAAuE;AACvE;EACE,iCAAiC;EACjC,2DAA2D;AAC7D;AACA;EACE,KAAK,yCAAyC,EAAE;EAChD,MAAM,kDAAkD,EAAE;EAC1D,OAAO,gDAAgD,EAAE;AAC3D;;AAEA;iFACiF;AACjF,iCAAiC,+DAA+D,EAAE;AAClG,8BAA8B,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AACrG,6BAA6B,wBAAwB,EAAE,+BAA+B,EAAE;AACxF,kDAAkD,uBAAuB,EAAE;AAC3E,+BAA+B,0DAA0D,EAAE;AAC3F,yBAAyB,OAAO,UAAU,EAAE,EAAE,KAAK,aAAa,EAAE,EAAE;AACpE,wDAAwD;AACxD,iCAAiC,4DAA4D,EAAE;AAC/F,6BAA6B,OAAO,0BAA0B,EAAE,EAAE,KAAK,yBAAyB,EAAE,EAAE;AACpG,uBAAuB,0BAA0B,EAAE,yDAAyD,EAAE;AAC9G,wCAAwC,wBAAwB,EAAE;AAClE,wBAAwB,OAAO,yBAAyB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAChG,4BAA4B,0BAA0B,EAAE,0DAA0D,EAAE;AACpH,4BAA4B,wBAAwB,EAAE,0DAA0D,EAAE;AAClH,wBAAwB,OAAO,wBAAwB,EAAE,EAAE,KAAK,yBAAyB,EAAE,EAAE;AAC7F,wBAAwB,OAAO,yBAAyB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAC7F,uBAAuB,UAAU,EAAE;AACnC,6BAA6B,UAAU,EAAE;AACzC,sCAAsC,eAAe,EAAE,qDAAqD,EAAE;AAC9G,4CAA4C,+BAA+B,EAAE,iCAAiC,EAAE;AAChH,kDAAkD,qCAAqC,EAAE;AACzF,mCAAmC,MAAM,+BAA+B,EAAE,EAAE;AAC5E,sCAAsC,8FAA8F,EAAE;AACtI;qGACqG;AACrG,qBAAqB,UAAU,EAAE,UAAU,EAAE,6BAA6B,EAAE;AAC5E,2BAA2B,UAAU,EAAE,0BAA0B,EAAE;AACnE,+BAA+B,UAAU,EAAE,qBAAqB,EAAE,sBAAsB,EAAE,oBAAoB,EAAE;AAChH,2BAA2B,gCAAgC,EAAE,sBAAsB,EAAE;AACrF,2BAA2B,eAAe,EAAE,sDAAsD,EAAE;AACpG,2BAA2B,eAAe,EAAE;AAC5C,qDAAqD,qBAAqB,EAAE,+CAA+C,EAAE;AAC7H,8BAA8B,OAAO,oBAAoB,EAAE,EAAE,KAAK,oBAAoB,EAAE,EAAE;AAC1F,0CAA0C,oDAAoD,EAAE;AAChG,+BAA+B,WAAW,UAAU,EAAE,EAAE,MAAM,YAAY,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE,MAAM,aAAa,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE;AAC7I;EACE,aAAa;EACb,8DAA8D;EAC9D,uBAAuB;EACvB,yBAAyB;AAC3B;AACA,qFAAqF,8DAA8D,EAAE;AACrJ,0CAA0C,qBAAqB,EAAE;AACjE,6BAA6B,OAAO,qBAAqB,EAAE,EAAE,KAAK,qBAAqB,EAAE,EAAE;AAC3F;EACE,+BAA+B;EAC/B,4DAA4D;AAC9D;AACA;EACE,KAAK,0CAA0C,EAAE;EACjD,MAAM,mDAAmD,EAAE;EAC3D,OAAO,iDAAiD,EAAE;AAC5D;;AAEA,mFAAmF;AACnF,qBAAqB,UAAU,EAAE,UAAU,EAAE,6BAA6B,EAAE;AAC5E,2BAA2B,UAAU,EAAE;AACvC,2CAA2C,iDAAiD,EAAE;AAC9F,+BAA+B,WAAW,UAAU,EAAE,EAAE,MAAM,aAAa,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE,MAAM,aAAa,EAAE,EAAE;AAC1H,2BAA2B,aAAa,EAAE,oCAAoC,EAAE;AAChF;EACE,6BAA6B;EAC7B,6DAA6D;AAC/D;AACA;EACE,KAAK,0CAA0C,EAAE;EACjD,MAAM,mDAAmD,EAAE;EAC3D,OAAO,kDAAkD,EAAE;AAC7D;;AAEA;uCACuC;AACvC,sBAAsB,2CAA2C,EAAE;AACnE,wBAAwB,sBAAsB,EAAE;AAChD,uBAAuB,MAAM,aAAa,EAAE,EAAE;AAC9C,0BAA0B,4DAA4D,EAAE;AACxF,2BAA2B,OAAO,aAAa,EAAE,EAAE,KAAK,aAAa,EAAE,EAAE;AACzE,2BAA2B,uBAAuB,EAAE,wBAAwB,EAAE,yDAAyD,EAAE;AACzI,wBAAwB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC3F,iCAAiC,UAAU,EAAE,6BAA6B,EAAE;AAC5E,wDAAwD,UAAU,EAAE,+CAA+C,EAAE;AACrH,0BAA0B,MAAM,aAAa,EAAE,EAAE;AACjD,oDAAoD,aAAa,EAAE;AACnE,6BAA6B,uBAAuB,EAAE,2BAA2B,EAAE,6DAA6D,EAAE;AAClJ,4BAA4B,OAAO,wBAAwB,EAAE,EAAE,KAAK,wBAAwB,EAAE,EAAE;AAChG,oCAAoC,+FAA+F,EAAE;AACrI;EACE,6BAA6B;EAC7B,2DAA2D;AAC7D;AACA;EACE,KAAK,yCAAyC,EAAE;EAChD,MAAM,kDAAkD,EAAE;EAC1D,OAAO,gDAAgD,EAAE;AAC3D;;AAEA;oFACoF;AACpF;;6DAE6D,uBAAuB,EAAE;AACtF,mFAAmF;AACnF,4BAA4B,UAAU,EAAE,8BAA8B,EAAE;AACxE,yCAAyC,UAAU,EAAE;AACrD,uCAAuC,yBAAyB,EAAE;AAClE,uCAAuC,wBAAwB,EAAE;AACjE,6CAA6C,4CAA4C,EAAE;AAC3F,uBAAuB,MAAM,kCAAkC,EAAE,EAAE;AACnE,2CAA2C,8CAA8C,EAAE;AAC3F,2CAA2C,oDAAoD,EAAE;AACjG,yBAAyB,MAAM,aAAa,EAAE,EAAE;AAChD,kCAAkC,0BAA0B,EAAE,wDAAwD,EAAE;AACxH,6CAA6C,wBAAwB,EAAE,sBAAsB,EAAE;AAC/F,4CAA4C,wBAAwB,EAAE,oBAAoB,EAAE;AAC5F,8CAA8C,wBAAwB,EAAE,sBAAsB,EAAE;AAChG,uBAAuB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC1F,+DAA+D;AAC/D,yCAAyC,yBAAyB,EAAE;AACpE,2BAA2B,UAAU,EAAE;AACvC,yCAAyC,UAAU,EAAE;AACrD,wCAAwC,0BAA0B,EAAE;AACpE,sBAAsB,UAAU,EAAE,yBAAyB,EAAE;AAC7D,oCAAoC,2CAA2C,EAAE;AACjF,sCAAsC,sBAAsB,EAAE;AAC9D,sCAAsC,sBAAsB,EAAE;AAC9D,uBAAuB,UAAU,UAAU,EAAE,qCAAqC,EAAE,EAAE,MAAM,UAAU,EAAE,EAAE,OAAO,UAAU,EAAE,sCAAsC,EAAE,EAAE;AACvK,4EAA4E;AAC5E,8BAA8B,2BAA2B,EAAE,oDAAoD,EAAE;AACjH,kDAAkD,wBAAwB,EAAE;AAC5E,qDAAqD,UAAU,EAAE;AACjE,wDAAwD,aAAa,EAAE,oCAAoC,EAAE;AAC7G,kEAAkE;AAClE,6BAA6B,yBAAyB,EAAE,yCAAyC,EAAE;AACnG,uBAAuB,KAAK,yBAAyB,EAAE,EAAE;AACzD,gCAAgC,yBAAyB,EAAE,0DAA0D,EAAE;AACvH,2DAA2D;AAC3D,8CAA8C,wDAAwD,EAAE;AACxG,8CAA8C,wDAAwD,EAAE;AACxG,sBAAsB,OAAO,wBAAwB,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AAC7F,4BAA4B,UAAU,EAAE;AACxC,sDAAsD,2CAA2C,EAAE;AACnG,uBAAuB,MAAM,UAAU,EAAE,EAAE;AAC3C,wGAAwG;AACxG,0DAA0D,uDAAuD,EAAE;AACnH,8DAA8D,UAAU,EAAE,6BAA6B,EAAE;AACzG,oDAAoD,UAAU,EAAE,oCAAoC,EAAE;AACtG,qDAAqD,UAAU,EAAE,2CAA2C,EAAE;AAC9G,8BAA8B,wBAAwB,EAAE,oBAAoB,EAAE;AAC9E,mDAAmD,oBAAoB,EAAE,mCAAmC,EAAE;AAC9G,sBAAsB,MAAM,YAAY,EAAE,EAAE;AAC5C,oFAAoF;AACpF,kCAAkC,qCAAqC,EAAE;AACzE,iCAAiC,qDAAqD,EAAE;AACxF,8CAA8C,yBAAyB,EAAE;AACzE,oGAAoG;AACpG,eAAe,kBAAkB,EAAE;AACnC;EACE,WAAW;EACX,kBAAkB;EAClB,QAAQ;EACR,sBAAsB;EACtB,oBAAoB;EACpB,YAAY;EACZ;;wFAEsF;EACtF,mCAAmC;EACnC,8CAA8C;AAChD;AACA;EACE,KAAK,6BAA6B,EAAE;EACpC,MAAM,mCAAmC,EAAE;EAC3C,MAAM,mCAAmC,EAAE;AAC7C;AACA;EACE,sCAAsC;EACtC,2DAA2D;AAC7D;AACA;EACE,KAAK,yBAAyB,EAAE,qBAAqB,EAAE,yCAAyC,EAAE;EAClG,MAAM,yBAAyB,EAAE,qBAAqB,EAAE;EACxD,MAAM,yBAAyB,EAAE,uBAAuB,EAAE,kDAAkD,EAAE;EAC9G,MAAM,sBAAsB,EAAE,qBAAqB,EAAE;EACrD,MAAM,uBAAuB,EAAE;EAC/B,OAAO,qBAAqB,EAAE,gDAAgD,EAAE;AAClF;;AAEA,0GAA0G;AAC1G;EACE,kBAAkB;EAClB,QAAQ;EACR,UAAU;EACV,gBAAgB;EAChB,oBAAoB;AACtB;AACA;EACE,kBAAkB;EAClB,UAAU;EACV,kBAAkB;EAClB,gBAAgB;EAChB,sBAAsB;EACtB,sCAAsC;AACxC;AACA;EACE,KAAK,+BAA+B,EAAE;EACtC,MAAM,4CAA4C,EAAE;EACpD,OAAO,mCAAmC,EAAE;AAC9C;;AAEA,4HAA4H;AAC5H,kDAAkD,sCAAsC,EAAE;AAC1F,wBAAwB,MAAM,aAAa,EAAE,EAAE;AAC/C,sBAAsB,uBAAuB,EAAE,yBAAyB,EAAE,mDAAmD,EAAE;AAC/H,uBAAuB,OAAO,oBAAoB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AACtF,kDAAkD,aAAa,EAAE;AACjE,uBAAuB,UAAU,EAAE;AACnC,qCAAqC,UAAU,EAAE,yDAAyD,EAAE;AAC5G,wBAAwB,OAAO,0BAA0B,EAAE,EAAE,KAAK,2BAA2B,EAAE,EAAE;AACjG,kCAAkC,qDAAqD,EAAE;AACzF,wBAAwB,OAAO,6BAA6B,EAAE,EAAE,KAAK,4BAA4B,EAAE,EAAE;AACrG,8EAA8E,uBAAuB,EAAE;AACvG,0BAA0B,0BAA0B,EAAE,gCAAgC,EAAE;AACxF,gDAAgD,yBAAyB,EAAE;AAC3E,iDAAiD,oDAAoD,EAAE;AACvG,uBAAuB,OAAO,+BAA+B,EAAE,EAAE,KAAK,+BAA+B,EAAE,EAAE;;AAEzG,8CAA8C,8DAA8D,EAAE;AAC9G,6BAA6B,OAAO,sCAAsC,EAAE,EAAE,KAAK,wCAAwC,EAAE,EAAE;AAC/H,gDAAgD;AAChD,mFAAmF,0BAA0B,EAAE,oCAAoC,EAAE;AACrJ,kDAAkD,6BAA6B,EAAE,wBAAwB,EAAE;AAC3G,sBAAsB,WAAW,oBAAoB,EAAE,EAAE,WAAW,yBAAyB,EAAE,EAAE;AACjG,2BAA2B,WAAW,oBAAoB,EAAE,EAAE,WAAW,yBAAyB,EAAE,EAAE;;AAEtG,gHAAgH;AAChH,qBAAqB,6CAA6C,EAAE;AACpE,sBAAsB,gBAAgB,wBAAwB,EAAE,EAAE,WAAW,2BAA2B,EAAE,EAAE,WAAW,0BAA0B,EAAE,EAAE;AACrJ,4BAA4B,uBAAuB,EAAE,0BAA0B,EAAE;AACjF,kDAAkD,qDAAqD,EAAE;AACzG,wBAAwB,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC3F,sBAAsB,4CAA4C,EAAE;AACpE,2BAA2B,sBAAsB,EAAE;AACnD,uBAAuB,MAAM,aAAa,EAAE,EAAE;AAC9C,8BAA8B,aAAa,EAAE;AAC7C,qDAAqD,eAAe,EAAE;AACtE,qCAAqC,0BAA0B,EAAE,uDAAuD,EAAE;AAC1H,0BAA0B,OAAO,sCAAsC,EAAE,EAAE,KAAK,qCAAqC,EAAE,EAAE;AACzH,mGAAmG;AACnG,0BAA0B,UAAU,EAAE;AACtC,uBAAuB,+BAA+B,EAAE;AACxD,gCAAgC,8FAA8F,EAAE;;AAEhI,iHAAiH;AACjH;EACE,eAAe;EACf,QAAQ;EACR,cAAc;EACd,gBAAgB;EAChB,oBAAoB,MAAM,wDAAwD;AACpF;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,sFAAsF;AACxF;AACA;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,6DAA6D;EAC7D,6BAA6B;AAC/B;AACA;EACE,kBAAkB;EAClB,MAAM;EACN,SAAS;EACT,UAAU;EACV;yGACuG;EACvG,uCAAuC;EACvC,2DAA2D;AAC7D;AACA;EACE,WAAW;EACX,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,WAAW;EACX,6DAA6D;EAC7D,2BAA2B;AAC7B;AACA,mBAAmB,OAAO,EAAE;AAC5B,oBAAoB,QAAQ,EAAE;AAC9B;EACE,kBAAkB;EAClB,UAAU;EACV,MAAM;EACN,OAAO;EACP,QAAQ;EACR,YAAY;EACZ,kFAAkF;EAClF,kCAAkC;EAClC,wCAAwC;EACxC,yCAAyC;EACzC,+BAA+B;AACjC;AACA,0GAA0G;AAC1G,6DAA6D,4BAA4B,EAAE;AAC3F,+DAA+D,2BAA2B,EAAE;AAC5F,mDAAmD,4BAA4B,EAAE;AACjF,yHAAyH,wBAAwB,EAAE;AACnJ,4BAA4B,2BAA2B,EAAE;AACzD,6BAA6B,0BAA0B,EAAE;AACzD,6BAA6B,WAAW,EAAE,yCAAyC,EAAE;;AAErF;EACE,oCAAoC,0BAA0B,EAAE,2BAA2B,EAAE;EAC7F,WAAW,aAAa,EAAE;AAC5B;;AAEA,8FAA8F;AAC9F;EACE,cAAc;EACd,aAAa;EACb,WAAW;EACX,iBAAiB;AACnB;AACA;EACE,gBAAgB;EAChB,mBAAmB;EACnB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,gBAAgB;AAClB;AACA;EACE,8BAA8B;EAC9B,+BAA+B;EAC/B,iBAAiB;EACjB,UAAU;EACV,8BAA8B;AAChC;AACA,gCAAgC,UAAU,EAAE,iDAAiD,EAAE;AAC/F,4BAA4B,MAAM,8BAA8B,EAAE,EAAE;AACpE,4BAA4B,2DAA2D,EAAE;AACzF,0BAA0B,OAAO,6BAA6B,EAAE,EAAE,KAAK,4BAA4B,EAAE,EAAE;AACvG,yCAAyC,wDAAwD,EAAE;AACnG,2BAA2B,OAAO,wBAAwB,EAAE,EAAE,KAAK,uBAAuB,EAAE,EAAE;AAC9F,4BAA4B,uBAAuB,EAAE,yBAAyB,EAAE;AAChF,2BAA2B,4CAA4C,EAAE;AACzE,6BAA6B,qBAAqB,EAAE;AACpD,+CAA+C;AAC/C,4CAA4C,uBAAuB,EAAE,0BAA0B,EAAE,oCAAoC,EAAE;AACvI,yBAAyB,KAAK,2BAA2B,EAAE,EAAE,MAAM,2BAA2B,EAAE,EAAE,YAAY,sBAAsB,EAAE,EAAE;;AAExI,yGAAyG;AACzG;EACE,kBAAkB;EAClB,OAAO;EACP,QAAQ;EACR,SAAS;EACT,YAAY;EACZ,oBAAoB;AACtB;AACA;EACE,gBAAgB;EAChB,mBAAmB;EACnB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,iBAAiB,IAAI,iFAAiF;AACxG;AACA,wCAAwC,UAAU,EAAE;AACpD,2BAA2B,UAAU,EAAE;AACvC,0BAA0B,0BAA0B,EAAE;AACtD,2CAA2C,4BAA4B,EAAE;AACzE,2CAA2C,6BAA6B,EAAE;AAC1E;EACE,UAAU;EACV,eAAe;EACf,iBAAiB;EACjB,sBAAsB;EACtB,oDAAoD;AACtD;AACA,0BAA0B,UAAU,EAAE;AACtC,4EAA4E;AAC5E,6BAA6B,wBAAwB,EAAE,+BAA+B,EAAE;AACxF,yCAAyC,uBAAuB,EAAE;AAClE,2CAA2C,uDAAuD,EAAE;AACpG,0BAA0B,OAAO,mCAAmC,EAAE,EAAE,KAAK,mCAAmC,EAAE,EAAE;;AAEpH;;8DAE8D;AAC9D,cAAc,4BAA4B,EAAE,cAAc,EAAE,kBAAkB,EAAE,gBAAgB,EAAE;AAClG,iBAAiB,iBAAiB,EAAE,gBAAgB,EAAE,qBAAqB,EAAE,cAAc,EAAE;AAC7F,iBAAiB,kBAAkB,EAAE,gBAAgB,EAAE,uBAAuB,EAAE,cAAc,EAAE;AAChG,iBAAiB,oBAAoB,EAAE,qBAAqB,EAAE;AAC9D,iBAAiB,qBAAqB,EAAE;AACxC,mBAAmB,cAAc,EAAE,kBAAkB,EAAE,mBAAmB,EAAE;AAC5E;IACI,oCAAoC;IACpC,8BAA8B;IAC9B,kBAAkB;IAClB,sBAAsB;IACtB,gBAAgB;AACpB;AACA,oEAAoE;AACpE,mBAAmB,cAAc,EAAE,0BAA0B,EAAE;AAC/D,yBAAyB,cAAc,EAAE","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🕵️ The spy lobby: the shimmer runs amber and black */\n[data-gt-theme=\"spy\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */\n.gt-bg.theme-spy {\n    --gt-navy:     #06070d;\n    --gt-blue-800: #10131f;\n    --gt-blue-500: #1d2233;\n    --gt-blue-400: #2b3147;\n    --gt-blue-300: #6a7290;\n    --gt-ice:      #e8e6da;\n    --gt-bg-accent: #d6a83c;\n    --gt-bg-vignette: rgba(0, 0, 0, 0.6);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* 📼 The Jeffinitely deck's crew (JeffCrew.jsx): controllers while they play, the Jeffcom's cartridge,\n   Mitch blowing on it, Boomer's turning reels, Pixel beeping, and Dana's computer */\n.cc-crew .crew-controller, .cc-crew .crew-controller-pad, .cc-crew .crew-jeffcom-cart, .cc-crew .crew-held-cart,\n.cc-crew .crew-puff, .cc-crew .crew-boomer-reel, .cc-crew .crew-boomer-antenna, .cc-crew .crew-pixel-beep,\n.cc-crew .crew-computer-bar, .cc-crew .crew-computer-wheel { transform-box: fill-box; }\n/* 🎮 Playing: a controller in both hands, arms in, thumbs going, leaning into it */\n.cc-crew .crew-controller { opacity: 0; transition: opacity 0.25s ease; }\n.cc-crew .crew-gaming .crew-controller { opacity: 1; }\n.cc-crew .crew-gaming .crew-arm-cast { transform: rotate(-34deg); }\n.cc-crew .crew-gaming .crew-arm-bump { transform: rotate(34deg); }\n.cc-crew .crew-gaming .crew-controller-pad { animation: jeff-mash 0.18s steps(2) infinite; }\n@keyframes jeff-mash { 50% { transform: translate(0.6px, 0.8px); } }\n.cc-crew .crew-gaming .crew-controller-a { animation: jeff-button 0.36s steps(1) infinite; }\n.cc-crew .crew-gaming .crew-controller-b { animation: jeff-button 0.36s steps(1) infinite 0.18s; }\n@keyframes jeff-button { 50% { fill: #ffd23f; } }\n.cc-crew .crew-gaming .crew-fig { transform-origin: 50% 100%; animation: jeff-lean 1.6s ease-in-out infinite alternate; }\n.cc-crew .crew-angie.crew-gaming .crew-fig { animation-duration: 1.1s; animation-delay: -0.4s; }\n.cc-crew .crew-duke.crew-gaming .crew-fig { animation-duration: 2.1s; animation-delay: -1s; }\n.cc-crew .crew-boomer.crew-gaming .crew-fig { animation-duration: 1.3s; animation-delay: -0.7s; }\n@keyframes jeff-lean { from { transform: rotate(-4deg); } to { transform: rotate(3deg); } }\n/* Reaching down to the console, and blowing on the cartridge */\n.cc-crew .crew-reaching .crew-arm-bump { transform: rotate(-55deg); }\n.cc-crew .crew-held-cart { opacity: 0; }\n.cc-crew .crew-blowing .crew-held-cart { opacity: 1; }\n.cc-crew .crew-blowing .crew-arm-cast { transform: rotate(-125deg); }\n.cc-crew .crew-puff { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-blowing .crew-puff { animation: jeff-puff 0.9s ease-out infinite; }\n.cc-crew .crew-blowing .crew-puff-2 { animation-delay: 0.08s; }\n.cc-crew .crew-blowing .crew-puff-3 { animation-delay: 0.16s; }\n@keyframes jeff-puff { 0%, 30% { opacity: 0; transform: scale(0.3) translateX(4px); } 45% { opacity: 1; } 100% { opacity: 0; transform: scale(1.2) translateX(-4px); } }\n/* The Jeffcom: the cartridge sits up out of the slot until it's pushed in */\n.cc-crew .crew-jeffcom-cart { transform: translateY(-7px); transition: transform 0.22s ease, opacity 0.15s ease; }\n.cc-crew .crew-jeffcom.is-in .crew-jeffcom-cart { transform: translateY(0); }\n.cc-crew .crew-jeffcom.is-empty .crew-jeffcom-cart { opacity: 0; }\n.cc-crew .crew-jeffcom.is-powered .crew-jeffcom-light { fill: #ff3b3b; filter: drop-shadow(0 0 2px #ff3b3b); }\n/* Boomer: the mixtape's reels go round, and the antenna wobbles */\n.cc-crew .crew-boomer-reel { transform-origin: 50% 50%; animation: jeff-reel 1.2s linear infinite; }\n@keyframes jeff-reel { to { transform: rotate(360deg); } }\n.cc-crew .crew-boomer-antenna { transform-origin: 0% 100%; animation: crew-wobble 1.4s ease-in-out infinite alternate; }\n/* Pixel hops instead of walking, and beeps at the screen */\n.cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }\n.cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }\n@keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-pixel-beep { opacity: 0; }\n.cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }\n@keyframes jeff-beep { 50% { opacity: 1; } }\n/* 🖥️ Dana's computer: the wheels spin as it rolls, the modem blinks, the screen glows and \"connects\" */\n.cc-crew .crew-computer.is-rolling .crew-computer-wheel { animation: crew-bob 0.1s ease-in-out infinite alternate; }\n.cc-crew .crew-computer-glow, .cc-crew .crew-computer-modem { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-computer.is-on .crew-computer-glow { opacity: 1; animation: jeff-crt 0.12s steps(2) 6; }\n.cc-crew .crew-computer.is-on .crew-computer-modem { opacity: 1; animation: crew-bulb 0.3s steps(1) infinite; }\n.cc-crew .crew-computer-bar { transform-origin: 0% 50%; transform: scaleX(0); }\n.cc-crew .crew-computer.is-on .crew-computer-bar { transform: scaleX(1); transition: transform 1.8s steps(6); }\n@keyframes jeff-crt { 50% { opacity: 0.5; } }\n/* Dana fades in from the screen and back into it, and her bump arm is on the left */\n.cc-crew .crew-dana.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-dana.is-leaving { animation: crew-fade-in 0.9s ease-in reverse forwards; }\n.cc-crew .crew-dana.sq-bumping .sq-arm-bump { transform: rotate(120deg); }\n/* 📺 The QR card: fuzz while the cartridge isn't working, then it flickers on like an old tube TV */\n.cc-lobby-qr { position: relative; }\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-static::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  pointer-events: none;\n  opacity: 0.6;\n  background:\n    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 2px, transparent 2px 4px),\n    repeating-radial-gradient(circle at 30% 40%, #fff 0 1px, #777 1px 2px, #222 2px 3px);\n  background-size: 100% 100%, 7px 7px;\n  animation: jeff-static 0.12s steps(3) infinite;\n}\n@keyframes jeff-static {\n  0% { background-position: 0 0, 0 0; }\n  33% { background-position: 0 1px, 3px 5px; }\n  66% { background-position: 0 2px, 6px 2px; }\n}\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on-tube 0.9s ease-out;\n  box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7) !important;\n}\n@keyframes cc-qr-on-tube {\n  0% { transform: scale(1, 0.02); filter: brightness(3); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }\n  25% { transform: scale(1, 0.02); filter: brightness(3); }\n  55% { transform: scale(1, 1.04); filter: brightness(1.6); box-shadow: 0 0 46px 16px rgba(255, 79, 154, 0.95); }\n  70% { transform: scale(1, 1); filter: brightness(1); }\n  80% { filter: brightness(1.3); }\n  100% { filter: brightness(1); box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */\n.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }\n@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }\n.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }\n.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }\n@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }\n.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }\n.cc-crew .spy-siren-blue { animation-delay: 0.21s; }\n@keyframes spy-siren { 50% { opacity: 0.15; } }\n.cc-crew .spy-car-prisoners { display: none; }\n.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }\n.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }\n@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }\n/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */\n.cc-crew.spy-rules-show { z-index: 5; }\n.mx-rules-with-spies { padding-bottom: 17vh !important; }\n.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

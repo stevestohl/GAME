@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Witch, HoaPresident, Vampire, Ghost, GothicCouch, Castle, Chandelier, Bat, FrankensteinMonster } from './HalloweenCrew.jsx';
 import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, HolidayCouch, Sleigh, Santa } from './HolidayCrew.jsx';
+import { MulletMitch, AerobicsAngie, DiscoDuke, BoomerBoombox, Pixel, JeffCouch, Jeffcom, DanaComputer, DialUpDana } from './JeffCrew.jsx';
 
 // 🛋️ The Couch Cast crew (Core deck lobby): a couch on little legs crawls in and sits down, then a
 // robot, a dog and an alien wander in, hop onto it, and the robot casts to "the screen", which is
@@ -28,9 +29,17 @@ import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, HolidayCouch, Sleig
 //
 // 🎄 The Holiday deck runs the Core show with the crew dressed up (HolidayCrew.jsx). In place of
 // Sasquatch's mountain, Santa lands beside the couch in a sleigh that flies on its own.
+//
+// 📼 The Jeffinitely deck (JeffCrew.jsx) has four on a longer plaid couch: Mullet Mitch, Aerobics Angie, Disco
+// Duke and Boomer the Boombox. They play the Jeffcom, a knock-off console on the floor, in place of the cast:
+// Mitch pushes the cartridge in, the screen just fuzzes, so he pulls it out, blows on it, and pushes it back in,
+// and the QR card flickers on like an old TV. Then everyone plays (holding controllers) whenever they're seated.
+// Pixel, a keychain pet, is the pest all four chase off, and Dial-Up Dana rolls in on her computer desk and
+// climbs out of the monitor in place of Sasquatch.
 
 // Who sits where, left to right: `caster` is nearest the screen and `chaser` is in the middle
 const SEATS = ['caster', 'chaser', 'third'];
+const JEFF_SEATS = ['caster', 'chaser', 'third', 'fourth'];
 const BAT_COUNT = 3;
 const HIP = 30;          // where a character bends to sit (units up from its feet)
 const SEAT_TOP = 44;     // the couch cushions' top (units up from the floor)
@@ -43,7 +52,12 @@ const rand = (min, max) => min + Math.random() * (max - min);
 export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0, theme = 'core' }) {
     const isHalloween = theme === 'halloween';
     const isHoliday = theme === 'holiday';
-    const hasProjector = !isHalloween;   // the witch has a wand instead
+    const isJeff = theme === 'jeffinitely';
+    const hasProjector = !isHalloween && !isJeff;   // the witch has a wand instead, and Jeffinitely has the Jeffcom
+    const hasWand = isHalloween;
+    const seats = isJeff ? JEFF_SEATS : SEATS;
+    const couchWidth = isJeff ? 240 : 200;   // couch units, arm to arm
+    const seatOffsets = isJeff ? [-75, -25, 25, 75] : [-50, 0, 50];
     const svgRef = useRef(null);
     const lightRef = useRef(null);
     const couchRef = useRef(null);
@@ -54,7 +68,8 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
     const mountainRef = useRef(null);
     const chandelierRef = useRef(null);
     const batRefs = useRef([]);
-    const actorEls = { caster: useRef(null), chaser: useRef(null), third: useRef(null), cat: useRef(null), sasquatch: useRef(null) };
+    const consoleRef = useRef(null);
+    const actorEls = { caster: useRef(null), chaser: useRef(null), third: useRef(null), fourth: useRef(null), cat: useRef(null), sasquatch: useRef(null) };
     const engineRef = useRef(null);
 
     useEffect(() => {
@@ -73,13 +88,14 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             const stage = stageRef.current.getBoundingClientRect();
             const screen = screenRef.current.getBoundingClientRect();
             const qr = (qrRef?.current || screenRef.current).getBoundingClientRect();
-            const cs = Math.max(0.4, Math.min((stage.width * 0.92) / 200, stage.height / 128));
+            const cs = Math.max(0.4, Math.min((stage.width * 0.92) / couchWidth, stage.height / 128));
+            const half = couchWidth / 2 + 4;   // the couch's half-width, with a little room
             // Toward the screen side of its spot, clear of the room code pill in the bottom corner
-            const cx = stage.left - root.left + Math.min(stage.width / 2, 104 * cs + 8);
+            const cx = stage.left - root.left + Math.min(stage.width / 2, half * cs + 8);
             const floorY = stage.bottom - root.top - 2;
             const s = cs * 0.95;   // character scale
             // ⛰️ The free ground to the right of the couch (no mountain if there's hardly any)
-            const couchRight = cx + 104 * cs;
+            const couchRight = cx + half * cs;
             const free = stage.right - root.left - 6 - couchRight;
             const mountain = free >= 80 * cs
                 ? {
@@ -88,6 +104,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                     sx: Math.min(free, 260 * cs) / 200,
                     sy: Math.min(stage.height * 0.74, 150 * cs) / 160,   // low enough that Sasquatch fits on the peak
                     sleigh: Math.min(free / 225, stage.height / 140, cs),
+                    desk: Math.min(free / 118, (stage.height - 4) / 114, cs),   // 🖥️ Dana's computer
                 }
                 : null;
             L = {
@@ -98,14 +115,14 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 cx,
                 floorY,
                 stageTop: stage.top - root.top,
-                seatX: [-50, 0, 50].map((u) => cx + u * cs),
+                seatX: seatOffsets.map((u) => cx + u * cs),
                 seatY: floorY - SEAT_TOP * cs + HIP * s,   // feet position for a seated character
                 offRight: root.width + 120 * cs,
                 screenRight: screen.right - root.left,
                 qrRect: { right: qr.right - root.left, top: qr.top - root.top, bottom: qr.bottom - root.top },
                 mountain,
                 // Sasquatch up close: a head taller than the crew, but never taller than the couch's spot
-                sqSize: Math.min(cs * 0.95, (stage.height - 4) / 146) / s,
+                sqSize: isJeff ? 1 : Math.min(cs * 0.95, (stage.height - 4) / 146) / s,
                 // 🕯️ The chandelier hangs in the top corner, above the QR card
                 chandelierX: root.width * 0.085,
                 chandelierSize: Math.min(root.height * 0.19, root.width * 0.1) / 100,
@@ -117,7 +134,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
 
         // --- The cast: a couch and three characters, each a position the frames below move around ---
         const couch = { x: 0, y: 0, el: couchRef.current };
-        const actors = Object.fromEntries(SEATS.map((name, i) => [name, {
+        const actors = Object.fromEntries(seats.map((name, i) => [name, {
             name, seat: i, x: 0, y: 0, rot: 0, lift: 0, size: 1, flip: 1, spot: 'off', busy: true, el: actorEls[name].current,
         }]));
         // 🐈 Not one of the crew: it turns up now and then (see catVisit)
@@ -127,6 +144,12 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         const mountain = { grow: 0, el: mountainRef.current };
         // 🛷 On the Holiday deck that spot's for Santa's sleigh (see sleighIn)
         const sleigh = { x: 0, y: 0, rot: 0, flip: 1, on: false, landed: false };
+        // 🖥️ On the Jeffinitely deck it's Dana's computer desk, which rolls in (see deskIn)
+        const desk = { x: 0, on: false, landed: false };
+        // 🎮 The Jeffcom, on the floor in front of the couch, and whether it's working yet
+        const jeffcom = { el: consoleRef.current };
+        let gaming = false;
+        const drawConsole = () => jeffcom.el?.setAttribute('transform', `translate(${L.cx + 2 * L.cs} ${L.floorY}) scale(${L.cs})`);
         const chandelier = { drop: reduceMotion ? 1 : 0, el: chandelierRef.current };
         const drawChandelier = () => {
             if (!chandelier.el) return;
@@ -151,9 +174,17 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             if (sasquatch.spot === 'off') { sasquatch.x = L.offRight; sasquatch.y = L.floorY; sasquatch.size = L.sqSize; draw(sasquatch); }
             drawMountain();
             drawChandelier();
+            drawConsole();
         };
         const drawMountain = () => {
             const m = L.mountain;
+            if (isJeff) {
+                mountain.el.style.display = m && desk.on ? '' : 'none';
+                if (!m) return;
+                if (desk.landed) desk.x = m.x;
+                mountain.el.setAttribute('transform', `translate(${desk.x} ${L.floorY}) scale(${m.desk})`);
+                return;
+            }
             if (isHoliday) {
                 mountain.el.style.display = m && sleigh.on ? '' : 'none';
                 if (!m) return;
@@ -205,9 +236,11 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             await hop(a, L.seatX[a.seat], L.seatY, 22);
             a.spot = 'seat';
             look(a, 'left');
+            if (gaming) a.el.classList.add('crew-gaming');
         };
         const standUp = async (a) => {
             a.spot = 'floor';
+            a.el.classList.remove('crew-gaming');
             await hop(a, L.seatX[a.seat] - 8 * L.cs, L.floorY, 16, 380);
         };
 
@@ -302,7 +335,59 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         };
 
         // 🪄 The witch raises her wand: a lightning bolt cracks across to the QR code, which lights up
+        // 🎮 Everyone on the couch picks up a controller (or puts it down, for a visitor)
+        const setGaming = (on) => {
+            gaming = on;
+            Object.values(actors).forEach((a) => a.el.classList.toggle('crew-gaming', on && a.spot === 'seat'));
+        };
+        // 📼 The Jeffcom: Mitch pushes the cartridge in and the screen just fuzzes. So out it comes, he blows on
+        // it, pushes it back in, and the QR card flickers on like an old TV. Then everybody plays.
+        const bootUp = async () => {
+            const mitch = actors.caster;
+            const con = jeffcom.el.classList;
+            const qr = qrRef?.current?.classList;
+            const reach = async (then) => {
+                mitch.el.classList.add('crew-reaching');
+                await wait(320);
+                then();
+                await wait(280);
+                mitch.el.classList.remove('crew-reaching');
+            };
+            await standUp(mitch);
+            // In front of the others on the couch while he's down at the console, then back in his place after
+            const nextOver = mitch.el.nextSibling;
+            mitch.el.parentNode.insertBefore(mitch.el, jeffcom.el);
+            await walkTo(mitch, L.cx - 34 * L.cs);   // just left of the console
+            look(mitch, 'right');
+            await reach(() => con.add('is-in', 'is-powered'));
+            qr?.add('cc-qr-static');
+            look(mitch, 'left');
+            await wait(1500);
+            look(mitch, 'front');   // ...really?
+            await wait(600);
+            await reach(() => con.remove('is-in'));
+            await wait(200);
+            con.add('is-empty');
+            mitch.el.classList.add('crew-blowing');
+            await wait(1800);   // two good puffs
+            mitch.el.classList.remove('crew-blowing');
+            await wait(300);
+            con.remove('is-empty');
+            look(mitch, 'right');
+            await reach(() => con.add('is-in'));
+            qr?.remove('cc-qr-static');
+            qr?.add('cc-qr-on');
+            look(mitch, 'left');
+            await wait(1000);
+            await walkTo(mitch, L.seatX[mitch.seat] - 8 * L.cs);
+            gaming = true;
+            await sitDown(mitch);
+            mitch.el.parentNode.insertBefore(mitch.el, nextOver);
+            setGaming(true);
+        };
+
         const cast = async () => {
+            if (isJeff) { await bootUp(); return; }
             if (hasProjector) { await project(); return; }
             const witch = actors.caster;
             const bolt = boltRef.current;
@@ -375,7 +460,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
 
         // 🐈 A cat slinks in and goes for the screen; the dog isn't having it
         // (👻 On the Halloween deck it's a tiny ghost, and all three go after it)
-        const chasers = isHalloween ? Object.values(actors) : [actors.chaser];
+        const chasers = isHalloween || isJeff ? Object.values(actors) : [actors.chaser];
         const catVisit = async () => {
             const dog = actors.chaser;
             eventRunning = true;
@@ -397,7 +482,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             // That does it: a bark, down they jump, and the cat bolts with them right behind
             await bark(dog);
             cat.el.classList.remove('crew-cat-swat');
-            chasers.forEach((a) => { a.spot = 'floor'; });
+            chasers.forEach((a) => { a.spot = 'floor'; a.el.classList.remove('crew-gaming'); });   // (controllers down!)
             await Promise.all([
                 ...chasers.map((a) => hop(a, a.x - 6 * L.cs, L.floorY, 14, 320)),
                 hop(cat, cat.x, cat.y, 22, 300).then(() => { cat.flip = -1; draw(cat); }),
@@ -494,12 +579,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
         };
         const rumble = (on) => svg.classList.toggle('is-rumbling', on);
 
-        // 🎅 "HO HO HO!" over the sleigh (kept low enough to clear the players card)
-        const hoHoHo = async () => {
-            const k = L.mountain.sleigh;
+        // 🎅 "HO HO HO!" over the sleigh (kept low enough to clear the players card); "EEEE-KSSHH!" over Dana's modem
+        const hoHoHo = async (x = sleigh.x, k = L.mountain.sleigh) => {
             const bubble = hoHoRef.current;
             const y = Math.max(L.stageTop + 16 * L.s, L.floorY - 128 * k);
-            bubble.setAttribute('transform', `translate(${sleigh.x - 8 * k} ${y}) scale(${L.s})`);
+            // ...but never past the right edge of the screen
+            const left = Math.min(x - 8 * k, L.width - (bubble.getBBox().width + 4) * L.s);
+            bubble.setAttribute('transform', `translate(${left} ${y}) scale(${L.s})`);
             bubble.classList.add('is-on');
             await wait(1300);
             bubble.classList.remove('is-on');
@@ -546,6 +632,52 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             drawMountain();
         };
 
+        // 🖥️ Dana's desk rolls in from the right, the modem screeches, and the screen comes on
+        const deskIn = async () => {
+            const m = L.mountain;
+            const fromX = L.width + 70 * m.desk;
+            desk.on = true;
+            desk.landed = false;
+            mountain.el.classList.add('is-rolling');
+            await tween(2400, easeOut, (t) => { desk.x = fromX + (m.x - fromX) * t; drawMountain(); });
+            mountain.el.classList.remove('is-rolling');
+            desk.landed = true;
+            drawMountain();
+            await wait(300);
+            mountain.el.classList.add('is-on');
+            await hoHoHo(desk.x + 30 * m.desk, m.desk);
+            await wait(700);   // the progress bar fills
+        };
+        // ...the screen goes off, and it rolls away again
+        const deskOut = async () => {
+            const m = L.mountain;
+            mountain.el.classList.remove('is-on');
+            await wait(500);
+            desk.landed = false;
+            const fromX = desk.x;
+            const toX = L.width + 70 * m.desk;
+            mountain.el.classList.add('is-rolling');
+            await tween(2000, (t) => t * t, (t) => { desk.x = fromX + (toX - fromX) * t; drawMountain(); });
+            mountain.el.classList.remove('is-rolling');
+            desk.on = false;
+            drawMountain();
+        };
+        // 💾 Dana pops out of the screen (growing as she comes), or climbs back in (shrinking away)
+        const throughScreen = (a, out) => {
+            const m = L.mountain;
+            const k = m.desk;
+            const inScreen = { x: desk.x, y: L.floorY - 64 * k, size: (34 * k) / (100 * L.s) };
+            const onFloor = { x: m.left + 8 * L.cs, y: L.floorY + 3 * L.cs, size: 1 };
+            const [from, to] = out ? [inScreen, onFloor] : [{ x: a.x, y: a.y, size: a.size }, inScreen];
+            return tween(900, easeInOut, (t) => {
+                a.x = from.x + (to.x - from.x) * t;
+                a.y = from.y + (to.y - from.y) * t;
+                a.size = from.size + (to.size - from.size) * t;
+                a.lift = Math.sin(Math.PI * t) * 26 * L.cs;
+                draw(a);
+            });
+        };
+
         const sasquatchVisit = async () => {
             eventRunning = true;
             Object.values(actors).forEach((a) => { a.busy = true; look(a, 'right'); });
@@ -568,7 +700,16 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 { x: m.left + 8 * L.cs, y: groundY, size: near },
             ] : [];
 
-            if (m && isHoliday) {
+            if (isJeff) setGaming(false);   // pause! someone's here
+            if (m && isJeff) {
+                // Dana rolls in on her desk and climbs out of the monitor
+                await deskIn();
+                sasquatch.spot = 'mountain';
+                sasquatch.flip = 1;
+                sasquatch.el.classList.add('is-arriving');
+                await throughScreen(sasquatch, true);
+                sasquatch.el.classList.remove('is-arriving');
+            } else if (m && isHoliday) {
                 // Santa climbs out of the sleigh
                 await sleighIn();
                 const k = m.sleigh;
@@ -606,16 +747,18 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 sasquatch.x = L.offRight;
                 sasquatch.y = groundY;
                 sasquatch.size = near;
-                await walkTo(sasquatch, L.seatX[2] + 130 * L.s, 60);
+                await walkTo(sasquatch, L.seatX[seats.length - 1] + 130 * L.s, 60);
             }
             sasquatch.spot = 'floor';
 
             // Fist bumps down the couch: alien, dog, robot
-            const fistReach = 127;   // how far right of a character he stands so the fists meet (character units)
-            for (const name of ['third', 'chaser', 'caster']) {
+            // (Dana's the crew's size, so she stands closer, and jumps up to reach)
+            const fistReach = isJeff ? 85 : 127;   // how far right of a character he stands so the fists meet (character units)
+            for (const name of [...seats].reverse()) {
                 const a = actors[name];
                 await walkTo(sasquatch, a.x + fistReach * L.s, 55);
                 sasquatch.flip = 1;
+                if (isJeff) sasquatch.lift = sasquatch.y - L.seatY;
                 draw(sasquatch);
                 look(a, 'right');
                 a.el.classList.add('crew-bumping');
@@ -629,12 +772,18 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 draw(a);
                 a.el.classList.remove('crew-bumping');
                 sasquatch.el.classList.remove('sq-bumping');
+                if (isJeff) { sasquatch.lift = 0; draw(sasquatch); }
                 await wait(350);
             }
 
             // And off he goes, back over the mountain (or out the way he came)
             Object.values(actors).forEach((a) => look(a, 'right'));
-            if (m && isHoliday) {
+            if (m && isJeff) {
+                await walkTo(sasquatch, m.left + 8 * L.cs, 55);
+                sasquatch.el.classList.add('is-leaving');
+                await throughScreen(sasquatch, false);
+                sasquatch.el.classList.remove('is-leaving');
+            } else if (m && isHoliday) {
                 await walkTo(sasquatch, m.left + 8 * L.cs, 55);
                 sasquatch.flip = -1;
                 await hop(sasquatch, m.x - 30 * m.sleigh, L.floorY - 40 * m.sleigh, 18, 520);
@@ -650,9 +799,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             }
             sasquatch.spot = 'off';
             sasquatch.x = L.offRight;
+            sasquatch.size = L.sqSize;
+            sasquatch.lift = 0;
             draw(sasquatch);
 
-            if (m && isHoliday) {
+            if (m && isJeff) {
+                await deskOut();
+            } else if (m && isHoliday) {
                 await sleighOut();
             } else if (m) {
                 mountain.el.classList.remove('is-open');
@@ -662,6 +815,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 rumble(false);
             }
             Object.values(actors).forEach((a) => { a.busy = false; look(a, 'left'); });
+            if (isJeff) setGaming(true);   // back to the game
             eventRunning = false;
             cheer();
         };
@@ -691,12 +845,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             couch.spot = 'home';
             couch.el.classList.remove('couch-crawling');
             couch.el.classList.add('couch-plop');
+            if (jeffcom.el) jeffcom.el.style.display = '';   // the console was under it all along
             await wait(450);
 
-            // The crew strolls in one after another and hops up
-            await Promise.all(SEATS.map(async (name, i) => {
+            // The crew strolls in one after another and hops up (Jeffinitely's four take their time)
+            await Promise.all(seats.map(async (name, i) => {
                 const a = actors[name];
-                await wait(i * 750);
+                await wait(i * (isJeff ? 1300 : 750));
                 a.spot = 'floor';
                 await walkTo(a, L.seatX[a.seat] - 8 * L.cs);
                 await sitDown(a);
@@ -718,6 +873,11 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             // No moving about: the crew is already settled on the couch, the code already lit
             Object.values(actors).forEach((a) => { a.spot = 'seat'; a.busy = false; look(a, 'left'); });
             qrRef?.current?.classList.add('cc-qr-on');
+            if (jeffcom.el) {
+                jeffcom.el.style.display = '';
+                jeffcom.el.classList.add('is-in', 'is-powered');
+                setGaming(true);
+            }
         }
         snap();
         svg.classList.add('is-ready');
@@ -748,7 +908,12 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
     let cast = [Robot, Dog, Alien, Cat, Mountain, Couch, Sasquatch];
     if (isHalloween) cast = [Witch, HoaPresident, Vampire, Ghost, Castle, GothicCouch, FrankensteinMonster];
     if (isHoliday) cast = [HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, Sleigh, HolidayCouch, Santa];
-    const [Caster, Chaser, Third, Pest, Hill, TheCouch, Visitor] = cast;
+    if (isJeff) cast = [MulletMitch, AerobicsAngie, DiscoDuke, Pixel, DanaComputer, JeffCouch, DialUpDana, BoomerBoombox];
+    const [Caster, Chaser, Third, Pest, Hill, TheCouch, Visitor, Fourth] = cast;
+    // What gets shouted: at the pest (the chaser's bubble), and by the visitor's ride
+    const barkText = isHalloween ? 'VIOLATION!' : isJeff ? 'SCRAM, PIXEL!' : 'WOOF!';
+    const shoutText = isJeff ? 'EEEE-KSSHH!' : 'HO HO HO!';
+    const bubbleWidth = (text) => Math.round(text.length * 8.6 - 4);
 
     return (
         <>
@@ -764,7 +929,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <circle className="crew-proj-lens" r={0} />
             </svg>
         )}
-        {!hasProjector && (
+        {hasWand && (
             <svg ref={boltRef} className="cc-crew is-ready crew-bolt" aria-hidden="true" preserveAspectRatio="none">
                 {/* ⚡ The witch's lightning: a violet glow, the bolt, and a white-hot core (only while she's casting) */}
                 <g className="crew-bolt-zap">
@@ -776,7 +941,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <circle className="crew-bolt-hit" r={0} />
             </svg>
         )}
-        <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''} ${isHoliday ? 'cc-crew-holiday' : ''}`} aria-hidden="true" preserveAspectRatio="none">
+        <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''} ${isHoliday ? 'cc-crew-holiday' : ''} ${isJeff ? 'cc-crew-jeff' : ''}`} aria-hidden="true" preserveAspectRatio="none">
             <g className="crew-world">
                 {isHalloween && <Chandelier chandelierRef={chandelierRef} />}
                 <Hill mountainRef={mountainRef} castleRef={mountainRef} sleighRef={mountainRef} />
@@ -784,8 +949,10 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <Caster elRef={actorEls.caster} />
                 <Chaser elRef={actorEls.chaser} />
                 <Third elRef={actorEls.third} />
+                {Fourth && <Fourth elRef={actorEls.fourth} />}
                 <Pest elRef={actorEls.cat} />
                 <Visitor elRef={actorEls.sasquatch} />
+                {isJeff && <Jeffcom consoleRef={consoleRef} />}
             </g>
 
             {isHalloween && Array.from({ length: BAT_COUNT }, (_, i) => <Bat key={i} elRef={(el) => { batRefs.current[i] = el; }} />)}
@@ -795,13 +962,13 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             </g>
 
             <g ref={hoHoRef} className="crew-bark">
-                <path d="M -4 -14 H 82 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z" fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={39} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">HO HO HO!</text>
+                <path d={`M -4 -14 H ${bubbleWidth(shoutText)} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={bubbleWidth(shoutText) / 2 - 2} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">{shoutText}</text>
             </g>
 
             <g ref={barkRef} className="crew-bark">
-                <path d={`M -4 -14 H ${isHalloween ? 82 : 40} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={isHalloween ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">{isHalloween ? 'VIOLATION!' : 'WOOF!'}</text>
+                <path d={`M -4 -14 H ${bubbleWidth(barkText)} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke="#16161d" strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={bubbleWidth(barkText) / 2 - 2} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill="#16161d" fontFamily="system-ui, sans-serif">{barkText}</text>
             </g>
         </svg>
         </>
