@@ -25749,10 +25749,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  */
 
 /**
- * The server's rule (sockets/mixup_handler.js, canMove), so the phone can grey out where an answer can't go:
- * nobody matches themselves, and the judge can't add to their own matches. groupId null = on its own.
+ * The server's rule (sockets/mixup_handler.js, canMove), so the phone can grey out where an answer can't go.
+ * Groups can be any size and the judge's own answers count too; the one rule is that nobody is matched
+ * with themselves (one answer per player in a group). groupId null = on its own.
  */
-function canMoveAnswer(review, judgeSeat, itemId, groupId) {
+function canMoveAnswer(review, itemId, groupId) {
   var item = review.items[itemId];
   var from = review.groups.find(function (g) {
     return g.itemIds.includes(itemId);
@@ -25766,8 +25767,7 @@ function canMoveAnswer(review, judgeSeat, itemId, groupId) {
   var seats = to.itemIds.map(function (id) {
     return review.items[id].seat;
   });
-  if (seats.includes(item.seat)) return false;
-  return item.seat !== judgeSeat && !seats.includes(judgeSeat);
+  return !seats.includes(item.seat);
 }
 var seatCount = function seatCount(review, group) {
   return new Set(group.itemIds.map(function (id) {
@@ -26007,17 +26007,17 @@ function JudgeReview(_ref4) {
         var home = review.groups.find(function (g) {
           return g.itemIds.includes(id);
         });
-        if (zone === 'alone') return canMoveAnswer(review, judgeSeat, id, null) ? send(id, null) : setHeld(null);
+        if (zone === 'alone') return canMoveAnswer(review, id, null) ? send(id, null) : setHeld(null);
         if (zone && zone === (home === null || home === void 0 ? void 0 : home.id)) return; // let go where it started: still picked up, ready for a tap
-        return zone && canMoveAnswer(review, judgeSeat, id, zone) ? send(id, zone) : setHeld(null);
+        return zone && canMoveAnswer(review, id, zone) ? send(id, zone) : setHeld(null);
       }
     }),
     drag = _useAnswerDrag.drag,
     startDrag = _useAnswerDrag.startDrag,
     isAfterDrag = _useAnswerDrag.isAfterDrag;
   var canGoAnywhere = function canGoAnywhere(id) {
-    return canMoveAnswer(review, judgeSeat, id, null) || review.groups.some(function (g) {
-      return canMoveAnswer(review, judgeSeat, id, g.id);
+    return canMoveAnswer(review, id, null) || review.groups.some(function (g) {
+      return canMoveAnswer(review, id, g.id);
     });
   };
   var heldItem = held ? review.items[held] : null;
@@ -26032,7 +26032,7 @@ function JudgeReview(_ref4) {
     size: "sm",
     className: "fw-bold ".concat((drag === null || drag === void 0 ? void 0 : drag.zone) === 'alone' ? 'mx-drop-hover' : ''),
     "data-drop": "alone",
-    disabled: !canMoveAnswer(review, judgeSeat, held, null),
+    disabled: !canMoveAnswer(review, held, null),
     onClick: function onClick() {
       return !isAfterDrag() && send(held, null);
     }
@@ -26072,7 +26072,7 @@ function JudgeReview(_ref4) {
   }, review.groups.map(function (group) {
     var isHome = held && group.itemIds.includes(held);
     var isTarget = held && !isHome;
-    var canDrop = isTarget && canMoveAnswer(review, judgeSeat, held, group.id);
+    var canDrop = isTarget && canMoveAnswer(review, held, group.id);
     var answers = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
       className: "mx-review-answers"
     }, group.itemIds.map(function (id) {
@@ -26120,9 +26120,6 @@ function JudgeReview(_ref4) {
         pointsPerItem: round.pointsPerItem
       }), answers);
     }
-    var ownMatch = heldItem.seat === judgeSeat || group.itemIds.some(function (id) {
-      return review.items[id].seat === judgeSeat;
-    });
     var sameName = group.itemIds.some(function (id) {
       return review.items[id].seat === heldItem.seat;
     });
@@ -26140,10 +26137,10 @@ function JudgeReview(_ref4) {
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mx-review-head"
-    }, isHover ? '🤝 Let go to join them' : canDrop ? '👇 Drop it here' : sameName ? "".concat(heldItem.seat === judgeSeat ? 'You' : heldItem.name, " already ").concat(heldItem.seat === judgeSeat ? 'have' : 'has', " one here") : ownMatch ? '🔒 Not your own match' : ''), answers);
+    }, isHover ? '🤝 Let go to join them' : canDrop ? '👇 Drop it here' : sameName ? "".concat(heldItem.seat === judgeSeat ? 'You' : heldItem.name, " already ").concat(heldItem.seat === judgeSeat ? 'have' : 'has', " one here") : ''), answers);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "small text-muted mt-2 mb-0"
-  }, "\uD83D\uDD12 You can split your own matches, but not add to them. No rush: tap Looks good! when you're done.")), drag && heldItem && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "Make as many matches as you need, as big as you need. Everyone in a match scores for each other. No rush: tap Looks good! when you're done.")), drag && heldItem && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-drag-ghost",
     style: {
       left: drag.x,
@@ -26419,7 +26416,8 @@ function MixupTV(_ref) {
   (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.useTimerMusic)(isTimerPhase, {
     endTime: isListReview ? null : room === null || room === void 0 ? void 0 : room.endTime,
     key: isListReview ? "list-review-".concat(n) : "".concat(gameState, "-").concat(n),
-    trackId: isListReview ? _timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.JUDGING_TRACK : gameState === 'match_write' ? 'grandfather-clock' : null // ⏰ the list rounds tick away the whole time
+    // ⏰ the list rounds tick away the whole time; ✏️ Pictionary has its own bouncy doodle tune, and it stops when the drawing ends
+    trackId: isListReview ? _timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.JUDGING_TRACK : gameState === 'match_write' ? 'grandfather-clock' : gameState === 'draw' ? _timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.DRAWING_TRACK : null
   });
 
   // Fetch the rules narration while everyone is still joining, so it starts instantly
@@ -51197,6 +51195,7 @@ allSockets.forEach(function (s) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DRAWING_TRACK": () => (/* binding */ DRAWING_TRACK),
 /* harmony export */   "JUDGING_TRACK": () => (/* binding */ JUDGING_TRACK),
 /* harmony export */   "LOBBY_SYNTH_TRACKS": () => (/* binding */ LOBBY_SYNTH_TRACKS),
 /* harmony export */   "SPOOKY_TIMER_TRACKS": () => (/* binding */ SPOOKY_TIMER_TRACKS),
@@ -52234,10 +52233,57 @@ var LOBBY_SYNTH_TRACKS = [{
       if (p === pos) inst.marimba(ctx, out, t, n, 0.13);
     });
   }
+}, {
+  // ✏️ Someone's drawing: a bouncy, cartoonish doodle tune (our own), an 8-bar loop in C (C Am F G).
+  // A marimba hook over plucked chords, a bouncing bass and a light beat; a bell sparkles in the second half.
+  id: 'doodle-dash',
+  name: 'Doodle Dash',
+  bpm: 128,
+  swing: 0.08,
+  play: function play(ctx, out, step, t) {
+    var pos = step % 16;
+    var bar = Math.floor(step / 16) % 8;
+    var chord = bar % 4;
+    var roots = [36, 33, 29, 31];
+    var chords = [[60, 64, 67], [57, 60, 64], [57, 60, 65], [55, 59, 62]];
+    var hook = [[[0, 72], [2, 74], [4, 76], [6, 79], [10, 76], [12, 79]], [[0, 81], [4, 79], [6, 76], [8, 72], [12, 76]], [[0, 77], [2, 76], [4, 77], [6, 81], [10, 79], [12, 77]], [[0, 79], [4, 74], [8, 71], [12, 74], [14, 79]], [[0, 72], [2, 74], [4, 76], [6, 79], [10, 76], [12, 79]], [[0, 81], [2, 83], [4, 84], [8, 81], [12, 76]], [[0, 77], [4, 81], [6, 84], [8, 81], [12, 77]], [[0, 79], [3, 77], [6, 74], [8, 71], [10, 74], [12, 79]]];
+
+    // A light beat: kick, claps on 2 and 4, soft hats with an open one to round off the bar
+    if (pos === 0 || pos === 8 || pos === 10 && chord === 3) inst.kick(ctx, out, t, 0.3);
+    if (pos === 4 || pos === 12) inst.clap(ctx, out, t, 0.08);
+    if (pos % 2 === 0 && pos !== 14) inst.hat(ctx, out, t, 0.015);
+    if (pos === 14) inst.openHat(ctx, out, t, 0.03);
+
+    // A bouncing bass: root, octave pop, root, fifth...
+    [[0, 12, 0.26], [3, 24, 0.14], [6, 12, 0.2], [8, 19, 0.2], [11, 24, 0.14], [14, 19, 0.18]].forEach(function (_ref31) {
+      var _ref32 = _slicedToArray(_ref31, 3),
+        p = _ref32[0],
+        interval = _ref32[1],
+        vol = _ref32[2];
+      if (p === pos) inst.bass(ctx, out, t, roots[chord] + interval, vol, 0.2);
+    });
+
+    // Plucked chord tones on the off-beats
+    [[2, 0], [6, 1], [10, 2], [14, 1]].forEach(function (_ref33) {
+      var _ref34 = _slicedToArray(_ref33, 2),
+        p = _ref34[0],
+        i = _ref34[1];
+      if (p === pos) inst.pluck(ctx, out, t, chords[chord][i] + 12, 0.07);
+    });
+    hook[bar].forEach(function (_ref35) {
+      var _ref36 = _slicedToArray(_ref35, 2),
+        p = _ref36[0],
+        n = _ref36[1];
+      if (p === pos) inst.marimba(ctx, out, t, n, 0.16);
+    });
+    if (bar >= 4 && pos === 0) inst.bell(ctx, out, t, chords[chord][2] + 24, 0.05);
+  }
 }];
 
 // ⚖️ While the judge reads the answers (played by id, like the lobby songs)
 var JUDGING_TRACK = 'deliberation';
+// ✏️ While someone draws in Temple Mix Up's Pictionary
+var DRAWING_TRACK = 'doodle-dash';
 
 // ---------------------------------------------------------------------------------------------
 // ▶️ The player
@@ -52315,13 +52361,13 @@ var playHurry = function playHurry(ctx, playing, step, t) {
  * @param {string} [options.theme]    'halloween': pick from the spooky tracks
  */
 function startTimerMusic() {
-  var _ref31 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    _ref31$endTime = _ref31.endTime,
-    endTime = _ref31$endTime === void 0 ? null : _ref31$endTime,
-    _ref31$trackId = _ref31.trackId,
-    trackId = _ref31$trackId === void 0 ? null : _ref31$trackId,
-    _ref31$theme = _ref31.theme,
-    theme = _ref31$theme === void 0 ? null : _ref31$theme;
+  var _ref37 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    _ref37$endTime = _ref37.endTime,
+    endTime = _ref37$endTime === void 0 ? null : _ref37$endTime,
+    _ref37$trackId = _ref37.trackId,
+    trackId = _ref37$trackId === void 0 ? null : _ref37$trackId,
+    _ref37$theme = _ref37.theme,
+    theme = _ref37$theme === void 0 ? null : _ref37$theme;
   stopTimerMusic();
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
   if (!ctx) return;
@@ -52378,15 +52424,15 @@ function stopTimerMusic() {
  * `theme: 'halloween'` plays the spooky tracks.
  */
 function useTimerMusic(isActive) {
-  var _ref32 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-    _ref32$endTime = _ref32.endTime,
-    endTime = _ref32$endTime === void 0 ? null : _ref32$endTime,
-    _ref32$key = _ref32.key,
-    key = _ref32$key === void 0 ? null : _ref32$key,
-    _ref32$trackId = _ref32.trackId,
-    trackId = _ref32$trackId === void 0 ? null : _ref32$trackId,
-    _ref32$theme = _ref32.theme,
-    theme = _ref32$theme === void 0 ? null : _ref32$theme;
+  var _ref38 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    _ref38$endTime = _ref38.endTime,
+    endTime = _ref38$endTime === void 0 ? null : _ref38$endTime,
+    _ref38$key = _ref38.key,
+    key = _ref38$key === void 0 ? null : _ref38$key,
+    _ref38$trackId = _ref38.trackId,
+    trackId = _ref38$trackId === void 0 ? null : _ref38$trackId,
+    _ref38$theme = _ref38.theme,
+    theme = _ref38$theme === void 0 ? null : _ref38$theme;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isActive) return undefined;
     startTimerMusic({
