@@ -33,9 +33,12 @@ let currentDone = null;  // tells speak() how the current line ended
 let isPlaying = false;
 let session = 0;         // bumped by stopVoice() so stale lines never start
 
-// Lines fetched ahead of time (text -> Promise of an audio URL), so they start instantly
+// Lines fetched ahead of time (room + text -> Promise of an audio URL), so they start instantly.
+// Kept per room: games can have different narrators (the Halloween deck's is a villain), so a line
+// from the last game must not be replayed in the next one.
 const preloaded = new Map();
 const MAX_PRELOADED = 60;
+const preloadKey = (roomCode, text) => `${roomCode}|${text}`;
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -175,19 +178,20 @@ export async function canPlaySound() {
 // Fetch lines ahead of time so they start the moment they're needed
 export function preloadVoice(lines, roomCode) {
     [].concat(lines).map(toSpokenText).filter(Boolean).forEach((text) => {
-        if (preloaded.has(text)) return;
+        const key = preloadKey(roomCode, text);
+        if (preloaded.has(key)) return;
 
         // Full: drop the oldest line
         if (preloaded.size >= MAX_PRELOADED) {
-            const [oldestText, oldestPromise] = preloaded.entries().next().value;
-            preloaded.delete(oldestText);
+            const [oldestKey, oldestPromise] = preloaded.entries().next().value;
+            preloaded.delete(oldestKey);
             oldestPromise.then((url) => url && URL.revokeObjectURL(url));
         }
 
         const audioPromise = fetchAudio(text, roomCode);
-        preloaded.set(text, audioPromise);
+        preloaded.set(key, audioPromise);
         // A failed line isn't kept, so it gets another chance when it's actually spoken
-        audioPromise.then((url) => { if (!url && preloaded.get(text) === audioPromise) preloaded.delete(text); });
+        audioPromise.then((url) => { if (!url && preloaded.get(key) === audioPromise) preloaded.delete(key); });
     });
 }
 
@@ -203,7 +207,7 @@ export function speak(lines, roomCode) {
         .filter((line) => line.text)
         .map(({ text, volume }) => {
         return new Promise((resolve) => {
-            const ready = preloaded.get(text);
+            const ready = preloaded.get(preloadKey(roomCode, text));
             // Start loading straight away so there's no gap between lines
             queue.push({ text, volume, audioPromise: ready || fetchAudio(text, roomCode), keep: !!ready, done: resolve });
         });

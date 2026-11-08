@@ -13,6 +13,8 @@ import { getListCastRoom } from "../sockets/lists_handler.js";
 // simply plays without a voice.
 
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || 'keLVje3aBMuRpxuu0bqO'; // "Crofty - Energetic Radio Host"
+// 🎃 Couch Cast with the Halloween deck gets a villain for a narrator instead (from ElevenLabs' voice library)
+const HALLOWEEN_VOICE_ID = 'Vs5CmVCVJwW4odQS2pVf'; // "Branok - Evil & Villainous"
 const MODEL_ID = process.env.ELEVENLABS_MODEL_ID || 'eleven_flash_v2_5';   // fast + cheapest per character
 
 // Always English. Left to guess, the model sometimes hears a short or odd line
@@ -38,10 +40,10 @@ const inFlight = new Map();
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Asks ElevenLabs for one line. A busy or flaky answer gets one more try.
-const generateSpeech = async (text, apiKey, attempt = 1) => {
+const generateSpeech = async (text, apiKey, voiceId, attempt = 1) => {
     let response;
     try {
-        response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=mp3_44100_128`, {
+        response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`, {
             method: 'POST',
             headers: {
                 'xi-api-key': apiKey,
@@ -52,7 +54,7 @@ const generateSpeech = async (text, apiKey, attempt = 1) => {
         });
     } catch (err) {
         console.error(`ElevenLabs request failed (try ${attempt}): ${err.message}`);
-        if (attempt === 1) { await wait(300); return generateSpeech(text, apiKey, 2); }
+        if (attempt === 1) { await wait(300); return generateSpeech(text, apiKey, voiceId, 2); }
         return null;
     }
 
@@ -60,7 +62,7 @@ const generateSpeech = async (text, apiKey, attempt = 1) => {
         const detail = await response.text();
         console.error(`ElevenLabs error ${response.status} (try ${attempt}):`, detail.slice(0, 300));
         const worthRetrying = response.status === 429 || response.status >= 500;
-        if (worthRetrying && attempt === 1) { await wait(600); return generateSpeech(text, apiKey, 2); }
+        if (worthRetrying && attempt === 1) { await wait(600); return generateSpeech(text, apiKey, voiceId, 2); }
         return null;
     }
 
@@ -82,12 +84,14 @@ export const speakLine = async (req, res) => {
         }
 
         // Only a live TV game (Couch Cast, Re-Shuffled, Trivia Cast, List Cast or Mix Up) can ask for speech
-        const room = getCouchCastRoom(roomCode) || getReshuffledRoom(roomCode) || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode) || getMixupRoom(roomCode);
+        const couchCastRoom = getCouchCastRoom(roomCode);
+        const room = couchCastRoom || getReshuffledRoom(roomCode) || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode) || getMixupRoom(roomCode);
         if (!room) {
             return res.status(404).json({ success: false, message: "Room not found." });
         }
 
-        const cacheKey = `${VOICE_ID}:${MODEL_ID}:${text}`;
+        const voiceId = couchCastRoom?.expansion === 'halloween' ? HALLOWEEN_VOICE_ID : VOICE_ID;
+        const cacheKey = `${voiceId}:${MODEL_ID}:${text}`;
         let audio = audioCache.get(cacheKey);
 
         // Someone already asked for this exact line a moment ago: wait for that one
@@ -113,7 +117,7 @@ export const speakLine = async (req, res) => {
             room.ttsChars += text.length;
             charsToday += text.length;
 
-            const pending = generateSpeech(text, apiKey);
+            const pending = generateSpeech(text, apiKey, voiceId);
             inFlight.set(cacheKey, pending);
             audio = await pending;
             inFlight.delete(cacheKey);

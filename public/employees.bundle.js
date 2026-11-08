@@ -48722,9 +48722,14 @@ var currentDone = null; // tells speak() how the current line ended
 var isPlaying = false;
 var session = 0; // bumped by stopVoice() so stale lines never start
 
-// Lines fetched ahead of time (text -> Promise of an audio URL), so they start instantly
+// Lines fetched ahead of time (room + text -> Promise of an audio URL), so they start instantly.
+// Kept per room: games can have different narrators (the Halloween deck's is a villain), so a line
+// from the last game must not be replayed in the next one.
 var preloaded = new Map();
 var MAX_PRELOADED = 60;
+var preloadKey = function preloadKey(roomCode, text) {
+  return "".concat(roomCode, "|").concat(text);
+};
 var wait = function wait(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
@@ -48993,23 +48998,24 @@ function _canPlaySound() {
 }
 function preloadVoice(lines, roomCode) {
   [].concat(lines).map(toSpokenText).filter(Boolean).forEach(function (text) {
-    if (preloaded.has(text)) return;
+    var key = preloadKey(roomCode, text);
+    if (preloaded.has(key)) return;
 
     // Full: drop the oldest line
     if (preloaded.size >= MAX_PRELOADED) {
       var _preloaded$entries$ne = _slicedToArray(preloaded.entries().next().value, 2),
-        oldestText = _preloaded$entries$ne[0],
+        oldestKey = _preloaded$entries$ne[0],
         oldestPromise = _preloaded$entries$ne[1];
-      preloaded["delete"](oldestText);
+      preloaded["delete"](oldestKey);
       oldestPromise.then(function (url) {
         return url && URL.revokeObjectURL(url);
       });
     }
     var audioPromise = fetchAudio(text, roomCode);
-    preloaded.set(text, audioPromise);
+    preloaded.set(key, audioPromise);
     // A failed line isn't kept, so it gets another chance when it's actually spoken
     audioPromise.then(function (url) {
-      if (!url && preloaded.get(text) === audioPromise) preloaded["delete"](text);
+      if (!url && preloaded.get(key) === audioPromise) preloaded["delete"](key);
     });
   });
 }
@@ -49034,7 +49040,7 @@ function speak(lines, roomCode) {
     var text = _ref3.text,
       volume = _ref3.volume;
     return new Promise(function (resolve) {
-      var ready = preloaded.get(text);
+      var ready = preloaded.get(preloadKey(roomCode, text));
       // Start loading straight away so there's no gap between lines
       queue.push({
         text: text,
