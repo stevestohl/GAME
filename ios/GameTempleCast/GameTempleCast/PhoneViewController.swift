@@ -31,6 +31,11 @@ final class PhoneViewController: UIViewController {
     private let webView = WebViews.make()
     private var urlWatch: NSKeyValueObservation?
     private let remoteButton = UIButton(type: .system)
+    /// ⏸️ Pauses (or resumes) the game on the TV: the pause button is on the TV's screen, which nobody can tap
+    private let pauseButton = UIButton(type: .system)
+    private let tvButtons = UIStackView()
+    private var pauseWatch: Timer?
+    private let pageEdge = PageEdgeView()
 
     var currentURL: URL? { webView.url }
 
@@ -38,6 +43,12 @@ final class PhoneViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         webView.allowsBackForwardNavigationGestures = true
+        // 🎨 Past the end of a page, where the home bar is, the web view shows what's behind it: on pages that fit
+        // the screen (like Join Room) that's a strip under the page after the first swipe. Behind it, carry on the
+        // bottom edge of the site's background, in whatever theme the site is showing.
+        webView.backgroundColor = .clear
+        webView.configuration.userContentController.add(pageEdge, name: "gtPageEdge")
+        webView.configuration.userContentController.addUserScript(WKUserScript(source: WebViews.pageEdgeScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
         NSLayoutConstraint.activate([
@@ -46,6 +57,14 @@ final class PhoneViewController: UIViewController {
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+        pageEdge.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(pageEdge, belowSubview: webView)
+        NSLayoutConstraint.activate([
+            pageEdge.topAnchor.constraint(equalTo: webView.topAnchor),
+            pageEdge.bottomAnchor.constraint(equalTo: webView.bottomAnchor),
+            pageEdge.leadingAnchor.constraint(equalTo: webView.leadingAnchor),
+            pageEdge.trailingAnchor.constraint(equalTo: webView.trailingAnchor),
+        ])
 
         var look = UIButton.Configuration.filled()
         look.title = "📺 TV"
@@ -53,14 +72,21 @@ final class PhoneViewController: UIViewController {
         look.baseBackgroundColor = UIColor(white: 0, alpha: 0.7)
         look.baseForegroundColor = .white
         remoteButton.configuration = look
-        remoteButton.translatesAutoresizingMaskIntoConstraints = false
         remoteButton.accessibilityLabel = "TV remote"
         remoteButton.addTarget(self, action: #selector(openRemote), for: .touchUpInside)
-        remoteButton.isHidden = true
-        view.addSubview(remoteButton)
+        pauseButton.configuration = look
+        pauseButton.addTarget(self, action: #selector(tapPause), for: .touchUpInside)
+        pauseButton.isHidden = true
+        // In the lower left: the game's pages keep the room code in the lower right
+        tvButtons.addArrangedSubview(remoteButton)
+        tvButtons.addArrangedSubview(pauseButton)
+        tvButtons.spacing = 8
+        tvButtons.translatesAutoresizingMaskIntoConstraints = false
+        tvButtons.isHidden = true
+        view.addSubview(tvButtons)
         NSLayoutConstraint.activate([
-            remoteButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
-            remoteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
+            tvButtons.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            tvButtons.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
         ])
 
         // The website changes pages without reloading: follow its address instead
@@ -91,12 +117,14 @@ final class PhoneViewController: UIViewController {
         box.transform = CGAffineTransform(scaleX: scale, y: scale)
         view.addSubview(box)
         box.center = CGPoint(x: 8 + 150, y: view.bounds.height - 110)
+        view.bringSubviewToFront(tvButtons)   // the TV buttons share its corner
         CastCoordinator.shared.tvDidConnect(tv)
     }
     #endif
 
     func tvConnectionChanged() {
-        remoteButton.isHidden = !CastCoordinator.shared.isTVConnected
+        tvButtons.isHidden = !CastCoordinator.shared.isTVConnected
+        watchPauseButton()
         // The TV came on while "Play on TV" was waiting: say so, then let the game move over
         if CastCoordinator.shared.isTVConnected, let guide = connectGuide {
             connectGuide = nil
@@ -125,6 +153,31 @@ final class PhoneViewController: UIViewController {
         guide.presentationController?.delegate = self
         connectGuide = guide
         present(guide, animated: true)
+    }
+
+    /// ⏸️ Shows the pause button whenever the TV's game has one (only while a round is running), saying what it'll do
+    private func watchPauseButton() {
+        pauseWatch?.invalidate()
+        pauseWatch = nil
+        guard CastCoordinator.shared.isTVConnected else { return showPause("") }
+        pauseWatch = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            CastCoordinator.shared.tv?.pauseState { self?.showPause($0) }
+        }
+    }
+
+    private func showPause(_ state: String) {
+        let title = state.hasPrefix("Resume") ? "▶️ Resume" : "⏸️ Pause"
+        if pauseButton.configuration?.title != title { pauseButton.configuration?.title = title }
+        pauseButton.accessibilityLabel = state.isEmpty ? nil : state
+        let hide = state.isEmpty
+        if pauseButton.isHidden != hide { pauseButton.isHidden = hide }
+    }
+
+    @objc private func tapPause() {
+        guard let tv = CastCoordinator.shared.tv else { return }
+        tv.tapPause()
+        // Show the change straight away, not on the next check
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in tv.pauseState { self?.showPause($0) } }
     }
 
     @objc private func openRemote() {
@@ -157,6 +210,32 @@ final class PhoneViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self?.present(alert, animated: true)
         }
+    }
+}
+
+/// 🎨 Behind the phone's web view: the colours along the bottom edge of the site's background, left to right, sent
+/// by WebViews.pageEdgeScript. They show past the end of the page, where the home bar is.
+private final class PageEdgeView: UIView, WKScriptMessageHandler {
+    override class var layerClass: AnyClass { CAGradientLayer.self }
+    private var gradient: CAGradientLayer { layer as! CAGradientLayer }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        gradient.startPoint = CGPoint(x: 0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        // The home screen's blue, until the site says otherwise
+        show([[56, 73, 145], [88, 110, 199], [66, 82, 149]])
+    }
+
+    required init?(coder: NSCoder) { fatalError("Not used from a storyboard") }
+
+    private func show(_ colors: [[Double]]) {
+        gradient.colors = colors.map { UIColor(red: $0[0] / 255, green: $0[1] / 255, blue: $0[2] / 255, alpha: 1).cgColor }
+    }
+
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard let edge = message.body as? [[NSNumber]], edge.count >= 2, edge.allSatisfy({ $0.count == 3 }) else { return }
+        show(edge.map { $0.map { min(max($0.doubleValue, 0), 255) } })
     }
 }
 

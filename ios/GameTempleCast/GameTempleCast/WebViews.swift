@@ -75,6 +75,75 @@ enum WebViews {
         })();
         """
 
+    /// 🎨 For the phone: the colours along the bottom edge of the site's animated background (.gt-bg in
+    /// src/styles/cards.css), left to right, sent to the app as [[r, g, b], ...] when it first appears and whenever its
+    /// theme (Halloween orange, holiday green...) or size changes. The app paints the space past the end of the page
+    /// with them, where the home bar is, so it carries on from the page. The colours are worked out the way the CSS
+    /// draws them: a 165° gradient (navy, blue-800 at 35%, blue-500 at 75%, blue-400) under a vignette that darkens
+    /// the corners. The slowly drifting blobs and icons are left out.
+    static let pageEdgeScript = """
+        (() => {
+            const probe = document.createElement('span');
+            probe.style.display = 'none';
+            const toRGBA = (value, fallback) => {
+                probe.style.color = fallback;
+                if (value.trim()) probe.style.color = value;   // a value that isn't a colour is ignored
+                if (!probe.isConnected) document.documentElement.appendChild(probe);
+                const [r, g, b, a = 1] = getComputedStyle(probe).color.match(/[\\d.]+/g).map(Number);
+                return [r, g, b, a];
+            };
+            const blend = (from, to, t) => from.map((value, i) => value + (to[i] - value) * t);
+            const clamp = (t) => Math.min(Math.max(t, 0), 1);
+
+            const bottomEdge = (bg) => {
+                const style = getComputedStyle(bg);
+                const color = (name, fallback) => toRGBA(style.getPropertyValue(name), fallback);
+                const stops = [
+                    [0, color('--gt-navy', '#141f57')],
+                    [0.35, color('--gt-blue-800', '#22348f')],
+                    [0.75, color('--gt-blue-500', '#4a66d8')],
+                    [1, color('--gt-blue-400', '#6f88e6')],
+                ];
+                const shade = color('--gt-bg-vignette', 'rgba(10, 16, 50, 0.45)');
+                const w = bg.clientWidth, h = bg.clientHeight;
+                const angle = (165 * Math.PI) / 180;
+                const dx = Math.sin(angle), dy = -Math.cos(angle);
+                const length = Math.abs(w * dx) + Math.abs(h * dy);
+                return Array.from({ length: 9 }, (_, i) => {
+                    const x = (w * i) / 8;
+                    // How far along the gradient this point of the bottom edge is
+                    const t = clamp(0.5 + ((x - w / 2) * dx + (h / 2) * dy) / length);
+                    const n = stops.findIndex(([at]) => at >= t);
+                    const [at0, c0] = stops[Math.max(n - 1, 0)], [at1, c1] = stops[n];
+                    const base = blend(c0, c1, at1 > at0 ? (t - at0) / (at1 - at0) : 0);
+                    // The vignette is an ellipse through the corners, clear for the middle 55%
+                    const out = Math.hypot((x - w / 2) / (w / Math.SQRT2), Math.SQRT1_2);
+                    return blend(base, shade, clamp((out - 0.55) / 0.45) * shade[3]).slice(0, 3).map(Math.round);
+                });
+            };
+
+            let lastLook = null;
+            const report = () => {
+                const bg = document.querySelector('.gt-bg');
+                if (!bg || !bg.clientWidth || !bg.clientHeight) return;   // not laid out yet
+                const look = `${bg.className} ${bg.clientWidth}x${bg.clientHeight}`;
+                if (look === lastLook) return;
+                lastLook = look;
+                window.webkit.messageHandlers.gtPageEdge.postMessage(bottomEdge(bg));
+            };
+            // The background appears once the site has loaded, and each screen can change its theme (its class)
+            let queued = false;
+            const queue = () => {
+                if (queued) return;
+                queued = true;
+                requestAnimationFrame(() => { queued = false; report(); });
+            };
+            new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+            addEventListener('resize', queue);
+            report();
+        })();
+        """
+
     /// The app keeps the phone awake itself (AppDelegate), so the website's keep-awake video (src/hooks/useWakeLock.js)
     /// isn't needed here, and on an iPhone it stops whatever sound was already playing when it starts, like the lobby
     /// music. This quietly skips just that video: a hidden data: video, which nothing else on the site uses.
@@ -131,6 +200,16 @@ enum WebViews {
         }
         return result;
         """
+
+    /// ⏸️ The TV's pause button (every game's TV has the same one, top right, while a round is running): finds it
+    /// by its description, "Pause the game" or "Resume the game"
+    private static let findPauseButton = """
+        [...document.querySelectorAll('button[aria-label]')]
+            .find((b) => /^(Pause|Resume) the game/.test(b.getAttribute('aria-label')) && b.offsetParent !== null && !b.disabled)
+        """
+    /// What the TV's pause button says right now ("Pause the game" or "Resume the game"), or "" if there isn't one
+    static let pauseStateScript = "(() => { const b = \(findPauseButton); return b ? b.getAttribute('aria-label') : ''; })()"
+    static let tapPauseScript = "(() => { const b = \(findPauseButton); if (b) b.click(); })()"
 
     static func tapButtonScript(id: String) -> String {
         "document.querySelector('[data-gt-remote=\"\(id)\"]')?.click()"
