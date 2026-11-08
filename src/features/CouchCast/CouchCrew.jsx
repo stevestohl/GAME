@@ -23,6 +23,8 @@ import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat, HolidayCouch, Sleig
 // 📽️ The robot (on every deck but Halloween) casts like a projector: a
 // cone of light from its visor lands on the QR code for a few seconds. That light is its own SVG, above the
 // cards, since it has to reach the code; it stops at the code's edge so it never covers it.
+// ⚡ The witch casts with a lightning bolt instead: a jagged flash from her wand tip that points straight at
+// the QR code and crackles there for a couple of seconds. It's above the cards too, and stops at the code's edge.
 //
 // 🎄 The Holiday deck runs the Core show with the crew dressed up (HolidayCrew.jsx). In place of
 // Sasquatch's mountain, Santa lands beside the couch in a sleigh that flies on its own.
@@ -45,7 +47,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
     const svgRef = useRef(null);
     const lightRef = useRef(null);
     const couchRef = useRef(null);
-    const beamRef = useRef(null);
+    const boltRef = useRef(null);
     const barkRef = useRef(null);
     const hoHoRef = useRef(null);
     const bumpRef = useRef(null);
@@ -101,7 +103,6 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 offRight: root.width + 120 * cs,
                 screenRight: screen.right - root.left,
                 qrRect: { right: qr.right - root.left, top: qr.top - root.top, bottom: qr.bottom - root.top },
-                qrMidY: qr.top - root.top + qr.height / 2,
                 mountain,
                 // Sasquatch up close: a head taller than the crew, but never taller than the couch's spot
                 sqSize: Math.min(cs * 0.95, (stage.height - 4) / 146) / s,
@@ -111,6 +112,7 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             };
             svg.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
             lightRef.current?.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
+            boltRef.current?.setAttribute('viewBox', `0 0 ${root.width} ${root.height}`);
         };
 
         // --- The cast: a couch and three characters, each a position the frames below move around ---
@@ -233,31 +235,93 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
             await wait(400);
         };
 
-        // 📡 The witch holds up her wand: cast waves, a beam to the QR card, and the code lights up
+        // ⚡ A jagged line from (sx, sy) to (ex, ey): `kinks` corners that swing from one side of the
+        // straight line to the other, widest in the middle, so it leaves exactly at the start and lands exactly at the end
+        const zigzag = (sx, sy, ex, ey, kinks, swing) => {
+            const dx = ex - sx;
+            const dy = ey - sy;
+            const len = Math.hypot(dx, dy) || 1;
+            const nx = -dy / len;   // straight across the line
+            const ny = dx / len;
+            let side = Math.random() < 0.5 ? -1 : 1;
+            const points = [[sx, sy]];
+            for (let i = 1; i <= kinks; i++) {
+                const t = (i + rand(-0.25, 0.25)) / (kinks + 1);
+                const off = side * swing * rand(0.55, 1) * Math.sqrt(Math.sin(Math.PI * t));
+                points.push([sx + dx * t + nx * off, sy + dy * t + ny * off]);
+                side = -side;
+            }
+            points.push([ex, ey]);
+            return points;
+        };
+        const toPath = (points) => points.map(([x, y], i) => `${i ? 'L' : 'M'} ${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
+
+        // ⚡ The bolt, from the star on the witch's wand to the QR code. It's measured from the page every time it's
+        // drawn, so it stays on the wand tip and the code at any screen size (and if the screen changes mid-cast)
+        const drawBolt = (forks = true) => {
+            const bolt = boltRef.current;
+            const root = svg.parentElement.getBoundingClientRect();
+            const witch = actors.caster;
+            const star = witch.el.querySelector('.crew-wand-star')?.getBoundingClientRect();
+            const qr = (qrRef?.current || screenRef.current).getBoundingClientRect();
+            const sx = star ? star.left + star.width / 2 - root.left : witch.x - 43 * L.s;
+            const sy = star ? star.top + star.height / 2 - root.top : witch.y - 82 * L.s;
+            // Aimed at the middle of the code, and stopping where that line meets the code's edge, so it never covers it
+            const cx = qr.left + qr.width / 2 - root.left;
+            const cy = qr.top + qr.height / 2 - root.top;
+            const reach = Math.min(1, (qr.width / 2) / Math.abs(sx - cx || 1), (qr.height / 2) / Math.abs(sy - cy || 1));
+            const ex = cx + (sx - cx) * reach;
+            const ey = cy + (sy - cy) * reach;
+            const len = Math.hypot(ex - sx, ey - sy);
+            const swing = Math.min(13 * L.s, len * 0.16);
+            const main = zigzag(sx, sy, ex, ey, Math.max(3, Math.min(8, Math.round(len / (26 * L.s)))), swing);
+            // Now and then a little fork crackles off one of the corners
+            let fork = [];
+            if (forks && Math.random() < 0.7) {
+                const [fx, fy] = main[1 + Math.floor(Math.random() * (main.length - 2))];
+                const angle = Math.atan2(ey - sy, ex - sx) + (Math.random() < 0.5 ? -1 : 1) * rand(0.45, 0.8);
+                const flen = len * rand(0.18, 0.3);
+                fork = zigzag(fx, fy, fx + Math.cos(angle) * flen, fy + Math.sin(angle) * flen, 2, swing * 0.6);
+            }
+            const mainD = toPath(main);
+            const allD = fork.length ? `${mainD} ${toPath(fork)}` : mainD;
+            const parts = [['.crew-bolt-glow', allD, 14], ['.crew-bolt-body', allD, 5], ['.crew-bolt-core', mainD, 2]];
+            parts.forEach(([sel, d, width]) => {
+                const path = bolt.querySelector(sel);
+                path.setAttribute('d', d);
+                path.setAttribute('stroke-width', width * L.s);
+            });
+            const flash = bolt.querySelector('.crew-bolt-flash');
+            flash.setAttribute('cx', sx);
+            flash.setAttribute('cy', sy);
+            flash.setAttribute('r', 5 * L.s);
+            const hit = bolt.querySelector('.crew-bolt-hit');
+            hit.setAttribute('cx', ex);
+            hit.setAttribute('cy', ey);
+            hit.setAttribute('r', forks ? 4.5 * L.s : 0);
+        };
+
+        // 🪄 The witch raises her wand: a lightning bolt cracks across to the QR code, which lights up
         const cast = async () => {
             if (hasProjector) { await project(); return; }
-            const robot = actors.caster;
-            robot.el.classList.add('crew-casting');
-            await wait(350);
-            // The phone, at the end of the robot's raised arm (see the robot's drawing)
-            const px = robot.x - 39 * L.s;
-            const py = robot.y - 78 * L.s;
-            const tx = L.screenRight + 6;
-            const ty = L.qrMidY;
-            const lift = Math.min(py, ty) - 70 * L.cs;
-            const beam = beamRef.current;
-            beam.querySelector('.crew-beam-path').setAttribute('d', `M ${px} ${py} Q ${(px + tx) / 2} ${lift} ${tx} ${ty}`);
-            beam.querySelectorAll('.crew-wave').forEach((c) => {
-                c.setAttribute('cx', px);
-                c.setAttribute('cy', py);
-            });
-            beam.querySelectorAll('.crew-wave').forEach((c, i) => c.setAttribute('r', (6 + i * 7) * L.cs));
-            beam.classList.add('is-on');
-            await wait(900);
+            const witch = actors.caster;
+            const bolt = boltRef.current;
+            witch.el.classList.add('crew-casting');
+            await wait(400);   // the wand arm swings up
+            drawBolt(false);
+            bolt.classList.add('is-on', 'is-striking');
+            await wait(170);   // it strikes from the wand to the code
             qrRef?.current?.classList.add('cc-qr-on');
-            await wait(2200);
-            beam.classList.remove('is-on');
-            robot.el.classList.remove('crew-casting');
+            // Then it crackles for a couple of seconds: a fresh zigzag every few frames
+            const until = performance.now() + 2400;
+            drawBolt();
+            while (performance.now() < until) {
+                await wait(rand(70, 140));
+                drawBolt();
+            }
+            bolt.classList.remove('is-on', 'is-striking');
+            await wait(150);
+            witch.el.classList.remove('crew-casting');
         };
 
         // 🎉 Everyone on the couch bounces (someone joined, or the cast landed)
@@ -700,15 +764,19 @@ export default function CouchCrew({ stageRef, screenRef, qrRef, playerCount = 0,
                 <circle className="crew-proj-lens" r={0} />
             </svg>
         )}
+        {!hasProjector && (
+            <svg ref={boltRef} className="cc-crew is-ready crew-bolt" aria-hidden="true" preserveAspectRatio="none">
+                {/* ⚡ The witch's lightning: a violet glow, the bolt, and a white-hot core (only while she's casting) */}
+                <g className="crew-bolt-zap">
+                    <path className="crew-bolt-glow" pathLength={1} d="" />
+                    <path className="crew-bolt-body" pathLength={1} d="" />
+                    <path className="crew-bolt-core" pathLength={1} d="" />
+                </g>
+                <circle className="crew-bolt-flash" r={0} />
+                <circle className="crew-bolt-hit" r={0} />
+            </svg>
+        )}
         <svg ref={svgRef} className={`cc-crew ${isHalloween ? 'cc-crew-halloween' : ''} ${isHoliday ? 'cc-crew-holiday' : ''}`} aria-hidden="true" preserveAspectRatio="none">
-            {/* 📡 The cast beam (only while the robot is casting) */}
-            <g ref={beamRef} className="crew-beam">
-                <path className="crew-beam-path" d="" />
-                <circle className="crew-wave" />
-                <circle className="crew-wave" />
-                <circle className="crew-wave" />
-            </g>
-
             <g className="crew-world">
                 {isHalloween && <Chandelier chandelierRef={chandelierRef} />}
                 <Hill mountainRef={mountainRef} castleRef={mountainRef} sleighRef={mountainRef} />

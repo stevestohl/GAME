@@ -2460,31 +2460,6 @@ html.cast-screen {
 .cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }
 @keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }
 
-/* 📡 The cast: waves off the robot's phone and a dashed beam to the QR card */
-.cc-crew .crew-beam { opacity: 0; transition: opacity 0.4s ease; }
-.cc-crew .crew-beam.is-on { opacity: 1; }
-.cc-crew .crew-beam-path {
-  fill: none;
-  stroke: #4dd0e1;
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-dasharray: 3 11;
-  filter: drop-shadow(0 0 6px rgba(77, 208, 225, 0.9));
-  animation: crew-beam-flow 0.6s linear infinite;
-}
-@keyframes crew-beam-flow { to { stroke-dashoffset: -28; } }
-.cc-crew .crew-wave {
-  fill: none;
-  stroke: #4dd0e1;
-  stroke-width: 3;
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-  animation: crew-wave 1.2s ease-out infinite;
-}
-.cc-crew .crew-wave:nth-of-type(2) { animation-delay: 0.2s; }
-.cc-crew .crew-wave:nth-of-type(3) { animation-delay: 0.4s; }
-@keyframes crew-wave { from { opacity: 1; transform: scale(0.6); } to { opacity: 0; transform: scale(1.4); } }
-
 /* The QR code "turns on" when the cast lands, then keeps a soft glow */
 .cc-lobby-qr.cc-qr-on {
   animation: cc-qr-on 1.4s ease-out;
@@ -2497,7 +2472,7 @@ html.cast-screen {
 }
 
 /* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying
-   chandelier and bats. The witch's "cast" and the QR code's glow are violet instead of cyan */
+   chandelier and bats. The witch's lightning and the QR code's glow are violet */
 .cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }
 @keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }
 .cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }
@@ -2521,8 +2496,27 @@ html.cast-screen {
 .cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }
 @keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }
 .tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }
-.cc-crew-halloween .crew-beam-path { stroke: #b98cff; }
-.cc-crew-halloween .crew-wave { stroke: #b98cff; }
+/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.
+   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */
+.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }
+.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }
+.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }
+.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }
+.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }
+.cc-crew .crew-bolt-core { stroke: #fdfaff; }
+.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }
+@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }
+@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }
+.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {
+  fill: #fdfaff;
+  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }
+.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }
+@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }
 .cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {
   animation-name: cc-qr-on-violet;
   box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;
