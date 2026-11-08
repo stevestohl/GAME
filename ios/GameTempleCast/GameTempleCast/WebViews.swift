@@ -13,6 +13,9 @@ enum WebViews {
         // The TV's lobby doesn't need "Cast now to screen!" either: it's already on the TV
         let hide = isTV ? ".cc-cast-now, .cc-lobby-tip" : ".cc-lobby-tip"
         config.userContentController.addUserScript(WKUserScript(source: tidyScript(hiding: hide), injectionTime: .atDocumentEnd, forMainFrameOnly: true))
+        if isTV {
+            config.userContentController.addUserScript(WKUserScript(source: tvViewportScript, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        }
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.isInspectable = true   // Safari's Develop menu can look inside, for testing
         webView.backgroundColor = .black
@@ -43,6 +46,34 @@ enum WebViews {
         })();
         """
     }
+
+    /// 📐 The game's TV screens were made for a phone turned sideways and mirrored to the TV: the page is laid out at
+    /// the phone's size and blown up to fill the screen. Their text grows with the screen, but only up to a phone-sized
+    /// limit, so laid out at a TV's own 1920×1080 everything came out small, lost in big empty cards. So the TV's page
+    /// is laid out 854 web pixels wide (480 high on a 16:9 TV), and iOS scales it up to fill the screen, like mirroring.
+    /// The site's own viewport tag says "as wide as the screen", so it's changed as soon as it appears, before the
+    /// page is first drawn. (Zooming the web view instead doesn't work: iOS still lays the page out 1920 wide.)
+    static let tvViewportScript = """
+        (() => {
+            const content = 'width=854';
+            const fix = () => {
+                const metas = document.querySelectorAll('meta[name="viewport"]');
+                metas.forEach((meta) => meta.setAttribute('content', content));
+                return metas.length > 0;
+            };
+            const watch = new MutationObserver(() => { if (fix()) watch.disconnect(); });
+            watch.observe(document, { childList: true, subtree: true });
+            document.addEventListener('DOMContentLoaded', () => {
+                watch.disconnect();
+                if (!fix()) {
+                    const meta = document.createElement('meta');
+                    meta.name = 'viewport';
+                    meta.content = content;
+                    document.head.appendChild(meta);
+                }
+            });
+        })();
+        """
 
     /// The app keeps the phone awake itself (AppDelegate), so the website's keep-awake video (src/hooks/useWakeLock.js)
     /// isn't needed here, and on an iPhone it stops whatever sound was already playing when it starts, like the lobby
