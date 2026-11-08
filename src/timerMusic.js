@@ -10,7 +10,7 @@
 //   startTimerMusic({ endTime, trackId }) / stopTimerMusic()
 
 import { useEffect } from 'react';
-import { getAudioContext } from './chime.js';
+import { getAudioContext, preferPlaybackAudio } from './chime.js';
 import { onVoiceChange } from './voice.js';
 import { isMusicMuted, onMusicMuteChange } from './musicMute.js';
 import { MEDLEY_BPM, MEDLEY_STEPS, MEDLEY_LENGTH } from './holidaySongs.js';
@@ -801,6 +801,7 @@ export function startTimerMusic({ endTime = null, trackId = null, theme = null }
     stopTimerMusic();
     const ctx = getAudioContext();
     if (!ctx) return;
+    preferPlaybackAudio();   // so an iPhone's silent switch doesn't mute it (chime.js)
     if (ctx.state === 'suspended') ctx.resume().catch(() => {});
 
     const track = pickTrack(trackId, theme);

@@ -6,7 +6,7 @@
 // <audio> tag: on iPhones a playing video pauses any <audio> tag, and the TV runs a hidden
 // keep-awake video the whole time (hooks/useWakeLock.js), so the lobby song cut out after a
 // few seconds. Web Audio plays alongside the video.
-import { getAudioContext } from '../../chime.js';
+import { getAudioContext, preferPlaybackAudio } from '../../chime.js';
 import { startTimerMusic, stopTimerMusic, playingTimerTrackId } from '../../timerMusic.js';
 import { isMusicMuted, onMusicMuteChange } from '../../musicMute.js';
 
@@ -135,6 +135,7 @@ export function preloadLobbyMusic(track = 'default') {
 }
 
 export function startLobbyMusic(track = 'default') {
+    preferPlaybackAudio();   // so an iPhone's silent switch doesn't mute it (chime.js)
     const audio = TRACKS[track] || TRACKS.default;
     // Only one lobby song at a time
     Object.values(TRACKS).forEach((other) => {

@@ -45281,7 +45281,8 @@ function duckCreditsMarch(seconds) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAudioContext": () => (/* binding */ getAudioContext),
-/* harmony export */   "playChime": () => (/* binding */ playChime)
+/* harmony export */   "playChime": () => (/* binding */ playChime),
+/* harmony export */   "preferPlaybackAudio": () => (/* binding */ preferPlaybackAudio)
 /* harmony export */ });
 // 🔔 A short two-note chime, made in the browser (no audio file needed).
 // Used to tell a player "it's your turn" on their phone.
@@ -45294,6 +45295,19 @@ var getAudioContext = function getAudioContext() {
   if (!AudioContextClass) return null;
   if (!audioContext) audioContext = new AudioContextClass();
   return audioContext;
+};
+
+// 🔈 iPhones treat sound made in the page (Web Audio) as background sound, which the silent switch mutes, until
+// an audio or video element has played. In Safari the keep-awake video counts, but the iOS app skips that video,
+// so with the phone on silent the TV's lobby song stayed muted until the narrator first spoke (then the timer
+// music could be heard). Game music should play like music: ask for the "playback" kind of audio session,
+// which the silent switch leaves alone (Safari 17 and later, and the iOS app; other browsers don't have it).
+var preferPlaybackAudio = function preferPlaybackAudio() {
+  try {
+    if (navigator.audioSession && navigator.audioSession.type !== 'playback') navigator.audioSession.type = 'playback';
+  } catch (_unused) {
+    // Not allowed here: carry on as before
+  }
 };
 
 // Phones only allow sound after the user has touched the page,
@@ -45782,6 +45796,7 @@ function preloadLobbyMusic() {
 }
 function startLobbyMusic() {
   var track = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+  (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.preferPlaybackAudio)(); // so an iPhone's silent switch doesn't mute it (chime.js)
   var audio = TRACKS[track] || TRACKS["default"];
   // Only one lobby song at a time
   Object.values(TRACKS).forEach(function (other) {
@@ -48949,6 +48964,7 @@ function startTimerMusic() {
   stopTimerMusic();
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
   if (!ctx) return;
+  (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.preferPlaybackAudio)(); // so an iPhone's silent switch doesn't mute it (chime.js)
   if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
   var track = pickTrack(trackId, theme);
   lastTrackId = track.id;

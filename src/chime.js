@@ -11,6 +11,19 @@ export const getAudioContext = () => {
     return audioContext;
 };
 
+// 🔈 iPhones treat sound made in the page (Web Audio) as background sound, which the silent switch mutes, until
+// an audio or video element has played. In Safari the keep-awake video counts, but the iOS app skips that video,
+// so with the phone on silent the TV's lobby song stayed muted until the narrator first spoke (then the timer
+// music could be heard). Game music should play like music: ask for the "playback" kind of audio session,
+// which the silent switch leaves alone (Safari 17 and later, and the iOS app; other browsers don't have it).
+export const preferPlaybackAudio = () => {
+    try {
+        if (navigator.audioSession && navigator.audioSession.type !== 'playback') navigator.audioSession.type = 'playback';
+    } catch {
+        // Not allowed here: carry on as before
+    }
+};
+
 // Phones only allow sound after the user has touched the page,
 // so wake the audio up on any tap/keypress and keep it ready for later.
 const unlockAudio = () => {
