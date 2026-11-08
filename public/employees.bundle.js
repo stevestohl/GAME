@@ -5030,7 +5030,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
 /* harmony import */ var _fillBlank_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
-/* harmony import */ var _TowerParty_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./TowerParty.jsx */ "./src/features/CouchCast/TowerParty.jsx");
+/* harmony import */ var _TriviaCast_AvatarAttack_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../TriviaCast/AvatarAttack.jsx */ "./src/features/TriviaCast/AvatarAttack.jsx");
 /* harmony import */ var _TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./TowerCredits.jsx */ "./src/features/CouchCast/TowerCredits.jsx");
 /* harmony import */ var _CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./CouchCastRoundIntro.jsx */ "./src/features/CouchCast/CouchCastRoundIntro.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -5060,6 +5060,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+// 🏗️ Tower Party, the old lobby game, is switched off for now (Avatar Attack, from Trivia Cast, took its place)
+// import TowerParty from './TowerParty.jsx';
 
 
 
@@ -5335,11 +5337,11 @@ function CouchCastPlayerSetup(_ref) {
           className: "mt-3"
         }, startButton)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "p-3 border border-dashed rounded bg-light text-muted fs-6"
-        }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TowerParty_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."), roomData.players && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_AvatarAttack_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
           socket: _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket,
           roomCode: roomCode,
-          roomData: roomData
-        }, isHost && startButton))));
+          room: roomData
+        }))));
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
           className: "mt-5 pt-4 text-center"
@@ -15955,184 +15957,6 @@ function TowerCredits(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreditsChase_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     theme: chaseTheme
   })));
-}
-
-/***/ }),
-
-/***/ "./src/features/CouchCast/TowerParty.jsx":
-/*!***********************************************!*\
-  !*** ./src/features/CouchCast/TowerParty.jsx ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TowerParty)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-// 🏗️ Tower Party: the lobby mini-game on the players' phones (the server side is sockets/towerParty.js).
-// Everyone builds one tower together: when it's your turn your avatar swings above the top, and you
-// tap to drop it. Land it on the block below and the tower grows; miss and it all comes down.
-
-var BLOCK = 46; // avatar size on the tower (px); the swing width is measured in these
-var STAGE = 300; // the stage's height (px), as in .tp-stage
-
-var LAST_MESSAGES = {
-  perfect: function perfect(name) {
-    return "\u2728 Perfect drop by ".concat(name, "!");
-  },
-  landed: function landed(name) {
-    return "".concat(name, " stacked it!");
-  },
-  toppled: function toppled(name, height) {
-    return "\uD83D\uDCA5 Timber! ".concat(name, " knocked it over at ").concat(height, " high");
-  },
-  skipped: function skipped(name) {
-    return "".concat(name, " let it pass");
-  }
-};
-
-// `children`: the Room Leader's start button, right under the game so it can't be scrolled past and forgotten
-function TowerParty(_ref) {
-  var _roomData$players;
-  var socket = _ref.socket,
-    roomCode = _ref.roomCode,
-    roomData = _ref.roomData,
-    children = _ref.children;
-  var tower = roomData === null || roomData === void 0 ? void 0 : roomData.tower;
-  var players = Object.values((roomData === null || roomData === void 0 ? void 0 : roomData.players) || {}).filter(function (p) {
-    return !p.isCaster && p.isConnected !== false;
-  }).sort(function (a, b) {
-    return a.joinOrder - b.joinOrder;
-  });
-  var turnPlayer = roomData === null || roomData === void 0 ? void 0 : (_roomData$players = roomData.players) === null || _roomData$players === void 0 ? void 0 : _roomData$players[tower === null || tower === void 0 ? void 0 : tower.turnId];
-  var isMyTurn = !!(tower !== null && tower !== void 0 && tower.turnId) && tower.turnId === socket.id;
-
-  // My turn: swing my avatar back and forth on this phone's clock, and remember where it is
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState2 = _slicedToArray(_useState, 2),
-    swingX = _useState2[0],
-    setSwingX = _useState2[1];
-  var swingRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    dropped = _useState4[0],
-    setDropped = _useState4[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setDropped(false);
-    if (!isMyTurn || !(tower !== null && tower !== void 0 && tower.swing)) return undefined;
-    var _tower$swing = tower.swing,
-      period = _tower$swing.period,
-      width = _tower$swing.width;
-    var started = performance.now();
-    var frame = requestAnimationFrame(function tick(now) {
-      var x = width * Math.sin((now - started) / 1000 / period * Math.PI * 2);
-      swingRef.current = x;
-      setSwingX(x);
-      frame = requestAnimationFrame(tick);
-    });
-    return function () {
-      return cancelAnimationFrame(frame);
-    };
-  }, [isMyTurn, tower === null || tower === void 0 ? void 0 : tower.turnNumber]);
-  var handleDrop = function handleDrop() {
-    if (!isMyTurn || dropped) return;
-    setDropped(true);
-    if (navigator.vibrate) navigator.vibrate(20);
-    socket.emit('tower_drop', {
-      roomCode: roomCode,
-      x: swingRef.current
-    });
-  };
-  if (!tower) return null;
-  var blocks = tower.blocks || [];
-  // The view follows the top of the tower, leaving room above it for the swinging avatar
-  var scroll = Math.max(0, (blocks.length + 2) * BLOCK - STAGE);
-  var swingBottom = (blocks.length + 0.6) * BLOCK - scroll;
-  var last = tower.last && roomData.players ? Object.values(roomData.players).find(function (p) {
-    return p.id === tower.last.playerId;
-  }) : null;
-  var lastLine = tower.last && LAST_MESSAGES[tower.last.type] ? LAST_MESSAGES[tower.last.type]((last === null || last === void 0 ? void 0 : last.name) || 'Someone', tower.last.height) : 'Take turns dropping your avatar. Stack it as high as you can, together!';
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "tp-title"
-  }, "\uD83C\uDFD7\uFE0F Tower Party"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "tp-score"
-  }, blocks.length, " high \xB7 best ", tower.best)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    type: "button",
-    className: "tp-stage ".concat(isMyTurn && !dropped ? 'is-my-turn' : ''),
-    onClick: handleDrop,
-    disabled: !isMyTurn || dropped,
-    "aria-label": isMyTurn ? 'Drop your avatar on the tower' : 'The team tower'
-  }, blocks.map(function (block, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      key: "".concat(tower.towers, "-").concat(i),
-      className: "tp-block",
-      style: {
-        bottom: i * BLOCK - scroll,
-        transform: "translateX(calc(-50% + ".concat(block.x * BLOCK, "px))")
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
-      id: block.avatar,
-      name: block.name,
-      size: BLOCK
-    }));
-  }), scroll === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-ground"
-  }), turnPlayer && (isMyTurn ? !dropped && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-block tp-swinger",
-    style: {
-      bottom: swingBottom,
-      transform: "translateX(calc(-50% + ".concat(swingX * BLOCK, "px))")
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
-    id: turnPlayer.avatar,
-    name: turnPlayer.name,
-    size: BLOCK
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-block tp-swinger tp-swing-demo",
-    style: {
-      bottom: swingBottom
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
-    id: turnPlayer.avatar,
-    name: turnPlayer.name,
-    size: BLOCK
-  })))), children && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-start"
-  }, children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-turn ".concat(isMyTurn && !dropped ? 'is-my-turn' : '')
-  }, isMyTurn && !dropped && 'Your turn! Tap to drop 👇', isMyTurn && dropped && 'Dropping...', !isMyTurn && turnPlayer && "".concat(turnPlayer.name, " is dropping...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-last"
-  }, lastLine), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-team"
-  }, players.map(function (p) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      key: p.id,
-      className: "tp-teammate ".concat(p.id === tower.turnId ? 'is-up' : ''),
-      title: p.name
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
-      id: p.avatar,
-      name: p.name,
-      size: 30
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, p.name));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-hint"
-  }, "Get everyone to join: the more of you, the taller the tower!"));
 }
 
 /***/ }),
@@ -48639,6 +48463,7 @@ function duckCreditsMarch(seconds) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAudioContext": () => (/* binding */ getAudioContext),
+/* harmony export */   "isAudioAsleep": () => (/* binding */ isAudioAsleep),
 /* harmony export */   "playChime": () => (/* binding */ playChime),
 /* harmony export */   "preferPlaybackAudio": () => (/* binding */ preferPlaybackAudio)
 /* harmony export */ });
@@ -48668,11 +48493,19 @@ var preferPlaybackAudio = function preferPlaybackAudio() {
   }
 };
 
+// Is the page's sound switched off right now? Phones keep it "suspended" until the first tap, and iOS can also
+// "interrupt" it: in the iOS app, the phone's page stopping its own sound (as the game moves over to the TV and
+// the first player joins) cut the TV's lobby music, and only a tap brings it back.
+var isAudioAsleep = function isAudioAsleep(ctx) {
+  return !!ctx && ctx.state !== 'running' && ctx.state !== 'closed';
+};
+
 // Phones only allow sound after the user has touched the page,
-// so wake the audio up on any tap/keypress and keep it ready for later.
+// so wake the audio up on any tap/keypress and keep it ready for later. (The iOS app sends the TV's page a
+// pretend tap every few seconds, since nobody can tap a TV: that's what brings the TV's sound back.)
 var unlockAudio = function unlockAudio() {
   var ctx = getAudioContext();
-  if (ctx && ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+  if (isAudioAsleep(ctx)) ctx.resume()["catch"](function () {});
 };
 ['pointerdown', 'touchend', 'keydown'].forEach(function (eventName) {
   document.addEventListener(eventName, unlockAudio, {
@@ -49027,7 +48860,7 @@ var getOutput = function getOutput() {
 // start mirroring...): switch it back on when the page comes back, if a lobby song is meant to be playing
 document.addEventListener('visibilitychange', function () {
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
-  if (document.visibilityState !== 'visible' || !ctx || ctx.state === 'running') return;
+  if (document.visibilityState !== 'visible' || !(0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.isAudioAsleep)(ctx)) return;
   if (Object.values(TRACKS).some(function (track) {
     return !track.paused;
   })) ctx.resume()["catch"](function () {});
@@ -49068,7 +48901,7 @@ var makeTrack = function makeTrack(src) {
       wanted = true;
       var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
       // Inside a tap, this is what lets the sound out (phones keep it shut until then)
-      if (ctx && ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+      if ((0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.isAudioAsleep)(ctx)) ctx.resume()["catch"](function () {});
       return download().then(function () {
         var out = getOutput();
         if (!wanted || source || !out) return;
@@ -52372,7 +52205,7 @@ function startTimerMusic() {
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.getAudioContext)();
   if (!ctx) return;
   (0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.preferPlaybackAudio)(); // so an iPhone's silent switch doesn't mute it (chime.js)
-  if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+  if ((0,_chime_js__WEBPACK_IMPORTED_MODULE_1__.isAudioAsleep)(ctx)) ctx.resume()["catch"](function () {});
   var track = pickTrack(trackId, theme);
   lastTrackId = track.id;
   var master = ctx.createGain();

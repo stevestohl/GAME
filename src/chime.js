@@ -24,11 +24,17 @@ export const preferPlaybackAudio = () => {
     }
 };
 
+// Is the page's sound switched off right now? Phones keep it "suspended" until the first tap, and iOS can also
+// "interrupt" it: in the iOS app, the phone's page stopping its own sound (as the game moves over to the TV and
+// the first player joins) cut the TV's lobby music, and only a tap brings it back.
+export const isAudioAsleep = (ctx) => !!ctx && ctx.state !== 'running' && ctx.state !== 'closed';
+
 // Phones only allow sound after the user has touched the page,
-// so wake the audio up on any tap/keypress and keep it ready for later.
+// so wake the audio up on any tap/keypress and keep it ready for later. (The iOS app sends the TV's page a
+// pretend tap every few seconds, since nobody can tap a TV: that's what brings the TV's sound back.)
 const unlockAudio = () => {
     const ctx = getAudioContext();
-    if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
+    if (isAudioAsleep(ctx)) ctx.resume().catch(() => {});
 };
 ['pointerdown', 'touchend', 'keydown'].forEach((eventName) => {
     document.addEventListener(eventName, unlockAudio, { passive: true });

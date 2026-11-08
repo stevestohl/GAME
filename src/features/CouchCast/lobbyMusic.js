@@ -6,7 +6,7 @@
 // <audio> tag: on iPhones a playing video pauses any <audio> tag, and the TV runs a hidden
 // keep-awake video the whole time (hooks/useWakeLock.js), so the lobby song cut out after a
 // few seconds. Web Audio plays alongside the video.
-import { getAudioContext, preferPlaybackAudio } from '../../chime.js';
+import { getAudioContext, preferPlaybackAudio, isAudioAsleep } from '../../chime.js';
 import { startTimerMusic, stopTimerMusic, playingTimerTrackId } from '../../timerMusic.js';
 import { isMusicMuted, onMusicMuteChange } from '../../musicMute.js';
 
@@ -34,7 +34,7 @@ onMusicMuteChange((muted) => {
 // start mirroring...): switch it back on when the page comes back, if a lobby song is meant to be playing
 document.addEventListener('visibilitychange', () => {
     const ctx = getAudioContext();
-    if (document.visibilityState !== 'visible' || !ctx || ctx.state === 'running') return;
+    if (document.visibilityState !== 'visible' || !isAudioAsleep(ctx)) return;
     if (Object.values(TRACKS).some((track) => !track.paused)) ctx.resume().catch(() => {});
 });
 
@@ -64,7 +64,7 @@ const makeTrack = (src) => {
             wanted = true;
             const ctx = getAudioContext();
             // Inside a tap, this is what lets the sound out (phones keep it shut until then)
-            if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
+            if (isAudioAsleep(ctx)) ctx.resume().catch(() => {});
             return download().then(() => {
                 const out = getOutput();
                 if (!wanted || source || !out) return;

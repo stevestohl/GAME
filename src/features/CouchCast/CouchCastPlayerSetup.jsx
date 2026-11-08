@@ -15,7 +15,9 @@ import { useSetBackgroundTheme, couchCastTheme } from '../Menu/backgroundTheme.j
 import { playChime } from '../../chime.js';
 import { fillBlank } from './fillBlank.js';
 import { getMyAvatar } from '../../avatars.jsx';
-import TowerParty from './TowerParty.jsx';
+// 🏗️ Tower Party, the old lobby game, is switched off for now (Avatar Attack, from Trivia Cast, took its place)
+// import TowerParty from './TowerParty.jsx';
+import AvatarAttack from '../TriviaCast/AvatarAttack.jsx';
 import TowerCredits from './TowerCredits.jsx';
 import CouchCastRoundIntro from './CouchCastRoundIntro.jsx';
 
@@ -253,10 +255,12 @@ useEffect(() => {
                                     </div>
                                 )}
 
-                                {/* 🏗️ Something to do together while everyone joins */}
+                                {/* 🏗️ The old lobby game, switched off for now:
                                 <TowerParty socket={socket} roomCode={roomCode} roomData={roomData}>
                                     {isHost && startButton}
-                                </TowerParty>
+                                </TowerParty> */}
+                                {/* 👾 Something to do while everyone joins */}
+                                {roomData.players && <AvatarAttack socket={socket} roomCode={roomCode} room={roomData} />}
                             </Card.Body>
                         </Card>
                     </Container>

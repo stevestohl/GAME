@@ -101,6 +101,16 @@ final class TVViewController: UIViewController {
         }
     }
 
+    /// ⏸️ Whether the TV's game can be paused or resumed right now: "Pause the game", "Resume the game", or "" (neither)
+    func pauseState(_ done: @escaping (String) -> Void) {
+        guard !webView.isHidden else { return done("") }
+        webView.evaluateJavaScript(WebViews.pauseStateScript) { result, _ in done(result as? String ?? "") }
+    }
+
+    func tapPause() {
+        webView.evaluateJavaScript(WebViews.tapPauseScript)
+    }
+
     func tapButton(id: String) {
         webView.evaluateJavaScript(WebViews.tapButtonScript(id: id))
     }
