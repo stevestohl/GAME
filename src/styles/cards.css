@@ -2886,3 +2886,187 @@ html.cast-screen {
 /* The small "Privacy policy" link at the bottom of the home pages */
 .gt-privacy-link { color: #6b7090; text-decoration: underline; }
 .gt-privacy-link:hover { color: #4a66d8; }
+
+/* =========================================================
+   📼 JEFFINITELY DECK THEME
+   Colours and style straight off the deck card (cardDecks.js, DeckCard.jsx): a sunset gradient that runs
+   orange → hot pink → purple → teal, a neon sun sinking into a magenta perspective grid, cassette labels
+   (cream with a pink and a teal stripe), and loud '90s shapes with dark outlines.
+   It all hangs off <html data-gt-theme="jeffinitely">, which only Couch Cast sets, and only for this deck.
+   ========================================================= */
+
+/* 🌅 The background (AnimatedBackground.jsx + RetroBackdrop.jsx) */
+.gt-bg.theme-jeffinitely {
+    --gt-blue-300: #ff4f9a;
+    --gt-ice:      #18b6c9;
+    --gt-bg-accent: #ffd23f;
+    --gt-bg-vignette: rgba(26, 17, 71, 0.5);
+    background: linear-gradient(160deg, #ff8a3d 0%, #ff4f9a 34%, #7b3fd1 66%, #18b6c9 100%);
+}
+.gt-bg.theme-jeffinitely .gt-blob { opacity: 0.35; }
+/* The neon sun: rings of the deck's colours, sliced by the horizon like a synthwave sunset */
+.gt-retro-sun {
+    position: absolute;
+    left: 50%;
+    bottom: 26vh;
+    width: 46vmin;
+    height: 46vmin;
+    transform: translate(-50%, 50%);
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ffd23f 0%, #ff8a3d 45%, #ff4fd8 100%);
+    -webkit-mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);
+            mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);
+    box-shadow: 0 0 80px rgba(255, 79, 216, 0.6);
+    opacity: 0.9;
+}
+/* The grid floor, tipped back toward the horizon and slowly rolling toward us */
+.gt-retro-floor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 26vh;
+    overflow: hidden;
+    perspective: 26vh;
+    perspective-origin: 50% 0;
+    background: linear-gradient(180deg, rgba(26, 17, 71, 0.55), rgba(26, 17, 71, 0.85));
+    border-top: 2px solid #ff4fd8;
+    box-shadow: 0 -4px 24px rgba(255, 79, 216, 0.55);
+}
+.gt-retro-grid {
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    top: 0;
+    height: 300%;
+    transform-origin: 50% 0;
+    transform: rotateX(62deg);
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin),
+        repeating-linear-gradient(0deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin);
+    animation: gt-retro-roll 4s linear infinite;
+}
+@keyframes gt-retro-roll { to { background-position: 0 0, 0 7vmin; } }
+
+/* The drifting retro stuff: full colour, sized off the screen, behind everything */
+.gt-retro-piece {
+    width: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));
+    height: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));
+    opacity: 0.85;
+}
+.gt-retro-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(4px 5px 0 rgba(26, 17, 71, 0.35));
+}
+.gt-retro-blob { animation: gt-retro-lava 7s ease-in-out infinite alternate; }
+.gt-retro-blob-late { animation-duration: 9s; animation-delay: -3s; }
+.gt-retro-blob-later { animation-duration: 6s; animation-delay: -5s; }
+@keyframes gt-retro-lava { from { transform: translateY(6px); } to { transform: translateY(-22px); } }
+.gt-retro-reel { transform-box: fill-box; transform-origin: center; animation: jeff-reel 2.4s linear infinite; }
+.gt-retro-pet { animation: gt-retro-pet 1.2s steps(1) infinite; }
+@keyframes gt-retro-pet { 50% { transform: translateX(7px); } }
+@media (prefers-reduced-motion: reduce) {
+    .gt-retro-grid, .gt-retro-blob, .gt-retro-reel, .gt-retro-pet { animation: none; }
+}
+
+/* ✨ The shimmer border runs through the sunset */
+[data-gt-theme="jeffinitely"] .shining-border-wrapper::before {
+    background: linear-gradient(270deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9, #ff4fd8, #ff8a3d);
+    background-size: 400% 400%;
+}
+
+/* 📺 TV headings: white with a stacked neon drop, like a VHS cover */
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-header,
+[data-gt-theme="jeffinitely"] .cc-round-intro .cc-round-intro-title {
+    text-shadow: 2px 2px 0 #ff4f9a, 4px 4px 0 #1a1147, 0 0 18px rgba(255, 79, 216, 0.55);
+}
+[data-gt-theme="jeffinitely"] .cc-round-intro .cc-round-intro-title {
+    font-style: italic;
+    text-shadow: 0.04em 0.04em 0 #ff4f9a, 0.08em 0.08em 0 #18b6c9, 0.12em 0.12em 0 #1a1147, 0 0 40px rgba(255, 79, 216, 0.6);
+}
+[data-gt-theme="jeffinitely"] .cc-round-intro-final {
+    background: #ffd23f;
+    color: #1a1147;
+    box-shadow: 4px 4px 0 #1a1147;
+}
+
+/* Glass panels (the prompt on the writing screen, the scores) go dark purple with a neon edge */
+[data-gt-theme="jeffinitely"] .frosted-glass-panel {
+    background-color: rgba(26, 17, 71, 0.66) !important;
+    border: 1px solid rgba(255, 79, 216, 0.7) !important;
+    box-shadow: 0 8px 32px rgba(26, 17, 71, 0.5), inset 0 0 18px rgba(255, 79, 216, 0.18) !important;
+}
+[data-gt-theme="jeffinitely"] .cc-writer-tag.bg-success { background-color: rgba(46, 196, 182, 0.85) !important; }
+
+/* 📼 The light cards (QR, players, prompts, answers, the winning card) become cassette labels: cream,
+   with the pink and teal stripes along the top. The faint glass ones that carry white text go purple instead. */
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-card[style*="rgba(255, 255, 255, 0.4"],
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-card[style*="rgba(255, 255, 255, 0.6"],
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-card[style*="rgba(255, 255, 255, 0.7"],
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-card[style*="rgba(255, 255, 255, 0.9"] {
+    background-color: rgba(255, 246, 216, 0.82) !important;
+    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);
+}
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-card[style*="rgba(255, 255, 255, 0.25"] {
+    background-color: rgba(26, 17, 71, 0.7) !important;
+}
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-card[style*="solid"] {
+    border-color: #ff4f9a !important;
+    box-shadow: 0 0 26px rgba(255, 79, 216, 0.6);
+}
+[data-gt-theme="jeffinitely"] .cc-lobby-code { color: #7b3fd1; }
+[data-gt-theme="jeffinitely"] .cc-lobby-players-grid .list-group-item { border-color: rgba(123, 63, 209, 0.35) !important; }
+
+/* Lobby bits on the TV: the "Cast now" banner and the room code pill */
+[data-gt-theme="jeffinitely"] .cc-cast-now,
+[data-gt-theme="jeffinitely"] .cc-room-code {
+    background: rgba(26, 17, 71, 0.55);
+    border-color: rgba(255, 79, 216, 0.75);
+}
+[data-gt-theme="jeffinitely"] .cc-cast-now strong,
+[data-gt-theme="jeffinitely"] .cc-room-code strong { color: #ffd23f; }
+[data-gt-theme="jeffinitely"] .cc-lobby-tip { text-shadow: 1px 1px 2px rgba(26, 17, 71, 0.8); }
+
+/* The clocks: a sunset bar */
+[data-gt-theme="jeffinitely"] .progress-bar.bg-light {
+    background: linear-gradient(90deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9) !important;
+}
+
+/* 🏆 TV scores: the leaders' rows go cream like a tape label, the rest stay purple glass */
+[data-gt-theme="jeffinitely"] .fullscreen-gameplay-container .shadow[style*="rgba(255, 255, 255, 0.92"] {
+    background-color: #fff6d8 !important;
+    box-shadow: 4px 4px 0 #ff4f9a, 8px 8px 0 #1a1147 !important;
+}
+
+/* 📱 Phone screens: Bootstrap blues turn sunset pink and purple, and the cards get a chunky retro drop */
+[data-gt-theme="jeffinitely"] .bg-primary {
+    background: linear-gradient(135deg, #ff8a3d 0%, #ff4f9a 45%, #7b3fd1 100%) !important;
+}
+[data-gt-theme="jeffinitely"] .text-primary { color: #b5179e !important; }
+[data-gt-theme="jeffinitely"] .card-header.bg-dark { background-color: #1a1147 !important; }
+[data-gt-theme="jeffinitely"] .card.bg-success { background-color: #0e8a86 !important; }
+[data-gt-theme="jeffinitely"] .border-primary { border-color: #ff4f9a !important; }
+[data-gt-theme="jeffinitely"] .btn-primary {
+    background: linear-gradient(135deg, #ff4f9a, #7b3fd1);
+    border-color: #7b3fd1;
+}
+[data-gt-theme="jeffinitely"] .btn-primary:hover,
+[data-gt-theme="jeffinitely"] .btn-primary:focus {
+    background: linear-gradient(135deg, #ff6aac, #8c52e0);
+    border-color: #7b3fd1;
+}
+[data-gt-theme="jeffinitely"] .btn-outline-secondary { border-color: #7b3fd1; color: #1a1147; }
+[data-gt-theme="jeffinitely"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag),
+[data-gt-theme="jeffinitely"] .cc-round-intro-phone {
+    border: 2px solid #1a1147 !important;
+    box-shadow: 6px 6px 0 #ff4f9a, 6px 6px 0 2px #1a1147 !important;
+}
+[data-gt-theme="jeffinitely"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag) > .card-body:first-child,
+[data-gt-theme="jeffinitely"] .cc-round-intro-phone {
+    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);
+}
+[data-gt-theme="jeffinitely"] .cc-round-intro-phone .cc-round-intro-title { color: #b5179e; font-style: italic; }
+[data-gt-theme="jeffinitely"] .cc-scores-points { color: #7b3fd1; }
+[data-gt-theme="jeffinitely"] .cc-mascot-cassette { filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.6)); }

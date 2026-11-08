@@ -118,7 +118,31 @@ export default function CouchCastScoreboard({ playerData, players, isGameOver, e
 function DeckMascot({ expansion }) {
     if (expansion === 'halloween') return <JackOLantern />;
     if (expansion === 'holiday') return <Ornament />;
+    if (expansion === 'jeffinitely') return <Cassette />;
     return <Star />;
+}
+
+// 📼 Jeffinitely: the deck card's mixtape, grinning, with its reels spinning
+function Cassette() {
+    return (
+        <svg viewBox="0 0 120 110" className="cc-mascot cc-mascot-cassette" aria-hidden="true">
+            <path className="cc-mascot-sparkle" d="M12 20 l2.5 6.5 l6.5 2.5 l-6.5 2.5 l-2.5 6.5 l-2.5 -6.5 l-6.5 -2.5 l6.5 -2.5 z" fill="#18b6c9" />
+            <path className="cc-mascot-sparkle cc-mascot-sparkle-late" d="M106 14 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" fill="#ff4fd8" />
+            <path className="cc-mascot-sparkle cc-mascot-sparkle-later" d="M104 80 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" fill="#ffd23f" />
+            <g className="cc-mascot-bob">
+                <rect x="14" y="24" width="92" height="62" rx="7" fill="#1f1f2b" stroke="#7b3fd1" strokeWidth="4" />
+                <rect x="22" y="31" width="76" height="34" rx="3" fill="#fff6d8" />
+                <path d="M22 37 H98" stroke="#ff4f9a" strokeWidth="4" />
+                <path d="M22 43 H98" stroke="#18b6c9" strokeWidth="4" />
+                <circle cx="42" cy="55" r="7" fill="#1f1f2b" />
+                <circle cx="78" cy="55" r="7" fill="#1f1f2b" />
+                <circle className="gt-retro-reel" cx="42" cy="55" r="4.5" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="3 2" />
+                <circle className="gt-retro-reel" cx="78" cy="55" r="4.5" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="3 2" />
+                <path d="M52 56 q8 7 16 0" fill="none" stroke="#1f1f2b" strokeWidth="3.5" strokeLinecap="round" />
+                <path d="M30 86 L34 74 H86 L90 86" fill="#3a3a4d" stroke="#7b3fd1" strokeWidth="2" strokeLinejoin="round" />
+            </g>
+        </svg>
+    );
 }
 
 function Star() {

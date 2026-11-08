@@ -128,7 +128,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     <QRCodeSVG 
                       value={joinUrl} 
                       style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-                      fgColor="#014eb6" 
+                      fgColor={crew && crewTheme === 'jeffinitely' ? '#3d1a7a' : '#014eb6'}   // 📼 deep purple on the Jeffinitely deck
                       level="H" 
                       includeMargin={false}
                     />

@@ -28,7 +28,11 @@ const linear = (t) => t;
 
 const SCENES = { core: ['robot', 'dog', 'alien'], holiday: ['robot', 'dog', 'alien'], halloween: ['hoa', 'vampire', 'witch'] };
 /** Which of the crew has the cat this round (round 2 is the first one with an intro) */
-export const sceneFor = (round, theme = 'core') => SCENES[theme][(Math.max(2, round) - 2) % SCENES[theme].length];
+// (a deck without its own round scenes, like Jeffinitely, gets the core crew's)
+export const sceneFor = (round, theme = 'core') => {
+    const scenes = SCENES[theme] || SCENES.core;
+    return scenes[(Math.max(2, round) - 2) % scenes.length];
+};
 
 const HEROES = { robot: Robot, dog: Dog, alien: Alien, hoa: HoaPresident, vampire: Vampire, witch: Witch };
 const HOLIDAY_HEROES = { robot: HolidayRobot, dog: HolidayDog, alien: HolidayAlien };

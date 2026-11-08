@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBackgroundTheme } from './backgroundTheme.js';
+import RetroBackdrop from './RetroBackdrop.jsx';
 
 /**
  * 🌌 Full-screen animated background.
@@ -337,6 +338,7 @@ const THEMES = {
     trivia: TRIVIA_FLOATERS,
     animals: ANIMALS_FLOATERS,
     lists: LISTS_FLOATERS,
+    jeffinitely: [],   // 📼 draws its own full-colour retro scene instead (RetroBackdrop.jsx)
 };
 
 export default function AnimatedBackground() {
@@ -348,6 +350,7 @@ export default function AnimatedBackground() {
             <div className="gt-blob b1" />
             <div className="gt-blob b2" />
             <div className="gt-blob b3" />
+            {theme === 'jeffinitely' && <RetroBackdrop />}
 
             {floaters.map((f, i) => (
                 <div

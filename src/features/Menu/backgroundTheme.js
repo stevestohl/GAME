@@ -5,7 +5,7 @@ import { useEffect, useSyncExternalStore } from 'react';
  * The background is rendered once (in Page.jsx); any screen can re-theme it
  * with useSetBackgroundTheme() and it snaps back to 'home' when that screen leaves.
  *
- * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'spy', 'trivia', 'animals')
+ * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'spy', 'trivia', 'animals', 'jeffinitely')
  * cover: true lifts the background above the nav bar (used by the fullscreen TV screens)
  */
 const DEFAULT_THEME = { theme: 'home', cover: false };
@@ -42,6 +42,7 @@ export function useSetBackgroundTheme(theme, cover = false) {
 // Couch Cast: each card deck (expansion) gets its own background
 export function couchCastTheme(expansion) {
     if (expansion === 'holiday') return 'holiday';
+    if (expansion === 'jeffinitely') return 'jeffinitely';   // 📼 sunset, neon grid and retro junk
     return expansion === 'halloween' ? 'halloween' : 'couchcast';
 }
 
