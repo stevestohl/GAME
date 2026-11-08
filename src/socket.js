@@ -2,8 +2,9 @@ import { io } from 'socket.io-client';
 import { watchServerClock } from './serverClock.js';
 import { getToken } from './auth.js';
 
+// Locally, the server that sent the page (5005 normally; another port when a second copy is running for testing)
 const SOCKET_URL = window.location.hostname === 'localhost'
-    ? 'http://localhost:5005'
+    ? `http://localhost:${window.location.port || 5005}`
     : 'https://game-temple-backend.onrender.com'; 
 
 // Render handles both polling and websockets
