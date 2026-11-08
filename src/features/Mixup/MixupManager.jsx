@@ -10,7 +10,7 @@ import useHideBrowserBar from '../../hooks/useHideBrowserBar.js';
 import { useSetBackgroundTheme, mixupTheme } from '../Menu/backgroundTheme.js';
 import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../../voice.js';
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
-import { useTimerMusic, JUDGING_TRACK } from '../../timerMusic.js';
+import { useTimerMusic, JUDGING_TRACK, DRAWING_TRACK } from '../../timerMusic.js';
 import { scoreRecap } from '../../scoreRecap.js';
 
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
@@ -176,7 +176,8 @@ function MixupTV({ roomCode, casterName }) {
     useTimerMusic(isTimerPhase, {
         endTime: isListReview ? null : room?.endTime,
         key: isListReview ? `list-review-${n}` : `${gameState}-${n}`,
-        trackId: isListReview ? JUDGING_TRACK : gameState === 'match_write' ? 'grandfather-clock' : null,   // ⏰ the list rounds tick away the whole time
+        // ⏰ the list rounds tick away the whole time; ✏️ Pictionary has its own bouncy doodle tune, and it stops when the drawing ends
+        trackId: isListReview ? JUDGING_TRACK : gameState === 'match_write' ? 'grandfather-clock' : gameState === 'draw' ? DRAWING_TRACK : null,
     });
 
     // Fetch the rules narration while everyone is still joining, so it starts instantly

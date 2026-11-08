@@ -718,10 +718,54 @@ export const LOBBY_SYNTH_TRACKS = [
             motif[bar].forEach(([p, n]) => { if (p === pos) inst.marimba(ctx, out, t, n, 0.13); });
         },
     },
+    {
+        // ✏️ Someone's drawing: a bouncy, cartoonish doodle tune (our own), an 8-bar loop in C (C Am F G).
+        // A marimba hook over plucked chords, a bouncing bass and a light beat; a bell sparkles in the second half.
+        id: 'doodle-dash',
+        name: 'Doodle Dash',
+        bpm: 128,
+        swing: 0.08,
+        play(ctx, out, step, t) {
+            const pos = step % 16;
+            const bar = Math.floor(step / 16) % 8;
+            const chord = bar % 4;
+            const roots = [36, 33, 29, 31];
+            const chords = [[60, 64, 67], [57, 60, 64], [57, 60, 65], [55, 59, 62]];
+            const hook = [
+                [[0, 72], [2, 74], [4, 76], [6, 79], [10, 76], [12, 79]],
+                [[0, 81], [4, 79], [6, 76], [8, 72], [12, 76]],
+                [[0, 77], [2, 76], [4, 77], [6, 81], [10, 79], [12, 77]],
+                [[0, 79], [4, 74], [8, 71], [12, 74], [14, 79]],
+                [[0, 72], [2, 74], [4, 76], [6, 79], [10, 76], [12, 79]],
+                [[0, 81], [2, 83], [4, 84], [8, 81], [12, 76]],
+                [[0, 77], [4, 81], [6, 84], [8, 81], [12, 77]],
+                [[0, 79], [3, 77], [6, 74], [8, 71], [10, 74], [12, 79]],
+            ];
+
+            // A light beat: kick, claps on 2 and 4, soft hats with an open one to round off the bar
+            if (pos === 0 || pos === 8 || (pos === 10 && chord === 3)) inst.kick(ctx, out, t, 0.3);
+            if (pos === 4 || pos === 12) inst.clap(ctx, out, t, 0.08);
+            if (pos % 2 === 0 && pos !== 14) inst.hat(ctx, out, t, 0.015);
+            if (pos === 14) inst.openHat(ctx, out, t, 0.03);
+
+            // A bouncing bass: root, octave pop, root, fifth...
+            [[0, 12, 0.26], [3, 24, 0.14], [6, 12, 0.2], [8, 19, 0.2], [11, 24, 0.14], [14, 19, 0.18]].forEach(([p, interval, vol]) => {
+                if (p === pos) inst.bass(ctx, out, t, roots[chord] + interval, vol, 0.2);
+            });
+
+            // Plucked chord tones on the off-beats
+            [[2, 0], [6, 1], [10, 2], [14, 1]].forEach(([p, i]) => { if (p === pos) inst.pluck(ctx, out, t, chords[chord][i] + 12, 0.07); });
+
+            hook[bar].forEach(([p, n]) => { if (p === pos) inst.marimba(ctx, out, t, n, 0.16); });
+            if (bar >= 4 && pos === 0) inst.bell(ctx, out, t, chords[chord][2] + 24, 0.05);
+        },
+    },
 ];
 
 // ⚖️ While the judge reads the answers (played by id, like the lobby songs)
 export const JUDGING_TRACK = 'deliberation';
+// ✏️ While someone draws in Temple Mix Up's Pictionary
+export const DRAWING_TRACK = 'doodle-dash';
 
 // ---------------------------------------------------------------------------------------------
 // ▶️ The player

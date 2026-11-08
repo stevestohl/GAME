@@ -125,11 +125,11 @@ const changedItems = (review) => {
 
 /**
  * Can the judge move this answer into that group (or onto its own, when groupId is null)?
- * Nobody can match themselves, and the judge can't add to their own matches: no dropping their own
- * answer into a group, and no dropping anyone's answer in with theirs. (Taking answers out is fine.)
+ * Any number of groups, any size, the judge's own answers included. The one rule: nobody is matched
+ * with themselves (a group holds one answer per player). The TV shows every change, so the room keeps the judge honest.
  * The judge's phone uses the same rule to grey out the groups it can't drop into (MatchReview.jsx).
  */
-const canMove = (review, judgeSeat, itemId, groupId) => {
+const canMove = (review, itemId, groupId) => {
     if (typeof itemId !== 'string' || !Object.hasOwn(review.items, itemId)) return false;
     const item = review.items[itemId];
     const from = review.groups.find((g) => g.itemIds.includes(itemId));
@@ -138,8 +138,7 @@ const canMove = (review, judgeSeat, itemId, groupId) => {
     const to = review.groups.find((g) => g.id === groupId);
     if (!to || to === from) return false;
     const seats = to.itemIds.map((id) => review.items[id].seat);
-    if (seats.includes(item.seat)) return false;
-    return item.seat !== judgeSeat && !seats.includes(judgeSeat);
+    return !seats.includes(item.seat);
 };
 
 const moveAnswer = (review, itemId, groupId) => {
@@ -997,7 +996,7 @@ export default function registerMixupNamespace(MNS) {
             const room = judgedRoom(roomCode);
             if (!room) return;
             const review = room.round.review;
-            if (!canMove(review, room.players[socket.id].joinOrder, itemId, groupId)) return;
+            if (!canMove(review, itemId, groupId)) return;
             moveAnswer(review, itemId, groupId);
             broadcast(roomCode);
         });

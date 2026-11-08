@@ -10,10 +10,11 @@ import { mixupSocket as socket } from '../../socket.js';
  */
 
 /**
- * The server's rule (sockets/mixup_handler.js, canMove), so the phone can grey out where an answer can't go:
- * nobody matches themselves, and the judge can't add to their own matches. groupId null = on its own.
+ * The server's rule (sockets/mixup_handler.js, canMove), so the phone can grey out where an answer can't go.
+ * Groups can be any size and the judge's own answers count too; the one rule is that nobody is matched
+ * with themselves (one answer per player in a group). groupId null = on its own.
  */
-export function canMoveAnswer(review, judgeSeat, itemId, groupId) {
+export function canMoveAnswer(review, itemId, groupId) {
     const item = review.items[itemId];
     const from = review.groups.find((g) => g.itemIds.includes(itemId));
     if (!item || !from) return false;
@@ -21,8 +22,7 @@ export function canMoveAnswer(review, judgeSeat, itemId, groupId) {
     const to = review.groups.find((g) => g.id === groupId);
     if (!to || to === from) return false;
     const seats = to.itemIds.map((id) => review.items[id].seat);
-    if (seats.includes(item.seat)) return false;
-    return item.seat !== judgeSeat && !seats.includes(judgeSeat);
+    return !seats.includes(item.seat);
 }
 
 const seatCount = (review, group) => new Set(group.itemIds.map((id) => review.items[id].seat)).size;
@@ -191,13 +191,13 @@ export function JudgeReview({ roomCode, round, Frame }) {
         onStart: (id) => setHeld(id),
         onDrop: (id, zone) => {
             const home = review.groups.find((g) => g.itemIds.includes(id));
-            if (zone === 'alone') return canMoveAnswer(review, judgeSeat, id, null) ? send(id, null) : setHeld(null);
+            if (zone === 'alone') return canMoveAnswer(review, id, null) ? send(id, null) : setHeld(null);
             if (zone && zone === home?.id) return;   // let go where it started: still picked up, ready for a tap
-            return zone && canMoveAnswer(review, judgeSeat, id, zone) ? send(id, zone) : setHeld(null);
+            return zone && canMoveAnswer(review, id, zone) ? send(id, zone) : setHeld(null);
         },
     });
 
-    const canGoAnywhere = (id) => canMoveAnswer(review, judgeSeat, id, null) || review.groups.some((g) => canMoveAnswer(review, judgeSeat, id, g.id));
+    const canGoAnywhere = (id) => canMoveAnswer(review, id, null) || review.groups.some((g) => canMoveAnswer(review, id, g.id));
     const heldItem = held ? review.items[held] : null;
     let hint = 'Drag an answer onto the one it matches to join them (or tap it, then tap where it goes). Split ones that don\'t match.';
     if (drag) hint = `Let go of "${heldItem?.text}" on the answer it matches.`;
@@ -214,7 +214,7 @@ export function JudgeReview({ roomCode, round, Frame }) {
                             size="sm"
                             className={`fw-bold ${drag?.zone === 'alone' ? 'mx-drop-hover' : ''}`}
                             data-drop="alone"
-                            disabled={!canMoveAnswer(review, judgeSeat, held, null)}
+                            disabled={!canMoveAnswer(review, held, null)}
                             onClick={() => !isAfterDrag() && send(held, null)}
                         >
                             ✂️ On its own
@@ -239,7 +239,7 @@ export function JudgeReview({ roomCode, round, Frame }) {
                     {review.groups.map((group) => {
                         const isHome = held && group.itemIds.includes(held);
                         const isTarget = held && !isHome;
-                        const canDrop = isTarget && canMoveAnswer(review, judgeSeat, held, group.id);
+                        const canDrop = isTarget && canMoveAnswer(review, held, group.id);
                         const answers = (
                             <ul className="mx-review-answers">
                                 {group.itemIds.map((id) => {
@@ -282,7 +282,6 @@ export function JudgeReview({ roomCode, round, Frame }) {
                                 </div>
                             );
                         }
-                        const ownMatch = heldItem.seat === judgeSeat || group.itemIds.some((id) => review.items[id].seat === judgeSeat);
                         const sameName = group.itemIds.some((id) => review.items[id].seat === heldItem.seat);
                         return (
                             <button
@@ -297,15 +296,14 @@ export function JudgeReview({ roomCode, round, Frame }) {
                                 <div className="mx-review-head">
                                     {isHover ? '🤝 Let go to join them'
                                         : canDrop ? '👇 Drop it here'
-                                            : sameName ? `${heldItem.seat === judgeSeat ? 'You' : heldItem.name} already ${heldItem.seat === judgeSeat ? 'have' : 'has'} one here`
-                                                : ownMatch ? '🔒 Not your own match' : ''}
+                                            : sameName ? `${heldItem.seat === judgeSeat ? 'You' : heldItem.name} already ${heldItem.seat === judgeSeat ? 'have' : 'has'} one here` : ''}
                                 </div>
                                 {answers}
                             </button>
                         );
                     })}
                 </div>
-                <p className="small text-muted mt-2 mb-0">🔒 You can split your own matches, but not add to them. No rush: tap Looks good! when you're done.</p>
+                <p className="small text-muted mt-2 mb-0">Make as many matches as you need, as big as you need. Everyone in a match scores for each other. No rush: tap Looks good! when you're done.</p>
             </Frame>
             {drag && heldItem && <div className="mx-drag-ghost" style={{ left: drag.x, top: drag.y }}>✋ {heldItem.text}</div>}
         </>
