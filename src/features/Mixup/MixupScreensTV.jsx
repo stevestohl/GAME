@@ -351,14 +351,17 @@ export function MatchTV({ room }) {
                     {round.topic}
                 </div>
                 {body}
-                {(isWriting || isReview) && (
+                {isWriting && (
                     <div className="flex-shrink-0" style={{ paddingRight: '7rem' }}>
-                        <ClockStrip
-                            endTime={room.endTime}
-                            left={isWriting
-                                ? `${doneCount} of ${players.length} done${round.judgeName ? ` · ⚖️ ${round.judgeName} judges` : ''}`
-                                : `⚖️ ${round.review.changed.length} ${round.review.changed.length === 1 ? 'answer' : 'answers'} changed so far`}
-                        />
+                        <ClockStrip endTime={room.endTime} left={`${doneCount} of ${players.length} done${round.judgeName ? ` · ⚖️ ${round.judgeName} judges` : ''}`} />
+                    </div>
+                )}
+                {/* The judge has no clock: just how it's going */}
+                {isReview && (
+                    <div className="flex-shrink-0 mx-strip mt-2" style={{ paddingRight: '7rem' }}>
+                        {round.judgeAway
+                            ? `📵 Waiting for ${round.judgeName}'s phone to come back...`
+                            : `⚖️ ${round.review.changed.length} ${round.review.changed.length === 1 ? 'answer' : 'answers'} changed so far · ${round.judgeName} taps "Looks good!" when they're done`}
                     </div>
                 )}
             </div>

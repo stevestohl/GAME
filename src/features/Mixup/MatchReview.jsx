@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { mixupSocket as socket } from '../../socket.js';
 
 /**
  * ⚖️ Threefold's judge: after the writing, one player checks the computer's matches on their phone.
- * The answers come in groups (every answer in a group matches the others). The judge picks an answer up
- * and drops it into the group it belongs in, or puts it on its own. The TV shows every change as it happens.
+ * The answers come in groups (every answer in a group matches the others). The judge drags an answer onto
+ * the one it matches ("policeman" onto "police": both score), or taps it and then taps where it goes, or puts
+ * it on its own. There's no clock. The TV shows every change as it happens.
  */
 
 /**
@@ -62,22 +63,145 @@ export function ReviewGroups({ review, groups = review.groups, pointsPerItem, va
     );
 }
 
+const LONG_PRESS_MS = 220;   // a finger holds still this long to pick an answer up (a quick swipe still scrolls)
+const EDGE = 90;              // dragging this close to the top or bottom of the screen scrolls the list
+
+// The drop zone under a point: a group's id, 'alone' (the "On its own" button), or null
+const dropZoneAt = (x, y) => document.elementFromPoint(x, y)?.closest('[data-drop]')?.dataset.drop || null;
+
 /**
- * 📱 The judge's phone: tap an answer to pick it up, then tap the group it matches (or "On its own").
- * A bar pinned under the nav bar holds the buttons, so they never scroll away.
+ * ✋ Dragging an answer: a mouse drags straight away; a finger presses and holds first, so a quick swipe
+ * still scrolls the list. onStart(id) when it's picked up, onDrop(id, zone) when it's let go.
  */
-export function JudgeReview({ roomCode, round, clock, Frame }) {
+function useAnswerDrag({ onStart, onDrop }) {
+    const [drag, setDrag] = useState(null);      // { id, x, y, zone } while dragging
+    const press = useRef(null);
+    const handlers = useRef({});
+    handlers.current = { onStart, onDrop };
+    const startRef = useRef(null);
+    const noTapUntil = useRef(0);
+
+    useEffect(() => {
+        let frame = null;
+        const show = () => {
+            const p = press.current;
+            if (p?.active) setDrag({ id: p.id, x: p.x, y: p.y, zone: dropZoneAt(p.x, p.y) });
+        };
+        const stop = () => {
+            if (press.current?.timer) clearTimeout(press.current.timer);
+            press.current = null;
+            cancelAnimationFrame(frame);
+        };
+        // Near the top or bottom edge the list scrolls, so a group further away can be reached
+        const autoScroll = () => {
+            const p = press.current;
+            if (!p?.active) return;
+            const step = p.y < EDGE ? -12 : p.y > window.innerHeight - EDGE ? 12 : 0;
+            if (step) {
+                window.scrollBy(0, step);
+                show();
+            }
+            frame = requestAnimationFrame(autoScroll);
+        };
+        const pickUp = () => {
+            const p = press.current;
+            if (!p || p.active) return;
+            p.active = true;
+            navigator.vibrate?.(15);
+            handlers.current.onStart(p.id);
+            show();
+            frame = requestAnimationFrame(autoScroll);
+        };
+        startRef.current = (e, id) => {
+            if (e.button !== 0 || press.current) return;
+            const isTouch = e.pointerType !== 'mouse';
+            press.current = { id, pointerId: e.pointerId, x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, isTouch, active: false };
+            if (isTouch) press.current.timer = setTimeout(pickUp, LONG_PRESS_MS);
+        };
+
+        const onMove = (e) => {
+            const p = press.current;
+            if (!p || e.pointerId !== p.pointerId) return;
+            p.x = e.clientX;
+            p.y = e.clientY;
+            if (!p.active) {
+                const moved = Math.hypot(p.x - p.x0, p.y - p.y0);
+                if (p.isTouch) {
+                    if (moved > 10) stop();      // the finger moved before the hold: it's a scroll
+                    return;
+                }
+                if (moved < 6) return;
+                pickUp();
+            }
+            show();
+        };
+        const onUp = (e) => {
+            const p = press.current;
+            if (!p || e.pointerId !== p.pointerId) return;
+            stop();
+            if (!p.active) return;               // a plain tap: the button's click handles it
+            noTapUntil.current = Date.now() + 400;   // the click that follows a drag isn't a tap
+            setDrag(null);
+            handlers.current.onDrop(p.id, dropZoneAt(e.clientX, e.clientY));
+        };
+        const onCancel = (e) => {
+            if (!press.current || e.pointerId !== press.current.pointerId) return;
+            const wasActive = press.current.active;
+            stop();
+            if (wasActive) setDrag(null);
+        };
+        // While an answer is being dragged, the finger moving mustn't scroll the page
+        const onTouchMove = (e) => { if (press.current?.active) e.preventDefault(); };
+
+        window.addEventListener('pointermove', onMove);
+        window.addEventListener('pointerup', onUp);
+        window.addEventListener('pointercancel', onCancel);
+        document.addEventListener('touchmove', onTouchMove, { passive: false });
+        return () => {
+            stop();
+            window.removeEventListener('pointermove', onMove);
+            window.removeEventListener('pointerup', onUp);
+            window.removeEventListener('pointercancel', onCancel);
+            document.removeEventListener('touchmove', onTouchMove);
+        };
+    }, []);
+
+    return {
+        drag,
+        startDrag: (e, id) => startRef.current?.(e, id),
+        isAfterDrag: () => Date.now() < noTapUntil.current,
+    };
+}
+
+/**
+ * 📱 The judge's phone: drag an answer onto the one it matches (or tap it, then tap the group), or put it
+ * on its own. A bar pinned under the nav bar holds the buttons, so they never scroll away.
+ */
+export function JudgeReview({ roomCode, round, Frame }) {
     const review = round.review;
     const judgeSeat = round.judgeSeat;
     const [held, setHeld] = useState(null);
     const changed = new Set(review.changed || []);
 
-    const canGoAnywhere = (id) => canMoveAnswer(review, judgeSeat, id, null) || review.groups.some((g) => canMoveAnswer(review, judgeSeat, id, g.id));
-    const move = (groupId) => {
-        socket.emit('review_move', { roomCode, itemId: held, groupId });
+    const send = (itemId, groupId) => {
+        socket.emit('review_move', { roomCode, itemId, groupId });
         setHeld(null);
     };
+    const { drag, startDrag, isAfterDrag } = useAnswerDrag({
+        onStart: (id) => setHeld(id),
+        onDrop: (id, zone) => {
+            const home = review.groups.find((g) => g.itemIds.includes(id));
+            if (zone === 'alone') return canMoveAnswer(review, judgeSeat, id, null) ? send(id, null) : setHeld(null);
+            if (zone && zone === home?.id) return;   // let go where it started: still picked up, ready for a tap
+            return zone && canMoveAnswer(review, judgeSeat, id, zone) ? send(id, zone) : setHeld(null);
+        },
+    });
+
+    const canGoAnywhere = (id) => canMoveAnswer(review, judgeSeat, id, null) || review.groups.some((g) => canMoveAnswer(review, judgeSeat, id, g.id));
     const heldItem = held ? review.items[held] : null;
+    let hint = 'Drag an answer onto the one it matches to join them (or tap it, then tap where it goes). Split ones that don\'t match.';
+    if (drag) hint = `Let go of "${heldItem?.text}" on the answer it matches.`;
+    else if (heldItem) hint = `Now tap the group "${heldItem.text}" matches, or put it on its own.`;
 
     return (
         <>
@@ -85,7 +209,14 @@ export function JudgeReview({ roomCode, round, clock, Frame }) {
                 {heldItem ? (
                     <>
                         <span className="mx-judge-holding">✋ <strong>{heldItem.text}</strong></span>
-                        <Button variant="warning" size="sm" className="fw-bold" disabled={!canMoveAnswer(review, judgeSeat, held, null)} onClick={() => move(null)}>
+                        <Button
+                            variant="warning"
+                            size="sm"
+                            className={`fw-bold ${drag?.zone === 'alone' ? 'mx-drop-hover' : ''}`}
+                            data-drop="alone"
+                            disabled={!canMoveAnswer(review, judgeSeat, held, null)}
+                            onClick={() => !isAfterDrag() && send(held, null)}
+                        >
                             ✂️ On its own
                         </Button>
                         <Button variant="outline-secondary" size="sm" className="fw-bold" onClick={() => setHeld(null)}>Cancel</Button>
@@ -101,13 +232,9 @@ export function JudgeReview({ roomCode, round, clock, Frame }) {
                     </>
                 )}
             </div>
-            <Frame title="⚖️ Judge It!" right={clock}>
+            <Frame title="⚖️ Judge It!">
                 <div className="mx-phone-topic"><span>The list</span>{round.topic}</div>
-                <p className="small text-muted mb-2">
-                    {heldItem
-                        ? `Now tap the group "${heldItem.text}" matches, or put it on its own.`
-                        : 'Tap an answer to move it: join answers that mean the same thing, split ones that don\'t.'}
-                </p>
+                <p className="small text-muted mb-2">{hint}</p>
                 <div className="mx-review-board phone">
                     {review.groups.map((group) => {
                         const isHome = held && group.itemIds.includes(held);
@@ -124,7 +251,7 @@ export function JudgeReview({ roomCode, round, clock, Frame }) {
                                             <span className="mx-review-name">{isMine ? 'you' : item.name}</span>
                                         </>
                                     );
-                                    const classes = `mx-review-answer ${changed.has(id) ? 'changed' : ''} ${isMine ? 'mine' : ''} ${held === id ? 'held' : ''}`;
+                                    const classes = `mx-review-answer ${changed.has(id) ? 'changed' : ''} ${isMine ? 'mine' : ''} ${held === id ? 'held' : ''} ${drag?.id === id ? 'dragging' : ''}`;
                                     // Inside a drop target the whole card is the button; elsewhere each answer is
                                     if (isTarget || !canGoAnywhere(id)) return <li key={id} className={classes}>{content}</li>;
                                     return (
@@ -133,8 +260,10 @@ export function JudgeReview({ roomCode, round, clock, Frame }) {
                                                 type="button"
                                                 className={`${classes} tap`}
                                                 aria-pressed={held === id}
-                                                aria-label={`${item.text}, ${isMine ? 'yours' : item.name}. ${held === id ? 'Tap to put it back.' : 'Tap to move it.'}`}
-                                                onClick={() => setHeld(held === id ? null : id)}
+                                                aria-label={`${item.text}, ${isMine ? 'yours' : item.name}. ${held === id ? 'Tap to put it back.' : 'Drag it onto its match, or tap to move it.'}`}
+                                                onPointerDown={(e) => startDrag(e, id)}
+                                                onContextMenu={(e) => e.preventDefault()}
+                                                onClick={() => !isAfterDrag() && setHeld(held === id ? null : id)}
                                             >
                                                 {content}
                                             </button>
@@ -143,10 +272,11 @@ export function JudgeReview({ roomCode, round, clock, Frame }) {
                                 })}
                             </ul>
                         );
-                        const classes = `mx-review-group ${seatCount(review, group) > 1 ? 'matched' : ''} ${isTarget ? (canDrop ? 'target' : 'blocked') : ''}`;
+                        const isHover = canDrop && drag?.zone === group.id;
+                        const classes = `mx-review-group ${seatCount(review, group) > 1 ? 'matched' : ''} ${isTarget ? (canDrop ? 'target' : 'blocked') : ''} ${isHover ? 'hover' : ''}`;
                         if (!isTarget) {
                             return (
-                                <div key={group.id} className={classes}>
+                                <div key={group.id} className={classes} data-drop={group.id}>
                                     <GroupHead review={review} group={group} pointsPerItem={round.pointsPerItem} />
                                     {answers}
                                 </div>
@@ -159,32 +289,35 @@ export function JudgeReview({ roomCode, round, clock, Frame }) {
                                 key={group.id}
                                 type="button"
                                 className={classes}
+                                data-drop={group.id}
                                 disabled={!canDrop}
                                 aria-label={`${canDrop ? 'Drop it here' : "Can't drop it here"}: ${group.itemIds.map((id) => review.items[id].text).join(', ')}`}
-                                onClick={() => move(group.id)}
+                                onClick={() => !isAfterDrag() && send(held, group.id)}
                             >
                                 <div className="mx-review-head">
-                                    {canDrop ? '👇 Drop it here'
-                                        : sameName ? `${heldItem.seat === judgeSeat ? 'You' : heldItem.name} already ${heldItem.seat === judgeSeat ? 'have' : 'has'} one here`
-                                            : ownMatch ? '🔒 Not your own match' : ''}
+                                    {isHover ? '🤝 Let go to join them'
+                                        : canDrop ? '👇 Drop it here'
+                                            : sameName ? `${heldItem.seat === judgeSeat ? 'You' : heldItem.name} already ${heldItem.seat === judgeSeat ? 'have' : 'has'} one here`
+                                                : ownMatch ? '🔒 Not your own match' : ''}
                                 </div>
                                 {answers}
                             </button>
                         );
                     })}
                 </div>
-                <p className="small text-muted mt-2 mb-0">🔒 You can split your own matches, but not add to them.</p>
+                <p className="small text-muted mt-2 mb-0">🔒 You can split your own matches, but not add to them. No rush: tap Looks good! when you're done.</p>
             </Frame>
+            {drag && heldItem && <div className="mx-drag-ghost" style={{ left: drag.x, top: drag.y }}>✋ {heldItem.text}</div>}
         </>
     );
 }
 
 /** 📱 Everyone else's phone while the judge works: the groups their own answers are in, live */
-export function ReviewWatch({ round, mySeat, clock, Frame }) {
+export function ReviewWatch({ round, mySeat, Frame }) {
     const review = round.review;
     const mine = review.groups.filter((g) => g.itemIds.some((id) => review.items[id].seat === mySeat));
     return (
-        <Frame title="Match It!" right={clock}>
+        <Frame title="Match It!">
             <div className="mx-phone-topic"><span>The list</span>{round.topic}</div>
             <div className="mx-phone-intro-icon">⚖️</div>
             <h5 className="fw-bold mb-1">{round.judgeName} is checking the matches</h5>

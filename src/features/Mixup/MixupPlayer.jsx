@@ -344,8 +344,8 @@ export default function MixupPlayer({ roomCode, playerName }) {
         }
         case 'match_review':
             if (!round.review) return <Waiting title={roundTitle} icon="⚖️" text="Checking the matches..." />;
-            if (round.judgeId === socket.id) return <JudgeReview roomCode={roomCode} round={round} clock={clock} Frame={Frame} />;
-            return <ReviewWatch round={round} mySeat={me.seat} clock={clock} Frame={Frame} />;
+            if (round.judgeId === socket.id) return <JudgeReview roomCode={roomCode} round={round} Frame={Frame} />;
+            return <ReviewWatch round={round} mySeat={me.seat} Frame={Frame} />;
         case 'match_compare':
         case 'match_results': {
             const mySeat = me.seat;

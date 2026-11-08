@@ -301,3 +301,26 @@
 @media (prefers-reduced-motion: reduce) {
     .mx-review-answer, .mx-review-group.target { animation: none; }
 }
+
+/* ✋ Dragging an answer onto its match (MatchReview.jsx) */
+.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.mx-review-answer.dragging { opacity: 0.45; }
+.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }
+.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }
+.mx-drag-ghost {
+    position: fixed;
+    z-index: 2000;
+    pointer-events: none;
+    transform: translate(-50%, -140%);
+    max-width: 80vw;
+    padding: 0.4em 0.8em;
+    border: 2px solid var(--gt-gold, #f7ba3a);
+    border-radius: 10px;
+    background: #fff4d6;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    color: #1d2340;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

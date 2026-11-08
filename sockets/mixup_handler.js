@@ -7,6 +7,7 @@
 //                  other player who wrote the same thing (Listography's Threefold card, with no vote).
 //                  The answers are matched up automatically, then one player (the judge, taking turns)
 //                  checks the matches on their phone: joining answers the computer missed, splitting ones it got wrong.
+//                  No clock on the judge: they take as long as they need (the room waits for them).
 // 9, 12 or 15 rounds: an equal number of each, played in blocks (all memes, then Pictionary, then Threefold).
 // Memes come from Imgflip's popular blank templates and Pictionary prompts from MongoDB; both cycle
 // (least-used first) so they don't repeat until every one has been played. Room codes start with "M".
@@ -43,8 +44,7 @@ const MEME_VOTE_TIME = 30 * SECOND;
 const MEME_RESULTS_TIME = 10 * SECOND;
 const DRAW_TIME = 80 * SECOND;
 const DRAW_RESULTS_TIME = 8 * SECOND;
-const MATCH_REVIEW_TIME = 45 * SECOND;  // the judge checks the matches
-const JUDGE_GONE_TIME = 10 * SECOND;    // the judge's phone dropped out: a moment to come back, then move on
+const JUDGE_GONE_TIME = 30 * SECOND;    // the judge's phone dropped out (or locked): time to come back, then the matches stand
 const MATCH_COMPARE_TIME = 9 * SECOND;  // the answers light up one after another
 const MATCH_RESULTS_TIME = 8 * SECOND;
 const SCOREBOARD_TIME = 7 * SECOND;
@@ -204,6 +204,7 @@ const getSafeRoom = (room) => {
             roundView.pointsPerItem = MATCH_POINTS;
             if (state === 'match_review' && round.review) {
                 roundView.review = { items: round.review.items, groups: round.review.groups, changed: changedItems(round.review) };
+                roundView.judgeAway = !!round.judgeAway;
             }
             if (state === 'match_compare' || state === 'match_results' || state === 'scoreboard') roundView.board = round.board;
         }
@@ -474,9 +475,10 @@ export default function registerMixupNamespace(MNS) {
         round.judgeId = judge.id;
         round.judgeName = judge.name;
 
+        // No clock: the judge's "Looks good!" ends it (or their phone dropping out for good, below)
         room.gameState = 'match_review';
-        room.endTime = Date.now() + MATCH_REVIEW_TIME;
-        schedule(roomCode, room, 'match_review', MATCH_REVIEW_TIME + GRACE, () => scoreMatches(roomCode));
+        room.endTime = null;
+        round.judgeAway = false;
         broadcast(roomCode);
     };
 
@@ -616,13 +618,10 @@ export default function registerMixupNamespace(MNS) {
             return;
         }
 
-        // The judge's phone dropped out: a few seconds to come back (a refresh), then the matches stand as they are
+        // The judge's phone dropped out (a refresh, a locked screen): time to come back, then the matches stand as they are
         if (room.gameState === 'match_review' && room.round?.judgeId === socketId) {
-            const cutoff = Date.now() + JUDGE_GONE_TIME;
-            if (room.endTime > cutoff) {
-                room.endTime = cutoff;
-                schedule(roomCode, room, 'match_review', JUDGE_GONE_TIME, () => scoreMatches(roomCode));
-            }
+            room.round.judgeAway = true;
+            schedule(roomCode, room, 'match_review', JUDGE_GONE_TIME, () => scoreMatches(roomCode));
         }
 
         checkEveryoneDone(roomCode);
@@ -807,7 +806,14 @@ export default function registerMixupNamespace(MNS) {
                 if (cleanAvatar) player.avatar = cleanAvatar;
                 if (room.hostId === existingKey) room.hostId = socket.id;
                 if (room.round?.drawerId === existingKey) room.round.drawerId = socket.id;
-                if (room.round?.judgeId === existingKey) room.round.judgeId = socket.id;
+                if (room.round?.judgeId === existingKey) {
+                    room.round.judgeId = socket.id;
+                    // The judge is back: the wait for them is off
+                    if (room.gameState === 'match_review' && room.round.judgeAway) {
+                        room.round.judgeAway = false;
+                        clearTimer(room);
+                    }
+                }
                 if (room.round?.guessedById === existingKey) room.round.guessedById = socket.id;
                 (room.round?.captions || []).forEach((c) => { if (c.playerId === existingKey) c.playerId = socket.id; });
                 delete room.players[existingKey];
