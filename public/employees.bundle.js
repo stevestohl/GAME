@@ -15800,6 +15800,9 @@ function ListBoard(_ref) {
       }
     }
 
+    // ⚖️ Temple Mix Up's judge matched this answer differently from the computer
+    if (item.judged && note) note = "".concat(note, " \u2696\uFE0F");
+
     // 🗳️ Phone voting: answers up for a vote that aren't yours are buttons
     // (copies of the same Threefold match share one vote key, so they flip together)
     var canVoteOn = item.voteKey && !(item.voteSeats || []).includes(mySeat);
@@ -22527,6 +22530,302 @@ function DrawingPad(_ref4) {
 
 /***/ }),
 
+/***/ "./src/features/Mixup/MatchReview.jsx":
+/*!********************************************!*\
+  !*** ./src/features/Mixup/MatchReview.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JudgeReview": () => (/* binding */ JudgeReview),
+/* harmony export */   "ReviewGroups": () => (/* binding */ ReviewGroups),
+/* harmony export */   "ReviewWatch": () => (/* binding */ ReviewWatch),
+/* harmony export */   "canMoveAnswer": () => (/* binding */ canMoveAnswer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+/**
+ * ⚖️ Threefold's judge: after the writing, one player checks the computer's matches on their phone.
+ * The answers come in groups (every answer in a group matches the others). The judge picks an answer up
+ * and drops it into the group it belongs in, or puts it on its own. The TV shows every change as it happens.
+ */
+
+/**
+ * The server's rule (sockets/mixup_handler.js, canMove), so the phone can grey out where an answer can't go:
+ * nobody matches themselves, and the judge can't add to their own matches. groupId null = on its own.
+ */
+function canMoveAnswer(review, judgeSeat, itemId, groupId) {
+  var item = review.items[itemId];
+  var from = review.groups.find(function (g) {
+    return g.itemIds.includes(itemId);
+  });
+  if (!item || !from) return false;
+  if (groupId === null) return from.itemIds.length > 1;
+  var to = review.groups.find(function (g) {
+    return g.id === groupId;
+  });
+  if (!to || to === from) return false;
+  var seats = to.itemIds.map(function (id) {
+    return review.items[id].seat;
+  });
+  if (seats.includes(item.seat)) return false;
+  return item.seat !== judgeSeat && !seats.includes(judgeSeat);
+}
+var seatCount = function seatCount(review, group) {
+  return new Set(group.itemIds.map(function (id) {
+    return review.items[id].seat;
+  })).size;
+};
+
+// "🤝 3 match · +100 each" / "No match"
+function GroupHead(_ref) {
+  var review = _ref.review,
+    group = _ref.group,
+    pointsPerItem = _ref.pointsPerItem;
+  var players = seatCount(review, group);
+  if (players < 2) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-review-head"
+  }, "No match");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-review-head"
+  }, "\uD83E\uDD1D ", players, " match \xB7 +", (players - 1) * pointsPerItem, " each");
+}
+
+/** The groups as cards: read-only on the TV and the other phones */
+function ReviewGroups(_ref2) {
+  var review = _ref2.review,
+    _ref2$groups = _ref2.groups,
+    groups = _ref2$groups === void 0 ? review.groups : _ref2$groups,
+    pointsPerItem = _ref2.pointsPerItem,
+    _ref2$variant = _ref2.variant,
+    variant = _ref2$variant === void 0 ? 'phone' : _ref2$variant,
+    _ref2$mySeat = _ref2.mySeat,
+    mySeat = _ref2$mySeat === void 0 ? null : _ref2$mySeat;
+  var changed = new Set(review.changed || []);
+  var isTV = variant === 'tv';
+  var count = groups.length;
+  var columns = !isTV ? 1 : count <= 4 ? Math.max(count, 1) : count <= 9 ? 3 : count <= 16 ? 4 : count <= 20 ? 5 : 6;
+  var fontSize = !isTV ? '1rem' : count <= 6 ? 'clamp(0.85rem, 3.4vh, 1.6rem)' : count <= 12 ? 'clamp(0.75rem, 2.7vh, 1.3rem)' : 'clamp(0.65rem, 2.1vh, 1rem)';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-review-board ".concat(variant),
+    style: {
+      gridTemplateColumns: "repeat(".concat(columns, ", minmax(0, 1fr))"),
+      fontSize: fontSize
+    }
+  }, groups.map(function (group) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: group.id,
+      className: "mx-review-group ".concat(seatCount(review, group) > 1 ? 'matched' : '')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GroupHead, {
+      review: review,
+      group: group,
+      pointsPerItem: pointsPerItem
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      className: "mx-review-answers"
+    }, group.itemIds.map(function (id) {
+      var item = review.items[id];
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        key: id,
+        className: "mx-review-answer ".concat(changed.has(id) ? 'changed' : '', " ").concat(item.seat === mySeat ? 'mine' : '')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "mx-review-text"
+      }, changed.has(id) && '⚖️ ', item.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "mx-review-name"
+      }, item.seat === mySeat ? 'you' : item.name));
+    })));
+  }));
+}
+
+/**
+ * 📱 The judge's phone: tap an answer to pick it up, then tap the group it matches (or "On its own").
+ * A bar pinned under the nav bar holds the buttons, so they never scroll away.
+ */
+function JudgeReview(_ref3) {
+  var roomCode = _ref3.roomCode,
+    round = _ref3.round,
+    clock = _ref3.clock,
+    Frame = _ref3.Frame;
+  var review = round.review;
+  var judgeSeat = round.judgeSeat;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    held = _useState2[0],
+    setHeld = _useState2[1];
+  var changed = new Set(review.changed || []);
+  var canGoAnywhere = function canGoAnywhere(id) {
+    return canMoveAnswer(review, judgeSeat, id, null) || review.groups.some(function (g) {
+      return canMoveAnswer(review, judgeSeat, id, g.id);
+    });
+  };
+  var move = function move(groupId) {
+    _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('review_move', {
+      roomCode: roomCode,
+      itemId: held,
+      groupId: groupId
+    });
+    setHeld(null);
+  };
+  var heldItem = held ? review.items[held] : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tc-leader-bar mx-judge-bar"
+  }, heldItem ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "mx-judge-holding"
+  }, "\u270B ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, heldItem.text)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "warning",
+    size: "sm",
+    className: "fw-bold",
+    disabled: !canMoveAnswer(review, judgeSeat, held, null),
+    onClick: function onClick() {
+      return move(null);
+    }
+  }, "\u2702\uFE0F On its own"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "outline-secondary",
+    size: "sm",
+    className: "fw-bold",
+    onClick: function onClick() {
+      return setHeld(null);
+    }
+  }, "Cancel")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "outline-secondary",
+    size: "sm",
+    className: "fw-bold",
+    disabled: !changed.size,
+    onClick: function onClick() {
+      return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('review_reset', {
+        roomCode: roomCode
+      });
+    }
+  }, "\u21BA Start over"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "success",
+    className: "fw-bold flex-grow-1",
+    onClick: function onClick() {
+      return _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket.emit('review_done', {
+        roomCode: roomCode
+      });
+    }
+  }, "\u2705 Looks good!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+    title: "\u2696\uFE0F Judge It!",
+    right: clock
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-phone-topic"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "The list"), round.topic), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "small text-muted mb-2"
+  }, heldItem ? "Now tap the group \"".concat(heldItem.text, "\" matches, or put it on its own.") : 'Tap an answer to move it: join answers that mean the same thing, split ones that don\'t.'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-review-board phone"
+  }, review.groups.map(function (group) {
+    var isHome = held && group.itemIds.includes(held);
+    var isTarget = held && !isHome;
+    var canDrop = isTarget && canMoveAnswer(review, judgeSeat, held, group.id);
+    var answers = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      className: "mx-review-answers"
+    }, group.itemIds.map(function (id) {
+      var item = review.items[id];
+      var isMine = item.seat === judgeSeat;
+      var content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "mx-review-text"
+      }, changed.has(id) && '⚖️ ', item.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "mx-review-name"
+      }, isMine ? 'you' : item.name));
+      var classes = "mx-review-answer ".concat(changed.has(id) ? 'changed' : '', " ").concat(isMine ? 'mine' : '', " ").concat(held === id ? 'held' : '');
+      // Inside a drop target the whole card is the button; elsewhere each answer is
+      if (isTarget || !canGoAnywhere(id)) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        key: id,
+        className: classes
+      }, content);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        key: id
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        type: "button",
+        className: "".concat(classes, " tap"),
+        "aria-pressed": held === id,
+        "aria-label": "".concat(item.text, ", ").concat(isMine ? 'yours' : item.name, ". ").concat(held === id ? 'Tap to put it back.' : 'Tap to move it.'),
+        onClick: function onClick() {
+          return setHeld(held === id ? null : id);
+        }
+      }, content));
+    }));
+    var classes = "mx-review-group ".concat(seatCount(review, group) > 1 ? 'matched' : '', " ").concat(isTarget ? canDrop ? 'target' : 'blocked' : '');
+    if (!isTarget) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        key: group.id,
+        className: classes
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GroupHead, {
+        review: review,
+        group: group,
+        pointsPerItem: round.pointsPerItem
+      }), answers);
+    }
+    var ownMatch = heldItem.seat === judgeSeat || group.itemIds.some(function (id) {
+      return review.items[id].seat === judgeSeat;
+    });
+    var sameName = group.itemIds.some(function (id) {
+      return review.items[id].seat === heldItem.seat;
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      key: group.id,
+      type: "button",
+      className: classes,
+      disabled: !canDrop,
+      "aria-label": "".concat(canDrop ? 'Drop it here' : "Can't drop it here", ": ").concat(group.itemIds.map(function (id) {
+        return review.items[id].text;
+      }).join(', ')),
+      onClick: function onClick() {
+        return move(group.id);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-review-head"
+    }, canDrop ? '👇 Drop it here' : sameName ? "".concat(heldItem.seat === judgeSeat ? 'You' : heldItem.name, " already ").concat(heldItem.seat === judgeSeat ? 'have' : 'has', " one here") : ownMatch ? '🔒 Not your own match' : ''), answers);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "small text-muted mt-2 mb-0"
+  }, "\uD83D\uDD12 You can split your own matches, but not add to them.")));
+}
+
+/** 📱 Everyone else's phone while the judge works: the groups their own answers are in, live */
+function ReviewWatch(_ref4) {
+  var round = _ref4.round,
+    mySeat = _ref4.mySeat,
+    clock = _ref4.clock,
+    Frame = _ref4.Frame;
+  var review = round.review;
+  var mine = review.groups.filter(function (g) {
+    return g.itemIds.some(function (id) {
+      return review.items[id].seat === mySeat;
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
+    title: "Match It!",
+    right: clock
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-phone-topic"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "The list"), round.topic), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-phone-intro-icon"
+  }, "\u2696\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "fw-bold mb-1"
+  }, round.judgeName, " is checking the matches"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "small text-muted mb-3"
+  }, "Watch the TV! Think they got one wrong? Tell them!"), mine.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ReviewGroups, {
+    review: review,
+    groups: mine,
+    pointsPerItem: round.pointsPerItem,
+    mySeat: mySeat
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/features/Mixup/MixupManager.jsx":
 /*!*********************************************!*\
   !*** ./src/features/Mixup/MixupManager.jsx ***!
@@ -22626,7 +22925,7 @@ var introLine = function introLine(room) {
   var opening = kicker === 'Final round!' ? 'Final round!' : "".concat(kicker === '⅓ of the way there!' ? 'A third of the way there! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! ' : '', "Round ").concat(room.currentRound, ".");
   if (round.type === 'meme') return "".concat(opening, " Meme time! Write the funniest caption you can.");
   if (round.type === 'draw') return "".concat(opening, " Pictionary! ").concat(round.drawerName, ", you're drawing. Everyone else, get guessing!");
-  return "".concat(opening, " Threefold! Match as many people as you can.");
+  return "".concat(opening, " Threefold! Match as many people as you can.").concat(round.judgeName ? " ".concat(round.judgeName, ", you're the judge.") : '');
 };
 var VOICE_LIST_REVIEW = "Here's a review of the lists!";
 var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__.lobbyTrackFor)('mixup');
@@ -22708,7 +23007,7 @@ function MixupTV(_ref) {
   // 🎙️ Voice-overs: one key per moment, so each is spoken exactly once
   var n = room === null || room === void 0 ? void 0 : room.currentRound;
   var voiceMoment = null;
-  if (gameState === 'intro' && room.round) voiceMoment = "intro-".concat(n);else if (gameState === 'nobody') voiceMoment = "nobody-".concat(n);else if (gameState === 'meme_vote') voiceMoment = "vote-".concat(n);else if (gameState === 'meme_results') voiceMoment = "meme-results-".concat(n);else if (gameState === 'draw_results') voiceMoment = "draw-results-".concat(n);else if (gameState === 'match_write' && (_room$round2 = room.round) !== null && _room$round2 !== void 0 && _room$round2.topic) voiceMoment = "match-".concat(n);else if (gameState === 'match_compare') voiceMoment = "list-review-".concat(n);else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : "scores-".concat(n);
+  if (gameState === 'intro' && room.round) voiceMoment = "intro-".concat(n);else if (gameState === 'nobody') voiceMoment = "nobody-".concat(n);else if (gameState === 'meme_vote') voiceMoment = "vote-".concat(n);else if (gameState === 'meme_results') voiceMoment = "meme-results-".concat(n);else if (gameState === 'draw_results') voiceMoment = "draw-results-".concat(n);else if (gameState === 'match_write' && (_room$round2 = room.round) !== null && _room$round2 !== void 0 && _room$round2.topic) voiceMoment = "match-".concat(n);else if (gameState === 'match_review') voiceMoment = "match-judge-".concat(n);else if (gameState === 'match_compare') voiceMoment = "list-review-".concat(n);else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : "scores-".concat(n);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.stopVoice)();
     if (!voiceMoment || !room) return;
@@ -22731,6 +23030,8 @@ function MixupTV(_ref) {
       }).join(' and '), " both score."), code);else (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)('Nobody wrote a caption that time!', code);
     } else if (voiceMoment.startsWith('draw-results')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(round.guessedBy ? "".concat(round.guessedBy, " got it! It was ").concat(round.word, ".") : "Time's up! It was ".concat(round.word, "."), code);
+    } else if (voiceMoment.startsWith('match-judge')) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)("".concat(round.judgeName, ", you're the judge! Check the matches on your phone."), code);
     } else if (voiceMoment.startsWith('match')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)("The list is: ".concat(round.topic, "."), code);
     } else if (voiceMoment.startsWith('list-review')) {
@@ -22755,8 +23056,8 @@ function MixupTV(_ref) {
   }, [voiceMoment]);
 
   // ⏳ Timer music while people are writing, voting, drawing or answering
-  // 📋 Then the judging music under Threefold's review of the lists, one track from the answers lighting up to the results (no clock, so no hurry-up tick)
-  var isListReview = gameState === 'match_compare' || gameState === 'match_results';
+  // 📋 Then the judging music under Threefold's review of the lists, one track from the judge's turn to the results (no hurry-up tick)
+  var isListReview = ['match_review', 'match_compare', 'match_results'].includes(gameState);
   var isTimerPhase = isListReview || ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
   (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_9__.useTimerMusic)(isTimerPhase, {
     endTime: isListReview ? null : room === null || room === void 0 ? void 0 : room.endTime,
@@ -22863,6 +23164,7 @@ function MixupTV(_ref) {
           room: room
         });
       case 'match_write':
+      case 'match_review':
       case 'match_compare':
       case 'match_results':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.MatchTV, {
@@ -22932,12 +23234,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
@@ -22947,8 +23249,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SnakeSnack.jsx */ "./src/features/Mixup/SnakeSnack.jsx");
 /* harmony import */ var _CouchCast_CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboard.jsx */ "./src/features/CouchCast/CouchCastScoreboard.jsx");
 /* harmony import */ var _Lists_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Lists/ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
-/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
-/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
+/* harmony import */ var _MatchReview_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./MatchReview.jsx */ "./src/features/Mixup/MatchReview.jsx");
+/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -22977,6 +23280,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 /**
  * 📱 Temple Mix Up on a player's phone: write captions, vote, draw or guess, match the group's answers.
  * The TV shows everything big; the phone is the controller.
@@ -22985,7 +23289,7 @@ function MixupPlayer(_ref) {
   var _room$round, _room$round2, _players$find;
   var roomCode = _ref.roomCode,
     playerName = _ref.playerName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -23035,7 +23339,7 @@ function MixupPlayer(_ref) {
         roomCode: roomCode,
         playerName: playerName,
         playerId: playerId,
-        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_11__.getMyAvatar)()
+        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_12__.getMyAvatar)()
       });
     };
     var handleRoom = function handleRoom(update) {
@@ -23123,9 +23427,9 @@ function MixupPlayer(_ref) {
   if (error && !room) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
       title: "Temple Mix Up"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "danger"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
       variant: "primary",
       className: "w-100",
       onClick: function onClick() {
@@ -23136,7 +23440,7 @@ function MixupPlayer(_ref) {
   if (!room) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
       title: "Temple Mix Up"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
       animation: "border",
       variant: "primary"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -23162,7 +23466,7 @@ function MixupPlayer(_ref) {
         className: "tc-leader-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "fw-bold text-dark small"
-      }, "\uD83D\uDC51 Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      }, "\uD83D\uDC51 Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
         variant: players.length < room.minPlayers ? 'secondary' : 'primary',
         className: "fw-bold flex-grow-1",
         disabled: players.length < room.minPlayers,
@@ -23174,7 +23478,7 @@ function MixupPlayer(_ref) {
         }
       }, players.length < room.minPlayers ? "Need ".concat(room.minPlayers, " players (").concat(players.length, " so far)") : 'All in!')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
         title: "You're In!"
-      }, error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      }, error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
         variant: "warning",
         className: "py-2"
       }, error), !isLeader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -23207,6 +23511,7 @@ function MixupPlayer(_ref) {
       {
         var look = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_6__.ROUND_LOOKS[round.type];
         var amDrawing = round.type === 'draw' && round.drawerId === _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.id;
+        var amJudging = round.type === 'match' && round.judgeId === _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.id;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
           title: "Round ".concat(room.currentRound)
         }, (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_6__.roundKicker)(room.currentRound, room.totalRounds) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -23217,7 +23522,9 @@ function MixupPlayer(_ref) {
           className: "fw-bold"
         }, look.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "text-muted mb-0"
-        }, round.type === 'draw' ? amDrawing ? "🎨 You're drawing! Get ready..." : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.drawerName), " is drawing. Get ready to guess!") : look.blurb));
+        }, round.type === 'draw' ? amDrawing ? "🎨 You're drawing! Get ready..." : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.drawerName), " is drawing. Get ready to guess!") : look.blurb), round.type === 'match' && round.judgeName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "fw-bold mt-2 mb-0"
+        }, amJudging ? "⚖️ You're the judge! After the writing, you check the matches." : "\u2696\uFE0F ".concat(round.judgeName, " judges the matches.")));
       }
 
     // ===================== MEMES =====================
@@ -23233,7 +23540,7 @@ function MixupPlayer(_ref) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_6__.MemeImage, {
         meme: round.meme,
         className: "mx-meme-small mb-3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
         onSubmit: function onSubmit(e) {
           e.preventDefault();
           if (caption.trim()) _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.emit('submit_caption', {
@@ -23241,7 +23548,7 @@ function MixupPlayer(_ref) {
             caption: caption
           });
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Control, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Control, {
         as: "textarea",
         rows: 2,
         maxLength: 120,
@@ -23252,7 +23559,7 @@ function MixupPlayer(_ref) {
         placeholder: "Write the funniest caption...",
         className: "fs-5 fw-bold mb-2",
         "aria-label": "Your caption"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
         type: "submit",
         variant: "success",
         size: "lg",
@@ -23284,7 +23591,7 @@ function MixupPlayer(_ref) {
         }, "Tap one. Yours isn't on the list."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "d-flex flex-column gap-2"
         }, choices.map(function (c) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
             key: c.id,
             variant: "outline-primary",
             className: "text-start p-3 text-wrap fw-bold bg-white text-dark cc-tap-option",
@@ -23354,10 +23661,10 @@ function MixupPlayer(_ref) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_5__.DrawingView, {
           roomCode: roomCode,
           className: "mx-canvas-small mb-2"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
           onSubmit: sendGuess,
           className: "d-flex gap-2"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Control, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Control, {
           value: guess,
           onChange: function onChange(e) {
             setGuess(e.target.value);
@@ -23368,7 +23675,7 @@ function MixupPlayer(_ref) {
           autoComplete: "off",
           className: "fs-5 fw-bold",
           "aria-label": "Your guess"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           type: "submit",
           variant: "success",
           className: "fw-bold px-3",
@@ -23412,10 +23719,10 @@ function MixupPlayer(_ref) {
           className: "mx-phone-topic"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "The list"), round.topic), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           className: "small text-muted mb-2"
-        }, "Write what everyone else will write! You score for every player who matches you."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        }, "Write what everyone else will write! You score for every player who matches you.", round.judgeName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.judgeId === _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.id ? "⚖️ You're judging" : "\u2696\uFE0F ".concat(round.judgeName, " judges")), " the matches after.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "d-flex flex-column gap-2 mb-3"
         }, answers.map(function (item, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Control, {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Control, {
             key: i,
             type: "text",
             value: item,
@@ -23428,7 +23735,7 @@ function MixupPlayer(_ref) {
               return handleAnswerChange(i, e.target.value);
             }
           });
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
           variant: "primary",
           size: "lg",
           className: "w-100 fw-bold",
@@ -23442,6 +23749,24 @@ function MixupPlayer(_ref) {
           }
         }, filled === 0 ? 'Write at least one answer' : "I'm done (".concat(filled, " of 3)")));
       }
+    case 'match_review':
+      if (!round.review) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Waiting, {
+        title: roundTitle,
+        icon: "\u2696\uFE0F",
+        text: "Checking the matches..."
+      });
+      if (round.judgeId === _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.id) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MatchReview_jsx__WEBPACK_IMPORTED_MODULE_10__.JudgeReview, {
+        roomCode: roomCode,
+        round: round,
+        clock: clock,
+        Frame: Frame
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MatchReview_jsx__WEBPACK_IMPORTED_MODULE_10__.ReviewWatch, {
+        round: round,
+        mySeat: me.seat,
+        clock: clock,
+        Frame: Frame
+      });
     case 'match_compare':
     case 'match_results':
       {
@@ -23462,7 +23787,11 @@ function MixupPlayer(_ref) {
           mySeat: mySeat,
           pointsPerItem: round.pointsPerItem,
           listSize: round.listSize
-        }));
+        }), (myEntry === null || myEntry === void 0 ? void 0 : myEntry.items.some(function (item) {
+          return item.judged;
+        })) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+          className: "small text-muted mt-2 mb-0"
+        }, "\u2696\uFE0F changed by the judge, ", round.judgeName));
       }
     case 'nobody':
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
@@ -23488,7 +23817,7 @@ function MixupPlayer(_ref) {
     default:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
         title: "Temple Mix Up"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         animation: "border"
       }));
   }
@@ -23499,11 +23828,11 @@ function Frame(_ref4) {
     children = _ref4.children;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Header, {
     className: "main-card-header d-flex justify-content-between align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, title), right), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, title), right), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
     className: "text-center p-3"
   }, children)));
 }
@@ -23545,15 +23874,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DrawingCanvas.jsx */ "./src/features/Mixup/DrawingCanvas.jsx");
 /* harmony import */ var _Lists_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Lists/ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
-/* harmony import */ var _SpyShow_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SpyShow.jsx */ "./src/features/Mixup/SpyShow.jsx");
-/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
+/* harmony import */ var _MatchReview_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MatchReview.jsx */ "./src/features/Mixup/MatchReview.jsx");
+/* harmony import */ var _SpyShow_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SpyShow.jsx */ "./src/features/Mixup/SpyShow.jsx");
+/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -23569,8 +23899,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 // 🎙️ What the host voice says while the rules are on screen
-var MIXUP_RULES_NARRATION = ["Welcome to Temple Mix Up! Three games in one.", "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.", "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.", "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group.", "Let's mix it up!"];
+var MIXUP_RULES_NARRATION = ["Welcome to Temple Mix Up! Three games in one.", "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.", "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.", "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.", "Let's mix it up!"];
 
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
 var NARRATION_GRACE_SECONDS = 20;
@@ -23637,7 +23968,7 @@ function ClockStrip(_ref) {
     className: "d-flex justify-content-between align-items-center mb-1 px-1 mx-strip"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, left), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: isLow ? 'text-danger' : ''
-  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     now: percent,
     variant: isLow ? 'danger' : 'light',
     className: "mx-bar"
@@ -23715,7 +24046,7 @@ function MixupRulesTV(_ref3) {
   }, [timeLeft, isNarrating]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fullscreen-gameplay-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyShow_jsx__WEBPACK_IMPORTED_MODULE_5__.SpyRulesShow, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyShow_jsx__WEBPACK_IMPORTED_MODULE_6__.SpyRulesShow, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-column h-100 p-3 w-100 mx-rules-with-spies"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fullscreen-gameplay-header text-center"
@@ -23728,9 +24059,9 @@ function MixupRulesTV(_ref3) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       key: type,
       className: "shining-border-wrapper h-100"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       className: "fullscreen-gameplay-card h-100 mx-rule-card"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
       className: "d-flex flex-column align-items-center text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mx-rule-step"
@@ -23740,13 +24071,13 @@ function MixupRulesTV(_ref3) {
       className: "mx-rule-title"
     }, ROUND_LOOKS[type].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mx-rule-text"
-    }, type === 'meme' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Caption the meme on your phone, then vote for the funniest (not your own). ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Most votes: +100."), " Ties all score."), type === 'draw' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "One player draws on their phone, the rest type guesses. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "First right guess: +100"), ", and the artist gets ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "+50"), "."), type === 'match' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Write up to three answers on your phone. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "+50 for every player who wrote the same thing."))))));
+    }, type === 'meme' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Caption the meme on your phone, then vote for the funniest (not your own). ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Most votes: +100."), " Ties all score."), type === 'draw' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "One player draws on their phone, the rest type guesses. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "First right guess: +100"), ", and the artist gets ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "+50"), "."), type === 'match' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Write up to three answers on your phone. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "+50 for every player who wrote the same thing."), " A judge checks the matches.")))));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-between align-items-center mt-3 mx-strip",
     style: {
       paddingRight: '7rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Game starts in ", Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Game starts in ", Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "light",
     size: "sm",
     className: "fw-bold px-4",
@@ -23776,7 +24107,9 @@ function RoundIntroTV(_ref4) {
     className: "mx-intro-title"
   }, look.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-intro-blurb"
-  }, round.type === 'draw' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.drawerName), " is drawing. Everyone else, get guessing!") : look.blurb)));
+  }, round.type === 'draw' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.drawerName), " is drawing. Everyone else, get guessing!") : look.blurb), round.type === 'match' && round.judgeName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-intro-blurb"
+  }, "\u2696\uFE0F ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, round.judgeName), " judges the matches.")));
 }
 
 // ======================================================================================
@@ -23931,7 +24264,7 @@ function DrawTV(_ref6) {
 }
 
 // ======================================================================================
-// 🤝 Threefold: everyone writes, then the answers that match light up
+// 🤝 Threefold: everyone writes, the judge checks the matches, then the answers that match light up
 // ======================================================================================
 function MatchTV(_ref7) {
   var room = _ref7.room;
@@ -23944,59 +24277,99 @@ function MatchTV(_ref7) {
     return p.hasSubmitted;
   }).length;
   var isWriting = state === 'match_write';
+  var isReview = state === 'match_review' && !!round.review;
+  var judgedCount = (round.board || []).reduce(function (sum, entry) {
+    return sum + entry.items.filter(function (item) {
+      return item.judged;
+    }).length;
+  }, 0);
+  var body;
+  if (isWriting) {
+    body = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex-grow-1 d-flex flex-column justify-content-center",
+      style: {
+        minHeight: 0
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-strip text-center mb-3"
+    }, "Write up to 3 answers on your phone. Match as many people as you can!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "ls-writers"
+    }, players.map(function (p) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        key: p.id,
+        className: "ls-writer ".concat(p.hasSubmitted ? 'done' : '')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, p.hasSubmitted ? '✅' : '✏️', " ", p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "ls-writer-dots"
+      }, [0, 1, 2].map(function (i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          key: i,
+          className: "ls-writer-dot ".concat(i < p.itemCount ? 'filled' : '')
+        });
+      })));
+    })));
+  } else if (isReview) {
+    body = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex-grow-1 d-flex flex-column",
+      style: {
+        minHeight: 0
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-strip text-center mb-2"
+    }, "\u2696\uFE0F ", round.judgeName, " joins up matches the computer missed, and splits the ones it got wrong."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex-grow-1",
+      style: {
+        minHeight: 0
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MatchReview_jsx__WEBPACK_IMPORTED_MODULE_5__.ReviewGroups, {
+      review: round.review,
+      pointsPerItem: round.pointsPerItem,
+      variant: "tv"
+    })));
+  } else {
+    body = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex-grow-1 d-flex flex-column",
+      style: {
+        minHeight: 0
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "flex-grow-1",
+      style: {
+        minHeight: 0
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Lists_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      board: round.board || [],
+      phase: state === 'match_compare' ? 'compare' : 'results',
+      variant: "tv",
+      pointsPerItem: round.pointsPerItem,
+      listSize: round.listSize
+    })), judgedCount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "mx-strip text-center mt-2",
+      style: {
+        paddingRight: '7rem'
+      }
+    }, "\u2696\uFE0F changed by the judge, ", round.judgeName));
+  }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fullscreen-gameplay-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-column h-100 px-3 pb-4 w-100",
     style: {
-      maxWidth: '1150px'
+      maxWidth: isReview ? '1400px' : '1150px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fullscreen-gameplay-header mb-0"
-  }, "Threefold"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, isReview ? "\u2696\uFE0F ".concat(round.judgeName, " is judging the matches") : 'Threefold'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-match-topic"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "mx-match-label"
-  }, "The list"), round.topic), isWriting ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex-grow-1 d-flex flex-column justify-content-center",
-    style: {
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mx-strip text-center mb-3"
-  }, "Write up to 3 answers on your phone. Match as many people as you can!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "ls-writers"
-  }, players.map(function (p) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      key: p.id,
-      className: "ls-writer ".concat(p.hasSubmitted ? 'done' : '')
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, p.hasSubmitted ? '✅' : '✏️', " ", p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "ls-writer-dots"
-    }, [0, 1, 2].map(function (i) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-        key: i,
-        className: "ls-writer-dot ".concat(i < p.itemCount ? 'filled' : '')
-      });
-    })));
-  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex-grow-1",
-    style: {
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Lists_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    board: round.board || [],
-    phase: state === 'match_compare' ? 'compare' : 'results',
-    variant: "tv",
-    pointsPerItem: round.pointsPerItem,
-    listSize: round.listSize
-  })), isWriting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "The list"), round.topic), body, (isWriting || isReview) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex-shrink-0",
     style: {
       paddingRight: '7rem'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ClockStrip, {
     endTime: room.endTime,
-    left: "".concat(doneCount, " of ").concat(players.length, " done")
+    left: isWriting ? "".concat(doneCount, " of ").concat(players.length, " done").concat(round.judgeName ? " \xB7 \u2696\uFE0F ".concat(round.judgeName, " judges") : '') : "\u2696\uFE0F ".concat(round.review.changed.length, " ").concat(round.review.changed.length === 1 ? 'answer' : 'answers', " changed so far")
   }))));
 }
 
@@ -43846,7 +44219,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-rule-card { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(10px); }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #6b7280; font-size: clamp(0.7rem, 2.2vh, 1rem); }\n.mx-rule-icon { font-size: clamp(2rem, 12vh, 5rem); line-height: 1.2; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1.1rem, 5vh, 2.4rem); }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.75rem, 2.8vh, 1.3rem); line-height: 1.3; margin-top: 1vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"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","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-rule-card { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(10px); }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #6b7280; font-size: clamp(0.7rem, 2.2vh, 1rem); }\n.mx-rule-icon { font-size: clamp(2rem, 12vh, 5rem); line-height: 1.2; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1.1rem, 5vh, 2.4rem); }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.75rem, 2.8vh, 1.3rem); line-height: 1.3; margin-top: 1vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-rule-card { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(10px); }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #6b7280; font-size: clamp(0.7rem, 2.2vh, 1rem); }\n.mx-rule-icon { font-size: clamp(2rem, 12vh, 5rem); line-height: 1.2; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1.1rem, 5vh, 2.4rem); }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.75rem, 2.8vh, 1.3rem); line-height: 1.3; margin-top: 1vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"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","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-rule-card { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(10px); }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #6b7280; font-size: clamp(0.7rem, 2.2vh, 1rem); }\n.mx-rule-icon { font-size: clamp(2rem, 12vh, 5rem); line-height: 1.2; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1.1rem, 5vh, 2.4rem); }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.75rem, 2.8vh, 1.3rem); line-height: 1.3; margin-top: 1vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -47371,7 +47744,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:5005' : 'https://game-temple-backend.onrender.com';
+
+// Locally, the server that sent the page (5005 normally; another port when a second copy is running for testing)
+var SOCKET_URL = window.location.hostname === 'localhost' ? "http://localhost:".concat(window.location.port || 5005) : 'https://game-temple-backend.onrender.com';
 
 // Render handles both polling and websockets
 var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)(SOCKET_URL, {
