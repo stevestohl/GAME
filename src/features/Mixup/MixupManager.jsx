@@ -54,7 +54,7 @@ const introLine = (room) => {
         : `${kicker === '⅓ of the way there!' ? 'A third of the way there! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! ' : ''}Round ${room.currentRound}.`;
     if (round.type === 'meme') return `${opening} Meme time! Write the funniest caption you can.`;
     if (round.type === 'draw') return `${opening} Pictionary! ${round.drawerName}, you're drawing. Everyone else, get guessing!`;
-    return `${opening} Threefold! Match as many people as you can.`;
+    return `${opening} Threefold! Match as many people as you can.${round.judgeName ? ` ${round.judgeName}, you're the judge.` : ''}`;
 };
 
 const VOICE_LIST_REVIEW = "Here's a review of the lists!";
@@ -122,6 +122,7 @@ function MixupTV({ roomCode, casterName }) {
     else if (gameState === 'meme_results') voiceMoment = `meme-results-${n}`;
     else if (gameState === 'draw_results') voiceMoment = `draw-results-${n}`;
     else if (gameState === 'match_write' && room.round?.topic) voiceMoment = `match-${n}`;
+    else if (gameState === 'match_review') voiceMoment = `match-judge-${n}`;
     else if (gameState === 'match_compare') voiceMoment = `list-review-${n}`;
     else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : `scores-${n}`;
 
@@ -145,6 +146,8 @@ function MixupTV({ roomCode, casterName }) {
             else speak('Nobody wrote a caption that time!', code);
         } else if (voiceMoment.startsWith('draw-results')) {
             speak(round.guessedBy ? `${round.guessedBy} got it! It was ${round.word}.` : `Time's up! It was ${round.word}.`, code);
+        } else if (voiceMoment.startsWith('match-judge')) {
+            speak(`${round.judgeName}, you're the judge! Check the matches on your phone.`, code);
         } else if (voiceMoment.startsWith('match')) {
             speak(`The list is: ${round.topic}.`, code);
         } else if (voiceMoment.startsWith('list-review')) {
@@ -167,8 +170,8 @@ function MixupTV({ roomCode, casterName }) {
     }, [voiceMoment]);
 
     // ⏳ Timer music while people are writing, voting, drawing or answering
-    // 📋 Then the judging music under Threefold's review of the lists, one track from the answers lighting up to the results (no clock, so no hurry-up tick)
-    const isListReview = gameState === 'match_compare' || gameState === 'match_results';
+    // 📋 Then the judging music under Threefold's review of the lists, one track from the judge's turn to the results (no hurry-up tick)
+    const isListReview = ['match_review', 'match_compare', 'match_results'].includes(gameState);
     const isTimerPhase = isListReview || ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
     useTimerMusic(isTimerPhase, {
         endTime: isListReview ? null : room?.endTime,
@@ -237,6 +240,7 @@ function MixupTV({ roomCode, casterName }) {
             case 'nobody':
                 return <NobodyTV room={room} />;
             case 'match_write':
+            case 'match_review':
             case 'match_compare':
             case 'match_results':
                 return <MatchTV room={room} />;

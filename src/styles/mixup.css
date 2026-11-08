@@ -240,3 +240,64 @@
 .mx-phone-topic span { font-size: 0.62rem; }
 .mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }
 .mx-intro .cc-round-intro-final { margin-bottom: 1vh; }
+
+/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */
+.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }
+.mx-review-board.tv { height: 100%; align-content: center; }
+.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }
+.mx-review-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);
+    border: 3px solid transparent;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    color: #1d2340;
+    text-align: left;
+    font: inherit;
+    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }
+.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }
+.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }
+.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }
+.mx-review-group.target:active { transform: scale(0.98); }
+.mx-review-group.blocked { opacity: 0.45; }
+.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }
+.mx-review-group.matched .mx-review-head { color: #0f6a44; }
+.mx-review-group.target .mx-review-head { color: #a06b00; }
+.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }
+.mx-review-answer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5em;
+    width: 100%;
+    padding: 0.15em 0.4em;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(29, 35, 64, 0.06);
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    text-align: left;
+    animation: mx-pop 0.3s ease-out both;
+}
+.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }
+.mx-review-answer.tap:active { transform: scale(0.98); }
+.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }
+.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }
+.mx-review-answer.mine .mx-review-name { color: #3a53c4; }
+.mx-review-text { min-width: 0; overflow-wrap: anywhere; }
+.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }
+.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }
+@keyframes mx-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }
+    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mx-review-answer, .mx-review-group.target { animation: none; }
+}

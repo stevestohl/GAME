@@ -4,6 +4,7 @@ import { mixupSocket as socket } from '../../socket.js';
 import { speak, stopVoice } from '../../voice.js';
 import { DrawingView } from './DrawingCanvas.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
+import { ReviewGroups } from './MatchReview.jsx';
 import { SpyRulesShow } from './SpyShow.jsx';
 import '../../styles/mixup.css';
 
@@ -12,7 +13,7 @@ export const MIXUP_RULES_NARRATION = [
     "Welcome to Temple Mix Up! Three games in one.",
     "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.",
     "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.",
-    "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group.",
+    "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.",
     "Let's mix it up!",
 ];
 
@@ -125,7 +126,7 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
                                     <div className="mx-rule-text">
                                         {type === 'meme' && <>Caption the meme on your phone, then vote for the funniest (not your own). <strong>Most votes: +100.</strong> Ties all score.</>}
                                         {type === 'draw' && <>One player draws on their phone, the rest type guesses. <strong>First right guess: +100</strong>, and the artist gets <strong>+50</strong>.</>}
-                                        {type === 'match' && <>Write up to three answers on your phone. <strong>+50 for every player who wrote the same thing.</strong></>}
+                                        {type === 'match' && <>Write up to three answers on your phone. <strong>+50 for every player who wrote the same thing.</strong> A judge checks the matches.</>}
                                     </div>
                                 </Card.Body>
                             </Card>
@@ -158,6 +159,7 @@ export function RoundIntroTV({ room }) {
                 <div className="mx-intro-blurb">
                     {round.type === 'draw' ? <><strong>{round.drawerName}</strong> is drawing. Everyone else, get guessing!</> : look.blurb}
                 </div>
+                {round.type === 'match' && round.judgeName && <div className="mx-intro-blurb">⚖️ <strong>{round.judgeName}</strong> judges the matches.</div>}
             </div>
         </div>
     );
@@ -286,7 +288,7 @@ export function DrawTV({ room }) {
 }
 
 // ======================================================================================
-// 🤝 Threefold: everyone writes, then the answers that match light up
+// 🤝 Threefold: everyone writes, the judge checks the matches, then the answers that match light up
 // ======================================================================================
 export function MatchTV({ room }) {
     const round = room.round;
@@ -294,43 +296,69 @@ export function MatchTV({ room }) {
     const players = Object.values(room.players).filter((p) => !p.isCaster && p.isConnected);
     const doneCount = players.filter((p) => p.hasSubmitted).length;
     const isWriting = state === 'match_write';
+    const isReview = state === 'match_review' && !!round.review;
+    const judgedCount = (round.board || []).reduce((sum, entry) => sum + entry.items.filter((item) => item.judged).length, 0);
+
+    let body;
+    if (isWriting) {
+        body = (
+            <div className="flex-grow-1 d-flex flex-column justify-content-center" style={{ minHeight: 0 }}>
+                <div className="mx-strip text-center mb-3">Write up to 3 answers on your phone. Match as many people as you can!</div>
+                <div className="ls-writers">
+                    {players.map((p) => (
+                        <div key={p.id} className={`ls-writer ${p.hasSubmitted ? 'done' : ''}`}>
+                            <span>{p.hasSubmitted ? '✅' : '✏️'} {p.name}</span>
+                            <span className="ls-writer-dots">
+                                {[0, 1, 2].map((i) => <span key={i} className={`ls-writer-dot ${i < p.itemCount ? 'filled' : ''}`} />)}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    } else if (isReview) {
+        body = (
+            <div className="flex-grow-1 d-flex flex-column" style={{ minHeight: 0 }}>
+                <div className="mx-strip text-center mb-2">⚖️ {round.judgeName} joins up matches the computer missed, and splits the ones it got wrong.</div>
+                <div className="flex-grow-1" style={{ minHeight: 0 }}>
+                    <ReviewGroups review={round.review} pointsPerItem={round.pointsPerItem} variant="tv" />
+                </div>
+            </div>
+        );
+    } else {
+        body = (
+            <div className="flex-grow-1 d-flex flex-column" style={{ minHeight: 0 }}>
+                <div className="flex-grow-1" style={{ minHeight: 0 }}>
+                    <ListBoard
+                        board={round.board || []}
+                        phase={state === 'match_compare' ? 'compare' : 'results'}
+                        variant="tv"
+                        pointsPerItem={round.pointsPerItem}
+                        listSize={round.listSize}
+                    />
+                </div>
+                {judgedCount > 0 && <div className="mx-strip text-center mt-2" style={{ paddingRight: '7rem' }}>⚖️ changed by the judge, {round.judgeName}</div>}
+            </div>
+        );
+    }
 
     return (
         <div className="fullscreen-gameplay-container">
-            <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: '1150px' }}>
-                <h2 className="fullscreen-gameplay-header mb-0">Threefold</h2>
+            <div className="d-flex flex-column h-100 px-3 pb-4 w-100" style={{ maxWidth: isReview ? '1400px' : '1150px' }}>
+                <h2 className="fullscreen-gameplay-header mb-0">{isReview ? `⚖️ ${round.judgeName} is judging the matches` : 'Threefold'}</h2>
                 <div className="mx-match-topic">
                     <span className="mx-match-label">The list</span>
                     {round.topic}
                 </div>
-                {isWriting ? (
-                    <div className="flex-grow-1 d-flex flex-column justify-content-center" style={{ minHeight: 0 }}>
-                        <div className="mx-strip text-center mb-3">Write up to 3 answers on your phone. Match as many people as you can!</div>
-                        <div className="ls-writers">
-                            {players.map((p) => (
-                                <div key={p.id} className={`ls-writer ${p.hasSubmitted ? 'done' : ''}`}>
-                                    <span>{p.hasSubmitted ? '✅' : '✏️'} {p.name}</span>
-                                    <span className="ls-writer-dots">
-                                        {[0, 1, 2].map((i) => <span key={i} className={`ls-writer-dot ${i < p.itemCount ? 'filled' : ''}`} />)}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ) : (
-                    <div className="flex-grow-1" style={{ minHeight: 0 }}>
-                        <ListBoard
-                            board={round.board || []}
-                            phase={state === 'match_compare' ? 'compare' : 'results'}
-                            variant="tv"
-                            pointsPerItem={round.pointsPerItem}
-                            listSize={round.listSize}
-                        />
-                    </div>
-                )}
-                {isWriting && (
+                {body}
+                {(isWriting || isReview) && (
                     <div className="flex-shrink-0" style={{ paddingRight: '7rem' }}>
-                        <ClockStrip endTime={room.endTime} left={`${doneCount} of ${players.length} done`} />
+                        <ClockStrip
+                            endTime={room.endTime}
+                            left={isWriting
+                                ? `${doneCount} of ${players.length} done${round.judgeName ? ` · ⚖️ ${round.judgeName} judges` : ''}`
+                                : `⚖️ ${round.review.changed.length} ${round.review.changed.length === 1 ? 'answer' : 'answers'} changed so far`}
+                        />
                     </div>
                 )}
             </div>

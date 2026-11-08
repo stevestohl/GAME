@@ -75,6 +75,9 @@ export default function ListBoard({ board = [], phase, variant = 'phone', mySeat
             }
         }
 
+        // ⚖️ Temple Mix Up's judge matched this answer differently from the computer
+        if (item.judged && note) note = `${note} ⚖️`;
+
         // 🗳️ Phone voting: answers up for a vote that aren't yours are buttons
         // (copies of the same Threefold match share one vote key, so they flip together)
         const canVoteOn = item.voteKey && !(item.voteSeats || []).includes(mySeat);

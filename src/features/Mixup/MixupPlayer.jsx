@@ -10,6 +10,7 @@ import { MemeImage, ROUND_LOOKS, useCountdown, roundKicker } from './MixupScreen
 import SnakeSnack from './SnakeSnack.jsx';
 import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScoreboard.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
+import { JudgeReview, ReviewWatch } from './MatchReview.jsx';
 import '../../styles/mixup.css';
 import { getMyAvatar } from '../../avatars.jsx';
 
@@ -174,6 +175,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
         case 'intro': {
             const look = ROUND_LOOKS[round.type];
             const amDrawing = round.type === 'draw' && round.drawerId === socket.id;
+            const amJudging = round.type === 'match' && round.judgeId === socket.id;
             return (
                 <Frame title={`Round ${room.currentRound}`}>
                     {roundKicker(room.currentRound, room.totalRounds) && <div className="cc-round-intro-final mb-2">{roundKicker(room.currentRound, room.totalRounds)}</div>}
@@ -184,6 +186,9 @@ export default function MixupPlayer({ roomCode, playerName }) {
                             ? (amDrawing ? "🎨 You're drawing! Get ready..." : <><strong>{round.drawerName}</strong> is drawing. Get ready to guess!</>)
                             : look.blurb}
                     </p>
+                    {round.type === 'match' && round.judgeName && (
+                        <p className="fw-bold mt-2 mb-0">{amJudging ? "⚖️ You're the judge! After the writing, you check the matches." : `⚖️ ${round.judgeName} judges the matches.`}</p>
+                    )}
                 </Frame>
             );
         }
@@ -303,7 +308,10 @@ export default function MixupPlayer({ roomCode, playerName }) {
             return (
                 <Frame title={roundTitle} right={clock}>
                     <div className="mx-phone-topic"><span>The list</span>{round.topic}</div>
-                    <p className="small text-muted mb-2">Write what everyone else will write! You score for every player who matches you.</p>
+                    <p className="small text-muted mb-2">
+                        Write what everyone else will write! You score for every player who matches you.
+                        {round.judgeName && <> <strong>{round.judgeId === socket.id ? "⚖️ You're judging" : `⚖️ ${round.judgeName} judges`}</strong> the matches after.</>}
+                    </p>
                     <div className="d-flex flex-column gap-2 mb-3">
                         {answers.map((item, i) => (
                             <Form.Control
@@ -334,6 +342,10 @@ export default function MixupPlayer({ roomCode, playerName }) {
                 </Frame>
             );
         }
+        case 'match_review':
+            if (!round.review) return <Waiting title={roundTitle} icon="⚖️" text="Checking the matches..." />;
+            if (round.judgeId === socket.id) return <JudgeReview roomCode={roomCode} round={round} clock={clock} Frame={Frame} />;
+            return <ReviewWatch round={round} mySeat={me.seat} clock={clock} Frame={Frame} />;
         case 'match_compare':
         case 'match_results': {
             const mySeat = me.seat;
@@ -349,6 +361,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
                         pointsPerItem={round.pointsPerItem}
                         listSize={round.listSize}
                     />
+                    {myEntry?.items.some((item) => item.judged) && <p className="small text-muted mt-2 mb-0">⚖️ changed by the judge, {round.judgeName}</p>}
                 </Frame>
             );
         }

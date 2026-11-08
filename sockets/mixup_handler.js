@@ -5,6 +5,8 @@
 //                  types guesses. The first right guess wins (and the drawer scores too).
 //   3. Threefold:  the list topics from List Cast. Everyone writes up to three answers, and scores for every
 //                  other player who wrote the same thing (Listography's Threefold card, with no vote).
+//                  The answers are matched up automatically, then one player (the judge, taking turns)
+//                  checks the matches on their phone: joining answers the computer missed, splitting ones it got wrong.
 // 9, 12 or 15 rounds: an equal number of each, played in blocks (all memes, then Pictionary, then Threefold).
 // Memes come from Imgflip's popular blank templates and Pictionary prompts from MongoDB; both cycle
 // (least-used first) so they don't repeat until every one has been played. Room codes start with "M".
@@ -12,7 +14,7 @@
 // Round flow:  intro (the round's title card)
 //   meme:       meme_write -> meme_vote -> meme_results
 //   pictionary: draw -> draw_results
-//   threefold:  match_write -> match_compare -> match_results
+//   threefold:  match_write -> match_review (the judge) -> match_compare -> match_results
 // then scoreboard -> the next round's intro (or the final standings).
 import { newSnake, snakeEat, snakeCrash, snakePlayerGone } from "./snakeGame.js";
 import { guardCreateRoom } from '../db/gameVisibility.js';
@@ -41,6 +43,8 @@ const MEME_VOTE_TIME = 30 * SECOND;
 const MEME_RESULTS_TIME = 10 * SECOND;
 const DRAW_TIME = 80 * SECOND;
 const DRAW_RESULTS_TIME = 8 * SECOND;
+const MATCH_REVIEW_TIME = 45 * SECOND;  // the judge checks the matches
+const JUDGE_GONE_TIME = 10 * SECOND;    // the judge's phone dropped out: a moment to come back, then move on
 const MATCH_COMPARE_TIME = 9 * SECOND;  // the answers light up one after another
 const MATCH_RESULTS_TIME = 8 * SECOND;
 const SCOREBOARD_TIME = 7 * SECOND;
@@ -72,6 +76,78 @@ const isRightGuess = (guess, prompt) => {
         // The answer inside a short guess ("a big cat") counts too
         return key.length >= 3 && guess.trim().split(/\s+/).length <= 4 && guessKey.includes(key);
     });
+};
+
+// ===================== THREEFOLD: THE JUDGE =====================
+// The judge works on groups of answers: { id, itemIds }. Every answer in a group matches the others,
+// and each answer scores for every other player in its group. The automatic matches are the starting point.
+
+/** The judge's starting point: the automatic matches as groups (answers written twice stay out of it) */
+const makeReview = (board) => {
+    const items = {};
+    const groups = [];
+    const byKey = {};
+    board.forEach((entry) => entry.items.forEach((item) => {
+        if (item.status === 'dup') return;
+        items[item.id] = { id: item.id, text: item.text, seat: entry.seat, name: entry.name };
+        const key = item.voteKey || `s${item.id}`;   // compareLists gives every automatic match a shared key
+        if (!byKey[key]) groups.push(byKey[key] = { id: key, itemIds: [] });
+        byKey[key].itemIds.push(item.id);
+    }));
+
+    // Matches first (the biggest at the top), then the answers on their own from A to Z,
+    // so a match the computer missed ("Coke", "Coca-Cola") sits close together
+    const seatCount = (g) => new Set(g.itemIds.map((id) => items[id].seat)).size;
+    const label = (g) => items[g.itemIds[0]].text.toLowerCase();
+    groups.sort((a, b) => (seatCount(b) > 1) - (seatCount(a) > 1) || seatCount(b) - seatCount(a) || label(a).localeCompare(label(b)));
+
+    return {
+        items,
+        groups,
+        autoGroups: groups.map((g) => ({ id: g.id, itemIds: [...g.itemIds] })),
+        autoPartners: partnersOf(groups),
+        nextId: 1,
+    };
+};
+
+// Each answer's partners in its group ("0-1" -> "1-0,2-2"), for spotting what the judge changed
+const partnersOf = (groups) => {
+    const partners = {};
+    groups.forEach((g) => g.itemIds.forEach((id) => { partners[id] = g.itemIds.filter((other) => other !== id).sort().join(','); }));
+    return partners;
+};
+
+/** The answers the judge has matched differently from the computer */
+const changedItems = (review) => {
+    const now = partnersOf(review.groups);
+    return Object.keys(now).filter((id) => now[id] !== review.autoPartners[id]);
+};
+
+/**
+ * Can the judge move this answer into that group (or onto its own, when groupId is null)?
+ * Nobody can match themselves, and the judge can't add to their own matches: no dropping their own
+ * answer into a group, and no dropping anyone's answer in with theirs. (Taking answers out is fine.)
+ * The judge's phone uses the same rule to grey out the groups it can't drop into (MatchReview.jsx).
+ */
+const canMove = (review, judgeSeat, itemId, groupId) => {
+    if (typeof itemId !== 'string' || !Object.hasOwn(review.items, itemId)) return false;
+    const item = review.items[itemId];
+    const from = review.groups.find((g) => g.itemIds.includes(itemId));
+    if (!from) return false;
+    if (groupId === null) return from.itemIds.length > 1;
+    const to = review.groups.find((g) => g.id === groupId);
+    if (!to || to === from) return false;
+    const seats = to.itemIds.map((id) => review.items[id].seat);
+    if (seats.includes(item.seat)) return false;
+    return item.seat !== judgeSeat && !seats.includes(judgeSeat);
+};
+
+const moveAnswer = (review, itemId, groupId) => {
+    const from = review.groups.find((g) => g.itemIds.includes(itemId));
+    from.itemIds = from.itemIds.filter((id) => id !== itemId);
+    if (groupId) review.groups.find((g) => g.id === groupId).itemIds.push(itemId);
+    else review.groups.splice(review.groups.indexOf(from) + 1, 0, { id: `n${review.nextId++}`, itemIds: [itemId] });   // just under where it was
+    review.groups = review.groups.filter((g) => g.itemIds.length);
 };
 
 // What the screens are allowed to see. Captions stay anonymous until the results,
@@ -117,10 +193,18 @@ const getSafeRoom = (room) => {
             roundView.guessedBy = round.guessedById ? room.players[round.guessedById]?.name || round.guessedByName : null;
             if (state === 'draw_results' || state === 'scoreboard') roundView.word = round.prompt.text;
         }
+        if (round.type === 'match') {
+            roundView.judgeId = round.judgeId || null;
+            roundView.judgeName = room.players[round.judgeId]?.name || round.judgeName || '';
+            roundView.judgeSeat = room.players[round.judgeId]?.joinOrder ?? null;
+        }
         if (round.type === 'match' && state !== 'intro') {
             roundView.topic = round.topic;
             roundView.listSize = MATCH_CARD.listSize;
             roundView.pointsPerItem = MATCH_POINTS;
+            if (state === 'match_review' && round.review) {
+                roundView.review = { items: round.review.items, groups: round.review.groups, changed: changedItems(round.review) };
+            }
             if (state === 'match_compare' || state === 'match_results' || state === 'scoreboard') roundView.board = round.board;
         }
     }
@@ -237,6 +321,15 @@ export default function registerMixupNamespace(MNS) {
             room.round.pointCount = 0;
             room.round.guesses = [];
             room.round.guessedById = null;
+        }
+
+        // Threefold: a judge for the matches, picking up the turns where Pictionary left off, so the jobs go round everyone
+        if (room.round.type === 'match') {
+            const order = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder);
+            const judge = order[(room.drawCount + room.judgeCount) % Math.max(1, order.length)];
+            room.judgeCount += 1;
+            room.round.judgeId = judge?.id || null;
+            room.round.judgeName = judge?.name || '';
         }
 
         room.gameState = 'intro';
@@ -362,7 +455,8 @@ export default function registerMixupNamespace(MNS) {
     };
 
     // ===================== THREEFOLD =====================
-    // Same rules as List Cast's Threefold card, minus the vote: every other player who wrote your answer scores you points
+    // Same rules as List Cast's Threefold card, minus the vote: every other player who wrote your answer scores you points.
+    // The computer matches the answers up first, then the judge checks the matches before any points are given.
     const compareAnswers = (roomCode) => {
         const room = activeMixupRooms[roomCode];
         if (!room || room.gameState !== 'match_write') return;
@@ -372,13 +466,59 @@ export default function registerMixupNamespace(MNS) {
         const writers = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder);
         if (!writers.some((p) => (p.matchList || []).some(Boolean))) return nobodyAnswered(roomCode);
         round.board = compareLists(writers.map((p) => ({ seat: p.joinOrder, name: p.name, list: p.matchList || [] })), MATCH_CARD.id);
+        round.review = makeReview(round.board);
+
+        // Nothing to judge with fewer than two lists; and if the judge has gone, the next player along takes over
+        const judge = pickJudge(room);
+        if (!judge || round.board.filter((entry) => entry.items.length).length < 2) return scoreMatches(roomCode);
+        round.judgeId = judge.id;
+        round.judgeName = judge.name;
+
+        room.gameState = 'match_review';
+        room.endTime = Date.now() + MATCH_REVIEW_TIME;
+        schedule(roomCode, room, 'match_review', MATCH_REVIEW_TIME + GRACE, () => scoreMatches(roomCode));
+        broadcast(roomCode);
+    };
+
+    const pickJudge = (room) => {
+        const chosen = room.players[room.round.judgeId];
+        if (chosen && !chosen.isCaster && chosen.isConnected) return chosen;
+        const here = activePlayers(room).sort((a, b) => a.joinOrder - b.joinOrder);
+        return (chosen && here.find((p) => p.joinOrder > chosen.joinOrder)) || here[0] || null;
+    };
+
+    // --- The judge is done (or out of time): score the answers from the judged matches ---
+    const scoreMatches = (roomCode) => {
+        const room = activeMixupRooms[roomCode];
+        if (!room || !['match_write', 'match_review'].includes(room.gameState)) return;
+        const round = room.round;
+        clearTimer(room);
+
+        const review = round.review;
+        const groupOf = {};
+        review.groups.forEach((g) => g.itemIds.forEach((id) => { groupOf[id] = g; }));
+        const changed = new Set(changedItems(review));
+        const nameAt = (seat) => round.board.find((entry) => entry.seat === seat)?.name;
+
         round.board.forEach((entry) => {
-            const player = writers.find((p) => p.joinOrder === entry.seat);
             entry.points = 0;
             entry.items.forEach((item) => {
-                item.counts = item.status === 'scored';
-                entry.points += (item.points || 0) * MATCH_POINTS;
+                delete item.voteKey;
+                delete item.voteSeats;
+                if (item.status === 'dup') {
+                    item.counts = false;
+                    return;
+                }
+                const seats = [...new Set(groupOf[item.id].itemIds.map((id) => review.items[id].seat))].filter((seat) => seat !== entry.seat);
+                item.status = seats.length ? 'scored' : 'unmatched';
+                item.matchCount = seats.length;
+                item.matchedWith = seats.map(nameAt).filter(Boolean);
+                item.points = seats.length;
+                item.counts = seats.length > 0;
+                if (changed.has(item.id)) item.judged = true;   // ⚖️ on the board
+                entry.points += item.points * MATCH_POINTS;
             });
+            const player = Object.values(room.players).find((p) => !p.isCaster && p.joinOrder === entry.seat);
             if (player) {
                 player.score += entry.points;
                 player.roundPoints += entry.points;
@@ -476,6 +616,15 @@ export default function registerMixupNamespace(MNS) {
             return;
         }
 
+        // The judge's phone dropped out: a few seconds to come back (a refresh), then the matches stand as they are
+        if (room.gameState === 'match_review' && room.round?.judgeId === socketId) {
+            const cutoff = Date.now() + JUDGE_GONE_TIME;
+            if (room.endTime > cutoff) {
+                room.endTime = cutoff;
+                schedule(roomCode, room, 'match_review', JUDGE_GONE_TIME, () => scoreMatches(roomCode));
+            }
+        }
+
         checkEveryoneDone(roomCode);
         broadcast(roomCode);
     };
@@ -524,6 +673,7 @@ export default function registerMixupNamespace(MNS) {
         room.plan = [];
         room.round = null;
         room.drawCount = 0;
+        room.judgeCount = 0;
         room.endTime = null;
 
         console.log(`[Mix Up] Room ${roomCode}: playing again.`);
@@ -573,6 +723,7 @@ export default function registerMixupNamespace(MNS) {
                 plan: [],
                 round: null,
                 drawCount: 0,
+                judgeCount: 0,
                 hostId: null,
                 endTime: null,
                 timerId: null,
@@ -656,6 +807,7 @@ export default function registerMixupNamespace(MNS) {
                 if (cleanAvatar) player.avatar = cleanAvatar;
                 if (room.hostId === existingKey) room.hostId = socket.id;
                 if (room.round?.drawerId === existingKey) room.round.drawerId = socket.id;
+                if (room.round?.judgeId === existingKey) room.round.judgeId = socket.id;
                 if (room.round?.guessedById === existingKey) room.round.guessedById = socket.id;
                 (room.round?.captions || []).forEach((c) => { if (c.playerId === existingKey) c.playerId = socket.id; });
                 delete room.players[existingKey];
@@ -709,6 +861,7 @@ export default function registerMixupNamespace(MNS) {
 
             room.currentRound = 1;
             room.drawCount = 0;
+            room.judgeCount = 0;
             room.gameState = 'rules';
             broadcast(roomCode);
         });
@@ -825,6 +978,34 @@ export default function registerMixupNamespace(MNS) {
             player.hasSubmitted = true;
             broadcast(roomCode);
             checkEveryoneDone(roomCode);
+        });
+
+        // ---------- Threefold: the judge moves answers between the matches ----------
+        // groupId: the group to drop the answer into, or null to put it on its own
+        const judgedRoom = (roomCode) => {
+            const room = activeMixupRooms[roomCode];
+            if (!room || room.gameState !== 'match_review' || room.round?.judgeId !== socket.id || !room.round.review) return null;
+            return room;
+        };
+        socket.on('review_move', ({ roomCode, itemId, groupId = null } = {}) => {
+            const room = judgedRoom(roomCode);
+            if (!room) return;
+            const review = room.round.review;
+            if (!canMove(review, room.players[socket.id].joinOrder, itemId, groupId)) return;
+            moveAnswer(review, itemId, groupId);
+            broadcast(roomCode);
+        });
+        // "Start over": back to the computer's matches
+        socket.on('review_reset', ({ roomCode } = {}) => {
+            const room = judgedRoom(roomCode);
+            if (!room) return;
+            const review = room.round.review;
+            review.groups = review.autoGroups.map((g) => ({ id: g.id, itemIds: [...g.itemIds] }));
+            broadcast(roomCode);
+        });
+        // "Looks good!": done judging
+        socket.on('review_done', ({ roomCode } = {}) => {
+            if (judgedRoom(roomCode)) scoreMatches(roomCode);
         });
 
         // ---------- Event: The caster wants another game with the same players ----------
