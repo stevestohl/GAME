@@ -118,7 +118,7 @@ useEffect(() => {
         socket.on('errorMsg', handleError);
         socket.on('start_judging', handleStartJudging);
         socket.on('round_ended', handleRoundEnded);
-        // 🎬 The TV finished reading the final scores: roll the Tower Party credits here too
+        // 🎬 The TV finished reading the final scores: roll the lobby game's credits here too
         const handleCreditsRoll = () => setShowCredits(true);
         socket.on('credits_roll', handleCreditsRoll);
 
@@ -383,7 +383,7 @@ useEffect(() => {
         <>
             {renderPhase()}
             {roomData.isPaused && <CouchCastPausedOverlay />}
-            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData.tower} onDone={() => setShowCredits(false)} />}
+            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData.tower} attack={roomData.attack} onDone={() => setShowCredits(false)} />}
         </>
     );
 }

@@ -4568,7 +4568,7 @@ function CouchCastManager() {
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState16 = _slicedToArray(_useState15, 2),
     showCredits = _useState16[0],
-    setShowCredits = _useState16[1]; // 🎬 the Tower Party credits, after the final scores
+    setShowCredits = _useState16[1]; // 🎬 the lobby game's credits, after the final scores
 
   // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_6__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_6__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
@@ -4690,7 +4690,7 @@ function CouchCastManager() {
       };
     } else if (voiceMoment === 'game-over') {
       // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers,
-      // then the lobby's Tower Party credits roll (here and on every phone)
+      // then the lobby game's credits roll (here and on every phone)
       var _isCurrent3 = true;
       var _timer3 = setTimeout(function () {
         Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(recap.spoken, code) : null).then(function () {
@@ -4888,7 +4888,11 @@ function CouchCastManager() {
           players: playersArray,
           musicTrack: lobbyTrack,
           crew: true,
-          crewTheme: crewTheme
+          crewTheme: crewTheme,
+          scoreFor: function scoreFor(player) {
+            var _roomData$attack, _roomData$attack$scor, _roomData$attack$scor2;
+            return (_roomData$attack = roomData.attack) === null || _roomData$attack === void 0 ? void 0 : (_roomData$attack$scor = _roomData$attack.scores) === null || _roomData$attack$scor === void 0 ? void 0 : (_roomData$attack$scor2 = _roomData$attack$scor[player.name]) === null || _roomData$attack$scor2 === void 0 ? void 0 : _roomData$attack$scor2.hits;
+          }
         });
       case 'rules':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastRules_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
@@ -4978,6 +4982,7 @@ function CouchCastManager() {
       isCaster: true
     }), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], {
       tower: roomData === null || roomData === void 0 ? void 0 : roomData.tower,
+      attack: roomData === null || roomData === void 0 ? void 0 : roomData.attack,
       chase: hasCrew,
       chaseTheme: crewTheme,
       onDone: function onDone() {
@@ -5191,7 +5196,7 @@ function CouchCastPlayerSetup(_ref) {
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('errorMsg', handleError);
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('start_judging', handleStartJudging);
     _socket__WEBPACK_IMPORTED_MODULE_1__.couchCastSocket.on('round_ended', handleRoundEnded);
-    // 🎬 The TV finished reading the final scores: roll the Tower Party credits here too
+    // 🎬 The TV finished reading the final scores: roll the lobby game's credits here too
     var handleCreditsRoll = function handleCreditsRoll() {
       return setShowCredits(true);
     };
@@ -5443,6 +5448,7 @@ function CouchCastPlayerSetup(_ref) {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, renderPhase(), roomData.isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_8__.CouchCastPausedOverlay, null), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TowerCredits_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
     tower: roomData.tower,
+    attack: roomData.attack,
     onDone: function onDone() {
       return setShowCredits(false);
     }
@@ -15893,30 +15899,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// 🎬 The end credits: after the final scores are read, the lobby's Tower Party results roll up the
-// screen like the end of a movie (on the TV and every phone). Nobody played? No credits.
+// 🎬 The end credits: after the final scores are read, the lobby game's results roll up the screen like the
+// end of a movie (on the TV and every phone). Nobody played? No credits.
+// `attack`: Avatar Attack's results (room.attack), the lobby game now, as in Trivia Cast.
+// `tower`: Tower Party's (room.tower), the old lobby game, switched off for now.
 // `chase`: the crew chases the cat along the bottom to a march while they roll (Couch Cast, on the TV; `chaseTheme` says which crew)
 function TowerCredits(_ref) {
   var _window$matchMedia, _window;
   var tower = _ref.tower,
+    attack = _ref.attack,
     onDone = _ref.onDone,
     _ref$chase = _ref.chase,
     chase = _ref$chase === void 0 ? false : _ref$chase,
     _ref$chaseTheme = _ref.chaseTheme,
     chaseTheme = _ref$chaseTheme === void 0 ? 'core' : _ref$chaseTheme;
+  var shooters = Object.values((attack === null || attack === void 0 ? void 0 : attack.scores) || {}).filter(function (s) {
+    return s.hits > 0 || s.timesHit > 0;
+  }).sort(function (a, b) {
+    return b.hits - a.hits || a.timesHit - b.timesHit;
+  });
   var crew = Object.values((tower === null || tower === void 0 ? void 0 : tower.stats) || {}).filter(function (s) {
     return s.stacked > 0;
   }).sort(function (a, b) {
     return b.stacked - a.stacked || b.perfects - a.perfects;
   });
-  var playMarch = chase && crew.length > 0;
+  var count = shooters.length + crew.length;
+  var playMarch = chase && count > 0;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     return playMarch ? (0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.startCreditsMarch)() : undefined;
   }, [playMarch]);
-  if (!crew.length) return null;
+  if (!count) return null;
 
   // Longer credits for a bigger crew, so everyone can read their line
-  var seconds = 12 + crew.length * 2;
+  var seconds = 12 + count * 2;
   var showChase = chase && !((_window$matchMedia = (_window = window).matchMedia) !== null && _window$matchMedia !== void 0 && _window$matchMedia.call(_window, '(prefers-reduced-motion: reduce)').matches);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits ".concat(showChase ? "tp-chase-".concat(chaseTheme) : ''),
@@ -15931,7 +15946,24 @@ function TowerCredits(_ref) {
     onAnimationEnd: onDone
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits-kicker"
-  }, "And in the lobby..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "\uD83C\uDFD7\uFE0F Tower Party"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "And in the lobby..."), shooters.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "\uD83D\uDC7E Avatar Attack"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tp-credits-best"
+  }, "Top shot: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, shooters[0].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tp-credits-heading"
+  }, "Final scores"), shooters.map(function (s) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: s.name,
+      className: "tp-credits-line"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
+      id: s.avatar,
+      name: s.name,
+      size: 44
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "tp-credits-name"
+    }, s.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "tp-credits-role"
+    }, s.hits, " ", s.hits === 1 ? 'hit' : 'hits', s.timesHit ? " \xB7 got hit ".concat(s.timesHit) : ''));
+  })), crew.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "\uD83C\uDFD7\uFE0F Tower Party"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits-best"
   }, "Tallest tower: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, tower.best, " high")), tower.towers > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits-sub"
@@ -15950,9 +15982,9 @@ function TowerCredits(_ref) {
     }, s.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "tp-credits-role"
     }, "stacked ", s.stacked, s.perfects ? " \xB7 ".concat(s.perfects, " perfect") : ''));
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits-end"
-  }, "Thanks for building it together!")), showChase && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, crew.length ? 'Thanks for building it together!' : 'Thanks for playing!')), showChase && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "cc-round-scene"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreditsChase_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     theme: chaseTheme

@@ -99,7 +99,7 @@ export default function CouchCastManager() {
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
     const [promptAutoPicked, setPromptAutoPicked] = useState(false);
-    const [showCredits, setShowCredits] = useState(false);   // 🎬 the Tower Party credits, after the final scores
+    const [showCredits, setShowCredits] = useState(false);   // 🎬 the lobby game's credits, after the final scores
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
@@ -211,7 +211,7 @@ export default function CouchCastManager() {
             };
         } else if (voiceMoment === 'game-over') {
             // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers,
-            // then the lobby's Tower Party credits roll (here and on every phone)
+            // then the lobby game's credits roll (here and on every phone)
             let isCurrent = true;
             const timer = setTimeout(() => {
                 Promise.resolve(recap ? speak(recap.spoken, code) : null).then(() => {
@@ -390,7 +390,8 @@ export default function CouchCastManager() {
                     <CouchCastLobby 
                         roomCode={roomData.roomCode} 
                         players={playersArray} musicTrack={lobbyTrack}
-                        crew crewTheme={crewTheme} />
+                        crew crewTheme={crewTheme}
+                        scoreFor={(player) => roomData.attack?.scores?.[player.name]?.hits} />
                 );
 
             case 'rules':
@@ -479,7 +480,7 @@ export default function CouchCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
-            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} chase={hasCrew} chaseTheme={crewTheme} onDone={() => setShowCredits(false)} />}
+            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} attack={roomData?.attack} chase={hasCrew} chaseTheme={crewTheme} onDone={() => setShowCredits(false)} />}
             {roomData && (
                 <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />
             )}
