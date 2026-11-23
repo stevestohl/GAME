@@ -227,6 +227,8 @@ export default function Home() {
                     </Row>
                     <div className="text-center mt-2 mb-1">
                         <Link to="/privacy" className="small gt-privacy-link">Privacy policy</Link>
+                        <span className="small text-muted mx-2">·</span>
+                        <Link to="/credits" className="small gt-privacy-link">Credits</Link>
                     </div>
                 </Card.Body>
             </Card>

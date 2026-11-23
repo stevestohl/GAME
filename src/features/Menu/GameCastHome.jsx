@@ -297,6 +297,8 @@ export default function GameCastHome() {
 
                         <Col xs={12} className="text-center mb-1">
                             <Link to="/privacy" className="small gt-privacy-link">Privacy policy</Link>
+                            <span className="small text-muted mx-2">·</span>
+                            <Link to="/credits" className="small gt-privacy-link">Credits</Link>
                         </Col>
                     </Row>
                 </Card.Body>

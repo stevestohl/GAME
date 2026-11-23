@@ -38,11 +38,32 @@ document.addEventListener('visibilitychange', () => {
     if (Object.values(TRACKS).some((track) => !track.paused)) ctx.resume().catch(() => {});
 });
 
-// A looping song file, with the same play(), pause(), paused and load() as an <audio> tag
-const makeTrack = (src) => {
+// 🔁 A song with an ending can't just loop back to the top: it would play its last chord, then start again.
+// `loop` says where to go round instead: from `end` back to `start` (in seconds), the same number of whole
+// bars apart, so the beat carries straight on. The last few milliseconds before `end` fade into the
+// moment before `start`, so the jump doesn't click.
+const LOOP_FADE_SECONDS = 0.015;
+const smoothLoopJoin = (song, { start, end }) => {
+    const rate = song.sampleRate;
+    const fade = Math.round(LOOP_FADE_SECONDS * rate);
+    const s = Math.round(start * rate), e = Math.round(end * rate);
+    if (s < fade || e > song.length || e - s < fade * 2) return;
+    for (let c = 0; c < song.numberOfChannels; c++) {
+        const data = song.getChannelData(c);
+        for (let i = 0; i < fade; i++) {
+            const t = (i + 1) / fade;
+            data[e - fade + i] = data[e - fade + i] * Math.cos(t * Math.PI / 2) + data[s - fade + i] * Math.sin(t * Math.PI / 2);
+        }
+    }
+};
+
+// A looping song file, with the same play(), pause(), paused and load() as an <audio> tag.
+// `loop`: where it goes round (see above); without one, the whole file loops. `gain`: its volume next to the others.
+const makeTrack = (src, { loop = null, gain = 1 } = {}) => {
     let song = null;       // the downloaded, decoded song
     let loading = null;
     let source = null;     // what's playing it right now
+    let level = null;      // its volume knob
     let wanted = false;    // play() was asked for (it may still be downloading)
 
     const download = () => {
@@ -52,7 +73,11 @@ const makeTrack = (src) => {
             loading = fetch(src)
                 .then((res) => res.arrayBuffer())
                 .then((data) => new Promise((resolve, reject) => ctx.decodeAudioData(data, resolve, reject)))
-                .then((decoded) => { song = decoded; return decoded; })
+                .then((decoded) => {
+                    if (loop) smoothLoopJoin(decoded, loop);
+                    song = decoded;
+                    return decoded;
+                })
                 .catch((err) => { loading = null; throw err; });
         }
         return loading;
@@ -71,7 +96,18 @@ const makeTrack = (src) => {
                 source = out.context.createBufferSource();
                 source.buffer = song;
                 source.loop = true;
-                source.connect(out);
+                if (loop) {
+                    source.loopStart = loop.start;
+                    source.loopEnd = loop.end;
+                }
+                if (gain !== 1) {
+                    level = out.context.createGain();
+                    level.gain.value = gain;
+                    source.connect(level);
+                    level.connect(out);
+                } else {
+                    source.connect(out);
+                }
                 source.start();
             });
         },
@@ -81,6 +117,10 @@ const makeTrack = (src) => {
                 source.stop();
                 source.disconnect();
                 source = null;
+            }
+            if (level) {
+                level.disconnect();
+                level = null;
             }
         },
         currentTime: 0,                                // (the songs always start from the top)
@@ -109,7 +149,10 @@ const TRACKS = {
     default: makeTrack('/audio/LobbyMusic.mp3'),
     couchCast: makeSynthTrack('couch-anthem'),                // Couch Cast's core deck
     listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),     // List Cast
-    triviaCast: makeSynthTrack('silver-rain'),                // Trivia Cast
+    // Trivia Cast: "Upbeat Funk Show Groove" by AlexGuz (Pixabay; listed on the Credits page). 127 BPM, so a bar
+    // is 1.88974 s: it goes round from just before the final hit (51 bars in) to the top, skipping the ending.
+    // A little quieter, to match the other songs.
+    triviaCast: makeTrack('/audio/UpbeatFunkShowGroove.mp3', { loop: { start: 0.11, end: 0.11 + 51 * 1.88974 }, gain: 0.75 }),
     halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),   // any game played with a Halloween deck
     holiday: makeSynthTrack('holiday-medley'),                // Couch Cast's Holiday deck
     mixup: makeSynthTrack('secret-mission'),                  // Temple Mix Up
