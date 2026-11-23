@@ -415,7 +415,7 @@ export const SPOOKY_TIMER_TRACKS = [
 // ---------------------------------------------------------------------------------------------
 export const LOBBY_SYNTH_TRACKS = [
     {
-        // Temple Mix Up's lobby: our own sneaky spy tune. A twangy bass line creeps along under brushed drums and
+        // Temple Mix Up's old spy lobby (not played now that it's a circus; see lobbyMusic.js): our own sneaky spy tune. A twangy bass line creeps along under brushed drums and
         // vibes, and muted trumpets answer a reverby surf guitar. A 16-bar loop:
         //   bars 1-4    just the bass and the drums, tiptoeing in
         //   bars 5-8    the guitar sneaks in

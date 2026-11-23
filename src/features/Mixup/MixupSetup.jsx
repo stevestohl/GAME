@@ -8,6 +8,7 @@ import RoundsPicker from '../Menu/RoundsPicker.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
 import { MIXUP_DECKS } from '../../cardDecks.js';
 import { useGameVisibility } from '../../gameVisibility.js';
+import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
 
 export const MIXUP_ROUND_OPTIONS = [9, 12, 15];
 
@@ -26,6 +27,9 @@ export default function MixupSetup() {
         document.body.classList.remove('modal-open');
         document.body.style.paddingRight = '';
     }, []);
+
+    // Start downloading the circus lobby song now, so it plays the moment a deck is tapped
+    useEffect(() => { preloadLobbyMusic('mixup'); }, []);
 
     const each = totalRounds / 3;
 

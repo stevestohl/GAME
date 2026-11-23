@@ -5,16 +5,16 @@ import { speak, stopVoice } from '../../voice.js';
 import { DrawingView } from './DrawingCanvas.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
 import { ReviewGroups } from './MatchReview.jsx';
-import { SpyRulesShow } from './SpyShow.jsx';
+import { CircusRulesShow } from './CircusShow.jsx';
 import '../../styles/mixup.css';
 
-// 🎙️ What the host voice says while the rules are on screen
+// 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to a three-ring circus
 export const MIXUP_RULES_NARRATION = [
-    "Welcome to Temple Mix Up! Three games in one.",
-    "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.",
-    "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.",
-    "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.",
-    "Let's mix it up!",
+    "Welcome, one and all, to the Temple Mix Up circus! Three rings, three games.",
+    "In ring one, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.",
+    "In ring two, Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.",
+    "And in ring three, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.",
+    "On with the show. Let's mix it up!",
 ];
 
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
@@ -112,15 +112,15 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
 
     return (
         <div className="fullscreen-gameplay-container">
-            <SpyRulesShow />
-            <div className="d-flex flex-column h-100 p-3 w-100 mx-rules-with-spies">
+            <CircusRulesShow />
+            <div className="d-flex flex-column h-100 p-3 w-100 mx-rules-with-clowns">
                 <h2 className="fullscreen-gameplay-header text-center">How To Play Temple Mix Up!</h2>
                 <div className="mx-rules-grid flex-grow-1" style={{ minHeight: 0 }}>
                     {['meme', 'draw', 'match'].map((type, i) => (
                         <div key={type} className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100 mx-rule-card">
                                 <Card.Body className="d-flex flex-column align-items-center text-center">
-                                    <div className="mx-rule-step">Part {i + 1} · {each} rounds</div>
+                                    <div className="mx-rule-step">Ring {i + 1} · {each} rounds</div>
                                     <div className="mx-rule-icon">{ROUND_LOOKS[type].icon}</div>
                                     <div className="mx-rule-title">{ROUND_LOOKS[type].title}</div>
                                     <div className="mx-rule-text">

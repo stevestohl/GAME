@@ -172,37 +172,49 @@ const ICONS = {
         <path d="M50 8 V92 M14 29 L86 71 M14 71 L86 29 M50 22 L40 12 M50 22 L60 12 M50 78 L40 88 M50 78 L60 88 M24 34 L11 38 M24 34 L20 21 M76 66 L89 62 M76 66 L80 79 M24 66 L11 62 M24 66 L20 79 M76 34 L89 38 M76 34 L80 21" />
     ),
 
-    // 🕵️ Spies
-    fedora: (
+    // 🎪 The circus
+    bigTop: (
         <>
-            <path d="M6 66 Q50 82 94 66 Q74 60 72 56 L28 56 Q26 60 6 66 Z" />
-            <path d="M28 56 Q24 26 38 22 Q50 28 62 22 Q76 26 72 56 Z" />
-            <path d="M27 48 Q50 56 73 48" className="gt-icon-dot" />
+            <path d="M10 88 L18 42 L50 14 L82 42 L90 88 Z" />
+            <path d="M18 42 Q26 51 34 42 Q42 51 50 42 Q58 51 66 42 Q74 51 82 42" />
+            <path d="M34 47 L30 88 M66 47 L70 88" />
+            <path d="M41 88 L50 64 L59 88" />
+            <path d="M50 14 V3 L63 7 L50 11" className="gt-icon-dot" />
         </>
     ),
-    magnifier: (
+    balloon: (
         <>
-            <circle cx="42" cy="42" r="26" />
-            <path d="M62 62 L88 88" />
-            <path d="M28 34 Q32 24 42 24" />
+            <ellipse cx="50" cy="38" rx="24" ry="29" />
+            <path d="M45 67 L50 72 L55 67 Z" className="gt-icon-dot" />
+            <path d="M50 72 Q42 81 50 88 Q57 94 51 99" />
+            <path d="M37 27 Q39 19 46 17" />
         </>
     ),
-    shades: (
+    ticket: (
         <>
-            <path d="M6 38 H94" />
-            <path d="M10 38 Q10 64 28 64 Q44 64 44 38 Z" className="gt-icon-dot" />
-            <path d="M56 38 Q56 64 72 64 Q90 64 90 38 Z" className="gt-icon-dot" />
+            <path d="M10 30 H90 V44 a6 6 0 0 0 0 12 V70 H10 V56 a6 6 0 0 0 0 -12 Z" />
+            <path d="M30 34 V66" strokeDasharray="4 6" />
+            <path d="M60 39 L63.5 46 L71 47 L65.5 52 L67 60 L60 56 L53 60 L54.5 52 L49 47 L56.5 46 Z" className="gt-icon-dot" />
         </>
     ),
-    briefcase: (
+    popcorn: (
         <>
-            <rect x="10" y="34" width="80" height="50" rx="6" />
-            <path d="M36 34 V24 a4 4 0 0 1 4 -4 H60 a4 4 0 0 1 4 4 V34" />
-            <rect x="44" y="50" width="12" height="12" rx="2" className="gt-icon-dot" />
+            <path d="M27 48 L33 93 H67 L73 48 Z" />
+            <path d="M43 48 L45 93 M57 48 L55 93" />
+            <circle cx="33" cy="43" r="8" />
+            <circle cx="47" cy="36" r="9" />
+            <circle cx="62" cy="38" r="8" />
+            <circle cx="71" cy="46" r="6" />
+            <circle cx="53" cy="24" r="7" />
         </>
     ),
-    keyhole: (
-        <path d="M50 12 a22 22 0 0 1 12 40 L72 88 H28 L38 52 A22 22 0 0 1 50 12 Z" />
+    juggling: (
+        <>
+            <circle cx="26" cy="70" r="12" />
+            <circle cx="50" cy="26" r="12" className="gt-icon-dot" />
+            <circle cx="74" cy="70" r="12" />
+            <path d="M24 52 Q28 30 36 22 M76 52 Q72 30 64 22" strokeDasharray="3 7" />
+        </>
     ),
 
     // 🎃 Halloween
@@ -284,15 +296,15 @@ const HOLIDAY_FLOATERS = [
     { icon: 'gift',      top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 10 },
 ];
 
-const SPY_FLOATERS = [
-    { icon: 'fedora',    top: '12%', left: '3%',  size: 170, dur: 38, delay: 0,   rot: -10 },
-    { icon: 'magnifier', top: '58%', left: '79%', size: 170, dur: 44, delay: -8,  rot: 10 },
-    { icon: 'shades',    top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: -8 },
-    { icon: 'keyhole',   top: '8%',  left: '82%', size: 110, dur: 48, delay: -20, rot: -8 },
-    { icon: 'briefcase', top: '42%', left: '90%', size: 80,  dur: 30, delay: -5,  rot: 12 },
-    { icon: 'magnifier', top: '38%', left: '-1%', size: 90,  dur: 42, delay: -26, rot: 6 },
-    { icon: 'fedora',    top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: 10 },
-    { icon: 'shades',    top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: -6 },
+const CIRCUS_FLOATERS = [
+    { icon: 'bigTop',   top: '12%', left: '3%',  size: 180, dur: 38, delay: 0,   rot: -8 },
+    { icon: 'balloon',  top: '58%', left: '79%', size: 170, dur: 44, delay: -8,  rot: 10 },
+    { icon: 'ticket',   top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: -12 },
+    { icon: 'popcorn',  top: '8%',  left: '82%', size: 110, dur: 48, delay: -20, rot: 8 },
+    { icon: 'star',     top: '42%', left: '90%', size: 80,  dur: 30, delay: -5,  rot: 12 },
+    { icon: 'juggling', top: '38%', left: '-1%', size: 100, dur: 42, delay: -26, rot: 6 },
+    { icon: 'balloon',  top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: -10 },
+    { icon: 'bigTop',   top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 6 },
 ];
 
 const TRIVIA_FLOATERS = [
@@ -334,7 +346,7 @@ const THEMES = {
     couchcast: COUCHCAST_FLOATERS,
     halloween: HALLOWEEN_FLOATERS,
     holiday: HOLIDAY_FLOATERS,
-    spy: SPY_FLOATERS,
+    circus: CIRCUS_FLOATERS,
     trivia: TRIVIA_FLOATERS,
     animals: ANIMALS_FLOATERS,
     lists: LISTS_FLOATERS,

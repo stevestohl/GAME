@@ -159,7 +159,10 @@ const TRACKS = {
     // orchestra recording of the public-domain score (listed on the Credits page). The file is the 41-bar dance (one
     // bar = 1 s) with a bar of lead-in and a bar of run-out around it, so it starts and goes round at 1 s and 42 s.
     holiday: makeTrack('/audio/NutcrackerGalop.m4a', { loop: { start: 1, end: 42 }, begin: 1 }),
-    mixup: makeSynthTrack('secret-mission'),                  // Temple Mix Up
+    // Temple Mix Up's circus: Fučík's "Entry of the Gladiators", our own band recording of the public-domain score
+    // (listed on the Credits page). The file is the 44-bar loop (the introduction, then the first strain twice; one
+    // bar = 0.8 s) with a bar of lead-in and a bar of run-out around it, so it starts and goes round at 0.8 s and 36 s.
+    mixup: makeTrack('/audio/EntryOfTheGladiators.m4a', { loop: { start: 0.8, end: 36 }, begin: 0.8 }),
 };
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song, the Holiday deck its carols,

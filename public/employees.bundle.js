@@ -4123,7 +4123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CouchCrew.jsx */ "./src/features/CouchCast/CouchCrew.jsx");
 /* harmony import */ var _Snowfall_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Snowfall.jsx */ "./src/features/CouchCast/Snowfall.jsx");
 /* harmony import */ var _TriviaCast_QuizShow_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../TriviaCast/QuizShow.jsx */ "./src/features/TriviaCast/QuizShow.jsx");
-/* harmony import */ var _Mixup_SpyShow_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Mixup/SpyShow.jsx */ "./src/features/Mixup/SpyShow.jsx");
+/* harmony import */ var _Mixup_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Mixup/CircusShow.jsx */ "./src/features/Mixup/CircusShow.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -4145,7 +4145,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's decks;
 // `crewTheme` says which cast, and the Holiday deck also gets snow). `scoreFor`: a player's lobby game score, if the game has one
 // `quizShow`: game show contestants take the couch's spot under the players card (Trivia Cast)
-// `spyShow`: two bad spies do the same (Temple Mix Up)
+// `circusShow`: two clowns do the same (Temple Mix Up)
 // Players go two to a row with small avatars, scrolling if there are more than fit, and "Waiting for..." sits beside "Players" to leave them room
 function CouchCastLobby(_ref) {
   var roomCode = _ref.roomCode,
@@ -4162,8 +4162,8 @@ function CouchCastLobby(_ref) {
     scoreFor = _ref.scoreFor,
     _ref$quizShow = _ref.quizShow,
     quizShow = _ref$quizShow === void 0 ? false : _ref$quizShow,
-    _ref$spyShow = _ref.spyShow,
-    spyShow = _ref$spyShow === void 0 ? false : _ref$spyShow;
+    _ref$circusShow = _ref.circusShow,
+    circusShow = _ref$circusShow === void 0 ? false : _ref$circusShow;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isPortrait = _useState2[0],
@@ -4196,7 +4196,7 @@ function CouchCastLobby(_ref) {
     return player.isPlayerHost;
   });
   var hostName = hostPlayer ? hostPlayer.name : "the first player";
-  var hasStage = crew || quizShow || spyShow; // something lives under the players card
+  var hasStage = crew || quizShow || circusShow; // something lives under the players card
   var avatarSize = 'clamp(20px, 4vh, 32px)';
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
   var waitingLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4208,8 +4208,8 @@ function CouchCastLobby(_ref) {
     }
   }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "..."));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container cc-lobby ".concat(crew ? "has-crew crew-".concat(crewTheme) : '', " ").concat(quizShow || spyShow ? 'has-crew' : '')
-  }, crew && crewTheme === 'holiday' && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Snowfall_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null), spyShow && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_SpyShow_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    className: "fullscreen-gameplay-container cc-lobby ".concat(crew ? "has-crew crew-".concat(crewTheme) : '', " ").concat(quizShow || circusShow ? 'has-crew' : '')
+  }, crew && crewTheme === 'holiday' && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Snowfall_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null), circusShow && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
     stageRef: stageRef,
     screenRef: screenRef,
     playerCount: activePlayers.length
@@ -20607,52 +20607,83 @@ var ICONS = {
   snowflake: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     d: "M50 8 V92 M14 29 L86 71 M14 71 L86 29 M50 22 L40 12 M50 22 L60 12 M50 78 L40 88 M50 78 L60 88 M24 34 L11 38 M24 34 L20 21 M76 66 L89 62 M76 66 L80 79 M24 66 L11 62 M24 66 L20 79 M76 34 L89 38 M76 34 L80 21"
   }),
-  // 🕵️ Spies
-  fedora: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M6 66 Q50 82 94 66 Q74 60 72 56 L28 56 Q26 60 6 66 Z"
+  // 🎪 The circus
+  bigTop: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M10 88 L18 42 L50 14 L82 42 L90 88 Z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M28 56 Q24 26 38 22 Q50 28 62 22 Q76 26 72 56 Z"
+    d: "M18 42 Q26 51 34 42 Q42 51 50 42 Q58 51 66 42 Q74 51 82 42"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M27 48 Q50 56 73 48",
+    d: "M34 47 L30 88 M66 47 L70 88"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M41 88 L50 64 L59 88"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 14 V3 L63 7 L50 11",
     className: "gt-icon-dot"
   })),
-  magnifier: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: "42",
-    cy: "42",
-    r: "26"
+  balloon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "50",
+    cy: "38",
+    rx: "24",
+    ry: "29"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M62 62 L88 88"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M28 34 Q32 24 42 24"
-  })),
-  shades: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M6 38 H94"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M10 38 Q10 64 28 64 Q44 64 44 38 Z",
+    d: "M45 67 L50 72 L55 67 Z",
     className: "gt-icon-dot"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M56 38 Q56 64 72 64 Q90 64 90 38 Z",
-    className: "gt-icon-dot"
-  })),
-  briefcase: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "10",
-    y: "34",
-    width: "80",
-    height: "50",
-    rx: "6"
+    d: "M50 72 Q42 81 50 88 Q57 94 51 99"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M36 34 V24 a4 4 0 0 1 4 -4 H60 a4 4 0 0 1 4 4 V34"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "44",
-    y: "50",
-    width: "12",
-    height: "12",
-    rx: "2",
+    d: "M37 27 Q39 19 46 17"
+  })),
+  ticket: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M10 30 H90 V44 a6 6 0 0 0 0 12 V70 H10 V56 a6 6 0 0 0 0 -12 Z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M30 34 V66",
+    strokeDasharray: "4 6"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M60 39 L63.5 46 L71 47 L65.5 52 L67 60 L60 56 L53 60 L54.5 52 L49 47 L56.5 46 Z",
     className: "gt-icon-dot"
   })),
-  keyhole: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M50 12 a22 22 0 0 1 12 40 L72 88 H28 L38 52 A22 22 0 0 1 50 12 Z"
-  }),
+  popcorn: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M27 48 L33 93 H67 L73 48 Z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M43 48 L45 93 M57 48 L55 93"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "33",
+    cy: "43",
+    r: "8"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "47",
+    cy: "36",
+    r: "9"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "62",
+    cy: "38",
+    r: "8"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "71",
+    cy: "46",
+    r: "6"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "53",
+    cy: "24",
+    r: "7"
+  })),
+  juggling: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "26",
+    cy: "70",
+    r: "12"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "26",
+    r: "12",
+    className: "gt-icon-dot"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "74",
+    cy: "70",
+    r: "12"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M24 52 Q28 30 36 22 M76 52 Q72 30 64 22",
+    strokeDasharray: "3 7"
+  })),
   // 🎃 Halloween
   pumpkin: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     d: "M46 26 q1 -13 12 -16 l4 6 q-7 3 -7 10"
@@ -20981,16 +21012,16 @@ var HOLIDAY_FLOATERS = [{
   delay: -18,
   rot: 10
 }];
-var SPY_FLOATERS = [{
-  icon: 'fedora',
+var CIRCUS_FLOATERS = [{
+  icon: 'bigTop',
   top: '12%',
   left: '3%',
-  size: 170,
+  size: 180,
   dur: 38,
   delay: 0,
-  rot: -10
+  rot: -8
 }, {
-  icon: 'magnifier',
+  icon: 'balloon',
   top: '58%',
   left: '79%',
   size: 170,
@@ -20998,23 +21029,23 @@ var SPY_FLOATERS = [{
   delay: -8,
   rot: 10
 }, {
-  icon: 'shades',
+  icon: 'ticket',
   top: '66%',
   left: '5%',
   size: 130,
   dur: 36,
   delay: -14,
-  rot: -8
+  rot: -12
 }, {
-  icon: 'keyhole',
+  icon: 'popcorn',
   top: '8%',
   left: '82%',
   size: 110,
   dur: 48,
   delay: -20,
-  rot: -8
+  rot: 8
 }, {
-  icon: 'briefcase',
+  icon: 'star',
   top: '42%',
   left: '90%',
   size: 80,
@@ -21022,29 +21053,29 @@ var SPY_FLOATERS = [{
   delay: -5,
   rot: 12
 }, {
-  icon: 'magnifier',
+  icon: 'juggling',
   top: '38%',
   left: '-1%',
-  size: 90,
+  size: 100,
   dur: 42,
   delay: -26,
   rot: 6
 }, {
-  icon: 'fedora',
+  icon: 'balloon',
   top: '84%',
   left: '44%',
   size: 90,
   dur: 40,
   delay: -12,
-  rot: 10
+  rot: -10
 }, {
-  icon: 'shades',
+  icon: 'bigTop',
   top: '4%',
   left: '42%',
   size: 80,
   dur: 34,
   delay: -18,
-  rot: -6
+  rot: 6
 }];
 var TRIVIA_FLOATERS = [{
   icon: 'question',
@@ -21248,7 +21279,7 @@ var THEMES = {
   couchcast: COUCHCAST_FLOATERS,
   halloween: HALLOWEEN_FLOATERS,
   holiday: HOLIDAY_FLOATERS,
-  spy: SPY_FLOATERS,
+  circus: CIRCUS_FLOATERS,
   trivia: TRIVIA_FLOATERS,
   animals: ANIMALS_FLOATERS,
   lists: LISTS_FLOATERS,
@@ -21739,6 +21770,11 @@ var CLASSICS = [{
   by: 'Pyotr Ilyich Tchaikovsky',
   url: 'https://imslp.org/wiki/The_Nutcracker_(ballet),_Op.71_(Tchaikovsky,_Pyotr)',
   usedIn: 'Couch Cast Holiday deck lobby'
+}, {
+  title: 'Entry of the Gladiators',
+  by: 'Julius Fučík',
+  url: 'https://imslp.org/wiki/Einzug_der_Gladiatoren,_Op.68_(Fu%C4%8D%C3%ADk,_Julius)',
+  usedIn: 'Temple Mix Up lobby'
 }];
 
 // 🎵 Song files from elsewhere (they live in public/audio)
@@ -21780,11 +21816,15 @@ function Credits() {
   }), CLASSICS.map(function (song) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       key: song.url
-    }, "\u201C", song.title, "\u201D from ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    }, song.work ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "\u201C", song.title, "\u201D from ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: song.url,
       target: "_blank",
       rel: "noopener noreferrer"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", null, song.work)), ' by ', song.by, " (", song.usedIn, "). The music is in the public domain; this recording is our own, played with the", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", null, song.work))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: song.url,
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "\u201C", song.title, "\u201D"), ' by ', song.by, " (", song.usedIn, "). The music is in the public domain; this recording is our own, played with the", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md",
       target: "_blank",
       rel: "noopener noreferrer"
@@ -25312,6 +25352,2682 @@ function UniversalJoinScreen() {
 
 /***/ }),
 
+/***/ "./src/features/Mixup/CircusCast.jsx":
+/*!*******************************************!*\
+  !*** ./src/features/Mixup/CircusCast.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Bubble": () => (/* binding */ Bubble),
+/* harmony export */   "CANNON_AIM": () => (/* binding */ CANNON_AIM),
+/* harmony export */   "CANNON_MUZZLE": () => (/* binding */ CANNON_MUZZLE),
+/* harmony export */   "Cannon": () => (/* binding */ Cannon),
+/* harmony export */   "Clown": () => (/* binding */ Clown),
+/* harmony export */   "ClownCar": () => (/* binding */ ClownCar),
+/* harmony export */   "FLOWER": () => (/* binding */ FLOWER),
+/* harmony export */   "HANDS_UP_Y": () => (/* binding */ HANDS_UP_Y),
+/* harmony export */   "JugglingBalls": () => (/* binding */ JugglingBalls),
+/* harmony export */   "Lion": () => (/* binding */ Lion),
+/* harmony export */   "Pow": () => (/* binding */ Pow),
+/* harmony export */   "Ringmaster": () => (/* binding */ Ringmaster),
+/* harmony export */   "Smoke": () => (/* binding */ Smoke),
+/* harmony export */   "Trapeze": () => (/* binding */ Trapeze),
+/* harmony export */   "sayIn": () => (/* binding */ sayIn),
+/* harmony export */   "wearGear": () => (/* binding */ wearGear)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+// 🎪 The drawings for Temple Mix Up's circus (CircusShow.jsx): two clowns, Oopsy and Daisy, the ringmaster, a lion,
+// a clown car that's far too small, a cannon and a trapeze. The people are ~100 units tall with their feet at (0, 0),
+// and wear their props as `gear`: groups that are switched on and off with wearGear().
+
+var INK = '#16161d';
+var ink = {
+  stroke: INK,
+  strokeWidth: 2.4,
+  strokeLinejoin: 'round'
+};
+var line = {
+  stroke: INK,
+  strokeLinecap: 'round',
+  fill: 'none'
+};
+var GLOVE = '#ffffff';
+
+/**
+ * Put these props on this performer, and take everything else off.
+ * `data-without` marks the parts a prop replaces (the arms hanging down, while they're up holding a trapeze).
+ */
+var wearGear = function wearGear(el) {
+  var gear = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  el.querySelectorAll('[data-gear]').forEach(function (g) {
+    g.style.display = gear.includes(g.dataset.gear) ? '' : 'none';
+  });
+  el.querySelectorAll('[data-without]').forEach(function (g) {
+    g.style.display = g.dataset.without.split(' ').some(function (name) {
+      return gear.includes(name);
+    }) ? 'none' : '';
+  });
+};
+
+// A daisy's five petals around (x, y)
+var petals = function petals(x, y) {
+  var r = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3.2;
+  return [0, 1, 2, 3, 4].map(function (k) {
+    var angle = (k * 72 - 90) * (Math.PI / 180);
+    return {
+      cx: x + r * Math.cos(angle),
+      cy: y + r * Math.sin(angle)
+    };
+  });
+};
+
+/**
+ * A clown. `pattern`: 'dots' or 'stripes' on the suit (in `trim`). `hat`: 'bowler' or 'cone'.
+ * `brows`: 'arches' (painted high eyebrows) or 'diamonds' (blue diamonds over the eyes). `flower`: one to squirt with.
+ */
+function Clown(_ref) {
+  var elRef = _ref.elRef,
+    suit = _ref.suit,
+    trim = _ref.trim,
+    _ref$pattern = _ref.pattern,
+    pattern = _ref$pattern === void 0 ? 'dots' : _ref$pattern,
+    shoes = _ref.shoes,
+    hair = _ref.hair,
+    _ref$hat = _ref.hat,
+    hat = _ref$hat === void 0 ? 'bowler' : _ref$hat,
+    _ref$brows = _ref.brows,
+    brows = _ref$brows === void 0 ? 'arches' : _ref$brows,
+    _ref$flower = _ref.flower,
+    flower = _ref$flower === void 0 ? false : _ref$flower,
+    _ref$skin = _ref.skin,
+    skin = _ref$skin === void 0 ? '#fbf7ef' : _ref$skin;
+  var tufts = [[-15, -86, 5.5], [-18.5, -79.5, 5], [-16, -73, 4]];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor circus-clown",
+    "data-look": "front"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -30 H -2 V -8 H -15 Z",
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -2 0 H -24 Q -31 0 -31 -5 Q -31 -11 -22 -10 H -2 Z",
+    fill: shoes
+  }, ink, {
+    strokeWidth: 1.8
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 2 -30 H 14 L 15 -8 H 2 Z",
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 2 0 H 24 Q 31 0 31 -5 Q 31 -11 22 -10 H 2 Z",
+    fill: shoes
+  }, ink, {
+    strokeWidth: 1.8
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 -62 Q -23 -44 -19 -26 H 19 Q 23 -44 17 -62 Q 0 -67 -17 -62 Z",
+    fill: suit
+  }, ink)), pattern === 'dots' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    fill: trim
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -10,
+    cy: -54,
+    r: 2.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 9,
+    cy: -50,
+    r: 2.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -7,
+    cy: -38,
+    r: 2.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 11,
+    cy: -33,
+    r: 2.6
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -13,
+    cy: -30,
+    r: 2.2
+  })), pattern === 'stripes' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -9 -62 V -27 M 9 -62 V -27",
+    stroke: trim,
+    strokeWidth: 3.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -53,
+    r: 2.8,
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -42,
+    r: 2.8,
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), flower && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", null, petals(-10, -52).map(function (p, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+      key: i
+    }, p, {
+      r: 2.4,
+      fill: "#fff",
+      stroke: INK,
+      strokeWidth: 0.9
+    }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -10,
+    cy: -52,
+    r: 2,
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 0.9
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-without": "hands"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -25,
+    y: -60,
+    width: 9,
+    height: 24,
+    rx: 3,
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -20.5,
+    cy: -34,
+    r: 4.4,
+    fill: GLOVE
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 16,
+    y: -60,
+    width: 9,
+    height: 24,
+    rx: 3,
+    fill: suit
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "horn",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 25 -35 L 33 -33",
+    stroke: INK,
+    strokeWidth: 5,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 25 -35 L 33 -33",
+    stroke: "#e8b93c",
+    strokeWidth: 2.6,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 32 -37 L 42 -43 V -23 L 32 -29 Z",
+    fill: "#e8b93c"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 21,
+    cy: -40,
+    r: 5,
+    fill: "#e5484d"
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "pie",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 10 -37 H 38 L 35 -31 H 13 Z",
+    fill: "#c79a5b"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 11 -37 Q 12 -46 24 -46 Q 36 -46 37 -37 Z",
+    fill: "#fffaf0"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 24,
+    cy: -48,
+    r: 2.6,
+    fill: "#d11f3a",
+    stroke: INK,
+    strokeWidth: 1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 20.5,
+    cy: -34,
+    r: 4.4,
+    fill: GLOVE
+  }, ink, {
+    strokeWidth: 1.6
+  })))), [-12, -6, 0, 6, 12].map(function (x) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      key: x,
+      cx: x,
+      cy: -64,
+      r: 4.2,
+      fill: "#fff",
+      stroke: INK,
+      strokeWidth: 1.4
+    });
+  }), tufts.map(function (_ref2) {
+    var _ref3 = _slicedToArray(_ref2, 3),
+      x = _ref3[0],
+      y = _ref3[1],
+      r = _ref3[2];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+      key: "l".concat(y),
+      cx: x,
+      cy: y,
+      r: r,
+      fill: hair
+    }, ink, {
+      strokeWidth: 1.8
+    }));
+  }), tufts.map(function (_ref4) {
+    var _ref5 = _slicedToArray(_ref4, 3),
+      x = _ref5[0],
+      y = _ref5[1],
+      r = _ref5[2];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+      key: "r".concat(y),
+      cx: -x,
+      cy: y,
+      r: r,
+      fill: hair
+    }, ink, {
+      strokeWidth: 1.8
+    }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -86 V -76 Q -14 -64 0 -63 Q 14 -64 14 -76 V -86 Q 0 -95 -14 -86 Z",
+    fill: skin
+  }, ink)), brows === 'arches' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -9 -84.5 Q -5.5 -89 -2 -84.5 M 2 -84.5 Q 5.5 -89 9 -84.5"
+  }, line, {
+    strokeWidth: 1.4
+  })), brows === 'diamonds' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -5.5 -88 l 1.6 2.6 l -1.6 2.6 l -1.6 -2.6 Z M 5.5 -88 l 1.6 2.6 l -1.6 2.6 l -1.6 -2.6 Z",
+    fill: "#3b7bff",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -79,
+    r: 2.8,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 0.9
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -79,
+    r: 2.8,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 0.9
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -79,
+    r: 1.4,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -79,
+    r: 1.4,
+    fill: INK
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -8.5 -69.5 Q 0 -60 8.5 -69.5 Q 0 -67 -8.5 -69.5 Z",
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.2,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: -74,
+    r: 4,
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -1.3,
+    cy: -75.4,
+    r: 1.2,
+    fill: "#fff",
+    opacity: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-without": "helmet sooty"
+  }, hat === 'bowler' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -7 -91 Q -7 -100 0 -100 Q 7 -100 7 -91 Z",
+    fill: "#2e9e5b"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -11 -91 Q 0 -94 11 -91",
+    stroke: INK,
+    strokeWidth: 3,
+    strokeLinecap: "round",
+    fill: "none"
+  })), hat === 'cone' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -9 -89 L 1 -114 L 10 -89 Q 0.5 -92 -9 -89 Z",
+    fill: "#ffd23f"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0.5,
+    cy: -99,
+    r: 1.8,
+    fill: "#e5484d"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 3,
+    cy: -106,
+    r: 1.5,
+    fill: "#e5484d"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 1.2,
+    cy: -115.5,
+    r: 3.6,
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.4
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "piefaced",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -15 -84 Q -17 -76 -14 -70 Q -16 -64 -10 -63 Q -8 -57 -5 -63 Q 0 -60 4 -63 Q 8 -56 10 -63 Q 16 -64 14 -71 Q 17 -78 14 -85 Q 0 -91 -15 -84 Z",
+    fill: "#fffaf0",
+    stroke: INK,
+    strokeWidth: 1.6,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -78,
+    r: 1.6,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -78,
+    r: 1.6,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 3,
+    cy: -89,
+    r: 2.4,
+    fill: "#d11f3a",
+    stroke: INK,
+    strokeWidth: 1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "helmet",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -15.5 -84 Q -15.5 -103 0 -103 Q 15.5 -103 15.5 -84 Z",
+    fill: "#d5dae3"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 0 -102 V -85",
+    stroke: "#e5484d",
+    strokeWidth: 4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -14 -84 Q -14 -71 -9 -66 M 14 -84 Q 14 -71 9 -66"
+  }, line, {
+    strokeWidth: 1.2
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "sooty",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -12 -87 L -17 -100 L -8 -92 L -6 -107 L -1 -93 L 3 -108 L 6 -93 L 12 -103 L 12 -87 Z",
+    fill: "#3a3a40"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: 0,
+    cy: -77,
+    rx: 13.5,
+    ry: 13,
+    fill: "#26262c",
+    opacity: 0.88
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -79,
+    r: 3,
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -79,
+    r: 3,
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -79,
+    r: 1.4,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -79,
+    r: 1.4,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -2 -112 q -5 -5 0 -10 q 5 -5 0 -10 M 7 -110 q -4 -4 0 -8",
+    stroke: "#a9adb6",
+    strokeWidth: 1.6,
+    strokeLinecap: "round",
+    fill: "none"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "hands",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -18 -60 L -27 -88 M 18 -60 L 27 -88",
+    stroke: INK,
+    strokeWidth: 10,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -18 -60 L -27 -88 M 18 -60 L 27 -88",
+    stroke: suit,
+    strokeWidth: 6,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -27.5,
+    cy: -92.5,
+    r: 4.4,
+    fill: GLOVE
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 27.5,
+    cy: -92.5,
+    r: 4.4,
+    fill: GLOVE
+  }, ink, {
+    strokeWidth: 1.6
+  })))));
+}
+
+// Where a clown's hands are when they're up (the trapeze bar), and its flower, in drawing units from its feet
+var HANDS_UP_Y = -92.5;
+var FLOWER = {
+  x: -10,
+  y: -52
+};
+function Ringmaster(_ref6) {
+  var elRef = _ref6.elRef;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor circus-ringmaster",
+    style: {
+      display: 'none'
+    },
+    "data-look": "right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -17 -32 L -21 -11 L -7 -28 Z M 17 -32 L 21 -11 L 7 -28 Z",
+    fill: "#c8202c"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-l"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -13,
+    y: -30,
+    width: 10,
+    height: 20,
+    fill: "#1b1b22"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -3 0 H -19 Q -19 -7 -14 -7 V -13 H -3 Z",
+    fill: "#101016"
+  }, ink, {
+    strokeWidth: 1.8
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-leg crew-leg-r"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 3,
+    y: -30,
+    width: 10,
+    height: 20,
+    fill: "#1b1b22"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 3 0 H 19 Q 19 -7 14 -7 V -13 H 3 Z",
+    fill: "#101016"
+  }, ink, {
+    strokeWidth: 1.8
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -18 -62 L -18 -26 H 18 L 18 -62 Q 0 -67 -18 -62 Z",
+    fill: "#c8202c"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -6 -63 L 0 -40 L 6 -63 Z",
+    fill: "#f6f4ee",
+    stroke: INK,
+    strokeWidth: 1.4,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -6 -63 L -12 -47 M 6 -63 L 12 -47",
+    stroke: "#8f1520",
+    strokeWidth: 2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -5 -62 L 0 -59.5 L 5 -62 V -57 L 0 -59.5 L -5 -57 Z",
+    fill: INK
+  }), [[-11, -44], [-11, -35], [11, -44], [11, -35]].map(function (_ref7) {
+    var _ref8 = _slicedToArray(_ref7, 2),
+      x = _ref8[0],
+      y = _ref8[1];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      key: "".concat(x).concat(y),
+      cx: x,
+      cy: y,
+      r: 1.9,
+      fill: "#e8b93c",
+      stroke: INK,
+      strokeWidth: 0.8
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -24 -61 H -14 M 14 -61 H 24",
+    stroke: "#e8b93c",
+    strokeWidth: 3,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -26,
+    y: -60,
+    width: 8,
+    height: 24,
+    rx: 3,
+    fill: "#c8202c"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -22,
+    cy: -34,
+    r: 4,
+    fill: GLOVE
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-arm-bump"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 18,
+    y: -60,
+    width: 8,
+    height: 24,
+    rx: 3,
+    fill: "#c8202c"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 23 -36 L 26 -1",
+    stroke: INK,
+    strokeWidth: 3.4,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 22.5,
+    cy: -39,
+    r: 3,
+    fill: "#e8b93c",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 22,
+    cy: -34,
+    r: 4,
+    fill: GLOVE
+  }, ink, {
+    strokeWidth: 1.6
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -4,
+    y: -70,
+    width: 8,
+    height: 8,
+    fill: "#e9b994"
+  }, ink, {
+    strokeWidth: 1.8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -13 -86 V -76 Q -13 -66 0 -65 Q 13 -66 13 -76 V -86 Q 0 -94 -13 -86 Z",
+    fill: "#e9b994"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -13 -86 V -78 M 13 -86 V -78",
+    stroke: "#3a2416",
+    strokeWidth: 3,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -80,
+    r: 2.6,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 0.9
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -80,
+    r: 2.6,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 0.9
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -5.5,
+    cy: -80,
+    r: 1.3,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 5.5,
+    cy: -80,
+    r: 1.3,
+    fill: INK
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 0 -72.5 Q -5 -76 -9 -72 Q -12 -69 -14 -72 Q -13 -67 -8 -69 Q -4 -70 0 -70.5 Q 4 -70 8 -69 Q 13 -67 14 -72 Q 12 -69 9 -72 Q 5 -76 0 -72.5 Z",
+    fill: "#3a2416",
+    stroke: INK,
+    strokeWidth: 0.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -3.5 -67.5 Q 0 -65.5 3.5 -67.5"
+  }, line, {
+    strokeWidth: 1.4
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: -11,
+    y: -112,
+    width: 22,
+    height: 24,
+    rx: 1.5,
+    fill: "#1b1b22"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    x: -11,
+    y: -95,
+    width: 22,
+    height: 4.5,
+    fill: "#c8202c"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -18 -88 Q 0 -92 18 -88 Q 0 -85 -18 -88 Z",
+    fill: "#1b1b22"
+  }, ink, {
+    strokeWidth: 2
+  }))));
+}
+function Lion(_ref9) {
+  var elRef = _ref9.elRef;
+  // Side-on and facing left, ~130 long with its paws on y = 0, its mane ~76 high
+  var leg = function leg(x, cls, fill) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+      className: "crew-leg ".concat(cls)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+      x: x,
+      y: -27,
+      width: 10,
+      height: 24,
+      rx: 4,
+      fill: fill
+    }, ink, {
+      strokeWidth: 2
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", _extends({
+      cx: x + 4,
+      cy: -3,
+      rx: 7,
+      ry: 3,
+      fill: fill
+    }, ink, {
+      strokeWidth: 1.8
+    })));
+  };
+  var mane = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (k) {
+    var angle = k * 36 * (Math.PI / 180);
+    return {
+      cx: -37 + 16 * Math.cos(angle),
+      cy: -58 + 16 * Math.sin(angle)
+    };
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-actor circus-lion",
+    style: {
+      display: 'none'
+    },
+    "data-look": "left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-fig"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    transform: "translate(0 6)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "circus-lion-tail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 44 -44 Q 64 -46 63 -66",
+    fill: "none",
+    stroke: INK,
+    strokeWidth: 5.5,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 44 -44 Q 64 -46 63 -66",
+    fill: "none",
+    stroke: "#e0a43a",
+    strokeWidth: 3,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 63,
+    cy: -70,
+    r: 5,
+    fill: "#a8541c"
+  }, ink, {
+    strokeWidth: 1.6
+  })))), leg(-22, 'crew-leg-r', '#c78a2c'), leg(31, 'crew-leg-l', '#c78a2c'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -30 -24 Q -34 -48 -10 -49 H 26 Q 47 -49 47 -32 Q 47 -18 32 -18 H -22 Q -30 -18 -30 -24 Z",
+    fill: "#e0a43a"
+  }, ink)), leg(-32, 'crew-leg-l', '#e0a43a'), leg(21, 'crew-leg-r', '#e0a43a'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    transform: "translate(0 6)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -37,
+    cy: -58,
+    r: 18,
+    fill: "#a8541c"
+  }), mane.map(function (p, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+      key: i
+    }, p, {
+      r: 8.5,
+      fill: "#a8541c"
+    }, ink, {
+      strokeWidth: 1.8
+    }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -37,
+    cy: -58,
+    r: 17,
+    fill: "#a8541c"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -38,
+    cy: -57,
+    r: 12.5,
+    fill: "#efb851"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-eyes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -43,
+    cy: -61,
+    r: 2.6,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 0.9
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -33.5,
+    cy: -61,
+    r: 2.6,
+    fill: "#f4efe4",
+    stroke: INK,
+    strokeWidth: 0.9
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-pupils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -43,
+    cy: -61,
+    r: 1.3,
+    fill: INK
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -33.5,
+    cy: -61,
+    r: 1.3,
+    fill: INK
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -38.5,
+    cy: -51,
+    rx: 7,
+    ry: 5,
+    fill: "#fbe3b0",
+    stroke: INK,
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -41.5 -55.5 H -35.5 L -38.5 -52.5 Z",
+    fill: "#4a2a1a",
+    stroke: INK,
+    strokeWidth: 0.8,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -46 -52 H -52 M -46 -50 L -51 -48 M -31 -52 H -25 M -31 -50 L -26 -48"
+  }, line, {
+    strokeWidth: 0.9
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-without": "roar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -42 -48.5 Q -40 -46.5 -38.5 -49 Q -37 -46.5 -35 -48.5"
+  }, line, {
+    strokeWidth: 1.2
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    "data-gear": "roar",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: -38.5,
+    cy: -45.5,
+    rx: 5.5,
+    ry: 5.5,
+    fill: "#7a1f24",
+    stroke: INK,
+    strokeWidth: 1.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -42 -50 l 1.3 2.6 l 1.3 -2.6 Z M -37.6 -50 l 1.3 2.6 l 1.3 -2.6 Z",
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 0.6
+  })))));
+}
+function ClownCar(_ref10) {
+  var elRef = _ref10.elRef;
+  // A very small car, side-on and facing left, ~70 long with its wheels on y = 0. `.has-clowns`: both clowns squeezed in
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "circus-car",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "circus-car-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 24 -36 L 30 -60",
+    stroke: INK,
+    strokeWidth: 1.4,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 30 -60 L 41 -57 L 30 -53 Z",
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.2,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "circus-car-clowns"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -9,
+    cy: -45,
+    r: 5.5,
+    fill: "#ff8c1a"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -2,
+    cy: -47,
+    r: 4.5,
+    fill: "#ff8c1a"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 11,
+    cy: -46,
+    r: 5,
+    fill: "#2ea866"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 17,
+    cy: -44,
+    r: 4,
+    fill: "#2ea866"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M 6 -46 L 13 -64 L 18 -46 Z",
+    fill: "#ffd23f"
+  }, ink, {
+    strokeWidth: 1.6
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 13,
+    cy: -65,
+    r: 2.8,
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -34 -9 Q -37 -24 -22 -27 Q -14 -45 4 -45 Q 22 -45 27 -28 Q 37 -26 35 -9 Z",
+    fill: "#ffd23f"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -35 -16 H 36",
+    stroke: "#e5484d",
+    strokeWidth: 4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -14 -28 Q -9 -40 3 -40 Q 16 -40 20 -28 Z",
+    fill: "#a9d6ec",
+    stroke: INK,
+    strokeWidth: 1.8,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "circus-car-clowns"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -4,
+    cy: -32.5,
+    r: 4.5,
+    fill: "#fbf7ef",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 10,
+    cy: -32.5,
+    r: 4.5,
+    fill: "#fbf7ef",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -6,
+    cy: -31.5,
+    r: 1.7,
+    fill: "#e5484d"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 8,
+    cy: -31.5,
+    r: 1.7,
+    fill: "#e5484d"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -12 -27 H 19 V -13 H -12 Z",
+    fill: "none",
+    stroke: INK,
+    strokeWidth: 1.2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -34,
+    cy: -20,
+    r: 3,
+    fill: "#fff3a0",
+    stroke: INK,
+    strokeWidth: 1.2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: -20,
+    cy: -8,
+    r: 8,
+    fill: "#1d1a22"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: -20,
+    cy: -8,
+    r: 3,
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 20,
+    cy: -8,
+    r: 8,
+    fill: "#1d1a22"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 20,
+    cy: -8,
+    r: 3,
+    fill: "#e5484d",
+    stroke: INK,
+    strokeWidth: 1.1
+  }));
+}
+
+// The cannon points up and to the right, this many degrees above level, pivoting on its wheel's axle
+var CANNON_ANGLE = 38;
+var AXLE_Y = -19;
+var MUZZLE_LENGTH = 68;
+var cannonRad = CANNON_ANGLE * (Math.PI / 180);
+/** The mouth of the cannon, from the bottom of its wheel, and which way a shot goes (unit vector) */
+var CANNON_MUZZLE = {
+  x: MUZZLE_LENGTH * Math.cos(cannonRad),
+  y: AXLE_Y - MUZZLE_LENGTH * Math.sin(cannonRad)
+};
+var CANNON_AIM = {
+  x: Math.cos(cannonRad),
+  y: -Math.sin(cannonRad)
+};
+function Cannon(_ref11) {
+  var elRef = _ref11.elRef;
+  // Its wheel's bottom on (0, 0). `.is-lit`: the fuse fizzes
+  var spokes = [0, 60, 120].map(function (deg) {
+    var r = deg * (Math.PI / 180);
+    return "M ".concat(-16 * Math.cos(r), " ").concat(AXLE_Y - 16 * Math.sin(r), " L ").concat(16 * Math.cos(r), " ").concat(AXLE_Y + 16 * Math.sin(r));
+  }).join(' ');
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "circus-cannon",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    transform: "translate(0 ".concat(AXLE_Y, ") rotate(").concat(-CANNON_ANGLE, ")")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -30 0 Q -38 -6 -39 -15",
+    stroke: INK,
+    strokeWidth: 1.8,
+    fill: "none",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "circus-fuse-spark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -39 -24 L -37 -18 L -31 -17 L -36 -14 L -35 -8 L -39 -12 L -44 -9 L -42 -14 L -47 -18 L -41 -18 Z",
+    fill: "#ffd23f",
+    stroke: "#ff8c1a",
+    strokeWidth: 1,
+    strokeLinejoin: "round"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    d: "M -30 -12 Q -36 0 -30 12 L 62 9 V -9 Z",
+    fill: "#3b7bff"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M -12 -11.4 V 11.4 M 34 -10 V 10",
+    stroke: "#ffd23f",
+    strokeWidth: 3.4
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 12 -5 L 13.5 -1.5 L 17 -1.5 L 14.3 0.8 L 15.3 4.3 L 12 2.2 L 8.7 4.3 L 9.7 0.8 L 7 -1.5 L 10.5 -1.5 Z",
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 0.8,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
+    x: 60,
+    y: -12,
+    width: 8,
+    height: 24,
+    rx: 2,
+    fill: "#e5484d"
+  }, ink, {
+    strokeWidth: 2
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: 68,
+    cy: 0,
+    rx: 2.5,
+    ry: 9,
+    fill: INK
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
+    cx: 0,
+    cy: AXLE_Y,
+    r: 19,
+    fill: "#e5484d"
+  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: spokes,
+    stroke: INK,
+    strokeWidth: 1.8
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: 0,
+    cy: AXLE_Y,
+    r: 4,
+    fill: "#e8b93c",
+    stroke: INK,
+    strokeWidth: 1.4
+  }));
+}
+
+/** A trapeze: its ropes and bar are drawn in screen pixels by whoever's swinging it (CircusRulesShow) */
+function Trapeze(_ref12) {
+  var elRef = _ref12.elRef;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "circus-trapeze",
+    style: {
+      display: 'none'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    className: "circus-ropes",
+    fill: "none",
+    stroke: "#efe3c2",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    className: "circus-bar",
+    fill: "none",
+    stroke: INK,
+    strokeLinecap: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    className: "circus-bar-paint",
+    fill: "none",
+    stroke: "#e5484d",
+    strokeLinecap: "round"
+  }));
+}
+
+/** Three juggling balls */
+function JugglingBalls(_ref13) {
+  var elRef = _ref13.elRef;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "circus-balls"
+  }, ['#e5484d', '#ffd23f', '#3b7bff'].map(function (color) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+      key: color,
+      style: {
+        display: 'none'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      r: 5.5,
+      fill: color,
+      stroke: INK,
+      strokeWidth: 1.6
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      cx: -1.8,
+      cy: -1.8,
+      r: 1.6,
+      fill: "#fff",
+      opacity: 0.75
+    }));
+  }));
+}
+
+/** A puff of smoke, for the cannon */
+function Smoke(_ref14) {
+  var elRef = _ref14.elRef;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "circus-smoke"
+  }, [[0, 0, 9], [-9, 4, 7], [8, 5, 7.5], [2, -8, 7], [-6, -6, 5.5]].map(function (_ref15) {
+    var _ref16 = _slicedToArray(_ref15, 3),
+      x = _ref16[0],
+      y = _ref16[1],
+      r = _ref16[2];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+      key: "".concat(x).concat(y),
+      cx: x,
+      cy: y,
+      r: r,
+      fill: "#ece8df",
+      stroke: INK,
+      strokeWidth: 1.4
+    });
+  }));
+}
+
+/** The cartoon burst for bumps, bonks and bangs */
+function Pow(_ref17) {
+  var elRef = _ref17.elRef;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-pow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M 0 -13 L 3.5 -5 L 12 -7 L 6 0 L 12 7 L 3.5 5 L 0 13 L -3.5 5 L -12 7 L -6 0 L -12 -7 L -3.5 -5 Z",
+    fill: "#ffd23f",
+    stroke: INK,
+    strokeWidth: 2,
+    strokeLinejoin: "round"
+  }));
+}
+
+// A speech bubble `width` wide, its tail on the left (or the right, near the edge of the screen)
+var bubblePath = function bubblePath(width, tailRight) {
+  var right = width - 10;
+  var mirror = function mirror(x) {
+    return width - 20 - x;
+  };
+  var tail = tailRight ? "H ".concat(mirror(0), " L ").concat(mirror(-2), " 20 L ").concat(mirror(8), " 12") : 'H 8 L -2 20 L 0 12';
+  return "M -4 -14 H ".concat(right - 6, " a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 ").concat(tail, " H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z");
+};
+
+/** A speech bubble: its text is set by whoever's talking (see sayIn) */
+function Bubble(_ref18) {
+  var elRef = _ref18.elRef;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    ref: elRef,
+    className: "crew-bark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: bubblePath(86, false),
+    fill: "#fff",
+    stroke: INK,
+    strokeWidth: 2.4,
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+    x: 33,
+    y: 4,
+    textAnchor: "middle",
+    fontSize: 12,
+    fontWeight: 900,
+    fill: INK,
+    fontFamily: "system-ui, sans-serif"
+  }));
+}
+
+/**
+ * Show `text` in a speech bubble whose tail points at (x, y), sized to fit, and flipped to point the other
+ * way when it would run off the right of the picture (`maxX`). Resolves when it's gone again.
+ */
+var sayIn = /*#__PURE__*/function () {
+  var _ref19 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(d, el, text, x, y, ms, scale) {
+    var _label$getComputedTex;
+    var maxX,
+      label,
+      width,
+      tailRight,
+      tipX,
+      _args = arguments;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            maxX = _args.length > 7 && _args[7] !== undefined ? _args[7] : Infinity;
+            label = el.querySelector('text');
+            label.textContent = text;
+            width = Math.max(48, (((_label$getComputedTex = label.getComputedTextLength) === null || _label$getComputedTex === void 0 ? void 0 : _label$getComputedTex.call(label)) || text.length * 8) + 20);
+            tailRight = x + (width - 12) * scale > maxX;
+            el.querySelector('path').setAttribute('d', bubblePath(width, tailRight));
+            label.setAttribute('x', width / 2 - 10);
+            tipX = tailRight ? width - 18 : -2;
+            el.setAttribute('transform', "translate(".concat(x - tipX * scale, " ").concat(y - 20 * scale, ") scale(").concat(scale, ")"));
+            el.classList.add('is-on');
+            _context.next = 12;
+            return d.wait(ms);
+          case 12:
+            el.classList.remove('is-on');
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return function sayIn(_x, _x2, _x3, _x4, _x5, _x6, _x7) {
+    return _ref19.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
+/***/ "./src/features/Mixup/CircusShow.jsx":
+/*!*******************************************!*\
+  !*** ./src/features/Mixup/CircusShow.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CircusFinale": () => (/* binding */ CircusFinale),
+/* harmony export */   "CircusRulesShow": () => (/* binding */ CircusRulesShow),
+/* harmony export */   "default": () => (/* binding */ CircusShow)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../TriviaCast/QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
+/* harmony import */ var _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CircusCast.jsx */ "./src/features/Mixup/CircusCast.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+// 🎪 Temple Mix Up's circus: two clowns, Oopsy and Daisy, who are always mid-act (three rings, three games).
+//   CircusShow:      the lobby, under the players card. They take turns at: arriving in a car that's far too small,
+//                    juggling (badly), the flower that squirts, a cream pie, and running away from the lion.
+//   CircusRulesShow: the rules screen. They swing in on two trapezes, flip down and walk across the bottom.
+//   CircusFinale:    the end credits. The ringmaster's big finish: one of them is fired out of a cannon.
+
+var easeOut = function easeOut(t) {
+  return 1 - Math.pow(1 - t, 3);
+};
+var easeIn = function easeIn(t) {
+  return t * t;
+};
+var easeInOut = function easeInOut(t) {
+  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+};
+var linear = function linear(t) {
+  return t;
+};
+var OOPSY = {
+  suit: '#e5484d',
+  trim: '#ffd23f',
+  pattern: 'dots',
+  shoes: '#ffd23f',
+  hair: '#ff8c1a',
+  hat: 'bowler',
+  brows: 'arches'
+};
+var DAISY = {
+  suit: '#3b7bff',
+  trim: '#ffffff',
+  pattern: 'stripes',
+  shoes: '#e5484d',
+  hair: '#2ea866',
+  hat: 'cone',
+  brows: 'diamonds',
+  flower: true
+};
+var reduceMotion = function reduceMotion() {
+  var _window$matchMedia, _window;
+  return (_window$matchMedia = (_window = window).matchMedia) === null || _window$matchMedia === void 0 ? void 0 : _window$matchMedia.call(_window, '(prefers-reduced-motion: reduce)').matches;
+};
+
+// The shared moves. `unit` is how many screen pixels a drawing unit is here; `maxX`, the right edge of the picture.
+var makeMoves = function makeMoves(d, getUnit) {
+  var getMaxX = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {
+    return Infinity;
+  };
+  var place = function place(a) {
+    var u = getUnit() * (a.size || 1);
+    a.el.setAttribute('transform', "translate(".concat(a.x, " ").concat(a.y - (a.lift || 0), ") rotate(").concat(a.rot || 0, ") scale(").concat((a.flip || 1) * u, " ").concat(u, ")"));
+  };
+  var walk = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(a, x) {
+      var speed,
+        gait,
+        from,
+        _args = arguments;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              speed = _args.length > 2 && _args[2] !== undefined ? _args[2] : 75;
+              gait = _args.length > 3 && _args[3] !== undefined ? _args[3] : 'crew-walking';
+              from = a.x;
+              a.el.classList.add(gait);
+              a.el.setAttribute('data-look', x < from ? 'left' : 'right');
+              _context.next = 7;
+              return d.tween(Math.abs(x - from) / (speed * getUnit()) * 1000, linear, function (t) {
+                a.x = from + (x - from) * t;
+                place(a);
+              });
+            case 7:
+              a.el.classList.remove(gait);
+              a.el.setAttribute('data-look', 'front');
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return function walk(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  var hop = function hop(a, x, y, height, ms) {
+    var fromX = a.x;
+    var fromY = a.y;
+    return d.tween(ms, easeInOut, function (t) {
+      a.x = fromX + (x - fromX) * t;
+      a.y = fromY + (y - fromY) * t;
+      a.lift = Math.sin(Math.PI * t) * height * getUnit();
+      place(a);
+    });
+  };
+  var say = function say(el, text, x, y, ms) {
+    return (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.sayIn)(d, el, text, x, y, ms, Math.max(0.55, getUnit()), getMaxX());
+  };
+  // A whole somersault, turning about the middle of the body rather than the feet
+  var flipTo = function flipTo(a, x, y, height, ms) {
+    var turns = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
+    var fromX = a.x;
+    var fromY = a.y;
+    var mid = 50 * getUnit() * (a.size || 1);
+    return d.tween(ms, linear, function (t) {
+      var spin = turns * 360 * easeInOut(t) * (x >= fromX ? 1 : -1);
+      var r = spin * (Math.PI / 180);
+      var cx = fromX + (x - fromX) * t;
+      var cy = fromY + (y - fromY) * t - mid - Math.sin(Math.PI * t) * height * getUnit();
+      a.rot = spin;
+      a.x = cx - mid * Math.sin(r);
+      a.y = cy + mid * Math.cos(r);
+      a.lift = 0;
+      place(a);
+    }).then(function () {
+      a.rot = 0;
+      a.x = x;
+      a.y = y;
+      place(a);
+    });
+  };
+  return {
+    place: place,
+    walk: walk,
+    hop: hop,
+    say: say,
+    flipTo: flipTo
+  };
+};
+var show = function show() {
+  for (var _len = arguments.length, els = new Array(_len), _key = 0; _key < _len; _key++) {
+    els[_key] = arguments[_key];
+  }
+  return els.forEach(function (el) {
+    el.style.display = '';
+  });
+};
+var hide = function hide() {
+  for (var _len2 = arguments.length, els = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    els[_key2] = arguments[_key2];
+  }
+  return els.forEach(function (el) {
+    el.style.display = 'none';
+  });
+};
+
+// A cartoon burst at (x, y)
+var burst = function burst(el, x, y, scale) {
+  el.setAttribute('transform', "translate(".concat(x, " ").concat(y, ") scale(").concat(scale, ")"));
+  el.classList.remove('is-on');
+  el.getBoundingClientRect();
+  el.classList.add('is-on');
+};
+function CircusShow(_ref2) {
+  var stageRef = _ref2.stageRef,
+    screenRef = _ref2.screenRef,
+    _ref2$playerCount = _ref2.playerCount,
+    playerCount = _ref2$playerCount === void 0 ? 0 : _ref2$playerCount;
+  var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var carRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var lionRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var ballsRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var squirtRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var powRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var sayRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var engineRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var svg = svgRef.current;
+    if (!svg || !stageRef.current || !screenRef.current) return undefined;
+    var L = null;
+    var measure = function measure() {
+      var _document$querySelect;
+      var root = svg.parentElement.getBoundingClientRect();
+      var stage = stageRef.current.getBoundingClientRect();
+      var screen = screenRef.current.getBoundingClientRect();
+      var pill = (_document$querySelect = document.querySelector('.cc-room-code')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getBoundingClientRect();
+      var left = stage.left - root.left;
+      var usable = stage.width - (pill ? Math.min(pill.width * 0.75, stage.width * 0.2) : 0);
+      L = {
+        u: Math.max(0.35, Math.min(stage.height / 122, usable / 290)),
+        floorY: stage.bottom - root.top - 3,
+        stageTop: stage.top - root.top,
+        left: left,
+        width: usable,
+        mid: left + usable * 0.5,
+        spotA: left + usable * 0.2,
+        spotB: left + usable * 0.8,
+        behindScreen: screen.right - root.left - 80,
+        // out of sight, behind the QR card
+        rootWidth: root.width,
+        offRight: root.width + 130
+      };
+      svg.setAttribute('viewBox', "0 0 ".concat(root.width, " ").concat(root.height));
+    };
+    measure();
+    var d = (0,_TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_1__.makeDirector)();
+    var _makeMoves = makeMoves(d, function () {
+        return L.u;
+      }, function () {
+        return L.rootWidth - 8;
+      }),
+      place = _makeMoves.place,
+      walk = _makeMoves.walk,
+      hop = _makeMoves.hop,
+      say = _makeMoves.say,
+      flipTo = _makeMoves.flipTo;
+    var A = {
+      x: L.offRight,
+      y: L.floorY,
+      size: 0.94,
+      el: aRef.current
+    };
+    var B = {
+      x: L.offRight,
+      y: L.floorY,
+      size: 1.0,
+      el: bRef.current
+    };
+    var car = {
+      x: L.offRight + 100,
+      y: L.floorY,
+      size: 1.15,
+      el: carRef.current
+    };
+    var lion = {
+      x: L.offRight + 120,
+      y: L.floorY,
+      size: 1.3,
+      el: lionRef.current
+    };
+    var balls = _toConsumableArray(ballsRef.current.children);
+    var headY = function headY(a) {
+      return a.y - 104 * L.u * a.size;
+    };
+    var bubbleAt = function bubbleAt(a, text) {
+      var ms = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1300;
+      return say(sayRef.current, text, a.x + 6 * L.u, Math.max(L.stageTop + 26 * L.u, headY(a)), ms);
+    };
+    var pow = function pow(x, y) {
+      return burst(powRef.current, x, y, L.u * 1.3);
+    };
+    var putBall = function putBall(ball, x, y) {
+      return ball.setAttribute('transform', "translate(".concat(x, " ").concat(y, ") scale(").concat(L.u, ")"));
+    };
+    var goHome = function goHome() {
+      return Promise.all([walk(A, L.spotA), walk(B, L.spotB)]);
+    };
+    var bow = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var _len3,
+          who,
+          _key3,
+          _args2 = arguments;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                for (_len3 = _args2.length, who = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+                  who[_key3] = _args2[_key3];
+                }
+                who.forEach(function (a) {
+                  return a.el.classList.add('quiz-bowing');
+                });
+                _context2.next = 4;
+                return d.wait(1600);
+              case 4:
+                who.forEach(function (a) {
+                  return a.el.classList.remove('quiz-bowing');
+                });
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+      return function bow() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
+
+    // 🚗 The little car pulls up, and two whole clowns climb out of it
+    var driveIn = /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var from, parked;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                show(car.el);
+                car.el.classList.add('has-clowns', 'is-bouncing');
+                car.x = L.offRight + 60;
+                place(car);
+                from = car.x;
+                _context3.next = 7;
+                return d.tween(1500, easeOut, function (t) {
+                  car.x = from + (L.mid - from) * t;
+                  place(car);
+                });
+              case 7:
+                car.el.classList.remove('is-bouncing');
+                _context3.next = 10;
+                return d.wait(300);
+              case 10:
+                car.el.classList.remove('has-clowns');
+                // Out they come, over the roof
+                A.x = car.x;
+                A.y = L.floorY;
+                show(A.el);
+                _context3.next = 16;
+                return hop(A, L.spotA, L.floorY, 78, 750);
+              case 16:
+                B.x = car.x;
+                B.y = L.floorY;
+                show(B.el);
+                _context3.next = 21;
+                return hop(B, L.spotB, L.floorY, 78, 750);
+              case 21:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['hands']);
+                _context3.next = 25;
+                return bubbleAt(B, 'TA-DA!', 1000);
+              case 25:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                // And off it goes, much lighter
+                parked = car.x;
+                car.el.classList.add('is-bouncing');
+                _context3.next = 31;
+                return d.tween(1100, easeIn, function (t) {
+                  car.x = parked + (-160 - parked) * t;
+                  place(car);
+                });
+              case 31:
+                car.el.classList.remove('is-bouncing');
+                hide(car.el);
+              case 33:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+      return function driveIn() {
+        return _ref4.apply(this, arguments);
+      };
+    }();
+
+    // 🚗 ...and later they squeeze back in, go once round the world, and climb out again
+    var carRide = /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var from, parked;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                show(car.el);
+                car.x = L.offRight + 60;
+                place(car);
+                from = car.x;
+                _context4.next = 6;
+                return d.tween(1300, easeOut, function (t) {
+                  car.x = from + (L.mid - from) * t;
+                  place(car);
+                });
+              case 6:
+                _context4.next = 8;
+                return d.wait(300);
+              case 8:
+                _context4.next = 10;
+                return bubbleAt(A, 'ALL ABOARD!', 1000);
+              case 10:
+                _context4.next = 12;
+                return Promise.all([walk(A, car.x - 34 * L.u, 90), walk(B, car.x + 34 * L.u, 90)]);
+              case 12:
+                _context4.next = 14;
+                return hop(A, car.x, L.floorY, 50, 450);
+              case 14:
+                hide(A.el);
+                car.el.classList.add('is-bouncing');
+                _context4.next = 18;
+                return d.wait(350);
+              case 18:
+                _context4.next = 20;
+                return hop(B, car.x, L.floorY, 50, 450);
+              case 20:
+                hide(B.el);
+                car.el.classList.add('has-clowns');
+                _context4.next = 24;
+                return d.wait(500);
+              case 24:
+                _context4.next = 26;
+                return say(sayRef.current, 'HONK HONK!', car.x - 10 * L.u, car.y - 70 * L.u, 900);
+              case 26:
+                parked = car.x;
+                _context4.next = 29;
+                return d.tween(1100, easeIn, function (t) {
+                  car.x = parked + (-160 - parked) * t;
+                  place(car);
+                });
+              case 29:
+                _context4.next = 31;
+                return d.wait(900);
+              case 31:
+                car.el.classList.remove('is-bouncing');
+                _context4.next = 34;
+                return driveIn();
+              case 34:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+      return function carRide() {
+        return _ref5.apply(this, arguments);
+      };
+    }();
+
+    // 🤹 Oopsy juggles, then throws them all to Daisy, who catches every one with their head
+    var juggle = /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        var hands, head, throwOne;
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                hands = function hands() {
+                  return {
+                    left: A.x - 13 * L.u,
+                    right: A.x + 13 * L.u,
+                    y: A.y - 36 * L.u * A.size
+                  };
+                };
+                balls.forEach(function (ball) {
+                  putBall(ball, hands().left, hands().y);
+                  show(ball);
+                });
+                _context6.next = 4;
+                return d.tween(3000, linear, function (t) {
+                  var seconds = t * 3;
+                  var h = hands();
+                  balls.forEach(function (ball, i) {
+                    var phase = (seconds * 1.4 + i / 3) % 1;
+                    // Up from the left hand and over to the right, then back across low
+                    var p = phase < 0.62 ? phase / 0.62 : (phase - 0.62) / 0.38;
+                    var x = phase < 0.62 ? h.left + (h.right - h.left) * p : h.right + (h.left - h.right) * p;
+                    var height = phase < 0.62 ? 58 : 6;
+                    putBall(ball, x, h.y - 4 * height * L.u * p * (1 - p));
+                  });
+                });
+              case 4:
+                _context6.next = 6;
+                return bubbleAt(A, 'CATCH!', 700);
+              case 6:
+                // One at a time, onto Daisy's head
+                head = {
+                  x: B.x,
+                  y: B.y - 98 * L.u * B.size
+                };
+                throwOne = /*#__PURE__*/function () {
+                  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(ball, i) {
+                    var fromX, fromY, landX;
+                    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                      while (1) {
+                        switch (_context5.prev = _context5.next) {
+                          case 0:
+                            _context5.next = 2;
+                            return d.wait(i * 330);
+                          case 2:
+                            fromX = A.x + 13 * L.u;
+                            fromY = A.y - 40 * L.u;
+                            _context5.next = 6;
+                            return d.tween(650, linear, function (t) {
+                              putBall(ball, fromX + (head.x - fromX) * t, fromY + (head.y - fromY) * t - Math.sin(Math.PI * t) * 46 * L.u);
+                            });
+                          case 6:
+                            pow(head.x, head.y);
+                            // ...and down to the floor, with a bounce
+                            landX = head.x + (i - 1) * 22 * L.u;
+                            _context5.next = 10;
+                            return d.tween(520, linear, function (t) {
+                              putBall(ball, head.x + (landX - head.x) * t, head.y + (L.floorY - 5 * L.u - head.y) * t * t - Math.sin(Math.PI * t) * 10 * L.u);
+                            });
+                          case 10:
+                          case "end":
+                            return _context5.stop();
+                        }
+                      }
+                    }, _callee5);
+                  }));
+                  return function throwOne(_x3, _x4) {
+                    return _ref7.apply(this, arguments);
+                  };
+                }();
+                _context6.next = 10;
+                return Promise.all(balls.map(function (ball, i) {
+                  return throwOne(ball, i);
+                }));
+              case 10:
+                B.el.classList.add('circus-dizzy');
+                _context6.next = 13;
+                return d.wait(500);
+              case 13:
+                _context6.next = 15;
+                return bubbleAt(B, 'BONK BONK BONK', 1100);
+              case 15:
+                B.el.classList.remove('circus-dizzy');
+                balls.forEach(function (ball) {
+                  return hide(ball);
+                });
+                _context6.next = 19;
+                return bow(A);
+              case 19:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+      return function juggle() {
+        return _ref6.apply(this, arguments);
+      };
+    }();
+
+    // 🌼 "Smell my flower!" Never smell the flower.
+    var theFlower = /*#__PURE__*/function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        var squirt, from, to;
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return bubbleAt(B, 'SMELL MY FLOWER!', 1200);
+              case 2:
+                _context7.next = 4;
+                return walk(A, B.x - 54 * L.u, 80);
+              case 4:
+                A.el.setAttribute('data-look', 'right');
+                B.el.setAttribute('data-look', 'left');
+                _context7.next = 8;
+                return d.wait(300);
+              case 8:
+                squirt = squirtRef.current;
+                from = {
+                  x: B.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.FLOWER.x * L.u * B.size,
+                  y: B.y + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.FLOWER.y * L.u * B.size
+                };
+                to = {
+                  x: A.x + 4 * L.u,
+                  y: A.y - 74 * L.u * A.size
+                };
+                squirt.setAttribute('d', "M ".concat(from.x, " ").concat(from.y, " Q ").concat((from.x + to.x) / 2, " ").concat(Math.min(from.y, to.y) - 26 * L.u, " ").concat(to.x, " ").concat(to.y));
+                squirt.style.strokeWidth = "".concat(2.6 * L.u, "px");
+                squirt.style.strokeDasharray = "".concat(2.4 * L.u, " ").concat(5 * L.u);
+                show(squirt);
+                A.el.classList.add('quiz-scared');
+                _context7.next = 18;
+                return d.tween(1100, linear, function (t) {
+                  squirt.style.strokeDashoffset = "".concat(-t * 70 * L.u, "px");
+                });
+              case 18:
+                hide(squirt);
+                A.el.classList.remove('quiz-scared');
+                _context7.next = 22;
+                return bubbleAt(A, 'HEY!', 800);
+              case 22:
+                // Payback
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['horn']);
+                _context7.next = 25;
+                return d.wait(250);
+              case 25:
+                _context7.next = 27;
+                return bubbleAt(A, 'HONK!', 600);
+              case 27:
+                _context7.next = 29;
+                return hop(B, B.x + 10 * L.u, B.y, 34, 380);
+              case 29:
+                _context7.next = 31;
+                return bubbleAt(B, 'EEK!', 800);
+              case 31:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+                _context7.next = 34;
+                return walk(A, L.spotA, 80);
+              case 34:
+                _context7.next = 36;
+                return hop(B, L.spotB, B.y, 6, 300);
+              case 36:
+                B.el.setAttribute('data-look', 'front');
+              case 37:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+      return function theFlower() {
+        return _ref8.apply(this, arguments);
+      };
+    }();
+
+    // 🥧 A sneak attack with a cream pie, and those very long shoes
+    var thePie = /*#__PURE__*/function () {
+      var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['pie']);
+                _context8.next = 3;
+                return d.wait(400);
+              case 3:
+                _context8.next = 5;
+                return walk(B, L.mid + 8 * L.u, 50);
+              case 5:
+                _context8.next = 7;
+                return d.tween(320, easeIn, function (t) {
+                  B.rot = -82 * t;
+                  place(B);
+                });
+              case 7:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['piefaced']);
+                pow(B.x - 70 * L.u * B.size, L.floorY - 8 * L.u);
+                _context8.next = 11;
+                return bubbleAt(A, 'HA HA HA!', 1100);
+              case 11:
+                _context8.next = 13;
+                return d.tween(500, easeInOut, function (t) {
+                  B.rot = -82 * (1 - t);
+                  place(B);
+                });
+              case 13:
+                B.rot = 0;
+                _context8.next = 16;
+                return d.wait(300);
+              case 16:
+                _context8.next = 18;
+                return bubbleAt(B, '...LEMON.', 1100);
+              case 18:
+                _context8.next = 20;
+                return walk(B, L.spotB, 70);
+              case 20:
+                _context8.next = 22;
+                return d.wait(500);
+              case 22:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+              case 23:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+      return function thePie() {
+        return _ref9.apply(this, arguments);
+      };
+    }();
+
+    // 🦁 The lion's out! Everybody run (it's only curious)
+    var theLion = /*#__PURE__*/function () {
+      var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                show(lion.el);
+                lion.x = L.offRight + 40;
+                lion.flip = 1;
+                place(lion);
+                _context9.next = 6;
+                return walk(lion, L.spotB + 92 * L.u, 70);
+              case 6:
+                lion.el.setAttribute('data-look', 'left');
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(lion.el, ['roar']);
+                lion.el.classList.add('is-roaring');
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['hands']);
+                A.el.classList.add('quiz-scared');
+                B.el.classList.add('quiz-scared');
+                _context9.next = 15;
+                return say(sayRef.current, 'ROAR!', lion.x - 40 * L.u * lion.size, lion.y - 80 * L.u * lion.size, 1000);
+              case 15:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(lion.el, []);
+                lion.el.classList.remove('is-roaring');
+                A.el.classList.remove('quiz-scared');
+                B.el.classList.remove('quiz-scared');
+                // Behind the TV card they go
+                _context9.next = 21;
+                return Promise.all([walk(A, L.behindScreen, 260, 'crew-running'), d.wait(150).then(function () {
+                  return walk(B, L.behindScreen, 260, 'crew-running');
+                })]);
+              case 21:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                _context9.next = 25;
+                return walk(lion, L.mid, 60);
+              case 25:
+                _context9.next = 27;
+                return say(sayRef.current, 'SNIFF SNIFF', lion.x - 40 * L.u * lion.size, lion.y - 80 * L.u * lion.size, 1100);
+              case 27:
+                _context9.next = 29;
+                return d.wait(300);
+              case 29:
+                lion.flip = -1;
+                _context9.next = 32;
+                return walk(lion, L.offRight + 40, 75);
+              case 32:
+                hide(lion.el);
+                _context9.next = 35;
+                return d.wait(600);
+              case 35:
+                _context9.next = 37;
+                return Promise.all([walk(A, L.spotA, 45), walk(B, L.spotB, 60)]);
+              case 37:
+                _context9.next = 39;
+                return bubbleAt(B, 'IS IT GONE?', 1000);
+              case 39:
+                _context9.next = 41;
+                return bubbleAt(A, 'PHEW!', 800);
+              case 41:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }));
+      return function theLion() {
+        return _ref10.apply(this, arguments);
+      };
+    }();
+    var run = /*#__PURE__*/function () {
+      var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        var scenes, i;
+        return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                hide(A.el, B.el);
+                place(car);
+                _context10.next = 6;
+                return driveIn();
+              case 6:
+                scenes = [juggle, theFlower, thePie, theLion, carRide];
+                i = 0;
+              case 8:
+                if (d.isDead()) {
+                  _context10.next = 18;
+                  break;
+                }
+                _context10.next = 11;
+                return d.wait(900);
+              case 11:
+                _context10.next = 13;
+                return scenes[i]();
+              case 13:
+                _context10.next = 15;
+                return d.wait(1400);
+              case 15:
+                i = (i + 1) % scenes.length;
+                _context10.next = 8;
+                break;
+              case 18:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee10);
+      }));
+      return function run() {
+        return _ref11.apply(this, arguments);
+      };
+    }();
+    svg.classList.add('is-ready');
+    if (reduceMotion()) {
+      A.x = L.spotA;
+      B.x = L.spotB;
+      place(A);
+      place(B);
+      (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+      (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+    } else {
+      run();
+    }
+    var observer = new ResizeObserver(function () {
+      measure();
+      [A, B, car, lion].forEach(function (a) {
+        a.y = L.floorY;
+        place(a);
+      });
+    });
+    observer.observe(svg.parentElement);
+    observer.observe(stageRef.current);
+    engineRef.current = {
+      greet: function greet() {
+        if (A.el.style.display !== 'none') bubbleAt(A, 'A VOLUNTEER!', 1000);
+      }
+    };
+    return function () {
+      engineRef.current = null;
+      observer.disconnect();
+      d.stop();
+    };
+  }, []);
+
+  // Someone new joined: the clowns have spotted a volunteer
+  var lastCount = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(playerCount);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var _engineRef$current;
+    if (playerCount > lastCount.current) (_engineRef$current = engineRef.current) === null || _engineRef$current === void 0 ? void 0 : _engineRef$current.greet();
+    lastCount.current = playerCount;
+  }, [playerCount]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    ref: svgRef,
+    className: "cc-crew circus-show",
+    "aria-hidden": "true",
+    preserveAspectRatio: "none"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
+    className: "crew-world"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+    elRef: aRef
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+    elRef: bRef
+  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.ClownCar, {
+    elRef: carRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Lion, {
+    elRef: lionRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    ref: squirtRef,
+    className: "circus-squirt",
+    fill: "none",
+    stroke: "#6cc8ff",
+    strokeLinecap: "round",
+    style: {
+      display: 'none'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.JugglingBalls, {
+    elRef: ballsRef
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Pow, {
+    elRef: powRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Bubble, {
+    elRef: sayRef
+  }));
+}
+
+/** 🎪 The rules screen: two trapezes swing in from the top, the clowns let go, flip down and stroll along the bottom */
+function CircusRulesShow() {
+  var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var trapARef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var trapBRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var svg = svgRef.current;
+    var W = 0;
+    var H = 0;
+    var u = 1;
+    var measure = function measure() {
+      var box = svg.getBoundingClientRect();
+      W = box.width;
+      H = box.height;
+      u = Math.max(0.5, H * 0.14 / 100);
+      svg.setAttribute('viewBox', "0 0 ".concat(W, " ").concat(H));
+    };
+    measure();
+    var d = (0,_TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_1__.makeDirector)();
+    var _makeMoves2 = makeMoves(d, function () {
+        return u;
+      }),
+      place = _makeMoves2.place,
+      walk = _makeMoves2.walk,
+      flipTo = _makeMoves2.flipTo;
+    var A = {
+      x: -400,
+      y: -400,
+      size: 0.94,
+      el: aRef.current
+    };
+    var B = {
+      x: -400,
+      y: -400,
+      size: 1.0,
+      el: bRef.current
+    };
+    var floor = function floor() {
+      return H - 6;
+    };
+
+    // Draw a trapeze hanging from (px, py) at `deg` degrees from straight down, with the clown (if any) on it
+    var drawSwing = function drawSwing(trap, px, py, length, deg, clown, size) {
+      var r = deg * (Math.PI / 180);
+      var sin = Math.sin(r);
+      var cos = Math.cos(r);
+      var half = 30 * u * size;
+      var bx = px + length * sin;
+      var by = py + length * cos;
+      var end1 = [bx - half * cos, by + half * sin];
+      var end2 = [bx + half * cos, by - half * sin];
+      trap.querySelector('.circus-ropes').setAttribute('d', "M ".concat(px - half, " ").concat(py, " L ").concat(end1[0], " ").concat(end1[1], " M ").concat(px + half, " ").concat(py, " L ").concat(end2[0], " ").concat(end2[1]));
+      trap.querySelector('.circus-ropes').style.strokeWidth = "".concat(2 * u, "px");
+      ['.circus-bar', '.circus-bar-paint'].forEach(function (sel, i) {
+        var bar = trap.querySelector(sel);
+        bar.setAttribute('d', "M ".concat(end1[0], " ").concat(end1[1], " L ").concat(end2[0], " ").concat(end2[1]));
+        bar.style.strokeWidth = "".concat((i ? 3 : 6) * u, "px");
+      });
+      if (clown) {
+        // Hanging by the hands: the feet carry on down the line of the ropes
+        var reach = -_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.HANDS_UP_Y * u * clown.size;
+        clown.x = bx + reach * sin;
+        clown.y = by + reach * cos;
+        clown.rot = -deg;
+        clown.lift = 0;
+        place(clown);
+      }
+    };
+
+    // In on the trapeze from one side, a few swings, then let go at the bottom of a swing and flip down
+    var arrive = /*#__PURE__*/function () {
+      var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(clown, trap, fromLeft) {
+        var px, py, length, side, angle, SWING_MS, away, landX;
+        return _regeneratorRuntime().wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                px = fromLeft ? W * 0.32 : W * 0.68;
+                py = -H * 0.22;
+                length = H * 0.58;
+                side = fromLeft ? -1 : 1;
+                angle = function angle(t) {
+                  return side * 78 * Math.cos(3 * Math.PI * t) * (1 - 0.45 * t);
+                };
+                trap.style.display = '';
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(clown.el, ['hands']);
+                SWING_MS = 3400;
+                _context11.next = 10;
+                return d.tween(SWING_MS, linear, function (t) {
+                  return drawSwing(trap, px, py, length, angle(t * (5 / 6)), clown, clown.size);
+                });
+              case 10:
+                if (!d.isDead()) {
+                  _context11.next = 12;
+                  break;
+                }
+                return _context11.abrupt("return");
+              case 12:
+                // Let go: the empty trapeze swings on, up and away
+                away = d.tween(1100, easeOut, function (t) {
+                  return drawSwing(trap, px, py, length, -side * 88 * t, null, clown.size);
+                });
+                landX = clown.x - side * W * 0.1;
+                _context11.next = 16;
+                return flipTo(clown, landX, floor(), 70, 950);
+              case 16:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(clown.el, ['hands']);
+                _context11.next = 19;
+                return away;
+              case 19:
+                trap.style.display = 'none';
+                _context11.next = 22;
+                return d.wait(700);
+              case 22:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(clown.el, []);
+              case 23:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11);
+      }));
+      return function arrive(_x5, _x6, _x7) {
+        return _ref12.apply(this, arguments);
+      };
+    }();
+    var run = /*#__PURE__*/function () {
+      var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+        return _regeneratorRuntime().wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                if (d.isDead()) {
+                  _context12.next = 11;
+                  break;
+                }
+                _context12.next = 3;
+                return Promise.all([arrive(A, trapARef.current, true), d.wait(700).then(function () {
+                  return arrive(B, trapBRef.current, false);
+                })]);
+              case 3:
+                _context12.next = 5;
+                return d.wait(300);
+              case 5:
+                _context12.next = 7;
+                return Promise.all([walk(A, W + 90 * u, 130), walk(B, -90 * u, 130)]);
+              case 7:
+                _context12.next = 9;
+                return d.wait(1200);
+              case 9:
+                _context12.next = 0;
+                break;
+              case 11:
+              case "end":
+                return _context12.stop();
+            }
+          }
+        }, _callee12);
+      }));
+      return function run() {
+        return _ref13.apply(this, arguments);
+      };
+    }();
+    svg.classList.add('is-ready');
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+    if (reduceMotion()) {
+      A.x = W * 0.3;
+      B.x = W * 0.7;
+      A.y = floor();
+      B.y = floor();
+      place(A);
+      place(B);
+    } else {
+      place(A);
+      place(B);
+      run();
+    }
+    var observer = new ResizeObserver(measure);
+    observer.observe(svg);
+    return function () {
+      observer.disconnect();
+      d.stop();
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    ref: svgRef,
+    className: "cc-crew circus-rules-show",
+    "aria-hidden": "true",
+    preserveAspectRatio: "none"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Trapeze, {
+    elRef: trapARef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Trapeze, {
+    elRef: trapBRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+    elRef: aRef
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+    elRef: bRef
+  }, DAISY)));
+}
+
+/** 💥 The end credits: the ringmaster announces the big finish, and Oopsy is fired out of a cannon */
+function CircusFinale(_ref14) {
+  var onDone = _ref14.onDone;
+  var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var ringRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var cannonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var smokeRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var powRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var sayRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var box = svgRef.current.getBoundingClientRect();
+    var extra = box.height ? Math.max(0, (box.width / (box.height / 100) - 400) / 2) : 0;
+    var offLeft = -extra - 60;
+    var offRight = 400 + extra + 120;
+    var FLOOR = 96;
+    var S = 0.7;
+    var d = (0,_TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_1__.makeDirector)();
+    var _makeMoves3 = makeMoves(d, function () {
+        return S;
+      }, function () {
+        return 400 + extra - 4;
+      }),
+      place = _makeMoves3.place,
+      walk = _makeMoves3.walk,
+      hop = _makeMoves3.hop,
+      say = _makeMoves3.say;
+    var A = {
+      x: offRight + 40,
+      y: FLOOR,
+      size: 0.94,
+      el: aRef.current
+    };
+    var B = {
+      x: offRight + 80,
+      y: FLOOR,
+      size: 1.0,
+      el: bRef.current
+    };
+    var ring = {
+      x: offLeft,
+      y: FLOOR,
+      size: 1.05,
+      el: ringRef.current
+    };
+    var cannon = {
+      x: offRight,
+      y: FLOOR,
+      size: 1,
+      el: cannonRef.current
+    };
+    var muzzle = function muzzle() {
+      return {
+        x: cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.x * S,
+        y: FLOOR + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.y * S
+      };
+    };
+    var puff = function puff() {
+      var m = muzzle();
+      burst(smokeRef.current, m.x, m.y, S);
+      burst(powRef.current, m.x + 6, m.y - 4, S * 1.8);
+    };
+    var sayAbove = function sayAbove(a, text, ms) {
+      return say(sayRef.current, text, a.x + 6 * S, FLOOR - 116 * S * a.size, ms);
+    };
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+    [A, B, ring, cannon].forEach(place);
+    if (reduceMotion()) {
+      onDone === null || onDone === void 0 ? void 0 : onDone();
+      return function () {
+        return d.stop();
+      };
+    }
+    var run = /*#__PURE__*/function () {
+      var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+        var m, from, recoil;
+        return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                _context13.next = 2;
+                return d.wait(1000);
+              case 2:
+                // The ringmaster steps out
+                show(ring.el);
+                _context13.next = 5;
+                return walk(ring, 70, 80);
+              case 5:
+                ring.el.setAttribute('data-look', 'right');
+                _context13.next = 8;
+                return sayAbove(ring, 'AND NOW...', 1100);
+              case 8:
+                // In comes the cannon, pushed by the clowns
+                show(cannon.el);
+                _context13.next = 11;
+                return Promise.all([d.tween(2200, easeOut, function (t) {
+                  cannon.x = offRight + (240 - offRight) * t;
+                  place(cannon);
+                }), d.tween(2200, easeOut, function (t) {
+                  A.x = offRight + 40 + (282 - offRight - 40) * t;
+                  B.x = offRight + 80 + (312 - offRight - 80) * t;
+                  place(A);
+                  place(B);
+                })]);
+              case 11:
+                _context13.next = 13;
+                return sayAbove(ring, 'THE HUMAN CANNONBALL!', 1300);
+              case 13:
+                // Helmet on, and in
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet']);
+                _context13.next = 16;
+                return d.wait(400);
+              case 16:
+                m = muzzle();
+                _context13.next = 19;
+                return hop(A, m.x, m.y + 20, 30, 650);
+              case 19:
+                hide(A.el);
+                // Daisy lights the fuse
+                _context13.next = 22;
+                return walk(B, cannon.x - 34, 80);
+              case 22:
+                cannon.el.classList.add('is-lit');
+                _context13.next = 25;
+                return sayAbove(ring, '3...', 550);
+              case 25:
+                _context13.next = 27;
+                return sayAbove(ring, '2...', 550);
+              case 27:
+                _context13.next = 29;
+                return sayAbove(ring, '1...', 550);
+              case 29:
+                cannon.el.classList.remove('is-lit');
+                // BOOM: out and up, right off the top of the screen
+                puff();
+                from = muzzle();
+                A.x = from.x;
+                A.y = from.y + 30;
+                show(A.el);
+                recoil = d.tween(400, easeOut, function (t) {
+                  cannon.x = 240 - Math.sin(Math.PI * t) * 8;
+                  place(cannon);
+                });
+                _context13.next = 38;
+                return d.tween(900, linear, function (t) {
+                  A.x = from.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_AIM.x * 330 * t;
+                  A.y = from.y + 30 + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_AIM.y * 330 * t - 160 * t * t;
+                  A.rot = 720 * t;
+                  place(A);
+                });
+              case 38:
+                _context13.next = 40;
+                return recoil;
+              case 40:
+                hide(A.el);
+                A.rot = 0;
+                _context13.next = 44;
+                return d.wait(500);
+              case 44:
+                _context13.next = 46;
+                return walk(B, cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.x * S + 14, 70);
+              case 46:
+                B.el.setAttribute('data-look', 'left');
+                _context13.next = 49;
+                return sayAbove(B, 'HELLO?', 800);
+              case 49:
+                puff();
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['sooty']);
+                B.el.classList.add('quiz-scared');
+                _context13.next = 54;
+                return d.wait(600);
+              case 54:
+                B.el.classList.remove('quiz-scared');
+                _context13.next = 57;
+                return d.wait(300);
+              case 57:
+                // And here's Oopsy again, coming down
+                A.x = 350;
+                A.y = -260;
+                show(A.el);
+                _context13.next = 62;
+                return d.tween(700, easeIn, function (t) {
+                  A.y = -260 + (FLOOR + 260) * t;
+                  place(A);
+                });
+              case 62:
+                burst(powRef.current, A.x, FLOOR - 4, S * 1.4);
+                _context13.next = 65;
+                return d.wait(250);
+              case 65:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet', 'hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['sooty', 'hands']);
+                _context13.next = 69;
+                return sayAbove(A, 'TA-DA!', 1100);
+              case 69:
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['sooty']);
+                _context13.next = 73;
+                return bow(ring, A, B);
+              case 73:
+                _context13.next = 75;
+                return d.wait(500);
+              case 75:
+                onDone === null || onDone === void 0 ? void 0 : onDone();
+              case 76:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13);
+      }));
+      return function run() {
+        return _ref15.apply(this, arguments);
+      };
+    }();
+    var bow = /*#__PURE__*/function () {
+      var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+        var _len4,
+          who,
+          _key4,
+          _args14 = arguments;
+        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                for (_len4 = _args14.length, who = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+                  who[_key4] = _args14[_key4];
+                }
+                who.forEach(function (a) {
+                  return a.el.classList.add('quiz-bowing');
+                });
+                _context14.next = 4;
+                return d.wait(1600);
+              case 4:
+                who.forEach(function (a) {
+                  return a.el.classList.remove('quiz-bowing');
+                });
+              case 5:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14);
+      }));
+      return function bow() {
+        return _ref16.apply(this, arguments);
+      };
+    }();
+    run();
+    return function () {
+      return d.stop();
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    ref: svgRef,
+    className: "cc-crew cc-round-scene-art",
+    viewBox: "0 0 400 100",
+    preserveAspectRatio: "xMidYMax meet",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Ringmaster, {
+    elRef: ringRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+    elRef: bRef
+  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Cannon, {
+    elRef: cannonRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+    elRef: aRef
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Smoke, {
+    elRef: smokeRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Pow, {
+    elRef: powRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Bubble, {
+    elRef: sayRef
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/features/Mixup/DrawingCanvas.jsx":
 /*!**********************************************!*\
   !*** ./src/features/Mixup/DrawingCanvas.jsx ***!
@@ -26251,11 +28967,13 @@ function MixupManager() {
   });
 }
 
-// What the narrator says to open each round
+// What the narrator says to open each round. It's a three-ring circus: each kind of round is a ring, and the
+// ringmaster calls out the first round in each one.
 var introLine = function introLine(room) {
   var round = room.round;
   var kicker = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_15__.roundKicker)(room.currentRound, room.totalRounds);
-  var opening = kicker === 'Final round!' ? 'Final round!' : "".concat(kicker === '⅓ of the way there!' ? 'A third of the way there! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! ' : '', "Round ").concat(room.currentRound, ".");
+  var ring = room.currentRound === 1 ? 'Ring one! ' : kicker === '⅓ of the way there!' ? 'A third of the way there! On to ring two! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! On to ring three! ' : '';
+  var opening = kicker === 'Final round!' ? 'Final round!' : "".concat(ring, "Round ").concat(room.currentRound, ".");
   if (round.type === 'meme') return "".concat(opening, " Meme time! Write the funniest caption you can.");
   if (round.type === 'draw') return "".concat(opening, " Pictionary! ").concat(round.drawerName, ", you're drawing. Everyone else, get guessing!");
   return "".concat(opening, " Threefold! Match as many people as you can.").concat(round.judgeName ? " ".concat(round.judgeName, ", you're the judge.") : '');
@@ -26467,7 +29185,7 @@ function MixupTV(_ref) {
           roomCode: room.roomCode,
           players: playersArray,
           musicTrack: lobbyTrack,
-          spyShow: true,
+          circusShow: true,
           scoreFor: function scoreFor(player) {
             var _room$snake, _room$snake$scores, _room$snake$scores$pl;
             return (_room$snake = room.snake) === null || _room$snake === void 0 ? void 0 : (_room$snake$scores = _room$snake.scores) === null || _room$snake$scores === void 0 ? void 0 : (_room$snake$scores$pl = _room$snake$scores[player.name]) === null || _room$snake$scores$pl === void 0 ? void 0 : _room$snake$scores$pl.eaten;
@@ -27214,7 +29932,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DrawingCanvas.jsx */ "./src/features/Mixup/DrawingCanvas.jsx");
 /* harmony import */ var _Lists_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Lists/ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
 /* harmony import */ var _MatchReview_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MatchReview.jsx */ "./src/features/Mixup/MatchReview.jsx");
-/* harmony import */ var _SpyShow_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SpyShow.jsx */ "./src/features/Mixup/SpyShow.jsx");
+/* harmony import */ var _CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CircusShow.jsx */ "./src/features/Mixup/CircusShow.jsx");
 /* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -27232,8 +29950,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-// 🎙️ What the host voice says while the rules are on screen
-var MIXUP_RULES_NARRATION = ["Welcome to Temple Mix Up! Three games in one.", "First up, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.", "Then Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.", "And to finish, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.", "Let's mix it up!"];
+// 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to a three-ring circus
+var MIXUP_RULES_NARRATION = ["Welcome, one and all, to the Temple Mix Up circus! Three rings, three games.", "In ring one, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.", "In ring two, Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.", "And in ring three, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.", "On with the show. Let's mix it up!"];
 
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
 var NARRATION_GRACE_SECONDS = 20;
@@ -27378,8 +30096,8 @@ function MixupRulesTV(_ref3) {
   }, [timeLeft, isNarrating]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fullscreen-gameplay-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyShow_jsx__WEBPACK_IMPORTED_MODULE_6__.SpyRulesShow, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100 p-3 w-100 mx-rules-with-spies"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__.CircusRulesShow, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-column h-100 p-3 w-100 mx-rules-with-clowns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fullscreen-gameplay-header text-center"
   }, "How To Play Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -27397,7 +30115,7 @@ function MixupRulesTV(_ref3) {
       className: "d-flex flex-column align-items-center text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mx-rule-step"
-    }, "Part ", i + 1, " \xB7 ", each, " rounds"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Ring ", i + 1, " \xB7 ", each, " rounds"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mx-rule-icon"
     }, ROUND_LOOKS[type].icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "mx-rule-title"
@@ -27745,13 +30463,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
 /* harmony import */ var _mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixupCreate.js */ "./src/features/Mixup/mixupCreate.js");
 /* harmony import */ var _Menu_LevelPicker_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/LevelPicker.jsx */ "./src/features/Menu/LevelPicker.jsx");
@@ -27759,12 +30477,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
 /* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
 /* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../gameVisibility.js */ "./src/gameVisibility.js");
+/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -27783,7 +30503,7 @@ var MIXUP_ROUND_OPTIONS = [9, 12, 15];
 function MixupSetup() {
   var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_7__.useGameVisibility)(),
     visibleDecks = _useGameVisibility.visibleDecks;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isCreatingRoom = _useState2[0],
@@ -27801,26 +30521,31 @@ function MixupSetup() {
     document.body.classList.remove('modal-open');
     document.body.style.paddingRight = '';
   }, []);
+
+  // Start downloading the circus lobby song now, so it plays the moment a deck is tapped
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__.preloadLobbyMusic)('mixup');
+  }, []);
   var each = totalRounds / 3;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Header, {
     className: "main-card-header"
-  }, "Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
-    className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: "bg-light border-0 shadow-sm m-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
+  }, "Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
     className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "g-2 align-items-center"
+    className: "bg-light border-0 shadow-sm m-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+    className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    className: "g-2 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     xs: 4
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     className: "w-100 rounded shadow-sm"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     xs: 8,
     className: "text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -27865,10 +30590,10 @@ function MixupSetup() {
     className: "mx-2 small fw-bold text-muted text-uppercase"
   }, "Then Tap a Deck to Start"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "g-2"
   }, visibleDecks('mixup', _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__.MIXUP_DECKS).map(function (deck, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
       xs: 6,
       key: deck.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -27884,21 +30609,21 @@ function MixupSetup() {
       },
       ariaLabel: "Create a Temple Mix Up room with the ".concat(deck.title)
     }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     variant: "outline-secondary",
     className: "w-100 fw-bold mt-3",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return navigate('/home');
     }
-  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -28039,7 +30764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _celebrationSounds_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../celebrationSounds.js */ "./src/celebrationSounds.js");
-/* harmony import */ var _SpyShow_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SpyShow.jsx */ "./src/features/Mixup/SpyShow.jsx");
+/* harmony import */ var _CircusShow_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CircusShow.jsx */ "./src/features/Mixup/CircusShow.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -28437,7 +31162,7 @@ function SnakeSnack(_ref2) {
   })));
 }
 
-/** 🎬 After the final scores are read: the lobby game's results roll up the TV to a march, while the police finally catch the spies */
+/** 🎬 After the final scores are read: the lobby game's results roll up the TV to a march, while the clowns put on their big finish */
 function SnakeCredits(_ref4) {
   var snake = _ref4.snake,
     onDone = _ref4.onDone;
@@ -28451,23 +31176,23 @@ function SnakeCredits(_ref4) {
     return (0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_2__.startCreditsMarch)();
   }, []);
 
-  // They finish when the credits have rolled and the spies have been taken away, whichever's last
+  // They finish when the credits have rolled and the clowns have taken their bow, whichever's last
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState8 = _slicedToArray(_useState7, 2),
     rollDone = _useState8[0],
     setRollDone = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState10 = _slicedToArray(_useState9, 2),
-    arrestDone = _useState10[0],
-    setArrestDone = _useState10[1];
+    finaleDone = _useState10[0],
+    setFinaleDone = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (rollDone && arrestDone) onDone === null || onDone === void 0 ? void 0 : onDone();
-  }, [rollDone, arrestDone]);
+    if (rollDone && finaleDone) onDone === null || onDone === void 0 ? void 0 : onDone();
+  }, [rollDone, finaleDone]);
   var longest = hasPlayers ? players.reduce(function (best, s) {
     return s.longest > best.longest ? s : best;
   }, players[0]) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "tp-credits tp-chase-spy",
+    className: "tp-credits tp-chase-circus",
     "aria-live": "polite"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-chase-floor"
@@ -28506,1932 +31231,35 @@ function SnakeCredits(_ref4) {
     className: "tp-credits-line"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "tp-credits-name"
-  }, "Agent Oops"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, "Oopsy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "tp-credits-role"
-  }, "as Not a Spy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "as the Clown")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits-line"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "tp-credits-name"
-  }, "Agent Whoops"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, "Daisy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "tp-credits-role"
-  }, "as Also Not a Spy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "as the Other Clown")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tp-credits-line"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tp-credits-name"
+  }, "The Ringmaster"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tp-credits-role"
+  }, "as the Only Grown-Up")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "tp-credits-line"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tp-credits-name"
+  }, "The Lion"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tp-credits-role"
+  }, "as a Big Softie")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "tp-credits-end"
   }, "Thanks for playing!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "cc-round-scene"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyShow_jsx__WEBPACK_IMPORTED_MODULE_3__.SpyArrest, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_3__.CircusFinale, {
     onDone: function onDone() {
-      return setArrestDone(true);
+      return setFinaleDone(true);
     }
   })));
-}
-
-/***/ }),
-
-/***/ "./src/features/Mixup/SpyCast.jsx":
-/*!****************************************!*\
-  !*** ./src/features/Mixup/SpyCast.jsx ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Bush": () => (/* binding */ Bush),
-/* harmony export */   "DroppedCase": () => (/* binding */ DroppedCase),
-/* harmony export */   "DroppedGlasses": () => (/* binding */ DroppedGlasses),
-/* harmony export */   "DroppedHat": () => (/* binding */ DroppedHat),
-/* harmony export */   "Officer": () => (/* binding */ Officer),
-/* harmony export */   "PoliceCar": () => (/* binding */ PoliceCar),
-/* harmony export */   "Spy": () => (/* binding */ Spy),
-/* harmony export */   "SpyBubble": () => (/* binding */ SpyBubble),
-/* harmony export */   "wearGear": () => (/* binding */ wearGear)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-// 🕵️ The drawings for Temple Mix Up's two very bad spies (SpyShow.jsx). Each is ~100 units tall with its feet at
-// (0, 0), and wears its disguises as `gear`: groups that are switched on and off with wearGear().
-
-var INK = '#16161d';
-var ink = {
-  stroke: INK,
-  strokeWidth: 2.4,
-  strokeLinejoin: 'round'
-};
-var line = {
-  stroke: INK,
-  strokeLinecap: 'round',
-  fill: 'none'
-};
-
-/** Put these disguises on this spy, and take everything else off */
-var wearGear = function wearGear(el) {
-  var gear = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-  el.querySelectorAll('[data-gear]').forEach(function (g) {
-    g.style.display = gear.includes(g.dataset.gear) ? '' : 'none';
-  });
-};
-function Spy(_ref) {
-  var elRef = _ref.elRef,
-    _ref$suit = _ref.suit,
-    suit = _ref$suit === void 0 ? '#5c4a3a' : _ref$suit,
-    _ref$tie = _ref.tie,
-    tie = _ref$tie === void 0 ? '#e5484d' : _ref$tie,
-    _ref$skin = _ref.skin,
-    skin = _ref$skin === void 0 ? '#e2b692' : _ref$skin,
-    _ref$hair = _ref.hair,
-    hair = _ref$hair === void 0 ? '#2c2118' : _ref$hair;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    className: "crew-actor spy-agent",
-    "data-look": "front"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-fig"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    "data-gear": "chute",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -46 -118 Q 0 -178 46 -118 Q 34 -128 23 -118 Q 11 -128 0 -118 Q -11 -128 -23 -118 Q -34 -128 -46 -118 Z",
-    fill: "#f2d774"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -23 -118 Q 0 -178 23 -118",
-    fill: "#e5484d",
-    stroke: INK,
-    strokeWidth: 1.8
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -46 -118 L -16 -60 M -23 -118 L -10 -60 M 23 -118 L 10 -60 M 46 -118 L 16 -60",
-    stroke: INK,
-    strokeWidth: 1.2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-leg crew-leg-l"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -12,
-    y: -30,
-    width: 9,
-    height: 25,
-    fill: suit
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -3 0 H -18 Q -18 -6 -12 -6 H -3 Z",
-    fill: "#101016"
-  }, ink, {
-    strokeWidth: 1.8
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-leg crew-leg-r"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: 3,
-    y: -30,
-    width: 9,
-    height: 25,
-    fill: suit
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M 3 0 H 18 Q 18 -6 12 -6 H 3 Z",
-    fill: "#101016"
-  }, ink, {
-    strokeWidth: 1.8
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -16 -62 L -16 -26 H 16 L 16 -62 Q 0 -67 -16 -62 Z",
-    fill: suit
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -7 -63 L 0 -38 L 7 -63 Z",
-    fill: "#f6f4ee",
-    stroke: INK,
-    strokeWidth: 1.4,
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M 0 -60 L -3 -50 L 0 -40 L 3 -50 Z",
-    fill: tie,
-    stroke: INK,
-    strokeWidth: 1,
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -24,
-    y: -60,
-    width: 8,
-    height: 24,
-    rx: 3,
-    fill: suit
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: -20,
-    cy: -34,
-    r: 3.8,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.6
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-arm-bump"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: 16,
-    y: -60,
-    width: 8,
-    height: 24,
-    rx: 3,
-    fill: suit
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: 20,
-    cy: -34,
-    r: 3.8,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.6
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -4,
-    y: -70,
-    width: 8,
-    height: 8,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.8
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -13 -86 V -76 Q -13 -66 0 -65 Q 13 -66 13 -76 V -86 Q 0 -94 -13 -86 Z",
-    fill: skin
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-eyes"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -5.5,
-    cy: -79,
-    r: 2.8,
-    fill: "#f4efe4",
-    stroke: INK,
-    strokeWidth: 0.9
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 5.5,
-    cy: -79,
-    r: 2.8,
-    fill: "#f4efe4",
-    stroke: INK,
-    strokeWidth: 0.9
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-pupils"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -5.5,
-    cy: -79,
-    r: 1.4,
-    fill: INK
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 5.5,
-    cy: -79,
-    r: 1.4,
-    fill: INK
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -5 -70 Q 0 -67.5 5 -70"
-  }, line, {
-    strokeWidth: 1.6
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -14 -84 Q -15 -97 0 -97 Q 15 -97 14 -84 L 9 -90 H -9 Z",
-    fill: hair
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    "data-gear": "trench",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -19 -63 L -26 -18 H 26 L 19 -63 Q 0 -68 -19 -63 Z",
-    fill: "#b39a6b"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M 0 -63 V -18 M -22 -44 H 22",
-    stroke: INK,
-    strokeWidth: 2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -9 -65 L 0 -50 L 9 -65 L 16 -56 L 3 -42 H -3 L -16 -56 Z",
-    fill: "#a08755"
-  }, ink, {
-    strokeWidth: 1.6
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -27,
-    y: -60,
-    width: 8,
-    height: 26,
-    rx: 3,
-    fill: "#b39a6b"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: 19,
-    y: -60,
-    width: 8,
-    height: 26,
-    rx: 3,
-    fill: "#b39a6b"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -16 -88 Q -15 -104 0 -104 Q 15 -104 16 -88 Z",
-    fill: "#3a3a44"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -26 -88 Q 0 -94 26 -88 Q 0 -83 -26 -88 Z",
-    fill: "#2c2c34"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -15,
-    y: -94,
-    width: 30,
-    height: 4,
-    fill: "#e5484d"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    "data-gear": "nose",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -6.5,
-    cy: -79,
-    r: 6,
-    fill: "#fff",
-    fillOpacity: 0.5,
-    stroke: INK,
-    strokeWidth: 2.4
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 6.5,
-    cy: -79,
-    r: 6,
-    fill: "#fff",
-    fillOpacity: 0.5,
-    stroke: INK,
-    strokeWidth: 2.4
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -13 -87 Q -7 -93 -1 -87 M 1 -87 Q 7 -93 13 -87",
-    fill: "none",
-    stroke: INK,
-    strokeWidth: 4,
-    strokeLinecap: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M 0 -80 Q -10 -66 0 -66 Q 8 -66 4 -76 Z",
-    fill: "#f4a58f"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -15 -66 Q -6 -71 0 -65 Q 6 -71 15 -66 Q 8 -60 0 -62 Q -8 -60 -15 -66 Z",
-    fill: "#14131a"
-  }, ink, {
-    strokeWidth: 1.2
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    "data-gear": "paper",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -29,
-    y: -98,
-    width: 58,
-    height: 46,
-    rx: 1.5,
-    fill: "#f4f1e6"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M 0 -98 V -52",
-    stroke: "#a9a598",
-    strokeWidth: 1.2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: -14.5,
-    y: -90,
-    textAnchor: "middle",
-    fontSize: 5.4,
-    fontWeight: 900,
-    fill: INK,
-    fontFamily: "Georgia, serif"
-  }, "THE DAILY"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: 14.5,
-    y: -90,
-    textAnchor: "middle",
-    fontSize: 5.4,
-    fontWeight: 900,
-    fill: INK,
-    fontFamily: "Georgia, serif"
-  }, "NEWS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -25 -70 H -5 M -25 -66 H -5 M -25 -62 H -5 M -25 -58 H -5 M 5 -70 H 25 M 5 -66 H 25 M 5 -62 H 25 M 5 -58 H 25",
-    stroke: "#8f8b7e",
-    strokeWidth: 1.2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
-    cx: -13,
-    cy: -80,
-    rx: 5.5,
-    ry: 4.5,
-    fill: "#14131a"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
-    cx: 13,
-    cy: -80,
-    rx: 5.5,
-    ry: 4.5,
-    fill: "#14131a"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "spy-peek"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -13,
-    cy: -80,
-    r: 2.6,
-    fill: "#fff"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 13,
-    cy: -80,
-    r: 2.6,
-    fill: "#fff"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: -29,
-    cy: -54,
-    r: 3.8,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.6
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: 29,
-    cy: -54,
-    r: 3.8,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.6
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    "data-gear": "case",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: 13,
-    y: -30,
-    width: 28,
-    height: 20,
-    rx: 2,
-    fill: "#3d2a1a"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: 23,
-    y: -34,
-    width: 8,
-    height: 5,
-    fill: "none",
-    stroke: INK,
-    strokeWidth: 2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: 25,
-    y: -22,
-    width: 4,
-    height: 4,
-    fill: "#e8b93c"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    "data-gear": "hands",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -18 -60 L -26 -88 M 18 -60 L 26 -88",
-    stroke: INK,
-    strokeWidth: 10,
-    strokeLinecap: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -18 -60 L -26 -88 M 18 -60 L 26 -88",
-    stroke: suit,
-    strokeWidth: 6,
-    strokeLinecap: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: -27,
-    cy: -93,
-    r: 4,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.6
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: 27,
-    cy: -93,
-    r: 4,
-    fill: skin
-  }, ink, {
-    strokeWidth: 1.6
-  })))));
-}
-function Bush(_ref2) {
-  var elRef = _ref2.elRef;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    className: "spy-bush",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "spy-bush-leaves"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -46 0 Q -62 -22 -46 -38 Q -52 -64 -24 -68 Q -14 -90 12 -78 Q 40 -82 40 -56 Q 62 -44 48 -22 Q 56 0 40 0 Z",
-    fill: "#2fa84f"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -26 -46 q 7 -7 14 0 M 12 -30 q 7 -7 14 0 M -20 -20 q 7 -7 14 0 M 18 -60 q 6 -6 12 0",
-    fill: "none",
-    stroke: "#1d7a38",
-    strokeWidth: 2.8,
-    strokeLinecap: "round"
-  })));
-}
-function PoliceCar(_ref3) {
-  var elRef = _ref3.elRef;
-  // Side-on and facing left, 170 long with its wheels on y = 0. `.has-prisoners`: two sorry faces in the back
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    className: "spy-car",
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -86 -14 Q -88 -32 -60 -34 L -38 -36 L -18 -62 H 44 L 62 -36 L 82 -32 Q 92 -28 88 -14 Z",
-    fill: "#f4f4f6"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -86 -22 H 88 V -14 H -86 Z",
-    fill: "#14182c"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -30 -37 L -13 -57 H 10 V -37 Z M 16 -37 V -57 H 41 L 54 -37 Z",
-    fill: "#a9d6ec",
-    stroke: INK,
-    strokeWidth: 2,
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "spy-car-cop"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -6,
-    cy: -44,
-    r: 7,
-    fill: "#e2b692",
-    stroke: INK,
-    strokeWidth: 1.6
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -15 -49 H 3 L 1 -55 H -12 Z",
-    fill: "#1d2a52",
-    stroke: INK,
-    strokeWidth: 1.4,
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -9,
-    cy: -44,
-    r: 1.2,
-    fill: INK
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "spy-car-prisoners"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 24,
-    cy: -44,
-    r: 6.5,
-    fill: "#e2b692",
-    stroke: INK,
-    strokeWidth: 1.5
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 40,
-    cy: -44,
-    r: 6.5,
-    fill: "#dcb08a",
-    stroke: INK,
-    strokeWidth: 1.5
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M 21 -41 q 3 -2 6 0 M 37 -41 q 3 -2 6 0",
-    fill: "none",
-    stroke: INK,
-    strokeWidth: 1.2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M 18 -57 V -37 M 26 -57 V -37 M 34 -57 V -37 M 44 -57 V -37",
-    stroke: INK,
-    strokeWidth: 1.4
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: 2,
-    y: -25,
-    textAnchor: "middle",
-    fontSize: 8.5,
-    fontWeight: 900,
-    fill: "#fff",
-    fontFamily: "system-ui, sans-serif"
-  }, "POLICE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -2,
-    y: -68,
-    width: 24,
-    height: 7,
-    rx: 2.4,
-    fill: "#14182c",
-    stroke: INK,
-    strokeWidth: 1.6
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    className: "spy-siren spy-siren-red",
-    x: -1,
-    y: -67,
-    width: 11,
-    height: 5,
-    fill: "#ff3b3b"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    className: "spy-siren spy-siren-blue",
-    x: 10,
-    y: -67,
-    width: 11,
-    height: 5,
-    fill: "#3b7bff"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: -52,
-    cy: -12,
-    r: 13,
-    fill: "#1d1a22"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -52,
-    cy: -12,
-    r: 5,
-    fill: "#9aa3ad",
-    stroke: INK,
-    strokeWidth: 1.4
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: 54,
-    cy: -12,
-    r: 13,
-    fill: "#1d1a22"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 54,
-    cy: -12,
-    r: 5,
-    fill: "#9aa3ad",
-    stroke: INK,
-    strokeWidth: 1.4
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -92,
-    y: -30,
-    width: 8,
-    height: 7,
-    rx: 2,
-    fill: "#ffe27a",
-    stroke: INK,
-    strokeWidth: 1.3
-  }));
-}
-function Officer(_ref4) {
-  var elRef = _ref4.elRef;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    className: "crew-actor spy-officer",
-    style: {
-      display: 'none'
-    },
-    "data-look": "right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-fig"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-leg crew-leg-l"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -13,
-    y: -30,
-    width: 10,
-    height: 25,
-    fill: "#1d2a52"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -3 0 H -19 Q -19 -6 -13 -6 H -3 Z",
-    fill: "#101016"
-  }, ink, {
-    strokeWidth: 1.8
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-leg crew-leg-r"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: 3,
-    y: -30,
-    width: 10,
-    height: 25,
-    fill: "#1d2a52"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M 3 0 H 19 Q 19 -6 13 -6 H 3 Z",
-    fill: "#101016"
-  }, ink, {
-    strokeWidth: 1.8
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -18 -62 L -18 -26 H 18 L 18 -62 Q 0 -67 -18 -62 Z",
-    fill: "#2c4178"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -18,
-    y: -31,
-    width: 36,
-    height: 6,
-    fill: "#14131a"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -9 -52 l 3 -3 l 3 3 v 5 l -3 2 l -3 -2 Z",
-    fill: "#e8b93c",
-    stroke: INK,
-    strokeWidth: 1.1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -26,
-    y: -60,
-    width: 8,
-    height: 24,
-    rx: 3,
-    fill: "#2c4178"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: -22,
-    cy: -34,
-    r: 3.8,
-    fill: "#d8a981"
-  }, ink, {
-    strokeWidth: 1.6
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-arm-bump"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: 18,
-    y: -60,
-    width: 8,
-    height: 24,
-    rx: 3,
-    fill: "#2c4178"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", _extends({
-    cx: 22,
-    cy: -34,
-    r: 3.8,
-    fill: "#d8a981"
-  }, ink, {
-    strokeWidth: 1.6
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -4,
-    y: -70,
-    width: 8,
-    height: 8,
-    fill: "#d8a981"
-  }, ink, {
-    strokeWidth: 1.8
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -13 -86 V -76 Q -13 -66 0 -65 Q 13 -66 13 -76 V -86 Q 0 -94 -13 -86 Z",
-    fill: "#d8a981"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-eyes"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -5.5,
-    cy: -79,
-    r: 2.2,
-    fill: INK
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 5.5,
-    cy: -79,
-    r: 2.2,
-    fill: INK
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -7 -71 H 7"
-  }, line, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -9 -74 Q 0 -77 9 -74 Q 5 -71 0 -72 Q -5 -71 -9 -74 Z",
-    fill: "#3a2a1a",
-    stroke: INK,
-    strokeWidth: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -17 -86 H 17 L 19 -96 Q 0 -106 -19 -96 Z",
-    fill: "#1d2a52"
-  }, ink)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -17,
-    y: -88,
-    width: 34,
-    height: 4,
-    fill: "#14131a"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 0,
-    cy: -95,
-    r: 3,
-    fill: "#e8b93c",
-    stroke: INK,
-    strokeWidth: 1
-  })));
-}
-
-// The disguises lying where they fell
-function DroppedHat(_ref5) {
-  var elRef = _ref5.elRef;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -18 2 L -14 -8 H 14 L 18 2 Z",
-    fill: "#b39a6b"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -10 -8 Q -9 -20 0 -20 Q 9 -20 10 -8 Z",
-    fill: "#3a3a44"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M -17 -8 Q 0 -13 17 -8 Q 0 -4 -17 -8 Z",
-    fill: "#2c2c34"
-  }, ink, {
-    strokeWidth: 1.6
-  })));
-}
-function DroppedGlasses(_ref6) {
-  var elRef = _ref6.elRef;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: -7,
-    cy: -6,
-    r: 6,
-    fill: "#fff",
-    fillOpacity: 0.5,
-    stroke: INK,
-    strokeWidth: 2.2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: 7,
-    cy: -6,
-    r: 6,
-    fill: "#fff",
-    fillOpacity: 0.5,
-    stroke: INK,
-    strokeWidth: 2.2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
-    d: "M 0 -6 Q -7 4 0 4 Q 6 4 3 -3 Z",
-    fill: "#f4a58f"
-  }, ink, {
-    strokeWidth: 1.8
-  })));
-}
-function DroppedCase(_ref7) {
-  var elRef = _ref7.elRef;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    style: {
-      display: 'none'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", _extends({
-    x: -14,
-    y: -20,
-    width: 28,
-    height: 20,
-    rx: 2,
-    fill: "#3d2a1a"
-  }, ink, {
-    strokeWidth: 2
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -4,
-    y: -24,
-    width: 8,
-    height: 5,
-    fill: "none",
-    stroke: INK,
-    strokeWidth: 2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: -2,
-    y: -12,
-    width: 4,
-    height: 4,
-    fill: "#e8b93c"
-  }));
-}
-
-/** A speech bubble: its text is set by whoever's talking */
-function SpyBubble(_ref8) {
-  var elRef = _ref8.elRef;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: elRef,
-    className: "crew-bark"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M -4 -14 H 70 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z",
-    fill: "#fff",
-    stroke: INK,
-    strokeWidth: 2.4,
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: 33,
-    y: 4,
-    textAnchor: "middle",
-    fontSize: 12,
-    fontWeight: 900,
-    fill: INK,
-    fontFamily: "system-ui, sans-serif"
-  }));
-}
-
-/***/ }),
-
-/***/ "./src/features/Mixup/SpyShow.jsx":
-/*!****************************************!*\
-  !*** ./src/features/Mixup/SpyShow.jsx ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SpyArrest": () => (/* binding */ SpyArrest),
-/* harmony export */   "SpyRulesShow": () => (/* binding */ SpyRulesShow),
-/* harmony export */   "default": () => (/* binding */ SpyShow)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _TriviaCast_QuizCast_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../TriviaCast/QuizCast.jsx */ "./src/features/TriviaCast/QuizCast.jsx");
-/* harmony import */ var _TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../TriviaCast/QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
-/* harmony import */ var _SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SpyCast.jsx */ "./src/features/Mixup/SpyCast.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-// 🕵️ Temple Mix Up's two very bad spies, who keep changing their disguises (the game keeps changing too).
-//   SpyShow:      the lobby, under the players card. They take turns at: announcing obviously fake disguises, popping
-//                 out of a bush, walking into each other and grabbing the wrong disguises, the old suitcase handoff,
-//                 and hiding from a police car that's looking for them (it doesn't catch them yet).
-//   SpyRulesShow: the rules screen. They parachute from two planes and walk across the bottom of the screen.
-//   SpyArrest:    the end credits. The police finally catch them and take them away.
-
-var easeOut = function easeOut(t) {
-  return 1 - Math.pow(1 - t, 3);
-};
-var easeInOut = function easeInOut(t) {
-  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-};
-var linear = function linear(t) {
-  return t;
-};
-var SPY_A = {
-  suit: '#6b4a32',
-  tie: '#e5484d',
-  skin: '#e2b692',
-  hair: '#2c2118'
-};
-var SPY_B = {
-  suit: '#47506a',
-  tie: '#2ea866',
-  skin: '#dcb08a',
-  hair: '#7a3b1e'
-};
-var reduceMotion = function reduceMotion() {
-  var _window$matchMedia, _window;
-  return (_window$matchMedia = (_window = window).matchMedia) === null || _window$matchMedia === void 0 ? void 0 : _window$matchMedia.call(_window, '(prefers-reduced-motion: reduce)').matches;
-};
-
-// The shared moves. `unit` is how many screen pixels a drawing unit is here.
-var makeMoves = function makeMoves(d, getUnit) {
-  var place = function place(a) {
-    var u = getUnit() * (a.size || 1);
-    a.el.setAttribute('transform', "translate(".concat(a.x, " ").concat(a.y + (a.drop || 0) * getUnit() - (a.lift || 0), ") rotate(").concat(a.rot || 0, ") scale(").concat((a.flip || 1) * u, " ").concat(u, ")"));
-  };
-  var walk = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(a, x) {
-      var speed,
-        gait,
-        from,
-        _args = arguments;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              speed = _args.length > 2 && _args[2] !== undefined ? _args[2] : 75;
-              gait = _args.length > 3 && _args[3] !== undefined ? _args[3] : 'crew-walking';
-              from = a.x;
-              a.el.classList.add(gait);
-              a.el.setAttribute('data-look', x < from ? 'left' : 'right');
-              _context.next = 7;
-              return d.tween(Math.abs(x - from) / (speed * getUnit()) * 1000, linear, function (t) {
-                a.x = from + (x - from) * t;
-                place(a);
-              });
-            case 7:
-              a.el.classList.remove(gait);
-              a.el.setAttribute('data-look', 'front');
-            case 9:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return function walk(_x, _x2) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-  var hop = function hop(a, x, y, height, ms) {
-    var fromX = a.x;
-    var fromY = a.y;
-    return d.tween(ms, easeInOut, function (t) {
-      a.x = fromX + (x - fromX) * t;
-      a.y = fromY + (y - fromY) * t;
-      a.lift = Math.sin(Math.PI * t) * height * getUnit();
-      place(a);
-    });
-  };
-  var say = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(el, text, x, y, ms) {
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              el.querySelector('text').textContent = text;
-              el.setAttribute('transform', "translate(".concat(x, " ").concat(y, ") scale(").concat(Math.max(0.55, getUnit()), ")"));
-              el.classList.add('is-on');
-              _context2.next = 5;
-              return d.wait(ms);
-            case 5:
-              el.classList.remove('is-on');
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return function say(_x3, _x4, _x5, _x6, _x7) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  return {
-    place: place,
-    walk: walk,
-    hop: hop,
-    say: say
-  };
-};
-function SpyShow(_ref3) {
-  var stageRef = _ref3.stageRef,
-    screenRef = _ref3.screenRef,
-    _ref3$playerCount = _ref3.playerCount,
-    playerCount = _ref3$playerCount === void 0 ? 0 : _ref3$playerCount;
-  var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var clipRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var bushRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var carRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var hatRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var glassesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var caseRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var powRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var sayRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var engineRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var svg = svgRef.current;
-    if (!svg || !stageRef.current || !screenRef.current) return undefined;
-    var L = null;
-    var measure = function measure() {
-      var _document$querySelect;
-      var root = svg.parentElement.getBoundingClientRect();
-      var stage = stageRef.current.getBoundingClientRect();
-      var screen = screenRef.current.getBoundingClientRect();
-      var pill = (_document$querySelect = document.querySelector('.cc-room-code')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getBoundingClientRect();
-      var left = stage.left - root.left;
-      var usable = stage.width - (pill ? Math.min(pill.width * 0.75, stage.width * 0.2) : 0);
-      L = {
-        u: Math.max(0.35, Math.min(stage.height / 122, usable / 290)),
-        floorY: stage.bottom - root.top - 3,
-        stageTop: stage.top - root.top,
-        left: left,
-        width: usable,
-        mid: left + usable * 0.5,
-        spotA: left + usable * 0.2,
-        spotB: left + usable * 0.8,
-        bushX: left + usable * 0.5,
-        hiddenX: screen.right - root.left - 60,
-        offRight: root.width + 130
-      };
-      svg.setAttribute('viewBox', "0 0 ".concat(root.width, " ").concat(root.height));
-      clipRef.current.setAttribute('width', root.width);
-      clipRef.current.setAttribute('height', L.floorY + 1);
-    };
-    measure();
-    var d = (0,_TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_2__.makeDirector)();
-    var _makeMoves = makeMoves(d, function () {
-        return L.u;
-      }),
-      place = _makeMoves.place,
-      walk = _makeMoves.walk,
-      hop = _makeMoves.hop,
-      say = _makeMoves.say;
-    var A = {
-      x: L.hiddenX,
-      y: L.floorY,
-      size: 0.94,
-      el: aRef.current
-    };
-    var B = {
-      x: L.offRight,
-      y: L.floorY,
-      size: 1.06,
-      el: bRef.current
-    };
-    var bush = {
-      x: L.bushX,
-      grow: 0,
-      el: bushRef.current
-    };
-    var car = {
-      x: L.offRight + 100,
-      el: carRef.current
-    };
-    var drawBush = function drawBush() {
-      bush.el.style.display = bush.grow > 0 ? '' : 'none';
-      bush.el.setAttribute('transform', "translate(".concat(bush.x, " ").concat(L.floorY, ") scale(").concat(L.u * 1.15, " ").concat(L.u * 1.15 * bush.grow, ")"));
-    };
-    var drawCar = function drawCar() {
-      car.el.setAttribute('transform', "translate(".concat(car.x, " ").concat(L.floorY, ") scale(").concat(L.u * 0.95, ")"));
-    };
-    var putItem = function putItem(el, x, y) {
-      el.style.display = '';
-      el.setAttribute('transform', "translate(".concat(x, " ").concat(y, ") scale(").concat(L.u * 0.9, ")"));
-    };
-    var hide = function hide() {
-      for (var _len = arguments.length, els = new Array(_len), _key = 0; _key < _len; _key++) {
-        els[_key] = arguments[_key];
-      }
-      return els.forEach(function (el) {
-        el.style.display = 'none';
-      });
-    };
-    var headY = function headY(a) {
-      return a.y - 112 * L.u * a.size;
-    };
-    var bubbleAt = function bubbleAt(a, text) {
-      var ms = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1300;
-      return say(sayRef.current, text, a.x + 8 * L.u, Math.max(L.stageTop + 18 * L.u, headY(a)), ms);
-    };
-    var pow = function pow(x, y) {
-      var burst = powRef.current;
-      burst.setAttribute('transform', "translate(".concat(x, " ").concat(y, ") scale(").concat(L.u * 1.4, ")"));
-      burst.classList.remove('is-on');
-      burst.getBoundingClientRect();
-      burst.classList.add('is-on');
-    };
-    var goHome = /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return Promise.all([walk(A, L.spotA), walk(B, L.spotB)]);
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-      return function goHome() {
-        return _ref4.apply(this, arguments);
-      };
-    }();
-
-    // 🥸 Two obvious disguises, and two terrible cover stories
-    var announce = /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['nose']);
-                _context4.next = 3;
-                return d.wait(350);
-              case 3:
-                _context4.next = 5;
-                return bubbleAt(A, 'NOT A SPY!');
-              case 5:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['trench']);
-                _context4.next = 8;
-                return d.wait(350);
-              case 8:
-                _context4.next = 10;
-                return bubbleAt(B, 'ME NEITHER');
-              case 10:
-                _context4.next = 12;
-                return d.wait(300);
-              case 12:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['paper']);
-                _context4.next = 15;
-                return d.wait(900);
-              case 15:
-                _context4.next = 17;
-                return bubbleAt(B, 'JUST READING');
-              case 17:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['trench']);
-                _context4.next = 20;
-                return d.wait(500);
-              case 20:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }));
-      return function announce() {
-        return _ref5.apply(this, arguments);
-      };
-    }();
-
-    // 🌳 A bush nobody planted, and somebody in it
-    var inTheBush = /*#__PURE__*/function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-        var pop;
-        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _context6.next = 2;
-                return d.tween(600, easeOut, function (t) {
-                  bush.grow = t;
-                  drawBush();
-                });
-              case 2:
-                _context6.next = 4;
-                return d.wait(200);
-              case 4:
-                _context6.next = 6;
-                return walk(A, bush.x - 8 * L.u, 110);
-              case 6:
-                _context6.next = 8;
-                return d.tween(240, easeInOut, function (t) {
-                  A.drop = 80 * t;
-                  place(A);
-                });
-              case 8:
-                bush.el.classList.add('is-rustling');
-                _context6.next = 11;
-                return d.wait(800);
-              case 11:
-                bush.el.classList.remove('is-rustling');
-                pop = /*#__PURE__*/function () {
-                  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(x) {
-                    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-                      while (1) {
-                        switch (_context5.prev = _context5.next) {
-                          case 0:
-                            A.x = bush.x + x * L.u;
-                            _context5.next = 3;
-                            return d.tween(200, easeOut, function (t) {
-                              A.drop = 80 - 44 * t;
-                              place(A);
-                            });
-                          case 3:
-                            _context5.next = 5;
-                            return d.wait(700);
-                          case 5:
-                            _context5.next = 7;
-                            return d.tween(160, easeInOut, function (t) {
-                              A.drop = 36 + 44 * t;
-                              place(A);
-                            });
-                          case 7:
-                            _context5.next = 9;
-                            return d.wait(450);
-                          case 9:
-                          case "end":
-                            return _context5.stop();
-                        }
-                      }
-                    }, _callee5);
-                  }));
-                  return function pop(_x8) {
-                    return _ref7.apply(this, arguments);
-                  };
-                }();
-                _context6.next = 15;
-                return pop(-20);
-              case 15:
-                _context6.next = 17;
-                return pop(24);
-              case 17:
-                _context6.next = 19;
-                return pop(-4);
-              case 19:
-                _context6.next = 21;
-                return d.tween(240, easeOut, function (t) {
-                  A.drop = 80 * (1 - t);
-                  place(A);
-                });
-              case 21:
-                A.drop = 0;
-                place(A);
-                _context6.next = 25;
-                return bubbleAt(A, 'NAILED IT', 900);
-              case 25:
-                _context6.next = 27;
-                return walk(A, L.spotA, 110);
-              case 27:
-                _context6.next = 29;
-                return d.tween(400, easeInOut, function (t) {
-                  bush.grow = 1 - t;
-                  drawBush();
-                });
-              case 29:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }));
-      return function inTheBush() {
-        return _ref6.apply(this, arguments);
-      };
-    }();
-
-    // 💥 They walk into each other (one's reading the paper), and leave in each other's disguises
-    var theBump = /*#__PURE__*/function () {
-      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-        var wearingA, wearingB, hitX, itemFor, fall;
-        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                wearingA = A.wearing || 'nose';
-                wearingB = wearingA === 'nose' ? 'trench' : 'nose';
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, [wearingA]);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['paper']);
-                hitX = L.mid;
-                _context7.next = 7;
-                return Promise.all([walk(A, hitX - 18 * L.u, 70), walk(B, hitX + 18 * L.u, 70)]);
-              case 7:
-                pow(hitX, L.floorY - 72 * L.u);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
-                A.rot = -14;
-                B.rot = 14;
-                itemFor = {
-                  nose: glassesRef.current,
-                  trench: hatRef.current
-                };
-                fall = function fall(el, fromX, toX) {
-                  return d.tween(520, linear, function (t) {
-                    var y = L.floorY - 80 * L.u * Math.pow(1 - t, 2) - Math.sin(Math.PI * t) * 18 * L.u;
-                    putItem(el, fromX + (toX - fromX) * t, y);
-                  });
-                };
-                _context7.next = 16;
-                return Promise.all([hop(A, hitX - 46 * L.u, L.floorY, 8, 380), hop(B, hitX + 46 * L.u, L.floorY, 8, 380), fall(itemFor[wearingA], hitX - 8 * L.u, hitX + 14 * L.u), fall(itemFor[wearingB], hitX + 8 * L.u, hitX - 14 * L.u)]);
-              case 16:
-                A.rot = 0;
-                B.rot = 0;
-                place(A);
-                place(B);
-                _context7.next = 22;
-                return bubbleAt(A, 'WATCH IT!', 900);
-              case 22:
-                // Each dives for the nearest one: the other's
-                A.el.classList.add('spy-scrambling');
-                B.el.classList.add('spy-scrambling');
-                _context7.next = 26;
-                return Promise.all([hop(A, hitX - 16 * L.u, L.floorY, 6, 300), hop(B, hitX + 16 * L.u, L.floorY, 6, 300)]);
-              case 26:
-                _context7.next = 28;
-                return d.wait(450);
-              case 28:
-                A.el.classList.remove('spy-scrambling');
-                B.el.classList.remove('spy-scrambling');
-                hide(hatRef.current, glassesRef.current);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, [wearingB]);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, [wearingA]);
-                A.wearing = wearingB;
-                _context7.next = 36;
-                return d.wait(350);
-              case 36:
-                _context7.next = 38;
-                return Promise.all([walk(A, L.spotA, 70), walk(B, L.spotB, 70)]);
-              case 38:
-                A.el.setAttribute('data-look', 'right');
-                _context7.next = 41;
-                return bubbleAt(B, '...HUH?', 1000);
-              case 41:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }));
-      return function theBump() {
-        return _ref8.apply(this, arguments);
-      };
-    }();
-
-    // 💼 The handoff, like in the movies
-    var theHandoff = /*#__PURE__*/function () {
-      var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-        var worn, wornB;
-        return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                worn = A.wearing || 'nose';
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, [worn, 'case']);
-                _context8.next = 4;
-                return walk(A, L.mid - 14 * L.u, 65);
-              case 4:
-                _context8.next = 6;
-                return d.wait(300);
-              case 6:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, [worn]);
-                putItem(caseRef.current, L.mid + 8 * L.u, L.floorY);
-                _context8.next = 10;
-                return d.wait(300);
-              case 10:
-                _context8.next = 12;
-                return bubbleAt(A, '*WHISTLES*', 800);
-              case 12:
-                _context8.next = 14;
-                return walk(A, L.spotA, 65);
-              case 14:
-                _context8.next = 16;
-                return walk(B, L.mid + 22 * L.u, 80);
-              case 16:
-                _context8.next = 18;
-                return d.wait(350);
-              case 18:
-                hide(caseRef.current);
-                wornB = worn === 'nose' ? 'trench' : 'nose';
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, [wornB, 'case']);
-                _context8.next = 23;
-                return bubbleAt(B, 'THE PLANS!', 900);
-              case 23:
-                _context8.next = 25;
-                return walk(B, L.spotB, 80);
-              case 25:
-                _context8.next = 27;
-                return d.wait(500);
-              case 27:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, [wornB]);
-              case 28:
-              case "end":
-                return _context8.stop();
-            }
-          }
-        }, _callee8);
-      }));
-      return function theHandoff() {
-        return _ref9.apply(this, arguments);
-      };
-    }();
-
-    // 🚓 The police come looking, and two people suddenly have to read the paper
-    var thePolice = /*#__PURE__*/function () {
-      var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
-        var fromX, worn;
-        return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-          while (1) {
-            switch (_context9.prev = _context9.next) {
-              case 0:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['paper']);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['paper']);
-                car.el.style.display = '';
-                car.x = L.offRight + 100;
-                _context9.next = 6;
-                return d.tween(1400, easeOut, function (t) {
-                  car.x = L.offRight + 100 + (L.mid - L.offRight - 100) * t;
-                  drawCar();
-                });
-              case 6:
-                _context9.next = 8;
-                return d.wait(250);
-              case 8:
-                _context9.next = 10;
-                return say(sayRef.current, 'HMM...', car.x - 30 * L.u, Math.max(L.stageTop + 18 * L.u, L.floorY - 92 * L.u), 1100);
-              case 10:
-                _context9.next = 12;
-                return d.wait(200);
-              case 12:
-                fromX = car.x;
-                _context9.next = 15;
-                return d.tween(1200, function (t) {
-                  return t * t;
-                }, function (t) {
-                  car.x = fromX + (L.hiddenX - 40 - fromX) * t;
-                  drawCar();
-                });
-              case 15:
-                hide(car.el);
-                _context9.next = 18;
-                return d.wait(500);
-              case 18:
-                _context9.next = 20;
-                return bubbleAt(B, 'PHEW!', 900);
-              case 20:
-                worn = A.wearing || 'nose';
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, [worn]);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, [worn === 'nose' ? 'trench' : 'nose']);
-                _context9.next = 25;
-                return d.wait(400);
-              case 25:
-              case "end":
-                return _context9.stop();
-            }
-          }
-        }, _callee9);
-      }));
-      return function thePolice() {
-        return _ref10.apply(this, arguments);
-      };
-    }();
-    var run = /*#__PURE__*/function () {
-      var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
-        var scenes, i;
-        return _regeneratorRuntime().wrap(function _callee10$(_context10) {
-          while (1) {
-            switch (_context10.prev = _context10.next) {
-              case 0:
-                place(A);
-                place(B);
-                drawCar();
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
-                _context10.next = 7;
-                return goHome();
-              case 7:
-                scenes = [announce, inTheBush, theBump, theHandoff, thePolice];
-                i = 0;
-              case 9:
-                if (d.isDead()) {
-                  _context10.next = 19;
-                  break;
-                }
-                _context10.next = 12;
-                return d.wait(800);
-              case 12:
-                _context10.next = 14;
-                return scenes[i]();
-              case 14:
-                _context10.next = 16;
-                return d.wait(1400);
-              case 16:
-                i = (i + 1) % scenes.length;
-                _context10.next = 9;
-                break;
-              case 19:
-              case "end":
-                return _context10.stop();
-            }
-          }
-        }, _callee10);
-      }));
-      return function run() {
-        return _ref11.apply(this, arguments);
-      };
-    }();
-    svg.classList.add('is-ready');
-    if (reduceMotion()) {
-      A.x = L.spotA;
-      B.x = L.spotB;
-      place(A);
-      place(B);
-      (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['nose']);
-      (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['trench']);
-    } else {
-      run();
-    }
-    var observer = new ResizeObserver(function () {
-      measure();
-      bush.x = L.bushX;
-      A.y = L.floorY;
-      B.y = L.floorY;
-      place(A);
-      place(B);
-      drawBush();
-      drawCar();
-    });
-    observer.observe(svg.parentElement);
-    observer.observe(stageRef.current);
-    engineRef.current = {
-      greet: function greet() {
-        return bubbleAt(B, 'WHO WAS THAT?', 1000);
-      }
-    };
-    return function () {
-      engineRef.current = null;
-      observer.disconnect();
-      d.stop();
-    };
-  }, []);
-
-  // Someone new joined: the spies notice, a little late
-  var lastCount = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(playerCount);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var _engineRef$current;
-    if (playerCount > lastCount.current) (_engineRef$current = engineRef.current) === null || _engineRef$current === void 0 ? void 0 : _engineRef$current.greet();
-    lastCount.current = playerCount;
-  }, [playerCount]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    ref: svgRef,
-    className: "cc-crew spy-show",
-    "aria-hidden": "true",
-    preserveAspectRatio: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("clipPath", {
-    id: "spy-floor"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    ref: clipRef,
-    x: 0,
-    y: 0,
-    width: 0,
-    height: 0
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    className: "crew-world"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    clipPath: "url(#spy-floor)"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Spy, _extends({
-    elRef: aRef
-  }, SPY_A))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Bush, {
-    elRef: bushRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Spy, _extends({
-    elRef: bRef
-  }, SPY_B)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.DroppedHat, {
-    elRef: hatRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.DroppedGlasses, {
-    elRef: glassesRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.DroppedCase, {
-    elRef: caseRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.PoliceCar, {
-    elRef: carRef
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    ref: powRef,
-    className: "crew-pow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M 0 -13 L 3.5 -5 L 12 -7 L 6 0 L 12 7 L 3.5 5 L 0 13 L -3.5 5 L -12 7 L -6 0 L -12 -7 L -3.5 -5 Z",
-    fill: "#ffd23f",
-    stroke: "#16161d",
-    strokeWidth: 2,
-    strokeLinejoin: "round"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.SpyBubble, {
-    elRef: sayRef
-  }));
-}
-
-/** 🪂 The rules screen: two planes, two parachutes, and a stroll along the bottom */
-function SpyRulesShow() {
-  var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var planeARef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var planeBRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var svg = svgRef.current;
-    var W = 0;
-    var H = 0;
-    var u = 1;
-    var measure = function measure() {
-      var box = svg.getBoundingClientRect();
-      W = box.width;
-      H = box.height;
-      u = Math.max(0.5, H * 0.14 / 100);
-      svg.setAttribute('viewBox', "0 0 ".concat(W, " ").concat(H));
-    };
-    measure();
-    var d = (0,_TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_2__.makeDirector)();
-    var _makeMoves2 = makeMoves(d, function () {
-        return u;
-      }),
-      place = _makeMoves2.place,
-      walk = _makeMoves2.walk;
-    var A = {
-      x: -200,
-      y: 0,
-      size: 0.94,
-      el: aRef.current
-    };
-    var B = {
-      x: -200,
-      y: 0,
-      size: 1.06,
-      el: bRef.current
-    };
-    (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['nose']);
-    (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['trench']);
-    var floor = function floor() {
-      return H - 6;
-    };
-    var drawPlane = function drawPlane(el, x, y, flip) {
-      el.setAttribute('transform', "translate(".concat(x, " ").concat(y, ") scale(").concat(flip * u * 0.9, " ").concat(u * 0.9, ")"));
-    };
-
-    // One plane crosses the top of the screen; at `dropAt` of the way across, out comes a spy
-    var arrive = /*#__PURE__*/function () {
-      var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(spy, planeEl, fromLeft, height, dropAt) {
-        var startX, endX, jumpX, planeFlight, startY;
-        return _regeneratorRuntime().wrap(function _callee11$(_context11) {
-          while (1) {
-            switch (_context11.prev = _context11.next) {
-              case 0:
-                startX = fromLeft ? -130 * u : W + 130 * u;
-                endX = fromLeft ? W + 130 * u : -130 * u;
-                planeEl.style.display = '';
-                planeEl.classList.add('is-empty');
-                jumpX = startX + (endX - startX) * dropAt;
-                planeFlight = d.tween(4200, linear, function (t) {
-                  return drawPlane(planeEl, startX + (endX - startX) * t, height, fromLeft ? -1 : 1);
-                });
-                _context11.next = 8;
-                return d.wait(4200 * dropAt);
-              case 8:
-                if (!d.isDead()) {
-                  _context11.next = 10;
-                  break;
-                }
-                return _context11.abrupt("return");
-              case 10:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(spy.el, [spy === A ? 'nose' : 'trench', 'chute']);
-                spy.x = jumpX;
-                spy.y = height + 20 * u;
-                startY = spy.y;
-                _context11.next = 16;
-                return d.tween(3000, linear, function (t) {
-                  spy.y = startY + (floor() - startY) * t;
-                  spy.rot = Math.sin(t * Math.PI * 4) * 6;
-                  place(spy);
-                });
-              case 16:
-                spy.rot = 0;
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(spy.el, [spy === A ? 'nose' : 'trench']);
-                place(spy);
-                _context11.next = 21;
-                return planeFlight;
-              case 21:
-                planeEl.style.display = 'none';
-              case 22:
-              case "end":
-                return _context11.stop();
-            }
-          }
-        }, _callee11);
-      }));
-      return function arrive(_x9, _x10, _x11, _x12, _x13) {
-        return _ref12.apply(this, arguments);
-      };
-    }();
-    var run = /*#__PURE__*/function () {
-      var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-        return _regeneratorRuntime().wrap(function _callee12$(_context12) {
-          while (1) {
-            switch (_context12.prev = _context12.next) {
-              case 0:
-                if (d.isDead()) {
-                  _context12.next = 11;
-                  break;
-                }
-                _context12.next = 3;
-                return Promise.all([arrive(A, planeARef.current, true, H * 0.09, 0.28), d.wait(900).then(function () {
-                  return arrive(B, planeBRef.current, false, H * 0.16, 0.3);
-                })]);
-              case 3:
-                _context12.next = 5;
-                return d.wait(300);
-              case 5:
-                _context12.next = 7;
-                return Promise.all([walk(A, W + 90 * u, 130), walk(B, -90 * u, 130)]);
-              case 7:
-                _context12.next = 9;
-                return d.wait(1200);
-              case 9:
-                _context12.next = 0;
-                break;
-              case 11:
-              case "end":
-                return _context12.stop();
-            }
-          }
-        }, _callee12);
-      }));
-      return function run() {
-        return _ref13.apply(this, arguments);
-      };
-    }();
-    svg.classList.add('is-ready');
-    if (reduceMotion()) {
-      A.x = W * 0.3;
-      B.x = W * 0.7;
-      A.y = floor();
-      B.y = floor();
-      place(A);
-      place(B);
-    } else {
-      place(A);
-      place(B);
-      run();
-    }
-    var observer = new ResizeObserver(measure);
-    observer.observe(svg);
-    return function () {
-      observer.disconnect();
-      d.stop();
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    ref: svgRef,
-    className: "cc-crew spy-rules-show",
-    "aria-hidden": "true",
-    preserveAspectRatio: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_QuizCast_jsx__WEBPACK_IMPORTED_MODULE_1__.Plane, {
-    planeRef: planeARef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_QuizCast_jsx__WEBPACK_IMPORTED_MODULE_1__.Plane, {
-    planeRef: planeBRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Spy, _extends({
-    elRef: aRef
-  }, SPY_A)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Spy, _extends({
-    elRef: bRef
-  }, SPY_B)));
-}
-
-/** 🚓 The end credits: the spies try to sneak off, the police pull up, and that's that */
-function SpyArrest(_ref14) {
-  var onDone = _ref14.onDone;
-  var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var copRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var carRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var sayRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var box = svgRef.current.getBoundingClientRect();
-    var extra = box.height ? Math.max(0, (box.width / (box.height / 100) - 400) / 2) : 0;
-    var offLeft = -extra - 60;
-    var offRight = 400 + extra + 140;
-    var FLOOR = 96;
-    var S = 0.7;
-    var d = (0,_TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_2__.makeDirector)();
-    var _makeMoves3 = makeMoves(d, function () {
-        return S;
-      }),
-      place = _makeMoves3.place,
-      walk = _makeMoves3.walk,
-      say = _makeMoves3.say;
-    var A = {
-      x: offRight + 60,
-      y: FLOOR,
-      size: 0.94,
-      el: aRef.current
-    };
-    var B = {
-      x: offRight,
-      y: FLOOR,
-      size: 1.06,
-      el: bRef.current
-    };
-    var cop = {
-      x: 0,
-      y: FLOOR,
-      size: 1,
-      el: copRef.current
-    };
-    var car = {
-      x: offLeft - 100,
-      el: carRef.current
-    };
-    var drawCar = function drawCar() {
-      return car.el.setAttribute('transform', "translate(".concat(car.x, " ").concat(FLOOR, ") scale(").concat(S, ")"));
-    };
-    (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['nose']);
-    (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['trench']);
-    place(A);
-    place(B);
-    drawCar();
-    if (reduceMotion()) {
-      onDone === null || onDone === void 0 ? void 0 : onDone();
-      return function () {
-        return d.stop();
-      };
-    }
-    var run = /*#__PURE__*/function () {
-      var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
-        return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-          while (1) {
-            switch (_context13.prev = _context13.next) {
-              case 0:
-                _context13.next = 2;
-                return d.wait(1200);
-              case 2:
-                _context13.next = 4;
-                return Promise.all([walk(B, 240, 90), walk(A, 300, 90)]);
-              case 4:
-                // And here's the police, heading them off
-                car.el.style.display = '';
-                _context13.next = 7;
-                return d.tween(1100, easeOut, function (t) {
-                  car.x = offLeft - 100 + (130 - offLeft + 100) * t;
-                  drawCar();
-                });
-              case 7:
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['nose', 'hands']);
-                (0,_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['trench', 'hands']);
-                A.el.classList.add('quiz-scared');
-                B.el.classList.add('quiz-scared');
-                cop.x = 130;
-                place(cop);
-                cop.el.style.display = '';
-                _context13.next = 16;
-                return walk(cop, 196, 70);
-              case 16:
-                cop.el.setAttribute('data-look', 'right');
-                _context13.next = 19;
-                return say(sayRef.current, 'BUSTED!', 150, 22, 1500);
-              case 19:
-                A.el.classList.remove('quiz-scared');
-                B.el.classList.remove('quiz-scared');
-                // Off to the car, in a sorry little line
-                _context13.next = 23;
-                return Promise.all([walk(cop, 130, 50), walk(B, 178, 50), walk(A, 216, 50)]);
-              case 23:
-                [cop, A, B].forEach(function (p) {
-                  p.el.style.display = 'none';
-                });
-                car.el.classList.add('has-prisoners');
-                _context13.next = 27;
-                return d.wait(500);
-              case 27:
-                _context13.next = 29;
-                return d.tween(1600, function (t) {
-                  return t * t;
-                }, function (t) {
-                  car.x = 130 + (offLeft - 100 - 130) * t;
-                  drawCar();
-                });
-              case 29:
-                _context13.next = 31;
-                return d.wait(600);
-              case 31:
-                onDone === null || onDone === void 0 ? void 0 : onDone();
-              case 32:
-              case "end":
-                return _context13.stop();
-            }
-          }
-        }, _callee13);
-      }));
-      return function run() {
-        return _ref15.apply(this, arguments);
-      };
-    }();
-    run();
-    return function () {
-      return d.stop();
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    ref: svgRef,
-    className: "cc-crew cc-round-scene-art",
-    viewBox: "0 0 400 100",
-    preserveAspectRatio: "xMidYMax meet",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Spy, _extends({
-    elRef: aRef
-  }, SPY_A)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Spy, _extends({
-    elRef: bRef
-  }, SPY_B)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Officer, {
-    elRef: copRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.PoliceCar, {
-    elRef: carRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpyCast_jsx__WEBPACK_IMPORTED_MODULE_3__.SpyBubble, {
-    elRef: sayRef
-  }));
 }
 
 /***/ }),
@@ -47478,7 +48306,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🕵️ The spy lobby: the shimmer runs amber and black */\n[data-gt-theme=\"spy\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */\n.gt-bg.theme-spy {\n    --gt-navy:     #06070d;\n    --gt-blue-800: #10131f;\n    --gt-blue-500: #1d2233;\n    --gt-blue-400: #2b3147;\n    --gt-blue-300: #6a7290;\n    --gt-ice:      #e8e6da;\n    --gt-bg-accent: #d6a83c;\n    --gt-bg-vignette: rgba(0, 0, 0, 0.6);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* 📼 The Jeffinitely deck's crew (JeffCrew.jsx): controllers while they play, the Jeffcom's cartridge,\n   Mitch blowing on it, Boomer's turning reels, Pixel beeping, and Dana's computer */\n.cc-crew .crew-controller, .cc-crew .crew-controller-pad, .cc-crew .crew-jeffcom-cart, .cc-crew .crew-held-cart,\n.cc-crew .crew-puff, .cc-crew .crew-boomer-reel, .cc-crew .crew-boomer-antenna, .cc-crew .crew-pixel-beep,\n.cc-crew .crew-computer-bar, .cc-crew .crew-computer-wheel { transform-box: fill-box; }\n/* 🎮 Playing: a controller in both hands, arms in, thumbs going, leaning into it */\n.cc-crew .crew-controller { opacity: 0; transition: opacity 0.25s ease; }\n.cc-crew .crew-gaming .crew-controller { opacity: 1; }\n.cc-crew .crew-gaming .crew-arm-cast { transform: rotate(-34deg); }\n.cc-crew .crew-gaming .crew-arm-bump { transform: rotate(34deg); }\n.cc-crew .crew-gaming .crew-controller-pad { animation: jeff-mash 0.18s steps(2) infinite; }\n@keyframes jeff-mash { 50% { transform: translate(0.6px, 0.8px); } }\n.cc-crew .crew-gaming .crew-controller-a { animation: jeff-button 0.36s steps(1) infinite; }\n.cc-crew .crew-gaming .crew-controller-b { animation: jeff-button 0.36s steps(1) infinite 0.18s; }\n@keyframes jeff-button { 50% { fill: #ffd23f; } }\n.cc-crew .crew-gaming .crew-fig { transform-origin: 50% 100%; animation: jeff-lean 1.6s ease-in-out infinite alternate; }\n.cc-crew .crew-angie.crew-gaming .crew-fig { animation-duration: 1.1s; animation-delay: -0.4s; }\n.cc-crew .crew-duke.crew-gaming .crew-fig { animation-duration: 2.1s; animation-delay: -1s; }\n.cc-crew .crew-boomer.crew-gaming .crew-fig { animation-duration: 1.3s; animation-delay: -0.7s; }\n@keyframes jeff-lean { from { transform: rotate(-4deg); } to { transform: rotate(3deg); } }\n/* Reaching down to the console, and blowing on the cartridge */\n.cc-crew .crew-reaching .crew-arm-bump { transform: rotate(-55deg); }\n.cc-crew .crew-held-cart { opacity: 0; }\n.cc-crew .crew-blowing .crew-held-cart { opacity: 1; }\n.cc-crew .crew-blowing .crew-arm-cast { transform: rotate(-125deg); }\n.cc-crew .crew-puff { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-blowing .crew-puff { animation: jeff-puff 0.9s ease-out infinite; }\n.cc-crew .crew-blowing .crew-puff-2 { animation-delay: 0.08s; }\n.cc-crew .crew-blowing .crew-puff-3 { animation-delay: 0.16s; }\n@keyframes jeff-puff { 0%, 30% { opacity: 0; transform: scale(0.3) translateX(4px); } 45% { opacity: 1; } 100% { opacity: 0; transform: scale(1.2) translateX(-4px); } }\n/* The Jeffcom: the cartridge sits up out of the slot until it's pushed in */\n.cc-crew .crew-jeffcom-cart { transform: translateY(-7px); transition: transform 0.22s ease, opacity 0.15s ease; }\n.cc-crew .crew-jeffcom.is-in .crew-jeffcom-cart { transform: translateY(0); }\n.cc-crew .crew-jeffcom.is-empty .crew-jeffcom-cart { opacity: 0; }\n.cc-crew .crew-jeffcom.is-powered .crew-jeffcom-light { fill: #ff3b3b; filter: drop-shadow(0 0 2px #ff3b3b); }\n/* Boomer: the mixtape's reels go round, and the antenna wobbles */\n.cc-crew .crew-boomer-reel { transform-origin: 50% 50%; animation: jeff-reel 1.2s linear infinite; }\n@keyframes jeff-reel { to { transform: rotate(360deg); } }\n.cc-crew .crew-boomer-antenna { transform-origin: 0% 100%; animation: crew-wobble 1.4s ease-in-out infinite alternate; }\n/* Pixel hops instead of walking, and beeps at the screen */\n.cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }\n.cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }\n@keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-pixel-beep { opacity: 0; }\n.cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }\n@keyframes jeff-beep { 50% { opacity: 1; } }\n/* 🖥️ Dana's computer: the wheels spin as it rolls, the modem blinks, the screen glows and \"connects\" */\n.cc-crew .crew-computer.is-rolling .crew-computer-wheel { animation: crew-bob 0.1s ease-in-out infinite alternate; }\n.cc-crew .crew-computer-glow, .cc-crew .crew-computer-modem { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-computer.is-on .crew-computer-glow { opacity: 1; animation: jeff-crt 0.12s steps(2) 6; }\n.cc-crew .crew-computer.is-on .crew-computer-modem { opacity: 1; animation: crew-bulb 0.3s steps(1) infinite; }\n.cc-crew .crew-computer-bar { transform-origin: 0% 50%; transform: scaleX(0); }\n.cc-crew .crew-computer.is-on .crew-computer-bar { transform: scaleX(1); transition: transform 1.8s steps(6); }\n@keyframes jeff-crt { 50% { opacity: 0.5; } }\n/* Dana fades in from the screen and back into it, and her bump arm is on the left */\n.cc-crew .crew-dana.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-dana.is-leaving { animation: crew-fade-in 0.9s ease-in reverse forwards; }\n.cc-crew .crew-dana.sq-bumping .sq-arm-bump { transform: rotate(120deg); }\n/* 📺 The QR card: fuzz while the cartridge isn't working, then it flickers on like an old tube TV */\n.cc-lobby-qr { position: relative; }\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-static::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  pointer-events: none;\n  opacity: 0.6;\n  background:\n    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 2px, transparent 2px 4px),\n    repeating-radial-gradient(circle at 30% 40%, #fff 0 1px, #777 1px 2px, #222 2px 3px);\n  background-size: 100% 100%, 7px 7px;\n  animation: jeff-static 0.12s steps(3) infinite;\n}\n@keyframes jeff-static {\n  0% { background-position: 0 0, 0 0; }\n  33% { background-position: 0 1px, 3px 5px; }\n  66% { background-position: 0 2px, 6px 2px; }\n}\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on-tube 0.9s ease-out;\n  box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7) !important;\n}\n@keyframes cc-qr-on-tube {\n  0% { transform: scale(1, 0.02); filter: brightness(3); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }\n  25% { transform: scale(1, 0.02); filter: brightness(3); }\n  55% { transform: scale(1, 1.04); filter: brightness(1.6); box-shadow: 0 0 46px 16px rgba(255, 79, 154, 0.95); }\n  70% { transform: scale(1, 1); filter: brightness(1); }\n  80% { filter: brightness(1.3); }\n  100% { filter: brightness(1); box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */\n.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }\n@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }\n.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }\n.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }\n@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }\n.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }\n.cc-crew .spy-siren-blue { animation-delay: 0.21s; }\n@keyframes spy-siren { 50% { opacity: 0.15; } }\n.cc-crew .spy-car-prisoners { display: none; }\n.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }\n.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }\n@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }\n/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */\n.cc-crew.spy-rules-show { z-index: 5; }\n.mx-rules-with-spies { padding-bottom: 17vh !important; }\n.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n\n/* =========================================================\n   📼 JEFFINITELY DECK THEME\n   Colours and style straight off the deck card (cardDecks.js, DeckCard.jsx): a sunset gradient that runs\n   orange → hot pink → purple → teal, a neon sun sinking into a magenta perspective grid, cassette labels\n   (cream with a pink and a teal stripe), and loud '90s shapes with dark outlines.\n   It all hangs off <html data-gt-theme=\"jeffinitely\">, which only Couch Cast sets, and only for this deck.\n   ========================================================= */\n\n/* 🌅 The background (AnimatedBackground.jsx + RetroBackdrop.jsx) */\n.gt-bg.theme-jeffinitely {\n    --gt-blue-300: #ff4f9a;\n    --gt-ice:      #18b6c9;\n    --gt-bg-accent: #ffd23f;\n    --gt-bg-vignette: rgba(26, 17, 71, 0.5);\n    background: linear-gradient(160deg, #ff8a3d 0%, #ff4f9a 34%, #7b3fd1 66%, #18b6c9 100%);\n}\n.gt-bg.theme-jeffinitely .gt-blob { opacity: 0.35; }\n/* The neon sun: rings of the deck's colours, sliced by the horizon like a synthwave sunset */\n.gt-retro-sun {\n    position: absolute;\n    left: 50%;\n    bottom: 26vh;\n    width: 46vmin;\n    height: 46vmin;\n    transform: translate(-50%, 50%);\n    border-radius: 50%;\n    background: linear-gradient(180deg, #ffd23f 0%, #ff8a3d 45%, #ff4fd8 100%);\n    -webkit-mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n            mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n    box-shadow: 0 0 80px rgba(255, 79, 216, 0.6);\n    opacity: 0.9;\n}\n/* The grid floor, tipped back toward the horizon and slowly rolling toward us */\n.gt-retro-floor {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    height: 26vh;\n    overflow: hidden;\n    perspective: 26vh;\n    perspective-origin: 50% 0;\n    background: linear-gradient(180deg, rgba(26, 17, 71, 0.55), rgba(26, 17, 71, 0.85));\n    border-top: 2px solid #ff4fd8;\n    box-shadow: 0 -4px 24px rgba(255, 79, 216, 0.55);\n}\n.gt-retro-grid {\n    position: absolute;\n    left: -50%;\n    right: -50%;\n    top: 0;\n    height: 300%;\n    transform-origin: 50% 0;\n    transform: rotateX(62deg);\n    background:\n        repeating-linear-gradient(90deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin),\n        repeating-linear-gradient(0deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin);\n    animation: gt-retro-roll 4s linear infinite;\n}\n@keyframes gt-retro-roll { to { background-position: 0 0, 0 7vmin; } }\n\n/* The drifting retro stuff: full colour, sized off the screen, behind everything */\n.gt-retro-piece {\n    width: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    height: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    opacity: 0.85;\n}\n.gt-retro-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    filter: drop-shadow(4px 5px 0 rgba(26, 17, 71, 0.35));\n}\n.gt-retro-blob { animation: gt-retro-lava 7s ease-in-out infinite alternate; }\n.gt-retro-blob-late { animation-duration: 9s; animation-delay: -3s; }\n.gt-retro-blob-later { animation-duration: 6s; animation-delay: -5s; }\n@keyframes gt-retro-lava { from { transform: translateY(6px); } to { transform: translateY(-22px); } }\n.gt-retro-reel { transform-box: fill-box; transform-origin: center; animation: jeff-reel 2.4s linear infinite; }\n.gt-retro-pet { animation: gt-retro-pet 1.2s steps(1) infinite; }\n@keyframes gt-retro-pet { 50% { transform: translateX(7px); } }\n@media (prefers-reduced-motion: reduce) {\n    .gt-retro-grid, .gt-retro-blob, .gt-retro-reel, .gt-retro-pet { animation: none; }\n}\n\n/* ✨ The shimmer border runs through the sunset */\n[data-gt-theme=\"jeffinitely\"] .shining-border-wrapper::before {\n    background: linear-gradient(270deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9, #ff4fd8, #ff8a3d);\n    background-size: 400% 400%;\n}\n\n/* 📺 TV headings: white with a stacked neon drop, like a VHS cover */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-header,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    text-shadow: 2px 2px 0 #ff4f9a, 4px 4px 0 #1a1147, 0 0 18px rgba(255, 79, 216, 0.55);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    font-style: italic;\n    text-shadow: 0.04em 0.04em 0 #ff4f9a, 0.08em 0.08em 0 #18b6c9, 0.12em 0.12em 0 #1a1147, 0 0 40px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-final {\n    background: #ffd23f;\n    color: #1a1147;\n    box-shadow: 4px 4px 0 #1a1147;\n}\n\n/* Glass panels (the prompt on the writing screen, the scores) go dark purple with a neon edge */\n[data-gt-theme=\"jeffinitely\"] .frosted-glass-panel {\n    background-color: rgba(26, 17, 71, 0.66) !important;\n    border: 1px solid rgba(255, 79, 216, 0.7) !important;\n    box-shadow: 0 8px 32px rgba(26, 17, 71, 0.5), inset 0 0 18px rgba(255, 79, 216, 0.18) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .cc-writer-tag.bg-success { background-color: rgba(46, 196, 182, 0.85) !important; }\n\n/* 📼 The light cards (QR, players, prompts, answers, the winning card) become cassette labels: cream,\n   with the pink and teal stripes along the top. The faint glass ones that carry white text go purple instead. */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.4\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.6\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.7\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.9\"] {\n    background-color: rgba(255, 246, 216, 0.82) !important;\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.25\"] {\n    background-color: rgba(26, 17, 71, 0.7) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"solid\"] {\n    border-color: #ff4f9a !important;\n    box-shadow: 0 0 26px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-code { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-players-grid .list-group-item { border-color: rgba(123, 63, 209, 0.35) !important; }\n\n/* Lobby bits on the TV: the \"Cast now\" banner and the room code pill */\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code {\n    background: rgba(26, 17, 71, 0.55);\n    border-color: rgba(255, 79, 216, 0.75);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now strong,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code strong { color: #ffd23f; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-tip { text-shadow: 1px 1px 2px rgba(26, 17, 71, 0.8); }\n\n/* The clocks: a sunset bar */\n[data-gt-theme=\"jeffinitely\"] .progress-bar.bg-light {\n    background: linear-gradient(90deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9) !important;\n}\n\n/* 🏆 TV scores: the leaders' rows go cream like a tape label, the rest stay purple glass */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-container .shadow[style*=\"rgba(255, 255, 255, 0.92\"] {\n    background-color: #fff6d8 !important;\n    box-shadow: 4px 4px 0 #ff4f9a, 8px 8px 0 #1a1147 !important;\n}\n\n/* 📱 Phone screens: Bootstrap blues turn sunset pink and purple, and the cards get a chunky retro drop */\n[data-gt-theme=\"jeffinitely\"] .bg-primary {\n    background: linear-gradient(135deg, #ff8a3d 0%, #ff4f9a 45%, #7b3fd1 100%) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .text-primary { color: #b5179e !important; }\n[data-gt-theme=\"jeffinitely\"] .card-header.bg-dark { background-color: #1a1147 !important; }\n[data-gt-theme=\"jeffinitely\"] .card.bg-success { background-color: #0e8a86 !important; }\n[data-gt-theme=\"jeffinitely\"] .border-primary { border-color: #ff4f9a !important; }\n[data-gt-theme=\"jeffinitely\"] .btn-primary {\n    background: linear-gradient(135deg, #ff4f9a, #7b3fd1);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-primary:hover,\n[data-gt-theme=\"jeffinitely\"] .btn-primary:focus {\n    background: linear-gradient(135deg, #ff6aac, #8c52e0);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-outline-secondary { border-color: #7b3fd1; color: #1a1147; }\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag),\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    border: 2px solid #1a1147 !important;\n    box-shadow: 6px 6px 0 #ff4f9a, 6px 6px 0 2px #1a1147 !important;\n}\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag) > .card-body:first-child,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone .cc-round-intro-title { color: #b5179e; font-style: italic; }\n[data-gt-theme=\"jeffinitely\"] .cc-scores-points { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-mascot-cassette { filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.6)); }\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🕵️ The spy lobby: the shimmer runs amber and black */\n[data-gt-theme=\"spy\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6a83c, #15171f, #f2d48a, #15171f, #d6a83c);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🕵️ Temple Mix Up's lobby: same recipe, midnight noir with a searchlight's amber */\n.gt-bg.theme-spy {\n    --gt-navy:     #06070d;\n    --gt-blue-800: #10131f;\n    --gt-blue-500: #1d2233;\n    --gt-blue-400: #2b3147;\n    --gt-blue-300: #6a7290;\n    --gt-ice:      #e8e6da;\n    --gt-bg-accent: #d6a83c;\n    --gt-bg-vignette: rgba(0, 0, 0, 0.6);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* 📼 The Jeffinitely deck's crew (JeffCrew.jsx): controllers while they play, the Jeffcom's cartridge,\n   Mitch blowing on it, Boomer's turning reels, Pixel beeping, and Dana's computer */\n.cc-crew .crew-controller, .cc-crew .crew-controller-pad, .cc-crew .crew-jeffcom-cart, .cc-crew .crew-held-cart,\n.cc-crew .crew-puff, .cc-crew .crew-boomer-reel, .cc-crew .crew-boomer-antenna, .cc-crew .crew-pixel-beep,\n.cc-crew .crew-computer-bar, .cc-crew .crew-computer-wheel { transform-box: fill-box; }\n/* 🎮 Playing: a controller in both hands, arms in, thumbs going, leaning into it */\n.cc-crew .crew-controller { opacity: 0; transition: opacity 0.25s ease; }\n.cc-crew .crew-gaming .crew-controller { opacity: 1; }\n.cc-crew .crew-gaming .crew-arm-cast { transform: rotate(-34deg); }\n.cc-crew .crew-gaming .crew-arm-bump { transform: rotate(34deg); }\n.cc-crew .crew-gaming .crew-controller-pad { animation: jeff-mash 0.18s steps(2) infinite; }\n@keyframes jeff-mash { 50% { transform: translate(0.6px, 0.8px); } }\n.cc-crew .crew-gaming .crew-controller-a { animation: jeff-button 0.36s steps(1) infinite; }\n.cc-crew .crew-gaming .crew-controller-b { animation: jeff-button 0.36s steps(1) infinite 0.18s; }\n@keyframes jeff-button { 50% { fill: #ffd23f; } }\n.cc-crew .crew-gaming .crew-fig { transform-origin: 50% 100%; animation: jeff-lean 1.6s ease-in-out infinite alternate; }\n.cc-crew .crew-angie.crew-gaming .crew-fig { animation-duration: 1.1s; animation-delay: -0.4s; }\n.cc-crew .crew-duke.crew-gaming .crew-fig { animation-duration: 2.1s; animation-delay: -1s; }\n.cc-crew .crew-boomer.crew-gaming .crew-fig { animation-duration: 1.3s; animation-delay: -0.7s; }\n@keyframes jeff-lean { from { transform: rotate(-4deg); } to { transform: rotate(3deg); } }\n/* Reaching down to the console, and blowing on the cartridge */\n.cc-crew .crew-reaching .crew-arm-bump { transform: rotate(-55deg); }\n.cc-crew .crew-held-cart { opacity: 0; }\n.cc-crew .crew-blowing .crew-held-cart { opacity: 1; }\n.cc-crew .crew-blowing .crew-arm-cast { transform: rotate(-125deg); }\n.cc-crew .crew-puff { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-blowing .crew-puff { animation: jeff-puff 0.9s ease-out infinite; }\n.cc-crew .crew-blowing .crew-puff-2 { animation-delay: 0.08s; }\n.cc-crew .crew-blowing .crew-puff-3 { animation-delay: 0.16s; }\n@keyframes jeff-puff { 0%, 30% { opacity: 0; transform: scale(0.3) translateX(4px); } 45% { opacity: 1; } 100% { opacity: 0; transform: scale(1.2) translateX(-4px); } }\n/* The Jeffcom: the cartridge sits up out of the slot until it's pushed in */\n.cc-crew .crew-jeffcom-cart { transform: translateY(-7px); transition: transform 0.22s ease, opacity 0.15s ease; }\n.cc-crew .crew-jeffcom.is-in .crew-jeffcom-cart { transform: translateY(0); }\n.cc-crew .crew-jeffcom.is-empty .crew-jeffcom-cart { opacity: 0; }\n.cc-crew .crew-jeffcom.is-powered .crew-jeffcom-light { fill: #ff3b3b; filter: drop-shadow(0 0 2px #ff3b3b); }\n/* Boomer: the mixtape's reels go round, and the antenna wobbles */\n.cc-crew .crew-boomer-reel { transform-origin: 50% 50%; animation: jeff-reel 1.2s linear infinite; }\n@keyframes jeff-reel { to { transform: rotate(360deg); } }\n.cc-crew .crew-boomer-antenna { transform-origin: 0% 100%; animation: crew-wobble 1.4s ease-in-out infinite alternate; }\n/* Pixel hops instead of walking, and beeps at the screen */\n.cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }\n.cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }\n@keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-pixel-beep { opacity: 0; }\n.cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }\n@keyframes jeff-beep { 50% { opacity: 1; } }\n/* 🖥️ Dana's computer: the wheels spin as it rolls, the modem blinks, the screen glows and \"connects\" */\n.cc-crew .crew-computer.is-rolling .crew-computer-wheel { animation: crew-bob 0.1s ease-in-out infinite alternate; }\n.cc-crew .crew-computer-glow, .cc-crew .crew-computer-modem { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-computer.is-on .crew-computer-glow { opacity: 1; animation: jeff-crt 0.12s steps(2) 6; }\n.cc-crew .crew-computer.is-on .crew-computer-modem { opacity: 1; animation: crew-bulb 0.3s steps(1) infinite; }\n.cc-crew .crew-computer-bar { transform-origin: 0% 50%; transform: scaleX(0); }\n.cc-crew .crew-computer.is-on .crew-computer-bar { transform: scaleX(1); transition: transform 1.8s steps(6); }\n@keyframes jeff-crt { 50% { opacity: 0.5; } }\n/* Dana fades in from the screen and back into it, and her bump arm is on the left */\n.cc-crew .crew-dana.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-dana.is-leaving { animation: crew-fade-in 0.9s ease-in reverse forwards; }\n.cc-crew .crew-dana.sq-bumping .sq-arm-bump { transform: rotate(120deg); }\n/* 📺 The QR card: fuzz while the cartridge isn't working, then it flickers on like an old tube TV */\n.cc-lobby-qr { position: relative; }\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-static::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  pointer-events: none;\n  opacity: 0.6;\n  background:\n    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 2px, transparent 2px 4px),\n    repeating-radial-gradient(circle at 30% 40%, #fff 0 1px, #777 1px 2px, #222 2px 3px);\n  background-size: 100% 100%, 7px 7px;\n  animation: jeff-static 0.12s steps(3) infinite;\n}\n@keyframes jeff-static {\n  0% { background-position: 0 0, 0 0; }\n  33% { background-position: 0 1px, 3px 5px; }\n  66% { background-position: 0 2px, 6px 2px; }\n}\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on-tube 0.9s ease-out;\n  box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7) !important;\n}\n@keyframes cc-qr-on-tube {\n  0% { transform: scale(1, 0.02); filter: brightness(3); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }\n  25% { transform: scale(1, 0.02); filter: brightness(3); }\n  55% { transform: scale(1, 1.04); filter: brightness(1.6); box-shadow: 0 0 46px 16px rgba(255, 79, 154, 0.95); }\n  70% { transform: scale(1, 1); filter: brightness(1); }\n  80% { filter: brightness(1.3); }\n  100% { filter: brightness(1); box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🕵️ Temple Mix Up's spies (SpyShow.jsx): shifty eyes, a suspicious bush, flashing lights and a mad scramble */\n.cc-crew .spy-peek { animation: spy-peek 2.2s ease-in-out infinite; }\n@keyframes spy-peek { 0%, 40%, 100% { transform: translateX(0); } 50%, 65% { transform: translateX(-2px); } 75%, 90% { transform: translateX(2px); } }\n.cc-crew .spy-bush-leaves { transform-box: fill-box; transform-origin: 50% 100%; }\n.cc-crew .spy-bush.is-rustling .spy-bush-leaves { animation: spy-rustle 0.12s linear infinite alternate; }\n@keyframes spy-rustle { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }\n.cc-crew .spy-siren { animation: spy-siren 0.42s steps(1) infinite; }\n.cc-crew .spy-siren-blue { animation-delay: 0.21s; }\n@keyframes spy-siren { 50% { opacity: 0.15; } }\n.cc-crew .spy-car-prisoners { display: none; }\n.cc-crew .spy-car.has-prisoners .spy-car-prisoners { display: inline; }\n.cc-crew .spy-scrambling .crew-fig { transform-origin: 50% 100%; animation: spy-scramble 0.14s linear infinite alternate; }\n@keyframes spy-scramble { from { transform: rotate(-14deg) scaleY(0.82); } to { transform: rotate(14deg) scaleY(0.82); } }\n/* The rules screen: above the cards, so they can parachute in; the buttons underneath still work */\n.cc-crew.spy-rules-show { z-index: 5; }\n.mx-rules-with-spies { padding-bottom: 17vh !important; }\n.tp-chase-spy .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(70, 76, 100, 0.55) 45%, #4a5068 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n\n/* =========================================================\n   📼 JEFFINITELY DECK THEME\n   Colours and style straight off the deck card (cardDecks.js, DeckCard.jsx): a sunset gradient that runs\n   orange → hot pink → purple → teal, a neon sun sinking into a magenta perspective grid, cassette labels\n   (cream with a pink and a teal stripe), and loud '90s shapes with dark outlines.\n   It all hangs off <html data-gt-theme=\"jeffinitely\">, which only Couch Cast sets, and only for this deck.\n   ========================================================= */\n\n/* 🌅 The background (AnimatedBackground.jsx + RetroBackdrop.jsx) */\n.gt-bg.theme-jeffinitely {\n    --gt-blue-300: #ff4f9a;\n    --gt-ice:      #18b6c9;\n    --gt-bg-accent: #ffd23f;\n    --gt-bg-vignette: rgba(26, 17, 71, 0.5);\n    background: linear-gradient(160deg, #ff8a3d 0%, #ff4f9a 34%, #7b3fd1 66%, #18b6c9 100%);\n}\n.gt-bg.theme-jeffinitely .gt-blob { opacity: 0.35; }\n/* The neon sun: rings of the deck's colours, sliced by the horizon like a synthwave sunset */\n.gt-retro-sun {\n    position: absolute;\n    left: 50%;\n    bottom: 26vh;\n    width: 46vmin;\n    height: 46vmin;\n    transform: translate(-50%, 50%);\n    border-radius: 50%;\n    background: linear-gradient(180deg, #ffd23f 0%, #ff8a3d 45%, #ff4fd8 100%);\n    -webkit-mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n            mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n    box-shadow: 0 0 80px rgba(255, 79, 216, 0.6);\n    opacity: 0.9;\n}\n/* The grid floor, tipped back toward the horizon and slowly rolling toward us */\n.gt-retro-floor {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    height: 26vh;\n    overflow: hidden;\n    perspective: 26vh;\n    perspective-origin: 50% 0;\n    background: linear-gradient(180deg, rgba(26, 17, 71, 0.55), rgba(26, 17, 71, 0.85));\n    border-top: 2px solid #ff4fd8;\n    box-shadow: 0 -4px 24px rgba(255, 79, 216, 0.55);\n}\n.gt-retro-grid {\n    position: absolute;\n    left: -50%;\n    right: -50%;\n    top: 0;\n    height: 300%;\n    transform-origin: 50% 0;\n    transform: rotateX(62deg);\n    background:\n        repeating-linear-gradient(90deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin),\n        repeating-linear-gradient(0deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin);\n    animation: gt-retro-roll 4s linear infinite;\n}\n@keyframes gt-retro-roll { to { background-position: 0 0, 0 7vmin; } }\n\n/* The drifting retro stuff: full colour, sized off the screen, behind everything */\n.gt-retro-piece {\n    width: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    height: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    opacity: 0.85;\n}\n.gt-retro-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    filter: drop-shadow(4px 5px 0 rgba(26, 17, 71, 0.35));\n}\n.gt-retro-blob { animation: gt-retro-lava 7s ease-in-out infinite alternate; }\n.gt-retro-blob-late { animation-duration: 9s; animation-delay: -3s; }\n.gt-retro-blob-later { animation-duration: 6s; animation-delay: -5s; }\n@keyframes gt-retro-lava { from { transform: translateY(6px); } to { transform: translateY(-22px); } }\n.gt-retro-reel { transform-box: fill-box; transform-origin: center; animation: jeff-reel 2.4s linear infinite; }\n.gt-retro-pet { animation: gt-retro-pet 1.2s steps(1) infinite; }\n@keyframes gt-retro-pet { 50% { transform: translateX(7px); } }\n@media (prefers-reduced-motion: reduce) {\n    .gt-retro-grid, .gt-retro-blob, .gt-retro-reel, .gt-retro-pet { animation: none; }\n}\n\n/* ✨ The shimmer border runs through the sunset */\n[data-gt-theme=\"jeffinitely\"] .shining-border-wrapper::before {\n    background: linear-gradient(270deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9, #ff4fd8, #ff8a3d);\n    background-size: 400% 400%;\n}\n\n/* 📺 TV headings: white with a stacked neon drop, like a VHS cover */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-header,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    text-shadow: 2px 2px 0 #ff4f9a, 4px 4px 0 #1a1147, 0 0 18px rgba(255, 79, 216, 0.55);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    font-style: italic;\n    text-shadow: 0.04em 0.04em 0 #ff4f9a, 0.08em 0.08em 0 #18b6c9, 0.12em 0.12em 0 #1a1147, 0 0 40px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-final {\n    background: #ffd23f;\n    color: #1a1147;\n    box-shadow: 4px 4px 0 #1a1147;\n}\n\n/* Glass panels (the prompt on the writing screen, the scores) go dark purple with a neon edge */\n[data-gt-theme=\"jeffinitely\"] .frosted-glass-panel {\n    background-color: rgba(26, 17, 71, 0.66) !important;\n    border: 1px solid rgba(255, 79, 216, 0.7) !important;\n    box-shadow: 0 8px 32px rgba(26, 17, 71, 0.5), inset 0 0 18px rgba(255, 79, 216, 0.18) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .cc-writer-tag.bg-success { background-color: rgba(46, 196, 182, 0.85) !important; }\n\n/* 📼 The light cards (QR, players, prompts, answers, the winning card) become cassette labels: cream,\n   with the pink and teal stripes along the top. The faint glass ones that carry white text go purple instead. */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.4\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.6\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.7\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.9\"] {\n    background-color: rgba(255, 246, 216, 0.82) !important;\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.25\"] {\n    background-color: rgba(26, 17, 71, 0.7) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"solid\"] {\n    border-color: #ff4f9a !important;\n    box-shadow: 0 0 26px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-code { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-players-grid .list-group-item { border-color: rgba(123, 63, 209, 0.35) !important; }\n\n/* Lobby bits on the TV: the \"Cast now\" banner and the room code pill */\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code {\n    background: rgba(26, 17, 71, 0.55);\n    border-color: rgba(255, 79, 216, 0.75);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now strong,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code strong { color: #ffd23f; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-tip { text-shadow: 1px 1px 2px rgba(26, 17, 71, 0.8); }\n\n/* The clocks: a sunset bar */\n[data-gt-theme=\"jeffinitely\"] .progress-bar.bg-light {\n    background: linear-gradient(90deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9) !important;\n}\n\n/* 🏆 TV scores: the leaders' rows go cream like a tape label, the rest stay purple glass */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-container .shadow[style*=\"rgba(255, 255, 255, 0.92\"] {\n    background-color: #fff6d8 !important;\n    box-shadow: 4px 4px 0 #ff4f9a, 8px 8px 0 #1a1147 !important;\n}\n\n/* 📱 Phone screens: Bootstrap blues turn sunset pink and purple, and the cards get a chunky retro drop */\n[data-gt-theme=\"jeffinitely\"] .bg-primary {\n    background: linear-gradient(135deg, #ff8a3d 0%, #ff4f9a 45%, #7b3fd1 100%) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .text-primary { color: #b5179e !important; }\n[data-gt-theme=\"jeffinitely\"] .card-header.bg-dark { background-color: #1a1147 !important; }\n[data-gt-theme=\"jeffinitely\"] .card.bg-success { background-color: #0e8a86 !important; }\n[data-gt-theme=\"jeffinitely\"] .border-primary { border-color: #ff4f9a !important; }\n[data-gt-theme=\"jeffinitely\"] .btn-primary {\n    background: linear-gradient(135deg, #ff4f9a, #7b3fd1);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-primary:hover,\n[data-gt-theme=\"jeffinitely\"] .btn-primary:focus {\n    background: linear-gradient(135deg, #ff6aac, #8c52e0);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-outline-secondary { border-color: #7b3fd1; color: #1a1147; }\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag),\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    border: 2px solid #1a1147 !important;\n    box-shadow: 6px 6px 0 #ff4f9a, 6px 6px 0 2px #1a1147 !important;\n}\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag) > .card-body:first-child,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone .cc-round-intro-title { color: #b5179e; font-style: italic; }\n[data-gt-theme=\"jeffinitely\"] .cc-scores-points { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-mascot-cassette { filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.6)); }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🎪 The circus lobby: the shimmer runs red, gold and white, like the big top */\n[data-gt-theme=\"circus\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #e5484d, #ffc83d, #fff6e0, #ffc83d, #e5484d);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🎪 Temple Mix Up's lobby: same recipe, big-top red with a spotlight's gold */\n.gt-bg.theme-circus {\n    --gt-navy:     #1f0509;\n    --gt-blue-800: #4a0b14;\n    --gt-blue-500: #8e1824;\n    --gt-blue-400: #b8283a;\n    --gt-blue-300: #ff8f8f;\n    --gt-ice:      #fff1d6;\n    --gt-bg-accent: #ffc83d;\n    --gt-bg-vignette: rgba(24, 2, 6, 0.55);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* 📼 The Jeffinitely deck's crew (JeffCrew.jsx): controllers while they play, the Jeffcom's cartridge,\n   Mitch blowing on it, Boomer's turning reels, Pixel beeping, and Dana's computer */\n.cc-crew .crew-controller, .cc-crew .crew-controller-pad, .cc-crew .crew-jeffcom-cart, .cc-crew .crew-held-cart,\n.cc-crew .crew-puff, .cc-crew .crew-boomer-reel, .cc-crew .crew-boomer-antenna, .cc-crew .crew-pixel-beep,\n.cc-crew .crew-computer-bar, .cc-crew .crew-computer-wheel { transform-box: fill-box; }\n/* 🎮 Playing: a controller in both hands, arms in, thumbs going, leaning into it */\n.cc-crew .crew-controller { opacity: 0; transition: opacity 0.25s ease; }\n.cc-crew .crew-gaming .crew-controller { opacity: 1; }\n.cc-crew .crew-gaming .crew-arm-cast { transform: rotate(-34deg); }\n.cc-crew .crew-gaming .crew-arm-bump { transform: rotate(34deg); }\n.cc-crew .crew-gaming .crew-controller-pad { animation: jeff-mash 0.18s steps(2) infinite; }\n@keyframes jeff-mash { 50% { transform: translate(0.6px, 0.8px); } }\n.cc-crew .crew-gaming .crew-controller-a { animation: jeff-button 0.36s steps(1) infinite; }\n.cc-crew .crew-gaming .crew-controller-b { animation: jeff-button 0.36s steps(1) infinite 0.18s; }\n@keyframes jeff-button { 50% { fill: #ffd23f; } }\n.cc-crew .crew-gaming .crew-fig { transform-origin: 50% 100%; animation: jeff-lean 1.6s ease-in-out infinite alternate; }\n.cc-crew .crew-angie.crew-gaming .crew-fig { animation-duration: 1.1s; animation-delay: -0.4s; }\n.cc-crew .crew-duke.crew-gaming .crew-fig { animation-duration: 2.1s; animation-delay: -1s; }\n.cc-crew .crew-boomer.crew-gaming .crew-fig { animation-duration: 1.3s; animation-delay: -0.7s; }\n@keyframes jeff-lean { from { transform: rotate(-4deg); } to { transform: rotate(3deg); } }\n/* Reaching down to the console, and blowing on the cartridge */\n.cc-crew .crew-reaching .crew-arm-bump { transform: rotate(-55deg); }\n.cc-crew .crew-held-cart { opacity: 0; }\n.cc-crew .crew-blowing .crew-held-cart { opacity: 1; }\n.cc-crew .crew-blowing .crew-arm-cast { transform: rotate(-125deg); }\n.cc-crew .crew-puff { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-blowing .crew-puff { animation: jeff-puff 0.9s ease-out infinite; }\n.cc-crew .crew-blowing .crew-puff-2 { animation-delay: 0.08s; }\n.cc-crew .crew-blowing .crew-puff-3 { animation-delay: 0.16s; }\n@keyframes jeff-puff { 0%, 30% { opacity: 0; transform: scale(0.3) translateX(4px); } 45% { opacity: 1; } 100% { opacity: 0; transform: scale(1.2) translateX(-4px); } }\n/* The Jeffcom: the cartridge sits up out of the slot until it's pushed in */\n.cc-crew .crew-jeffcom-cart { transform: translateY(-7px); transition: transform 0.22s ease, opacity 0.15s ease; }\n.cc-crew .crew-jeffcom.is-in .crew-jeffcom-cart { transform: translateY(0); }\n.cc-crew .crew-jeffcom.is-empty .crew-jeffcom-cart { opacity: 0; }\n.cc-crew .crew-jeffcom.is-powered .crew-jeffcom-light { fill: #ff3b3b; filter: drop-shadow(0 0 2px #ff3b3b); }\n/* Boomer: the mixtape's reels go round, and the antenna wobbles */\n.cc-crew .crew-boomer-reel { transform-origin: 50% 50%; animation: jeff-reel 1.2s linear infinite; }\n@keyframes jeff-reel { to { transform: rotate(360deg); } }\n.cc-crew .crew-boomer-antenna { transform-origin: 0% 100%; animation: crew-wobble 1.4s ease-in-out infinite alternate; }\n/* Pixel hops instead of walking, and beeps at the screen */\n.cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }\n.cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }\n@keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-pixel-beep { opacity: 0; }\n.cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }\n@keyframes jeff-beep { 50% { opacity: 1; } }\n/* 🖥️ Dana's computer: the wheels spin as it rolls, the modem blinks, the screen glows and \"connects\" */\n.cc-crew .crew-computer.is-rolling .crew-computer-wheel { animation: crew-bob 0.1s ease-in-out infinite alternate; }\n.cc-crew .crew-computer-glow, .cc-crew .crew-computer-modem { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-computer.is-on .crew-computer-glow { opacity: 1; animation: jeff-crt 0.12s steps(2) 6; }\n.cc-crew .crew-computer.is-on .crew-computer-modem { opacity: 1; animation: crew-bulb 0.3s steps(1) infinite; }\n.cc-crew .crew-computer-bar { transform-origin: 0% 50%; transform: scaleX(0); }\n.cc-crew .crew-computer.is-on .crew-computer-bar { transform: scaleX(1); transition: transform 1.8s steps(6); }\n@keyframes jeff-crt { 50% { opacity: 0.5; } }\n/* Dana fades in from the screen and back into it, and her bump arm is on the left */\n.cc-crew .crew-dana.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-dana.is-leaving { animation: crew-fade-in 0.9s ease-in reverse forwards; }\n.cc-crew .crew-dana.sq-bumping .sq-arm-bump { transform: rotate(120deg); }\n/* 📺 The QR card: fuzz while the cartridge isn't working, then it flickers on like an old tube TV */\n.cc-lobby-qr { position: relative; }\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-static::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  pointer-events: none;\n  opacity: 0.6;\n  background:\n    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 2px, transparent 2px 4px),\n    repeating-radial-gradient(circle at 30% 40%, #fff 0 1px, #777 1px 2px, #222 2px 3px);\n  background-size: 100% 100%, 7px 7px;\n  animation: jeff-static 0.12s steps(3) infinite;\n}\n@keyframes jeff-static {\n  0% { background-position: 0 0, 0 0; }\n  33% { background-position: 0 1px, 3px 5px; }\n  66% { background-position: 0 2px, 6px 2px; }\n}\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on-tube 0.9s ease-out;\n  box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7) !important;\n}\n@keyframes cc-qr-on-tube {\n  0% { transform: scale(1, 0.02); filter: brightness(3); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }\n  25% { transform: scale(1, 0.02); filter: brightness(3); }\n  55% { transform: scale(1, 1.04); filter: brightness(1.6); box-shadow: 0 0 46px 16px rgba(255, 79, 154, 0.95); }\n  70% { transform: scale(1, 1); filter: brightness(1); }\n  80% { filter: brightness(1.3); }\n  100% { filter: brightness(1); box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🎪 Temple Mix Up's clowns (CircusShow.jsx): a car that's far too small, a fizzing fuse, a puff of smoke,\n   a squirting flower and the lion's swishing tail */\n.cc-crew .circus-car-clowns { display: none; }\n.cc-crew .circus-car.has-clowns .circus-car-clowns { display: inline; }\n.cc-crew .circus-car-body, .cc-crew .circus-lion-tail, .cc-crew .circus-smoke circle { transform-box: fill-box; }\n.cc-crew .circus-car-body { transform-origin: 50% 100%; }\n.cc-crew .circus-car.is-bouncing .circus-car-body { animation: circus-bounce 0.16s ease-in-out infinite alternate; }\n@keyframes circus-bounce { from { transform: translateY(0) rotate(-1.5deg); } to { transform: translateY(-3px) rotate(1.5deg); } }\n.cc-crew .circus-fuse-spark { display: none; }\n.cc-crew .circus-cannon.is-lit .circus-fuse-spark { display: inline; animation: circus-fizz 0.12s steps(2) infinite; }\n@keyframes circus-fizz { 50% { opacity: 0.35; } }\n.cc-crew .circus-smoke circle { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .circus-smoke.is-on circle { animation: circus-puff 1.1s ease-out; }\n@keyframes circus-puff { 0% { opacity: 0.95; transform: scale(0.3); } 100% { opacity: 0; transform: scale(1.7); } }\n.cc-crew .circus-lion-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n.cc-crew .circus-lion.is-roaring .crew-fig { animation: quiz-roar 0.06s linear infinite alternate; }\n.cc-crew .circus-dizzy .crew-fig { transform-origin: 50% 100%; animation: circus-dizzy 0.45s ease-in-out infinite alternate; }\n@keyframes circus-dizzy { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n/* The rules screen: above the cards, so they can swing in; the buttons underneath still work */\n.cc-crew.circus-rules-show { z-index: 5; }\n.mx-rules-with-clowns { padding-bottom: 17vh !important; }\n/* The end credits: a sawdust ring floor */\n.tp-chase-circus .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(201, 150, 82, 0.5) 45%, #b5823f 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n\n/* =========================================================\n   📼 JEFFINITELY DECK THEME\n   Colours and style straight off the deck card (cardDecks.js, DeckCard.jsx): a sunset gradient that runs\n   orange → hot pink → purple → teal, a neon sun sinking into a magenta perspective grid, cassette labels\n   (cream with a pink and a teal stripe), and loud '90s shapes with dark outlines.\n   It all hangs off <html data-gt-theme=\"jeffinitely\">, which only Couch Cast sets, and only for this deck.\n   ========================================================= */\n\n/* 🌅 The background (AnimatedBackground.jsx + RetroBackdrop.jsx) */\n.gt-bg.theme-jeffinitely {\n    --gt-blue-300: #ff4f9a;\n    --gt-ice:      #18b6c9;\n    --gt-bg-accent: #ffd23f;\n    --gt-bg-vignette: rgba(26, 17, 71, 0.5);\n    background: linear-gradient(160deg, #ff8a3d 0%, #ff4f9a 34%, #7b3fd1 66%, #18b6c9 100%);\n}\n.gt-bg.theme-jeffinitely .gt-blob { opacity: 0.35; }\n/* The neon sun: rings of the deck's colours, sliced by the horizon like a synthwave sunset */\n.gt-retro-sun {\n    position: absolute;\n    left: 50%;\n    bottom: 26vh;\n    width: 46vmin;\n    height: 46vmin;\n    transform: translate(-50%, 50%);\n    border-radius: 50%;\n    background: linear-gradient(180deg, #ffd23f 0%, #ff8a3d 45%, #ff4fd8 100%);\n    -webkit-mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n            mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n    box-shadow: 0 0 80px rgba(255, 79, 216, 0.6);\n    opacity: 0.9;\n}\n/* The grid floor, tipped back toward the horizon and slowly rolling toward us */\n.gt-retro-floor {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    height: 26vh;\n    overflow: hidden;\n    perspective: 26vh;\n    perspective-origin: 50% 0;\n    background: linear-gradient(180deg, rgba(26, 17, 71, 0.55), rgba(26, 17, 71, 0.85));\n    border-top: 2px solid #ff4fd8;\n    box-shadow: 0 -4px 24px rgba(255, 79, 216, 0.55);\n}\n.gt-retro-grid {\n    position: absolute;\n    left: -50%;\n    right: -50%;\n    top: 0;\n    height: 300%;\n    transform-origin: 50% 0;\n    transform: rotateX(62deg);\n    background:\n        repeating-linear-gradient(90deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin),\n        repeating-linear-gradient(0deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin);\n    animation: gt-retro-roll 4s linear infinite;\n}\n@keyframes gt-retro-roll { to { background-position: 0 0, 0 7vmin; } }\n\n/* The drifting retro stuff: full colour, sized off the screen, behind everything */\n.gt-retro-piece {\n    width: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    height: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    opacity: 0.85;\n}\n.gt-retro-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    filter: drop-shadow(4px 5px 0 rgba(26, 17, 71, 0.35));\n}\n.gt-retro-blob { animation: gt-retro-lava 7s ease-in-out infinite alternate; }\n.gt-retro-blob-late { animation-duration: 9s; animation-delay: -3s; }\n.gt-retro-blob-later { animation-duration: 6s; animation-delay: -5s; }\n@keyframes gt-retro-lava { from { transform: translateY(6px); } to { transform: translateY(-22px); } }\n.gt-retro-reel { transform-box: fill-box; transform-origin: center; animation: jeff-reel 2.4s linear infinite; }\n.gt-retro-pet { animation: gt-retro-pet 1.2s steps(1) infinite; }\n@keyframes gt-retro-pet { 50% { transform: translateX(7px); } }\n@media (prefers-reduced-motion: reduce) {\n    .gt-retro-grid, .gt-retro-blob, .gt-retro-reel, .gt-retro-pet { animation: none; }\n}\n\n/* ✨ The shimmer border runs through the sunset */\n[data-gt-theme=\"jeffinitely\"] .shining-border-wrapper::before {\n    background: linear-gradient(270deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9, #ff4fd8, #ff8a3d);\n    background-size: 400% 400%;\n}\n\n/* 📺 TV headings: white with a stacked neon drop, like a VHS cover */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-header,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    text-shadow: 2px 2px 0 #ff4f9a, 4px 4px 0 #1a1147, 0 0 18px rgba(255, 79, 216, 0.55);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    font-style: italic;\n    text-shadow: 0.04em 0.04em 0 #ff4f9a, 0.08em 0.08em 0 #18b6c9, 0.12em 0.12em 0 #1a1147, 0 0 40px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-final {\n    background: #ffd23f;\n    color: #1a1147;\n    box-shadow: 4px 4px 0 #1a1147;\n}\n\n/* Glass panels (the prompt on the writing screen, the scores) go dark purple with a neon edge */\n[data-gt-theme=\"jeffinitely\"] .frosted-glass-panel {\n    background-color: rgba(26, 17, 71, 0.66) !important;\n    border: 1px solid rgba(255, 79, 216, 0.7) !important;\n    box-shadow: 0 8px 32px rgba(26, 17, 71, 0.5), inset 0 0 18px rgba(255, 79, 216, 0.18) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .cc-writer-tag.bg-success { background-color: rgba(46, 196, 182, 0.85) !important; }\n\n/* 📼 The light cards (QR, players, prompts, answers, the winning card) become cassette labels: cream,\n   with the pink and teal stripes along the top. The faint glass ones that carry white text go purple instead. */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.4\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.6\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.7\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.9\"] {\n    background-color: rgba(255, 246, 216, 0.82) !important;\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.25\"] {\n    background-color: rgba(26, 17, 71, 0.7) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"solid\"] {\n    border-color: #ff4f9a !important;\n    box-shadow: 0 0 26px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-code { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-players-grid .list-group-item { border-color: rgba(123, 63, 209, 0.35) !important; }\n\n/* Lobby bits on the TV: the \"Cast now\" banner and the room code pill */\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code {\n    background: rgba(26, 17, 71, 0.55);\n    border-color: rgba(255, 79, 216, 0.75);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now strong,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code strong { color: #ffd23f; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-tip { text-shadow: 1px 1px 2px rgba(26, 17, 71, 0.8); }\n\n/* The clocks: a sunset bar */\n[data-gt-theme=\"jeffinitely\"] .progress-bar.bg-light {\n    background: linear-gradient(90deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9) !important;\n}\n\n/* 🏆 TV scores: the leaders' rows go cream like a tape label, the rest stay purple glass */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-container .shadow[style*=\"rgba(255, 255, 255, 0.92\"] {\n    background-color: #fff6d8 !important;\n    box-shadow: 4px 4px 0 #ff4f9a, 8px 8px 0 #1a1147 !important;\n}\n\n/* 📱 Phone screens: Bootstrap blues turn sunset pink and purple, and the cards get a chunky retro drop */\n[data-gt-theme=\"jeffinitely\"] .bg-primary {\n    background: linear-gradient(135deg, #ff8a3d 0%, #ff4f9a 45%, #7b3fd1 100%) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .text-primary { color: #b5179e !important; }\n[data-gt-theme=\"jeffinitely\"] .card-header.bg-dark { background-color: #1a1147 !important; }\n[data-gt-theme=\"jeffinitely\"] .card.bg-success { background-color: #0e8a86 !important; }\n[data-gt-theme=\"jeffinitely\"] .border-primary { border-color: #ff4f9a !important; }\n[data-gt-theme=\"jeffinitely\"] .btn-primary {\n    background: linear-gradient(135deg, #ff4f9a, #7b3fd1);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-primary:hover,\n[data-gt-theme=\"jeffinitely\"] .btn-primary:focus {\n    background: linear-gradient(135deg, #ff6aac, #8c52e0);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-outline-secondary { border-color: #7b3fd1; color: #1a1147; }\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag),\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    border: 2px solid #1a1147 !important;\n    box-shadow: 6px 6px 0 #ff4f9a, 6px 6px 0 2px #1a1147 !important;\n}\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag) > .card-body:first-child,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone .cc-round-intro-title { color: #b5179e; font-style: italic; }\n[data-gt-theme=\"jeffinitely\"] .cc-scores-points { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-mascot-cassette { filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.6)); }\n", "",{"version":3,"sources":["webpack://./src/styles/cards.css"],"names":[],"mappings":"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","sourcesContent":["/* Centered Full Height Container */\n.page-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 0.25rem;\n  overflow-x: hidden;\n  box-sizing: border-box; /* 👈 ADDED: Keeps the 0.25rem padding inside the 100vh calculation */\n  \n  /* Fallback for standard viewports */\n  min-height: calc(100vh - 64px);\n  \n  /* Modern dynamic viewport height (accounts for mobile URL bars) */\n  min-height: calc(100dvh - 64px);\n}\n\n/* Standardized Card Layout */\n.main-card {\n  width: 100%;\n  max-width: 450px;\n  text-align: center;\n  position: relative;\n  border: none !important;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;\n}\n\n/* Custom Card Header styling */\n.main-card-header {\n  background-color: var(--gt-blue-600) !important;\n  color: #f1f2f5 !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: none !important; \n  padding-top: 0.5rem !important;\n  padding-bottom: 0.5rem !important;  \n  font-weight: 500;\n  letter-spacing: 0.2em;\n  text-transform: uppercase;\n  font-size: 1rem !important;\n}\n\n/* Custom Text Brand Color */\n.text-brand-primary {\n  color: #014eb6;\n}\n\n/* -------------------------------------------------- */\n/* 🥷 Burglar Animations                              */\n/* -------------------------------------------------- */\n\n.stolen-slot {\n  border: 2px dashed #ccc;\n  background-color: transparent;\n  color: #aaa;\n}\n\n/* 1. Left-to-Right Keyframe (Flips image to face Right) */\n@keyframes burglarHeistLTR {\n  0%   { transform: translate(-400px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1); opacity: 1; }\n  85%  { transform: translate(400px, -50%) scaleX(-1); opacity: 1; }\n  100% { transform: translate(400px, -50%) scaleX(-1); opacity: 0; }\n}\n\n/* 2. Right-to-Left Keyframe (Keeps native image facing Left) */\n@keyframes burglarHeistRTL {\n  0%   { transform: translate(400px, -50%); opacity: 1; }\n  35%  { transform: translate(0px, -50%); opacity: 1; }\n  50%  { transform: translate(0px, -50%); opacity: 1; }\n  85%  { transform: translate(-400px, -50%); opacity: 1; }\n  100% { transform: translate(-400px, -50%); opacity: 0; }\n}\n\n/* Home Page Burglar (Runs Left to Right) */\n.burglar-ltr {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-ltr.active {\n  animation: burglarHeistLTR 3s ease-in-out forwards;\n}\n\n/* Bar Home Burglar (Runs Right to Left) */\n.burglar-rtl {\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-rtl.active {\n  animation: burglarHeistRTL 3s ease-in-out forwards;\n}\n\n/* Home Page Burglar #2: steals the tile behind \"OR / Create New Room\" */\n.burglar-divider {\n  position: absolute;\n  top: 50%;\n  left: calc(50% - 30px);   /* centered on the tile (image is 60px wide) */\n  z-index: 999;\n  opacity: 0;\n  pointer-events: none;\n}\n.burglar-divider.active {\n  animation: burglarHeistDivider 3s ease-in-out forwards;\n}\n/* Shorter run than the others so he stays on the white card */\n@keyframes burglarHeistDivider {\n  0%   { transform: translate(-260px, -50%) scaleX(-1); opacity: 0; }\n  10%  { transform: translate(-180px, -50%) scaleX(-1); opacity: 1; }\n  35%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  50%  { transform: translate(0px, -50%) scaleX(-1);    opacity: 1; }\n  75%  { transform: translate(180px, -50%) scaleX(-1);  opacity: 1; }\n  90%  { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n  100% { transform: translate(260px, -50%) scaleX(-1);  opacity: 0; }\n}\n\n/* 🎁 The loot: blue tile behind \"OR / Create New Room\" */\n.gt-loot {\n  display: inline-block;\n  line-height: 1.25;\n  padding: 0.45rem 1rem;\n  border-radius: 0.75rem;\n  border: 2px solid transparent;\n  color: #fff;\n  background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(74, 102, 216, 0.35);\n  transition: color 0.2s ease, border-color 0.2s ease;\n}\n/* After the heist: just a dashed outline where the tile used to be */\n.gt-loot.stolen {\n  color: #aaa;\n  background: transparent;\n  box-shadow: none;\n  border: 2px dashed #ccc;\n}\n\n/* 🏆 The scores on a player's phone between rounds (CouchCastScoreboard.jsx) */\n.cc-scores { text-align: left; }\n.cc-scores-row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.35rem 0.25rem;\n  border-bottom: 1px solid #dfe3ea;\n}\n.cc-scores-row:last-child { border-bottom: 0; }\n.cc-scores-rank {\n  flex: 0 0 1.25rem;\n  text-align: center;\n  font-weight: 700;\n  color: #6c757d;\n}\n.cc-scores-name {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  font-weight: 700;\n  color: #212529;\n}\n.cc-scores-points {\n  flex: 0 0 auto;\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: #014eb6;\n}\n/* This player's own name: the home page's tile, with the burglar centered on it */\n.cc-scores-loot {\n  position: relative;\n  display: inline-flex;\n  min-width: 0;\n  max-width: 100%;\n}\n.cc-scores-loot .gt-loot { padding: 0.25rem 0.75rem; }\n\n/* 🌟 The deck's character at the top of the scores */\n.cc-mascot {\n  display: block;\n  width: 110px;\n  height: auto;\n  margin: 0 auto 0.5rem;\n  overflow: visible;\n}\n.cc-mascot-bob {\n  transform-box: fill-box;\n  transform-origin: center bottom;\n  animation: cc-mascot-bob 1.1s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-bob {\n  from { transform: translateY(2px) rotate(-5deg) scale(1, 0.98); }\n  to   { transform: translateY(-5px) rotate(5deg) scale(1, 1.02); }\n}\n.cc-mascot-sparkle {\n  transform-box: fill-box;\n  transform-origin: center;\n  animation: cc-mascot-sparkle 1.4s ease-in-out infinite;\n}\n.cc-mascot-sparkle-late { animation-delay: 0.45s; }\n.cc-mascot-sparkle-later { animation-delay: 0.9s; }\n@keyframes cc-mascot-sparkle {\n  0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; }\n  50%      { transform: scale(1) rotate(45deg); opacity: 1; }\n}\n/* The candle inside the pumpkin */\n.cc-mascot-pumpkin { filter: drop-shadow(0 0 8px rgba(255, 150, 30, 0.55)); }\n.cc-mascot-flicker { animation: cc-mascot-flicker 1.3s steps(1) infinite; }\n@keyframes cc-mascot-flicker {\n  0%, 100% { fill: #ffe14d; }\n  20%      { fill: #ffb52e; }\n  35%      { fill: #fff27a; }\n  55%      { fill: #ff9f1f; }\n  70%      { fill: #ffe14d; }\n  85%      { fill: #ffc533; }\n}\n.cc-mascot-swing {\n  transform-origin: 60px 4px;\n  animation: cc-mascot-swing 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-mascot-swing {\n  from { transform: rotate(-9deg); }\n  to   { transform: rotate(9deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-mascot-bob, .cc-mascot-sparkle, .cc-mascot-flicker, .cc-mascot-swing { animation: none; }\n  .cc-mascot-sparkle { opacity: 1; }\n}\n\n/* -------------------------------- */\n/* 📱 STICKY SCROLL HACK FOR MOBILE  */\n/* -------------------------------- */\n\n/* 1. The tall wrapper that allows the phone to scroll */\n.fullscreen-gameplay-container {\n  position: fixed; \n  top: 0;\n  left: 0;\n  width: 100%; \n  height: 100dvh; \n  /* Transparent: the themed animated background (AnimatedBackground.jsx) shows through */\n  background-color: transparent; \n  z-index: 9999;\n  overflow: hidden; \n  \n  /* --- The Flexbox Uniformity Rules --- */\n  display: flex; \n  flex-direction: column;\n  align-items: center;      /* <-- Replaces align-items-center */\n  padding-top: 1rem;        /* <-- Replaces py-3 */\n  padding-bottom: 1rem;     /* <-- Replaces py-3 */\n}\n\n/* 2. The sticky game board that stays perfectly framed */\n.fullscreen-gameplay {\n  position: sticky;\n  top: 0;\n  height: 100vh; /* Perfectly fills the visible space */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem; \n  box-sizing: border-box; \n  overflow: hidden; \n}\n\n/* -------------------------------- */\n/* CARD STYLING & ANIMATIONS        */\n/* -------------------------------- */\n\n@keyframes borderShine {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}\n\n/* 1. The Wrapper (Now with a transparent background) */\n.shining-border-wrapper {\n  position: relative;\n  padding: 5px; /* Sets the border thickness */\n  border-radius: 0.5rem;\n  box-sizing: border-box; \n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); \n  z-index: 1; /* Establishes stacking context */\n}\n/* 2. The Holographic Border (Using a CSS Mask to hollow out the center) */\n.shining-border-wrapper::before {\n  content: \"\";\n  position: absolute;\n  inset: 0; /* Stretches to fill the wrapper */\n  border-radius: inherit; /* Matches the outer curve */\n  padding: 5px; /* Matches the wrapper's padding to set border width */\n  \n  /* Your awesome animation */\n  background: linear-gradient(270deg, #014eb6, #4dd0e1, #014eb6, #f4f4f5);\n  background-size: 400% 400%;\n  animation: borderShine 6s ease infinite;\n  \n  /* THE MAGIC: Cuts out the inside of the gradient so the background shows through */\n  -webkit-mask: \n    linear-gradient(#fff 0 0) content-box, \n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  \n  z-index: -1; /* Puts the border behind your card */\n  pointer-events: none; /* Allows clicks to pass through to the card */\n}\n\n/* 🐾 Animals deck: the shimmer runs green and gold */\n[data-gt-theme=\"animals\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #1c9562, #073222, #9be7c0, #d6c14a, #0f5239);\n  background-size: 400% 400%;\n}\n\n/* The card inside sits flush against the border (overrides the site-wide .card margin) */\n.shining-border-wrapper > .card {\n  margin: 0;\n}\n\n/* 🎄 Holiday deck: the shimmer runs red, green and gold */\n[data-gt-theme=\"holiday\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #d6333c, #137a4c, #ffd23f, #137a4c, #d6333c);\n  background-size: 400% 400%;\n}\n\n/* 🎪 The circus lobby: the shimmer runs red, gold and white, like the big top */\n[data-gt-theme=\"circus\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #e5484d, #ffc83d, #fff6e0, #ffc83d, #e5484d);\n  background-size: 400% 400%;\n}\n\n/* 🎃 Halloween deck: the shimmer runs purple and black instead of blue */\n[data-gt-theme=\"halloween\"] .shining-border-wrapper::before {\n  background: linear-gradient(270deg, #7b2cbf, #12061c, #c77dff, #12061c, #5a189a);\n  background-size: 400% 400%;\n}\n\n.custom-scrollbar::-webkit-scrollbar {\n  width: 6px;\n}\n.custom-scrollbar::-webkit-scrollbar-thumb {\n  background-color: #014eb6;\n  border-radius: 4px;\n}\n\n.fullscreen-gameplay-card {\n  border: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1; \n  margin: 0;\n  border-radius: calc(0.5rem - 2px);\n  overflow: hidden;\n}\n\n/* .fullscreen-gameplay-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 0;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 1.5rem; \n  margin: 0;\n  text-align: center;\n  flex-shrink: 0;\n  background-color: #014eb6 !important; \n  color: #f1f2f5 !important; \n  letter-spacing: 0.2em;\n} */\n\n.fullscreen-gameplay-header {\n/* From your inline styles */\n  font-size: clamp(1.1rem, 2.5vh, 1.8rem);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);\n  letter-spacing: 2px;\n\n  /* From your utility classes */\n  text-align: center;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 0.5rem; /* Standard equivalent for mb-2 */\n  flex-shrink: 0;\n}\n\n/* 📺 \"Cast now to screen\" banner on the Couch Cast lobby */\n.cc-cast-now {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.6rem;\n  align-self: center;\n  flex-shrink: 0;\n  max-width: 100%;\n  margin-bottom: 0.6rem;\n  padding: 0.35rem 1rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.75rem, 2.4vh, 1.25rem);\n  line-height: 1.25;\n  text-align: left;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);\n}\n.cc-cast-now strong { color: var(--gt-gold); }\n.cc-cast-now-icon {\n  width: clamp(1.4rem, 4.5vh, 2.2rem);\n  height: clamp(1.4rem, 4.5vh, 2.2rem);\n  flex-shrink: 0;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 7;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n.cc-cast-now-dot { fill: #fff; stroke: none; }\n@keyframes cc-cast-pulse {\n  0%, 100% { opacity: 1; }\n  50%      { opacity: 0.45; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-cast-now-icon { animation: none; }\n}\n\n/* 🔋 Small tip line under the lobby cards */\n/* The lobby handles its own padding, so the title sits close to the top */\n.fullscreen-gameplay-container.cc-lobby { padding-top: 0; padding-bottom: 0; }\n/* The room code in \"Scan to join Room ABCD\" */\n.cc-lobby-code {\n  color: #014eb6;\n  letter-spacing: 0.12em;\n  margin-left: 0.2em;\n}\n\n.cc-lobby-tip {\n  flex-shrink: 0;\n  margin-top: 0.4rem;\n  padding-right: 9rem;   /* keeps clear of the room code pill in the corner, which sits on the last tip's line */\n  color: rgba(255, 255, 255, 0.9);\n  font-size: clamp(0.65rem, 2.2vh, 1rem);\n  line-height: 1.2;\n  text-align: left;\n  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);\n}\n\n/* ❔ Trivia Cast (TV): the four answers in a 2 x 2 grid */\n.fullscreen-gameplay-header .tc-category {\n  margin-left: 0.75rem;\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  font-size: 0.7em;\n  letter-spacing: 0.05em;\n  color: var(--gt-gold);\n  background: rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.tc-options {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  grid-auto-rows: minmax(0, 1fr);\n  gap: clamp(0.4rem, 2vh, 1rem);\n}\n.tc-option {\n  display: flex;\n  align-items: center;\n  gap: clamp(0.5rem, 2vh, 1rem);\n  min-height: 0;\n  padding: clamp(0.3rem, 2vh, 1rem) clamp(0.6rem, 2.5vh, 1.5rem);\n  border-radius: 14px;\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.9rem, 4.5vh, 2rem);\n  line-height: 1.15;\n  text-align: left;\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;\n}\n.tc-option-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 1.7em;\n  height: 1.7em;\n  border-radius: 50%;\n  color: var(--gt-navy);\n  text-shadow: none;\n  background: #fff;\n}\n.tc-option-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }\n.tc-option-tick { flex-shrink: 0; }\n.tc-option.correct {\n  background: rgba(25, 150, 83, 0.92);\n  border-color: #b9f5cf;\n  transform: scale(1.02);\n}\n.tc-option.wrong { opacity: 0.4; }\n\n/* 🎬 Reveal: each answer sits in a slot; the wrong ones leave, the right one zooms in */\n.tc-slot {\n  position: relative;\n  display: flex;\n  min-height: 0;\n  min-width: 0;\n}\n.tc-slot > .tc-option,\n.tc-slot .tc-walker,\n.tc-slot .tc-eaten,\n.tc-slot .tc-placeholder { flex: 1 1 auto; min-width: 0; display: flex; }\n.tc-slot .tc-walker > .tc-option,\n.tc-slot .tc-eaten > .tc-option,\n.tc-slot .tc-placeholder > .tc-option,\n.tc-shard > .tc-option { flex: 1 1 auto; min-width: 0; }\n/* During the reveal the wrong answers keep full colour until they leave */\n.tc-fx-shatter .tc-option.wrong,\n.tc-fx-walk .tc-option.wrong,\n.tc-fx-chomp .tc-option.wrong { opacity: 1; }\n\n/* The right answer: waits for the others to go, then glides to the middle, zooms in and glows */\n.tc-slot-correct { z-index: 3; }\n.tc-option.correct.tc-zoom {\n  position: relative;\n  z-index: 3;\n  animation: tc-zoom 0.8s cubic-bezier(.3, 1.3, .5, 1) 2.1s both, tc-glow 1.6s ease-in-out 2.9s infinite;\n}\n@keyframes tc-zoom {\n  from { transform: translate(0, 0) scale(1); }\n  to   { transform: translate(calc(var(--cx, 0) * 104%), calc(var(--cy, 0) * 108%)) scale(1.18); }\n}\n@keyframes tc-glow {\n  0%, 100% { box-shadow: 0 0 0 0 rgba(185, 245, 207, 0.0), 0 8px 24px rgba(0, 0, 0, 0.25); }\n  50%      { box-shadow: 0 0 28px 6px rgba(185, 245, 207, 0.75), 0 8px 24px rgba(0, 0, 0, 0.25); }\n}\n\n/* 💥 Shatter: the card cracks, then its pieces fly apart */\n.tc-fx-shatter .tc-placeholder { visibility: hidden; }\n.tc-shard {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  animation: tc-shake 0.35s ease-in-out var(--delay) both, tc-fly 1.1s cubic-bezier(.5, 0, .9, .6) calc(var(--delay) + 0.45s) both;\n}\n.tc-cracks {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: #fff;\n  stroke-width: 1.4;\n  vector-effect: non-scaling-stroke;\n  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));\n  pointer-events: none;\n  animation: tc-cracks 0.8s ease-out var(--delay) both;\n}\n@keyframes tc-shake {\n  0%, 100% { transform: translate(0, 0); }\n  25%      { transform: translate(-1.5%, 1%); }\n  50%      { transform: translate(1.5%, -1%); }\n  75%      { transform: translate(-1%, -1%); }\n}\n@keyframes tc-fly {\n  from { transform: translate(0, 0) rotate(0); opacity: 1; }\n  to   { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85); opacity: 0; }\n}\n@keyframes tc-cracks {\n  0%   { opacity: 0; }\n  30%  { opacity: 1; }\n  60%  { opacity: 1; }\n  100% { opacity: 0; }\n}\n\n/* 🦵 Walk: the card sprouts legs and strolls off the side of the screen */\n.tc-fx-walk .tc-walker {\n  position: relative;\n  animation: tc-walk-off 2.4s ease-in calc(var(--delay) + 0.5s) both;\n}\n.tc-legs {\n  position: absolute;\n  left: 30%;\n  right: 30%;\n  top: 92%;\n  height: clamp(10px, 3.2vh, 28px);\n  display: flex;\n  justify-content: space-between;\n  transform-origin: top center;\n  animation: tc-legs-grow 0.4s ease-out var(--delay) both;\n}\n.tc-leg {\n  position: relative;\n  width: clamp(4px, 0.9vh, 8px);\n  height: 100%;\n  border-radius: 4px;\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);\n  transform-origin: top center;\n  animation: tc-leg-swing 0.28s ease-in-out calc(var(--delay) + 0.5s) infinite alternate;\n}\n.tc-leg.right { animation-direction: alternate-reverse; }\n/* Little shoes */\n.tc-leg::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: calc(50% - 2px);\n  width: 220%;\n  height: 35%;\n  border-radius: 6px;\n  background: #fff;\n  transform: translateX(calc(-30% * var(--dir, 1)));\n}\n@keyframes tc-legs-grow {\n  from { transform: scaleY(0); }\n  to   { transform: scaleY(1); }\n}\n@keyframes tc-leg-swing {\n  from { transform: rotate(-24deg); }\n  to   { transform: rotate(24deg); }\n}\n@keyframes tc-walk-off {\n  0%   { transform: translate(0, 0); }\n  10%  { transform: translate(calc(var(--dir) * 2vw), -1.2vh); }\n  20%  { transform: translate(calc(var(--dir) * 6vw), 0); }\n  30%  { transform: translate(calc(var(--dir) * 12vw), -1.2vh); }\n  40%  { transform: translate(calc(var(--dir) * 20vw), 0); }\n  100% { transform: translate(calc(var(--dir) * 120vw), 0); }\n}\n\n/* 🟢 Chomp: Chompy runs across the card and eats it as he goes */\n.tc-fx-chomp .tc-eaten {\n  animation: tc-eat 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy-runner {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 85%;\n  aspect-ratio: 1 / 1;\n  z-index: 2;\n  transform: translate(-100%, -50%);\n  animation: tc-chompy-run 1.6s linear calc(var(--delay) + 0.2s) both;\n}\n.tc-chompy { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); }\n.tc-chompy path:not(.tc-chompy-bow) { fill: var(--chompy-color, #3ee6b5); }\n.tc-chompy-eye { fill: #1b1b1f; }\n.tc-chompy-bow { fill: #ff4f9a; stroke: #fff; stroke-width: 1.5; }\n.tc-jaw {\n  transform-origin: 50px 50px;\n  animation: tc-chomp 0.18s ease-in-out infinite alternate;\n}\n.tc-jaw.top    { --open: -38deg; }\n.tc-jaw.bottom { --open: 38deg; }\n@keyframes tc-chomp {\n  from { transform: rotate(0deg); }\n  to   { transform: rotate(var(--open)); }\n}\n@keyframes tc-eat {\n  from { clip-path: inset(0 0 0 0); }\n  to   { clip-path: inset(0 0 0 100%); }\n}\n@keyframes tc-chompy-run {\n  0%   { left: 0;    opacity: 0; }   /* hidden while he waits his turn */\n  4%   { left: 4%;   opacity: 1; }\n  92%  { left: 100%; opacity: 1; }\n  100% { left: 112%; opacity: 0; }\n}\n\n/* Reduce motion: no effects, the wrong answers just fade back */\n@media (prefers-reduced-motion: reduce) {\n  .tc-slot *, .tc-slot *::after { animation: none !important; }\n  .tc-fx-shatter, .tc-fx-walk, .tc-fx-chomp { opacity: 0.4; }\n  .tc-chompy-runner, .tc-legs, .tc-cracks { display: none; }\n}\n\n/* 🔁 End of game: Play Again / Home (on the final scores) */\n.game-over-actions {\n  display: flex;\n  justify-content: center;\n  gap: clamp(0.5rem, 2vw, 1.25rem);\n  flex-wrap: wrap;\n}\n.game-over-btn {\n  min-width: clamp(8rem, 22vw, 14rem);\n  padding: clamp(0.4rem, 1.8vh, 0.9rem) 1.25rem;\n  border-radius: 999px;\n  border: 2px solid rgba(255, 255, 255, 0.75);\n  color: #fff;\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.2vh, 1.4rem);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);\n  transition: transform 0.1s ease, filter 0.15s ease;\n}\n.game-over-btn.again { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.game-over-btn.home  { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }\n.game-over-btn:hover:not(:disabled) { filter: brightness(1.1); }\n.game-over-btn:active:not(:disabled) { transform: scale(0.97); }\n.game-over-btn:disabled { opacity: 0.6; }\n.game-over-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 3px; }\n\n.tc-results {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.4rem;\n  color: #fff;\n  font-size: clamp(0.8rem, 3.4vh, 1.4rem);\n  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.tc-result-chip {\n  padding: 0.1rem 0.7rem;\n  border-radius: 999px;\n  background: rgba(25, 150, 83, 0.85);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  text-shadow: none;\n}\n.tc-result-chip strong { color: var(--gt-gold); margin-left: 0.25rem; }\n\n/* ❔ Trivia Cast (phone): big, easy-to-hit answer buttons */\n.tc-answer-btn {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  width: 100%;\n  padding: 0.9rem 1rem;\n  border: none;\n  border-radius: 0.9rem;\n  color: #fff;\n  font-weight: 700;\n  font-size: 1.05rem;\n  text-align: left;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px rgba(20, 31, 87, 0.25);\n  transition: transform 0.1s ease;\n}\n.tc-answer-btn:active { transform: scale(0.97); }\n.tc-answer-btn:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.tc-answer-letter {\n  flex-shrink: 0;\n  display: grid;\n  place-items: center;\n  width: 2rem;\n  height: 2rem;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.25);\n}\n.tc-answer-0 { background: linear-gradient(160deg, #6f88e6, #3a53c4); }\n.tc-answer-1 { background: linear-gradient(160deg, #f0963c, #c9601a); }\n.tc-answer-2 { background: linear-gradient(160deg, #4fc48a, #1b7a5a); }\n.tc-answer-3 { background: linear-gradient(160deg, #b07be6, #6f3fb5); }\n\n/* 🔇 \"Tap to turn sound back on\" (only shown on the TV after a page refresh) */\n.cc-sound-button {\n  position: fixed;\n  left: 50%;\n  bottom: 0.5rem;\n  transform: translateX(-50%);\n  z-index: 10001;         /* above the TV screens and the rotate-your-device overlay */\n  padding: 0.4rem 1.1rem;\n  border-radius: 999px;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.8rem, 3vh, 1.2rem);\n  background: rgba(0, 0, 0, 0.6);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n  animation: cc-cast-pulse 2s ease-in-out infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-sound-button { animation: none; }\n}\n\n/* 📡 The TV lost its connection to the server */\n.cc-connection-lost {\n  position: fixed;\n  top: 0.5rem;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 10002;         /* above the sound button and the rotate-your-device overlay */\n  width: max-content;\n  max-width: calc(100vw - 2rem);\n  padding: 0.5rem 1.25rem;\n  border-radius: 1rem;\n  border: 2px solid var(--gt-gold);\n  color: #fff;\n  font-weight: 700;\n  font-size: clamp(0.85rem, 3vh, 1.3rem);\n  text-align: center;\n  background: rgba(150, 20, 30, 0.95);\n}\n\n/* 🔑 Room code pinned to the lower right of every Couch Cast TV screen */\n.cc-room-code {\n  position: fixed;\n  right: 0.75rem;\n  bottom: 0.5rem;\n  z-index: 9999;          /* same layer as the TV screens, drawn after them */\n  padding: 0.15rem 0.75rem;\n  border-radius: 999px;\n  color: #fff;\n  font-size: clamp(0.7rem, 2.4vh, 1.1rem);\n  letter-spacing: 0.05em;\n  background: rgba(0, 0, 0, 0.35);\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  pointer-events: none;\n}\n.cc-room-code strong {\n  color: var(--gt-gold);\n  letter-spacing: 0.15em;\n  margin-left: 0.25rem;\n}\n\n/* The full-screen blur overlay */\n.landscape-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 15, 40, 0.95);\n  color: white;\n  z-index: 10000; /* Ensure it stays above everything */\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n  backdrop-filter: blur(5px);\n}\n\n/* The animated phone icon */\n.rotate-device-icon {\n  width: 80px;\n  height: 80px;\n  fill: white;\n  margin-bottom: 20px;\n  /* Plays the tilt animation below infinitely */\n  animation: tilt-phone 2s infinite ease-in-out;\n}\n\n/* Animates the icon from portrait to landscape */\n@keyframes tilt-phone {\n  0% { transform: rotate(0deg); }\n  30%, 70% { transform: rotate(-90deg); } /* Holds the landscape position briefly */\n  100% { transform: rotate(0deg); }\n}\n\n\n/* Add this to Cards.css to use on any page! */\n.frosted-glass-panel {\n  background-color: rgba(255, 255, 255, 0.2) !important;\n  backdrop-filter: blur(12px) !important;\n  -webkit-backdrop-filter: blur(12px) !important; /* For Safari */\n  border: 1px solid rgba(255, 255, 255, 0.3) !important;\n  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;\n}\n\n\n/* ✨ Glass shimmer for game buttons */\n.glass-btn {\n    position: relative;\n    overflow: hidden;\n    isolation: isolate;\n}\n\n/* Static gloss: brighter top half, like light hitting glass */\n.glass-btn::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(\n        to bottom,\n        rgba(255, 255, 255, 0.35) 0%,\n        rgba(255, 255, 255, 0.08) 48%,\n        rgba(255, 255, 255, 0) 52%\n    );\n    border-radius: inherit;\n    pointer-events: none;\n    z-index: 1;\n}\n\n/* Moving shimmer band */\n.glass-btn::after {\n    content: '';\n    position: absolute;\n    top: -50%;\n    left: -75%;\n    width: 50%;\n    height: 200%;\n    background: linear-gradient(\n        to right,\n        rgba(255, 255, 255, 0) 0%,\n        rgba(255, 255, 255, 0.55) 50%,\n        rgba(255, 255, 255, 0) 100%\n    );\n    transform: rotate(25deg);\n    animation: glass-shimmer 4s ease-in-out infinite;\n    animation-delay: var(--shimmer-delay, 0s);\n    pointer-events: none;\n    z-index: 2;\n}\n\n@keyframes glass-shimmer {\n    0%   { left: -75%; }\n    30%  { left: 130%; }   /* sweep takes ~1.2s… */\n    100% { left: 130%; }   /* …then rests until the next pass */\n}\n\n/* Speed up the sweep on hover */\n.glass-btn:hover::after {\n    animation-duration: 1.5s;\n}\n\n/* No shimmer on disabled buttons */\n.glass-btn:disabled::after {\n    animation: none;\n    display: none;\n}\n\n/* Respect users who turn off motion */\n@media (prefers-reduced-motion: reduce) {\n    .glass-btn::after { animation: none; display: none; }\n}\n\n/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */\n.gt-rounds {\n    display: grid;\n    grid-auto-flow: column;\n    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */\n    gap: 0.4rem;\n}\n.gt-rounds-pill {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 0.4rem 0.25rem;\n    border-radius: 0.9rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    color: #fff;\n    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);\n    opacity: 0.55;\n    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;\n}\n.gt-rounds-pill.selected {\n    opacity: 1;\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);\n}\n.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }\n.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }\n.gt-rounds-label {\n    max-width: 100%;\n    overflow: hidden;\n    font-size: 0.55rem;\n    font-weight: 700;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    opacity: 0.9;\n}\n\n/* Three decks side by side (Trivia): tighten the text so it still fits on a phone */\n.cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }\n.cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }\n.cc-deck-card.compact .cc-deck-icon { width: 62%; }\n.cc-deck-card.compact .cc-deck-title { font-size: 0.85rem; }\n.cc-deck-card.compact .cc-deck-desc { font-size: 0.6rem; line-height: 1.2; }\n\n/* 🃏 Couch Cast deck cards: tall glass playing cards, tinted per deck */\n.cc-deck-card {\n    width: 100%;\n    aspect-ratio: 5 / 7;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 0.3rem;\n    padding: 0.75rem 0.6rem;\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    border-radius: 1rem;\n    color: #fff;\n    text-align: center;\n    background: linear-gradient(160deg, var(--deck-from, var(--gt-blue-300)), var(--deck-to, var(--gt-blue-600)));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(20, 31, 87, 0.3);\n    transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.cc-deck-card:hover:not(:disabled) {\n    transform: translateY(-3px);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px rgba(20, 31, 87, 0.4);\n}\n.cc-deck-card:active:not(:disabled) { transform: scale(0.97); }\n.cc-deck-card:focus-visible {\n    outline: 3px solid var(--gt-gold);\n    outline-offset: 2px;\n}\n.cc-deck-card:disabled { opacity: 0.6; }\n\n/* Pick-one mode (Prompt 2): the chosen deck gets a gold ring, the rest fade back */\n.cc-deck-card[aria-pressed=\"false\"] { opacity: 0.6; filter: saturate(0.7); }\n.cc-deck-card.selected,\n.cc-deck-card.selected:hover:not(:disabled) {\n    border-color: var(--gt-gold);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 8px 20px rgba(20, 31, 87, 0.35);\n}\n\n.cc-deck-tag {\n    font-size: 0.6rem;\n    font-weight: 700;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    padding: 0.15rem 0.55rem;\n    border-radius: 999px;\n    background: rgba(255, 255, 255, 0.22);\n    border: 1px solid rgba(255, 255, 255, 0.35);\n}\n.cc-deck-icon {\n    width: 58%;\n    max-width: 110px;\n    aspect-ratio: 1 / 1;\n    overflow: visible;\n    filter: drop-shadow(0 4px 8px rgba(20, 31, 87, 0.3));\n}\n/* Glass artwork: frosted panes, a bright edge, and solid white cut-outs */\n.cc-deck-icon .deck-glass {\n    fill: rgba(255, 255, 255, 0.24);\n    stroke: rgba(255, 255, 255, 0.92);\n    stroke-width: 2.5;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-shine {\n    fill: none;\n    stroke: rgba(255, 255, 255, 0.85);\n    stroke-width: 2.5;\n    stroke-linecap: round;\n}\n.cc-deck-icon .deck-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 6;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.cc-deck-icon .deck-solid {\n    fill: #fff;\n    stroke: #fff;\n    stroke-width: 1.5;\n    stroke-linejoin: round;\n}\n.cc-deck-title {\n    font-size: 1.05rem;\n    font-weight: 800;\n    line-height: 1.15;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);\n}\n.cc-deck-desc {\n    font-size: 0.72rem;\n    line-height: 1.25;\n    opacity: 0.92;\n}\n\n/* =========================================================\n   GAME TEMPLE THEME\n   Palette is pulled from the \"Join Room\" button blue.\n   ========================================================= */\n:root {\n    --gt-blue-200: #b9c7f6;\n    --gt-blue-300: #93a7f0;\n    --gt-blue-400: #6f88e6;\n    --gt-blue-500: #4a66d8;\n    --gt-blue-600: #3a53c4;\n    --gt-blue-800: #22348f;\n    --gt-navy:     #141f57;\n    --gt-ice:      #bfe6ff;\n    --gt-gold:     #ffd36e;\n}\n\n/* =========================================================\n   🌌 ANIMATED BACKGROUND\n   ========================================================= */\n.gt-bg {\n    position: fixed;\n    inset: 0;\n    z-index: -1;               /* sits behind everything */\n    overflow: hidden;\n    pointer-events: none;\n    background:\n        linear-gradient(165deg, var(--gt-navy) 0%, var(--gt-blue-800) 35%, var(--gt-blue-500) 75%, var(--gt-blue-400) 100%);\n}\n\n/* Fullscreen TV screens: lift the background above the nav bar (they sit at 9999) */\n.gt-bg.gt-bg-cover { z-index: 9998; }\n\n/* 🎃 Halloween deck: same recipe, pumpkin-orange palette */\n.gt-bg.theme-halloween {\n    --gt-navy:     #3d1404;\n    --gt-blue-800: #8a3208;\n    --gt-blue-500: #e06a12;\n    --gt-blue-400: #f79a3a;\n    --gt-blue-300: #ffb45c;\n    --gt-ice:      #ffe9c2;\n    --gt-bg-accent: #8a3fd0;\n    --gt-bg-vignette: rgba(45, 12, 0, 0.5);\n}\n\n/* 🎄 Holiday deck: same recipe, deep pine green with a red glow */\n.gt-bg.theme-holiday {\n    --gt-navy:     #05251a;\n    --gt-blue-800: #0a4a30;\n    --gt-blue-500: #137a4c;\n    --gt-blue-400: #1f9a60;\n    --gt-blue-300: #6fd29c;\n    --gt-ice:      #eefff5;\n    --gt-bg-accent: #d6333c;\n    --gt-bg-vignette: rgba(3, 24, 16, 0.5);\n}\n\n/* 🎪 Temple Mix Up's lobby: same recipe, big-top red with a spotlight's gold */\n.gt-bg.theme-circus {\n    --gt-navy:     #1f0509;\n    --gt-blue-800: #4a0b14;\n    --gt-blue-500: #8e1824;\n    --gt-blue-400: #b8283a;\n    --gt-blue-300: #ff8f8f;\n    --gt-ice:      #fff1d6;\n    --gt-bg-accent: #ffc83d;\n    --gt-bg-vignette: rgba(24, 2, 6, 0.55);\n}\n\n/* 🐾 Animals deck: same recipe, forest-green palette */\n.gt-bg.theme-animals {\n    --gt-navy:     #082a1e;\n    --gt-blue-800: #0f5239;\n    --gt-blue-500: #1c9562;\n    --gt-blue-400: #4fc48a;\n    --gt-blue-300: #8fe0b3;\n    --gt-ice:      #e3fff0;\n    --gt-bg-accent: #d6c14a;\n    --gt-bg-vignette: rgba(4, 28, 18, 0.5);\n}\n\n/* Soft drifting light */\n.gt-blob {\n    position: absolute;\n    border-radius: 50%;\n    filter: blur(70px);\n    opacity: 0.55;\n    will-change: transform;\n}\n.gt-blob.b1 {\n    width: 55vmax; height: 55vmax;\n    top: -20vmax; left: -15vmax;\n    background: radial-gradient(circle, var(--gt-blue-300), transparent 65%);\n    animation: gt-blob-a 46s ease-in-out infinite alternate;\n}\n.gt-blob.b2 {\n    width: 45vmax; height: 45vmax;\n    bottom: -18vmax; right: -12vmax;\n    background: radial-gradient(circle, var(--gt-ice), transparent 65%);\n    opacity: 0.35;\n    animation: gt-blob-b 58s ease-in-out infinite alternate;\n}\n.gt-blob.b3 {\n    width: 35vmax; height: 35vmax;\n    top: 35%; left: 40%;\n    background: radial-gradient(circle, var(--gt-bg-accent, #7f6cf0), transparent 65%);\n    opacity: 0.3;\n    animation: gt-blob-a 64s ease-in-out infinite alternate-reverse;\n}\n@keyframes gt-blob-a {\n    0%   { transform: translate(0, 0) scale(1); }\n    100% { transform: translate(12vw, 10vh) scale(1.15); }\n}\n@keyframes gt-blob-b {\n    0%   { transform: translate(0, 0) scale(1.1); }\n    100% { transform: translate(-14vw, -8vh) scale(0.95); }\n}\n\n/* Floating outlined icons */\n.gt-floater {\n    position: absolute;\n    animation: gt-drift var(--dur, 40s) ease-in-out var(--delay, 0s) infinite alternate;\n    will-change: transform;\n}\n.gt-floater-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    fill: none;\n    stroke: var(--gt-ice);\n    stroke-width: 3.5;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    opacity: 0.22;\n    filter: drop-shadow(0 0 10px rgba(191, 230, 255, 0.35));\n}\n.gt-floater-svg .gt-icon-dot {\n    fill: var(--gt-ice);\n    stroke: none;\n}\n@keyframes gt-drift {\n    0%   { transform: translate(0, 0)        rotate(var(--rot)); }\n    50%  { transform: translate(18px, -26px) rotate(calc(var(--rot) + 6deg)); }\n    100% { transform: translate(-14px, 14px) rotate(calc(var(--rot) - 5deg)); }\n}\n\n/* Darken the edges slightly so the white card pops */\n.gt-vignette {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse at center, transparent 55%, var(--gt-bg-vignette, rgba(10, 16, 50, 0.45)) 100%);\n}\n\n/* =========================================================\n   🧭 NAV BAR\n   ========================================================= */\n.gt-nav {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(16px) saturate(160%);\n    -webkit-backdrop-filter: blur(16px) saturate(160%);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.22);\n    box-shadow: 0 8px 30px rgba(10, 16, 50, 0.25);\n}\n.gt-nav-inner {\n    max-width: 960px;\n    margin: 0 auto;\n    height: 64px;\n    padding: 0 16px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n}\n\n.gt-brand {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    color: #fff;\n}\n.gt-brand-mark {\n    width: 38px;\n    height: 38px;\n    border-radius: 11px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(20, 31, 87, 0.35);\n}\n.gt-brand-mark .gt-nav-icon {\n    width: 22px;\n    height: 22px;\n    stroke: #fff;\n}\n.gt-brand-text {\n    font-weight: 800;\n    font-size: 1.15rem;\n    letter-spacing: 0.02em;\n    color: #fff;\n}\n.gt-brand-text span {\n    font-weight: 400;\n    margin-left: 2px;\n    color: var(--gt-blue-200);\n}\n\n.gt-nav-pills {\n    display: flex;\n    gap: 4px;\n    padding: 4px;\n    border-radius: 999px;\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n}\n.gt-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    padding: 7px 14px;\n    border-radius: 999px;\n    color: rgba(255, 255, 255, 0.78);\n    text-decoration: none;\n    font-weight: 600;\n    font-size: 0.9rem;\n    transition: background 0.25s, color 0.25s, box-shadow 0.25s;\n}\n.gt-pill:hover {\n    color: #fff;\n    background: rgba(255, 255, 255, 0.1);\n}\n.gt-pill.active {\n    color: #fff;\n    background: linear-gradient(180deg, var(--gt-blue-300), var(--gt-blue-500));\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 14px rgba(74, 102, 216, 0.55);\n}\n.gt-nav-icon {\n    width: 18px;\n    height: 18px;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.8;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    flex-shrink: 0;\n}\n\n/* 👑 The room leader's start button in the phone lobbies (Trivia Cast, Temple Mix Up): pinned just under the nav bar */\n.tc-leader-bar {\n  position: sticky;\n  top: 64px;\n  z-index: 900;\n  display: flex;\n  align-items: center;\n  gap: 0.6rem;\n  width: 100%;\n  max-width: 450px;\n  margin: 0.25rem auto 0;\n  padding: 0.45rem 0.6rem;\n  background: #fff;\n  border: 2px solid #ffc107;\n  border-radius: 0.6rem;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n}\n\n/* 👾 Avatar Attack: Trivia Cast's lobby game on the phones (AvatarAttack.jsx) */\n.aa-card {\n  margin-top: 0.5rem;\n  padding: 0.6rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n}\n.aa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }\n.aa-title { font-weight: 800; color: #22348f; }\n.aa-score { font-weight: 800; color: #c2185b; }\n.aa-stage {\n  position: relative;\n  height: 300px;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  background:\n    radial-gradient(1.5px 1.5px at 20% 15%, #fff, transparent),\n    radial-gradient(1px 1px at 70% 30%, #fff, transparent),\n    radial-gradient(1.5px 1.5px at 40% 55%, #cfd8ff, transparent),\n    radial-gradient(1px 1px at 85% 70%, #fff, transparent),\n    radial-gradient(1px 1px at 12% 80%, #cfd8ff, transparent),\n    linear-gradient(180deg, #0b1033, #232a6b);\n}\n.aa-thing, .aa-bullet, .aa-boom { position: absolute; left: 0; top: 0; will-change: transform; }\n.aa-standin { display: block; width: 44px; line-height: 44px; font-size: 34px; }\n.aa-bullet { width: 4px; height: 12px; border-radius: 2px; background: #ffd36e; box-shadow: 0 0 6px #ffd36e; }\n.aa-boom { font-size: 30px; line-height: 32px; }\n.aa-ship { filter: drop-shadow(0 0 6px rgba(255, 211, 110, 0.9)); }\n.aa-gotcha {\n  position: absolute;\n  top: 8px;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 2px 10px;\n  border-radius: 999px;\n  white-space: nowrap;\n  font-size: 0.85rem;\n  font-weight: 800;\n  color: #fff;\n  background: rgba(194, 24, 91, 0.92);\n}\n.aa-hint { position: absolute; left: 12px; right: 12px; top: 40%; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); pointer-events: none; }\n.aa-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }\n.aa-arrow, .aa-fire { border: 0; touch-action: none; -webkit-tap-highlight-color: transparent; }\n.aa-arrow {\n  flex: 1 1 0;\n  height: 72px;\n  border-radius: 1rem;\n  font-size: 1.8rem;\n  color: #fff;\n  background: linear-gradient(180deg, #93a7f0, #3a53c4);\n  box-shadow: 0 3px 8px rgba(10, 16, 50, 0.3);\n}\n.aa-arrow:active { filter: brightness(1.25); }\n.aa-fire { flex: 0 0 auto; padding: 0; border-radius: 50%; background: none; box-shadow: 0 0 0 4px #ffd36e, 0 4px 12px rgba(10, 16, 50, 0.35); }\n.aa-fire:active { transform: scale(0.92); }\n.aa-fire > * { pointer-events: none; }\n.aa-leaders { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }\n.aa-leader { display: flex; align-items: center; gap: 0.25rem; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 0.75rem; background: #eef1fb; }\n.aa-leader.is-me { background: #ffd36e; }\n.aa-leader-name { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n\n/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */\n.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }\n\n/* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */\n.ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }\n.ttt-neon { filter: drop-shadow(0 0 4px #2de2ff) drop-shadow(0 0 10px rgba(45, 226, 255, 0.55)); }\n.ttt-mark { display: block; width: 100%; height: 100%; fill: none; stroke: #2de2ff; stroke-width: 11; stroke-linecap: round; }\n\n/* 🏛️ The Game-Temple waiting rooms (TempleWaitingRoom.jsx) */\n.tw-picture {\n  margin-bottom: 0.8rem;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: linear-gradient(160deg, #3a53c4, #1e2f8a);\n  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);\n  overflow: hidden;\n}\n.tw-picture svg { display: block; width: 100%; height: auto; }\n.tw-invite { display: flex; align-items: stretch; gap: 0.6rem; margin-bottom: 0.9rem; }\n.tw-invite-code {\n  flex: 1 1 auto;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0.5rem;\n  border-radius: 0.9rem;\n  background: #eef1fb;\n}\n.tw-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5a6690; }\n.tw-count { display: inline-block; margin-left: 0.3rem; padding: 0 0.5rem; border-radius: 999px; color: #fff; background: #3a53c4; letter-spacing: 0; }\n.tw-code { font-size: clamp(1.7rem, 9vw, 2.3rem); font-weight: 900; letter-spacing: 0.14em; line-height: 1.15; color: #14246a; }\n.tw-share {\n  margin-top: 0.35rem;\n  padding: 0.25rem 0.75rem;\n  border: 0;\n  border-radius: 999px;\n  font-size: 0.8rem;\n  font-weight: 800;\n  color: #fff;\n  background: linear-gradient(180deg, #5f78de, #3a53c4);\n}\n.tw-qr { flex: 0 0 auto; padding: 0.45rem 0.45rem 0.2rem; border-radius: 0.9rem; background: #fff; box-shadow: 0 2px 10px rgba(10, 16, 50, 0.18); }\n.tw-qr-label { margin-top: 0.1rem; font-size: 0.68rem; font-weight: 700; color: #5a6690; text-align: center; }\n.tw-players { display: flex; flex-wrap: wrap; gap: 0.35rem; }\n.tw-player { display: flex; align-items: center; gap: 0.3rem; max-width: 100%; padding: 2px 10px 2px 3px; border-radius: 999px; background: #eef1fb; font-size: 0.88rem; font-weight: 700; animation: tw-pop 0.35s ease-out; }\n.tw-player.is-me { background: #d4dcfb; }\n.tw-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n@keyframes tw-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }\n.tw-status { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.5rem; border-radius: 0.7rem; font-size: 0.88rem; font-weight: 700; color: #22348f; background: rgba(58, 83, 196, 0.1); }\n/* The pictures */\n.tw-picture .tw-delay-1 { animation-delay: 0.4s !important; }\n.tw-picture .tw-delay-2 { animation-delay: 0.8s !important; }\n.tw-picture .tw-delay-3 { animation-delay: 1.2s !important; }\n.tw-float { animation: tw-float 2.4s ease-in-out infinite alternate; }\n@keyframes tw-float { from { transform: translateY(2px); } to { transform: translateY(-3px); } }\n.tw-buzz { transform-box: fill-box; transform-origin: 50% 100%; animation: tw-buzz 2.4s ease-in-out infinite; }\n@keyframes tw-buzz { 0%, 20%, 100% { transform: scaleY(1); filter: none; } 10% { transform: scaleY(0.6); filter: brightness(1.5); } }\n.tw-card { animation: tw-deal 3.2s ease-in-out infinite; }\n@keyframes tw-deal { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-6px); } 24% { transform: translateY(0); } }\n.tw-strike { stroke-dasharray: 1; animation: tw-strike 3s ease-in-out infinite; }\n@keyframes tw-strike { 0%, 20% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n.tw-mark { stroke-dasharray: 1; animation: tw-mark 4.4s ease-in-out infinite; }\n@keyframes tw-mark { 0% { stroke-dashoffset: 1; } 18%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }\n@media (prefers-reduced-motion: reduce) {\n  .tw-picture * { animation: none !important; stroke-dashoffset: 0; }\n}\n\n/* 🐍 Snake Snack: Temple Mix Up's lobby game on the phones (SnakeSnack.jsx) */\n.sn-stage {\n  position: relative;\n  overflow: hidden;\n  border-radius: 0.75rem;\n  touch-action: none;         /* a swipe here steers the snake instead of scrolling the page */\n  background:\n    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 100% calc(100% / 13),\n    linear-gradient(180deg, #123a2a, #0b2a2f);\n}\n.sn-thing { position: absolute; left: 0; top: 0; will-change: transform; }\n.sn-seg { border-radius: 38%; background: #6fd65c; border: 1.5px solid #173d14; }\n.sn-seg-alt { background: #a6e84e; }\n.sn-seg.is-dead { background: #e5484d; }\n.sn-head { z-index: 2; filter: drop-shadow(0 0 5px rgba(255, 211, 110, 0.95)); }\n.sn-head.is-dead { filter: drop-shadow(0 0 7px #e5484d); }\n.sn-apple { display: block; text-align: center; }\n.sn-message {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 42%;\n  z-index: 3;\n  font-weight: 800;\n  font-size: 1.15rem;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);\n}\n\n/* 🎉 The Game-Cast page's party scene (CastPartyScene.jsx) */\n.cc-crew.gt-party-scene {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: auto;\n  overflow: hidden;\n  border-radius: 12px;\n  box-shadow: 0 6px 18px rgba(10, 16, 50, 0.25);\n}\n.gt-party-scene .gps-tv-glow { fill: #93a7f0; opacity: 0.25; animation: gps-glow 1.5s ease-in-out infinite alternate; }\n@keyframes gps-glow { to { opacity: 0.6; } }\n.gt-party-scene .gps-light { animation: gps-flicker 2.4s linear infinite; }\n@keyframes gps-flicker {\n  0%, 100% { opacity: 0.9; }\n  12% { opacity: 0.72; }\n  20% { opacity: 0.95; }\n  55% { opacity: 0.8; }\n  62% { opacity: 0.95; }\n}\n.gt-party-scene .gps-lens { fill: #fffbe0; filter: drop-shadow(0 0 3px #fff6c9); }\n.gt-party-scene .gps-card { transform-box: fill-box; transform-origin: 50% 50%; animation: gps-card 8s ease-in-out infinite; }\n.gt-party-scene .gps-card-2 { animation-delay: -4s; }\n@keyframes gps-card {\n  0%, 48%, 100% { opacity: 0; transform: scale(0.5) rotate(-6deg); }\n  5%, 42% { opacity: 1; transform: scale(1) rotate(0deg); }\n}\n.gt-party-scene .gps-bounce { animation: gps-bounce 0.9s ease-in-out infinite alternate; }\n.gt-party-scene .gps-bounce-3 { animation-delay: 0.45s; }\n@keyframes gps-bounce { to { transform: translateY(-5px); } }\n.gt-party-scene .gps-confetti { animation: gps-confetti 3.2s linear infinite; }\n@keyframes gps-confetti { to { transform: translateY(200px) rotate(200deg); } }\n.gt-party-scene .gps-confetti { transform-box: fill-box; transform-origin: 50% 50%; }\n.gt-party-scene .gps-float { animation: gps-float 3s ease-out infinite; opacity: 0; }\n.gt-party-scene .gps-float-2 { animation-delay: 1s; }\n.gt-party-scene .gps-float-3 { animation-delay: 2s; }\n@keyframes gps-float {\n  0% { opacity: 0; transform: translateY(14px); }\n  25% { opacity: 1; }\n  100% { opacity: 0; transform: translateY(-34px); }\n}\n\n/* 🔑 The sign-in key, after the pills (gold when signed in) */\n.gt-nav-pills { margin-left: auto; }\n.gt-key {\n    width: 38px;\n    height: 38px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: rgba(255, 255, 255, 0.78);\n    background: rgba(10, 16, 50, 0.25);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    transition: background 0.25s, color 0.25s;\n}\n.gt-pill.is-hidden { opacity: 0.6; outline: 1px dashed rgba(255, 255, 255, 0.7); outline-offset: -2px; }\n.gt-key:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }\n.gt-key.is-on { color: #2a2006; background: var(--gt-gold, #ffd36e); border-color: rgba(255, 255, 255, 0.5); }\n.gt-key-box { position: relative; flex-shrink: 0; }\n.gt-key-menu {\n    position: absolute;\n    top: calc(100% + 8px);\n    right: 0;\n    min-width: 150px;\n    padding: 6px;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 10px 30px rgba(10, 16, 50, 0.35);\n    text-align: left;\n    z-index: 1;\n}\n.gt-key-name { padding: 4px 10px 6px; font-size: 0.75rem; color: #666; border-bottom: 1px solid #eee; margin-bottom: 4px; }\n.gt-key-menu button {\n    display: block;\n    width: 100%;\n    padding: 6px 10px;\n    border: 0;\n    border-radius: 8px;\n    background: none;\n    color: #22348f;\n    font-weight: 600;\n    text-align: left;\n}\n.gt-key-menu button:hover { background: #eef1fb; }\n/* On a game or deck only the owner and admins can see */\n.gt-hidden-badge {\n    display: inline-block;\n    padding: 0.05rem 0.45rem;\n    border-radius: 999px;\n    font-size: 0.65rem;\n    font-weight: 800;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    color: #2a2006;\n    background: var(--gt-gold, #ffd36e);\n}\n.cc-deck-hidden { position: absolute; top: 0.4rem; right: 0.4rem; z-index: 2; }\n\n/* Phones: icons only in the pills, so everything fits on one line with the key */\n@media (max-width: 620px) {\n    .gt-pill-label { display: none; }\n    .gt-pill { padding: 8px 10px; }\n}\n/* Small phones: just the logo, too */\n@media (max-width: 420px) {\n    .gt-brand-text { display: none; }\n}\n\n/* =========================================================\n   🏛️ HERO LOGO\n   ========================================================= */\n.gt-hero {\n    max-width: 100%;\n    margin: 0 auto;\n    filter: drop-shadow(0 10px 22px rgba(58, 83, 196, 0.35));\n}\n.gt-hero svg {\n    display: block;\n    width: 100%;\n    height: auto;\n}\n\n.gt-stop-top    { stop-color: var(--gt-blue-300); }\n.gt-stop-bottom { stop-color: var(--gt-blue-500); }\n.gt-stop-gloss  { stop-color: #fff; stop-opacity: 0.32; }\n.gt-stop-clear  { stop-color: #fff; stop-opacity: 0; }\n\n.gt-hero-bg    { fill: url(#gtHeroBg); }\n.gt-hero-gloss { fill: url(#gtHeroGloss); }\n.gt-hero-sweep {\n    fill: rgba(255, 255, 255, 0.28);\n    transform: rotate(20deg);\n    animation: gt-sweep 6s ease-in-out infinite;\n}\n@keyframes gt-sweep {\n    0%, 55% { transform: translateX(0) rotate(20deg); }\n    80%, 100% { transform: translateX(420px) rotate(20deg); }\n}\n\n.gt-line {\n    fill: none;\n    stroke: #fff;\n    stroke-width: 3.2;\n    stroke-linejoin: round;\n    stroke-linecap: round;\n}\n.gt-fill-white { fill: #fff; }\n\n/* Spinning star in the roof */\n.gt-medallion {\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-spin 9s linear infinite;\n}\n@keyframes gt-spin { to { transform: rotate(360deg); } }\n\n/* Dice */\n.gt-die-face { fill: #fff; }\n.gt-pip      { fill: var(--gt-blue-500); }\n.gt-die {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n}\n.gt-die.d1 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die.d2 { animation: gt-roll 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-roll {\n    0%   { transform: translateY(0) rotate(0deg); }\n    8%   { transform: translateY(0) scale(1.08, 0.9); }       /* crouch */\n    35%  { transform: translateY(-26px) rotate(-120deg); }    /* up & spin */\n    58%  { transform: translateY(0) rotate(-180deg) scale(1.06, 0.92); } /* land */\n    66%  { transform: translateY(-5px) rotate(-180deg); }     /* little bounce */\n    74%, 100% { transform: translateY(0) rotate(-180deg); }\n}\n.gt-die-shadow {\n    fill: rgba(20, 31, 87, 0.35);\n    transform-box: fill-box;\n    transform-origin: center;\n}\n.gt-die-shadow.s1 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) infinite; }\n.gt-die-shadow.s2 { animation: gt-shadow 3.2s cubic-bezier(.45, 0, .3, 1) 0.35s infinite; }\n@keyframes gt-shadow {\n    0%, 8%, 58%, 74%, 100% { transform: scale(1);   opacity: 1; }\n    35%                    { transform: scale(0.5); opacity: 0.4; }\n    66%                    { transform: scale(0.85); opacity: 0.8; }\n}\n\n/* Floating card */\n.gt-card {\n    transform-box: fill-box;\n    transform-origin: 50% 100%;\n    animation: gt-wiggle 4s ease-in-out infinite;\n}\n.gt-card-face { fill: #fff; }\n.gt-heart     { fill: #ff6b8a; }\n@keyframes gt-wiggle {\n    0%, 100% { transform: translateY(0) rotate(10deg); }\n    50%      { transform: translateY(-7px) rotate(-6deg); }\n}\n\n/* Floating pawn */\n.gt-pawn {\n    animation: gt-bob 3.6s ease-in-out 0.6s infinite;\n}\n@keyframes gt-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-8px); }\n}\n\n/* Sparkles */\n.gt-sparkle {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-twinkle 2.4s ease-in-out infinite;\n}\n.gt-sparkle.k2 { animation-delay: 0.5s; fill: var(--gt-gold); }\n.gt-sparkle.k3 { animation-delay: 1.1s; }\n.gt-sparkle.k4 { animation-delay: 1.6s; fill: var(--gt-ice); }\n.gt-sparkle.k5 { animation-delay: 0.9s; fill: var(--gt-gold); }\n@keyframes gt-twinkle {\n    0%, 100% { transform: scale(0.4) rotate(0deg);  opacity: 0.2; }\n    50%      { transform: scale(1.15) rotate(45deg); opacity: 1; }\n}\n\n/* Confetti */\n.gt-confetti {\n    fill: rgba(255, 255, 255, 0.85);\n    transform-box: fill-box;\n    transform-origin: center;\n    animation: gt-rise 5s linear infinite;\n}\n.gt-confetti.c2 { animation-delay: 0.8s; fill: var(--gt-gold); }\n.gt-confetti.c3 { animation-delay: 1.7s; fill: var(--gt-ice); }\n.gt-confetti.c4 { animation-delay: 2.5s; }\n.gt-confetti.c5 { animation-delay: 3.3s; fill: var(--gt-gold); }\n.gt-confetti.c6 { animation-delay: 4.1s; fill: var(--gt-ice); }\n@keyframes gt-rise {\n    0%   { transform: translateY(0) rotate(0deg);      opacity: 0; }\n    15%  { opacity: 1; }\n    100% { transform: translateY(-150px) rotate(240deg); opacity: 0; }\n}\n\n/* =========================================================\n   Respect \"reduce motion\"\n   ========================================================= */\n@media (prefers-reduced-motion: reduce) {\n    .gt-bg *,\n    .gt-hero * {\n        animation: none !important;\n    }\n}\n/* 👆 Phone choice buttons in every game (prompts, answers, cards to play, votes): while a finger\n   is held on one it turns grey with white words, meaning \"picked, but not sent yet\". This beats\n   any background or text colour the button has (bg-white, text-dark...), so the words can never\n   end up white on white. (iPhones only show it because of the touchstart listener in employees.jsx.) */\n.cc-tap-option:active:not(:disabled):not(.disabled) {\n    background-color: #6c757d !important;\n    border-color: #6c757d !important;\n    color: #fff !important;\n}\n.cc-tap-option:active:not(:disabled):not(.disabled) * {\n    color: inherit !important;\n}\n\n/* 📱 Couch Cast phone buttons: touch screens keep a button \"hovered\" after a tap, and the\n   button that appears under that finger on the next screen showed up grey as if picked.\n   Only a real pick (the selected variant) gets colour. */\n@media (hover: none) {\n    .cc-tap-option.btn:hover,\n    .cc-tap-option.btn:focus:not(:active) {\n        background-color: var(--bs-btn-bg);\n        color: var(--bs-btn-color);\n        border-color: var(--bs-btn-border-color);\n        box-shadow: none;\n    }\n}\n\n/* =========================================================\n   📺 GAME-CAST: \"How to play on your TV\" steps\n   ========================================================= */\n.gt-cast-steps { background: linear-gradient(180deg, #eef2ff, #f7f9ff); }\n.gt-cast-steps-title {\n    font-weight: 800;\n    font-size: 0.8rem;\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n    color: var(--gt-blue-600, #3a53c4);\n    margin: 0.15rem 0 0.4rem;\n}\n.gt-cast-steps-list {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n.gt-cast-step {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    padding: 0.4rem;\n    border-radius: 12px;\n    background: #fff;\n    box-shadow: 0 2px 8px rgba(20, 31, 87, 0.08);\n}\n.gt-cast-step-icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 64px;\n    height: 64px;\n    border-radius: 14px;\n    display: grid;\n    place-items: center;\n    background: linear-gradient(180deg, #5d7fe8, #3550c8);\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(20, 31, 87, 0.25);\n}\n.gt-cast-step-icon svg {\n    width: 48px;\n    height: 40px;\n    fill: none;\n    stroke: #fff;\n    stroke-width: 4;\n    stroke-linecap: round;\n    stroke-linejoin: round;\n}\n.gt-cast-step-num {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: grid;\n    place-items: center;\n    font-size: 0.75rem;\n    font-weight: 800;\n    color: var(--gt-navy, #0b1a4a);\n    background: var(--gt-gold, #ffcf4a);\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);\n}\n\n/* 🎬 Game-Cast step icon animations */\n/* Each icon bobs gently, a little out of step with the others */\n.gt-cast-step-icon svg { animation: gt-step-bob 3.2s ease-in-out infinite; }\n.gt-cast-step:nth-child(2) .gt-cast-step-icon svg { animation-delay: -1.1s; }\n.gt-cast-step:nth-child(3) .gt-cast-step-icon svg { animation-delay: -2.2s; }\n@keyframes gt-step-bob {\n    0%, 100% { transform: translateY(0); }\n    50%      { transform: translateY(-3px); }\n}\n\n/* Step 1 & 3: signal waves ripple out one after another */\n.gt-cast-step-icon .gt-wave { animation: gt-wave-pulse 2s ease-in-out infinite; }\n.gt-cast-step-icon .gt-wave.w2 { animation-delay: 0.3s; }\n.gt-cast-step-icon .gt-wave.w3 { animation-delay: 0.6s; }\n@keyframes gt-wave-pulse {\n    0%, 100% { opacity: 0.25; }\n    35%, 60% { opacity: 1; }\n}\n.gt-cast-step-icon .gt-cast-dot { fill: #fff; stroke: none; }\n\n/* Step 2: the tiles light up in turn and the pointer taps the middle one */\n.gt-cast-step-icon .gt-tile { animation: gt-tile-pick 3s ease-in-out infinite; }\n.gt-cast-step-icon .gt-tile.t2 { animation-delay: 0.5s; }\n.gt-cast-step-icon .gt-tile.t3 { animation-delay: 1s; }\n@keyframes gt-tile-pick {\n    0%, 30%, 100% { fill: transparent; }\n    12%           { fill: rgba(255, 255, 255, 0.55); }\n}\n.gt-cast-step-icon .gt-pointer {\n    fill: #fff;\n    transform-box: fill-box;\n    transform-origin: top left;\n    animation: gt-pointer-tap 3s ease-in-out infinite;\n}\n@keyframes gt-pointer-tap {\n    0%, 100% { transform: translate(0, 0) scale(1); }\n    18%      { transform: translate(-2px, -6px) scale(0.85); }\n    26%      { transform: translate(0, 0) scale(1); }\n}\n\n/* Step 3: the TV glows softly, like it's on */\n.gt-cast-step-icon .gt-cast-tv { animation: gt-tv-glow 2s ease-in-out infinite; }\n@keyframes gt-tv-glow {\n    0%, 100% { filter: none; }\n    50%      { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n    .gt-cast-step-icon svg,\n    .gt-cast-step-icon .gt-wave,\n    .gt-cast-step-icon .gt-tile,\n    .gt-cast-step-icon .gt-pointer,\n    .gt-cast-step-icon .gt-cast-tv { animation: none; }\n    .gt-cast-step-icon .gt-wave { opacity: 1; }\n}\n\n/* ---------- 🙂 Player avatars (src/avatars.jsx) ---------- */\n.gt-avatar { border-radius: 50%; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }\n.gt-avatar-picker {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));\n    gap: 6px;\n    justify-items: center;\n    /* Scrolls inside its own box, cutting a row in half to show there's more, so \"Jump In!\" stays close */\n    max-height: 212px;\n    overflow-y: auto;\n    padding: 4px;\n    position: relative;\n    border: 1px solid #dfe3ea;\n    border-radius: 0.5rem;\n}\n.gt-avatar-choice {\n    border: 3px solid transparent;\n    background: none;\n    border-radius: 50%;\n    padding: 1px;\n    line-height: 0;\n    transition: transform 0.15s ease;\n}\n.gt-avatar-choice.selected { border-color: var(--bs-primary, #3550c8); transform: scale(1.08); }\n.gt-avatar-choice:focus-visible { outline: 2px solid var(--bs-primary, #3550c8); outline-offset: 2px; }\n\n/* ---------- 🔐 Admin site: content grid ---------- */\n.admin-thumb { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 6px; border: 1px solid #d5d9e2; }\n.admin-grid th { vertical-align: top; background: #f8f9fa; position: sticky; top: 0; z-index: 1; }\n.admin-sort { border: 0; background: none; padding: 0; font-weight: 700; color: inherit; white-space: nowrap; }\n.admin-sort:hover { text-decoration: underline; }\n.admin-filter { min-width: 110px; font-weight: 400; }\n\n/* 📊 Admin dashboard: horizontal bar charts */\n.admin-bars { display: flex; flex-direction: column; gap: 10px; }\n.admin-bar-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 4px 12px; align-items: center; }\n.admin-bar-label { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }\n.admin-bar-rank { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #3d4db7; color: #fff; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }\n.admin-bar-track { background: #eef0fb; border-radius: 6px; height: 26px; overflow: hidden; }\n.admin-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b6cf0, #a855f7); display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; min-width: 64px; transition: width 0.4s ease; }\n.admin-bar-fill span { color: #fff; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }\n.admin-bar-meta { white-space: nowrap; }\n@media (max-width: 640px) {\n    .admin-bar-row { grid-template-columns: 1fr; }\n    .admin-bar-meta { white-space: normal; }\n}\n\n/* 🔇⏸️ The caster's music and pause buttons, top right of every Couch Cast TV screen */\n.cc-caster-controls {\n  position: fixed;\n  top: 0.5rem;\n  right: 0.75rem;\n  z-index: 10001;         /* above the TV screens, the paused screen and the rotate-your-device overlay */\n  display: flex;\n  gap: 0.4rem;\n}\n.cc-caster-button {\n  width: clamp(2.2rem, 7vh, 3rem);\n  height: clamp(2.2rem, 7vh, 3rem);\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  color: #fff;\n  font-size: clamp(1rem, 3.2vh, 1.4rem);\n  line-height: 1;\n  background: rgba(0, 0, 0, 0.4);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cc-caster-button:hover { background: rgba(0, 0, 0, 0.6); }\n.cc-caster-button:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }\n.cc-caster-button.is-on { border-color: var(--gt-gold); }\n\n/* ⏸️ Paused: covers the TV (and the phones) until the caster un-pauses */\n.cc-paused-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n  padding: 1rem;\n  text-align: center;\n  color: #fff;\n  background: rgba(0, 15, 40, 0.8);\n  backdrop-filter: blur(8px);\n  -webkit-backdrop-filter: blur(8px);\n}\n.cc-paused-overlay h2 {\n  font-weight: 800;\n  font-size: clamp(2rem, 9vh, 4rem);\n  color: var(--gt-gold);\n  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);\n  margin: 0;\n}\n.cc-paused-overlay p { font-size: clamp(1rem, 3.5vh, 1.5rem); margin: 0; }\n\n/* ✍️ Couch Cast writing screen: who's still writing, as name tags that wrap */\n.cc-writer-tag {\n  border-radius: 999px;\n  min-width: 9rem;\n  max-width: 14rem;\n  font-size: clamp(0.95rem, 3.2vh, 1.35rem);\n  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;\n}\n\n/* Short screens (a phone on its side): tighten the prompt and the clock so the name tags stay on screen */\n@media (max-height: 500px) {\n  .cc-writing-tv .card-body.p-3 { padding: 0.5rem 0.75rem !important; }\n  .cc-writing-tv h2.fs-4 { font-size: 0.9rem !important; margin-bottom: 0.15rem !important; }\n  .cc-writing-tv .fs-3 { font-size: 1.1rem !important; }\n  .cc-writing-tv .fs-5 { font-size: 0.9rem !important; }\n  .cc-writing-tv .progress { height: 12px !important; }\n  .cc-writing-tv .my-2 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }\n  .cc-writer-tag { min-width: 7rem; }\n}\n\n/* 📱 iPhone: a cast screen is pinned in place, so give the page a little room to scroll underneath.\n   One swipe up and the browser tucks its address bar away (see src/hooks/useHideBrowserBar.js).\n   A whole extra screen of room: Chrome shrinks its bar bit by bit as the page scrolls and springs it\n   back open if a swipe runs out of room halfway, so it needs more than Safari's flip-it-on-any-scroll. */\nhtml.cast-screen body {\n  min-height: calc(200lvh);\n}\n/* ...and no pull-to-refresh: a swipe down on the TV screen shouldn't reload the game */\nhtml.cast-screen {\n  overscroll-behavior-y: none;\n}\n\n/* =========================================================\n   🏆 Couch Cast finale (CouchCastFinale.jsx): drum roll, then the champion\n   ========================================================= */\n.cc-finale-drumroll {\n  position: fixed;\n  inset: 0;\n  z-index: 10000;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1vh;\n  overflow: hidden;\n  background: rgba(0, 8, 25, 0.92);\n  color: #fff;\n  text-align: center;\n}\n.cc-finale-drumroll h1 {\n  position: relative;\n  font-weight: 800;\n  font-size: clamp(1.8rem, 9vh, 4.5rem);\n  color: var(--gt-gold);\n  text-shadow: 0 0 24px rgba(255, 215, 0, 0.5);\n  animation: cc-finale-build 3.2s ease-in forwards;\n}\n.cc-finale-drum {\n  position: relative;\n  font-size: clamp(3rem, 18vh, 8rem);\n  animation: cc-finale-shake 0.09s linear infinite alternate;\n}\n/* A spotlight sweeping back and forth across the stage */\n.cc-finale-spotlight {\n  position: absolute;\n  inset: -20%;\n  background: radial-gradient(circle at 50% 50%, rgba(255, 240, 180, 0.28) 0, rgba(255, 240, 180, 0.08) 18%, transparent 32%);\n  animation: cc-finale-sweep 1.6s ease-in-out infinite alternate;\n}\n@keyframes cc-finale-build {\n  from { transform: scale(0.85); opacity: 0.4; }\n  to   { transform: scale(1.12); opacity: 1; }\n}\n@keyframes cc-finale-shake {\n  from { transform: translate(-2px, 1px) rotate(-3deg); }\n  to   { transform: translate(2px, -1px) rotate(3deg); }\n}\n@keyframes cc-finale-sweep {\n  from { transform: translateX(-25%); }\n  to   { transform: translateX(25%); }\n}\n\n.cc-finale-fireworks {\n  position: fixed;\n  inset: 0;\n  width: 100vw;\n  height: 100dvh;\n  z-index: 9998;          /* behind the champion and the scores, in front of the background */\n  pointer-events: none;\n}\n\n.cc-finale-champion {\n  position: relative;\n  z-index: 10001;\n  padding: clamp(0.4rem, 1.8vh, 1.2rem) 1.25rem;\n  border-radius: 18px;\n  color: #3b2a00;\n  background: linear-gradient(135deg, #fff3b0, #ffd700 45%, #f5b700);\n  box-shadow: 0 0 0 3px #fff8d6, 0 0 40px rgba(255, 215, 0, 0.75), 0 10px 30px rgba(0, 0, 0, 0.4);\n  animation: cc-finale-pop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both, cc-finale-glow 1.8s ease-in-out 0.7s infinite alternate;\n}\n.cc-finale-crown {\n  position: absolute;\n  top: clamp(-2.6rem, -7vh, -1.4rem);\n  left: 50%;\n  transform: translateX(-50%);\n  font-size: clamp(2rem, 9vh, 4rem);\n  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));\n  animation: cc-finale-bob 1.2s ease-in-out infinite alternate;\n}\n.cc-finale-label {\n  margin-top: clamp(0.5rem, 3vh, 1.2rem);   /* clear of the crown */\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.25em;\n  font-size: clamp(0.75rem, 3vh, 1.2rem);\n}\n.cc-finale-avatar {\n  width: clamp(44px, 13vh, 110px) !important;\n  height: clamp(44px, 13vh, 110px) !important;\n  border: 3px solid #fff;\n  border-radius: 50%;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n.cc-finale-name {\n  font-weight: 900;\n  font-size: clamp(1.4rem, 8vh, 3.4rem);\n  line-height: 1.1;\n  max-width: 60vw;\n}\n.cc-finale-score {\n  font-weight: 800;\n  font-size: clamp(0.9rem, 3.6vh, 1.6rem);\n}\n/* The champion's row in the rankings glows gold too */\n.cc-finale-row {\n  background: linear-gradient(135deg, #fff3b0, #ffd700) !important;\n  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7) !important;\n}\n@keyframes cc-finale-pop {\n  0%   { transform: scale(0.3); opacity: 0; }\n  70%  { transform: scale(1.08); opacity: 1; }\n  100% { transform: scale(1); }\n}\n@keyframes cc-finale-glow {\n  from { box-shadow: 0 0 0 3px #fff8d6, 0 0 24px rgba(255, 215, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); }\n  to   { box-shadow: 0 0 0 3px #fff8d6, 0 0 60px rgba(255, 215, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.4); }\n}\n@keyframes cc-finale-bob {\n  from { transform: translateX(-50%) translateY(0) rotate(-6deg); }\n  to   { transform: translateX(-50%) translateY(-6px) rotate(6deg); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .cc-finale-drum, .cc-finale-spotlight, .cc-finale-crown, .cc-finale-champion, .cc-finale-drumroll h1 { animation: none; }\n}\n\n/* =========================================================\n   🏗️ Tower Party: the lobby mini-game on the phones (TowerParty.jsx)\n   ========================================================= */\n.tp-card {\n  margin-top: 1rem;\n  padding: 0.75rem;\n  border-radius: 1rem;\n  background: rgba(255, 255, 255, 0.92);\n  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);\n  text-align: center;\n}\n.tp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem; }\n.tp-title { font-weight: 800; color: #22348f; }\n.tp-score { font-size: 0.85rem; font-weight: 700; color: #555; }\n.tp-stage {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n  border: 0;\n  border-radius: 0.75rem;\n  padding: 0;\n  background: linear-gradient(180deg, #bfe6ff 0%, #e8f5ff 70%, #fff6e0 100%);\n  touch-action: manipulation;\n  cursor: default;\n}\n.tp-stage.is-my-turn { cursor: pointer; box-shadow: inset 0 0 0 3px #ffd36e; }\n.tp-stage:disabled { opacity: 1; }\n.tp-block {\n  position: absolute;\n  left: 50%;\n  line-height: 0;\n  transition: bottom 0.35s ease;\n}\n.tp-swinger { transition: none; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25)); }\n/* Someone else's turn: their avatar sways on its own (each phone's swing is its own) */\n.tp-swing-demo { animation: tp-sway 1.6s ease-in-out infinite alternate; }\n@keyframes tp-sway {\n  from { transform: translateX(calc(-50% - 60px)); }\n  to   { transform: translateX(calc(-50% + 60px)); }\n}\n.tp-ground {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: -6px;\n  height: 8px;\n  background: #6b8f3a;\n}\n/* A clear gap: a tap meant for the game mustn't land on the start button */\n.tp-start { margin-top: 0.9rem; }\n.tp-turn { margin-top: 0.5rem; font-weight: 700; color: #333; min-height: 1.5em; }\n.tp-turn.is-my-turn { color: #c2185b; font-size: 1.15rem; }\n.tp-last { font-size: 0.85rem; color: #666; min-height: 1.3em; }\n.tp-team { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.6rem; }\n.tp-teammate {\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n  padding: 0.15rem 0.5rem 0.15rem 0.15rem;\n  border-radius: 999px;\n  background: #f1f3f9;\n  font-size: 0.8rem;\n  font-weight: 600;\n  color: #333;\n}\n.tp-teammate.is-up { background: #ffd36e; }\n.tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }\n\n/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */\n.tp-credits {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n  background: rgba(0, 0, 0, 0.82);   /* dark enough to read over the bright champion banner */\n}\n.tp-credits-roll {\n  position: absolute;\n  left: 50%;\n  top: 100%;\n  width: min(90vw, 560px);\n  text-align: center;\n  color: #fff;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n  animation: tp-credits-roll linear forwards;\n}\n@keyframes tp-credits-roll {\n  from { transform: translate(-50%, 0); }\n  to   { transform: translate(-50%, calc(-100% - 100vh)); }\n}\n.tp-credits-kicker { font-style: italic; opacity: 0.85; }\n.tp-credits h2 { font-weight: 800; font-size: clamp(1.8rem, 6vh, 3rem); margin: 0.3rem 0 0.6rem; color: var(--gt-gold, #ffd36e); }\n.tp-credits-best { font-size: clamp(1.1rem, 3.5vh, 1.6rem); }\n.tp-credits-sub { opacity: 0.85; margin-top: 0.2rem; }\n.tp-credits-heading { margin: 1.4rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }\n.tp-credits-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.6rem 0; }\n.tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }\n.tp-credits-role { opacity: 0.85; }\n.tp-credits-end { margin-top: 1.6rem; font-style: italic; }\n/* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */\n.tp-chase-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  background: linear-gradient(180deg, transparent 0%, rgba(92, 108, 171, 0.55) 45%, #6f7fb8 100%);\n}\n.tp-credits .crew-cat [stroke=\"#16161d\"] { stroke: #e8e8f2; }\n\n/* 🎬 Between rounds: \"Round 3\" on the TV, \"Next: Round 3\" on the phones (CouchCastRoundIntro.jsx) */\n.cc-round-intro {\n  text-align: center;\n  color: #fff;\n  animation: cc-round-intro-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro .cc-round-intro-title {\n  font-size: clamp(4rem, 16vw, 11rem);\n  font-weight: 900;\n  line-height: 1;\n  letter-spacing: 0.02em;\n  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 255, 255, 0.35);\n}\n.cc-round-intro .cc-round-intro-of {\n  margin-top: 0.6rem;\n  font-size: clamp(1.4rem, 3.5vw, 2.4rem);\n  font-weight: 700;\n  opacity: 0.85;\n}\n.cc-round-intro-final {\n  display: inline-block;\n  margin-bottom: 1rem;\n  padding: 0.3rem 1.2rem;\n  border-radius: 999px;\n  background: #ffc107;\n  color: #212529;\n  font-weight: 800;\n  font-size: clamp(1.1rem, 3vw, 1.8rem);\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n.cc-round-intro-phone {\n  margin: 4rem auto 0;\n  width: calc(100% - 2rem);\n  max-width: 400px;\n  padding: 2.5rem 1.5rem;\n  border-radius: 1rem;\n  background: #f8f9fa;\n  text-align: center;\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);\n  animation: cc-round-intro-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;\n}\n.cc-round-intro-phone .cc-round-intro-next {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #6c757d;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n.cc-round-intro-phone .cc-round-intro-title {\n  font-size: clamp(2.5rem, 14vw, 3.5rem);\n  white-space: nowrap;\n  font-weight: 900;\n  color: #0d6efd;\n  line-height: 1.1;\n}\n.cc-round-intro-phone .cc-round-intro-final {\n  margin: 1rem 0 0;\n}\n@keyframes cc-round-intro-in {\n  from { opacity: 0; transform: scale(0.6); }\n  to { opacity: 1; transform: scale(1); }\n}\n\n/* 🛋️ The Couch Cast crew in the Core deck lobby (CouchCrew.jsx): a scene laid over the lobby, behind\n   the QR card, so the characters can peek out from behind it but never cover the code */\n.cc-crew {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n  pointer-events: none;\n  overflow: visible;\n  visibility: hidden;\n}\n.cc-crew.is-ready { visibility: visible; }\n.cc-lobby.has-crew .cc-lobby-screen-col { position: relative; z-index: 2; }\n/* The couch's spot under the players card */\n.cc-crew-stage {\n  flex: 0 0 auto;\n  height: clamp(70px, calc(32vh - var(--crowd, 0) * 3vh), 380px);\n  /* On a phone, a share of the screen that's left with the browser's bars showing, so the players card keeps its room */\n  height: clamp(70px, calc(32dvh - var(--crowd, 0) * 3dvh), 380px);\n}\n/* Lobby players go two to a row, so everyone fits */\n.cc-lobby-players-grid {\n  display: grid !important;\n  grid-template-columns: 1fr 1fr;\n  align-content: start;\n  column-gap: 0.75rem;\n}\n\n/* Only the parts that move get their own box to turn around: Safari also applies this to shapes\n   tilted in the drawing (the dog's ears, the alien's eyes), knocking them out of place */\n.cc-crew .crew-fig, .cc-crew .crew-leg, .cc-crew .crew-eyes, .cc-crew .crew-pupils, .cc-crew .crew-dog-tail,\n.cc-crew .crew-alien-antenna, .cc-crew .crew-arm-cast, .cc-crew .crew-cat-tail, .cc-crew .crew-cat-paw,\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump, .cc-crew .crew-pow path, .cc-crew .crew-robot-hatch,\n.cc-crew .couch-leg, .cc-crew .couch-body, .cc-crew .crew-flame, .cc-crew .crew-bat-wing,\n.cc-crew .crew-castle-door { transform-box: fill-box; }\n\n/* Walking: legs take turns, the body bobs */\n.cc-crew .crew-walking .crew-leg-l { animation: crew-step 0.34s ease-in-out infinite alternate; }\n.cc-crew .crew-walking .crew-leg-r { animation: crew-step 0.34s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-walking .crew-fig { animation: crew-bob 0.17s ease-in-out infinite alternate; }\n@keyframes crew-step { from { transform: translateY(0); } to { transform: translateY(-5px); } }\n/* Running (the chase): the same, flat out */\n.cc-crew .crew-running .crew-leg-l { animation: crew-step 0.14s ease-in-out infinite alternate; }\n.cc-crew .crew-running .crew-leg-r { animation: crew-step 0.14s ease-in-out infinite alternate-reverse; }\n.cc-crew .crew-running .crew-fig { animation: crew-bob 0.07s ease-in-out infinite alternate; }\n\n/* 🐈 The cat: a slow tail swish, and a paw at the screen */\n.cc-crew .crew-cat-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n@keyframes crew-swish { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }\n.cc-crew .crew-cat-paw { transform-origin: 50% 0%; }\n.cc-crew .crew-cat-swat .crew-cat-paw { animation: crew-swat 0.5s ease-in-out infinite alternate; }\n@keyframes crew-swat { from { transform: rotate(0deg); } to { transform: rotate(70deg); } }\n\n/* ⛰️ Sasquatch: a slower, heavier stride; fades in over the peak and out again */\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-l { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-leg-r { animation-duration: 0.42s; }\n.cc-crew .crew-sasquatch.crew-walking .crew-fig { animation-duration: 0.21s; }\n.cc-crew .crew-sasquatch.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-sasquatch.is-leaving { animation: crew-fade-in 0.5s ease-in reverse forwards; }\n@keyframes crew-fade-in { from { opacity: 0; } to { opacity: 1; } }\n/* Fist bumps: the crew member's arm swings up, his comes down to meet it */\n.cc-crew .crew-arm-bump, .cc-crew .sq-arm-bump { transform-origin: 50% 0%; transition: transform 0.25s ease; }\n.cc-crew .crew-bumping .crew-arm-bump { transform: rotate(-120deg); }\n.cc-crew .sq-bumping .sq-arm-bump { transform: rotate(75deg); }\n.cc-crew .crew-pow path { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-pow.is-on path { animation: crew-pow 0.5s ease-out; }\n@keyframes crew-pow { 0% { opacity: 1; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(1); } }\n/* The ground shakes while the mountain moves */\n.cc-crew.is-rumbling .crew-world { animation: crew-rumble 0.08s linear infinite alternate; }\n@keyframes crew-rumble { from { transform: translate(-1.5px, 0.5px); } to { transform: translate(1.5px, -0.5px); } }\n\n/* 🐕 \"WOOF!\" */\n.cc-crew .crew-bark { opacity: 0; transition: opacity 0.12s ease; }\n.cc-crew .crew-bark.is-on { opacity: 1; }\n@keyframes crew-bob { from { transform: translateY(0); } to { transform: translateY(-2px); } }\n\n/* Eyes: blink now and then, and look at the screen (left), the room (right) or straight out */\n.cc-crew .crew-eyes { transform-origin: 50% 50%; animation: crew-blink 4.6s infinite; }\n.cc-crew .crew-dog .crew-eyes { animation-duration: 5.3s; animation-delay: 1.1s; }\n.cc-crew .crew-alien .crew-eyes { animation-duration: 3.9s; animation-delay: 2.3s; }\n@keyframes crew-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }\n.cc-crew .crew-pupils { transition: transform 0.3s ease; }\n.cc-crew [data-look=\"left\"] .crew-pupils { transform: translateX(-3px); }\n.cc-crew [data-look=\"right\"] .crew-pupils { transform: translateX(3px); }\n\n/* Little idle touches */\n.cc-crew .crew-dog-tail { transform-origin: 0% 100%; animation: crew-wag 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }\n.cc-crew .crew-alien-antenna { transform-origin: 50% 100%; animation: crew-wobble 1.8s ease-in-out infinite alternate; }\n@keyframes crew-wobble { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-robot-light { animation: crew-light 1.4s steps(1) infinite; }\n@keyframes crew-light { 50% { fill: #34d1bf; } }\n\n/* The robot raises its phone to cast */\n.cc-crew .crew-arm-cast { transform-origin: 50% 0%; transition: transform 0.35s ease; }\n.cc-crew .crew-casting .crew-arm-cast { transform: rotate(140deg); }\n\n/* The couch: legs scuttle on the way in, then it plops down */\n.cc-crew .couch-leg { transform-origin: 50% 0%; }\n.cc-crew .couch-crawling .couch-leg:nth-child(odd) { animation: couch-scuttle 0.22s ease-in-out infinite alternate; }\n.cc-crew .couch-crawling .couch-leg:nth-child(even) { animation: couch-scuttle 0.22s ease-in-out infinite alternate-reverse; }\n.cc-crew .couch-crawling .couch-body { animation: crew-bob 0.11s ease-in-out infinite alternate; }\n@keyframes couch-scuttle { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }\n.cc-crew .couch-plop .couch-body { transform-origin: 50% 100%; animation: couch-plop 0.45s ease-out; }\n.cc-crew .couch-plop .couch-leg { transform-origin: 50% 100%; transform: scaleY(0.55); transition: transform 0.25s ease-out; }\n@keyframes couch-plop { 0% { transform: scale(1); } 40% { transform: scale(1.06, 0.86); } 100% { transform: scale(1); } }\n\n/* The QR code \"turns on\" when the cast lands, then keeps a soft glow */\n.cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on 1.4s ease-out;\n  box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6) !important;\n}\n@keyframes cc-qr-on {\n  0% { box-shadow: 0 0 0 0 rgba(77, 208, 225, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(77, 208, 225, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(77, 208, 225, 0.6); }\n}\n\n/* 🦇 The Halloween deck's crew (HalloweenCrew.jsx): a tiny floating ghost, a castle door, a swaying\n   chandelier and bats. The witch's lightning and the QR code's glow are violet */\n.cc-crew .crew-ghost .crew-fig { animation: crew-ghost-float 1.5s ease-in-out infinite alternate; }\n@keyframes crew-ghost-float { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-castle-door { transform-origin: 0% 50%; transition: transform 0.5s ease; }\n.cc-crew .crew-castle.is-open .crew-castle-door { transform: scaleX(0.08); }\n.cc-crew .crew-castle-window { animation: crew-window 3.4s ease-in-out infinite alternate; }\n@keyframes crew-window { from { opacity: 1; } to { opacity: 0.65; } }\n/* It swings from its own (0, 0), the top of the chain */\n.cc-crew .crew-chandelier-sway { animation: crew-chandelier 5s ease-in-out infinite alternate; }\n@keyframes crew-chandelier { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }\n.cc-crew .crew-flame { transform-origin: 50% 100%; animation: crew-flame 0.7s ease-in-out infinite alternate; }\n.cc-crew .crew-flame:nth-of-type(odd) { animation-duration: 0.9s; }\n@keyframes crew-flame { from { transform: scale(0.85, 1); } to { transform: scale(1.1, 1.18); } }\n.cc-crew .crew-bat-wing-l { transform-origin: 100% 40%; animation: crew-bat-l 0.16s ease-in-out infinite alternate; }\n.cc-crew .crew-bat-wing-r { transform-origin: 0% 40%; animation: crew-bat-r 0.16s ease-in-out infinite alternate; }\n@keyframes crew-bat-l { from { transform: rotate(28deg); } to { transform: rotate(-24deg); } }\n@keyframes crew-bat-r { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }\n.cc-crew .rcs-ticket { opacity: 0; }\n.cc-crew .rcs-ticket.is-on { opacity: 1; }\n.cc-crew.cc-crew-halloween .rcs-ray { stroke: #b98cff; filter: drop-shadow(0 0 3px rgba(185, 140, 255, 0.9)); }\n.cc-crew.cc-abduct-halloween .abduct-beam { fill: rgba(185, 140, 255, 0.35); stroke: rgba(185, 140, 255, 0.85); }\n.cc-crew.cc-abduct-halloween .abduct-beam.is-on { animation-name: abduct-flicker-violet; }\n@keyframes abduct-flicker-violet { 50% { fill: rgba(185, 140, 255, 0.22); } }\n.tp-chase-halloween .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(150, 72, 24, 0.55) 45%, #b5601f 100%); }\n/* ⚡ The witch's cast: a lightning bolt from her wand tip to the QR code, above the cards like the projector.\n   It strikes (draws from the wand to the code in a blink), then flickers while the zigzag crackles */\n.cc-crew.crew-bolt { z-index: 3; opacity: 0; transition: opacity 0.2s ease; }\n.cc-crew.crew-bolt.is-on { opacity: 1; transition-duration: 0.05s; }\n.cc-crew .crew-bolt-zap path { fill: none; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 6; }\n.cc-crew .crew-bolt-glow { stroke: rgba(185, 140, 255, 0.4); stroke-linejoin: round; }\n.cc-crew .crew-bolt-body { stroke: #b98cff; filter: drop-shadow(0 0 5px rgba(185, 140, 255, 0.95)); }\n.cc-crew .crew-bolt-core { stroke: #fdfaff; }\n.cc-crew.crew-bolt.is-striking .crew-bolt-zap path { stroke-dasharray: 1 2; animation: crew-bolt-strike 0.16s ease-out both; }\n@keyframes crew-bolt-strike { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }\n.cc-crew.crew-bolt.is-on .crew-bolt-zap { animation: crew-bolt-flicker 0.45s steps(1) infinite; }\n@keyframes crew-bolt-flicker { 0%, 100% { opacity: 1; } 20% { opacity: 0.5; } 26% { opacity: 1; } 62% { opacity: 0.78; } 68% { opacity: 1; } }\n.cc-crew .crew-bolt-flash, .cc-crew .crew-bolt-hit {\n  fill: #fdfaff;\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #b98cff);\n  transform-box: fill-box;\n  transform-origin: 50% 50%;\n}\n.cc-crew.crew-bolt.is-on .crew-bolt-flash, .cc-crew.crew-bolt.is-on .crew-bolt-hit { animation: crew-bolt-pulse 0.2s ease-in-out infinite alternate; }\n.cc-crew.crew-bolt.is-on .crew-bolt-hit { animation-delay: 0.1s; }\n@keyframes crew-bolt-pulse { from { transform: scale(0.7); } to { transform: scale(1.2); } }\n.cc-lobby.crew-halloween .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-violet;\n  box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7) !important;\n}\n@keyframes cc-qr-on-violet {\n  0% { box-shadow: 0 0 0 0 rgba(185, 140, 255, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(185, 140, 255, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(185, 140, 255, 0.7); }\n}\n\n/* 📽️ The robot's projector: above the cards, so the light can reach the QR code */\n.cc-crew.crew-proj { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew.crew-proj.is-on { opacity: 1; }\n.cc-crew.crew-proj.is-on .crew-proj-cone { animation: crew-proj-flicker 2.4s linear infinite; }\n@keyframes crew-proj-flicker { 0%, 100% { opacity: 1; } 40% { opacity: 0.86; } 46% { opacity: 1; } 72% { opacity: 0.92; } }\n.cc-crew .crew-proj-lens { fill: #fffbe0; filter: drop-shadow(0 0 5px #fff6c9); }\n.cc-lobby.crew-core .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-warm;\n  box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75) !important;\n}\n@keyframes cc-qr-on-warm {\n  0% { box-shadow: 0 0 0 0 rgba(255, 240, 170, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 240, 170, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 240, 170, 0.75); }\n}\n\n/* 🎄 The Holiday deck's crew (HolidayCrew.jsx): twinkling lights, Rudolph's nose, the cat's scarf and the\n   sleigh. The QR code's glow is gold */\n.cc-crew .crew-bulb { animation: crew-bulb 1.1s steps(1) infinite; }\n.cc-crew .crew-bulb-1 { animation-delay: 0.55s; }\n@keyframes crew-bulb { 50% { opacity: 0.35; } }\n.cc-crew .crew-red-nose { animation: crew-red-nose 1.3s ease-in-out infinite alternate; }\n@keyframes crew-red-nose { from { fill: #e01f1f; } to { fill: #ff6a5a; } }\n.cc-crew .crew-scarf-end { transform-box: fill-box; transform-origin: 0% 60%; animation: crew-scarf 0.7s ease-in-out infinite alternate; }\n@keyframes crew-scarf { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }\n.cc-crew .crew-sleigh-sparkles { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-sleigh.is-flying .crew-sleigh-sparkles { opacity: 1; animation: crew-sparkle 0.28s steps(2) infinite; }\n@keyframes crew-sparkle { 50% { opacity: 0.45; } }\n.cc-crew .crew-sleigh.is-empty .crew-sleigh-santa { display: none; }\n.cc-crew .crew-sleigh-wave { transform-box: fill-box; transform-origin: 100% 100%; animation: crew-wave-hand 0.5s ease-in-out infinite alternate; }\n@keyframes crew-wave-hand { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }\n.tp-chase-holiday .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(230, 244, 240, 0.6) 45%, #eef7f4 100%); }\n.cc-lobby.crew-holiday .cc-lobby-qr.cc-qr-on {\n  animation-name: cc-qr-on-gold;\n  box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7) !important;\n}\n@keyframes cc-qr-on-gold {\n  0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); }\n  30% { box-shadow: 0 0 46px 16px rgba(255, 210, 63, 0.95); }\n  100% { box-shadow: 0 0 22px 4px rgba(255, 210, 63, 0.7); }\n}\n\n/* 📼 The Jeffinitely deck's crew (JeffCrew.jsx): controllers while they play, the Jeffcom's cartridge,\n   Mitch blowing on it, Boomer's turning reels, Pixel beeping, and Dana's computer */\n.cc-crew .crew-controller, .cc-crew .crew-controller-pad, .cc-crew .crew-jeffcom-cart, .cc-crew .crew-held-cart,\n.cc-crew .crew-puff, .cc-crew .crew-boomer-reel, .cc-crew .crew-boomer-antenna, .cc-crew .crew-pixel-beep,\n.cc-crew .crew-computer-bar, .cc-crew .crew-computer-wheel { transform-box: fill-box; }\n/* 🎮 Playing: a controller in both hands, arms in, thumbs going, leaning into it */\n.cc-crew .crew-controller { opacity: 0; transition: opacity 0.25s ease; }\n.cc-crew .crew-gaming .crew-controller { opacity: 1; }\n.cc-crew .crew-gaming .crew-arm-cast { transform: rotate(-34deg); }\n.cc-crew .crew-gaming .crew-arm-bump { transform: rotate(34deg); }\n.cc-crew .crew-gaming .crew-controller-pad { animation: jeff-mash 0.18s steps(2) infinite; }\n@keyframes jeff-mash { 50% { transform: translate(0.6px, 0.8px); } }\n.cc-crew .crew-gaming .crew-controller-a { animation: jeff-button 0.36s steps(1) infinite; }\n.cc-crew .crew-gaming .crew-controller-b { animation: jeff-button 0.36s steps(1) infinite 0.18s; }\n@keyframes jeff-button { 50% { fill: #ffd23f; } }\n.cc-crew .crew-gaming .crew-fig { transform-origin: 50% 100%; animation: jeff-lean 1.6s ease-in-out infinite alternate; }\n.cc-crew .crew-angie.crew-gaming .crew-fig { animation-duration: 1.1s; animation-delay: -0.4s; }\n.cc-crew .crew-duke.crew-gaming .crew-fig { animation-duration: 2.1s; animation-delay: -1s; }\n.cc-crew .crew-boomer.crew-gaming .crew-fig { animation-duration: 1.3s; animation-delay: -0.7s; }\n@keyframes jeff-lean { from { transform: rotate(-4deg); } to { transform: rotate(3deg); } }\n/* Reaching down to the console, and blowing on the cartridge */\n.cc-crew .crew-reaching .crew-arm-bump { transform: rotate(-55deg); }\n.cc-crew .crew-held-cart { opacity: 0; }\n.cc-crew .crew-blowing .crew-held-cart { opacity: 1; }\n.cc-crew .crew-blowing .crew-arm-cast { transform: rotate(-125deg); }\n.cc-crew .crew-puff { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .crew-blowing .crew-puff { animation: jeff-puff 0.9s ease-out infinite; }\n.cc-crew .crew-blowing .crew-puff-2 { animation-delay: 0.08s; }\n.cc-crew .crew-blowing .crew-puff-3 { animation-delay: 0.16s; }\n@keyframes jeff-puff { 0%, 30% { opacity: 0; transform: scale(0.3) translateX(4px); } 45% { opacity: 1; } 100% { opacity: 0; transform: scale(1.2) translateX(-4px); } }\n/* The Jeffcom: the cartridge sits up out of the slot until it's pushed in */\n.cc-crew .crew-jeffcom-cart { transform: translateY(-7px); transition: transform 0.22s ease, opacity 0.15s ease; }\n.cc-crew .crew-jeffcom.is-in .crew-jeffcom-cart { transform: translateY(0); }\n.cc-crew .crew-jeffcom.is-empty .crew-jeffcom-cart { opacity: 0; }\n.cc-crew .crew-jeffcom.is-powered .crew-jeffcom-light { fill: #ff3b3b; filter: drop-shadow(0 0 2px #ff3b3b); }\n/* Boomer: the mixtape's reels go round, and the antenna wobbles */\n.cc-crew .crew-boomer-reel { transform-origin: 50% 50%; animation: jeff-reel 1.2s linear infinite; }\n@keyframes jeff-reel { to { transform: rotate(360deg); } }\n.cc-crew .crew-boomer-antenna { transform-origin: 0% 100%; animation: crew-wobble 1.4s ease-in-out infinite alternate; }\n/* Pixel hops instead of walking, and beeps at the screen */\n.cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }\n.cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }\n@keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }\n.cc-crew .crew-pixel-beep { opacity: 0; }\n.cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }\n@keyframes jeff-beep { 50% { opacity: 1; } }\n/* 🖥️ Dana's computer: the wheels spin as it rolls, the modem blinks, the screen glows and \"connects\" */\n.cc-crew .crew-computer.is-rolling .crew-computer-wheel { animation: crew-bob 0.1s ease-in-out infinite alternate; }\n.cc-crew .crew-computer-glow, .cc-crew .crew-computer-modem { opacity: 0; transition: opacity 0.3s ease; }\n.cc-crew .crew-computer.is-on .crew-computer-glow { opacity: 1; animation: jeff-crt 0.12s steps(2) 6; }\n.cc-crew .crew-computer.is-on .crew-computer-modem { opacity: 1; animation: crew-bulb 0.3s steps(1) infinite; }\n.cc-crew .crew-computer-bar { transform-origin: 0% 50%; transform: scaleX(0); }\n.cc-crew .crew-computer.is-on .crew-computer-bar { transform: scaleX(1); transition: transform 1.8s steps(6); }\n@keyframes jeff-crt { 50% { opacity: 0.5; } }\n/* Dana fades in from the screen and back into it, and her bump arm is on the left */\n.cc-crew .crew-dana.is-arriving { animation: crew-fade-in 0.5s ease-out; }\n.cc-crew .crew-dana.is-leaving { animation: crew-fade-in 0.9s ease-in reverse forwards; }\n.cc-crew .crew-dana.sq-bumping .sq-arm-bump { transform: rotate(120deg); }\n/* 📺 The QR card: fuzz while the cartridge isn't working, then it flickers on like an old tube TV */\n.cc-lobby-qr { position: relative; }\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-static::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  pointer-events: none;\n  opacity: 0.6;\n  background:\n    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 2px, transparent 2px 4px),\n    repeating-radial-gradient(circle at 30% 40%, #fff 0 1px, #777 1px 2px, #222 2px 3px);\n  background-size: 100% 100%, 7px 7px;\n  animation: jeff-static 0.12s steps(3) infinite;\n}\n@keyframes jeff-static {\n  0% { background-position: 0 0, 0 0; }\n  33% { background-position: 0 1px, 3px 5px; }\n  66% { background-position: 0 2px, 6px 2px; }\n}\n.cc-lobby.crew-jeffinitely .cc-lobby-qr.cc-qr-on {\n  animation: cc-qr-on-tube 0.9s ease-out;\n  box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7) !important;\n}\n@keyframes cc-qr-on-tube {\n  0% { transform: scale(1, 0.02); filter: brightness(3); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }\n  25% { transform: scale(1, 0.02); filter: brightness(3); }\n  55% { transform: scale(1, 1.04); filter: brightness(1.6); box-shadow: 0 0 46px 16px rgba(255, 79, 154, 0.95); }\n  70% { transform: scale(1, 1); filter: brightness(1); }\n  80% { filter: brightness(1.3); }\n  100% { filter: brightness(1); box-shadow: 0 0 22px 4px rgba(255, 79, 154, 0.7); }\n}\n\n/* ❄️ Snow in the Holiday lobby (Snowfall.jsx): behind the crew and the cards, so never over the QR code */\n.cc-snow {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n.cc-snowflake {\n  position: absolute;\n  top: -12px;\n  border-radius: 50%;\n  background: #fff;\n  will-change: transform;\n  animation: cc-snowfall linear infinite;\n}\n@keyframes cc-snowfall {\n  0% { transform: translate3d(0, 0, 0); }\n  50% { transform: translate3d(var(--sway), 52vh, 0); }\n  100% { transform: translate3d(0, 105vh, 0); }\n}\n\n/* 🎓 Trivia Cast's lobby show (QuizShow.jsx): podium lights, a spinning propeller, a smoking volcano and a roaring T. rex */\n.cc-crew .quiz-podium.is-lit .quiz-podium-light { animation: quiz-light 0.28s steps(2) 4; }\n@keyframes quiz-light { 50% { fill: #fffbe0; } }\n.cc-crew .quiz-prop { transform-box: fill-box; transform-origin: 50% 50%; animation: quiz-prop 0.1s linear infinite alternate; }\n@keyframes quiz-prop { from { transform: scaleY(1); } to { transform: scaleY(0.12); } }\n.cc-crew .quiz-plane.is-empty .quiz-plane-pilot { display: none; }\n.cc-crew .quiz-smoke { opacity: 0; }\n.cc-crew .quiz-smoking .quiz-smoke { opacity: 1; animation: quiz-smoke 1.4s ease-in-out infinite alternate; }\n@keyframes quiz-smoke { from { transform: translateY(2px); } to { transform: translateY(-6px); } }\n.cc-crew .quiz-scared .crew-fig { animation: quiz-shake 0.07s linear infinite alternate; }\n@keyframes quiz-shake { from { transform: translateX(-1.5px); } to { transform: translateX(1.5px); } }\n.cc-crew .quiz-dino-head, .cc-crew .quiz-dino-jaw, .cc-crew .quiz-dino-body { transform-box: fill-box; }\n.cc-crew .quiz-dino-jaw { transform-origin: 100% 50%; transition: transform 0.15s ease; }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-jaw { transform: rotate(-16deg); }\n.cc-crew .quiz-dino.is-roaring .quiz-dino-body { animation: quiz-roar 0.09s linear infinite alternate; }\n@keyframes quiz-roar { from { transform: translate(-1px, 1px); } to { transform: translate(1px, -1px); } }\n\n.cc-crew .quiz-dino-running .quiz-dino-body { animation: quiz-dino-stomp 0.2s ease-in-out infinite alternate; }\n@keyframes quiz-dino-stomp { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-5px) rotate(1deg); } }\n/* 🙇 Taking a bow, tipping over from the feet */\n.cc-crew .quiz-bowing .crew-fig, .cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { transform-origin: 50% 100%; animation: quiz-bow 1.6s ease-in-out; }\n.cc-crew .quiz-dino.quiz-bowing .quiz-dino-body { animation-name: quiz-dino-bow; animation-duration: 1.7s; }\n@keyframes quiz-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-32deg); } }\n@keyframes quiz-dino-bow { 0%, 100% { transform: rotate(0); } 35%, 65% { transform: rotate(-20deg); } }\n\n/* 🎪 Temple Mix Up's clowns (CircusShow.jsx): a car that's far too small, a fizzing fuse, a puff of smoke,\n   a squirting flower and the lion's swishing tail */\n.cc-crew .circus-car-clowns { display: none; }\n.cc-crew .circus-car.has-clowns .circus-car-clowns { display: inline; }\n.cc-crew .circus-car-body, .cc-crew .circus-lion-tail, .cc-crew .circus-smoke circle { transform-box: fill-box; }\n.cc-crew .circus-car-body { transform-origin: 50% 100%; }\n.cc-crew .circus-car.is-bouncing .circus-car-body { animation: circus-bounce 0.16s ease-in-out infinite alternate; }\n@keyframes circus-bounce { from { transform: translateY(0) rotate(-1.5deg); } to { transform: translateY(-3px) rotate(1.5deg); } }\n.cc-crew .circus-fuse-spark { display: none; }\n.cc-crew .circus-cannon.is-lit .circus-fuse-spark { display: inline; animation: circus-fizz 0.12s steps(2) infinite; }\n@keyframes circus-fizz { 50% { opacity: 0.35; } }\n.cc-crew .circus-smoke circle { opacity: 0; transform-origin: 50% 50%; }\n.cc-crew .circus-smoke.is-on circle { animation: circus-puff 1.1s ease-out; }\n@keyframes circus-puff { 0% { opacity: 0.95; transform: scale(0.3); } 100% { opacity: 0; transform: scale(1.7); } }\n.cc-crew .circus-lion-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }\n.cc-crew .circus-lion.is-roaring .crew-fig { animation: quiz-roar 0.06s linear infinite alternate; }\n.cc-crew .circus-dizzy .crew-fig { transform-origin: 50% 100%; animation: circus-dizzy 0.45s ease-in-out infinite alternate; }\n@keyframes circus-dizzy { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }\n/* The rules screen: above the cards, so they can swing in; the buttons underneath still work */\n.cc-crew.circus-rules-show { z-index: 5; }\n.mx-rules-with-clowns { padding-bottom: 17vh !important; }\n/* The end credits: a sawdust ring floor */\n.tp-chase-circus .tp-chase-floor { background: linear-gradient(180deg, transparent 0%, rgba(201, 150, 82, 0.5) 45%, #b5823f 100%); }\n\n/* 🎭 The curtain call (QuizFinale.jsx): red curtains over the scores, parting to show the credits and the cast */\n.qf-finale {\n  position: fixed;\n  inset: 0;\n  z-index: 10003;\n  overflow: hidden;\n  pointer-events: none;     /* the Play Again / Home buttons underneath still work */\n}\n.qf-stage {\n  position: absolute;\n  inset: 0;\n  background: radial-gradient(ellipse at 50% 30%, #3a2340 0%, #1a0f22 60%, #0d0814 100%);\n}\n.qf-floor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 22vh;\n  background: linear-gradient(180deg, #5b3a22 0%, #3a2414 100%);\n  border-top: 3px solid #241509;\n}\n.qf-curtain {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 52%;\n  background:\n    repeating-linear-gradient(90deg, #7a0f1c 0, #c0202f 3vw, #e0333f 4.2vw, #a01523 5.6vw, #7a0f1c 7.5vw);\n  box-shadow: 0 0 36px rgba(0, 0, 0, 0.7);\n  transition: transform 1.5s cubic-bezier(0.55, 0.05, 0.3, 1);\n}\n.qf-curtain::after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 3vh;\n  background: linear-gradient(90deg, #d9a93a, #ffe08a, #d9a93a);\n  background-size: 7.5vw 100%;\n}\n.qf-curtain-left { left: 0; }\n.qf-curtain-right { right: 0; }\n.qf-valance {\n  position: absolute;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 11vh;\n  background: repeating-linear-gradient(90deg, #8c1220 0, #d62a38 5vw, #8c1220 10vw);\n  border-bottom: 0.8vh solid #e8bd4a;\n  border-radius: 0 0 50% 50% / 0 0 22% 22%;\n  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);\n  transition: transform 1.5s ease;\n}\n/* Off to the sides at first and last; closed over the screen; drawn back with a drape left at each side */\n.qf-waiting .qf-curtain-left, .qf-leaving .qf-curtain-left { transform: translateX(-102%); }\n.qf-waiting .qf-curtain-right, .qf-leaving .qf-curtain-right { transform: translateX(102%); }\n.qf-waiting .qf-valance, .qf-leaving .qf-valance { transform: translateY(-105%); }\n.qf-closed .qf-curtain-left, .qf-closing .qf-curtain-left, .qf-closed .qf-curtain-right, .qf-closing .qf-curtain-right { transform: translateX(0); }\n.qf-open .qf-curtain-left { transform: translateX(-74%); }\n.qf-open .qf-curtain-right { transform: translateX(74%); }\n.qf-stage .tp-credits-roll { color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }\n\n@media (prefers-reduced-motion: reduce) {\n  .cc-crew *, .cc-lobby-qr.cc-qr-on { animation: none !important; transition: none !important; }\n  .cc-snow { display: none; }\n}\n\n/* 🛸 The rules screen: the alien beams up the cat, under the countdown (RulesAbduction.jsx) */\n.cc-rules-abduct {\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n  margin: 0.25rem 0;\n}\n.cc-crew.cc-abduct {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.cc-abduct .abduct-beam {\n  fill: rgba(57, 255, 136, 0.35);\n  stroke: rgba(57, 255, 136, 0.8);\n  stroke-width: 0.8;\n  opacity: 0;\n  transition: opacity 0.25s ease;\n}\n.cc-abduct .abduct-beam.is-on { opacity: 1; animation: abduct-flicker 0.18s steps(2) infinite; }\n@keyframes abduct-flicker { 50% { fill: rgba(57, 255, 136, 0.25); } }\n.cc-abduct .abduct-saucer { animation: abduct-hover 1.4s ease-in-out infinite alternate; }\n@keyframes abduct-hover { from { transform: translateY(-1.5px); } to { transform: translateY(1.5px); } }\n.cc-abduct .is-wobbling .abduct-saucer { animation: abduct-wobble 0.12s linear infinite alternate; }\n@keyframes abduct-wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }\n.cc-abduct .abduct-saucer { transform-box: fill-box; transform-origin: 50% 50%; }\n.cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }\n.cc-abduct .abduct-light-1 { animation-delay: 0.4s; }\n/* Back on the ground: squash, puff up, glare */\n.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }\n@keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }\n\n/* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */\n.cc-round-scene {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 30vh;\n  pointer-events: none;\n}\n.cc-crew.cc-round-scene-art {\n  position: static;\n  visibility: visible;\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: visible;   /* the crew walks on from the screen's real edges, outside the 400-wide drawing */\n}\n.cc-crew .rcs-claw, .cc-crew .rcs-ray { opacity: 0; }\n.cc-crew .rcs-claw.is-on { opacity: 1; }\n.cc-crew .rcs-claw-head { transition: transform 0.1s; }\n.cc-crew .rcs-claw.is-closed .rcs-claw-l { transform: translateY(1.5px); }\n.cc-crew .rcs-claw.is-closed .rcs-claw-r { transform: translateY(-1.5px); }\n.cc-crew .rcs-ray {\n  fill: none;\n  stroke: #39ff88;\n  stroke-width: 2.2;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px rgba(57, 255, 136, 0.9));\n}\n.cc-crew .rcs-ray.is-on { opacity: 1; }\n/* The robot's belly hatch swings open, and rattles shut with a cat inside */\n.cc-crew .crew-robot-hatch { transform-origin: 0% 50%; transition: transform 0.3s ease; }\n.cc-crew .hatch-open .crew-robot-hatch { transform: scaleX(-0.2); }\n.cc-crew .belly-rattle .crew-robot-hatch { animation: belly-rattle 0.12s linear infinite alternate; }\n@keyframes belly-rattle { from { transform: translate(-0.8px, 0.4px); } to { transform: translate(0.8px, -0.4px); } }\n\n/* =========================================================\n   🔒 PRIVACY POLICY (PrivacyPolicy.jsx)\n   ========================================================= */\n.gt-privacy { padding: 1rem 1.1rem 0.75rem; color: #2a2f4a; font-size: 0.95rem; line-height: 1.5; }\n.gt-privacy h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.1rem; color: #1d2340; }\n.gt-privacy h2 { font-size: 1.05rem; font-weight: 800; margin: 1.3rem 0 0.4rem; color: #1d2340; }\n.gt-privacy ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }\n.gt-privacy li { margin-bottom: 0.3rem; }\n.gt-privacy-date { color: #6b7090; font-size: 0.85rem; margin-bottom: 1rem; }\n.gt-privacy-short {\n    background: rgba(74, 102, 216, 0.08);\n    border-left: 4px solid #4a66d8;\n    border-radius: 6px;\n    padding: 0.6rem 0.8rem;\n    font-weight: 600;\n}\n/* The small \"Privacy policy\" link at the bottom of the home pages */\n.gt-privacy-link { color: #6b7090; text-decoration: underline; }\n.gt-privacy-link:hover { color: #4a66d8; }\n\n/* =========================================================\n   📼 JEFFINITELY DECK THEME\n   Colours and style straight off the deck card (cardDecks.js, DeckCard.jsx): a sunset gradient that runs\n   orange → hot pink → purple → teal, a neon sun sinking into a magenta perspective grid, cassette labels\n   (cream with a pink and a teal stripe), and loud '90s shapes with dark outlines.\n   It all hangs off <html data-gt-theme=\"jeffinitely\">, which only Couch Cast sets, and only for this deck.\n   ========================================================= */\n\n/* 🌅 The background (AnimatedBackground.jsx + RetroBackdrop.jsx) */\n.gt-bg.theme-jeffinitely {\n    --gt-blue-300: #ff4f9a;\n    --gt-ice:      #18b6c9;\n    --gt-bg-accent: #ffd23f;\n    --gt-bg-vignette: rgba(26, 17, 71, 0.5);\n    background: linear-gradient(160deg, #ff8a3d 0%, #ff4f9a 34%, #7b3fd1 66%, #18b6c9 100%);\n}\n.gt-bg.theme-jeffinitely .gt-blob { opacity: 0.35; }\n/* The neon sun: rings of the deck's colours, sliced by the horizon like a synthwave sunset */\n.gt-retro-sun {\n    position: absolute;\n    left: 50%;\n    bottom: 26vh;\n    width: 46vmin;\n    height: 46vmin;\n    transform: translate(-50%, 50%);\n    border-radius: 50%;\n    background: linear-gradient(180deg, #ffd23f 0%, #ff8a3d 45%, #ff4fd8 100%);\n    -webkit-mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n            mask: linear-gradient(180deg, #000 0 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 72%, transparent 72% 78%, #000 78% 82%, transparent 82%);\n    box-shadow: 0 0 80px rgba(255, 79, 216, 0.6);\n    opacity: 0.9;\n}\n/* The grid floor, tipped back toward the horizon and slowly rolling toward us */\n.gt-retro-floor {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    height: 26vh;\n    overflow: hidden;\n    perspective: 26vh;\n    perspective-origin: 50% 0;\n    background: linear-gradient(180deg, rgba(26, 17, 71, 0.55), rgba(26, 17, 71, 0.85));\n    border-top: 2px solid #ff4fd8;\n    box-shadow: 0 -4px 24px rgba(255, 79, 216, 0.55);\n}\n.gt-retro-grid {\n    position: absolute;\n    left: -50%;\n    right: -50%;\n    top: 0;\n    height: 300%;\n    transform-origin: 50% 0;\n    transform: rotateX(62deg);\n    background:\n        repeating-linear-gradient(90deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin),\n        repeating-linear-gradient(0deg, rgba(255, 79, 216, 0.85) 0 2px, transparent 2px 7vmin);\n    animation: gt-retro-roll 4s linear infinite;\n}\n@keyframes gt-retro-roll { to { background-position: 0 0, 0 7vmin; } }\n\n/* The drifting retro stuff: full colour, sized off the screen, behind everything */\n.gt-retro-piece {\n    width: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    height: max(calc(var(--size) * 1vmin), calc(var(--size) * 4.4px));\n    opacity: 0.85;\n}\n.gt-retro-svg {\n    width: 100%;\n    height: 100%;\n    overflow: visible;\n    filter: drop-shadow(4px 5px 0 rgba(26, 17, 71, 0.35));\n}\n.gt-retro-blob { animation: gt-retro-lava 7s ease-in-out infinite alternate; }\n.gt-retro-blob-late { animation-duration: 9s; animation-delay: -3s; }\n.gt-retro-blob-later { animation-duration: 6s; animation-delay: -5s; }\n@keyframes gt-retro-lava { from { transform: translateY(6px); } to { transform: translateY(-22px); } }\n.gt-retro-reel { transform-box: fill-box; transform-origin: center; animation: jeff-reel 2.4s linear infinite; }\n.gt-retro-pet { animation: gt-retro-pet 1.2s steps(1) infinite; }\n@keyframes gt-retro-pet { 50% { transform: translateX(7px); } }\n@media (prefers-reduced-motion: reduce) {\n    .gt-retro-grid, .gt-retro-blob, .gt-retro-reel, .gt-retro-pet { animation: none; }\n}\n\n/* ✨ The shimmer border runs through the sunset */\n[data-gt-theme=\"jeffinitely\"] .shining-border-wrapper::before {\n    background: linear-gradient(270deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9, #ff4fd8, #ff8a3d);\n    background-size: 400% 400%;\n}\n\n/* 📺 TV headings: white with a stacked neon drop, like a VHS cover */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-header,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    text-shadow: 2px 2px 0 #ff4f9a, 4px 4px 0 #1a1147, 0 0 18px rgba(255, 79, 216, 0.55);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro .cc-round-intro-title {\n    font-style: italic;\n    text-shadow: 0.04em 0.04em 0 #ff4f9a, 0.08em 0.08em 0 #18b6c9, 0.12em 0.12em 0 #1a1147, 0 0 40px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-final {\n    background: #ffd23f;\n    color: #1a1147;\n    box-shadow: 4px 4px 0 #1a1147;\n}\n\n/* Glass panels (the prompt on the writing screen, the scores) go dark purple with a neon edge */\n[data-gt-theme=\"jeffinitely\"] .frosted-glass-panel {\n    background-color: rgba(26, 17, 71, 0.66) !important;\n    border: 1px solid rgba(255, 79, 216, 0.7) !important;\n    box-shadow: 0 8px 32px rgba(26, 17, 71, 0.5), inset 0 0 18px rgba(255, 79, 216, 0.18) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .cc-writer-tag.bg-success { background-color: rgba(46, 196, 182, 0.85) !important; }\n\n/* 📼 The light cards (QR, players, prompts, answers, the winning card) become cassette labels: cream,\n   with the pink and teal stripes along the top. The faint glass ones that carry white text go purple instead. */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.4\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.6\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.7\"],\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.9\"] {\n    background-color: rgba(255, 246, 216, 0.82) !important;\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"rgba(255, 255, 255, 0.25\"] {\n    background-color: rgba(26, 17, 71, 0.7) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-card[style*=\"solid\"] {\n    border-color: #ff4f9a !important;\n    box-shadow: 0 0 26px rgba(255, 79, 216, 0.6);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-code { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-players-grid .list-group-item { border-color: rgba(123, 63, 209, 0.35) !important; }\n\n/* Lobby bits on the TV: the \"Cast now\" banner and the room code pill */\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code {\n    background: rgba(26, 17, 71, 0.55);\n    border-color: rgba(255, 79, 216, 0.75);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-cast-now strong,\n[data-gt-theme=\"jeffinitely\"] .cc-room-code strong { color: #ffd23f; }\n[data-gt-theme=\"jeffinitely\"] .cc-lobby-tip { text-shadow: 1px 1px 2px rgba(26, 17, 71, 0.8); }\n\n/* The clocks: a sunset bar */\n[data-gt-theme=\"jeffinitely\"] .progress-bar.bg-light {\n    background: linear-gradient(90deg, #ff8a3d, #ff4f9a, #7b3fd1, #18b6c9) !important;\n}\n\n/* 🏆 TV scores: the leaders' rows go cream like a tape label, the rest stay purple glass */\n[data-gt-theme=\"jeffinitely\"] .fullscreen-gameplay-container .shadow[style*=\"rgba(255, 255, 255, 0.92\"] {\n    background-color: #fff6d8 !important;\n    box-shadow: 4px 4px 0 #ff4f9a, 8px 8px 0 #1a1147 !important;\n}\n\n/* 📱 Phone screens: Bootstrap blues turn sunset pink and purple, and the cards get a chunky retro drop */\n[data-gt-theme=\"jeffinitely\"] .bg-primary {\n    background: linear-gradient(135deg, #ff8a3d 0%, #ff4f9a 45%, #7b3fd1 100%) !important;\n}\n[data-gt-theme=\"jeffinitely\"] .text-primary { color: #b5179e !important; }\n[data-gt-theme=\"jeffinitely\"] .card-header.bg-dark { background-color: #1a1147 !important; }\n[data-gt-theme=\"jeffinitely\"] .card.bg-success { background-color: #0e8a86 !important; }\n[data-gt-theme=\"jeffinitely\"] .border-primary { border-color: #ff4f9a !important; }\n[data-gt-theme=\"jeffinitely\"] .btn-primary {\n    background: linear-gradient(135deg, #ff4f9a, #7b3fd1);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-primary:hover,\n[data-gt-theme=\"jeffinitely\"] .btn-primary:focus {\n    background: linear-gradient(135deg, #ff6aac, #8c52e0);\n    border-color: #7b3fd1;\n}\n[data-gt-theme=\"jeffinitely\"] .btn-outline-secondary { border-color: #7b3fd1; color: #1a1147; }\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag),\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    border: 2px solid #1a1147 !important;\n    box-shadow: 6px 6px 0 #ff4f9a, 6px 6px 0 2px #1a1147 !important;\n}\n[data-gt-theme=\"jeffinitely\"] .card:not(.fullscreen-gameplay-card):not(.frosted-glass-panel):not(.cc-writer-tag) > .card-body:first-child,\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone {\n    background-image: linear-gradient(180deg, #ff4f9a 0 5px, #18b6c9 5px 10px, transparent 10px);\n}\n[data-gt-theme=\"jeffinitely\"] .cc-round-intro-phone .cc-round-intro-title { color: #b5179e; font-style: italic; }\n[data-gt-theme=\"jeffinitely\"] .cc-scores-points { color: #7b3fd1; }\n[data-gt-theme=\"jeffinitely\"] .cc-mascot-cassette { filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.6)); }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -49182,7 +50010,16 @@ var TRACKS = {
     },
     begin: 1
   }),
-  mixup: makeSynthTrack('secret-mission') // Temple Mix Up
+  // Temple Mix Up's circus: Fučík's "Entry of the Gladiators", our own band recording of the public-domain score
+  // (listed on the Credits page). The file is the 44-bar loop (the introduction, then the first strain twice; one
+  // bar = 0.8 s) with a bar of lead-in and a bar of run-out around it, so it starts and goes round at 0.8 s and 36 s.
+  mixup: makeTrack('/audio/EntryOfTheGladiators.m4a', {
+    loop: {
+      start: 0.8,
+      end: 36
+    },
+    begin: 0.8
+  })
 };
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song, the Holiday deck its carols,
@@ -49373,7 +50210,7 @@ __webpack_require__.r(__webpack_exports__);
  * The background is rendered once (in Page.jsx); any screen can re-theme it
  * with useSetBackgroundTheme() and it snaps back to 'home' when that screen leaves.
  *
- * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'spy', 'trivia', 'animals', 'jeffinitely')
+ * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'circus', 'trivia', 'animals', 'jeffinitely')
  * cover: true lifts the background above the nav bar (used by the fullscreen TV screens)
  */
 var DEFAULT_THEME = {
@@ -49431,10 +50268,10 @@ function listsTheme(expansion) {
   return expansion === 'halloween' ? 'halloween' : 'lists';
 }
 
-// Temple Mix Up: noir for the spy lobby, then the background follows the block of rounds (memes, Pictionary, Threefold)
+// Temple Mix Up: the big top for the lobby, then the background follows the block of rounds (memes, Pictionary, Threefold)
 function mixupTheme(roundType) {
   var isLobby = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  if (isLobby) return 'spy';
+  if (isLobby) return 'circus';
   if (roundType === 'draw') return 'lists';
   if (roundType === 'match') return 'trivia';
   return 'couchcast';
@@ -51956,7 +52793,7 @@ var SPOOKY_TIMER_TRACKS = [{
 // are never picked at random for a timer; lobbyMusic.js plays them by id.
 // ---------------------------------------------------------------------------------------------
 var LOBBY_SYNTH_TRACKS = [{
-  // Temple Mix Up's lobby: our own sneaky spy tune. A twangy bass line creeps along under brushed drums and
+  // Temple Mix Up's old spy lobby (not played now that it's a circus; see lobbyMusic.js): our own sneaky spy tune. A twangy bass line creeps along under brushed drums and
   // vibes, and muted trumpets answer a reverby surf guitar. A 16-bar loop:
   //   bars 1-4    just the bass and the drums, tiptoeing in
   //   bars 5-8    the guitar sneaks in

@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Avatar } from '../../avatars.jsx';
 import { startCreditsMarch } from '../../celebrationSounds.js';
-import { SpyArrest } from './SpyShow.jsx';
+import { CircusFinale } from './CircusShow.jsx';
 
 // 🐍 Snake Snack: the lobby game on the players' phones (the server side is sockets/snakeGame.js).
 // Swipe on the board to steer. Eat the other players' avatars to grow; the edges wrap around, so the only way
@@ -242,7 +242,7 @@ export default function SnakeSnack({ socket, roomCode, room }) {
     );
 }
 
-/** 🎬 After the final scores are read: the lobby game's results roll up the TV to a march, while the police finally catch the spies */
+/** 🎬 After the final scores are read: the lobby game's results roll up the TV to a march, while the clowns put on their big finish */
 export function SnakeCredits({ snake, onDone }) {
     const players = Object.values(snake?.scores || {})
         .filter((s) => s.eaten > 0 || s.crashes > 0)
@@ -251,16 +251,16 @@ export function SnakeCredits({ snake, onDone }) {
 
     useEffect(() => startCreditsMarch(), []);
 
-    // They finish when the credits have rolled and the spies have been taken away, whichever's last
+    // They finish when the credits have rolled and the clowns have taken their bow, whichever's last
     const [rollDone, setRollDone] = useState(false);
-    const [arrestDone, setArrestDone] = useState(false);
+    const [finaleDone, setFinaleDone] = useState(false);
     useEffect(() => {
-        if (rollDone && arrestDone) onDone?.();
-    }, [rollDone, arrestDone]);
+        if (rollDone && finaleDone) onDone?.();
+    }, [rollDone, finaleDone]);
 
     const longest = hasPlayers ? players.reduce((best, s) => (s.longest > best.longest ? s : best), players[0]) : null;
     return (
-        <div className="tp-credits tp-chase-spy" aria-live="polite">
+        <div className="tp-credits tp-chase-circus" aria-live="polite">
             <div className="tp-chase-floor" />
             <div className="tp-credits-roll" style={{ animationDuration: `${16 + players.length * 2}s` }} onAnimationEnd={() => setRollDone(true)}>
                 {hasPlayers && (
@@ -282,11 +282,13 @@ export function SnakeCredits({ snake, onDone }) {
                     </>
                 )}
                 <div className="tp-credits-heading">Featuring</div>
-                <div className="tp-credits-line"><span className="tp-credits-name">Agent Oops</span><span className="tp-credits-role">as Not a Spy</span></div>
-                <div className="tp-credits-line"><span className="tp-credits-name">Agent Whoops</span><span className="tp-credits-role">as Also Not a Spy</span></div>
+                <div className="tp-credits-line"><span className="tp-credits-name">Oopsy</span><span className="tp-credits-role">as the Clown</span></div>
+                <div className="tp-credits-line"><span className="tp-credits-name">Daisy</span><span className="tp-credits-role">as the Other Clown</span></div>
+                <div className="tp-credits-line"><span className="tp-credits-name">The Ringmaster</span><span className="tp-credits-role">as the Only Grown-Up</span></div>
+                <div className="tp-credits-line"><span className="tp-credits-name">The Lion</span><span className="tp-credits-role">as a Big Softie</span></div>
                 <div className="tp-credits-end">Thanks for playing!</div>
             </div>
-            <div className="cc-round-scene"><SpyArrest onDone={() => setArrestDone(true)} /></div>
+            <div className="cc-round-scene"><CircusFinale onDone={() => setFinaleDone(true)} /></div>
         </div>
     );
 }

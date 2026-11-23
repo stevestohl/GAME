@@ -17,6 +17,12 @@ const CLASSICS = [
         url: 'https://imslp.org/wiki/The_Nutcracker_(ballet),_Op.71_(Tchaikovsky,_Pyotr)',
         usedIn: 'Couch Cast Holiday deck lobby',
     },
+    {
+        title: 'Entry of the Gladiators',
+        by: 'Julius Fučík',
+        url: 'https://imslp.org/wiki/Einzug_der_Gladiatoren,_Op.68_(Fu%C4%8D%C3%ADk,_Julius)',
+        usedIn: 'Temple Mix Up lobby',
+    },
 ];
 
 // 🎵 Song files from elsewhere (they live in public/audio)
@@ -55,7 +61,9 @@ export default function Credits() {
                         ))}
                         {CLASSICS.map((song) => (
                             <li key={song.url}>
-                                “{song.title}” from <a href={song.url} target="_blank" rel="noopener noreferrer"><i>{song.work}</i></a>
+                                {song.work
+                                    ? <>“{song.title}” from <a href={song.url} target="_blank" rel="noopener noreferrer"><i>{song.work}</i></a></>
+                                    : <a href={song.url} target="_blank" rel="noopener noreferrer">“{song.title}”</a>}
                                 {' by '}{song.by} ({song.usedIn}). The music is in the public domain; this recording is
                                 our own, played with the{' '}
                                 <a href="https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md" target="_blank" rel="noopener noreferrer">MuseScore General</a>

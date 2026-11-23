@@ -46,12 +46,15 @@ export default function MixupManager() {
     return <MixupTV roomCode={roomCode} casterName={name} />;
 }
 
-// What the narrator says to open each round
+// What the narrator says to open each round. It's a three-ring circus: each kind of round is a ring, and the
+// ringmaster calls out the first round in each one.
 const introLine = (room) => {
     const round = room.round;
     const kicker = roundKicker(room.currentRound, room.totalRounds);
-    const opening = kicker === 'Final round!' ? 'Final round!'
-        : `${kicker === '⅓ of the way there!' ? 'A third of the way there! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! ' : ''}Round ${room.currentRound}.`;
+    const ring = room.currentRound === 1 ? 'Ring one! '
+        : kicker === '⅓ of the way there!' ? 'A third of the way there! On to ring two! '
+            : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! On to ring three! ' : '';
+    const opening = kicker === 'Final round!' ? 'Final round!' : `${ring}Round ${room.currentRound}.`;
     if (round.type === 'meme') return `${opening} Meme time! Write the funniest caption you can.`;
     if (round.type === 'draw') return `${opening} Pictionary! ${round.drawerName}, you're drawing. Everyone else, get guessing!`;
     return `${opening} Threefold! Match as many people as you can.${round.judgeName ? ` ${round.judgeName}, you're the judge.` : ''}`;
@@ -226,7 +229,7 @@ function MixupTV({ roomCode, casterName }) {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} spyShow scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
+                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} circusShow scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
             case 'rules':
                 return <MixupRulesTV roomCode={room.roomCode} totalRounds={room.totalRounds} />;
             case 'intro':

@@ -5,7 +5,7 @@ import { useEffect, useSyncExternalStore } from 'react';
  * The background is rendered once (in Page.jsx); any screen can re-theme it
  * with useSetBackgroundTheme() and it snaps back to 'home' when that screen leaves.
  *
- * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'spy', 'trivia', 'animals', 'jeffinitely')
+ * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'circus', 'trivia', 'animals', 'jeffinitely')
  * cover: true lifts the background above the nav bar (used by the fullscreen TV screens)
  */
 const DEFAULT_THEME = { theme: 'home', cover: false };
@@ -51,9 +51,9 @@ export function listsTheme(expansion) {
     return expansion === 'halloween' ? 'halloween' : 'lists';
 }
 
-// Temple Mix Up: noir for the spy lobby, then the background follows the block of rounds (memes, Pictionary, Threefold)
+// Temple Mix Up: the big top for the lobby, then the background follows the block of rounds (memes, Pictionary, Threefold)
 export function mixupTheme(roundType, isLobby = false) {
-    if (isLobby) return 'spy';
+    if (isLobby) return 'circus';
     if (roundType === 'draw') return 'lists';
     if (roundType === 'match') return 'trivia';
     return 'couchcast';

@@ -8,14 +8,14 @@ import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
 import Snowfall from './Snowfall.jsx';
 import QuizShow from '../TriviaCast/QuizShow.jsx';
-import SpyShow from '../Mixup/SpyShow.jsx';
+import CircusShow from '../Mixup/CircusShow.jsx';
 
 // `crew`: the couch and its characters crawl in under the players card (Couch Cast's decks;
 // `crewTheme` says which cast, and the Holiday deck also gets snow). `scoreFor`: a player's lobby game score, if the game has one
 // `quizShow`: game show contestants take the couch's spot under the players card (Trivia Cast)
-// `spyShow`: two bad spies do the same (Temple Mix Up)
+// `circusShow`: two clowns do the same (Temple Mix Up)
 // Players go two to a row with small avatars, scrolling if there are more than fit, and "Waiting for..." sits beside "Players" to leave them room
-export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, quizShow = false, spyShow = false }) {
+export default function CouchCastLobby({ roomCode, players = [], title = 'Couch Cast Room Created' , musicTrack = 'default', crew = false, crewTheme = 'core', scoreFor, quizShow = false, circusShow = false }) {
   const [isPortrait, setIsPortrait] = useState(false);
   const stageRef = useRef(null);    // 🛋️ where the couch sits
   const screenRef = useRef(null);   // the QR card: the crew's "TV"
@@ -47,7 +47,7 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const activePlayers = players.filter(player => !player.isCaster);
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
-  const hasStage = crew || quizShow || spyShow;   // something lives under the players card
+  const hasStage = crew || quizShow || circusShow;   // something lives under the players card
   const avatarSize = 'clamp(20px, 4vh, 32px)';
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
@@ -68,9 +68,9 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
 
 
   return (
- <div className={`fullscreen-gameplay-container cc-lobby ${crew ? `has-crew crew-${crewTheme}` : ''} ${quizShow || spyShow ? 'has-crew' : ''}`}>
+ <div className={`fullscreen-gameplay-container cc-lobby ${crew ? `has-crew crew-${crewTheme}` : ''} ${quizShow || circusShow ? 'has-crew' : ''}`}>
   {crew && crewTheme === 'holiday' && !isPortrait && <Snowfall />}
-  {spyShow && !isPortrait && <SpyShow stageRef={stageRef} screenRef={screenRef} playerCount={activePlayers.length} />}
+  {circusShow && !isPortrait && <CircusShow stageRef={stageRef} screenRef={screenRef} playerCount={activePlayers.length} />}
   {quizShow && !isPortrait && <QuizShow stageRef={stageRef} screenRef={screenRef} playerCount={activePlayers.length} />}
   {crew && !isPortrait && <CouchCrew stageRef={stageRef} screenRef={screenRef} qrRef={qrRef} playerCount={activePlayers.length} theme={crewTheme} />}
   
