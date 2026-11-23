@@ -8,6 +8,17 @@ import { Link } from 'react-router-dom';
  * add it to MUSIC (or a new list) with where it came from and its license.
  */
 
+// 🎵 Songs we recorded ourselves from music that's out of copyright (public domain)
+const CLASSICS = [
+    {
+        title: 'Children’s Galop',
+        work: 'The Nutcracker',
+        by: 'Pyotr Ilyich Tchaikovsky',
+        url: 'https://imslp.org/wiki/The_Nutcracker_(ballet),_Op.71_(Tchaikovsky,_Pyotr)',
+        usedIn: 'Couch Cast Holiday deck lobby',
+    },
+];
+
 // 🎵 Song files from elsewhere (they live in public/audio)
 const MUSIC = [
     {
@@ -40,6 +51,15 @@ export default function Credits() {
                                 <a href={song.byUrl} target="_blank" rel="noopener noreferrer">{song.by}</a>
                                 {' '}({song.usedIn}), from {song.source} under the{' '}
                                 <a href={song.licenseUrl} target="_blank" rel="noopener noreferrer">{song.license}</a>.
+                            </li>
+                        ))}
+                        {CLASSICS.map((song) => (
+                            <li key={song.url}>
+                                “{song.title}” from <a href={song.url} target="_blank" rel="noopener noreferrer"><i>{song.work}</i></a>
+                                {' by '}{song.by} ({song.usedIn}). The music is in the public domain; this recording is
+                                our own, played with the{' '}
+                                <a href="https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md" target="_blank" rel="noopener noreferrer">MuseScore General</a>
+                                {' '}sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).
                             </li>
                         ))}
                     </ul>

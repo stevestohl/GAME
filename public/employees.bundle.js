@@ -3350,10 +3350,11 @@ function CouchCastDeckSelect() {
     document.body.style.paddingRight = '';
   }, []);
 
-  // Start downloading the Halloween lobby song now, so it plays the moment that deck is tapped
+  // Start downloading the Halloween and Holiday lobby songs now, so they play the moment that deck is tapped
   // (the core deck's song is made in the browser: nothing to download)
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_4__.preloadLobbyMusic)('halloween');
+    (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_4__.preloadLobbyMusic)('holiday');
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "page-container"
@@ -21731,6 +21732,15 @@ __webpack_require__.r(__webpack_exports__);
  * add it to MUSIC (or a new list) with where it came from and its license.
  */
 
+// 🎵 Songs we recorded ourselves from music that's out of copyright (public domain)
+var CLASSICS = [{
+  title: 'Children’s Galop',
+  work: 'The Nutcracker',
+  by: 'Pyotr Ilyich Tchaikovsky',
+  url: 'https://imslp.org/wiki/The_Nutcracker_(ballet),_Op.71_(Tchaikovsky,_Pyotr)',
+  usedIn: 'Couch Cast Holiday deck lobby'
+}];
+
 // 🎵 Song files from elsewhere (they live in public/audio)
 var MUSIC = [{
   title: 'Upbeat Funk Show Groove',
@@ -21767,6 +21777,18 @@ function Credits() {
       target: "_blank",
       rel: "noopener noreferrer"
     }, song.license), ".");
+  }), CLASSICS.map(function (song) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: song.url
+    }, "\u201C", song.title, "\u201D from ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: song.url,
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", null, song.work)), ' by ', song.by, " (", song.usedIn, "). The music is in the public domain; this recording is our own, played with the", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "MuseScore General"), ' ', "sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).");
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Voices"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The game show host and narrators are voiced with", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://elevenlabs.io",
     target: "_blank",
@@ -49023,12 +49045,15 @@ var smoothLoopJoin = function smoothLoopJoin(song, _ref) {
 
 // A looping song file, with the same play(), pause(), paused and load() as an <audio> tag.
 // `loop`: where it goes round (see above); without one, the whole file loops. `gain`: its volume next to the others.
+// `begin`: where in the file it starts (seconds), for a file with a lead-in before its loop.
 var makeTrack = function makeTrack(src) {
   var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
     _ref2$loop = _ref2.loop,
     loop = _ref2$loop === void 0 ? null : _ref2$loop,
     _ref2$gain = _ref2.gain,
-    gain = _ref2$gain === void 0 ? 1 : _ref2$gain;
+    gain = _ref2$gain === void 0 ? 1 : _ref2$gain,
+    _ref2$begin = _ref2.begin,
+    begin = _ref2$begin === void 0 ? 0 : _ref2$begin;
   var song = null; // the downloaded, decoded song
   var loading = null;
   var source = null; // what's playing it right now
@@ -49083,7 +49108,7 @@ var makeTrack = function makeTrack(src) {
         } else {
           source.connect(out);
         }
-        source.start();
+        source.start(0, begin);
       });
     },
     pause: function pause() {
@@ -49147,8 +49172,16 @@ var TRACKS = {
   }),
   halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),
   // any game played with a Halloween deck
-  holiday: makeSynthTrack('holiday-medley'),
-  // Couch Cast's Holiday deck
+  // Couch Cast's Holiday deck: the Children's Galop from Tchaikovsky's Nutcracker (No. 3, the 6/8 Allegro), our own
+  // orchestra recording of the public-domain score (listed on the Credits page). The file is the 41-bar dance (one
+  // bar = 1 s) with a bar of lead-in and a bar of run-out around it, so it starts and goes round at 1 s and 42 s.
+  holiday: makeTrack('/audio/NutcrackerGalop.m4a', {
+    loop: {
+      start: 1,
+      end: 42
+    },
+    begin: 1
+  }),
   mixup: makeSynthTrack('secret-mission') // Temple Mix Up
 };
 

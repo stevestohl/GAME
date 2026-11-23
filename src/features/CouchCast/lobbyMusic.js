@@ -59,7 +59,8 @@ const smoothLoopJoin = (song, { start, end }) => {
 
 // A looping song file, with the same play(), pause(), paused and load() as an <audio> tag.
 // `loop`: where it goes round (see above); without one, the whole file loops. `gain`: its volume next to the others.
-const makeTrack = (src, { loop = null, gain = 1 } = {}) => {
+// `begin`: where in the file it starts (seconds), for a file with a lead-in before its loop.
+const makeTrack = (src, { loop = null, gain = 1, begin = 0 } = {}) => {
     let song = null;       // the downloaded, decoded song
     let loading = null;
     let source = null;     // what's playing it right now
@@ -108,7 +109,7 @@ const makeTrack = (src, { loop = null, gain = 1 } = {}) => {
                 } else {
                     source.connect(out);
                 }
-                source.start();
+                source.start(0, begin);
             });
         },
         pause() {
@@ -154,7 +155,10 @@ const TRACKS = {
     // A little quieter, to match the other songs.
     triviaCast: makeTrack('/audio/UpbeatFunkShowGroove.mp3', { loop: { start: 0.11, end: 0.11 + 51 * 1.88974 }, gain: 0.75 }),
     halloween: makeTrack('/audio/HalloweenLobbyMusic.mp3'),   // any game played with a Halloween deck
-    holiday: makeSynthTrack('holiday-medley'),                // Couch Cast's Holiday deck
+    // Couch Cast's Holiday deck: the Children's Galop from Tchaikovsky's Nutcracker (No. 3, the 6/8 Allegro), our own
+    // orchestra recording of the public-domain score (listed on the Credits page). The file is the 41-bar dance (one
+    // bar = 1 s) with a bar of lead-in and a bar of run-out around it, so it starts and goes round at 1 s and 42 s.
+    holiday: makeTrack('/audio/NutcrackerGalop.m4a', { loop: { start: 1, end: 42 }, begin: 1 }),
     mixup: makeSynthTrack('secret-mission'),                  // Temple Mix Up
 };
 
