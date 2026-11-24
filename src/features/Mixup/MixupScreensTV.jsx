@@ -261,6 +261,10 @@ export function DrawTV({ room }) {
                         ? (round.guessedBy ? `${round.guessedBy} got it!` : "Time's up!")
                         : `${round.drawerName} is drawing...`}
                     <span className="tc-category">Draw It!</span>
+                    {/* 🔄 The artist traded in their word */}
+                    {!isResults && round.wordSwaps > 0 && (
+                        <span className="tc-category">🔄 New word{round.wordSwaps > 1 ? ` ×${round.wordSwaps}` : ''} (−{round.wordSwapCost * round.wordSwaps})</span>
+                    )}
                 </h2>
 
                 <div className="mx-draw-row flex-grow-1" style={{ minHeight: 0 }}>

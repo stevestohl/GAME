@@ -367,3 +367,56 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,
+   which swing open on the fanfare's last chord for the fireworks ---------- */
+.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }
+.cx-tent-flap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 51%;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),
+        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);
+    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);
+}
+.cx-tent-left { left: 0; }
+.cx-tent-right { right: 0; }
+.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }
+.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }
+.cx-tent-valance {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: calc(9vh + 3.6vw);
+    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);
+    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;
+    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
+    transition: transform 1s ease-in;
+}
+.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }
+.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }
+.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+.cx-tent-board {
+    text-align: center;
+    padding: 3vh 6vw;
+    background: linear-gradient(#ffe7a3, #ffc83d);
+    border: 0.8vh solid #8f1520;
+    border-radius: 2vh;
+    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;
+    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;
+}
+.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }
+.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }
+.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }
+@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
+@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }
+    .cx-tent-board { animation: none; }
+}

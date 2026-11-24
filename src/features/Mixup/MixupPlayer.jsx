@@ -30,6 +30,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
     const answerTimer = useRef(null);
     const [guessFeedback, setGuessFeedback] = useState(null);   // 'wrong' | 'right'
     const [myGuesses, setMyGuesses] = useState([]);
+    const [isSwapping, setIsSwapping] = useState(false);   // 🔄 waiting for a new word to draw
     const lastRound = useRef(null);
 
     useSetBackgroundTheme(mixupTheme());
@@ -57,12 +58,14 @@ export default function MixupPlayer({ roomCode, playerName }) {
             setGuessFeedback(correct ? 'right' : 'wrong');
             if (correct) playChime();
         };
+        const handleSwapFailed = () => setIsSwapping(false);
 
         socket.on('room_updated', handleRoom);
         socket.on('my_state', handleMyState);
         socket.on('joinError', handleJoinError);
         socket.on('room_closed', handleClosed);
         socket.on('guess_result', handleGuessResult);
+        socket.on('swap_failed', handleSwapFailed);
         socket.on('connect', joinMyRoom);
         if (socket.connected) joinMyRoom();
         else socket.connect();
@@ -73,6 +76,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
             socket.off('joinError', handleJoinError);
             socket.off('room_closed', handleClosed);
             socket.off('guess_result', handleGuessResult);
+            socket.off('swap_failed', handleSwapFailed);
             socket.off('connect', joinMyRoom);
         };
     }, [roomCode, playerName]);
@@ -91,6 +95,9 @@ export default function MixupPlayer({ roomCode, playerName }) {
     }, [roundKey]);
 
     const timeLeft = useCountdown(room?.endTime);
+
+    // 🔄 The new word arrived
+    useEffect(() => setIsSwapping(false), [mine.drawWord]);
 
     // A refresh mid-round: pick the answers back up from the server
     useEffect(() => {
@@ -256,7 +263,21 @@ export default function MixupPlayer({ roomCode, playerName }) {
             if (round.drawerId === socket.id) {
                 return (
                     <Frame title="🎨 You're drawing!" right={clock}>
-                        <div className="mx-draw-word">Draw: <strong>{mine.drawWord || '...'}</strong></div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 mb-1">
+                            <div className="mx-draw-word mb-0">Draw: <strong>{mine.drawWord || '...'}</strong></div>
+                            {/* 🔄 Don't fancy that one? Another word, for a few points */}
+                            {(round.wordSwaps || 0) < (round.maxWordSwaps || 0) && (
+                                <Button
+                                    size="sm"
+                                    variant="outline-primary"
+                                    className="fw-bold text-nowrap flex-shrink-0"
+                                    disabled={isSwapping || !mine.drawWord}
+                                    onClick={() => { setIsSwapping(true); socket.emit('swap_word', { roomCode }); }}
+                                >
+                                    {isSwapping ? 'Finding one...' : `🔄 New word (−${round.wordSwapCost} pts)`}
+                                </Button>
+                            )}
+                        </div>
                         <p className="small text-muted mb-2">No letters or numbers! Everyone's guessing on their phones.</p>
                         <DrawingPad roomCode={roomCode} />
                     </Frame>

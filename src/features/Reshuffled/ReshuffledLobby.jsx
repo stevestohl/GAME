@@ -4,6 +4,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { startLobbyMusic, stopLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
 import useAutoScrollList from '../../hooks/useAutoScrollList.js';
+import useLobbyPlayerSizes from '../../hooks/useLobbyPlayerSizes.js';
 
 export default function ReshuffledLobby({ roomCode, players = [], title = 'Couch Cast Re-Shuffled Room Created' , musicTrack = 'default' }) {
   const [isPortrait, setIsPortrait] = useState(false);
@@ -35,6 +36,8 @@ export default function ReshuffledLobby({ roomCode, players = [], title = 'Couch
   }, []); 
 
   const activePlayers = players.filter(player => !player.isCaster);
+  // 👥 A few players fill the card; more share it (two columns from three)
+  const sizes = useLobbyPlayerSizes(playersRef, activePlayers.length);
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
@@ -144,15 +147,15 @@ export default function ReshuffledLobby({ roomCode, players = [], title = 'Couch
                     </div>
                   </div>
                   
-                  <ListGroup ref={playersRef} className="text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid" style={{ minHeight: 0 }}>
+                  <ListGroup ref={playersRef} className="text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid" style={{ minHeight: 0, ...sizes.gridStyle }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
-                        <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
-                          <Avatar id={player.avatar} name={player.name} size={56} style={{ width: 'clamp(20px, 4vh, 32px)', height: 'clamp(20px, 4vh, 32px)' }} />
+                        <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '78%', minWidth: 0, fontSize: `${sizes.font}px` }}>
+                          <Avatar id={player.avatar} name={player.name} size={Math.max(56, sizes.avatar)} style={{ width: sizes.avatar, height: sizes.avatar, flexShrink: 0 }} />
                           <span className="text-truncate">{player.name}</span>
                         </span>
                         {player.isPlayerHost && (
-                          <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)' }}>Host</Badge>
+                          <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: `${Math.max(11, sizes.font * 0.55)}px` }}>Host</Badge>
                         )}
                       </ListGroupItem>
                     ))}

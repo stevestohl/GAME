@@ -4111,25 +4111,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 /* harmony import */ var _lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _hooks_useAutoScrollList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useAutoScrollList.js */ "./src/hooks/useAutoScrollList.js");
-/* harmony import */ var _fullscreen_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../fullscreen.js */ "./src/fullscreen.js");
-/* harmony import */ var _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CouchCrew.jsx */ "./src/features/CouchCast/CouchCrew.jsx");
-/* harmony import */ var _Snowfall_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Snowfall.jsx */ "./src/features/CouchCast/Snowfall.jsx");
-/* harmony import */ var _TriviaCast_QuizShow_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../TriviaCast/QuizShow.jsx */ "./src/features/TriviaCast/QuizShow.jsx");
-/* harmony import */ var _Mixup_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Mixup/CircusShow.jsx */ "./src/features/Mixup/CircusShow.jsx");
+/* harmony import */ var _hooks_useLobbyPlayerSizes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/useLobbyPlayerSizes.js */ "./src/hooks/useLobbyPlayerSizes.js");
+/* harmony import */ var _fullscreen_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../fullscreen.js */ "./src/fullscreen.js");
+/* harmony import */ var _CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CouchCrew.jsx */ "./src/features/CouchCast/CouchCrew.jsx");
+/* harmony import */ var _Snowfall_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Snowfall.jsx */ "./src/features/CouchCast/Snowfall.jsx");
+/* harmony import */ var _TriviaCast_QuizShow_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../TriviaCast/QuizShow.jsx */ "./src/features/TriviaCast/QuizShow.jsx");
+/* harmony import */ var _Mixup_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Mixup/CircusShow.jsx */ "./src/features/Mixup/CircusShow.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -4188,7 +4193,7 @@ function CouchCastLobby(_ref) {
       window.removeEventListener('resize', checkOrientation);
     };
   }, []);
-  var showIPhoneTip = (0,_fullscreen_js__WEBPACK_IMPORTED_MODULE_5__.isIPhone)() && !(0,_fullscreen_js__WEBPACK_IMPORTED_MODULE_5__.isHomeScreenApp)();
+  var showIPhoneTip = (0,_fullscreen_js__WEBPACK_IMPORTED_MODULE_6__.isIPhone)() && !(0,_fullscreen_js__WEBPACK_IMPORTED_MODULE_6__.isHomeScreenApp)();
   var activePlayers = players.filter(function (player) {
     return !player.isCaster;
   });
@@ -4197,7 +4202,8 @@ function CouchCastLobby(_ref) {
   });
   var hostName = hostPlayer ? hostPlayer.name : "the first player";
   var hasStage = crew || quizShow || circusShow; // something lives under the players card
-  var avatarSize = 'clamp(20px, 4vh, 32px)';
+  // 👥 A few players fill the card; more share it (two columns from three)
+  var sizes = (0,_hooks_useLobbyPlayerSizes_js__WEBPACK_IMPORTED_MODULE_5__["default"])(playersRef, activePlayers.length);
   var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
   var waitingLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-dark fw-semibold px-2 py-1 border border-primary border-dashed rounded text-center text-truncate",
@@ -4209,15 +4215,15 @@ function CouchCastLobby(_ref) {
   }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "..."));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fullscreen-gameplay-container cc-lobby ".concat(crew ? "has-crew crew-".concat(crewTheme) : '', " ").concat(quizShow || circusShow ? 'has-crew' : '')
-  }, crew && crewTheme === 'holiday' && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Snowfall_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null), circusShow && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, crew && crewTheme === 'holiday' && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Snowfall_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null), circusShow && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
     stageRef: stageRef,
     screenRef: screenRef,
     playerCount: activePlayers.length
-  }), quizShow && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_QuizShow_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), quizShow && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_QuizShow_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
     stageRef: stageRef,
     screenRef: screenRef,
     playerCount: activePlayers.length
-  }), crew && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), crew && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCrew_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     stageRef: stageRef,
     screenRef: screenRef,
     qrRef: qrRef,
@@ -4265,18 +4271,18 @@ function CouchCastLobby(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper",
     ref: screenRef
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden",
     style: {
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
       fontSize: 'clamp(0.9rem, 2.6vh, 1.5rem)'
@@ -4313,13 +4319,13 @@ function CouchCastLobby(_ref) {
       flex: '1 1 0',
       minHeight: 0
     } : undefined
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "d-flex flex-column",
     style: {
       padding: 'clamp(0.4rem, 1.5vh, 1rem) clamp(0.5rem, 3vh, 1.5rem)',
@@ -4332,40 +4338,44 @@ function CouchCastLobby(_ref) {
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)'
     }
-  }, "Players (", activePlayers.length, "):"), waitingLine), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, "Players (", activePlayers.length, "):"), waitingLine), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     ref: playersRef,
     className: "text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid",
-    style: {
+    style: _objectSpread({
       minHeight: 0
-    }
+    }, sizes.gridStyle)
   }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       key: player.id,
       className: "d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "d-flex align-items-center gap-2 fw-bold",
       style: {
-        maxWidth: '70%',
+        maxWidth: '78%',
         minWidth: 0,
-        fontSize: 'clamp(0.85rem, 2vh, 1.2rem)'
+        fontSize: "".concat(sizes.font, "px")
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
       id: player.avatar,
       name: player.name,
-      size: 56,
+      size: Math.max(56, sizes.avatar),
       style: {
-        width: avatarSize,
-        height: avatarSize
+        width: sizes.avatar,
+        height: sizes.avatar,
+        flexShrink: 0
       }
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-truncate"
     }, player.name)), (scoreFor === null || scoreFor === void 0 ? void 0 : scoreFor(player)) > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fw-bold ms-auto me-2 text-nowrap"
-    }, "\uD83C\uDFAF ", scoreFor(player)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      className: "fw-bold ms-auto me-2 text-nowrap",
+      style: {
+        fontSize: "".concat(Math.max(13, sizes.font * 0.8), "px")
+      }
+    }, "\uD83C\uDFAF ", scoreFor(player)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       bg: "primary",
       className: "rounded-pill px-2 py-1 shadow-sm",
       style: {
-        fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)'
+        fontSize: "".concat(Math.max(11, sizes.font * 0.55), "px")
       }
     }, "Host"));
   }), activePlayers.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -27004,6 +27014,423 @@ var sayIn = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/features/Mixup/CircusGrandFinale.jsx":
+/*!**************************************************!*\
+  !*** ./src/features/Mixup/CircusGrandFinale.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CircusFireworks": () => (/* binding */ CircusFireworks),
+/* harmony export */   "TENT_OPEN_MS": () => (/* binding */ TENT_OPEN_MS),
+/* harmony export */   "default": () => (/* binding */ CircusGrandFinale)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _circusSounds_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../circusSounds.js */ "./src/circusSounds.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+// 🎪 3 Ring Circus's final scores open like the big top: the tent's striped flaps cover the TV while the horns
+// play a fanfare, then they swing open on the last chord and the fireworks go up over the scores.
+
+/** How long the tent stays shut (the narrator waits for it before reading the final scores) */
+var TENT_OPEN_MS = 4000;
+var TENT_GONE_MS = 5400;
+var reduceMotion = function reduceMotion() {
+  var _window$matchMedia, _window;
+  return (_window$matchMedia = (_window = window).matchMedia) === null || _window$matchMedia === void 0 ? void 0 : _window$matchMedia.call(_window, '(prefers-reduced-motion: reduce)').matches;
+};
+function CircusGrandFinale() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('shut'),
+    _useState2 = _slicedToArray(_useState, 2),
+    phase = _useState2[0],
+    setPhase = _useState2[1]; // shut → opening → open
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_circusSounds_js__WEBPACK_IMPORTED_MODULE_1__.playCircusFanfare)();
+    var opening = setTimeout(function () {
+      return setPhase('opening');
+    }, TENT_OPEN_MS);
+    var open = setTimeout(function () {
+      return setPhase('open');
+    }, TENT_GONE_MS);
+    return function () {
+      clearTimeout(opening);
+      clearTimeout(open);
+      (0,_circusSounds_js__WEBPACK_IMPORTED_MODULE_1__.stopCircusFanfare)();
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, phase !== 'open' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent ".concat(phase === 'opening' ? 'is-opening' : ''),
+    role: "status"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-flap cx-tent-left",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-flap cx-tent-right",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-valance",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-sign"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-board"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-stars",
+    "aria-hidden": "true"
+  }, "\u2605 \u2605 \u2605"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-title"
+  }, "3 Ring Circus"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "cx-tent-sub"
+  }, "The Final Scores!")))), phase !== 'shut' && !reduceMotion() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CircusFireworks, null));
+}
+
+// =================================================================================================
+// 🎆 Fireworks: glowing shells of several kinds, with trails, flashes and bangs
+// =================================================================================================
+var PALETTE = ['#ffd23f', '#ff4d6d', '#4dabf7', '#69db7c', '#f783ac', '#ffa94d', '#e5dbff', '#63e6be'];
+var KINDS = ['peony', 'chrysanthemum', 'willow', 'ring', 'strobe', 'palm', 'peony', 'chrysanthemum'];
+
+// A soft glowing dot for each colour, drawn once and stamped for every spark
+var makeGlow = function makeGlow(color) {
+  var size = 64;
+  var c = document.createElement('canvas');
+  c.width = size;
+  c.height = size;
+  var g = c.getContext('2d');
+  var grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  grad.addColorStop(0, 'rgba(255,255,255,1)');
+  grad.addColorStop(0.18, color);
+  grad.addColorStop(0.45, "".concat(color, "66"));
+  grad.addColorStop(1, "".concat(color, "00"));
+  g.fillStyle = grad;
+  g.fillRect(0, 0, size, size);
+  return c;
+};
+function CircusFireworks(_ref) {
+  var _ref$durationMs = _ref.durationMs,
+    durationMs = _ref$durationMs === void 0 ? 13000 : _ref$durationMs;
+  var canvasRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var canvas = canvasRef.current;
+    if (!canvas) return undefined;
+    var ctx = canvas.getContext('2d');
+    var width = 0;
+    var height = 0;
+    var resize = function resize() {
+      var scale = Math.min(2, window.devicePixelRatio || 1);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * scale;
+      canvas.height = height * scale;
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    var glows = Object.fromEntries([].concat(PALETTE, ['#ffffff', '#ffcf6b', '#ff9a3c']).map(function (c) {
+      return [c, makeGlow(c)];
+    }));
+    var pick = function pick(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    };
+    var unit = function unit() {
+      return Math.min(width, height);
+    };
+    var rockets = [];
+    var sparks = [];
+    var MAX_SPARKS = 2600;
+    var spark = function spark(p) {
+      if (sparks.length < MAX_SPARKS) sparks.push(_objectSpread({
+        age: 0,
+        trail: 0,
+        twinkle: false
+      }, p));
+    };
+    var launch = function launch() {
+      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : width * (0.12 + Math.random() * 0.76);
+      var kind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : pick(KINDS);
+      var apex = height * (0.12 + Math.random() * 0.3);
+      var rise = height - apex;
+      rockets.push({
+        x: x,
+        y: height + 10,
+        vx: (Math.random() - 0.5) * unit() * 0.08,
+        vy: -Math.sqrt(2 * height * 0.9 * rise),
+        // just enough to reach the apex under gravity
+        kind: kind,
+        color: pick(PALETTE)
+      });
+    };
+    var burst = function burst(r) {
+      var u = unit();
+      var second = Math.random() < 0.45 ? pick(PALETTE) : r.color;
+      // A flash that lights up the sky for a moment
+      spark({
+        x: r.x,
+        y: r.y,
+        vx: 0,
+        vy: 0,
+        life: 0.2,
+        size: u * 0.2,
+        color: '#ffffff',
+        drag: 0,
+        gravity: 0,
+        flash: true
+      });
+      var crackle = false;
+      var shell = function shell(count, speed, opts) {
+        for (var i = 0; i < count; i += 1) {
+          // A random direction on a sphere, seen from the front: it looks round, and fuller in the middle
+          var theta = Math.random() * Math.PI * 2;
+          var z = Math.random() * 2 - 1;
+          var ring = Math.sqrt(1 - z * z);
+          var v = speed * (0.85 + Math.random() * 0.3);
+          spark(_objectSpread({
+            x: r.x,
+            y: r.y,
+            vx: Math.cos(theta) * ring * v,
+            vy: Math.sin(theta) * ring * v,
+            color: i % 2 ? r.color : second
+          }, opts()));
+        }
+      };
+      switch (r.kind) {
+        case 'chrysanthemum':
+          shell(120, u * 0.42, function () {
+            return {
+              life: 1.5 + Math.random() * 0.5,
+              size: 5,
+              drag: 1.7,
+              gravity: 120,
+              trail: 0.5
+            };
+          });
+          break;
+        case 'willow':
+          r.color = '#ffcf6b';
+          shell(100, u * 0.34, function () {
+            return {
+              life: 2.8 + Math.random() * 0.9,
+              size: 4.4,
+              drag: 2.3,
+              gravity: 75,
+              trail: 0.7,
+              color: Math.random() < 0.6 ? '#ffcf6b' : '#ff9a3c',
+              fadeTo: true
+            };
+          });
+          crackle = true;
+          break;
+        case 'ring':
+          {
+            var tilt = Math.random() * Math.PI;
+            var squash = 0.35 + Math.random() * 0.4;
+            var count = 70;
+            var speed = u * 0.4;
+            for (var i = 0; i < count; i += 1) {
+              var a = i / count * Math.PI * 2;
+              var x = Math.cos(a) * speed;
+              var y = Math.sin(a) * speed * squash;
+              spark({
+                x: r.x,
+                y: r.y,
+                vx: x * Math.cos(tilt) - y * Math.sin(tilt),
+                vy: x * Math.sin(tilt) + y * Math.cos(tilt),
+                life: 1.4 + Math.random() * 0.3,
+                size: 5,
+                drag: 1.4,
+                gravity: 100,
+                color: r.color
+              });
+            }
+            shell(30, u * 0.12, function () {
+              return {
+                life: 1.1,
+                size: 4,
+                drag: 1.5,
+                gravity: 100,
+                color: second
+              };
+            });
+            break;
+          }
+        case 'strobe':
+          shell(90, u * 0.36, function () {
+            return {
+              life: 1.8 + Math.random() * 0.6,
+              size: 4.6,
+              drag: 1.8,
+              gravity: 90,
+              twinkle: true,
+              color: Math.random() < 0.5 ? '#ffffff' : '#e5dbff'
+            };
+          });
+          crackle = true;
+          break;
+        case 'palm':
+          for (var f = 0; f < 9; f += 1) {
+            var _a = -Math.PI / 2 + (f - 4) * 0.36 + (Math.random() - 0.5) * 0.1;
+            var v = u * (0.5 + Math.random() * 0.12);
+            spark({
+              x: r.x,
+              y: r.y,
+              vx: Math.cos(_a) * v,
+              vy: Math.sin(_a) * v,
+              life: 1.9,
+              size: 7,
+              drag: 1.2,
+              gravity: 160,
+              trail: 1,
+              color: '#ffcf6b',
+              fadeTo: true
+            });
+          }
+          shell(40, u * 0.2, function () {
+            return {
+              life: 1.2,
+              size: 4,
+              drag: 1.6,
+              gravity: 110
+            };
+          });
+          break;
+        default:
+          // peony
+          shell(130, u * 0.44, function () {
+            return {
+              life: 1.3 + Math.random() * 0.5,
+              size: 5,
+              drag: 1.8,
+              gravity: 115
+            };
+          });
+      }
+      (0,_circusSounds_js__WEBPACK_IMPORTED_MODULE_1__.playFireworkBang)(Math.min(1, 0.5 + Math.random() * 0.5), crackle);
+    };
+    var startedAt = performance.now();
+    var last = startedAt;
+    var nextLaunch = 0;
+    var frame = null;
+    var salvo = false;
+    var tick = function tick(now) {
+      var dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      var elapsed = now - startedAt;
+
+      // Last frame fades into trails
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+      ctx.fillRect(0, 0, width, height);
+      ctx.globalCompositeOperation = 'lighter';
+
+      // An opening volley, a steady show, and a big finish at the end
+      if (elapsed < 150 && !rockets.length && !sparks.length) {
+        launch(width * 0.25, 'peony');
+        launch(width * 0.5, 'chrysanthemum');
+        launch(width * 0.75, 'peony');
+      }
+      if (elapsed < durationMs && elapsed >= nextLaunch) {
+        launch();
+        if (Math.random() < 0.35) launch();
+        nextLaunch = elapsed + 380 + Math.random() * 420;
+      }
+      if (!salvo && elapsed > durationMs - 2600) {
+        salvo = true;
+        var _loop = function _loop(k) {
+          setTimeout(function () {
+            return launch(width * (0.1 + 0.8 * (k / 6)), k % 2 ? 'willow' : 'chrysanthemum');
+          }, k * 140);
+        };
+        for (var k = 0; k < 7; k += 1) {
+          _loop(k);
+        }
+      }
+
+      // Rockets climb with a sparkly tail, and burst near the top of their climb
+      for (var i = rockets.length - 1; i >= 0; i -= 1) {
+        var r = rockets[i];
+        r.vy += height * 0.9 * dt;
+        r.x += r.vx * dt;
+        r.y += r.vy * dt;
+        spark({
+          x: r.x,
+          y: r.y,
+          vx: (Math.random() - 0.5) * 30,
+          vy: 40 + Math.random() * 40,
+          life: 0.35,
+          size: 3.4,
+          drag: 2,
+          gravity: 60,
+          color: '#ff9a3c'
+        });
+        if (r.vy > -height * 0.06) {
+          burst(r);
+          rockets.splice(i, 1);
+        }
+      }
+      for (var _i2 = sparks.length - 1; _i2 >= 0; _i2 -= 1) {
+        var s = sparks[_i2];
+        s.age += dt;
+        if (s.age >= s.life) {
+          sparks.splice(_i2, 1);
+          continue;
+        }
+        var _k = Math.exp(-s.drag * dt);
+        s.vx *= _k;
+        s.vy = s.vy * _k + s.gravity * dt;
+        s.x += s.vx * dt;
+        s.y += s.vy * dt;
+        var t = s.age / s.life;
+        var alpha = s.flash ? (1 - t) * 0.45 : 1 - t * t;
+        if (s.twinkle && t > 0.35) alpha *= Math.random() < 0.5 ? 1 : 0.12;
+        // Trails: a fainter copy left behind now and then
+        if (s.trail && Math.random() < s.trail * 0.5) {
+          spark({
+            x: s.x,
+            y: s.y,
+            vx: 0,
+            vy: 0,
+            life: 0.45,
+            size: s.size * 0.6,
+            drag: 0,
+            gravity: 20,
+            color: s.fadeTo ? '#ff9a3c' : s.color
+          });
+        }
+        var color = s.fadeTo && t > 0.5 ? '#ff9a3c' : s.color;
+        var size = s.flash ? s.size * (0.6 + t) : s.size * (1 - t * 0.5);
+        ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+        ctx.drawImage(glows[color] || glows['#ffffff'], s.x - size, s.y - size, size * 2, size * 2);
+      }
+      ctx.globalAlpha = 1;
+      if (elapsed < durationMs + 4000 && (elapsed < durationMs || rockets.length || sparks.length)) frame = requestAnimationFrame(tick);else ctx.clearRect(0, 0, width, height);
+    };
+    frame = requestAnimationFrame(tick);
+    return function () {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', resize);
+    };
+  }, [durationMs]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    ref: canvasRef,
+    className: "cx-fireworks",
+    "aria-hidden": "true"
+  });
+}
+
+/***/ }),
+
 /***/ "./src/features/Mixup/CircusShow.jsx":
 /*!*******************************************!*\
   !*** ./src/features/Mixup/CircusShow.jsx ***!
@@ -29794,10 +30221,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
@@ -29809,14 +30236,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
 /* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
 /* harmony import */ var _circusSounds_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../circusSounds.js */ "./src/circusSounds.js");
-/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
-/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
-/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
-/* harmony import */ var _MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./MixupPlayer.jsx */ "./src/features/Mixup/MixupPlayer.jsx");
-/* harmony import */ var _SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./SnakeSnack.jsx */ "./src/features/Mixup/SnakeSnack.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _CircusGrandFinale_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CircusGrandFinale.jsx */ "./src/features/Mixup/CircusGrandFinale.jsx");
+/* harmony import */ var _CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../CouchCast/CouchCastLobby.jsx */ "./src/features/CouchCast/CouchCastLobby.jsx");
+/* harmony import */ var _CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../CouchCast/CouchCastCasterControls.jsx */ "./src/features/CouchCast/CouchCastCasterControls.jsx");
+/* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./MixupScreensTV.jsx */ "./src/features/Mixup/MixupScreensTV.jsx");
+/* harmony import */ var _MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./MixupPlayer.jsx */ "./src/features/Mixup/MixupPlayer.jsx");
+/* harmony import */ var _SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./SnakeSnack.jsx */ "./src/features/Mixup/SnakeSnack.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -29827,6 +30255,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -29863,7 +30292,7 @@ function MixupManager() {
   var roomCode = (searchParams.get('room') || '').toUpperCase();
   var name = searchParams.get('name') || 'Caster';
   if (searchParams.get('role') === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupPlayer_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], {
       roomCode: roomCode,
       playerName: name
     }), roomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -29880,7 +30309,7 @@ function MixupManager() {
 // ringmaster calls out the first round in each one.
 var introLine = function introLine(room) {
   var round = room.round;
-  var kicker = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.roundKicker)(room.currentRound, room.totalRounds);
+  var kicker = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.roundKicker)(room.currentRound, room.totalRounds);
   var ring = room.currentRound === 1 ? 'Ring one! ' : kicker === '⅓ of the way there!' ? 'A third of the way there! On to ring two! ' : kicker === '⅔ of the way there!' ? 'Two thirds of the way there! On to ring three! ' : '';
   var opening = kicker === 'Final round!' ? 'Final round!' : "".concat(ring, "Round ").concat(room.currentRound, ".");
   if (round.type === 'meme') return "".concat(opening, " Meme time! Write the funniest caption you can.");
@@ -29893,7 +30322,7 @@ function MixupTV(_ref) {
   var _room$round;
   var roomCode = _ref.roomCode,
     casterName = _ref.casterName;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_20__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -29908,9 +30337,9 @@ function MixupTV(_ref) {
   // 🎨 The circus background the whole way through, covering the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_6__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_6__.mixupTheme)(), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_19__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_20__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
   // 🔔 Voting is open: chime on the TV, where everyone hears it
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_19__.useTvChime)((room === null || room === void 0 ? void 0 : room.gameState) === 'meme_vote' ? "vote-".concat(room.currentRound) : null);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_20__.useTvChime)((room === null || room === void 0 ? void 0 : room.gameState) === 'meme_vote' ? "vote-".concat(room.currentRound) : null);
 
   // --- SOCKET LISTENERS ---
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -29983,7 +30412,7 @@ function MixupTV(_ref) {
     if (voiceMoment.startsWith('intro')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(introLine(room), code);
     } else if (voiceMoment.startsWith('nobody')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)((0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.nobodyLine)(n, room.totalRounds), code);
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)((0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.nobodyLine)(n, room.totalRounds), code);
     } else if (voiceMoment.startsWith('vote')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)('Time to vote! Pick the funniest caption. Not your own!', code);
     } else if (voiceMoment.startsWith('meme-results')) {
@@ -30004,16 +30433,19 @@ function MixupTV(_ref) {
     } else if (voiceMoment.startsWith('list-review')) {
       (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(VOICE_LIST_REVIEW, code);
     } else if (voiceMoment === 'game-over') {
-      // 🎬 The final scores get read, then the lobby game's credits roll
+      // 🎬 The big top opens to a fanfare, the final scores get read, then the lobby game's credits roll
       var isCurrent = true;
       var timer;
-      Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(recap.spoken, code) : false).then(function (spoken) {
-        if (isCurrent) timer = setTimeout(function () {
-          return setShowCredits(true);
-        }, spoken ? 1000 : 6000);
-      });
+      var tentTimer = setTimeout(function () {
+        Promise.resolve(recap ? (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(recap.spoken, code) : false).then(function (spoken) {
+          if (isCurrent) timer = setTimeout(function () {
+            return setShowCredits(true);
+          }, spoken ? 1000 : 6000);
+        });
+      }, _CircusGrandFinale_jsx__WEBPACK_IMPORTED_MODULE_12__.TENT_OPEN_MS);
       return function () {
         isCurrent = false;
+        clearTimeout(tentTimer);
         clearTimeout(timer);
       };
     } else if (recap) {
@@ -30058,7 +30490,7 @@ function MixupTV(_ref) {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!', VOICE_LIST_REVIEW]), lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)([].concat(_toConsumableArray(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.MIXUP_RULES_NARRATION), ['Time to vote! Pick the funniest caption. Not your own!', VOICE_LIST_REVIEW]), lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -30118,11 +30550,16 @@ function MixupTV(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     return _voice_js__WEBPACK_IMPORTED_MODULE_7__.stopVoice;
   }, []);
+
+  // 🎺 Fetch the final scores' fanfare early, so it plays the moment the tent goes up
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (gameState && gameState !== 'lobby') (0,_circusSounds_js__WEBPACK_IMPORTED_MODULE_11__.preloadCircusFanfare)();
+  }, [gameState]);
   var renderGamePhase = function renderGamePhase() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -30132,7 +30569,7 @@ function MixupTV(_ref) {
     var playersArray = Object.values(room.players);
     switch (gameState) {
       case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
           title: "3 Ring Circus Room Created",
           roomCode: room.roomCode,
           players: playersArray,
@@ -30144,47 +30581,47 @@ function MixupTV(_ref) {
           }
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.MixupRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.MixupRulesTV, {
           roomCode: room.roomCode,
           totalRounds: room.totalRounds
         });
       case 'intro':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.RoundIntroTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.RoundIntroTV, {
           room: room
         });
       case 'meme_write':
       case 'meme_vote':
       case 'meme_results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.MemeTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.MemeTV, {
           room: room
         });
       case 'draw':
       case 'draw_results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.DrawTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.DrawTV, {
           room: room
         });
       case 'nobody':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.NobodyTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.NobodyTV, {
           room: room
         });
       case 'match_write':
       case 'match_review':
       case 'match_compare':
       case 'match_results':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.MatchTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.MatchTV, {
           room: room
         });
       case 'scoreboard':
         {
           // Rounds come in blocks of each type: work out what's next from the round number
           var each = room.totalRounds / 3;
-          var nextLook = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_16__.ROUND_LOOKS[['meme', 'draw', 'match'][Math.floor(room.currentRound / each)]];
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          var nextLook = _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.ROUND_LOOKS[['meme', 'draw', 'match'][Math.floor(room.currentRound / each)]];
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
             players: playersArray,
             isGameOver: room.isGameOver,
             nextLabel: nextLook ? "Next up: ".concat(nextLook.icon, " ").concat(nextLook.title) : 'Next round coming up...',
             headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-            endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
+            endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
               onPlayAgain: handlePlayAgain,
               onGoHome: handleGoHome
             })
@@ -30196,7 +30633,7 @@ function MixupTV(_ref) {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
     fluid: true,
     className: "p-0",
     style: {
@@ -30204,20 +30641,20 @@ function MixupTV(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_ConnectionLost_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
     socket: _socket_js__WEBPACK_IMPORTED_MODULE_1__.mixupSocket
-  }), errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
+  }), errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_24__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
       zIndex: 10002
     }
-  }, errorMessage), renderGamePhase(), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_18__.SnakeCredits, {
+  }, errorMessage), renderGamePhase(), gameState === 'scoreboard' && (room === null || room === void 0 ? void 0 : room.isGameOver) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusGrandFinale_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null), showCredits && gameState === 'scoreboard' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SnakeSnack_jsx__WEBPACK_IMPORTED_MODULE_19__.SnakeCredits, {
     snake: room === null || room === void 0 ? void 0 : room.snake,
     onDone: function onDone() {
       return setShowCredits(false);
     }
-  }), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_13__.CouchCastPausedOverlay, {
+  }), isPaused && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_14__.CouchCastPausedOverlay, {
     isCaster: true
-  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), room && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastCasterControls_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
     canPause: canPause || isPaused,
     isPaused: isPaused,
     onTogglePause: handleTogglePause
@@ -30335,6 +30772,10 @@ function MixupPlayer(_ref) {
     _useState16 = _slicedToArray(_useState15, 2),
     myGuesses = _useState16[0],
     setMyGuesses = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isSwapping = _useState18[0],
+    setIsSwapping = _useState18[1]; // 🔄 waiting for a new word to draw
   var lastRound = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_4__.mixupTheme)());
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(_CouchCast_CouchCastScoreboard_jsx__WEBPACK_IMPORTED_MODULE_8__.preloadBurglar, []);
@@ -30383,11 +30824,15 @@ function MixupPlayer(_ref) {
       setGuessFeedback(correct ? 'right' : 'wrong');
       if (correct) (0,_chime_js__WEBPACK_IMPORTED_MODULE_3__.playChime)();
     };
+    var handleSwapFailed = function handleSwapFailed() {
+      return setIsSwapping(false);
+    };
     _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('room_updated', handleRoom);
     _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('my_state', handleMyState);
     _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('joinError', handleJoinError);
     _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('room_closed', handleClosed);
     _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('guess_result', handleGuessResult);
+    _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('swap_failed', handleSwapFailed);
     _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.on('connect', joinMyRoom);
     if (_socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.connected) joinMyRoom();else _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.connect();
     return function () {
@@ -30396,6 +30841,7 @@ function MixupPlayer(_ref) {
       _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.off('joinError', handleJoinError);
       _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.off('room_closed', handleClosed);
       _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.off('guess_result', handleGuessResult);
+      _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.off('swap_failed', handleSwapFailed);
       _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.off('connect', joinMyRoom);
     };
   }, [roomCode, playerName]);
@@ -30413,6 +30859,11 @@ function MixupPlayer(_ref) {
     setMine({});
   }, [roundKey]);
   var timeLeft = (0,_MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_6__.useCountdown)(room === null || room === void 0 ? void 0 : room.endTime);
+
+  // 🔄 The new word arrived
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return setIsSwapping(false);
+  }, [mine.drawWord]);
 
   // A refresh mid-round: pick the answers back up from the server
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -30649,8 +31100,21 @@ function MixupPlayer(_ref) {
             title: "\uD83C\uDFA8 You're drawing!",
             right: clock
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-            className: "mx-draw-word"
-          }, "Draw: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, mine.drawWord || '...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+            className: "d-flex align-items-center justify-content-between gap-2 mb-1"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "mx-draw-word mb-0"
+          }, "Draw: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, mine.drawWord || '...')), (round.wordSwaps || 0) < (round.maxWordSwaps || 0) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+            size: "sm",
+            variant: "outline-primary",
+            className: "fw-bold text-nowrap flex-shrink-0",
+            disabled: isSwapping || !mine.drawWord,
+            onClick: function onClick() {
+              setIsSwapping(true);
+              _socket_js__WEBPACK_IMPORTED_MODULE_2__.mixupSocket.emit('swap_word', {
+                roomCode: roomCode
+              });
+            }
+          }, isSwapping ? 'Finding one...' : "\uD83D\uDD04 New word (\u2212".concat(round.wordSwapCost, " pts)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
             className: "small text-muted mb-2"
           }, "No letters or numbers! Everyone's guessing on their phones."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_5__.DrawingPad, {
             roomCode: roomCode
@@ -31247,7 +31711,9 @@ function DrawTV(_ref6) {
     className: "fullscreen-gameplay-header mb-0"
   }, isResults ? round.guessedBy ? "".concat(round.guessedBy, " got it!") : "Time's up!" : "".concat(round.drawerName, " is drawing..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "tc-category"
-  }, "Draw It!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "Draw It!"), !isResults && round.wordSwaps > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "tc-category"
+  }, "\uD83D\uDD04 New word", round.wordSwaps > 1 ? " \xD7".concat(round.wordSwaps) : '', " (\u2212", round.wordSwapCost * round.wordSwaps, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-draw-row flex-grow-1",
     style: {
       minHeight: 0
@@ -34173,20 +34639,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _hooks_useAutoScrollList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useAutoScrollList.js */ "./src/hooks/useAutoScrollList.js");
+/* harmony import */ var _hooks_useLobbyPlayerSizes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/useLobbyPlayerSizes.js */ "./src/hooks/useLobbyPlayerSizes.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -34231,6 +34702,8 @@ function ReshuffledLobby(_ref) {
   var activePlayers = players.filter(function (player) {
     return !player.isCaster;
   });
+  // 👥 A few players fill the card; more share it (two columns from three)
+  var sizes = (0,_hooks_useLobbyPlayerSizes_js__WEBPACK_IMPORTED_MODULE_5__["default"])(playersRef, activePlayers.length);
   var hostPlayer = activePlayers.find(function (player) {
     return player.isPlayerHost;
   });
@@ -34279,18 +34752,18 @@ function ReshuffledLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden",
     style: {
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
       fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
@@ -34325,13 +34798,13 @@ function ReshuffledLobby(_ref) {
     className: "col-6 d-flex flex-column h-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "fullscreen-gameplay-card",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.4)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "d-flex flex-column",
     style: {
       padding: 'clamp(0.4rem, 1.5vh, 1rem) clamp(0.5rem, 3vh, 1.5rem)',
@@ -34351,38 +34824,39 @@ function ReshuffledLobby(_ref) {
       fontSize: 'clamp(0.7rem, 1.7vh, 1rem)',
       minWidth: 0 // beside the title: a long name gets cut off, not the title
     }
-  }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ref: playersRef,
     className: "text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid",
-    style: {
+    style: _objectSpread({
       minHeight: 0
-    }
+    }, sizes.gridStyle)
   }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       key: player.id,
       className: "d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "d-flex align-items-center gap-2 fw-bold",
       style: {
-        maxWidth: '70%',
+        maxWidth: '78%',
         minWidth: 0,
-        fontSize: 'clamp(0.85rem, 2vh, 1.2rem)'
+        fontSize: "".concat(sizes.font, "px")
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
       id: player.avatar,
       name: player.name,
-      size: 56,
+      size: Math.max(56, sizes.avatar),
       style: {
-        width: 'clamp(20px, 4vh, 32px)',
-        height: 'clamp(20px, 4vh, 32px)'
+        width: sizes.avatar,
+        height: sizes.avatar,
+        flexShrink: 0
       }
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "text-truncate"
-    }, player.name)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, player.name)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       bg: "primary",
       className: "rounded-pill px-2 py-1 shadow-sm",
       style: {
-        fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)'
+        fontSize: "".concat(Math.max(11, sizes.font * 0.55), "px")
       }
     }, "Host"));
   }), activePlayers.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -49349,7 +49823,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"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","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,\n   which swing open on the fanfare's last chord for the fireworks ---------- */\n.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }\n.cx-tent-flap {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 51%;\n    background:\n        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),\n        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);\n    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);\n}\n.cx-tent-left { left: 0; }\n.cx-tent-right { right: 0; }\n.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }\n.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }\n.cx-tent-valance {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    height: calc(9vh + 3.6vw);\n    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);\n    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));\n    transition: transform 1s ease-in;\n}\n.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }\n.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }\n.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }\n.cx-tent-board {\n    text-align: center;\n    padding: 3vh 6vw;\n    background: linear-gradient(#ffe7a3, #ffc83d);\n    border: 0.8vh solid #8f1520;\n    border-radius: 2vh;\n    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;\n    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;\n}\n.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }\n.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }\n.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }\n@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }\n@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }\n.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }\n@media (prefers-reduced-motion: reduce) {\n    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }\n    .cx-tent-board { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"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","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,\n   which swing open on the fanfare's last chord for the fireworks ---------- */\n.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }\n.cx-tent-flap {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 51%;\n    background:\n        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),\n        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);\n    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);\n}\n.cx-tent-left { left: 0; }\n.cx-tent-right { right: 0; }\n.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }\n.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }\n.cx-tent-valance {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    height: calc(9vh + 3.6vw);\n    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);\n    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));\n    transition: transform 1s ease-in;\n}\n.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }\n.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }\n.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }\n.cx-tent-board {\n    text-align: center;\n    padding: 3vh 6vw;\n    background: linear-gradient(#ffe7a3, #ffc83d);\n    border: 0.8vh solid #8f1520;\n    border-radius: 2vh;\n    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;\n    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;\n}\n.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }\n.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }\n.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }\n@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }\n@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }\n.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }\n@media (prefers-reduced-motion: reduce) {\n    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }\n    .cx-tent-board { animation: none; }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -50505,10 +50979,15 @@ function playChime() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "playCircusFanfare": () => (/* binding */ playCircusFanfare),
 /* harmony export */   "playClownTimesUp": () => (/* binding */ playClownTimesUp),
-/* harmony export */   "playClownWin": () => (/* binding */ playClownWin)
+/* harmony export */   "playClownWin": () => (/* binding */ playClownWin),
+/* harmony export */   "playFireworkBang": () => (/* binding */ playFireworkBang),
+/* harmony export */   "preloadCircusFanfare": () => (/* binding */ preloadCircusFanfare),
+/* harmony export */   "stopCircusFanfare": () => (/* binding */ stopCircusFanfare)
 /* harmony export */ });
 /* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chime.js */ "./src/chime.js");
+/* harmony import */ var _musicMute_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./musicMute.js */ "./src/musicMute.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -50516,7 +50995,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // 🤡 Clown noises for 3 Ring Circus, made in the browser (no audio files): a bicycle horn, a squeaky toy and a
-// slide whistle. The TV plays them when someone wins a round, and when time runs out.
+// slide whistle. The TV plays them when someone wins a round, and when time runs out. Plus the final scores'
+// fanfare and fireworks (further down).
+
 
 var ready = function ready() {
   var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
@@ -50616,6 +51097,126 @@ function playClownTimesUp() {
   var t = ctx.currentTime + 0.03;
   slide(ctx, t, 1700, 420);
   honk(ctx, t + 0.78, 300, 0.32, 0.18);
+}
+
+// ---------------------------------------------------------------------------------------------
+// 🎺 The final scores' fanfare (our own recording, public/audio/CircusFanfare.m4a), and the fireworks' bangs
+// ---------------------------------------------------------------------------------------------
+var fanfare = null; // the decoded recording
+var fanfareLoad = null;
+var fanfarePlaying = null;
+
+/** Start downloading the fanfare (the TV does this when the game starts, so it plays the moment it's needed) */
+function preloadCircusFanfare() {
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (!ctx || fanfareLoad) return fanfareLoad;
+  fanfareLoad = fetch('/audio/CircusFanfare.m4a').then(function (res) {
+    return res.arrayBuffer();
+  }).then(function (data) {
+    return new Promise(function (resolve, reject) {
+      return ctx.decodeAudioData(data, resolve, reject);
+    });
+  }).then(function (buffer) {
+    fanfare = buffer;
+    return buffer;
+  })["catch"](function () {
+    fanfareLoad = null;
+    return null;
+  });
+  return fanfareLoad;
+}
+
+/** 🎺 Play the fanfare once (unless the music's switched off) */
+function playCircusFanfare() {
+  var _preloadCircusFanfare;
+  var ctx = ready();
+  if (!ctx || (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.isMusicMuted)()) return;
+  var start = function start(buffer) {
+    if (!buffer) return;
+    stopCircusFanfare();
+    var source = ctx.createBufferSource();
+    var level = ctx.createGain();
+    level.gain.value = 0.55;
+    source.buffer = buffer;
+    source.connect(level);
+    level.connect(ctx.destination);
+    source.start();
+    fanfarePlaying = source;
+  };
+  if (fanfare) start(fanfare);else (_preloadCircusFanfare = preloadCircusFanfare()) === null || _preloadCircusFanfare === void 0 ? void 0 : _preloadCircusFanfare.then(start);
+}
+function stopCircusFanfare() {
+  if (!fanfarePlaying) return;
+  try {
+    fanfarePlaying.stop();
+  } catch (err) {/* already over */}
+  fanfarePlaying = null;
+}
+
+// A second of noise, made once, for the bangs
+var noise = null;
+var getNoise = function getNoise(ctx) {
+  if (noise) return noise;
+  noise = ctx.createBuffer(1, ctx.sampleRate * 1.5, ctx.sampleRate);
+  var data = noise.getChannelData(0);
+  for (var i = 0; i < data.length; i += 1) {
+    data[i] = Math.random() * 2 - 1;
+  }
+  return noise;
+};
+
+/** 🎆 A firework bursting: a deep boom, and (for the sparkly ones) a crackle after it. `size` 0..1 */
+function playFireworkBang() {
+  var size = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+  var crackle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (!ctx || (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.isAudioAsleep)(ctx) || (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.isMusicMuted)()) return;
+  var t = ctx.currentTime + 0.01;
+  var boom = ctx.createBufferSource();
+  boom.buffer = getNoise(ctx);
+  var lowpass = ctx.createBiquadFilter();
+  lowpass.type = 'lowpass';
+  lowpass.frequency.setValueAtTime(1800, t);
+  lowpass.frequency.exponentialRampToValueAtTime(120, t + 0.35);
+  var level = ctx.createGain();
+  var vol = 0.16 + 0.16 * size;
+  level.gain.setValueAtTime(0.0001, t);
+  level.gain.exponentialRampToValueAtTime(vol, t + 0.008);
+  level.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+  boom.connect(lowpass);
+  lowpass.connect(level);
+  level.connect(ctx.destination);
+  boom.start(t, Math.random() * 0.4, 1);
+  // The thump under it
+  var thump = ctx.createOscillator();
+  var thumpLevel = ctx.createGain();
+  thump.frequency.setValueAtTime(90, t);
+  thump.frequency.exponentialRampToValueAtTime(38, t + 0.3);
+  thumpLevel.gain.setValueAtTime(0.0001, t);
+  thumpLevel.gain.exponentialRampToValueAtTime(0.22 * size + 0.05, t + 0.01);
+  thumpLevel.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
+  thump.connect(thumpLevel);
+  thumpLevel.connect(ctx.destination);
+  thump.start(t);
+  thump.stop(t + 0.5);
+  if (!crackle) return;
+  // Crackle: lots of tiny snaps scattered over a second
+  for (var k = 0; k < 26; k += 1) {
+    var at = t + 0.35 + Math.random() * 1.1;
+    var snap = ctx.createBufferSource();
+    snap.buffer = getNoise(ctx);
+    var hp = ctx.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = 2500;
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(0.05 + Math.random() * 0.05, at + 0.002);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.03);
+    snap.connect(hp);
+    hp.connect(g);
+    g.connect(ctx.destination);
+    snap.start(at, Math.random(), 0.04);
+  }
 }
 
 /***/ }),
@@ -52055,6 +52656,77 @@ function useHideBrowserBar() {
       document.documentElement.classList.remove('cast-screen');
     };
   }, [enabled]);
+}
+
+/***/ }),
+
+/***/ "./src/hooks/useLobbyPlayerSizes.js":
+/*!******************************************!*\
+  !*** ./src/hooks/useLobbyPlayerSizes.js ***!
+  \******************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useLobbyPlayerSizes)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+/**
+ * 👥 How big each player should be in a TV lobby's players card, so the first few players fill it instead of
+ * sitting tiny at the top: one column for one or two players, two columns from three, and rows as tall as the
+ * card allows (shrinking as more join, then scrolling once they reach their smallest).
+ * Returns the list's grid style, plus the avatar and name sizes in pixels.
+ */
+function useLobbyPlayerSizes(listRef, count) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      width: 0,
+      height: 0
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    box = _useState2[0],
+    setBox = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var list = listRef.current;
+    if (!list) return undefined;
+    var measure = function measure() {
+      return setBox({
+        width: list.clientWidth,
+        height: list.clientHeight
+      });
+    };
+    measure();
+    var observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return function () {
+      return observer.disconnect();
+    };
+  }, [listRef]);
+  var columns = count >= 3 ? 2 : 1;
+  var rows = Math.max(1, Math.ceil(count / columns));
+  var gap = 12;
+  // Each row's share of the card (no taller than looks right for one player, no shorter than a readable line)
+  var rowHeight = box.height ? Math.max(42, Math.min(box.height / rows, 210)) : 48;
+  var cellWidth = box.width ? (box.width - (columns - 1) * gap) / columns : 300;
+  // The avatar takes up to a quarter or so of the row's width, so the name beside it (and the Host badge) still fit
+  var avatar = Math.round(Math.max(24, Math.min(rowHeight * 0.72, cellWidth * 0.28, 160)));
+  var font = Math.round(Math.max(14, Math.min(rowHeight * 0.28, avatar * 0.5, (cellWidth * 0.72 - 70) / 5, 44)));
+  return {
+    avatar: avatar,
+    font: font,
+    gridStyle: {
+      gridTemplateColumns: "repeat(".concat(columns, ", minmax(0, 1fr))"),
+      gridAutoRows: "".concat(Math.floor(rowHeight), "px"),
+      columnGap: "".concat(gap, "px")
+    }
+  };
 }
 
 /***/ }),

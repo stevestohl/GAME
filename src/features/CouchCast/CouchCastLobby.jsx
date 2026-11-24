@@ -4,6 +4,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { startLobbyMusic, stopLobbyMusic } from './lobbyMusic.js';
 import { Avatar } from '../../avatars.jsx';
 import useAutoScrollList from '../../hooks/useAutoScrollList.js';
+import useLobbyPlayerSizes from '../../hooks/useLobbyPlayerSizes.js';
 import { isIPhone, isHomeScreenApp } from '../../fullscreen.js';
 import CouchCrew from './CouchCrew.jsx';
 import Snowfall from './Snowfall.jsx';
@@ -48,7 +49,8 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
   const hostPlayer = activePlayers.find(player => player.isPlayerHost);
   const hostName = hostPlayer ? hostPlayer.name : "the first player";
   const hasStage = crew || quizShow || circusShow;   // something lives under the players card
-  const avatarSize = 'clamp(20px, 4vh, 32px)';
+  // 👥 A few players fill the card; more share it (two columns from three)
+  const sizes = useLobbyPlayerSizes(playersRef, activePlayers.length);
   const joinUrl = `${window.location.origin}/join?room=${roomCode || ''}`;
 
   const waitingLine = (
@@ -154,16 +156,16 @@ export default function CouchCastLobby({ roomCode, players = [], title = 'Couch 
                     {waitingLine}
                   </div>
                   
-                  <ListGroup ref={playersRef} className="text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid" style={{ minHeight: 0 }}>
+                  <ListGroup ref={playersRef} className="text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid" style={{ minHeight: 0, ...sizes.gridStyle }}>
                     {activePlayers.map((player) => (
                       <ListGroupItem key={player.id} className="d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark">
-                        <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '70%', minWidth: 0, fontSize: 'clamp(0.85rem, 2vh, 1.2rem)' }}>
-                          <Avatar id={player.avatar} name={player.name} size={56} style={{ width: avatarSize, height: avatarSize }} />
+                        <span className="d-flex align-items-center gap-2 fw-bold" style={{ maxWidth: '78%', minWidth: 0, fontSize: `${sizes.font}px` }}>
+                          <Avatar id={player.avatar} name={player.name} size={Math.max(56, sizes.avatar)} style={{ width: sizes.avatar, height: sizes.avatar, flexShrink: 0 }} />
                           <span className="text-truncate">{player.name}</span>
                         </span>
-                        {scoreFor?.(player) > 0 && <span className="fw-bold ms-auto me-2 text-nowrap">🎯 {scoreFor(player)}</span>}
+                        {scoreFor?.(player) > 0 && <span className="fw-bold ms-auto me-2 text-nowrap" style={{ fontSize: `${Math.max(13, sizes.font * 0.8)}px` }}>🎯 {scoreFor(player)}</span>}
                         {player.isPlayerHost && (
-                          <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.9rem)' }}>Host</Badge>
+                          <Badge bg="primary" className="rounded-pill px-2 py-1 shadow-sm" style={{ fontSize: `${Math.max(11, sizes.font * 0.55)}px` }}>Host</Badge>
                         )}
                       </ListGroupItem>
                     ))}

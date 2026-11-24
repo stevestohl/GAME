@@ -12,7 +12,8 @@ import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../..
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic, JUDGING_TRACK, DRAWING_TRACK } from '../../timerMusic.js';
 import { scoreRecap } from '../../scoreRecap.js';
-import { playClownWin, playClownTimesUp } from '../../circusSounds.js';
+import { playClownWin, playClownTimesUp, preloadCircusFanfare } from '../../circusSounds.js';
+import CircusGrandFinale, { TENT_OPEN_MS } from './CircusGrandFinale.jsx';
 
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
 import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
@@ -163,14 +164,17 @@ function MixupTV({ roomCode, casterName }) {
         } else if (voiceMoment.startsWith('list-review')) {
             speak(VOICE_LIST_REVIEW, code);
         } else if (voiceMoment === 'game-over') {
-            // 🎬 The final scores get read, then the lobby game's credits roll
+            // 🎬 The big top opens to a fanfare, the final scores get read, then the lobby game's credits roll
             let isCurrent = true;
             let timer;
-            Promise.resolve(recap ? speak(recap.spoken, code) : false).then((spoken) => {
-                if (isCurrent) timer = setTimeout(() => setShowCredits(true), spoken ? 1000 : 6000);
-            });
+            const tentTimer = setTimeout(() => {
+                Promise.resolve(recap ? speak(recap.spoken, code) : false).then((spoken) => {
+                    if (isCurrent) timer = setTimeout(() => setShowCredits(true), spoken ? 1000 : 6000);
+                });
+            }, TENT_OPEN_MS);
             return () => {
                 isCurrent = false;
+                clearTimeout(tentTimer);
                 clearTimeout(timer);
             };
         } else if (recap) {
@@ -252,6 +256,9 @@ function MixupTV({ roomCode, casterName }) {
     // Leaving the game: stop talking
     useEffect(() => stopVoice, []);
 
+    // 🎺 Fetch the final scores' fanfare early, so it plays the moment the tent goes up
+    useEffect(() => { if (gameState && gameState !== 'lobby') preloadCircusFanfare(); }, [gameState]);
+
     const renderGamePhase = () => {
         if (!room) {
             return (
@@ -312,6 +319,8 @@ function MixupTV({ roomCode, casterName }) {
                 </Alert>
             )}
             {renderGamePhase()}
+            {/* 🎪 The final scores open like the big top, with a fanfare, then fireworks */}
+            {gameState === 'scoreboard' && room?.isGameOver && <CircusGrandFinale />}
             {showCredits && gameState === 'scoreboard' && <SnakeCredits snake={room?.snake} onDone={() => setShowCredits(false)} />}
             {isPaused && <CouchCastPausedOverlay isCaster />}
             {room && <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />}

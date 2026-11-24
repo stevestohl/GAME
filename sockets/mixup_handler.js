@@ -44,6 +44,8 @@ const MEME_VOTE_TIME = 30 * SECOND;
 const MEME_RESULTS_TIME = 10 * SECOND;
 const DRAW_TIME = 80 * SECOND;
 const DRAW_RESULTS_TIME = 8 * SECOND;
+const WORD_SWAP_COST = 25;            // 🔄 the artist can trade their word for another, for this many points...
+const MAX_WORD_SWAPS = 3;             // ...this many times a round
 const JUDGE_GONE_TIME = 30 * SECOND;    // the judge's phone dropped out (or locked): time to come back, then the matches stand
 const MATCH_COMPARE_TIME = 9 * SECOND;  // the answers light up one after another
 const MATCH_RESULTS_TIME = 8 * SECOND;
@@ -188,6 +190,9 @@ const getSafeRoom = (room) => {
         if (round.type === 'draw') {
             roundView.drawerId = round.drawerId;
             roundView.drawerName = room.players[round.drawerId]?.name || round.drawerName;
+            roundView.wordSwaps = round.swaps || 0;
+            roundView.maxWordSwaps = MAX_WORD_SWAPS;
+            roundView.wordSwapCost = WORD_SWAP_COST;
             roundView.guesses = round.guesses;
             roundView.guessedBy = round.guessedById ? room.players[round.guessedById]?.name || round.guessedByName : null;
             if (state === 'draw_results' || state === 'scoreboard') roundView.word = round.prompt.text;
@@ -306,7 +311,7 @@ export default function registerMixupNamespace(MNS) {
     };
 
     // While paused, the phones can't answer, vote, draw or guess (they show "Paused" anyway)
-    const HELD_WHILE_PAUSED = new Set(['submit_caption', 'submit_vote', 'draw_points', 'draw_clear', 'submit_guess',
+    const HELD_WHILE_PAUSED = new Set(['submit_caption', 'submit_vote', 'draw_points', 'draw_clear', 'submit_guess', 'swap_word',
         'update_answers', 'submit_answers', 'review_move', 'review_reset', 'review_done']);
 
     const activePlayers = (room) => Object.values(room.players).filter((p) => !p.isCaster && p.isConnected);
@@ -1001,6 +1006,45 @@ export default function registerMixupNamespace(MNS) {
             const room = activeMixupRooms[roomCode];
             if (!room?.players[socket.id] || room.round?.type !== 'draw') return;
             socket.emit('drawing_snapshot', { strokes: room.round.strokes || [] });
+        });
+
+        // ---------- 🔄 Pictionary: the artist trades their word for another one, for WORD_SWAP_COST points ----------
+        socket.on('swap_word', async ({ roomCode } = {}) => {
+            const room = activeMixupRooms[roomCode];
+            const round = room?.round;
+            const artist = room?.players[socket.id];
+            if (!room || !round || !artist || room.gameState !== 'draw' || round.drawerId !== socket.id) return;
+            if (round.isSwapping || (round.swaps || 0) >= MAX_WORD_SWAPS) return;
+            round.isSwapping = true;
+            let fresh = null;
+            try {
+                // A few to choose from: one that hasn't come up this round
+                const seen = new Set([round.prompt.text, ...(round.skippedWords || [])].map((w) => w.toLowerCase()));
+                const options = await pickPictionaryPrompts(5, room.level, room.expansion);
+                fresh = options.find((p) => p?.text && !seen.has(p.text.toLowerCase())) || null;
+            } catch (err) {
+                console.error('[Mix Up] Could not find another word:', err.message);
+            } finally {
+                round.isSwapping = false;
+            }
+            // Still the same drawing turn? (the round may have ended while we looked)
+            if (!fresh || activeMixupRooms[roomCode] !== room || room.round !== round || room.gameState !== 'draw') {
+                socket.emit('swap_failed');
+                return;
+            }
+            round.skippedWords = [...(round.skippedWords || []), round.prompt.text];
+            round.prompt = fresh;
+            if (fresh._id) markPromptUsed(fresh._id);
+            round.swaps = (round.swaps || 0) + 1;
+            artist.score = (artist.score || 0) - WORD_SWAP_COST;
+            artist.roundPoints = (artist.roundPoints || 0) - WORD_SWAP_COST;
+            // A fresh page for the new word
+            round.strokes = [];
+            round.pointCount = 0;
+            MNS.to(roomCode).emit('drawing_snapshot', { strokes: [] });
+            sendPrivateState(socket, room);
+            console.log(`[Mix Up] Room ${roomCode}: ${artist.name} swapped their word (${round.swaps}).`);
+            broadcast(roomCode);
         });
 
         // ---------- Pictionary: a guess (the first right one ends the round) ----------
