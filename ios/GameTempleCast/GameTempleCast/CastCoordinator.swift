@@ -3,6 +3,25 @@ import os
 
 let castLog = Logger(subsystem: "org.gametemple.cast", category: "cast")
 
+/// 🩺 A line for the cast log. Debug builds also keep it in Documents/cast-log.txt, to copy off a test phone:
+/// xcrun devicectl device copy from --device <phone> --domain-type appDataContainer --domain-identifier org.gametemple.cast
+///   --source Documents/cast-log.txt --destination cast-log.txt
+func castNote(_ message: String) {
+    castLog.notice("\(message, privacy: .public)")
+    #if DEBUG
+    guard let folder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+    let file = folder.appendingPathComponent("cast-log.txt")
+    let line = Data("\(Date().formatted(.iso8601.time(includingFractionalSeconds: true))) \(message)\n".utf8)
+    if let handle = try? FileHandle(forWritingTo: file) {
+        handle.seekToEndOfFile()
+        handle.write(line)
+        try? handle.close()
+    } else {
+        try? line.write(to: file)
+    }
+    #endif
+}
+
 /**
  * 🔀 Decides what each screen shows. The website needs no changes: starting a cast game sends the phone to
  * the game's TV page (for example /couchcast?room=CABC&role=caster). If a TV is connected, that page goes to
@@ -62,25 +81,41 @@ final class CastCoordinator {
 
     // MARK: - The TV
 
+    /// A game whose TV just went away comes back to the phone after a moment, unless a TV comes straight back
+    private var handBack: DispatchWorkItem?
+
     func tvDidConnect(_ tv: TVViewController) {
-        castLog.notice("TV connected")
+        castNote("TV connected")
+        handBack?.cancel()
+        handBack = nil
         self.tv = tv
         phone?.tvConnectionChanged()
-        // A game already showing on the phone moves over now
-        if let url = phone?.currentURL, let room = roomCode(ofTVPage: url) {
+        if let url = tvURL {
+            // iOS 27 swaps a just-connected TV's screen for a fresh one a split second later: the game carries on there
+            tv.show(url)
+        } else if let url = phone?.currentURL, let room = roomCode(ofTVPage: url) {
+            // A game already showing on the phone moves over now
             moveToTV(url, room: room)
         } else {
             tv.showWaiting()
         }
     }
 
-    func tvDidDisconnect() {
-        castLog.notice("TV disconnected")
-        tv = nil
+    func tvDidDisconnect(_ tv: TVViewController) {
+        guard tv === self.tv else { return }   // an old screen that was already swapped for a new one
+        castNote("TV disconnected")
+        self.tv = nil
         phone?.tvConnectionChanged()
+        guard let url = tvURL else { return }
         // The game comes back to the phone, so it can be mirrored the old way
-        if let url = tvURL { phone?.load(url) }
-        tvURL = nil
+        let work = DispatchWorkItem { [weak self] in
+            guard let self, self.tv == nil else { return }
+            self.handBack = nil
+            self.tvURL = nil
+            self.phone?.load(url)
+        }
+        handBack = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: work)
     }
 
     /// The TV went to a new page: once it leaves the game (the host tapped Home), it waits for the next one
@@ -91,7 +126,7 @@ final class CastCoordinator {
     }
 
     private func moveToTV(_ url: URL, room: String) {
-        castLog.notice("Room \(room, privacy: .public) moves to the TV")
+        castNote("Room \(room) moves to the TV")
         tvURL = url
         tv?.show(url)
         var join = URLComponents(url: baseURL.appendingPathComponent("join"), resolvingAgainstBaseURL: false)!

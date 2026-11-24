@@ -4,8 +4,17 @@ import WebKit
 final class TVSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
+    /// The TV's scene: asked for by the phone's screen on iOS 27 and later (PhoneViewController.askForTVScreen),
+    /// and by the Info.plist on older systems (AppDelegate)
+    static func configuration() -> UISceneConfiguration {
+        let config = UISceneConfiguration(name: "TV", sessionRole: .windowExternalDisplayNonInteractive)
+        config.delegateClass = TVSceneDelegate.self
+        return config
+    }
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
+        castNote("TV scene connecting: screen \(Int(windowScene.screen.bounds.width))×\(Int(windowScene.screen.bounds.height))")
         let window = UIWindow(windowScene: windowScene)
         let tv = TVViewController()
         window.rootViewController = tv
@@ -15,8 +24,9 @@ final class TVSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
+        let tv = window?.rootViewController as? TVViewController
         window = nil
-        CastCoordinator.shared.tvDidDisconnect()
+        if let tv { CastCoordinator.shared.tvDidDisconnect(tv) }
     }
 }
 
@@ -31,6 +41,9 @@ final class TVViewController: UIViewController {
     private var soundWake: Timer?
 
     struct RemoteButton { let id: String; let label: String }
+
+    // A TV's screen can be swapped for a new one: the old one's sound taps stop with it
+    deinit { soundWake?.invalidate() }
 
     override func viewDidLoad() {
         super.viewDidLoad()

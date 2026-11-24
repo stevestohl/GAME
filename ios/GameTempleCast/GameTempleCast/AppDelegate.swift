@@ -22,12 +22,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    // The phone's own screen, or a TV connected over AirPlay (or a cable)
+    // The phone's own screen, or a TV connected over AirPlay (or a cable). On iOS 26 and earlier the TV arrives here
+    // by itself; iOS 27 only offers it to an app that asks (PhoneViewController.askForTVScreen).
     func application(_ application: UIApplication, configurationForConnecting session: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        castNote("iOS offers a scene: \(session.role.rawValue)")
         if session.role == .windowExternalDisplayNonInteractive {
-            let config = UISceneConfiguration(name: "TV", sessionRole: session.role)
-            config.delegateClass = TVSceneDelegate.self
-            return config
+            return TVSceneDelegate.configuration()
         }
         let config = UISceneConfiguration(name: "Phone", sessionRole: session.role)
         config.delegateClass = PhoneSceneDelegate.self

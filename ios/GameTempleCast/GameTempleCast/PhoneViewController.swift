@@ -36,12 +36,18 @@ final class PhoneViewController: UIViewController {
     private let tvButtons = UIStackView()
     private var pauseWatch: Timer?
     private let pageEdge = PageEdgeView()
+    /// iOS 27's hold on the TV's own screen (a UISceneAccessoryRegistration), kept for as long as the phone's screen is up
+    private var tvScreen: AnyObject?
 
     var currentURL: URL? { webView.url }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        askForTVScreen()
+        #if DEBUG
+        logTVScreenChanges()
+        #endif
         webView.allowsBackForwardNavigationGestures = true
         // 🎨 Past the end of a page, where the home bar is, the web view shows what's behind it: on pages that fit
         // the screen (like Join Room) that's a strip under the page after the first swipe. Behind it, carry on the
@@ -94,11 +100,63 @@ final class PhoneViewController: UIViewController {
             if let url = webView.url { CastCoordinator.shared.phoneDidShow(url) }
         }
         load(CastCoordinator.shared.baseURL.appendingPathComponent("home"))
+        #if DEBUG
+        // -GTStartPath "/couchcast?room=TEST&role=caster": a moment after Home, go to another page, like a game's TV
+        // page, to test "Play on TV" without tapping through the site
+        if let path = UserDefaults.standard.string(forKey: "GTStartPath"),
+           let url = URL(string: path, relativeTo: CastCoordinator.shared.baseURL)?.absoluteURL {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in self?.load(url) }
+        }
+        #endif
     }
 
     func load(_ url: URL) {
         webView.load(URLRequest(url: url))
     }
+
+    // MARK: - 📺 The TV's own screen (iOS 27)
+
+    /// 📺 Since iOS 27, a TV connected over AirPlay (Screen Mirroring) or a cable only gets its own screen if the app
+    /// asks for one from a view controller like this; the Info.plist's TV scene is no longer enough, and without this
+    /// the TV just mirrors the phone and "Play on TV" waits forever. (Older systems use the Info.plist, see AppDelegate.)
+    /// Asked once, when the app opens: iOS then gives the TV its own screen whenever Screen Mirroring starts, whether
+    /// that's before the app opens or from Control Center over it (tested on an iPhone with iOS 27.2.1 and a Roku).
+    private func askForTVScreen() {
+        guard #available(iOS 27.0, *) else { return }
+        let registration = registerSceneAccessory(.externalNonInteractive(sceneConfiguration: TVSceneDelegate.configuration()))
+        registration.isEnabled = true
+        tvScreen = registration
+        castNote("Asked iOS for the TV's own screen")
+    }
+
+    #if DEBUG
+    /// 🩺 Every change in what iOS says about the TV, for the log (castNote's cast-log.txt)
+    private func logTVScreenChanges() {
+        registerForTraitChanges([UITraitSceneCaptureState.self]) { (self: PhoneViewController, _: UITraitCollection) in
+            castNote("Mirroring changed: \(self.tvScreenState)")
+        }
+        var last = ""
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self else { return timer.invalidate() }
+            let state = self.tvScreenState
+            if state != last { last = state; castNote("TV screen: \(state)") }
+        }
+    }
+
+    /// What iOS says about the TV right now
+    private var tvScreenState: String {
+        var parts: [String] = []
+        if #available(iOS 27.0, *), let registration = tvScreen as? UISceneAccessoryRegistration {
+            parts.append("available \(registration.isAvailable), enabled \(registration.isEnabled)")
+        }
+        let mirrored = view.window?.windowScene?.traitCollection.sceneCaptureState == .active
+        parts.append(mirrored ? "phone is mirrored" : "phone not mirrored")
+        parts.append(CastCoordinator.shared.isTVConnected ? "TV screen connected" : "no TV screen")
+        let route = AVAudioSession.sharedInstance().currentRoute.outputs.map { "\($0.portName) (\($0.portType.rawValue))" }
+        parts.append("sound to: \(route.joined(separator: ", "))")
+        return parts.joined(separator: ", ")
+    }
+    #endif
 
     #if DEBUG
     /// For testing without a TV: a 1920×1080 TV screen, shrunk into the bottom corner, that nobody can tap (like a real one)

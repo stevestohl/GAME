@@ -6,7 +6,8 @@
 	<key>GTBaseURL</key>
 	<string>https://game-temple.org</string>
 	<!-- Two screens: the phone, and a connected TV. iOS only gives the TV its own screen (instead of a copy
-	     of the phone's) to an app that supports more than one scene and names one for the TV's role. -->
+	     of the phone's) to an app that supports more than one scene and names one for the TV's role.
+	     That's for iOS 26 and earlier: iOS 27 also needs the app to ask in code (PhoneViewController.askForTVScreen). -->
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
