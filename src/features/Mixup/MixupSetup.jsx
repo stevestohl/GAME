@@ -53,7 +53,7 @@ export default function MixupSetup() {
                                         <span className="text-muted fw-normal small ms-2">3+ players</span>
                                     </div>
                                     <div className="small text-secondary lh-sm">
-                                        Three games under one big top: caption a meme and vote for the funniest, draw and guess
+                                        Three games under one big tent: caption a meme and vote for the funniest, draw and guess
                                         Pictionary-style, then match your friends' answers in Threefold. Cast one extra device to the TV as the main screen.
                                     </div>
                                 </Col>

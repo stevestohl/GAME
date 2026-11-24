@@ -2724,6 +2724,10 @@ html.cast-screen {
 .cc-crew .circus-lion-tail { transform-origin: 0% 100%; animation: crew-swish 1.6s ease-in-out infinite alternate; }
 .cc-crew .circus-lion.is-roaring .crew-fig { animation: quiz-roar 0.06s linear infinite alternate; }
 .cc-crew .circus-dizzy .crew-fig { transform-origin: 50% 100%; animation: circus-dizzy 0.45s ease-in-out infinite alternate; }
+/* 🐻 The bear's unicycle wheel turns while it rides */
+.cc-crew .circus-wheel-spokes { transform-box: fill-box; transform-origin: 50% 50%; }
+.cc-crew .circus-bear.is-riding .circus-wheel-spokes { animation: mx-wheel-spin 0.45s linear infinite; }
+@keyframes mx-wheel-spin { to { transform: rotate(360deg); } }
 @keyframes circus-dizzy { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 /* The rules screen: above the cards, so they can swing in; the buttons underneath still work */
 .cc-crew.circus-rules-show { z-index: 5; }

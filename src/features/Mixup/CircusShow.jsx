@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { makeDirector } from '../TriviaCast/QuizScenes.jsx';
 import {
-    Clown, Ringmaster, Lion, ClownCar, Cannon, Trapeze, JugglingBalls, Smoke, Pow, Bubble,
+    Clown, Ringmaster, Lion, ClownCar, Cannon, Trapeze, JugglingBalls, Smoke, Pow, Bubble, Bear, Hoop, FlyingPie,
     wearGear, sayIn, HANDS_UP_Y, FLOWER, CANNON_MUZZLE, CANNON_AIM,
 } from './CircusCast.jsx';
 
@@ -10,6 +10,7 @@ import {
 //                    juggling (badly), the flower that squirts, a cream pie, and running away from the lion.
 //   CircusRulesShow: the rules screen. They swing in on two trapezes, flip down and walk across the bottom.
 //   CircusFinale:    the end credits. The ringmaster's big finish: one of them is fired out of a cannon.
+//   CircusSkit:      a short act under a round's title card, and under the funniest caption (CIRCUS_SKITS: six of them).
 
 const easeOut = (t) => 1 - (1 - t) ** 3;
 const easeIn = (t) => t * t;
@@ -637,6 +638,222 @@ export function CircusFinale({ onDone }) {
             <Clown elRef={bRef} {...DAISY} />
             <Cannon elRef={cannonRef} />
             <Clown elRef={aRef} {...OOPSY} />
+            <Smoke elRef={smokeRef} />
+            <Pow elRef={powRef} />
+            <Bubble elRef={sayRef} />
+        </svg>
+    );
+}
+
+// ======================================================================================
+// 🎪 The short acts between rounds: each one ~4.5 s (a round's title card is up for 5), with at least two performers
+// ======================================================================================
+export const CIRCUS_SKITS = ['bear', 'car', 'lion', 'juggle', 'cannon', 'pies'];
+/** Which act goes with a round: they take turns, and `offset` picks a different one for the same round */
+export const skitFor = (round, offset = 0) => CIRCUS_SKITS[(Math.max(1, round) - 1 + offset) % CIRCUS_SKITS.length];
+
+/**
+ * One act on a little stage along the bottom of the TV (a 400 x 100 drawing). `skit`: one of CIRCUS_SKITS.
+ * `encore`: when it's over, carry on with the next act (for screens that stay up longer than one act).
+ */
+export function CircusSkit({ skit = 'bear', encore = false }) {
+    const svgRef = useRef(null);
+    const aRef = useRef(null);
+    const bRef = useRef(null);
+    const ringRef = useRef(null);
+    const lionRef = useRef(null);
+    const bearRef = useRef(null);
+    const carRef = useRef(null);
+    const cannonRef = useRef(null);
+    const hoopRef = useRef(null);
+    const pie1Ref = useRef(null);
+    const pie2Ref = useRef(null);
+    const ballsRef = useRef(null);
+    const smokeRef = useRef(null);
+    const powRef = useRef(null);
+    const sayRef = useRef(null);
+
+    useEffect(() => {
+        const box = svgRef.current.getBoundingClientRect();
+        const extra = box.height ? Math.max(0, (box.width / (box.height / 100) - 400) / 2) : 0;
+        const offLeft = -extra - 70;
+        const offRight = 400 + extra + 70;
+        const FLOOR = 96;
+        const S = 0.62;
+        const d = makeDirector();
+        const { place, walk, hop, say, flipTo } = makeMoves(d, () => S, () => 400 + extra - 4);
+        const A = { el: aRef.current, size: 0.94 };
+        const B = { el: bRef.current, size: 1.0 };
+        const R = { el: ringRef.current, size: 1.05 };
+        const L = { el: lionRef.current, size: 0.85 };
+        const bear = { el: bearRef.current, size: 0.95 };
+        const car = { el: carRef.current, size: 1.2 };
+        const cannon = { el: cannonRef.current, size: 1 };
+        const everyone = [A, B, R, L, bear, car, cannon];
+        const balls = [...ballsRef.current.children];
+        const props = [hoopRef.current, pie1Ref.current, pie2Ref.current, ...balls];
+        const put = (el, x, y, scale = S) => { el.style.display = ''; el.setAttribute('transform', `translate(${x} ${y}) scale(${scale})`); };
+        const sayOver = (a, text, ms = 1000) => say(sayRef.current, text, a.x + 5 * S, FLOOR - 112 * S * (a.size || 1), ms);
+        const reset = () => {
+            everyone.forEach((a) => {
+                Object.assign(a, { x: offLeft - 200, y: FLOOR, rot: 0, lift: 0, flip: 1 });
+                hide(a.el);
+                wearGear(a.el, []);
+                a.el.classList.remove('quiz-scared', 'quiz-bowing', 'circus-dizzy', 'crew-walking', 'crew-running', 'is-riding', 'has-clowns', 'is-bouncing', 'is-roaring', 'is-lit');
+                a.el.setAttribute('data-look', 'front');
+                place(a);
+            });
+            hide(...props);
+        };
+        const enter = (a, x) => { a.x = x; a.y = FLOOR; show(a.el); place(a); };
+        const bow = async (...who) => {
+            who.forEach((a) => a.el.classList.add('quiz-bowing'));
+            await d.wait(1500);
+            who.forEach((a) => a.el.classList.remove('quiz-bowing'));
+        };
+
+        const ACTS = {
+            // 🐻 A bear rides through on a unicycle, with a clown honking behind it; the other clown jumps out of its way
+            bear: async () => {
+                enter(B, 300);
+                bear.x = offLeft; show(bear.el); bear.el.classList.add('is-riding', 'crew-walking');
+                A.x = offLeft - 70; show(A.el); wearGear(A.el, ['horn']); A.el.classList.add('crew-running');
+                const fromB = bear.x; const fromA = A.x;
+                const ride = d.tween(4200, linear, (t) => {
+                    bear.x = fromB + (offRight - fromB) * t; bear.rot = Math.sin(t * 26) * 5; place(bear);
+                    A.x = fromA + (offRight - 70 - fromA) * t; place(A);
+                });
+                await d.wait(1000);
+                await sayOver(A, 'HONK HONK!', 900);
+                await hop(B, 300, FLOOR, 40, 420);
+                await sayOver(B, 'EEK!', 800);
+                await ride;
+            },
+            // 🚗 A car far too small: out climb two clowns, then the ringmaster too
+            car: async () => {
+                show(car.el); car.el.classList.add('has-clowns', 'is-bouncing');
+                car.x = offRight; place(car);
+                await d.tween(1100, easeOut, (t) => { car.x = offRight + (200 - offRight) * t; place(car); });
+                car.el.classList.remove('is-bouncing', 'has-clowns');
+                const out = async (a, x) => { a.x = 200; a.y = FLOOR; show(a.el); await hop(a, x, FLOOR, 60, 450); };
+                await out(A, 110);
+                await out(B, 290);
+                await out(R, 200);
+                wearGear(A.el, ['hands']); wearGear(B.el, ['hands']);
+                await Promise.all([sayOver(R, 'TA-DA!', 900), bow(R)]);
+            },
+            // 🦁 The lion tamer holds up a hoop, the lion leaps through it, then roars at the tamer
+            lion: async () => {
+                enter(R, 262); R.el.setAttribute('data-look', 'left');
+                const hoopX = 222; const hoopY = FLOOR - 54 * S;
+                put(hoopRef.current, hoopX, hoopY);
+                L.x = offLeft; L.flip = -1; show(L.el); place(L);
+                await walk(L, 140, 320);
+                L.el.classList.add('crew-running');
+                await hop(L, 305, FLOOR, 46, 800);
+                L.el.classList.remove('crew-running');
+                L.flip = 1; place(L);
+                wearGear(L.el, ['roar']); L.el.classList.add('is-roaring');
+                R.el.classList.add('quiz-scared');
+                hide(hoopRef.current);
+                await Promise.all([say(sayRef.current, 'ROAR!', L.x - 30 * S, FLOOR - 70 * S, 900), hop(R, 262, FLOOR, 24, 380)]);
+                wearGear(L.el, []); L.el.classList.remove('is-roaring'); R.el.classList.remove('quiz-scared');
+                await sayOver(R, 'GOOD KITTY!', 900);
+            },
+            // 🤹 Two clowns juggle back and forth, until one catches the last ball with their head
+            juggle: async () => {
+                enter(A, 135); enter(B, 265);
+                A.el.setAttribute('data-look', 'right'); B.el.setAttribute('data-look', 'left');
+                const handY = FLOOR - 38 * S;
+                const fromX = A.x + 14 * S; const toX = B.x - 14 * S;
+                balls.forEach((b) => show(b));
+                await d.tween(2800, linear, (t) => {
+                    balls.forEach((ball, i) => {
+                        const p = (t * 2800 / 700 + i * 0.66) % 2;
+                        const q = p < 1 ? p : p - 1;
+                        const x = p < 1 ? fromX + (toX - fromX) * q : toX + (fromX - toX) * q;
+                        put(ball, x, handY - Math.sin(Math.PI * q) * 34, S * 0.9);
+                    });
+                });
+                const head = { x: B.x, y: FLOOR - 100 * S };
+                const last = balls[0];
+                balls.slice(1).forEach((b) => hide(b));
+                await d.tween(600, linear, (t) => put(last, fromX + (head.x - fromX) * t, handY + (head.y - handY) * t - Math.sin(Math.PI * t) * 46, S * 0.9));
+                burst(powRef.current, head.x, head.y, S * 1.3);
+                B.el.classList.add('circus-dizzy');
+                await Promise.all([
+                    d.tween(450, linear, (t) => put(last, head.x + 24 * t, head.y + (FLOOR - 4 - head.y) * t * t, S * 0.9)),
+                    sayOver(B, 'BONK!', 900),
+                ]);
+                B.el.classList.remove('circus-dizzy');
+            },
+            // 💥 The human cannonball: one clown lights the fuse, the other flies across the ring and lands it
+            cannon: async () => {
+                cannon.x = 120; show(cannon.el); place(cannon);
+                enter(B, 78);
+                const m = { x: cannon.x + CANNON_MUZZLE.x * S, y: FLOOR + CANNON_MUZZLE.y * S };
+                wearGear(A.el, ['helmet']);
+                cannon.el.classList.add('is-lit');
+                await sayOver(B, '3... 2... 1...', 1000);
+                cannon.el.classList.remove('is-lit');
+                burst(smokeRef.current, m.x, m.y, S);
+                burst(powRef.current, m.x + 6, m.y - 4, S * 1.6);
+                A.x = m.x; A.y = m.y + 24; show(A.el); place(A);
+                await flipTo(A, 330, FLOOR, 110, 1200, 2);
+                wearGear(A.el, ['helmet', 'hands']); wearGear(B.el, ['hands']);
+                await sayOver(A, 'TA-DA!', 1000);
+            },
+            // 🥧 Two clowns throw cream pies at each other, and the ringmaster walks right into the middle
+            pies: async () => {
+                enter(A, 95); enter(B, 305);
+                wearGear(A.el, ['pie']); wearGear(B.el, ['pie']);
+                A.el.setAttribute('data-look', 'right'); B.el.setAttribute('data-look', 'left');
+                R.x = offLeft; show(R.el); place(R);
+                const walkIn = walk(R, 200, 220);
+                await d.wait(Math.max(0, (Math.abs(200 - offLeft) / (220 * S)) * 1000 - 700));
+                wearGear(A.el, []); wearGear(B.el, []);
+                const face = { x: 200, y: FLOOR - 80 * S * R.size };
+                const fly = (el, fromX, side) => d.tween(650, linear, (t) => {
+                    put(el, fromX + (face.x + side * 8 - fromX) * t, FLOOR - 40 * S + (face.y - FLOOR + 40 * S) * t - Math.sin(Math.PI * t) * 30, S);
+                });
+                await Promise.all([fly(pie1Ref.current, A.x + 15 * S, -1), fly(pie2Ref.current, B.x - 15 * S, 1), walkIn]);
+                hide(pie1Ref.current, pie2Ref.current);
+                burst(powRef.current, face.x, face.y, S * 1.5);
+                wearGear(R.el, ['piefaced']);
+                R.el.classList.add('quiz-scared');
+                await sayOver(A, 'HA HA!', 800);
+                R.el.classList.remove('quiz-scared');
+                await sayOver(R, '...REALLY?', 1000);
+            },
+        };
+
+        if (reduceMotion()) { reset(); return () => d.stop(); }
+        const run = async () => {
+            let k = Math.max(0, CIRCUS_SKITS.indexOf(skit));
+            do {
+                reset();
+                await ACTS[CIRCUS_SKITS[k]]();
+                await d.wait(500);
+                k = (k + 1) % CIRCUS_SKITS.length;
+            } while (encore && !d.isDead());
+        };
+        run();
+        return () => d.stop();
+    }, [skit, encore]);
+
+    return (
+        <svg ref={svgRef} className="cc-crew cc-round-scene-art circus-skit" viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+            <Hoop elRef={hoopRef} />
+            <Bear elRef={bearRef} />
+            <Lion elRef={lionRef} />
+            <Ringmaster elRef={ringRef} />
+            <Clown elRef={bRef} {...DAISY} />
+            <Cannon elRef={cannonRef} />
+            <Clown elRef={aRef} {...OOPSY} />
+            <ClownCar elRef={carRef} />
+            <FlyingPie elRef={pie1Ref} />
+            <FlyingPie elRef={pie2Ref} />
+            <JugglingBalls elRef={ballsRef} />
             <Smoke elRef={smokeRef} />
             <Pow elRef={powRef} />
             <Bubble elRef={sayRef} />

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Card, Button, ProgressBar } from 'react-bootstrap';
+import { Button, ProgressBar } from 'react-bootstrap';
 import { mixupSocket as socket } from '../../socket.js';
 import { speak, stopVoice } from '../../voice.js';
 import { DrawingView } from './DrawingCanvas.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
 import { ReviewGroups } from './MatchReview.jsx';
-import { CircusRulesShow } from './CircusShow.jsx';
+import { CircusRulesShow, CircusSkit, skitFor } from './CircusShow.jsx';
 import '../../styles/mixup.css';
 
 // 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to the 3 Ring Circus.
@@ -118,9 +118,11 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
                 <h2 className="fullscreen-gameplay-header text-center">How To Play 3 Ring Circus!</h2>
                 <div className="mx-rules-grid flex-grow-1" style={{ minHeight: 0 }}>
                     {['meme', 'draw', 'match'].map((type, i) => (
-                        <div key={type} className="shining-border-wrapper h-100">
-                            <Card className="fullscreen-gameplay-card h-100 mx-rule-card">
-                                <Card.Body className="d-flex flex-column align-items-center text-center">
+                        // 🎪 Each ring is a spinning, striped hula-hoop
+                        <div key={type} className="mx-hoop-cell">
+                            <div className={`mx-hoop mx-hoop-${i + 1}`}>
+                                <div className="mx-hoop-ring" aria-hidden="true" />
+                                <div className="mx-hoop-body">
                                     <div className="mx-rule-step">Ring {i + 1} · {each} rounds</div>
                                     <div className="mx-rule-icon">{ROUND_LOOKS[type].icon}</div>
                                     <div className="mx-rule-title">{ROUND_LOOKS[type].title}</div>
@@ -129,8 +131,8 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
                                         {type === 'draw' && <>One player draws on their phone, the rest type guesses. <strong>First right guess: +100</strong>, and the artist gets <strong>+50</strong>.</>}
                                         {type === 'match' && <>Write up to three answers on your phone. <strong>+50 for every player who wrote the same thing.</strong> A judge checks the matches.</>}
                                     </div>
-                                </Card.Body>
-                            </Card>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -151,7 +153,7 @@ export function RoundIntroTV({ room }) {
     const look = ROUND_LOOKS[round.type];
     const kicker = roundKicker(room.currentRound, room.totalRounds);
     return (
-        <div className="fullscreen-gameplay-container justify-content-center">
+        <div className="fullscreen-gameplay-container justify-content-center mx-intro-with-show">
             <div className="mx-intro">
                 {kicker && <div className="cc-round-intro-final">{kicker}</div>}
                 <div className="mx-intro-bumper">Round {room.currentRound}</div>
@@ -162,6 +164,8 @@ export function RoundIntroTV({ room }) {
                 </div>
                 {round.type === 'match' && round.judgeName && <div className="mx-intro-blurb">⚖️ <strong>{round.judgeName}</strong> judges the matches.</div>}
             </div>
+            {/* 🎪 A circus act along the bottom: a different one each round */}
+            <div className="cc-round-scene"><CircusSkit key={room.currentRound} skit={skitFor(room.currentRound)} /></div>
         </div>
     );
 }
@@ -178,7 +182,7 @@ export function MemeTV({ room }) {
 
     let heading = 'Caption this!';
     if (state === 'meme_vote') heading = 'Vote for the funniest!';
-    if (state === 'meme_results') heading = round.greatMinds ? '🧠 Great minds think alike! Double points!' : winners.length > 1 ? "It's a tie!" : winners.length ? 'The funniest caption...' : 'Nobody wrote a caption!';
+    if (state === 'meme_results') heading = round.greatMinds ? '🧠 Great minds think alike! Double points!' : winners.length > 1 ? "It's a tie!" : winners.length ? 'The funniest caption...' : captions.length ? 'Nobody voted!' : 'Nobody wrote a caption!';
 
     return (
         <div className="fullscreen-gameplay-container">
@@ -219,6 +223,11 @@ export function MemeTV({ room }) {
                         </div>
                     )}
                 </div>
+
+                {/* 🎪 While the funniest caption is announced, another act plays along the bottom */}
+                {state === 'meme_results' && (
+                    <div className="mx-results-show"><CircusSkit key={`results-${room.currentRound}`} skit={skitFor(room.currentRound, 3)} encore /></div>
+                )}
 
                 <div className="flex-shrink-0" style={{ marginTop: '1.5vh', paddingRight: '7rem' }}>
                     {state === 'meme_write' && (

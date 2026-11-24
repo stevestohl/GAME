@@ -218,6 +218,7 @@ const getSafeRoom = (room) => {
         endTime: room.endTime,
         isGameOver: room.isGameOver,
         snake: room.snake ? { scores: room.snake.scores } : null,   // 🐍 the lobby game's scores
+        isPaused: !!room.isPaused,
         minPlayers: MIN_PLAYERS,
         round: roundView,
         players,
@@ -245,17 +246,68 @@ export default function registerMixupNamespace(MNS) {
             clearTimeout(room.timerId);
             room.timerId = null;
         }
+        room.timerFn = null;
+        room.pausedTimerLeft = null;
     };
 
-    // Runs `next` after `ms`, but only if the room is still open and still in `state`
+    // Runs `next` after `ms`, but only if the room is still open and still in `state`.
+    // ⏸️ It remembers what it will do and when, so a pause can stop the clock and pick up exactly where it left off.
     const schedule = (roomCode, room, state, ms, next) => {
         clearTimer(room);
-        room.timerId = setTimeout(() => {
-            room.timerId = null;
+        const fire = () => {
             if (activeMixupRooms[roomCode] !== room || room.gameState !== state) return;
             next();
+        };
+        room.timerFn = fire;
+        if (room.isPaused) {
+            room.pausedTimerLeft = ms;
+            return;
+        }
+        room.timerDueAt = Date.now() + ms;
+        room.timerId = setTimeout(() => {
+            room.timerId = null;
+            room.timerFn = null;
+            fire();
         }, ms);
     };
+
+    // ⏸️ The caster pauses: the round's clock stops, every countdown holds still, and nobody can answer
+    const pauseRoom = (room) => {
+        if (room.isPaused) return;
+        const now = Date.now();
+        room.isPaused = true;
+        room.pausedAt = now;
+        room.pausedTimerLeft = room.timerId ? Math.max(0, room.timerDueAt - now) : null;
+        if (room.timerId) clearTimeout(room.timerId);
+        room.timerId = null;
+        // The screens count down to endTime: with none, they hold still
+        room.pausedEndTimeLeft = room.endTime ? Math.max(0, room.endTime - now) : null;
+        room.endTime = null;
+    };
+
+    const resumeRoom = (room) => {
+        if (!room.isPaused) return;
+        const now = Date.now();
+        const { pausedTimerLeft, pausedEndTimeLeft, timerFn } = room;
+        room.isPaused = false;   // first, so the clock below really starts
+        room.pausedAt = null;
+        room.pausedTimerLeft = null;
+        room.pausedEndTimeLeft = null;
+        if (pausedEndTimeLeft !== null && pausedEndTimeLeft !== undefined) room.endTime = now + pausedEndTimeLeft;
+        if (timerFn && pausedTimerLeft !== null && pausedTimerLeft !== undefined) {
+            room.timerFn = timerFn;
+            room.timerDueAt = now + pausedTimerLeft;
+            room.timerId = setTimeout(() => {
+                room.timerId = null;
+                room.timerFn = null;
+                timerFn();
+            }, pausedTimerLeft);
+        }
+    };
+
+    // While paused, the phones can't answer, vote, draw or guess (they show "Paused" anyway)
+    const HELD_WHILE_PAUSED = new Set(['submit_caption', 'submit_vote', 'draw_points', 'draw_clear', 'submit_guess',
+        'update_answers', 'submit_answers', 'review_move', 'review_reset', 'review_done']);
 
     const activePlayers = (room) => Object.values(room.players).filter((p) => !p.isCaster && p.isConnected);
     const playerCount = (room) => activePlayers(room).length;
@@ -574,7 +626,7 @@ export default function registerMixupNamespace(MNS) {
         const room = activeMixupRooms[roomCode];
         if (!room) return;
         const here = activePlayers(room);
-        if (here.length === 0) return;
+        if (here.length === 0 || room.isPaused) return;
 
         if (room.gameState === 'meme_write' && here.every((p) => p.hasSubmitted)) startVoting(roomCode);
         else if (room.gameState === 'meme_vote') {
@@ -673,6 +725,8 @@ export default function registerMixupNamespace(MNS) {
         room.drawCount = 0;
         room.judgeCount = 0;
         room.endTime = null;
+        room.isPaused = false;
+        room.pausedAt = null;
 
         console.log(`[Mix Up] Room ${roomCode}: playing again.`);
         broadcast(roomCode);
@@ -703,6 +757,12 @@ export default function registerMixupNamespace(MNS) {
     });
 
     MNS.on('connection', (socket) => {
+
+        // ⏸️ Answers that arrive while the game is paused are dropped
+        socket.use(([event, data], next) => {
+            if (HELD_WHILE_PAUSED.has(event) && activeMixupRooms[data?.roomCode]?.isPaused) return;
+            next();
+        });
 
         // ---------- Event: The TV makes a room ----------
         socket.on('createRoom', guardCreateRoom('mixup', socket, (data) => {
@@ -1011,6 +1071,18 @@ export default function registerMixupNamespace(MNS) {
         // "Looks good!": done judging
         socket.on('review_done', ({ roomCode } = {}) => {
             if (judgedRoom(roomCode)) scoreMatches(roomCode);
+        });
+
+        // ---------- ⏸️ Event: The caster pauses (or un-pauses) a running game ----------
+        socket.on('set_paused', ({ roomCode, paused } = {}) => {
+            const room = activeMixupRooms[roomCode];
+            if (!room || !room.players[socket.id]?.isCaster) return;
+            if (['lobby', 'rules'].includes(room.gameState) || room.isGameOver) return;
+            if (paused) pauseRoom(room); else resumeRoom(room);
+            console.log(`[Mix Up] Room ${roomCode}: ${room.isPaused ? 'paused' : 'back on'}.`);
+            broadcast(roomCode);
+            // Everyone finished while it was paused: carry on now
+            if (!room.isPaused) checkEveryoneDone(roomCode);
         });
 
         // ---------- Event: The caster wants another game with the same players ----------

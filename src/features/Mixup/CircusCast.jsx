@@ -203,6 +203,14 @@ export function Ringmaster({ elRef }) {
                 {/* A very curly mustache */}
                 <path d="M 0 -72.5 Q -5 -76 -9 -72 Q -12 -69 -14 -72 Q -13 -67 -8 -69 Q -4 -70 0 -70.5 Q 4 -70 8 -69 Q 13 -67 14 -72 Q 12 -69 9 -72 Q 5 -76 0 -72.5 Z" fill="#3a2416" stroke={INK} strokeWidth={0.8} />
                 <path d="M -3.5 -67.5 Q 0 -65.5 3.5 -67.5" {...line} strokeWidth={1.4} />
+                {/* Two cream pies, one from each side */}
+                <g data-gear="piefaced" style={{ display: 'none' }}>
+                    <path d="M -15 -84 Q -17 -76 -14 -70 Q -16 -64 -10 -64 Q -8 -58 -5 -64 Q 0 -61 4 -64 Q 8 -57 10 -64 Q 16 -64 14 -71 Q 17 -78 14 -85 Q 0 -90 -15 -84 Z" fill="#fffaf0" stroke={INK} strokeWidth={1.6} strokeLinejoin="round" />
+                    <circle cx={-5.5} cy={-79} r={1.6} fill={INK} />
+                    <circle cx={5.5} cy={-79} r={1.6} fill={INK} />
+                    <circle cx={-9} cy={-84} r={2.2} fill="#d11f3a" stroke={INK} strokeWidth={1} />
+                    <circle cx={9} cy={-83} r={2.2} fill="#d11f3a" stroke={INK} strokeWidth={1} />
+                </g>
                 {/* The top hat */}
                 <rect x={-11} y={-112} width={22} height={24} rx={1.5} fill="#1b1b22" {...ink} strokeWidth={2} />
                 <rect x={-11} y={-95} width={22} height={4.5} fill="#c8202c" />
@@ -298,6 +306,70 @@ export function ClownCar({ elRef }) {
             <circle cx={-20} cy={-8} r={3} fill="#e5484d" stroke={INK} strokeWidth={1.1} />
             <circle cx={20} cy={-8} r={8} fill="#1d1a22" {...ink} strokeWidth={2} />
             <circle cx={20} cy={-8} r={3} fill="#e5484d" stroke={INK} strokeWidth={1.1} />
+        </g>
+    );
+}
+
+/** A bear on a unicycle, in a little red fez: ~108 tall with the wheel on (0, 0). `.is-riding`: the wheel turns */
+export function Bear({ elRef }) {
+    const fur = '#8b5a2b';
+    return (
+        <g ref={elRef} className="crew-actor circus-bear" style={{ display: 'none' }} data-look="front">
+            <g className="crew-fig">
+                {/* The unicycle */}
+                <path d="M 0 -14 V -42" stroke={INK} strokeWidth={3} strokeLinecap="round" />
+                <circle cx={0} cy={-14} r={14} fill="none" stroke={INK} strokeWidth={4} />
+                <circle cx={0} cy={-14} r={11.5} fill="none" stroke="#e5484d" strokeWidth={2} />
+                <g className="circus-wheel-spokes">
+                    <path d="M -11 -14 H 11 M 0 -25 V -3 M -8 -22 L 8 -6 M 8 -22 L -8 -6" stroke={INK} strokeWidth={1.2} />
+                </g>
+                <circle cx={0} cy={-14} r={2.4} fill="#e8b93c" stroke={INK} strokeWidth={1} />
+                <ellipse cx={0} cy={-44} rx={9} ry={3.5} fill="#1d1a22" stroke={INK} strokeWidth={1.4} />
+                {/* Legs down to the pedals */}
+                <g className="crew-leg crew-leg-l"><path d="M -7 -50 L -5 -22" stroke={INK} strokeWidth={8} strokeLinecap="round" /><path d="M -7 -50 L -5 -22" stroke={fur} strokeWidth={5.5} strokeLinecap="round" /></g>
+                <g className="crew-leg crew-leg-r"><path d="M 7 -50 L 5 -22" stroke={INK} strokeWidth={8} strokeLinecap="round" /><path d="M 7 -50 L 5 -22" stroke={fur} strokeWidth={5.5} strokeLinecap="round" /></g>
+                {/* Body and arms out for balance */}
+                <ellipse cx={0} cy={-60} rx={15} ry={17} fill={fur} {...ink} />
+                <ellipse cx={0} cy={-57} rx={9} ry={11} fill="#c08a55" />
+                <path d="M -12 -68 L -27 -76 M 12 -68 L 27 -76" stroke={INK} strokeWidth={8} strokeLinecap="round" />
+                <path d="M -12 -68 L -27 -76 M 12 -68 L 27 -76" stroke={fur} strokeWidth={5.5} strokeLinecap="round" />
+                <path d="M -4.5 -74 L 0 -71.5 L 4.5 -74 V -69 L 0 -71.5 L -4.5 -69 Z" fill="#ffd23f" stroke={INK} strokeWidth={0.9} />
+                {/* Head */}
+                <circle cx={-9} cy={-96} r={4.5} fill={fur} {...ink} strokeWidth={1.6} />
+                <circle cx={9} cy={-96} r={4.5} fill={fur} {...ink} strokeWidth={1.6} />
+                <circle cx={0} cy={-86} r={12} fill={fur} {...ink} strokeWidth={2} />
+                <g className="crew-eyes">
+                    <circle cx={-4.5} cy={-89} r={1.6} fill={INK} />
+                    <circle cx={4.5} cy={-89} r={1.6} fill={INK} />
+                </g>
+                <ellipse cx={0} cy={-82} rx={6} ry={4.5} fill="#d9b48a" stroke={INK} strokeWidth={1} />
+                <ellipse cx={0} cy={-84} rx={2.2} ry={1.5} fill={INK} />
+                <path d="M -2.5 -80 Q 0 -78.5 2.5 -80" stroke={INK} strokeWidth={1} fill="none" strokeLinecap="round" />
+                <path d="M -5 -97 L -4 -106 H 4 L 5 -97 Z" fill="#e5484d" stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
+                <path d="M 0 -106 Q 6 -106 7 -100" stroke="#ffd23f" strokeWidth={1.4} fill="none" />
+            </g>
+        </g>
+    );
+}
+
+/** The lion tamer's hoop, striped like the rules: a ring `r` across, centred on (0, 0) */
+export function Hoop({ elRef }) {
+    return (
+        <g ref={elRef} className="circus-hoop" style={{ display: 'none' }}>
+            <circle r={24} fill="none" stroke={INK} strokeWidth={6} />
+            <circle r={24} fill="none" stroke="#fff6e0" strokeWidth={3.6} />
+            <circle r={24} fill="none" stroke="#e5484d" strokeWidth={3.6} strokeDasharray="6 6" />
+        </g>
+    );
+}
+
+/** A cream pie on its way through the air */
+export function FlyingPie({ elRef }) {
+    return (
+        <g ref={elRef} style={{ display: 'none' }}>
+            <path d="M -12 0 H 12 L 10 5 H -10 Z" fill="#c79a5b" stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
+            <path d="M -11 0 Q -10 -8 0 -8 Q 10 -8 11 0 Z" fill="#fffaf0" stroke={INK} strokeWidth={1.4} strokeLinejoin="round" />
+            <circle cx={0} cy={-9.5} r={2.2} fill="#d11f3a" stroke={INK} strokeWidth={0.9} />
         </g>
     );
 }

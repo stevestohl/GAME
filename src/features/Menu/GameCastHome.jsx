@@ -236,7 +236,7 @@ export default function GameCastHome() {
                                     hidden={isGameHidden('mixup')}
                                     title="3 Ring Circus"
                                     players="3+ players"
-                                    description="Three games under one big top: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
+                                    description="Three games under one big tent: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
                                 >
                                     <Button
                                         variant="primary"

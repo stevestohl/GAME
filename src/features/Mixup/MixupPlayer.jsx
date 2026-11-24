@@ -9,6 +9,7 @@ import { DrawingPad, DrawingView } from './DrawingCanvas.jsx';
 import { MemeImage, ROUND_LOOKS, useCountdown, roundKicker } from './MixupScreensTV.jsx';
 import SnakeSnack from './SnakeSnack.jsx';
 import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScoreboard.jsx';
+import { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
 import { JudgeReview, ReviewWatch } from './MatchReview.jsx';
 import '../../styles/mixup.css';
@@ -31,7 +32,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
     const [myGuesses, setMyGuesses] = useState([]);
     const lastRound = useRef(null);
 
-    useSetBackgroundTheme(mixupTheme(room?.round?.type, !room || room.gameState === 'lobby'));
+    useSetBackgroundTheme(mixupTheme());
     useEffect(preloadBurglar, []);
 
     // --- Join, and stay joined through refreshes and network blips ---
@@ -120,6 +121,8 @@ export default function MixupPlayer({ roomCode, playerName }) {
             </Frame>
         );
     }
+    // ⏸️ The caster paused the game: "Paused" covers whatever this phone was showing
+    if (room.isPaused) return <CouchCastPausedOverlay />;
 
     const me = Object.values(room.players).find((p) => p.id === socket.id) || {};
     const round = room.round;

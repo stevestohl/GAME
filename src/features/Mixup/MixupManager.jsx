@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Alert, Spinner } from 'react-bootstrap';
 import { mixupSocket as socket } from '../../socket.js';
@@ -12,9 +12,10 @@ import { speak, stopVoice, preloadVoice, unlockVoice, canPlaySound } from '../..
 import { startLobbyMusic, lobbyTrackFor } from '../CouchCast/lobbyMusic.js';
 import { useTimerMusic, JUDGING_TRACK, DRAWING_TRACK } from '../../timerMusic.js';
 import { scoreRecap } from '../../scoreRecap.js';
+import { playClownWin, playClownTimesUp } from '../../circusSounds.js';
 
 import CouchCastLobby from '../CouchCast/CouchCastLobby.jsx';
-import CouchCastCasterControls from '../CouchCast/CouchCastCasterControls.jsx';
+import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/CouchCastCasterControls.jsx';
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
 import { MixupRulesTV, RoundIntroTV, MemeTV, DrawTV, MatchTV, NobodyTV, MIXUP_RULES_NARRATION, ROUND_LOOKS, roundKicker, nobodyLine } from './MixupScreensTV.jsx';
@@ -71,8 +72,8 @@ function MixupTV({ roomCode, casterName }) {
     useRoomGone(socket, roomCode, !!room);
     const gameState = room?.gameState;
 
-    // 🎨 Background follows the block of rounds, and covers the nav bar on the TV
-    useSetBackgroundTheme(mixupTheme(room?.round?.type, !room || room.gameState === 'lobby'), true);
+    // 🎨 The circus background the whole way through, covering the nav bar on the TV
+    useSetBackgroundTheme(mixupTheme(), true);
     // 🔊 Each player's own sound: when they join, and each time they answer
     usePlayerSounds(room?.roomCode, room?.players);
     // 🔔 Voting is open: chime on the TV, where everyone hears it
@@ -129,8 +130,14 @@ function MixupTV({ roomCode, casterName }) {
     else if (gameState === 'match_compare') voiceMoment = `list-review-${n}`;
     else if (gameState === 'scoreboard') voiceMoment = room.isGameOver ? 'game-over' : `scores-${n}`;
 
+    // A round's title card and the scores are on screen only a few seconds, and their lines can run a little longer
+    // (Threefold's names the judge too): the next line waits for them to finish instead of cutting them off.
+    const lastVoiceMoment = useRef(null);
     useEffect(() => {
-        stopVoice();
+        const last = lastVoiceMoment.current;
+        lastVoiceMoment.current = voiceMoment;
+        const letItFinish = !!last && (last.startsWith('intro') || last.startsWith('scores'));
+        if (!letItFinish) stopVoice();
         if (!voiceMoment || !room) return;
         const code = room.roomCode;
         const round = room.round;
@@ -146,7 +153,7 @@ function MixupTV({ roomCode, casterName }) {
             if (round.greatMinds) speak([`Great minds think alike! Double points for ${winners.map((w) => w.name).join(' and ')}!`, winners[0].text], code);
             else if (winners.length === 1) speak([`The funniest caption goes to ${winners[0].name}.`, winners[0].text], code);
             else if (winners.length > 1) speak(`It's a tie! ${winners.map((w) => w.name).join(' and ')} both score.`, code);
-            else speak('Nobody wrote a caption that time!', code);
+            else speak((round.captions || []).length ? 'Nobody voted that time!' : 'Nobody wrote a caption that time!', code);
         } else if (voiceMoment.startsWith('draw-results')) {
             speak(round.guessedBy ? `${round.guessedBy} got it! It was ${round.word}.` : `Time's up! It was ${round.word}.`, code);
         } else if (voiceMoment.startsWith('match-judge')) {
@@ -172,11 +179,31 @@ function MixupTV({ roomCode, casterName }) {
         return undefined;
     }, [voiceMoment]);
 
+    // 🤡 Clown noises: HONK-HONK when someone wins a round...
+    useEffect(() => {
+        if (!room || room.isPaused) return;
+        const round = room.round;
+        const someoneScored = Object.values(room.players).some((p) => !p.isCaster && (p.roundPoints || 0) > 0);
+        if (gameState === 'meme_results' && (round?.winnerIds || []).length > 0) playClownWin();
+        else if (gameState === 'draw_results' && round?.guessedBy) playClownWin();
+        else if (gameState === 'match_results' && someoneScored) playClownWin();
+    }, [gameState, n]);
+    // ...and a slide whistle when the clock runs out
+    const isClockRunning = ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState) && !!room?.endTime;
+    const clockEnds = room?.endTime;
+    useEffect(() => {
+        if (!isClockRunning) return undefined;
+        const ms = clockEnds - Date.now();
+        if (ms < 0) return undefined;
+        const timer = setTimeout(playClownTimesUp, ms);
+        return () => clearTimeout(timer);
+    }, [isClockRunning, clockEnds, gameState]);
+
     // ⏳ Timer music while people are writing, voting, drawing or answering
     // 📋 Then the judging music under Threefold's review of the lists, one track from the judge's turn to the results (no hurry-up tick)
     const isListReview = ['match_review', 'match_compare', 'match_results'].includes(gameState);
     const isTimerPhase = isListReview || ['meme_write', 'meme_vote', 'draw', 'match_write'].includes(gameState);
-    useTimerMusic(isTimerPhase, {
+    useTimerMusic(isTimerPhase && !room?.isPaused, {
         endTime: isListReview ? null : room?.endTime,
         key: isListReview ? `list-review-${n}` : `${gameState}-${n}`,
         // ⏰ the list rounds tick away the whole time; ✏️ Pictionary has its own bouncy doodle tune, and it stops when the drawing ends
@@ -212,6 +239,15 @@ function MixupTV({ roomCode, casterName }) {
         socket.emit('endGame', { roomCode: room?.roomCode });
         navigate('/home', { state: { toastMessage: 'Thanks for playing!' } });
     };
+
+    // ⏸️ The caster can pause a running game (the button is on the TV, and the app's phone can press it too):
+    // the server stops the round's clock, the phones show "Paused", and the narrator stops
+    const isPaused = !!room?.isPaused;
+    const canPause = !!room && !['lobby', 'rules'].includes(gameState) && !room.isGameOver;
+    const handleTogglePause = () => socket.emit('set_paused', { roomCode: room?.roomCode, paused: !isPaused });
+    useEffect(() => {
+        if (isPaused) stopVoice();
+    }, [isPaused]);
 
     // Leaving the game: stop talking
     useEffect(() => stopVoice, []);
@@ -277,7 +313,8 @@ function MixupTV({ roomCode, casterName }) {
             )}
             {renderGamePhase()}
             {showCredits && gameState === 'scoreboard' && <SnakeCredits snake={room?.snake} onDone={() => setShowCredits(false)} />}
-            {room && <CouchCastCasterControls />}
+            {isPaused && <CouchCastPausedOverlay isCaster />}
+            {room && <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />}
             {isSoundLocked && (
                 <button type="button" className="cc-sound-button" onClick={handleTurnSoundOn}>
                     🔇 Tap to turn sound back on

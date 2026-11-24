@@ -51,12 +51,9 @@ export function listsTheme(expansion) {
     return expansion === 'halloween' ? 'halloween' : 'lists';
 }
 
-// Temple Mix Up: the big top for the lobby, then the background follows the block of rounds (memes, Pictionary, Threefold)
-export function mixupTheme(roundType, isLobby = false) {
-    if (isLobby) return 'circus';
-    if (roundType === 'draw') return 'lists';
-    if (roundType === 'match') return 'trivia';
-    return 'couchcast';
+// 3 Ring Circus (Temple Mix Up): the big top, from the lobby to the last round
+export function mixupTheme() {
+    return 'circus';
 }
 
 // Trivia Cast: each question deck gets its own background
