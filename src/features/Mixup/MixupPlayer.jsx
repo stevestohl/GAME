@@ -106,7 +106,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
 
     if (error && !room) {
         return (
-            <Frame title="Temple Mix Up">
+            <Frame title="3 Ring Circus">
                 <Alert variant="danger">{error}</Alert>
                 <Button variant="primary" className="w-100" onClick={() => navigate('/join')}>Back to Join</Button>
             </Frame>
@@ -114,7 +114,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
     }
     if (!room) {
         return (
-            <Frame title="Temple Mix Up">
+            <Frame title="3 Ring Circus">
                 <Spinner animation="border" variant="primary" />
                 <p className="text-muted mt-2 mb-0">Joining room {roomCode}...</p>
             </Frame>
@@ -125,7 +125,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
     const round = room.round;
     const isLeader = room.hostId === socket.id;
     const players = Object.values(room.players).filter((p) => !p.isCaster && p.isConnected);
-    const roundTitle = round ? ROUND_LOOKS[round.type].title : 'Temple Mix Up';
+    const roundTitle = round ? ROUND_LOOKS[round.type].title : '3 Ring Circus';
     const clock = timeLeft !== null && <span className={`mx-phone-clock ${timeLeft <= 10 ? 'low' : ''}`}>⏱️ {timeLeft}s</span>;
 
     switch (room.gameState) {
@@ -380,7 +380,7 @@ export default function MixupPlayer({ roomCode, playerName }) {
             return <CouchCastScoreboard playerData={me} players={players} isGameOver={room.isGameOver} expansion={room.expansion} />;
         }
         default:
-            return <Frame title="Temple Mix Up"><Spinner animation="border" /></Frame>;
+            return <Frame title="3 Ring Circus"><Spinner animation="border" /></Frame>;
     }
 }
 

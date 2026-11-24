@@ -20608,6 +20608,78 @@ var ICONS = {
     d: "M50 8 V92 M14 29 L86 71 M14 71 L86 29 M50 22 L40 12 M50 22 L60 12 M50 78 L40 88 M50 78 L60 88 M24 34 L11 38 M24 34 L20 21 M76 66 L89 62 M76 66 L80 79 M24 66 L11 62 M24 66 L20 79 M76 34 L89 38 M76 34 L80 21"
   }),
   // 🎪 The circus
+  bearUnicycle: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "20",
+    r: "11"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "41",
+    cy: "11",
+    r: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "59",
+    cy: "11",
+    r: "4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "23",
+    r: "2.5",
+    className: "gt-icon-dot"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ellipse", {
+    cx: "50",
+    cy: "45",
+    rx: "13",
+    ry: "15"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M38 38 L24 30 M62 38 L76 30"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M44 58 L46 70 M56 58 L54 70"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 60 V72"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "82",
+    r: "13"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M50 82 L50 69 M37 82 H63"
+  })),
+  clownFace: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "54",
+    r: "26"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "22",
+    cy: "44",
+    r: "9"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "78",
+    cy: "44",
+    r: "9"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M36 30 L50 6 L64 30"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "6",
+    r: "3",
+    className: "gt-icon-dot"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "40",
+    cy: "48",
+    r: "3",
+    className: "gt-icon-dot"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "60",
+    cy: "48",
+    r: "3",
+    className: "gt-icon-dot"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "50",
+    cy: "58",
+    r: "6",
+    className: "gt-icon-dot"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M36 66 Q50 80 64 66"
+  })),
   bigTop: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     d: "M10 88 L18 42 L50 14 L82 42 L90 88 Z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
@@ -21013,29 +21085,29 @@ var HOLIDAY_FLOATERS = [{
   rot: 10
 }];
 var CIRCUS_FLOATERS = [{
-  icon: 'bigTop',
+  icon: 'bearUnicycle',
   top: '12%',
   left: '3%',
   size: 180,
   dur: 38,
   delay: 0,
-  rot: -8
+  rot: -6
 }, {
-  icon: 'balloon',
+  icon: 'clownFace',
   top: '58%',
   left: '79%',
   size: 170,
   dur: 44,
   delay: -8,
-  rot: 10
+  rot: 8
 }, {
-  icon: 'ticket',
+  icon: 'bigTop',
   top: '66%',
   left: '5%',
   size: 130,
   dur: 36,
   delay: -14,
-  rot: -12
+  rot: -8
 }, {
   icon: 'popcorn',
   top: '8%',
@@ -21045,7 +21117,7 @@ var CIRCUS_FLOATERS = [{
   delay: -20,
   rot: 8
 }, {
-  icon: 'star',
+  icon: 'balloon',
   top: '42%',
   left: '90%',
   size: 80,
@@ -21061,7 +21133,7 @@ var CIRCUS_FLOATERS = [{
   delay: -26,
   rot: 6
 }, {
-  icon: 'balloon',
+  icon: 'clownFace',
   top: '84%',
   left: '44%',
   size: 90,
@@ -21069,7 +21141,7 @@ var CIRCUS_FLOATERS = [{
   delay: -12,
   rot: -10
 }, {
-  icon: 'bigTop',
+  icon: 'bearUnicycle',
   top: '4%',
   left: '42%',
   size: 80,
@@ -21774,7 +21846,7 @@ var CLASSICS = [{
   title: 'Entry of the Gladiators',
   by: 'Julius Fučík',
   url: 'https://imslp.org/wiki/Einzug_der_Gladiatoren,_Op.68_(Fu%C4%8D%C3%ADk,_Julius)',
-  usedIn: 'Temple Mix Up lobby'
+  usedIn: '3 Ring Circus lobby'
 }];
 
 // 🎵 Song files from elsewhere (they live in public/audio)
@@ -22608,16 +22680,16 @@ function GameCastHome() {
     }, squareStyle)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))), canSeeGame('mixup') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
     hidden: isGameHidden('mixup'),
-    title: "Temple Mix Up!",
+    title: "3 Ring Circus",
     players: "3+ players",
-    description: "Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
+    description: "Three games under one big top: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     variant: "primary",
     className: gameImgBtnClass,
     onClick: function onClick() {
       return navigate('/mixup-setup');
     },
-    "aria-label": "Set up a Temple Mix Up game",
+    "aria-label": "Set up a 3 Ring Circus game",
     style: _objectSpread({
       '--shimmer-delay': '1.2s'
     }, squareStyle)
@@ -29181,7 +29253,7 @@ function MixupTV(_ref) {
     switch (gameState) {
       case 'lobby':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastLobby_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
-          title: "Temple Mix Up Room Created",
+          title: "3 Ring Circus Room Created",
           roomCode: room.roomCode,
           players: playersArray,
           musicTrack: lobbyTrack,
@@ -29478,7 +29550,7 @@ function MixupPlayer(_ref) {
   };
   if (error && !room) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
-      title: "Temple Mix Up"
+      title: "3 Ring Circus"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
       variant: "danger"
     }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -29491,7 +29563,7 @@ function MixupPlayer(_ref) {
   }
   if (!room) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
-      title: "Temple Mix Up"
+      title: "3 Ring Circus"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
       animation: "border",
       variant: "primary"
@@ -29507,7 +29579,7 @@ function MixupPlayer(_ref) {
   var players = Object.values(room.players).filter(function (p) {
     return !p.isCaster && p.isConnected;
   });
-  var roundTitle = round ? _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_6__.ROUND_LOOKS[round.type].title : 'Temple Mix Up';
+  var roundTitle = round ? _MixupScreensTV_jsx__WEBPACK_IMPORTED_MODULE_6__.ROUND_LOOKS[round.type].title : '3 Ring Circus';
   var clock = timeLeft !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "mx-phone-clock ".concat(timeLeft <= 10 ? 'low' : '')
   }, "\u23F1\uFE0F ", timeLeft, "s");
@@ -29866,7 +29938,7 @@ function MixupPlayer(_ref) {
       }
     default:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Frame, {
-        title: "Temple Mix Up"
+        title: "3 Ring Circus"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
         animation: "border"
       }));
@@ -29950,8 +30022,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-// 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to a three-ring circus
-var MIXUP_RULES_NARRATION = ["Welcome, one and all, to the Temple Mix Up circus! Three rings, three games.", "In ring one, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.", "In ring two, Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.", "And in ring three, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.", "On with the show. Let's mix it up!"];
+// 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to the 3 Ring Circus.
+// Kept short: the cards on screen have the scoring, and a long line is more likely to trip up the voice.
+var MIXUP_RULES_NARRATION = ["Welcome, one and all, to the Three Ring Circus! Three rings, three games.", "In ring one, memes. Write the funniest caption on your phone, then vote for your favorite.", "In ring two, Pictionary. One player draws, and everyone else races to guess. The first right guess scores, and so does the artist.", "And in ring three, Threefold. Write three answers on your phone, and score for every player who matches you. A judge checks the matches.", "On with the show!"];
 
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
 var NARRATION_GRACE_SECONDS = 20;
@@ -30100,7 +30173,7 @@ function MixupRulesTV(_ref3) {
     className: "d-flex flex-column h-100 p-3 w-100 mx-rules-with-clowns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "fullscreen-gameplay-header text-center"
-  }, "How To Play Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "How To Play 3 Ring Circus!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-rules-grid flex-grow-1",
     style: {
       minHeight: 0
@@ -30463,13 +30536,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
 /* harmony import */ var _mixupCreate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixupCreate.js */ "./src/features/Mixup/mixupCreate.js");
 /* harmony import */ var _Menu_LevelPicker_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/LevelPicker.jsx */ "./src/features/Menu/LevelPicker.jsx");
@@ -30478,6 +30551,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
 /* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../gameVisibility.js */ "./src/gameVisibility.js");
 /* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
+/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -30495,15 +30569,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var MIXUP_ROUND_OPTIONS = [9, 12, 15];
 
 /**
- * 🎪 Temple Mix Up setup: what the game is, how many rounds, how hard, then tap a deck to start.
+ * 🎪 3 Ring Circus (Temple Mix Up) setup: what the game is, how many rounds, how hard, then tap a deck to start.
  */
 function MixupSetup() {
   var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_7__.useGameVisibility)(),
     visibleDecks = _useGameVisibility.visibleDecks;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isCreatingRoom = _useState2[0],
@@ -30516,6 +30591,8 @@ function MixupSetup() {
     _useState6 = _slicedToArray(_useState5, 2),
     level = _useState6[0],
     setLevel = _useState6[1];
+  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_9__.useSetBackgroundTheme)('circus'); // 🎪 bears on unicycles, clowns and the big top
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     document.body.style.overflow = 'unset';
     document.body.classList.remove('modal-open');
@@ -30529,32 +30606,32 @@ function MixupSetup() {
   var each = totalRounds / 3;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Header, {
     className: "main-card-header"
-  }, "Temple Mix Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
-    className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "bg-light border-0 shadow-sm m-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Body, {
+  }, "3 Ring Circus"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
     className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    className: "g-2 align-items-center"
+    className: "bg-light border-0 shadow-sm m-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Body, {
+    className: "p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    className: "g-2 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 4
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     className: "w-100 rounded shadow-sm"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     xs: 8,
     className: "text-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fw-bold mb-1"
-  }, "Temple Mix Up!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, "3 Ring Circus", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "text-muted fw-normal small ms-2"
   }, "3+ players")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "small text-secondary lh-sm"
-  }, "Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers in Threefold. Cast one extra device to the TV as the main screen."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "Three games under one big top: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers in Threefold. Cast one extra device to the TV as the main screen."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex align-items-center my-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
@@ -30590,10 +30667,10 @@ function MixupSetup() {
     className: "mx-2 small fw-bold text-muted text-uppercase"
   }, "Then Tap a Deck to Start"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
     className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "g-2"
   }, visibleDecks('mixup', _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__.MIXUP_DECKS).map(function (deck, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       xs: 6,
       key: deck.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -30607,23 +30684,23 @@ function MixupSetup() {
           expansion: deck.id
         });
       },
-      ariaLabel: "Create a Temple Mix Up room with the ".concat(deck.title)
+      ariaLabel: "Create a 3 Ring Circus room with the ".concat(deck.title)
     }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "outline-secondary",
     className: "w-100 fw-bold mt-3",
     disabled: isCreatingRoom,
     onClick: function onClick() {
       return navigate('/home');
     }
-  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     show: isCreatingRoom,
     backdrop: "static",
     keyboard: false,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     animation: "border",
     variant: "primary",
     className: "mb-3"
@@ -30654,8 +30731,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /**
- * 🎪 Game tile for Temple Mix Up, drawn in code to match the other cast tiles: a blue glass square
- * with the three round types on it (a meme picture, a pencil and a numbered list) and the name.
+ * 🎪 Game tile for 3 Ring Circus (Temple Mix Up), drawn in code to match the other cast tiles: a blue glass
+ * square with a big top tent in white line art, and the name.
  */
 function MixupTile(_ref) {
   var _ref$className = _ref.className,
@@ -30668,7 +30745,7 @@ function MixupTile(_ref) {
       display: 'block'
     }, style),
     role: "img",
-    "aria-label": "Temple Mix Up"
+    "aria-label": "3 Ring Circus"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("linearGradient", {
     id: "mxTileBg",
     x1: "0",
@@ -30691,60 +30768,41 @@ function MixupTile(_ref) {
     strokeWidth: "5",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "22",
-    y: "40",
-    width: "54",
-    height: "50",
-    rx: "6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M100 40 Q80 60 52 76 M100 40 Q120 60 148 76"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M28 82 L42 66 L52 76 L60 68 L70 82",
+    d: "M100 40 L84 76 M100 40 L116 76",
     strokeWidth: "4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M30 50 H68",
+    d: "M52 76 Q60 87 68 76 Q76 87 84 76 Q92 87 100 76 Q108 87 116 76 Q124 87 132 76 Q140 87 148 76"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M58 84 V116 M142 84 V116 M46 116 H154"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M100 86 Q92 100 86 116 M100 86 Q108 100 114 116",
     strokeWidth: "4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M92 92 L128 44 L138 52 L102 100 L90 104 Z"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M122 52 L132 60",
+    d: "M100 40 V22",
     strokeWidth: "4"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M84 116 q8 -8 14 0 t14 0",
-    strokeWidth: "4"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M160 48 H184 M160 68 H184 M160 88 H184"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: "150",
-    cy: "48",
-    r: "4",
-    fill: "#fff"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: "150",
-    cy: "68",
-    r: "4",
-    fill: "#fff"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: "150",
-    cy: "88",
-    r: "4",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M101 21 L117 26 L101 31 Z",
     fill: "#fff"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
     x: "100",
-    y: "152",
+    y: "150",
     textAnchor: "middle",
     fill: "#fff",
     fontSize: "25",
     fontWeight: "700",
     fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
-  }, "Temple"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
+  }, "3 Ring"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
     x: "100",
-    y: "180",
+    y: "178",
     textAnchor: "middle",
     fill: "#fff",
     fontSize: "25",
     fontWeight: "700",
     fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
-  }, "Mix Up!"));
+  }, "Circus"));
 }
 
 /***/ }),
@@ -53358,11 +53416,12 @@ __webpack_require__.r(__webpack_exports__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 // 🎙️ Voice-overs for the Couch Cast TV screen.
@@ -53436,44 +53495,125 @@ var englishVoice = function englishVoice() {
   }) || null;
 };
 
-// Resolves true once the line has been read all the way through
-var speakWithDevice = function speakWithDevice(text) {
-  var volume = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+// One sentence. Chrome's built-in voices can stop partway through a long sentence and never say they've
+// finished, which left the narrator silent for the rest of the game (it waits for each line to end). So a
+// sentence that's still going well after it should have finished is given up on, and the next line plays.
+var speakSentence = function speakSentence(text, volume) {
   return new Promise(function (resolve) {
-    if (!deviceVoice || !window.SpeechSynthesisUtterance) return resolve(false);
     var utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
     utterance.volume = volume;
     var voice = englishVoice();
     if (voice) utterance.voice = voice;
+    var settled = false;
+    var settle = function settle(spoken) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(watchdog);
+      setSpeaking(false);
+      resolve(spoken);
+    };
+    var watchdog = setTimeout(function () {
+      console.warn("Voice-over: the device voice stalled on \"".concat(text.slice(0, 40), "\""));
+      settle(false);
+      deviceVoice.cancel();
+    }, 4000 + text.length * 110);
     utterance.onstart = function () {
       return setSpeaking(true);
     };
     utterance.onend = function () {
-      setSpeaking(false);
-      resolve(true);
+      return settle(true);
     };
     utterance.onerror = function () {
-      setSpeaking(false);
-      resolve(false);
+      return settle(false);
     };
     currentUtterance = utterance;
     deviceVoice.speak(utterance);
   });
 };
-var fetchAudio = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(text, roomCode) {
-    var attempt,
-      response,
-      detail,
+
+// Resolves true once the line has been read all the way through, a sentence at a time
+var speakWithDevice = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(text) {
+    var volume,
+      sentences,
+      _iterator,
+      _step,
+      sentence,
+      spoken,
       _args = arguments;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            attempt = _args.length > 2 && _args[2] !== undefined ? _args[2] : 1;
-            _context.prev = 1;
-            _context.next = 4;
+            volume = _args.length > 1 && _args[1] !== undefined ? _args[1] : 1;
+            if (!(!deviceVoice || !window.SpeechSynthesisUtterance)) {
+              _context.next = 3;
+              break;
+            }
+            return _context.abrupt("return", false);
+          case 3:
+            sentences = text.split(/(?<=[.!?])\s+/).map(function (s) {
+              return s.trim();
+            }).filter(Boolean);
+            _iterator = _createForOfIteratorHelper(sentences);
+            _context.prev = 5;
+            _iterator.s();
+          case 7:
+            if ((_step = _iterator.n()).done) {
+              _context.next = 16;
+              break;
+            }
+            sentence = _step.value;
+            _context.next = 11;
+            return speakSentence(sentence, volume);
+          case 11:
+            spoken = _context.sent;
+            if (!(!spoken || !currentUtterance)) {
+              _context.next = 14;
+              break;
+            }
+            return _context.abrupt("return", false);
+          case 14:
+            _context.next = 7;
+            break;
+          case 16:
+            _context.next = 21;
+            break;
+          case 18:
+            _context.prev = 18;
+            _context.t0 = _context["catch"](5);
+            _iterator.e(_context.t0);
+          case 21:
+            _context.prev = 21;
+            _iterator.f();
+            return _context.finish(21);
+          case 24:
+            return _context.abrupt("return", true);
+          case 25:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[5, 18, 21, 24]]);
+  }));
+  return function speakWithDevice(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+var fetchAudio = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(text, roomCode) {
+    var attempt,
+      response,
+      detail,
+      _args2 = arguments;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            attempt = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : 1;
+            _context2.prev = 1;
+            _context2.next = 4;
             return fetch("".concat(backendBase, "/api/tts"), {
               method: 'POST',
               headers: {
@@ -53485,97 +53625,97 @@ var fetchAudio = /*#__PURE__*/function () {
               })
             });
           case 4:
-            response = _context.sent;
+            response = _context2.sent;
             if (response.ok) {
-              _context.next = 15;
+              _context2.next = 15;
               break;
             }
-            _context.next = 8;
+            _context2.next = 8;
             return response.json()["catch"](function () {
               return {};
             });
           case 8:
-            detail = _context.sent;
+            detail = _context2.sent;
             console.warn("Voice-over failed (".concat(response.status, "): ").concat(detail.message || 'no details', " \u2014 \"").concat(text.slice(0, 40), "\""));
             // The voice service hiccuped: one more go. Anything else (no key, limit reached) won't change.
             if (!(response.status >= 500 && response.status !== 503 && attempt === 1)) {
-              _context.next = 14;
+              _context2.next = 14;
               break;
             }
-            _context.next = 13;
+            _context2.next = 13;
             return wait(400);
           case 13:
-            return _context.abrupt("return", fetchAudio(text, roomCode, 2));
+            return _context2.abrupt("return", fetchAudio(text, roomCode, 2));
           case 14:
-            return _context.abrupt("return", null);
+            return _context2.abrupt("return", null);
           case 15:
-            _context.t0 = URL;
-            _context.next = 18;
+            _context2.t0 = URL;
+            _context2.next = 18;
             return response.blob();
           case 18:
-            _context.t1 = _context.sent;
-            return _context.abrupt("return", _context.t0.createObjectURL.call(_context.t0, _context.t1));
+            _context2.t1 = _context2.sent;
+            return _context2.abrupt("return", _context2.t0.createObjectURL.call(_context2.t0, _context2.t1));
           case 22:
-            _context.prev = 22;
-            _context.t2 = _context["catch"](1);
-            console.warn("Voice-over unavailable: ".concat(_context.t2.message));
+            _context2.prev = 22;
+            _context2.t2 = _context2["catch"](1);
+            console.warn("Voice-over unavailable: ".concat(_context2.t2.message));
             if (!(attempt === 1)) {
-              _context.next = 29;
+              _context2.next = 29;
               break;
             }
-            _context.next = 28;
+            _context2.next = 28;
             return wait(400);
           case 28:
-            return _context.abrupt("return", fetchAudio(text, roomCode, 2));
+            return _context2.abrupt("return", fetchAudio(text, roomCode, 2));
           case 29:
-            return _context.abrupt("return", null);
+            return _context2.abrupt("return", null);
           case 30:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee, null, [[1, 22]]);
+    }, _callee2, null, [[1, 22]]);
   }));
-  return function fetchAudio(_x, _x2) {
-    return _ref.apply(this, arguments);
+  return function fetchAudio(_x2, _x3) {
+    return _ref2.apply(this, arguments);
   };
 }();
 var playNext = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     var next, mySession, url, release, finish, spoken;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             if (!isPlaying) {
-              _context2.next = 2;
+              _context3.next = 2;
               break;
             }
-            return _context2.abrupt("return");
+            return _context3.abrupt("return");
           case 2:
             next = queue.shift();
             if (next) {
-              _context2.next = 5;
+              _context3.next = 5;
               break;
             }
-            return _context2.abrupt("return");
+            return _context3.abrupt("return");
           case 5:
             isPlaying = true;
             mySession = session;
-            _context2.next = 9;
+            _context3.next = 9;
             return next.audioPromise;
           case 9:
-            url = _context2.sent;
+            url = _context3.sent;
             release = function release() {
               if (url && !next.keep) URL.revokeObjectURL(url);
             }; // stopVoice() was called while this line was loading
             if (!(mySession !== session)) {
-              _context2.next = 15;
+              _context3.next = 15;
               break;
             }
             release();
             next.done(false);
-            return _context2.abrupt("return");
+            return _context3.abrupt("return");
           case 15:
             // wasSpoken: true only if the line played all the way through
             finish = function finish(wasSpoken) {
@@ -53589,17 +53729,17 @@ var playNext = /*#__PURE__*/function () {
               playNext();
             };
             if (url) {
-              _context2.next = 23;
+              _context3.next = 23;
               break;
             }
             // No recording for this line: the device reads it instead
             console.warn("Voice-over: using the device voice for \"".concat(next.text.slice(0, 40), "\""));
-            _context2.next = 20;
+            _context3.next = 20;
             return speakWithDevice(next.text, next.volume);
           case 20:
-            spoken = _context2.sent;
+            spoken = _context3.sent;
             if (currentUtterance && mySession === session) currentUtterance = null;
-            return _context2.abrupt("return", finish(spoken));
+            return _context3.abrupt("return", finish(spoken));
           case 23:
             currentDone = next.done;
             player.onended = function () {
@@ -53616,13 +53756,13 @@ var playNext = /*#__PURE__*/function () {
             });
           case 29:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return function playNext() {
-    return _ref2.apply(this, arguments);
+    return _ref3.apply(this, arguments);
   };
 }();
 
@@ -53653,33 +53793,33 @@ function canPlaySound() {
 
 // Fetch lines ahead of time so they start the moment they're needed
 function _canPlaySound() {
-  _canPlaySound = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+  _canPlaySound = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
             if (!isPlaying) {
-              _context3.next = 2;
+              _context4.next = 2;
               break;
             }
-            return _context3.abrupt("return", true);
+            return _context4.abrupt("return", true);
           case 2:
-            _context3.prev = 2;
+            _context4.prev = 2;
             player.src = SILENCE;
-            _context3.next = 6;
+            _context4.next = 6;
             return player.play();
           case 6:
-            return _context3.abrupt("return", true);
+            return _context4.abrupt("return", true);
           case 9:
-            _context3.prev = 9;
-            _context3.t0 = _context3["catch"](2);
-            return _context3.abrupt("return", _context3.t0.name !== 'NotAllowedError');
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](2);
+            return _context4.abrupt("return", _context4.t0.name !== 'NotAllowedError');
           case 12:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3, null, [[2, 9]]);
+    }, _callee4, null, [[2, 9]]);
   }));
   return _canPlaySound.apply(this, arguments);
 }
@@ -53723,9 +53863,9 @@ function speak(lines, roomCode) {
     };
   }).filter(function (line) {
     return line.text;
-  }).map(function (_ref3) {
-    var text = _ref3.text,
-      volume = _ref3.volume;
+  }).map(function (_ref4) {
+    var text = _ref4.text,
+      volume = _ref4.volume;
     return new Promise(function (resolve) {
       var ready = preloaded.get(preloadKey(roomCode, text));
       // Start loading straight away so there's no gap between lines

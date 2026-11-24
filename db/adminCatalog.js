@@ -11,7 +11,7 @@ export const MANAGED_GAMES = [
     { id: 'reshuffled', name: 'Couch Cast Re-Shuffled', content: 'Tagged cards, alternates and prompt stars' },
     { id: 'triviacast', name: 'Trivia Cast & Trivia', content: 'Trivia questions' },
     { id: 'listcast', name: 'List Cast & Listopia', content: 'List topics' },
-    { id: 'mixup', name: 'Temple Mix Up', content: 'Memes and Pictionary prompts' },
+    { id: 'mixup', name: '3 Ring Circus', content: 'Memes and Pictionary prompts' },
 ];
 
 export const isManagedGame = (id) => MANAGED_GAMES.some((g) => g.id === id);

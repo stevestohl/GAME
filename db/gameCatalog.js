@@ -12,7 +12,7 @@ export const GAMES = [
     { id: 'couchcast', name: 'Couch Cast', section: 'Game-Cast', decks: [...CARD_DECKS, { id: 'holiday', name: 'Holiday', defaultHidden: true }, { id: 'jeffinitely', name: 'Jeffinitely', defaultHidden: true }] },
     { id: 'triviacast', name: 'Trivia Cast', section: 'Game-Cast', decks: TRIVIA_DECKS },
     { id: 'listcast', name: 'List Cast', section: 'Game-Cast', decks: LIST_DECKS },
-    { id: 'mixup', name: 'Temple Mix Up', section: 'Game-Cast', decks: [{ id: 'core', name: 'Core Deck' }, { id: 'holiday', name: 'Holiday', defaultHidden: true }] },
+    { id: 'mixup', name: '3 Ring Circus', section: 'Game-Cast', decks: [{ id: 'core', name: 'Core Deck' }, { id: 'holiday', name: 'Holiday', defaultHidden: true }] },
     { id: 'reshuffled', name: 'Couch Cast Re-Shuffled', section: 'Game-Cast', decks: CARD_DECKS, defaultHidden: true },
     { id: 'trivia', name: 'Trivia', section: 'Game-Temple', decks: TRIVIA_DECKS },
     { id: 'prompt2', name: 'Prompt 2', section: 'Game-Temple', decks: CARD_DECKS },

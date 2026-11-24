@@ -8,13 +8,14 @@ import { ReviewGroups } from './MatchReview.jsx';
 import { CircusRulesShow } from './CircusShow.jsx';
 import '../../styles/mixup.css';
 
-// 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to a three-ring circus
+// 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to the 3 Ring Circus.
+// Kept short: the cards on screen have the scoring, and a long line is more likely to trip up the voice.
 export const MIXUP_RULES_NARRATION = [
-    "Welcome, one and all, to the Temple Mix Up circus! Three rings, three games.",
-    "In ring one, memes. A meme pops up on the TV. Write the funniest caption you can on your phone, then everybody votes for their favorite. Most votes wins, and ties both score.",
-    "In ring two, Pictionary. One player draws on their phone while everyone else races to guess. The first right guess wins, and the artist scores too.",
-    "And in ring three, Threefold. You get a list and three places to write. Score for every player who wrote the same answer as you, so think like the group. Each round, one of you is the judge, and checks the matches.",
-    "On with the show. Let's mix it up!",
+    "Welcome, one and all, to the Three Ring Circus! Three rings, three games.",
+    "In ring one, memes. Write the funniest caption on your phone, then vote for your favorite.",
+    "In ring two, Pictionary. One player draws, and everyone else races to guess. The first right guess scores, and so does the artist.",
+    "And in ring three, Threefold. Write three answers on your phone, and score for every player who matches you. A judge checks the matches.",
+    "On with the show!",
 ];
 
 // If the voice stalls, start the game anyway this many seconds after the countdown ends
@@ -114,7 +115,7 @@ export function MixupRulesTV({ roomCode, totalRounds }) {
         <div className="fullscreen-gameplay-container">
             <CircusRulesShow />
             <div className="d-flex flex-column h-100 p-3 w-100 mx-rules-with-clowns">
-                <h2 className="fullscreen-gameplay-header text-center">How To Play Temple Mix Up!</h2>
+                <h2 className="fullscreen-gameplay-header text-center">How To Play 3 Ring Circus!</h2>
                 <div className="mx-rules-grid flex-grow-1" style={{ minHeight: 0 }}>
                     {['meme', 'draw', 'match'].map((type, i) => (
                         <div key={type} className="shining-border-wrapper h-100">

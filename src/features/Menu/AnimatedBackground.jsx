@@ -173,6 +173,30 @@ const ICONS = {
     ),
 
     // 🎪 The circus
+    bearUnicycle: (
+        <>
+            <circle cx="50" cy="20" r="11" />
+            <circle cx="41" cy="11" r="4" /><circle cx="59" cy="11" r="4" />
+            <circle cx="50" cy="23" r="2.5" className="gt-icon-dot" />
+            <ellipse cx="50" cy="45" rx="13" ry="15" />
+            <path d="M38 38 L24 30 M62 38 L76 30" />
+            <path d="M44 58 L46 70 M56 58 L54 70" />
+            <path d="M50 60 V72" />
+            <circle cx="50" cy="82" r="13" />
+            <path d="M50 82 L50 69 M37 82 H63" />
+        </>
+    ),
+    clownFace: (
+        <>
+            <circle cx="50" cy="54" r="26" />
+            <circle cx="22" cy="44" r="9" /><circle cx="78" cy="44" r="9" />
+            <path d="M36 30 L50 6 L64 30" />
+            <circle cx="50" cy="6" r="3" className="gt-icon-dot" />
+            <circle cx="40" cy="48" r="3" className="gt-icon-dot" /><circle cx="60" cy="48" r="3" className="gt-icon-dot" />
+            <circle cx="50" cy="58" r="6" className="gt-icon-dot" />
+            <path d="M36 66 Q50 80 64 66" />
+        </>
+    ),
     bigTop: (
         <>
             <path d="M10 88 L18 42 L50 14 L82 42 L90 88 Z" />
@@ -297,14 +321,14 @@ const HOLIDAY_FLOATERS = [
 ];
 
 const CIRCUS_FLOATERS = [
-    { icon: 'bigTop',   top: '12%', left: '3%',  size: 180, dur: 38, delay: 0,   rot: -8 },
-    { icon: 'balloon',  top: '58%', left: '79%', size: 170, dur: 44, delay: -8,  rot: 10 },
-    { icon: 'ticket',   top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: -12 },
-    { icon: 'popcorn',  top: '8%',  left: '82%', size: 110, dur: 48, delay: -20, rot: 8 },
-    { icon: 'star',     top: '42%', left: '90%', size: 80,  dur: 30, delay: -5,  rot: 12 },
-    { icon: 'juggling', top: '38%', left: '-1%', size: 100, dur: 42, delay: -26, rot: 6 },
-    { icon: 'balloon',  top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: -10 },
-    { icon: 'bigTop',   top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 6 },
+    { icon: 'bearUnicycle', top: '12%', left: '3%',  size: 180, dur: 38, delay: 0,   rot: -6 },
+    { icon: 'clownFace',    top: '58%', left: '79%', size: 170, dur: 44, delay: -8,  rot: 8 },
+    { icon: 'bigTop',       top: '66%', left: '5%',  size: 130, dur: 36, delay: -14, rot: -8 },
+    { icon: 'popcorn',      top: '8%',  left: '82%', size: 110, dur: 48, delay: -20, rot: 8 },
+    { icon: 'balloon',      top: '42%', left: '90%', size: 80,  dur: 30, delay: -5,  rot: 12 },
+    { icon: 'juggling',     top: '38%', left: '-1%', size: 100, dur: 42, delay: -26, rot: 6 },
+    { icon: 'clownFace',    top: '84%', left: '44%', size: 90,  dur: 40, delay: -12, rot: -10 },
+    { icon: 'bearUnicycle', top: '4%',  left: '42%', size: 80,  dur: 34, delay: -18, rot: 6 },
 ];
 
 const TRIVIA_FLOATERS = [

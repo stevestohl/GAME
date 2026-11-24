@@ -229,7 +229,7 @@ function MixupTV({ roomCode, casterName }) {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Temple Mix Up Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} circusShow scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
+                return <CouchCastLobby title="3 Ring Circus Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} circusShow scoreFor={(player) => room.snake?.scores?.[player.name]?.eaten} />;
             case 'rules':
                 return <MixupRulesTV roomCode={room.roomCode} totalRounds={room.totalRounds} />;
             case 'intro':

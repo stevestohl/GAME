@@ -21,7 +21,7 @@ const CLASSICS = [
         title: 'Entry of the Gladiators',
         by: 'Julius Fučík',
         url: 'https://imslp.org/wiki/Einzug_der_Gladiatoren,_Op.68_(Fu%C4%8D%C3%ADk,_Julius)',
-        usedIn: 'Temple Mix Up lobby',
+        usedIn: '3 Ring Circus lobby',
     },
 ];
 

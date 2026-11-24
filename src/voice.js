@@ -51,20 +51,46 @@ const englishVoice = () => {
     return voices.find((v) => v.lang === 'en-US' && v.localService) || voices.find((v) => v.lang?.startsWith('en')) || null;
 };
 
-// Resolves true once the line has been read all the way through
-const speakWithDevice = (text, volume = 1) => new Promise((resolve) => {
-    if (!deviceVoice || !window.SpeechSynthesisUtterance) return resolve(false);
+// One sentence. Chrome's built-in voices can stop partway through a long sentence and never say they've
+// finished, which left the narrator silent for the rest of the game (it waits for each line to end). So a
+// sentence that's still going well after it should have finished is given up on, and the next line plays.
+const speakSentence = (text, volume) => new Promise((resolve) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
     utterance.volume = volume;
     const voice = englishVoice();
     if (voice) utterance.voice = voice;
+    let settled = false;
+    const settle = (spoken) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(watchdog);
+        setSpeaking(false);
+        resolve(spoken);
+    };
+    const watchdog = setTimeout(() => {
+        console.warn(`Voice-over: the device voice stalled on "${text.slice(0, 40)}"`);
+        settle(false);
+        deviceVoice.cancel();
+    }, 4000 + text.length * 110);
     utterance.onstart = () => setSpeaking(true);
-    utterance.onend = () => { setSpeaking(false); resolve(true); };
-    utterance.onerror = () => { setSpeaking(false); resolve(false); };
+    utterance.onend = () => settle(true);
+    utterance.onerror = () => settle(false);
     currentUtterance = utterance;
     deviceVoice.speak(utterance);
 });
+
+// Resolves true once the line has been read all the way through, a sentence at a time
+const speakWithDevice = async (text, volume = 1) => {
+    if (!deviceVoice || !window.SpeechSynthesisUtterance) return false;
+    const sentences = text.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+    for (const sentence of sentences) {
+        const spoken = await speakSentence(sentence, volume);
+        // stopVoice() was called (it forgets the current utterance), or this sentence didn't make it
+        if (!spoken || !currentUtterance) return false;
+    }
+    return true;
+};
 
 const fetchAudio = async (text, roomCode, attempt = 1) => {
     try {

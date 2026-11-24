@@ -9,11 +9,12 @@ import DeckCard from '../Menu/DeckCard.jsx';
 import { MIXUP_DECKS } from '../../cardDecks.js';
 import { useGameVisibility } from '../../gameVisibility.js';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
+import { useSetBackgroundTheme } from '../Menu/backgroundTheme.js';
 
 export const MIXUP_ROUND_OPTIONS = [9, 12, 15];
 
 /**
- * 🎪 Temple Mix Up setup: what the game is, how many rounds, how hard, then tap a deck to start.
+ * 🎪 3 Ring Circus (Temple Mix Up) setup: what the game is, how many rounds, how hard, then tap a deck to start.
  */
 export default function MixupSetup() {
     const { visibleDecks } = useGameVisibility();
@@ -21,6 +22,7 @@ export default function MixupSetup() {
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(MIXUP_ROUND_OPTIONS[0]);
     const [level, setLevel] = useState(DEFAULT_LEVEL);
+    useSetBackgroundTheme('circus');   // 🎪 bears on unicycles, clowns and the big top
 
     useEffect(() => {
         document.body.style.overflow = 'unset';
@@ -36,7 +38,7 @@ export default function MixupSetup() {
     return (
         <div className="page-container">
             <Card className="main-card">
-                <Card.Header className="main-card-header">Temple Mix Up!</Card.Header>
+                <Card.Header className="main-card-header">3 Ring Circus</Card.Header>
 
                 <Card.Body className="p-2">
                     <Card className="bg-light border-0 shadow-sm m-0">
@@ -47,11 +49,11 @@ export default function MixupSetup() {
                                 </Col>
                                 <Col xs={8} className="text-start">
                                     <div className="fw-bold mb-1">
-                                        Temple Mix Up!
+                                        3 Ring Circus
                                         <span className="text-muted fw-normal small ms-2">3+ players</span>
                                     </div>
                                     <div className="small text-secondary lh-sm">
-                                        Three games in one: caption a meme and vote for the funniest, draw and guess
+                                        Three games under one big top: caption a meme and vote for the funniest, draw and guess
                                         Pictionary-style, then match your friends' answers in Threefold. Cast one extra device to the TV as the main screen.
                                     </div>
                                 </Col>
@@ -99,7 +101,7 @@ export default function MixupSetup() {
                                     index={i}
                                     disabled={isCreatingRoom}
                                     onClick={() => createMixupRoom(navigate, setIsCreatingRoom, { totalRounds, level, expansion: deck.id })}
-                                    ariaLabel={`Create a Temple Mix Up room with the ${deck.title}`}
+                                    ariaLabel={`Create a 3 Ring Circus room with the ${deck.title}`}
                                 />
                             </Col>
                         ))}

@@ -82,6 +82,19 @@ const checkTake = (text, { audio, alignment }) => {
     return { audio };
 };
 
+// ElevenLabs refuses too many requests at once (429), and the TV asks for a game's whole rules in one go:
+// so at most this many lines are generated at a time, and the rest wait their turn
+const MAX_AT_ONCE = 2;
+let running = 0;
+const waiting = [];
+const takeTurn = () => new Promise((resolve) => {
+    if (running < MAX_AT_ONCE) { running += 1; resolve(); } else waiting.push(resolve);
+});
+const endTurn = () => {
+    const next = waiting.shift();
+    if (next) next(); else running -= 1;
+};
+
 // Asks ElevenLabs for one line: { audio, alignment } (the time each letter is spoken), or null if nothing came back.
 // A busy or flaky answer gets one more try.
 const generateSpeech = async (text, apiKey, voiceId, attempt = 1) => {
@@ -137,7 +150,9 @@ const recordLine = async (text, apiKey, voiceId, room) => {
             countChars(room, text.length);
         }
 
-        const result = await generateSpeech(text, apiKey, voiceId);
+        await takeTurn();
+        let result;
+        try { result = await generateSpeech(text, apiKey, voiceId); } finally { endTurn(); }
         if (!result) {
             // Nothing was produced (so nothing billed): give that allowance back
             countChars(room, -text.length);

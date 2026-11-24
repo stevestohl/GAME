@@ -231,18 +231,18 @@ export default function GameCastHome() {
                                     </Button>
                                 </GameRow>}
 
-                                {/* 🎪 Temple Mix Up — text left, button right */}
+                                {/* 🎪 3 Ring Circus (Temple Mix Up) — text left, button right */}
                                 {canSeeGame('mixup') && <GameRow
                                     hidden={isGameHidden('mixup')}
-                                    title="Temple Mix Up!"
+                                    title="3 Ring Circus"
                                     players="3+ players"
-                                    description="Three games in one: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
+                                    description="Three games under one big top: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
                                 >
                                     <Button
                                         variant="primary"
                                         className={gameImgBtnClass}
                                         onClick={() => navigate('/mixup-setup')}
-                                        aria-label="Set up a Temple Mix Up game"
+                                        aria-label="Set up a 3 Ring Circus game"
                                         style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
                                     >
                                         <MixupTile />

@@ -78,7 +78,7 @@ export const CONTENT_SOURCES = {
     },
     drawing: {
         game: 'mixup',
-        label: 'Temple Mix Up drawing words',
+        label: '3 Ring Circus drawing words',
         noun: 'word',
         model: PictionaryPrompt,
         deckField: 'expansion',
@@ -97,7 +97,7 @@ export const CONTENT_SOURCES = {
     },
     memes: {
         game: 'mixup',
-        label: 'Temple Mix Up memes',
+        label: '3 Ring Circus memes',
         noun: 'meme',
         model: MixupMeme,
         deckField: 'expansion',
