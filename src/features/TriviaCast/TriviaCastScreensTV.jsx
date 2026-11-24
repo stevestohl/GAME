@@ -4,6 +4,7 @@ import { triviaCastSocket as socket } from '../../socket';
 import { speak, stopVoice } from '../../voice.js';
 import { playRevealSounds } from '../../celebrationSounds.js';
 import { QuizRulesScene } from './QuizScenes.jsx';
+import useFitText from '../../hooks/useFitText.js';
 
 // 🎙️ What the host voice says while the rules are on screen
 export const TRIVIA_CAST_RULES_NARRATION = [
@@ -163,6 +164,10 @@ export function TriviaCastRulesTV({ roomCode }) {
     const [timeLeft, setTimeLeft] = useState(30);
     const [isNarrating, setIsNarrating] = useState(true);
     const hasStarted = useRef(false);
+    // 🔠 The rules fill their card, on a phone or a big screen
+    const rulesBoxRef = useRef(null);
+    const rulesTextRef = useRef(null);
+    useFitText(rulesBoxRef, rulesTextRef, { min: 12, max: 64 });
 
     const handleNext = () => {
         if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
@@ -209,13 +214,13 @@ export function TriviaCastRulesTV({ roomCode }) {
                                 <Card.Body className="d-flex flex-column h-100" style={{ padding: 'clamp(0.5rem, 3vh, 1.5rem)', minHeight: 0 }}>
                                     <Card.Title
                                         className="fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary"
-                                        style={{ fontSize: 'clamp(1rem, 3.5vh, 1.8rem)', paddingBottom: '0.6vh', marginBottom: '1.5vh' }}
+                                        style={{ fontSize: 'clamp(1rem, 4.2vh, 3rem)', paddingBottom: '0.6vh', marginBottom: '1.5vh' }}
                                     >
                                         RULES
                                     </Card.Title>
 
-                                    <div className="d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar" style={{ minHeight: 0 }}>
-                                        <ol className="my-auto text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)', lineHeight: 1.3, gap: 'clamp(0.3rem, 2vh, 1rem)' }}>
+                                    <div ref={rulesBoxRef} className="d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar" style={{ minHeight: 0 }}>
+                                        <ol ref={rulesTextRef} className="my-auto text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)', lineHeight: 1.3, gap: '0.7em', marginBottom: 0 }}>
                                             <li>
                                                 <strong className="text-dark">Watch the TV:</strong><br />
                                                 Each question appears on the big screen with <strong>4 possible answers</strong>.
@@ -239,11 +244,11 @@ export function TriviaCastRulesTV({ roomCode }) {
                         <div className="shining-border-wrapper h-100">
                             <Card className="fullscreen-gameplay-card h-100" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)' }}>
                                 <Card.Body className="d-flex flex-column align-items-center justify-content-between" style={{ padding: 'clamp(0.5rem, 3vh, 1rem)', minHeight: 0 }}>
-                                    <Card.Title className="fw-bold text-dark mb-1 text-center flex-shrink-0" style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)' }}>
+                                    <Card.Title className="fw-bold text-dark mb-1 text-center flex-shrink-0" style={{ fontSize: 'clamp(0.9rem, 3vh, 2.4rem)' }}>
                                         GAME STARTS IN
                                     </Card.Title>
 
-                                    <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 6rem)', lineHeight: 1 }}>
+                                    <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 12rem)', lineHeight: 1 }}>
                                         {Math.max(timeLeft, 0)}s
                                     </div>
 

@@ -5856,17 +5856,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _RulesAbduction_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RulesAbduction.jsx */ "./src/features/CouchCast/RulesAbduction.jsx");
+/* harmony import */ var _hooks_useFitText_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useFitText.js */ "./src/hooks/useFitText.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -5915,6 +5917,13 @@ function CouchCastRules(_ref) {
     isNarrating = _useState6[0],
     setIsNarrating = _useState6[1];
   var hasStarted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  // 🔠 The rules fill their card, on a phone or a big screen
+  var rulesBoxRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var rulesTextRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,_hooks_useFitText_js__WEBPACK_IMPORTED_MODULE_4__["default"])(rulesBoxRef, rulesTextRef, {
+    min: 12,
+    max: 64
+  });
 
   // Read the rules aloud. When the voice finishes, the game starts straight away;
   // with no voice available, the countdown below runs the show as before.
@@ -5986,37 +5995,40 @@ function CouchCastRules(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     className: "d-flex flex-column h-100",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1.5rem)',
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
     className: "fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary",
     style: {
-      fontSize: 'clamp(1rem, 3.5vh, 1.8rem)',
+      fontSize: 'clamp(1rem, 4.2vh, 3rem)',
       paddingBottom: '0.6vh',
       marginBottom: '1.5vh'
     }
   }, "RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    ref: rulesBoxRef,
     className: "d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar",
     style: {
       minHeight: 0
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
+    ref: rulesTextRef,
     className: "my-auto text-secondary d-flex flex-column",
     style: {
       fontWeight: '500',
       fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)',
       lineHeight: 1.3,
-      gap: 'clamp(0.3rem, 2vh, 1rem)'
+      gap: '0.7em',
+      marginBottom: 0
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
@@ -6032,34 +6044,34 @@ function CouchCastRules(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1rem)',
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
-      fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
+      fontSize: 'clamp(0.9rem, 3vh, 2.4rem)'
     }
   }, "GAME STARTS IN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fw-bold text-danger text-center",
     style: {
-      fontSize: 'clamp(2.5rem, 18vh, 6rem)',
+      fontSize: 'clamp(2.5rem, 18vh, 12rem)',
       lineHeight: 1
     }
   }, Math.max(timeLeft, 0), "s"), crew && !isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "cc-rules-abduct"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RulesAbduction_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     theme: crewTheme
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     variant: "light",
     size: "sm",
     className: "w-100 fw-bold mt-auto py-2 shadow-sm",
@@ -43760,19 +43772,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../celebrationSounds.js */ "./src/celebrationSounds.js");
 /* harmony import */ var _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
+/* harmony import */ var _hooks_useFitText_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/useFitText.js */ "./src/hooks/useFitText.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -44021,6 +44035,13 @@ function TriviaCastRulesTV(_ref3) {
     isNarrating = _useState6[0],
     setIsNarrating = _useState6[1];
   var hasStarted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  // 🔠 The rules fill their card, on a phone or a big screen
+  var rulesBoxRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var rulesTextRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,_hooks_useFitText_js__WEBPACK_IMPORTED_MODULE_5__["default"])(rulesBoxRef, rulesTextRef, {
+    min: 12,
+    max: 64
+  });
   var handleNext = function handleNext() {
     if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
     hasStarted.current = true;
@@ -44077,37 +44098,40 @@ function TriviaCastRulesTV(_ref3) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "d-flex flex-column h-100",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1.5rem)',
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
     className: "fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary",
     style: {
-      fontSize: 'clamp(1rem, 3.5vh, 1.8rem)',
+      fontSize: 'clamp(1rem, 4.2vh, 3rem)',
       paddingBottom: '0.6vh',
       marginBottom: '1.5vh'
     }
   }, "RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    ref: rulesBoxRef,
     className: "d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar",
     style: {
       minHeight: 0
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
+    ref: rulesTextRef,
     className: "my-auto text-secondary d-flex flex-column",
     style: {
       fontWeight: '500',
       fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)',
       lineHeight: 1.3,
-      gap: 'clamp(0.3rem, 2vh, 1rem)'
+      gap: '0.7em',
+      marginBottom: 0
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     className: "text-dark"
@@ -44123,32 +44147,32 @@ function TriviaCastRulesTV(_ref3) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "fullscreen-gameplay-card h-100",
     style: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       backdropFilter: 'blur(10px)'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "d-flex flex-column align-items-center justify-content-between",
     style: {
       padding: 'clamp(0.5rem, 3vh, 1rem)',
       minHeight: 0
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
     className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
     style: {
-      fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
+      fontSize: 'clamp(0.9rem, 3vh, 2.4rem)'
     }
   }, "GAME STARTS IN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fw-bold text-danger text-center",
     style: {
-      fontSize: 'clamp(2.5rem, 18vh, 6rem)',
+      fontSize: 'clamp(2.5rem, 18vh, 12rem)',
       lineHeight: 1
     }
   }, Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "cc-rules-abduct"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_4__.QuizRulesScene, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_4__.QuizRulesScene, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
     variant: "light",
     size: "sm",
     className: "w-100 fw-bold mt-auto py-2 shadow-sm",
@@ -44225,12 +44249,12 @@ function TriviaCastQuestionTV(_ref4) {
       height: 'auto',
       borderRadius: '15px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "border-0 text-white w-100 frosted-glass-panel",
     style: {
       borderRadius: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
     className: "text-center",
     style: {
       padding: 'clamp(0.4rem, 2.5vh, 1.5rem) 1rem'
@@ -44294,7 +44318,7 @@ function TriviaCastQuestionTV(_ref4) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, answeredCount, " of ", players.length, " answered"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: timeLeft !== null && timeLeft <= 5 ? 'text-danger' : ''
-  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     now: barPercent,
     variant: timeLeft !== null && timeLeft <= 5 ? 'danger' : 'light',
     style: {
@@ -53265,6 +53289,64 @@ function useAutoScrollList(listRef) {
       return clearInterval(timer);
     };
   }, [listRef]);
+}
+
+/***/ }),
+
+/***/ "./src/hooks/useFitText.js":
+/*!*********************************!*\
+  !*** ./src/hooks/useFitText.js ***!
+  \*********************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useFitText)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+/**
+ * 🔠 Makes the text in `textRef` as big as it can be while still fitting inside `boxRef` (no scrolling), between
+ * `min` and `max` pixels. It re-fits whenever the box changes size, so the rules fill a big TV or a desktop window
+ * as well as a phone held sideways. Sizes inside the text should be in em, so they grow with it.
+ */
+function useFitText(boxRef, textRef) {
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+    _ref$min = _ref.min,
+    min = _ref$min === void 0 ? 12 : _ref$min,
+    _ref$max = _ref.max,
+    max = _ref$max === void 0 ? 72 : _ref$max;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(function () {
+    var _document$fonts;
+    var box = boxRef.current;
+    var text = textRef.current;
+    if (!box || !text) return undefined;
+    var fits = function fits() {
+      return text.offsetHeight <= box.clientHeight && text.scrollWidth <= box.clientWidth + 1;
+    };
+    var fit = function fit() {
+      var low = min;
+      var high = max;
+      // A dozen halvings get within a fraction of a pixel
+      for (var i = 0; i < 12; i += 1) {
+        var mid = (low + high) / 2;
+        text.style.fontSize = "".concat(mid, "px");
+        if (fits()) low = mid;else high = mid;
+      }
+      text.style.fontSize = "".concat(Math.floor(low), "px");
+    };
+    fit();
+    var observer = new ResizeObserver(fit);
+    observer.observe(box);
+    // Webfonts arriving change the text's size too
+    (_document$fonts = document.fonts) === null || _document$fonts === void 0 ? void 0 : _document$fonts.ready.then(function () {
+      return fit();
+    })["catch"](function () {});
+    return function () {
+      return observer.disconnect();
+    };
+  }, [boxRef, textRef, min, max]);
 }
 
 /***/ }),

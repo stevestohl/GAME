@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import { couchCastSocket as socket } from '../../socket';
 import { speak, stopVoice } from '../../voice.js';
 import RulesAbduction from './RulesAbduction.jsx';
+import useFitText from '../../hooks/useFitText.js';
 
 // 🎙️ What the host voice says while the rules are on screen
 export const RULES_NARRATION = [
@@ -32,6 +33,10 @@ export default function CouchCastRules({ roomCode, crew = false, crewTheme = 'co
     // True while the host voice is still reading the rules
     const [isNarrating, setIsNarrating] = useState(true);
     const hasStarted = useRef(false);
+    // 🔠 The rules fill their card, on a phone or a big screen
+    const rulesBoxRef = useRef(null);
+    const rulesTextRef = useRef(null);
+    useFitText(rulesBoxRef, rulesTextRef, { min: 12, max: 64 });
 
     // Read the rules aloud. When the voice finishes, the game starts straight away;
     // with no voice available, the countdown below runs the show as before.
@@ -102,14 +107,14 @@ export default function CouchCastRules({ roomCode, crew = false, crewTheme = 'co
                                     
                                     <Card.Title 
                                         className="fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary"
-                                        style={{ fontSize: 'clamp(1rem, 3.5vh, 1.8rem)', paddingBottom: '0.6vh', marginBottom: '1.5vh' }}
+                                        style={{ fontSize: 'clamp(1rem, 4.2vh, 3rem)', paddingBottom: '0.6vh', marginBottom: '1.5vh' }}
                                     >
                                         RULES
                                     </Card.Title>
                                     
                                     {/* Wrapping div centers the list without forcing it to stretch vertically */}
-                                    <div className="d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar" style={{ minHeight: 0 }}>
-                                        <ol className="my-auto text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)', lineHeight: 1.3, gap: 'clamp(0.3rem, 2vh, 1rem)' }}>
+                                    <div ref={rulesBoxRef} className="d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar" style={{ minHeight: 0 }}>
+                                        <ol ref={rulesTextRef} className="my-auto text-secondary d-flex flex-column" style={{ fontWeight: '500', fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)', lineHeight: 1.3, gap: '0.7em', marginBottom: 0 }}>
                                             <li>
                                                 <strong className="text-dark">Host Picks the Prompt:</strong><br/>
                                                 Each round, one player is the Host and picks <strong>1 of 3 prompts</strong> to set the vibe.
@@ -138,13 +143,13 @@ export default function CouchCastRules({ roomCode, crew = false, crewTheme = 'co
                                     
                                     <Card.Title 
                                         className="fw-bold text-dark mb-1 text-center flex-shrink-0"
-                                        style={{ fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)' }}
+                                        style={{ fontSize: 'clamp(0.9rem, 3vh, 2.4rem)' }}
                                     >
                                         GAME STARTS IN
                                     </Card.Title>
                                     
                                     {/* Timer Text */}
-                                    <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 6rem)', lineHeight: 1 }}>
+                                    <div className="fw-bold text-danger text-center" style={{ fontSize: 'clamp(2.5rem, 18vh, 12rem)', lineHeight: 1 }}>
                                         {Math.max(timeLeft, 0)}s
                                     </div>
 
