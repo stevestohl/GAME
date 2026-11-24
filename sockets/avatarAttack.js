@@ -1,4 +1,4 @@
-// 👾 Avatar Attack: a shooter the phones play in Trivia Cast's lobby while everyone joins. The other
+// 👾 Avatar Attack: a shooter the phones play in Couch Cast's lobby while everyone joins. The other
 // players' avatars fall from the top of your screen and you shoot them; most hits leads the room.
 // Each phone runs its own falling avatars and tells the server about a hit, so there's no lag to
 // aim around. The room keeps `room.attack` (sent to every screen); it's reset for each new game.

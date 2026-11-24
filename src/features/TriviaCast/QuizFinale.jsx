@@ -4,7 +4,7 @@ import { QuizBows } from './QuizScenes.jsx';
 import { playCelebration, startApplause, startCreditsMarch } from '../../celebrationSounds.js';
 
 // 🎭 The end of Trivia Cast, after the final scores are read: a drum roll as the red curtains sweep in, a fanfare
-// and applause as they part, and the Avatar Attack results from the lobby roll up the stage while the whole
+// and applause as they part, and the Whack-an-Avatar results from the lobby roll up the stage while the whole
 // cast (dinosaur included) takes a bow. Then the curtains close and part on the final scores again.
 //
 // The Play Again and Home buttons underneath still work the whole time.
@@ -25,10 +25,11 @@ export default function QuizFinale({ scores, onDone }) {
     const [phase, setPhase] = useState('waiting');
     const stopSounds = useRef([]);
 
-    const shooters = Object.values(scores || {})
-        .filter((s) => s.hits > 0 || s.timesHit > 0)
-        .sort((a, b) => b.hits - a.hits || a.timesHit - b.timesHit);
-    const seconds = 13 + shooters.length * 2;
+    // 🔨 The lobby game's results: most whacks first
+    const whackers = Object.values(scores || {})
+        .filter((s) => s.whacks > 0 || s.timesWhacked > 0)
+        .sort((a, b) => b.whacks - a.whacks || a.timesWhacked - b.timesWhacked);
+    const seconds = 13 + whackers.length * 2;
     const skip = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
     useEffect(() => {
@@ -64,18 +65,18 @@ export default function QuizFinale({ scores, onDone }) {
             {isStageUp && (
                 <div className="qf-stage">
                     <div className="tp-credits-roll" style={{ animationDuration: `${seconds}s` }} onAnimationEnd={handleRollEnd}>
-                        {shooters.length > 0 && (
+                        {whackers.length > 0 && (
                             <>
                                 <div className="tp-credits-kicker">And in the lobby...</div>
-                                <h2>👾 Avatar Attack</h2>
-                                <div className="tp-credits-best">Top shot: <strong>{shooters[0].name}</strong></div>
+                                <h2>🔨 Whack-an-Avatar</h2>
+                                <div className="tp-credits-best">Fastest hammer: <strong>{whackers[0].name}</strong></div>
                                 <div className="tp-credits-heading">Final scores</div>
-                                {shooters.map((s) => (
+                                {whackers.map((s) => (
                                     <div key={s.name} className="tp-credits-line">
                                         <Avatar id={s.avatar} name={s.name} size={44} />
                                         <span className="tp-credits-name">{s.name}</span>
                                         <span className="tp-credits-role">
-                                            {s.hits} {s.hits === 1 ? 'hit' : 'hits'}{s.timesHit ? ` · got hit ${s.timesHit}` : ''}
+                                            {s.whacks} {s.whacks === 1 ? 'whack' : 'whacks'}{s.timesWhacked ? ` · got whacked ${s.timesWhacked}` : ''}
                                         </span>
                                     </div>
                                 ))}

@@ -1,7 +1,7 @@
 // 📺 Trivia Cast: trivia with a shared TV screen.
 // One device casts the questions and scores to the TV; everyone answers on their phone.
 // It uses the same question decks as Trivia (see drawTriviaQuestions).
-import { newAttack, attackHit, attackPlayerGone } from './avatarAttack.js';
+import { newWhack, whackHit, whackSkunk, whackPlayerGone } from './whackGame.js';
 import { guardCreateRoom } from '../db/gameVisibility.js';
 import { randomUUID } from "crypto";
 import { drawTriviaQuestions, normalizeExpansion, normalizeLevel, normalizeRounds } from "../db/drawCards.js";
@@ -63,7 +63,7 @@ const getSafeRoom = (room) => {
         totalRounds: room.questions?.length || room.totalRounds,
         endTime: room.endTime,
         isGameOver: room.isGameOver,
-        attack: room.attack ? { scores: room.attack.scores } : null,   // 👾 the lobby game's scores
+        whack: room.whack ? { scores: room.whack.scores } : null,   // 🔨 the lobby game's scores
         isPaused: !!room.isPaused,
         players,
         question: isPlaying && question ? {
@@ -352,7 +352,7 @@ export default function registerTriviaCastNamespace(TCNS) {
         room.isPaused = false;
         room.pausedAt = null;
         room.gameState = 'lobby';
-        room.attack = newAttack();    // 👾 a fresh lobby game too
+        room.whack = newWhack();      // 🔨 a fresh lobby game too
         room.questions = null;        // a fresh set is drawn when the game starts
         room.questionIndex = 0;
         room.options = [];
@@ -415,7 +415,7 @@ export default function registerTriviaCastNamespace(TCNS) {
                 endTime: null,
                 timerId: null,
                 isGameOver: false,
-                attack: newAttack(),
+                whack: newWhack(),
                 playerCount: 0,
                 players: {
                     [socket.id]: {
@@ -501,22 +501,29 @@ export default function registerTriviaCastNamespace(TCNS) {
             broadcast(code);
         });
 
-        // ---------- 👾 Event: A player shot someone's avatar in the lobby game ----------
-        socket.on('attack_hit', ({ roomCode, targetId } = {}) => {
-            const room = activeTCRooms[roomCode];
-            if (!room) return;
-            const target = attackHit(room, socket.id, targetId);
-            if (!target) return;
-            socket.to(target.id).emit('attack_gotcha', { name: room.players[socket.id].name });
-            // Scores can change many times a second: send them a few times a second at most
-            if (room.attackTimer) return;
-            room.attackTimer = setTimeout(() => {
-                room.attackTimer = null;
+        // ---------- 🔨 Events: the lobby game. A player whacked someone's avatar, or tapped the skunk ----------
+        // Scores can change many times a second: send them a few times a second at most
+        const sendWhackScores = (roomCode, room) => {
+            if (room.whackTimer) return;
+            room.whackTimer = setTimeout(() => {
+                room.whackTimer = null;
                 if (activeTCRooms[roomCode]) broadcast(roomCode);
             }, 250);
+        };
+        socket.on('whack_hit', ({ roomCode, targetId, golden } = {}) => {
+            const room = activeTCRooms[roomCode];
+            if (!room) return;
+            const target = whackHit(room, socket.id, targetId, !!golden);
+            if (!target) return;
+            socket.to(target.id).emit('whack_gotcha', { name: room.players[socket.id].name });
+            sendWhackScores(roomCode, room);
+        });
+        socket.on('whack_skunk', ({ roomCode } = {}) => {
+            const room = activeTCRooms[roomCode];
+            if (room && whackSkunk(room, socket.id)) sendWhackScores(roomCode, room);
         });
 
-        socket.on('disconnect', () => attackPlayerGone(socket.id));
+        socket.on('disconnect', () => whackPlayerGone(socket.id));
 
         // ---------- Event: Room leader starts the game (lobby -> rules) ----------
         socket.on('startGame', async ({ roomCode } = {}) => {

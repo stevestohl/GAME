@@ -238,7 +238,7 @@ export default function TriviaCastManager() {
 
         switch (gameState) {
             case 'lobby':
-                return <CouchCastLobby title="Trivia Cast Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} quizShow scoreFor={(player) => room.attack?.scores?.[player.name]?.hits} />;
+                return <CouchCastLobby title="Trivia Cast Room Created" roomCode={room.roomCode} players={playersArray} musicTrack={lobbyTrack} quizShow scoreFor={(player) => room.whack?.scores?.[player.name]?.whacks} />;
 
             case 'rules':
                 return <TriviaCastRulesTV roomCode={room.roomCode} />;
@@ -279,7 +279,7 @@ export default function TriviaCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
-            {showFinale && gameState === 'scoreboard' && <QuizFinale scores={room?.attack?.scores} onDone={() => setShowFinale(false)} />}
+            {showFinale && gameState === 'scoreboard' && <QuizFinale scores={room?.whack?.scores} onDone={() => setShowFinale(false)} />}
             {room && <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />}
 
             {isSoundLocked && (

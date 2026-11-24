@@ -6,7 +6,7 @@ import { triviaCastSocket as socket } from '../../socket';
 import { useSetBackgroundTheme, triviaCastTheme } from '../Menu/backgroundTheme.js';
 import { playChime } from '../../chime.js';
 import { getMyAvatar } from '../../avatars.jsx';
-import AvatarAttack from './AvatarAttack.jsx';
+import WhackAnAvatar from './WhackAnAvatar.jsx';
 import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScoreboard.jsx';
 import CouchCastRoundIntro from '../CouchCast/CouchCastRoundIntro.jsx';
 import { roundKicker } from './TriviaCastScreensTV.jsx';
@@ -152,8 +152,8 @@ export default function TriviaCastPlayer({ roomCode, playerName }) {
                                     Waiting for <strong>{leader?.name || 'the room leader'}</strong> to start the game...
                                 </div>
                             )}
-                            {/* 👾 Something to do while everyone joins */}
-                            <AvatarAttack socket={socket} roomCode={roomCode} room={room} />
+                            {/* 🔨 Something to do while everyone joins */}
+                            <WhackAnAvatar socket={socket} roomCode={roomCode} room={room} />
                         </>
                     ))}
                 </>

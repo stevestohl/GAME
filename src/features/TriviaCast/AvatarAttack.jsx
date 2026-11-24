@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Avatar } from '../../avatars.jsx';
 
-// 👾 Avatar Attack: the lobby game on the players' phones (the server side is sockets/avatarAttack.js).
+// 👾 Avatar Attack: Couch Cast's lobby game on the players' phones (the server side is sockets/avatarAttack.js).
 // The other players' avatars fall from the top, you slide along the bottom with the arrows and tap your
 // own avatar to fire. Most hits leads the room. Until someone else joins, little aliens stand in for practice.
 // Everything falling is local to this phone, so the controls never lag; only hits go to the server.
