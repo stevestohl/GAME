@@ -420,3 +420,22 @@
     .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }
     .cx-tent-board { animation: none; }
 }
+
+/* 🙋 Meme It: who's captioned / voted, a name tag each that lights up green when they're in */
+.mx-whos-in { flex: 0 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6vw; margin-top: 1.2vh; padding-right: 7rem; }
+.mx-whos-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.2em 0.75em 0.2em 0.25em;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.38);
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(0.85rem, 2.9vh, 1.5rem);
+    opacity: 0.72;
+    transition: background 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+.mx-whos-chip.done { background: rgba(28, 149, 98, 0.92); opacity: 1; transform: scale(1.06); }
+.mx-whos-avatar { width: clamp(26px, 5.4vh, 52px) !important; height: clamp(26px, 5.4vh, 52px) !important; }
+.mx-whos-name { max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

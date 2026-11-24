@@ -27449,7 +27449,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _TriviaCast_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../TriviaCast/QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
-/* harmony import */ var _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CircusCast.jsx */ "./src/features/Mixup/CircusCast.jsx");
+/* harmony import */ var _circusSounds_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../circusSounds.js */ "./src/circusSounds.js");
+/* harmony import */ var _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CircusCast.jsx */ "./src/features/Mixup/CircusCast.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -27461,6 +27462,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -27562,7 +27564,7 @@ var makeMoves = function makeMoves(d, getUnit) {
     });
   };
   var say = function say(el, text, x, y, ms) {
-    return (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.sayIn)(d, el, text, x, y, ms, Math.max(0.55, getUnit()), getMaxX());
+    return (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.sayIn)(d, el, text, x, y, ms, Math.max(0.55, getUnit()), getMaxX());
   };
   // A whole somersault, turning about the middle of the body rather than the feet
   var flipTo = function flipTo(a, x, y, height, ms) {
@@ -27786,13 +27788,13 @@ function CircusShow(_ref2) {
                 _context3.next = 21;
                 return hop(B, L.spotB, L.floorY, 78, 750);
               case 21:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['hands']);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['hands']);
                 _context3.next = 25;
                 return bubbleAt(B, 'TA-DA!', 1000);
               case 25:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
                 // And off it goes, much lighter
                 parked = car.x;
                 car.el.classList.add('is-bouncing');
@@ -28014,8 +28016,8 @@ function CircusShow(_ref2) {
               case 8:
                 squirt = squirtRef.current;
                 from = {
-                  x: B.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.FLOWER.x * L.u * B.size,
-                  y: B.y + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.FLOWER.y * L.u * B.size
+                  x: B.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.FLOWER.x * L.u * B.size,
+                  y: B.y + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.FLOWER.y * L.u * B.size
                 };
                 to = {
                   x: A.x + 4 * L.u,
@@ -28037,7 +28039,7 @@ function CircusShow(_ref2) {
                 return bubbleAt(A, 'HEY!', 800);
               case 22:
                 // Payback
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['horn']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['horn']);
                 _context7.next = 25;
                 return d.wait(250);
               case 25:
@@ -28050,7 +28052,7 @@ function CircusShow(_ref2) {
                 _context7.next = 31;
                 return bubbleAt(B, 'EEK!', 800);
               case 31:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
                 _context7.next = 34;
                 return walk(A, L.spotA, 80);
               case 34:
@@ -28077,7 +28079,7 @@ function CircusShow(_ref2) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['pie']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['pie']);
                 _context8.next = 3;
                 return d.wait(400);
               case 3:
@@ -28090,7 +28092,7 @@ function CircusShow(_ref2) {
                   place(B);
                 });
               case 7:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['piefaced']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['piefaced']);
                 pow(B.x - 70 * L.u * B.size, L.floorY - 8 * L.u);
                 _context8.next = 11;
                 return bubbleAt(A, 'HA HA HA!', 1100);
@@ -28114,7 +28116,7 @@ function CircusShow(_ref2) {
                 _context8.next = 22;
                 return d.wait(500);
               case 22:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
               case 23:
               case "end":
                 return _context8.stop();
@@ -28142,16 +28144,16 @@ function CircusShow(_ref2) {
                 return walk(lion, L.spotB + 92 * L.u, 70);
               case 6:
                 lion.el.setAttribute('data-look', 'left');
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(lion.el, ['roar']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(lion.el, ['roar']);
                 lion.el.classList.add('is-roaring');
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['hands']);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['hands']);
                 A.el.classList.add('quiz-scared');
                 B.el.classList.add('quiz-scared');
                 _context9.next = 15;
                 return say(sayRef.current, 'ROAR!', lion.x - 40 * L.u * lion.size, lion.y - 80 * L.u * lion.size, 1000);
               case 15:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(lion.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(lion.el, []);
                 lion.el.classList.remove('is-roaring');
                 A.el.classList.remove('quiz-scared');
                 B.el.classList.remove('quiz-scared');
@@ -28161,8 +28163,8 @@ function CircusShow(_ref2) {
                   return walk(B, L.behindScreen, 260, 'crew-running');
                 })]);
               case 21:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
                 _context9.next = 25;
                 return walk(lion, L.mid, 60);
               case 25:
@@ -28206,8 +28208,8 @@ function CircusShow(_ref2) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
                 hide(A.el, B.el);
                 place(car);
                 _context10.next = 6;
@@ -28249,8 +28251,8 @@ function CircusShow(_ref2) {
       B.x = L.spotB;
       place(A);
       place(B);
-      (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-      (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+      (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+      (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
     } else {
       run();
     }
@@ -28289,13 +28291,13 @@ function CircusShow(_ref2) {
     preserveAspectRatio: "none"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
     className: "crew-world"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: aRef
-  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: bRef
-  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.ClownCar, {
+  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.ClownCar, {
     elRef: carRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Lion, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Lion, {
     elRef: lionRef
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
     ref: squirtRef,
@@ -28306,11 +28308,11 @@ function CircusShow(_ref2) {
     style: {
       display: 'none'
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.JugglingBalls, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.JugglingBalls, {
     elRef: ballsRef
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Pow, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Pow, {
     elRef: powRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Bubble, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Bubble, {
     elRef: sayRef
   }));
 }
@@ -28377,7 +28379,7 @@ function CircusRulesShow() {
       });
       if (clown) {
         // Hanging by the hands: the feet carry on down the line of the ropes
-        var reach = -_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.HANDS_UP_Y * u * clown.size;
+        var reach = -_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.HANDS_UP_Y * u * clown.size;
         clown.x = bx + reach * sin;
         clown.y = by + reach * cos;
         clown.rot = -deg;
@@ -28402,7 +28404,7 @@ function CircusRulesShow() {
                   return side * 78 * Math.cos(3 * Math.PI * t) * (1 - 0.45 * t);
                 };
                 trap.style.display = '';
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(clown.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(clown.el, ['hands']);
                 SWING_MS = 3400;
                 _context11.next = 10;
                 return d.tween(SWING_MS, linear, function (t) {
@@ -28423,7 +28425,7 @@ function CircusRulesShow() {
                 _context11.next = 16;
                 return flipTo(clown, landX, floor(), 70, 950);
               case 16:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(clown.el, ['hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(clown.el, ['hands']);
                 _context11.next = 19;
                 return away;
               case 19:
@@ -28431,7 +28433,7 @@ function CircusRulesShow() {
                 _context11.next = 22;
                 return d.wait(700);
               case 22:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(clown.el, []);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(clown.el, []);
               case 23:
               case "end":
                 return _context11.stop();
@@ -28481,8 +28483,8 @@ function CircusRulesShow() {
       };
     }();
     svg.classList.add('is-ready');
-    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
     if (reduceMotion()) {
       A.x = W * 0.3;
       B.x = W * 0.7;
@@ -28507,13 +28509,13 @@ function CircusRulesShow() {
     className: "cc-crew circus-rules-show",
     "aria-hidden": "true",
     preserveAspectRatio: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Trapeze, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Trapeze, {
     elRef: trapARef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Trapeze, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Trapeze, {
     elRef: trapBRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: aRef
-  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: bRef
   }, DAISY)));
 }
@@ -28572,8 +28574,8 @@ function CircusFinale(_ref14) {
     };
     var muzzle = function muzzle() {
       return {
-        x: cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.x * S,
-        y: FLOOR + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.y * S
+        x: cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_MUZZLE.x * S,
+        y: FLOOR + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_MUZZLE.y * S
       };
     };
     var puff = function puff() {
@@ -28584,8 +28586,8 @@ function CircusFinale(_ref14) {
     var sayAbove = function sayAbove(a, text, ms) {
       return say(sayRef.current, text, a.x + 6 * S, FLOOR - 116 * S * a.size, ms);
     };
-    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+    (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
     [A, B, ring, cannon].forEach(place);
     if (reduceMotion()) {
       onDone === null || onDone === void 0 ? void 0 : onDone();
@@ -28629,7 +28631,7 @@ function CircusFinale(_ref14) {
                 return sayAbove(ring, 'THE HUMAN CANNONBALL!', 1300);
               case 13:
                 // Helmet on, and in
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['helmet']);
                 _context13.next = 16;
                 return d.wait(400);
               case 16:
@@ -28665,8 +28667,8 @@ function CircusFinale(_ref14) {
                 });
                 _context13.next = 38;
                 return d.tween(900, linear, function (t) {
-                  A.x = from.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_AIM.x * 330 * t;
-                  A.y = from.y + 30 + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_AIM.y * 330 * t - 160 * t * t;
+                  A.x = from.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_AIM.x * 330 * t;
+                  A.y = from.y + 30 + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_AIM.y * 330 * t - 160 * t * t;
                   A.rot = 720 * t;
                   place(A);
                 });
@@ -28680,14 +28682,14 @@ function CircusFinale(_ref14) {
                 return d.wait(500);
               case 44:
                 _context13.next = 46;
-                return walk(B, cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.x * S + 14, 70);
+                return walk(B, cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_MUZZLE.x * S + 14, 70);
               case 46:
                 B.el.setAttribute('data-look', 'left');
                 _context13.next = 49;
                 return sayAbove(B, 'HELLO?', 800);
               case 49:
                 puff();
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['sooty']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['sooty']);
                 B.el.classList.add('quiz-scared');
                 _context13.next = 54;
                 return d.wait(600);
@@ -28710,13 +28712,13 @@ function CircusFinale(_ref14) {
                 _context13.next = 65;
                 return d.wait(250);
               case 65:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet', 'hands']);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['sooty', 'hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['helmet', 'hands']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['sooty', 'hands']);
                 _context13.next = 69;
                 return sayAbove(A, 'TA-DA!', 1100);
               case 69:
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet']);
-                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['sooty']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['helmet']);
+                (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['sooty']);
                 _context13.next = 73;
                 return bow(ring, A, B);
               case 73:
@@ -28779,19 +28781,19 @@ function CircusFinale(_ref14) {
     viewBox: "0 0 400 100",
     preserveAspectRatio: "xMidYMax meet",
     "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Ringmaster, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Ringmaster, {
     elRef: ringRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: bRef
-  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Cannon, {
+  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Cannon, {
     elRef: cannonRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: aRef
-  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Smoke, {
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Smoke, {
     elRef: smokeRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Pow, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Pow, {
     elRef: powRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Bubble, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Bubble, {
     elRef: sayRef
   }));
 }
@@ -28809,12 +28811,15 @@ var skitFor = function skitFor(round) {
 /**
  * One act on a little stage along the bottom of the TV (a 400 x 100 drawing). `skit`: one of CIRCUS_SKITS.
  * `encore`: when it's over, carry on with the next act (for screens that stay up longer than one act).
+ * `sounds`: with sound effects (the lion roars, the cannon booms...).
  */
 function CircusSkit(_ref17) {
   var _ref17$skit = _ref17.skit,
     skit = _ref17$skit === void 0 ? 'bear' : _ref17$skit,
     _ref17$encore = _ref17.encore,
-    encore = _ref17$encore === void 0 ? false : _ref17$encore;
+    encore = _ref17$encore === void 0 ? false : _ref17$encore,
+    _ref17$sounds = _ref17.sounds,
+    sounds = _ref17$sounds === void 0 ? false : _ref17$sounds;
   var svgRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var aRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var bRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
@@ -28848,6 +28853,13 @@ function CircusSkit(_ref17) {
       hop = _makeMoves4.hop,
       say = _makeMoves4.say,
       flipTo = _makeMoves4.flipTo;
+    // 🔊 A sound effect, if this act has them (and it's still on screen)
+    var sfx = function sfx(play) {
+      for (var _len5 = arguments.length, args = new Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
+        args[_key5 - 1] = arguments[_key5];
+      }
+      if (sounds && !d.isDead()) play.apply(void 0, args);
+    };
     var A = {
       el: aRef.current,
       size: 0.94
@@ -28898,7 +28910,7 @@ function CircusSkit(_ref17) {
           flip: 1
         });
         hide(a.el);
-        (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(a.el, []);
+        (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(a.el, []);
         a.el.classList.remove('quiz-scared', 'quiz-bowing', 'circus-dizzy', 'crew-walking', 'crew-running', 'is-riding', 'has-clowns', 'is-bouncing', 'is-roaring', 'is-lit');
         a.el.setAttribute('data-look', 'front');
         place(a);
@@ -28913,16 +28925,16 @@ function CircusSkit(_ref17) {
     };
     var bow = /*#__PURE__*/function () {
       var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
-        var _len5,
+        var _len6,
           who,
-          _key5,
+          _key6,
           _args15 = arguments;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
           while (1) {
             switch (_context15.prev = _context15.next) {
               case 0:
-                for (_len5 = _args15.length, who = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-                  who[_key5] = _args15[_key5];
+                for (_len6 = _args15.length, who = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+                  who[_key6] = _args15[_key6];
                 }
                 who.forEach(function (a) {
                   return a.el.classList.add('quiz-bowing');
@@ -28959,7 +28971,7 @@ function CircusSkit(_ref17) {
                   _bear.el.classList.add('is-riding', 'crew-walking');
                   A.x = offLeft - 70;
                   show(A.el);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['horn']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['horn']);
                   A.el.classList.add('crew-running');
                   fromB = _bear.x;
                   fromA = A.x;
@@ -28970,21 +28982,24 @@ function CircusSkit(_ref17) {
                     A.x = fromA + (offRight - 70 - fromA) * t;
                     place(A);
                   });
-                  _context16.next = 13;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playBikeBell);
+                  _context16.next = 14;
                   return d.wait(1000);
-                case 13:
-                  _context16.next = 15;
-                  return sayOver(A, 'HONK HONK!', 900);
-                case 15:
+                case 14:
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playHonkHonk);
                   _context16.next = 17;
-                  return hop(B, 300, FLOOR, 40, 420);
+                  return sayOver(A, 'HONK HONK!', 900);
                 case 17:
-                  _context16.next = 19;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playSqueak, 2);
+                  _context16.next = 20;
+                  return hop(B, 300, FLOOR, 40, 420);
+                case 20:
+                  _context16.next = 22;
                   return sayOver(B, 'EEK!', 800);
-                case 19:
-                  _context16.next = 21;
+                case 22:
+                  _context16.next = 24;
                   return ride;
-                case 21:
+                case 24:
                 case "end":
                   return _context16.stop();
               }
@@ -29008,12 +29023,13 @@ function CircusSkit(_ref17) {
                   _car.el.classList.add('has-clowns', 'is-bouncing');
                   _car.x = offRight;
                   place(_car);
-                  _context18.next = 6;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playCarEngine, 1.1);
+                  _context18.next = 7;
                   return d.tween(1100, easeOut, function (t) {
                     _car.x = offRight + (200 - offRight) * t;
                     place(_car);
                   });
-                case 6:
+                case 7:
                   _car.el.classList.remove('is-bouncing', 'has-clowns');
                   out = /*#__PURE__*/function () {
                     var _ref19 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(a, x) {
@@ -29024,9 +29040,10 @@ function CircusSkit(_ref17) {
                               a.x = 200;
                               a.y = FLOOR;
                               show(a.el);
-                              _context17.next = 5;
+                              sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playBoing);
+                              _context17.next = 6;
                               return hop(a, x, FLOOR, 60, 450);
-                            case 5:
+                            case 6:
                             case "end":
                               return _context17.stop();
                           }
@@ -29037,20 +29054,21 @@ function CircusSkit(_ref17) {
                       return _ref19.apply(this, arguments);
                     };
                   }();
-                  _context18.next = 10;
+                  _context18.next = 11;
                   return out(A, 110);
-                case 10:
-                  _context18.next = 12;
+                case 11:
+                  _context18.next = 13;
                   return out(B, 290);
-                case 12:
-                  _context18.next = 14;
+                case 13:
+                  _context18.next = 15;
                   return out(R, 200);
-                case 14:
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['hands']);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['hands']);
-                  _context18.next = 18;
+                case 15:
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['hands']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['hands']);
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playTaDa);
+                  _context18.next = 20;
                   return Promise.all([sayOver(R, 'TA-DA!', 900), bow(R)]);
-                case 18:
+                case 20:
                 case "end":
                   return _context18.stop();
               }
@@ -29083,25 +29101,27 @@ function CircusSkit(_ref17) {
                   return walk(L, 140, 320);
                 case 11:
                   L.el.classList.add('crew-running');
-                  _context19.next = 14;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playWhoosh, 0.7);
+                  _context19.next = 15;
                   return hop(L, 305, FLOOR, 46, 800);
-                case 14:
+                case 15:
                   L.el.classList.remove('crew-running');
                   L.flip = 1;
                   place(L);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(L.el, ['roar']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(L.el, ['roar']);
                   L.el.classList.add('is-roaring');
                   R.el.classList.add('quiz-scared');
                   hide(hoopRef.current);
-                  _context19.next = 23;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playLionRoar);
+                  _context19.next = 25;
                   return Promise.all([say(sayRef.current, 'ROAR!', L.x - 30 * S, FLOOR - 70 * S, 900), hop(R, 262, FLOOR, 24, 380)]);
-                case 23:
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(L.el, []);
+                case 25:
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(L.el, []);
                   L.el.classList.remove('is-roaring');
                   R.el.classList.remove('quiz-scared');
-                  _context19.next = 28;
+                  _context19.next = 30;
                   return sayOver(R, 'GOOD KITTY!', 900);
-                case 28:
+                case 30:
                 case "end":
                   return _context19.stop();
               }
@@ -29155,14 +29175,18 @@ function CircusSkit(_ref17) {
                   });
                 case 15:
                   burst(powRef.current, head.x, head.y, S * 1.3);
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playBonk);
+                  setTimeout(function () {
+                    return sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playSlideDown);
+                  }, 250);
                   B.el.classList.add('circus-dizzy');
-                  _context20.next = 19;
+                  _context20.next = 21;
                   return Promise.all([d.tween(450, linear, function (t) {
                     return put(last, head.x + 24 * t, head.y + (FLOOR - 4 - head.y) * t * t, S * 0.9);
                   }), sayOver(B, 'BONK!', 900)]);
-                case 19:
+                case 21:
                   B.el.classList.remove('circus-dizzy');
-                case 20:
+                case 22:
                 case "end":
                   return _context20.stop();
               }
@@ -29187,29 +29211,33 @@ function CircusSkit(_ref17) {
                   place(_cannon);
                   enter(B, 78);
                   m = {
-                    x: _cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.x * S,
-                    y: FLOOR + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.CANNON_MUZZLE.y * S
+                    x: _cannon.x + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_MUZZLE.x * S,
+                    y: FLOOR + _CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.CANNON_MUZZLE.y * S
                   };
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['helmet']);
                   _cannon.el.classList.add('is-lit');
-                  _context21.next = 9;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playFuseFizz, 1);
+                  _context21.next = 10;
                   return sayOver(B, '3... 2... 1...', 1000);
-                case 9:
+                case 10:
                   _cannon.el.classList.remove('is-lit');
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playCannonBoom);
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playWhoosh, 1);
                   burst(smokeRef.current, m.x, m.y, S);
                   burst(powRef.current, m.x + 6, m.y - 4, S * 1.6);
                   A.x = m.x;
                   A.y = m.y + 24;
                   show(A.el);
                   place(A);
-                  _context21.next = 18;
+                  _context21.next = 21;
                   return flipTo(A, 330, FLOOR, 110, 1200, 2);
-                case 18:
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['helmet', 'hands']);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['hands']);
-                  _context21.next = 22;
+                case 21:
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['helmet', 'hands']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['hands']);
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playTaDa);
+                  _context21.next = 26;
                   return sayOver(A, 'TA-DA!', 1000);
-                case 22:
+                case 26:
                 case "end":
                   return _context21.stop();
               }
@@ -29231,8 +29259,8 @@ function CircusSkit(_ref17) {
                 case 0:
                   enter(A, 95);
                   enter(B, 305);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, ['pie']);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, ['pie']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, ['pie']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, ['pie']);
                   A.el.setAttribute('data-look', 'right');
                   B.el.setAttribute('data-look', 'left');
                   R.x = offLeft;
@@ -29242,8 +29270,8 @@ function CircusSkit(_ref17) {
                   _context22.next = 12;
                   return d.wait(Math.max(0, Math.abs(200 - offLeft) / (220 * S) * 1000 - 700));
                 case 12:
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(A.el, []);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(B.el, []);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(A.el, []);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(B.el, []);
                   face = {
                     x: 200,
                     y: FLOOR - 80 * S * R.size
@@ -29253,20 +29281,26 @@ function CircusSkit(_ref17) {
                       put(el, fromX + (face.x + side * 8 - fromX) * t, FLOOR - 40 * S + (face.y - FLOOR + 40 * S) * t - Math.sin(Math.PI * t) * 30, S);
                     });
                   };
-                  _context22.next = 18;
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playWhoosh, 0.6);
+                  _context22.next = 19;
                   return Promise.all([fly(pie1Ref.current, A.x + 15 * S, -1), fly(pie2Ref.current, B.x - 15 * S, 1), walkIn]);
-                case 18:
+                case 19:
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playSplat);
+                  setTimeout(function () {
+                    return sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playSplat);
+                  }, 70);
                   hide(pie1Ref.current, pie2Ref.current);
                   burst(powRef.current, face.x, face.y, S * 1.5);
-                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.wearGear)(R.el, ['piefaced']);
+                  (0,_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.wearGear)(R.el, ['piefaced']);
                   R.el.classList.add('quiz-scared');
-                  _context22.next = 24;
-                  return sayOver(A, 'HA HA!', 800);
-                case 24:
-                  R.el.classList.remove('quiz-scared');
                   _context22.next = 27;
-                  return sayOver(R, '...REALLY?', 1000);
+                  return sayOver(A, 'HA HA!', 800);
                 case 27:
+                  R.el.classList.remove('quiz-scared');
+                  sfx(_circusSounds_js__WEBPACK_IMPORTED_MODULE_2__.playSlideDown);
+                  _context22.next = 31;
+                  return sayOver(R, '...REALLY?', 1000);
+                case 31:
                 case "end":
                   return _context22.stop();
               }
@@ -29322,40 +29356,40 @@ function CircusSkit(_ref17) {
     return function () {
       return d.stop();
     };
-  }, [skit, encore]);
+  }, [skit, encore, sounds]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     ref: svgRef,
     className: "cc-crew cc-round-scene-art circus-skit",
     viewBox: "0 0 400 100",
     preserveAspectRatio: "xMidYMax meet",
     "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Hoop, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Hoop, {
     elRef: hoopRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Bear, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Bear, {
     elRef: bearRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Lion, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Lion, {
     elRef: lionRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Ringmaster, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Ringmaster, {
     elRef: ringRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: bRef
-  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Cannon, {
+  }, DAISY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Cannon, {
     elRef: cannonRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Clown, _extends({
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Clown, _extends({
     elRef: aRef
-  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.ClownCar, {
+  }, OOPSY)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.ClownCar, {
     elRef: carRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.FlyingPie, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.FlyingPie, {
     elRef: pie1Ref
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.FlyingPie, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.FlyingPie, {
     elRef: pie2Ref
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.JugglingBalls, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.JugglingBalls, {
     elRef: ballsRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Smoke, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Smoke, {
     elRef: smokeRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Pow, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Pow, {
     elRef: powRef
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_2__.Bubble, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusCast_jsx__WEBPACK_IMPORTED_MODULE_3__.Bubble, {
     elRef: sayRef
   }));
 }
@@ -31350,21 +31384,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
 /* harmony import */ var _DrawingCanvas_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DrawingCanvas.jsx */ "./src/features/Mixup/DrawingCanvas.jsx");
 /* harmony import */ var _Lists_ListBoard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Lists/ListBoard.jsx */ "./src/features/Lists/ListBoard.jsx");
 /* harmony import */ var _MatchReview_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MatchReview.jsx */ "./src/features/Mixup/MatchReview.jsx");
 /* harmony import */ var _CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CircusShow.jsx */ "./src/features/Mixup/CircusShow.jsx");
-/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
+/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
+/* harmony import */ var _styles_mixup_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../styles/mixup.css */ "./src/styles/mixup.css");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -31444,7 +31480,7 @@ function ClockStrip(_ref) {
     className: "d-flex justify-content-between align-items-center mb-1 px-1 mx-strip"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, left), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: isLow ? 'text-danger' : ''
-  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, timeLeft !== null && timeLeft !== void 0 ? timeLeft : '', "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
     now: percent,
     variant: isLow ? 'danger' : 'light',
     className: "mx-bar"
@@ -31560,7 +31596,7 @@ function MixupRulesTV(_ref3) {
     style: {
       paddingRight: '7rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Game starts in ", Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Game starts in ", Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
     variant: "light",
     size: "sm",
     className: "fw-bold px-4",
@@ -31596,16 +31632,42 @@ function RoundIntroTV(_ref4) {
     className: "cc-round-scene"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__.CircusSkit, {
     key: room.currentRound,
-    skit: (0,_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__.skitFor)(room.currentRound)
+    skit: (0,_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__.skitFor)(room.currentRound),
+    sounds: true
   })));
+}
+
+/** 🙋 Everyone's name tag, lighting up green with a ✅ once they've captioned (or voted) */
+function WhosIn(_ref5) {
+  var players = _ref5.players,
+    isDone = _ref5.isDone,
+    waitingIcon = _ref5.waitingIcon;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mx-whos-in"
+  }, players.map(function (p) {
+    var done = isDone(p);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: p.id,
+      className: "mx-whos-chip ".concat(done ? 'done' : '')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_7__.Avatar, {
+      id: p.avatar,
+      name: p.name,
+      size: 40,
+      className: "mx-whos-avatar"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "mx-whos-name"
+    }, p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      "aria-hidden": "true"
+    }, done ? '✅' : waitingIcon));
+  }));
 }
 
 // ======================================================================================
 // 🖼️ Memes: writing, voting, results
 // ======================================================================================
-function MemeTV(_ref5) {
+function MemeTV(_ref6) {
   var _winners$;
-  var room = _ref5.room;
+  var room = _ref6.room;
   var round = room.round;
   var state = room.gameState;
   var players = Object.values(room.players).filter(function (p) {
@@ -31666,7 +31728,19 @@ function MemeTV(_ref5) {
     key: "results-".concat(room.currentRound),
     skit: (0,_CircusShow_jsx__WEBPACK_IMPORTED_MODULE_6__.skitFor)(room.currentRound, 3),
     encore: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  })), state === 'meme_write' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(WhosIn, {
+    players: players,
+    isDone: function isDone(p) {
+      return p.hasSubmitted;
+    },
+    waitingIcon: "\u270F\uFE0F"
+  }), state === 'meme_vote' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(WhosIn, {
+    players: players,
+    isDone: function isDone(p) {
+      return p.hasVoted;
+    },
+    waitingIcon: "\uD83D\uDDF3\uFE0F"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex-shrink-0",
     style: {
       marginTop: '1.5vh',
@@ -31688,8 +31762,8 @@ function MemeTV(_ref5) {
 // ======================================================================================
 // ✏️ Pictionary: the live drawing, then the answer
 // ======================================================================================
-function DrawTV(_ref6) {
-  var room = _ref6.room;
+function DrawTV(_ref7) {
+  var room = _ref7.room;
   var round = room.round;
   var isResults = room.gameState === 'draw_results';
   var guesses = round.guesses || [];
@@ -31762,8 +31836,8 @@ function DrawTV(_ref6) {
 // ======================================================================================
 // 🤝 Threefold: everyone writes, the judge checks the matches, then the answers that match light up
 // ======================================================================================
-function MatchTV(_ref7) {
-  var room = _ref7.room;
+function MatchTV(_ref8) {
+  var room = _ref8.room;
   var round = room.round;
   var state = room.gameState;
   var players = Object.values(room.players).filter(function (p) {
@@ -31877,8 +31951,8 @@ function MatchTV(_ref7) {
 // ======================================================================================
 // 😢 Nobody answered
 // ======================================================================================
-function NobodyTV(_ref8) {
-  var room = _ref8.room;
+function NobodyTV(_ref9) {
+  var room = _ref9.room;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fullscreen-gameplay-container justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -50107,7 +50181,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,\n   which swing open on the fanfare's last chord for the fireworks ---------- */\n.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }\n.cx-tent-flap {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 51%;\n    background:\n        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),\n        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);\n    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);\n}\n.cx-tent-left { left: 0; }\n.cx-tent-right { right: 0; }\n.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }\n.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }\n.cx-tent-valance {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    height: calc(9vh + 3.6vw);\n    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);\n    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));\n    transition: transform 1s ease-in;\n}\n.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }\n.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }\n.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }\n.cx-tent-board {\n    text-align: center;\n    padding: 3vh 6vw;\n    background: linear-gradient(#ffe7a3, #ffc83d);\n    border: 0.8vh solid #8f1520;\n    border-radius: 2vh;\n    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;\n    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;\n}\n.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }\n.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }\n.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }\n@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }\n@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }\n.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }\n@media (prefers-reduced-motion: reduce) {\n    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }\n    .cx-tent-board { animation: none; }\n}\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"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","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,\n   which swing open on the fanfare's last chord for the fireworks ---------- */\n.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }\n.cx-tent-flap {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 51%;\n    background:\n        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),\n        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);\n    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);\n}\n.cx-tent-left { left: 0; }\n.cx-tent-right { right: 0; }\n.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }\n.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }\n.cx-tent-valance {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    height: calc(9vh + 3.6vw);\n    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);\n    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));\n    transition: transform 1s ease-in;\n}\n.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }\n.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }\n.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }\n.cx-tent-board {\n    text-align: center;\n    padding: 3vh 6vw;\n    background: linear-gradient(#ffe7a3, #ffc83d);\n    border: 0.8vh solid #8f1520;\n    border-radius: 2vh;\n    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;\n    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;\n}\n.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }\n.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }\n.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }\n@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }\n@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }\n.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }\n@media (prefers-reduced-motion: reduce) {\n    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }\n    .cx-tent-board { animation: none; }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,\n   which swing open on the fanfare's last chord for the fireworks ---------- */\n.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }\n.cx-tent-flap {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 51%;\n    background:\n        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),\n        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);\n    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);\n}\n.cx-tent-left { left: 0; }\n.cx-tent-right { right: 0; }\n.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }\n.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }\n.cx-tent-valance {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    height: calc(9vh + 3.6vw);\n    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);\n    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));\n    transition: transform 1s ease-in;\n}\n.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }\n.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }\n.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }\n.cx-tent-board {\n    text-align: center;\n    padding: 3vh 6vw;\n    background: linear-gradient(#ffe7a3, #ffc83d);\n    border: 0.8vh solid #8f1520;\n    border-radius: 2vh;\n    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;\n    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;\n}\n.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }\n.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }\n.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }\n@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }\n@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }\n.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }\n@media (prefers-reduced-motion: reduce) {\n    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }\n    .cx-tent-board { animation: none; }\n}\n\n/* 🙋 Meme It: who's captioned / voted, a name tag each that lights up green when they're in */\n.mx-whos-in { flex: 0 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6vw; margin-top: 1.2vh; padding-right: 7rem; }\n.mx-whos-chip {\n    display: flex;\n    align-items: center;\n    gap: 0.4em;\n    padding: 0.2em 0.75em 0.2em 0.25em;\n    border-radius: 999px;\n    background: rgba(0, 0, 0, 0.38);\n    color: #fff;\n    font-weight: 800;\n    font-size: clamp(0.85rem, 2.9vh, 1.5rem);\n    opacity: 0.72;\n    transition: background 0.25s ease, opacity 0.25s ease, transform 0.25s ease;\n}\n.mx-whos-chip.done { background: rgba(28, 149, 98, 0.92); opacity: 1; transform: scale(1.06); }\n.mx-whos-avatar { width: clamp(26px, 5.4vh, 52px) !important; height: clamp(26px, 5.4vh, 52px) !important; }\n.mx-whos-name { max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n", "",{"version":3,"sources":["webpack://./src/styles/mixup.css"],"names":[],"mappings":"AAAA,qBAAqB;;AAErB,sCAAsC;AACtC;IACI,WAAW;IACX,gBAAgB;IAChB,uCAAuC;IACvC,2CAA2C;AAC/C;AACA;IACI,6BAA6B;IAC7B,0CAA0C;IAC1C,mBAAmB;AACvB;;AAEA,gCAAgC;AAChC;IACI,kBAAkB;IAClB,qBAAqB;IACrB,eAAe;IACf,gBAAgB;IAChB,cAAc;AAClB;AACA;IACI,eAAe;IACf,gBAAgB;IAChB,mBAAmB;IACnB,mBAAmB;IACnB,2CAA2C;IAC3C,gBAAgB;AACpB;AACA,wFAAwF;AACxF;IACI,kBAAkB;IAClB,QAAQ;IACR,SAAS;IACT,UAAU;IACV,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;IACzB,yEAAyE;IACzE,gBAAgB;IAChB,qCAAqC;IACrC,WAAW;IACX,sBAAsB;IACtB,6BAA6B;IAC7B,wBAAwB;IACxB,+EAA+E;IAC/E,uBAAuB;IACvB,oCAAoC;AACxC;AACA,kCAAkC,sCAAsC,EAAE,6BAA6B,EAAE;AACzG,8BAA8B,gBAAgB,EAAE;;AAEhD;;IAEI,aAAa;IACb,QAAQ;IACR,oBAAoB;IACpB,iBAAiB;AACrB;AACA;IACI,aAAa;IACb,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,YAAY;IACZ,aAAa;AACjB;AACA,iFAAiF;AACjF,8BAA8B,gBAAgB,EAAE,WAAW,EAAE,cAAc,EAAE;;AAE7E;IACI,aAAa;IACb,aAAa;IACb,sBAAsB;IACtB,QAAQ;IACR,gBAAgB;IAChB,YAAY;AAChB;AACA;IACI,aAAa;IACb,sBAAsB;IACtB,UAAU;IACV,qCAAqC;IACrC,cAAc;IACd,mBAAmB;IACnB,oBAAoB;IACpB,gBAAgB;IAChB,sCAAsC;IACtC,0CAA0C;IAC1C,oCAAoC;AACxC;AACA,gCAAgC,sBAAsB,EAAE;AACxD,gCAAgC,sBAAsB,EAAE;AACxD,gCAAgC,sBAAsB,EAAE;AACxD,gCAAgC,sBAAsB,EAAE;AACxD,0BAA0B,mBAAmB,EAAE,0BAA0B,EAAE;AAC3E;IACI,sBAAsB;IACtB,mBAAmB;IACnB,WAAW;IACX,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;AACpB;AACA,oBAAoB,iBAAiB,EAAE,cAAc,EAAE;AACvD,mBAAmB,iBAAiB,EAAE,cAAc,EAAE;;AAEtD,qCAAqC;AACrC;IACI,gBAAgB;IAChB,mBAAmB;IACnB,2CAA2C;AAC/C;AACA,iBAAiB,yBAAyB,EAAE;AAC5C,mBAAmB,gBAAgB,EAAE,cAAc,EAAE;AACrD;IACI,cAAc;IACd,mBAAmB;IACnB,YAAY;IACZ,cAAc;AAClB;AACA,wBAAwB,YAAY,EAAE,sBAAsB,EAAE,eAAe,EAAE;AAC/E;IACI,WAAW;IACX,YAAY;IACZ,aAAa;IACb,sBAAsB;AAC1B;AACA;IACI,WAAW;IACX,gBAAgB;IAChB,qCAAqC;IACrC,mBAAmB;IACnB,oBAAoB;IACpB,cAAc;IACd,uCAAuC;AAC3C;AACA,kBAAkB,gBAAgB,EAAE,yBAAyB,EAAE,gBAAgB,EAAE,cAAc,EAAE,oBAAoB,EAAE;AACvH,YAAY,gBAAgB,EAAE,oCAAoC,EAAE;AACpE,kBAAkB,cAAc,EAAE,kBAAkB,EAAE;AACtD;IACI,cAAc;IACd,qCAAqC;IACrC,mBAAmB;IACnB,gBAAgB;IAChB,kBAAkB;IAClB,cAAc;IACd,oCAAoC;AACxC;AACA,mBAAmB,gBAAgB,EAAE,cAAc,EAAE,qCAAqC,EAAE;AAC5F,kBAAkB,gBAAgB,EAAE,qCAAqC,EAAE,0BAA0B,EAAE,cAAc,EAAE,gBAAgB,EAAE;AACzI,oBAAoB,gBAAgB,EAAE,sCAAsC,EAAE,eAAe,EAAE;;AAE/F,0BAA0B;AAC1B,YAAY,aAAa,EAAE,eAAe,EAAE,QAAQ,EAAE,uBAAuB,EAAE,mBAAmB,EAAE;AACpG;IACI,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,6BAA6B;IAC7B,UAAU;AACd;AACA,sBAAsB,6BAA6B,EAAE,sBAAsB,EAAE;AAC7E;IACI,oBAAoB;IACpB,mBAAmB;IACnB,QAAQ;IACR,yBAAyB;IACzB,gBAAgB;IAChB,oBAAoB;IACpB,iBAAiB;IACjB,gBAAgB;IAChB,iBAAiB;IACjB,cAAc;AAClB;AACA,wBAAwB,mBAAmB,EAAE,WAAW,EAAE,qBAAqB,EAAE;AACjF,wBAAwB,qBAAqB,EAAE,cAAc,EAAE;AAC/D,eAAe,qBAAqB,EAAE,kBAAkB,EAAE,wBAAwB,EAAE;AACpF,gBAAgB,iBAAiB,EAAE,kBAAkB,EAAE;AACvD,uBAAuB,cAAc,EAAE,0BAA0B,EAAE;AACnE,iBAAiB,cAAc,EAAE,gBAAgB,EAAE,qCAAqC,EAAE;;AAE1F,qDAAqD;AACrD,gHAAgH;AAChH,iBAAiB,aAAa,EAAE,qCAAqC,EAAE,UAAU,EAAE;AACnF,gBAAgB,aAAa,EAAE,mBAAmB,EAAE,uBAAuB,EAAE,aAAa,EAAE;AAC5F;IACI,gCAAgC,IAAI,0BAA0B;IAC9D,kBAAkB;IAClB,sBAAsB;IACtB,eAAe;IACf,kBAAkB;IAClB,mDAAmD;IACnD,iDAAiD;AACrD;AACA,aAAa,sBAAsB,EAAE;AACrC,aAAa,sBAAsB,EAAE;AACrC;IACI,kBAAkB;IAClB,QAAQ;IACR,kBAAkB;IAClB,uHAAuH;IACvH,uHAAuH;IACvH,+GAA+G;IAC/G,0CAA0C;AAC9C;AACA,2BAA2B,4BAA4B,EAAE,sBAAsB,EAAE;AACjF,2BAA2B,sBAAsB,EAAE;AACnD;IACI,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,oCAAoC;IACpC,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,uBAAuB;IACvB,kBAAkB;IAClB,YAAY;AAChB;AACA,0BAA0B,KAAK,yBAAyB,EAAE,EAAE;AAC5D,0BAA0B,WAAW,sCAAsC,EAAE,EAAE,MAAM,0CAA0C,EAAE,EAAE;AACnI,gBAAgB,gBAAgB,EAAE,yBAAyB,EAAE,cAAc,EAAE,wCAAwC,EAAE;AACvH,gBAAgB,mCAAmC,EAAE,iBAAiB,EAAE;AACxE,iBAAiB,gBAAgB,EAAE,cAAc,EAAE,qCAAqC,EAAE,gBAAgB,EAAE;AAC5G,gBAAgB,cAAc,EAAE,gBAAgB,EAAE,wCAAwC,EAAE,iBAAiB,EAAE,iBAAiB,EAAE;;AAElI,YAAY,kBAAkB,EAAE,WAAW,EAAE,4CAA4C,EAAE,oCAAoC,EAAE;AACjI,kBAAkB,gBAAgB,EAAE,iCAAiC,EAAE,YAAY,EAAE;AACrF,iBAAiB,mCAAmC,EAAE,gBAAgB,EAAE,8CAA8C,EAAE;AACxH,kBAAkB,gBAAgB,EAAE,oCAAoC,EAAE,cAAc,EAAE;AAC1F,kBAAkB,qCAAqC,EAAE,eAAe,EAAE;AAC1E,kBAAkB,qCAAqC,EAAE,eAAe,EAAE,YAAY,EAAE,yBAAyB,EAAE,qBAAqB,EAAE;;AAE1I,iCAAiC;AACjC,kBAAkB,gBAAgB,EAAE,eAAe,EAAE;AACrD,sBAAsB,cAAc,EAAE;AACtC,uBAAuB,iBAAiB,EAAE,gBAAgB,EAAE;AAC5D,kBAAkB,kBAAkB,EAAE;;AAEtC;IACI,KAAK,UAAU,EAAE,sBAAsB,EAAE;IACzC,OAAO,UAAU,EAAE,mBAAmB,EAAE;AAC5C;AACA;IACI,WAAW,oBAAoB,EAAE;IACjC,MAAM,wBAAwB,EAAE;IAChC,MAAM,uBAAuB,EAAE;AACnC;AACA;IACI,WAAW,wBAAwB,EAAE;IACrC,MAAM,2BAA2B,EAAE;IACnC,MAAM,0BAA0B,EAAE;AACtC;AACA;IACI,qIAAqI,eAAe,EAAE;AAC1J;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,sCAAsC;IACtC,mBAAmB;IACnB,kBAAkB;IAClB,gBAAgB;IAChB,qCAAqC;IACrC,iBAAiB;IACjB,WAAW;IACX,kCAAkC;IAClC,2CAA2C;AAC/C;AACA,wCAAwC,cAAc,EAAE,iBAAiB,EAAE,gBAAgB,EAAE,sBAAsB,EAAE,yBAAyB,EAAE,YAAY,EAAE;AAC9J,kBAAkB,qBAAqB,EAAE,eAAe,EAAE,qBAAqB,EAAE,gBAAgB,EAAE,kBAAkB,EAAE,gBAAgB,EAAE,WAAW,EAAE,qDAAqD,EAAE;AAC7M,uBAAuB,kBAAkB,EAAE;AAC3C,mBAAmB,gBAAgB,EAAE,oCAAoC,EAAE,iBAAiB,EAAE;AAC9F,kCAAkC,kBAAkB,EAAE;AACtD,qEAAqE;AACrE,sBAAsB,+BAA+B,EAAE;AACvD,qCAAqC,oCAAoC,EAAE;AAC3E,sCAAsC,oCAAoC,EAAE;AAC5E,4DAA4D;AAC5D,mBAAmB,cAAc,EAAE,YAAY,EAAE,kBAAkB,EAAE,oBAAoB,EAAE;;AAE3F,kEAAkE;AAClE,mBAAmB,aAAa,EAAE,iCAAiC,EAAE,WAAW,EAAE,oBAAoB,EAAE;AACxG,sBAAsB,YAAY,EAAE,qBAAqB,EAAE;AAC3D,yBAAyB,qCAAqC,EAAE,gBAAgB,EAAE;AAClF;IACI,aAAa;IACb,sBAAsB;IACtB,YAAY;IACZ,WAAW;IACX,mEAAmE;IACnE,6BAA6B;IAC7B,mBAAmB;IACnB,qCAAqC;IACrC,yCAAyC;IACzC,cAAc;IACd,gBAAgB;IAChB,aAAa;IACb,2EAA2E;AAC/E;AACA,0CAA0C,yCAAyC,EAAE;AACrF,qEAAqE,oCAAoC,EAAE;AAC3G,2BAA2B,qBAAqB,EAAE,mBAAmB,EAAE;AACvE,0BAA0B,qCAAqC,EAAE,oBAAoB,EAAE,eAAe,EAAE,4CAA4C,EAAE;AACtJ,iCAAiC,sBAAsB,EAAE;AACzD,2BAA2B,aAAa,EAAE;AAC1C,kBAAkB,iBAAiB,EAAE,gBAAgB,EAAE,yBAAyB,EAAE,sBAAsB,EAAE,cAAc,EAAE,qBAAqB,EAAE;AACjJ,2CAA2C,cAAc,EAAE;AAC3D,0CAA0C,cAAc,EAAE;AAC1D,qBAAqB,gBAAgB,EAAE,SAAS,EAAE,UAAU,EAAE,aAAa,EAAE,sBAAsB,EAAE,UAAU,EAAE;AACjH;IACI,aAAa;IACb,qBAAqB;IACrB,8BAA8B;IAC9B,UAAU;IACV,WAAW;IACX,qBAAqB;IACrB,SAAS;IACT,kBAAkB;IAClB,kCAAkC;IAClC,cAAc;IACd,aAAa;IACb,gBAAgB;IAChB,gBAAgB;IAChB,oCAAoC;AACxC;AACA,wBAAwB,qBAAqB,EAAE,gBAAgB,EAAE,yCAAyC,EAAE,eAAe,EAAE;AAC7H,+BAA+B,sBAAsB,EAAE;AACvD,yBAAyB,qCAAqC,EAAE,mBAAmB,EAAE,8CAA8C,EAAE;AACrI,4BAA4B,oCAAoC,EAAE;AAClE,yCAAyC,cAAc,EAAE;AACzD,kBAAkB,YAAY,EAAE,uBAAuB,EAAE;AACzD,kBAAkB,cAAc,EAAE,iBAAiB,EAAE,gBAAgB,EAAE,cAAc,EAAE;AACvF,kCAAkC,YAAY,EAAE,YAAY,EAAE,gBAAgB,EAAE,uBAAuB,EAAE,mBAAmB,EAAE,cAAc,EAAE;AAC9I;IACI,WAAW,2CAA2C,EAAE;IACxD,MAAM,8CAA8C,EAAE;AAC1D;AACA;IACI,6CAA6C,eAAe,EAAE;AAClE;;AAEA,0DAA0D;AAC1D,wBAAwB,yBAAyB,EAAE,iBAAiB,EAAE,2BAA2B,EAAE;AACnG,6BAA6B,aAAa,EAAE;AAC5C,yBAAyB,mBAAmB,EAAE,mBAAmB,EAAE,sBAAsB,EAAE;AAC3F,+BAA+B,6CAA6C,EAAE,sBAAsB,EAAE;AACtG;IACI,eAAe;IACf,aAAa;IACb,oBAAoB;IACpB,iCAAiC;IACjC,eAAe;IACf,oBAAoB;IACpB,yCAAyC;IACzC,mBAAmB;IACnB,mBAAmB;IACnB,yCAAyC;IACzC,cAAc;IACd,gBAAgB;IAChB,mBAAmB;IACnB,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;8EAC8E;AAC9E,WAAW,eAAe,EAAE,QAAQ,EAAE,cAAc,EAAE,oBAAoB,EAAE,gBAAgB,EAAE;AAC9F;IACI,kBAAkB;IAClB,MAAM;IACN,SAAS;IACT,UAAU;IACV;;yEAEqE;IACrE,wCAAwC;IACxC,0DAA0D;AAC9D;AACA,gBAAgB,OAAO,EAAE;AACzB,iBAAiB,QAAQ,EAAE;AAC3B,oCAAoC,yCAAyC,EAAE;AAC/E,qCAAqC,uCAAuC,EAAE;AAC9E;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,MAAM;IACN,yBAAyB;IACzB,gFAAgF;IAChF,gKAAgK;IAChK,wJAAwJ;IACxJ,kDAAkD;IAClD,gCAAgC;AACpC;AACA,uCAAuC,4BAA4B,EAAE;AACrE,gBAAgB,kBAAkB,EAAE,SAAS,EAAE,QAAQ,EAAE,gCAAgC,EAAE,wDAAwD,EAAE;AACrJ,oCAAoC,2CAA2C,EAAE,UAAU,EAAE;AAC7F;IACI,kBAAkB;IAClB,gBAAgB;IAChB,6CAA6C;IAC7C,2BAA2B;IAC3B,kBAAkB;IAClB,qEAAqE;IACrE,2GAA2G;AAC/G;AACA,iBAAiB,cAAc,EAAE,iCAAiC,EAAE,qBAAqB,EAAE,mBAAmB,EAAE;AAChH,iBAAiB,gBAAgB,EAAE,kCAAkC,EAAE,cAAc,EAAE,4BAA4B,EAAE,iBAAiB,EAAE,mBAAmB,EAAE;AAC7J,eAAe,gBAAgB,EAAE,mCAAmC,EAAE,cAAc,EAAE,eAAe,EAAE,yBAAyB,EAAE,sBAAsB,EAAE;AAC1J,wBAAwB,OAAO,mCAAmC,EAAE,UAAU,EAAE,EAAE,KAAK,6BAA6B,EAAE,UAAU,EAAE,EAAE;AACpI,0BAA0B,WAAW,0BAA0B,EAAE,EAAE,MAAM,yBAAyB,EAAE,EAAE;AACtG,gBAAgB,eAAe,EAAE,QAAQ,EAAE,YAAY,EAAE,aAAa,EAAE,cAAc,EAAE,oBAAoB,EAAE;AAC9G;IACI,iDAAiD,gBAAgB,EAAE;IACnE,iBAAiB,eAAe,EAAE;AACtC;;AAEA,8FAA8F;AAC9F,cAAc,cAAc,EAAE,aAAa,EAAE,eAAe,EAAE,uBAAuB,EAAE,UAAU,EAAE,iBAAiB,EAAE,mBAAmB,EAAE;AAC3I;IACI,aAAa;IACb,mBAAmB;IACnB,UAAU;IACV,kCAAkC;IAClC,oBAAoB;IACpB,+BAA+B;IAC/B,WAAW;IACX,gBAAgB;IAChB,wCAAwC;IACxC,aAAa;IACb,2EAA2E;AAC/E;AACA,qBAAqB,mCAAmC,EAAE,UAAU,EAAE,sBAAsB,EAAE;AAC9F,kBAAkB,0CAA0C,EAAE,2CAA2C,EAAE;AAC3G,gBAAgB,cAAc,EAAE,gBAAgB,EAAE,uBAAuB,EAAE,mBAAmB,EAAE","sourcesContent":["/* 🎪 Temple Mix Up */\n\n/* ---------- Shared bits ---------- */\n.mx-strip {\n    color: #fff;\n    font-weight: 700;\n    font-size: clamp(0.8rem, 3.2vh, 1.4rem);\n    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);\n}\n.mx-bar {\n    height: clamp(8px, 2vh, 18px);\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 10px;\n}\n\n/* ---------- Memes ---------- */\n.mx-meme {\n    position: relative;\n    display: inline-block;\n    max-width: 100%;\n    max-height: 100%;\n    line-height: 0;\n}\n.mx-meme-img {\n    max-width: 100%;\n    max-height: 100%;\n    object-fit: contain;\n    border-radius: 10px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);\n    background: #111;\n}\n/* The caption in classic meme lettering: white, bold, black outline, along the bottom */\n.mx-meme-caption {\n    position: absolute;\n    left: 4%;\n    right: 4%;\n    bottom: 4%;\n    line-height: 1.1;\n    text-align: center;\n    text-transform: uppercase;\n    font-family: Impact, 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;\n    font-weight: 900;\n    font-size: clamp(1rem, 4.6vh, 2.6rem);\n    color: #fff;\n    letter-spacing: 0.02em;\n    -webkit-text-stroke: 2px #000;\n    paint-order: stroke fill;\n    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;\n    overflow-wrap: anywhere;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-meme-small .mx-meme-caption { font-size: clamp(0.85rem, 5vw, 1.3rem); -webkit-text-stroke: 1px #000; }\n.mx-meme-small .mx-meme-img { max-height: 34vh; }\n\n.mx-meme-row,\n.mx-draw-row {\n    display: flex;\n    gap: 2vw;\n    align-items: stretch;\n    margin-top: 1.5vh;\n}\n.mx-meme-stage {\n    flex: 1 1 55%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 0;\n    min-height: 0;\n}\n/* The picture sets the frame's size, so the caption sits on the picture itself */\n.mx-meme-stage .mx-meme-img { max-height: 64vh; width: auto; display: block; }\n\n.mx-caption-list {\n    flex: 1 1 45%;\n    display: flex;\n    flex-direction: column;\n    gap: 1vh;\n    overflow-y: auto;\n    min-width: 0;\n}\n.mx-caption-card {\n    display: flex;\n    flex-direction: column;\n    gap: 0.3vh;\n    background: rgba(255, 255, 255, 0.92);\n    color: #1f2937;\n    border-radius: 12px;\n    padding: 1.2vh 1.2vw;\n    font-weight: 700;\n    font-size: clamp(0.85rem, 3vh, 1.5rem);\n    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);\n    animation: mx-pop 0.4s ease-out both;\n}\n.mx-caption-card:nth-child(2) { animation-delay: 0.08s; }\n.mx-caption-card:nth-child(3) { animation-delay: 0.16s; }\n.mx-caption-card:nth-child(4) { animation-delay: 0.24s; }\n.mx-caption-card:nth-child(5) { animation-delay: 0.32s; }\n.mx-caption-card.winner { background: #fff6cc; outline: 3px solid #f5c518; }\n.mx-caption-letter {\n    align-self: flex-start;\n    background: #3550c8;\n    color: #fff;\n    border-radius: 6px;\n    padding: 0 0.6em;\n    font-size: 0.8em;\n}\n.mx-caption-votes { font-size: 0.75em; color: #6b7280; }\n.mx-caption-name { font-size: 0.75em; color: #3550c8; }\n\n/* ---------- Pictionary ---------- */\n.mx-canvas {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);\n}\n.mx-canvas-pad { border: 3px solid #3550c8; }\n.mx-canvas-small { max-width: 320px; margin: 0 auto; }\n.mx-draw-stage {\n    flex: 0 1 auto;\n    aspect-ratio: 1 / 1;\n    height: 100%;\n    max-width: 60%;\n}\n.mx-draw-stage canvas { height: 100%; width: auto !important; max-width: 100%; }\n.mx-draw-side {\n    flex: 1 1 0;\n    min-width: 0;\n    display: flex;\n    flex-direction: column;\n}\n.mx-guess-feed {\n    flex: 1 1 0;\n    overflow-y: auto;\n    background: rgba(255, 255, 255, 0.88);\n    border-radius: 12px;\n    padding: 1.5vh 1.2vw;\n    color: #1f2937;\n    font-size: clamp(0.8rem, 2.8vh, 1.4rem);\n}\n.mx-guess-title { font-weight: 800; text-transform: uppercase; font-size: 0.8em; color: #6b7280; margin-bottom: 0.8vh; }\n.mx-guess { padding: 0.3vh 0; animation: mx-pop 0.3s ease-out both; }\n.mx-guess-empty { color: #6b7280; font-style: italic; }\n.mx-answer-card {\n    margin: auto 0;\n    background: rgba(255, 255, 255, 0.95);\n    border-radius: 16px;\n    padding: 3vh 2vw;\n    text-align: center;\n    color: #1f2937;\n    animation: mx-pop 0.5s ease-out both;\n}\n.mx-answer-label { font-weight: 700; color: #6b7280; font-size: clamp(0.9rem, 3vh, 1.4rem); }\n.mx-answer-word { font-weight: 900; font-size: clamp(1.6rem, 9vh, 4.5rem); text-transform: capitalize; color: #3550c8; line-height: 1.1; }\n.mx-answer-points { font-weight: 700; font-size: clamp(0.85rem, 3vh, 1.4rem); margin-top: 1vh; }\n\n/* Drawing tools (phone) */\n.mx-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }\n.mx-swatch {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    border: 3px solid #fff;\n    box-shadow: 0 0 0 1px #9ca3af;\n    padding: 0;\n}\n.mx-swatch.selected { box-shadow: 0 0 0 3px #3550c8; transform: scale(1.12); }\n.mx-tool-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    border: 1px solid #9ca3af;\n    background: #fff;\n    border-radius: 999px;\n    padding: 4px 12px;\n    font-weight: 700;\n    font-size: 0.9rem;\n    color: #1f2937;\n}\n.mx-tool-btn.selected { background: #3550c8; color: #fff; border-color: #3550c8; }\n.mx-tool-btn.mx-clear { border-color: #e63946; color: #e63946; }\n.mx-size-dot { display: inline-block; border-radius: 50%; background: currentColor; }\n.mx-draw-word { font-size: 1.4rem; margin-bottom: 4px; }\n.mx-draw-word strong { color: #3550c8; text-transform: capitalize; }\n.mx-guess-nope { color: #e63946; font-weight: 800; animation: mx-shake 0.35s ease-in-out; }\n\n/* ---------- Rules and title cards (TV) ---------- */\n/* 🎪 The rules are three hula-hoops: a striped ring spinning around each one, which sways a little on its own */\n.mx-rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; }\n.mx-hoop-cell { display: flex; align-items: center; justify-content: center; min-height: 0; }\n.mx-hoop {\n    --hoop: clamp(10px, 2.6vh, 22px);   /* how thick the ring is */\n    position: relative;\n    width: min(29vw, 58vh);\n    aspect-ratio: 1;\n    border-radius: 50%;\n    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));\n    animation: mx-hoop-sway 3.2s ease-in-out infinite;\n}\n.mx-hoop-2 { animation-delay: -1.1s; }\n.mx-hoop-3 { animation-delay: -2.2s; }\n.mx-hoop-ring {\n    position: absolute;\n    inset: 0;\n    border-radius: 50%;\n    background: repeating-conic-gradient(#e5484d 0deg 14deg, #fff6e0 14deg 28deg, #ffc83d 28deg 42deg, #fff6e0 42deg 56deg);\n    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    mask: radial-gradient(farthest-side, transparent calc(100% - var(--hoop)), #000 calc(100% - var(--hoop) + 1px));\n    animation: mx-hoop-spin 7s linear infinite;\n}\n.mx-hoop-2 .mx-hoop-ring { animation-direction: reverse; animation-duration: 6s; }\n.mx-hoop-3 .mx-hoop-ring { animation-duration: 8s; }\n.mx-hoop-body {\n    position: absolute;\n    inset: var(--hoop);\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.9);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    text-align: center;\n    padding: 13%;\n}\n@keyframes mx-hoop-spin { to { transform: rotate(360deg); } }\n@keyframes mx-hoop-sway { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-1.2vh) rotate(2deg); } }\n.mx-rule-step { font-weight: 800; text-transform: uppercase; color: #b8283a; font-size: clamp(0.6rem, 1.9vh, 0.95rem); }\n.mx-rule-icon { font-size: clamp(1.6rem, 8vh, 4rem); line-height: 1.15; }\n.mx-rule-title { font-weight: 900; color: #1f2937; font-size: clamp(1rem, 4.2vh, 2.1rem); line-height: 1.1; }\n.mx-rule-text { color: #374151; font-weight: 500; font-size: clamp(0.65rem, 2.2vh, 1.1rem); line-height: 1.25; margin-top: 0.8vh; }\n\n.mx-intro { text-align: center; color: #fff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); animation: mx-pop 0.6s ease-out both; }\n.mx-intro-round { font-weight: 700; font-size: clamp(1rem, 4vh, 2rem); opacity: 0.9; }\n.mx-intro-icon { font-size: clamp(3rem, 22vh, 10rem); line-height: 1.1; animation: mx-wiggle 1.2s ease-in-out infinite; }\n.mx-intro-title { font-weight: 900; font-size: clamp(2.5rem, 14vh, 7rem); line-height: 1; }\n.mx-intro-blurb { font-size: clamp(1rem, 4.5vh, 2.2rem); margin-top: 2vh; }\n.mx-intro-count { font-size: clamp(0.8rem, 3vh, 1.4rem); margin-top: 2vh; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }\n\n/* ---------- Phones ---------- */\n.mx-phone-clock { font-weight: 800; font-size: 1rem; }\n.mx-phone-clock.low { color: #ffd1d1; }\n.mx-phone-intro-icon { font-size: 3.5rem; line-height: 1.2; }\n.mx-phone-rules { font-size: 0.95rem; }\n\n@keyframes mx-pop {\n    0% { opacity: 0; transform: scale(0.85); }\n    100% { opacity: 1; transform: scale(1); }\n}\n@keyframes mx-wiggle {\n    0%, 100% { transform: rotate(0); }\n    25% { transform: rotate(-6deg); }\n    75% { transform: rotate(6deg); }\n}\n@keyframes mx-shake {\n    0%, 100% { transform: translateX(0); }\n    25% { transform: translateX(-5px); }\n    75% { transform: translateX(5px); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-meme-caption, .mx-caption-card, .mx-guess, .mx-answer-card, .mx-intro, .mx-intro-icon, .mx-guess-nope, .mx-hoop, .mx-hoop-ring { animation: none; }\n}\n\n/* 🤝 Threefold */\n.mx-match-topic {\n    margin: 1vh 0;\n    padding: clamp(0.4rem, 2vh, 1rem) 1rem;\n    border-radius: 12px;\n    text-align: center;\n    font-weight: 800;\n    font-size: clamp(1.2rem, 6vh, 2.8rem);\n    line-height: 1.15;\n    color: #fff;\n    background: rgba(10, 18, 60, 0.55);\n    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);\n}\n.mx-match-label, .mx-phone-topic span { display: block; font-size: 0.42em; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }\n.mx-phone-topic { margin-bottom: 0.6rem; padding: 0.6rem; border-radius: 0.7rem; font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: #fff; background: linear-gradient(160deg, #3a53c4, #1e2f8a); }\n.mx-phone-topic span { font-size: 0.62rem; }\n.mx-intro-bumper { font-weight: 900; font-size: clamp(2.2rem, 13vh, 6rem); line-height: 1.05; }\n.mx-intro .cc-round-intro-final { margin-bottom: 1vh; }\n/* 🎪 The title card makes room for the circus act along the bottom */\n.mx-intro-with-show { padding-bottom: 27vh !important; }\n.mx-intro-with-show .mx-intro-icon { font-size: clamp(2.5rem, 14vh, 7rem); }\n.mx-intro-with-show .mx-intro-title { font-size: clamp(2.2rem, 11vh, 6rem); }\n/* ...and the funniest caption has an act playing under it */\n.mx-results-show { flex: 0 0 auto; height: 19vh; position: relative; pointer-events: none; }\n\n/* ⚖️ Threefold's judge: the answers in groups (MatchReview.jsx) */\n.mx-review-board { display: grid; gap: clamp(0.4rem, 1.4vh, 0.8rem); width: 100%; align-content: start; }\n.mx-review-board.tv { height: 100%; align-content: center; }\n.mx-review-board.phone { grid-template-columns: minmax(0, 1fr); text-align: left; }\n.mx-review-group {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    width: 100%;\n    padding: clamp(0.3rem, 1.2vh, 0.7rem) clamp(0.45rem, 1.4vh, 0.8rem);\n    border: 3px solid transparent;\n    border-radius: 14px;\n    background: rgba(255, 255, 255, 0.92);\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);\n    color: #1d2340;\n    text-align: left;\n    font: inherit;\n    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;\n}\n.mx-review-board.phone .mx-review-group { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }\n.mx-review-board.phone .mx-review-group:not(.matched):not(.target) { border-color: rgba(29, 35, 64, 0.12); }\n.mx-review-group.matched { border-color: #1c9562; background: #e9f7f0; }\n.mx-review-group.target { border-color: var(--gt-gold, #f7ba3a); border-style: dashed; cursor: pointer; animation: mx-glow 1.4s ease-in-out infinite; }\n.mx-review-group.target:active { transform: scale(0.98); }\n.mx-review-group.blocked { opacity: 0.45; }\n.mx-review-head { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7090; margin-bottom: 0.25em; }\n.mx-review-group.matched .mx-review-head { color: #0f6a44; }\n.mx-review-group.target .mx-review-head { color: #a06b00; }\n.mx-review-answers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2em; }\n.mx-review-answer {\n    display: flex;\n    align-items: baseline;\n    justify-content: space-between;\n    gap: 0.5em;\n    width: 100%;\n    padding: 0.15em 0.4em;\n    border: 0;\n    border-radius: 8px;\n    background: rgba(29, 35, 64, 0.06);\n    color: inherit;\n    font: inherit;\n    font-weight: 700;\n    text-align: left;\n    animation: mx-pop 0.3s ease-out both;\n}\n.mx-review-answer.tap { padding: 0.45em 0.6em; background: #fff; border: 2px solid rgba(58, 83, 196, 0.35); cursor: pointer; }\n.mx-review-answer.tap:active { transform: scale(0.98); }\n.mx-review-answer.held { border-color: var(--gt-gold, #f7ba3a); background: #fff4d6; box-shadow: 0 0 0 3px rgba(247, 186, 58, 0.35); }\n.mx-review-answer.changed { background: rgba(247, 186, 58, 0.25); }\n.mx-review-answer.mine .mx-review-name { color: #3a53c4; }\n.mx-review-text { min-width: 0; overflow-wrap: anywhere; }\n.mx-review-name { flex-shrink: 0; font-size: 0.72em; font-weight: 600; color: #6b7090; }\n.mx-judge-bar .mx-judge-holding { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1d2340; }\n@keyframes mx-glow {\n    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 186, 58, 0.0); }\n    50% { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.45); }\n}\n@media (prefers-reduced-motion: reduce) {\n    .mx-review-answer, .mx-review-group.target { animation: none; }\n}\n\n/* ✋ Dragging an answer onto its match (MatchReview.jsx) */\n.mx-review-answer.tap { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }\n.mx-review-answer.dragging { opacity: 0.45; }\n.mx-review-group.hover { border-style: solid; background: #fff4d6; transform: scale(1.02); }\n.mx-judge-bar .mx-drop-hover { box-shadow: 0 0 0 4px rgba(247, 186, 58, 0.6); transform: scale(1.05); }\n.mx-drag-ghost {\n    position: fixed;\n    z-index: 2000;\n    pointer-events: none;\n    transform: translate(-50%, -140%);\n    max-width: 80vw;\n    padding: 0.4em 0.8em;\n    border: 2px solid var(--gt-gold, #f7ba3a);\n    border-radius: 10px;\n    background: #fff4d6;\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);\n    color: #1d2340;\n    font-weight: 800;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n/* ---------- 🎪 The final scores' big top (CircusGrandFinale.jsx): striped flaps, a scalloped valance and a sign,\n   which swing open on the fanfare's last chord for the fireworks ---------- */\n.cx-tent { position: fixed; inset: 0; z-index: 10001; pointer-events: none; overflow: hidden; }\n.cx-tent-flap {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 51%;\n    background:\n        linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, 0.3)),\n        repeating-linear-gradient(90deg, #c8202c 0 6vw, #fff4dc 6vw 12vw);\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);\n    transition: transform 1.3s cubic-bezier(0.6, 0.05, 0.4, 1);\n}\n.cx-tent-left { left: 0; }\n.cx-tent-right { right: 0; }\n.cx-tent.is-opening .cx-tent-left { transform: translateX(-105%) skewY(-5deg); }\n.cx-tent.is-opening .cx-tent-right { transform: translateX(105%) skewY(5deg); }\n.cx-tent-valance {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    height: calc(9vh + 3.6vw);\n    background: repeating-linear-gradient(90deg, #ffc83d 0 3.5vw, #c8202c 3.5vw 7vw);\n    -webkit-mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    mask: linear-gradient(#000, #000) top / 100% 9vh no-repeat, radial-gradient(circle 3.5vw at 50% 9vh, #000 97%, transparent 100%) 0 0 / 7vw 100% repeat-x;\n    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));\n    transition: transform 1s ease-in;\n}\n.cx-tent.is-opening .cx-tent-valance { transform: translateY(-130%); }\n.cx-tent-sign { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); transition: transform 0.8s ease-in, opacity 0.8s ease-in; }\n.cx-tent.is-opening .cx-tent-sign { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }\n.cx-tent-board {\n    text-align: center;\n    padding: 3vh 6vw;\n    background: linear-gradient(#ffe7a3, #ffc83d);\n    border: 0.8vh solid #8f1520;\n    border-radius: 2vh;\n    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5vh #fff4dc;\n    animation: cx-sign-in 0.8s cubic-bezier(0.2, 1.5, 0.4, 1) both, cx-sign-sway 2.4s ease-in-out 0.8s infinite;\n}\n.cx-tent-stars { color: #8f1520; font-size: clamp(1rem, 4vh, 2rem); letter-spacing: 0.5em; padding-left: 0.5em; }\n.cx-tent-title { font-weight: 900; font-size: clamp(2rem, 12vh, 7rem); color: #8f1520; text-shadow: 0 3px 0 #fff4dc; line-height: 1.05; white-space: nowrap; }\n.cx-tent-sub { font-weight: 800; font-size: clamp(1rem, 5vh, 2.6rem); color: #3a2416; margin-top: 1vh; text-transform: uppercase; letter-spacing: 0.12em; }\n@keyframes cx-sign-in { from { transform: scale(0.3) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }\n@keyframes cx-sign-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }\n.cx-fireworks { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 10000; pointer-events: none; }\n@media (prefers-reduced-motion: reduce) {\n    .cx-tent-flap, .cx-tent-valance, .cx-tent-sign { transition: none; }\n    .cx-tent-board { animation: none; }\n}\n\n/* 🙋 Meme It: who's captioned / voted, a name tag each that lights up green when they're in */\n.mx-whos-in { flex: 0 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6vw; margin-top: 1.2vh; padding-right: 7rem; }\n.mx-whos-chip {\n    display: flex;\n    align-items: center;\n    gap: 0.4em;\n    padding: 0.2em 0.75em 0.2em 0.25em;\n    border-radius: 999px;\n    background: rgba(0, 0, 0, 0.38);\n    color: #fff;\n    font-weight: 800;\n    font-size: clamp(0.85rem, 2.9vh, 1.5rem);\n    opacity: 0.72;\n    transition: background 0.25s ease, opacity 0.25s ease, transform 0.25s ease;\n}\n.mx-whos-chip.done { background: rgba(28, 149, 98, 0.92); opacity: 1; transform: scale(1.06); }\n.mx-whos-avatar { width: clamp(26px, 5.4vh, 52px) !important; height: clamp(26px, 5.4vh, 52px) !important; }\n.mx-whos-name { max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51263,10 +51337,23 @@ function playChime() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "playBikeBell": () => (/* binding */ playBikeBell),
+/* harmony export */   "playBoing": () => (/* binding */ playBoing),
+/* harmony export */   "playBonk": () => (/* binding */ playBonk),
+/* harmony export */   "playCannonBoom": () => (/* binding */ playCannonBoom),
+/* harmony export */   "playCarEngine": () => (/* binding */ playCarEngine),
 /* harmony export */   "playCircusFanfare": () => (/* binding */ playCircusFanfare),
 /* harmony export */   "playClownTimesUp": () => (/* binding */ playClownTimesUp),
 /* harmony export */   "playClownWin": () => (/* binding */ playClownWin),
 /* harmony export */   "playFireworkBang": () => (/* binding */ playFireworkBang),
+/* harmony export */   "playFuseFizz": () => (/* binding */ playFuseFizz),
+/* harmony export */   "playHonkHonk": () => (/* binding */ playHonkHonk),
+/* harmony export */   "playLionRoar": () => (/* binding */ playLionRoar),
+/* harmony export */   "playSlideDown": () => (/* binding */ playSlideDown),
+/* harmony export */   "playSplat": () => (/* binding */ playSplat),
+/* harmony export */   "playSqueak": () => (/* binding */ playSqueak),
+/* harmony export */   "playTaDa": () => (/* binding */ playTaDa),
+/* harmony export */   "playWhoosh": () => (/* binding */ playWhoosh),
 /* harmony export */   "preloadCircusFanfare": () => (/* binding */ preloadCircusFanfare),
 /* harmony export */   "stopCircusFanfare": () => (/* binding */ stopCircusFanfare)
 /* harmony export */ });
@@ -51502,6 +51589,290 @@ function playFireworkBang() {
     snap.start(at, Math.random(), 0.04);
   }
 }
+
+// ---------------------------------------------------------------------------------------------
+// 🎪 Sound effects for the circus acts between rounds (CircusSkit). Short, and not too loud: the narrator's
+// reading the round's title card at the same time.
+// ---------------------------------------------------------------------------------------------
+var act = function act(fn) {
+  return function () {
+    var ctx = ready();
+    if (!ctx) return;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    fn.apply(void 0, [ctx, ctx.currentTime + 0.02].concat(args));
+  };
+};
+
+// A burst of noise through a filter, with its own envelope
+var noiseBurst = function noiseBurst(ctx, t) {
+  var _ref3 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+    _ref3$len = _ref3.len,
+    len = _ref3$len === void 0 ? 0.3 : _ref3$len,
+    _ref3$vol = _ref3.vol,
+    vol = _ref3$vol === void 0 ? 0.15 : _ref3$vol,
+    _ref3$type = _ref3.type,
+    type = _ref3$type === void 0 ? 'lowpass' : _ref3$type,
+    _ref3$from = _ref3.from,
+    from = _ref3$from === void 0 ? 2000 : _ref3$from,
+    _ref3$to = _ref3.to,
+    to = _ref3$to === void 0 ? 300 : _ref3$to,
+    _ref3$q = _ref3.q,
+    q = _ref3$q === void 0 ? 1 : _ref3$q,
+    _ref3$offset = _ref3.offset,
+    offset = _ref3$offset === void 0 ? Math.random() * Math.max(0, 1.4 - len) : _ref3$offset;
+  var src = ctx.createBufferSource();
+  src.buffer = getNoise(ctx);
+  var filter = ctx.createBiquadFilter();
+  filter.type = type;
+  filter.Q.value = q;
+  filter.frequency.setValueAtTime(from, t);
+  filter.frequency.exponentialRampToValueAtTime(Math.max(30, to), t + len);
+  src.connect(filter);
+  filter.connect(envelope(ctx, t, len, vol));
+  src.start(t, offset, len + 0.05);
+};
+
+/** 📯 HONK HONK */
+var playHonkHonk = act(function (ctx, t) {
+  honk(ctx, t);
+  honk(ctx, t + 0.26);
+});
+
+/** 🐤 A squeak (or a few) */
+var playSqueak = act(function (ctx, t) {
+  var times = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+  for (var k = 0; k < times; k += 1) {
+    squeak(ctx, t + k * 0.2);
+  }
+});
+
+/** 🔔 A bicycle bell: ring-ring */
+var playBikeBell = act(function (ctx, t) {
+  [0, 0.18].forEach(function (dt) {
+    return [2100, 2620, 3300].forEach(function (f, i) {
+      var osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = f;
+      osc.connect(envelope(ctx, t + dt, 0.5, 0.05 / (i + 1)));
+      osc.start(t + dt);
+      osc.stop(t + dt + 0.55);
+    });
+  });
+});
+
+/** 🦁 A lion's roar: a growl that swells and sinks, with breath in it */
+var playLionRoar = act(function (ctx, t) {
+  var len = 1.1;
+  var out = ctx.createGain();
+  out.gain.setValueAtTime(0.0001, t);
+  out.gain.exponentialRampToValueAtTime(0.32, t + 0.18);
+  out.gain.setValueAtTime(0.32, t + 0.55);
+  out.gain.exponentialRampToValueAtTime(0.0001, t + len);
+  var tone = ctx.createBiquadFilter();
+  tone.type = 'lowpass';
+  tone.frequency.setValueAtTime(700, t);
+  tone.frequency.linearRampToValueAtTime(1400, t + 0.25);
+  tone.frequency.exponentialRampToValueAtTime(380, t + len);
+  tone.connect(out);
+  out.connect(ctx.destination);
+  [[95, 'sawtooth'], [97.5, 'sawtooth'], [142, 'square']].forEach(function (_ref4) {
+    var _ref5 = _slicedToArray(_ref4, 2),
+      f = _ref5[0],
+      type = _ref5[1];
+    var osc = ctx.createOscillator();
+    osc.type = type;
+    osc.frequency.setValueAtTime(f * 0.8, t);
+    osc.frequency.linearRampToValueAtTime(f * 1.15, t + 0.3);
+    osc.frequency.exponentialRampToValueAtTime(f * 0.7, t + len);
+    // The rattle in the throat
+    var rattle = ctx.createOscillator();
+    var depth = ctx.createGain();
+    rattle.frequency.value = 23;
+    depth.gain.value = f * 0.18;
+    rattle.connect(depth);
+    depth.connect(osc.frequency);
+    osc.connect(tone);
+    osc.start(t);
+    rattle.start(t);
+    osc.stop(t + len + 0.05);
+    rattle.stop(t + len + 0.05);
+  });
+  noiseBurst(ctx, t, {
+    len: len,
+    vol: 0.12,
+    type: 'bandpass',
+    from: 900,
+    to: 400,
+    q: 0.8
+  });
+});
+
+/** 🚗 A tiny car's engine: putt-putt-putt for `seconds` */
+var playCarEngine = act(function (ctx, t) {
+  var seconds = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1.1;
+  for (var at = 0; at < seconds; at += 0.09) {
+    noiseBurst(ctx, t + at, {
+      len: 0.06,
+      vol: 0.09,
+      from: 600,
+      to: 150,
+      q: 2
+    });
+    var osc = ctx.createOscillator();
+    osc.type = 'square';
+    osc.frequency.value = 55 + Math.random() * 6;
+    var lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.value = 260;
+    osc.connect(lp);
+    lp.connect(envelope(ctx, t + at, 0.06, 0.07));
+    osc.start(t + at);
+    osc.stop(t + at + 0.08);
+  }
+});
+
+/** 🪀 A spring: boing! */
+var playBoing = act(function (ctx, t) {
+  var osc = ctx.createOscillator();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(180, t);
+  osc.frequency.exponentialRampToValueAtTime(520, t + 0.12);
+  osc.frequency.exponentialRampToValueAtTime(300, t + 0.35);
+  var wobble = ctx.createOscillator();
+  var depth = ctx.createGain();
+  wobble.frequency.value = 16;
+  depth.gain.value = 45;
+  wobble.connect(depth);
+  depth.connect(osc.frequency);
+  osc.connect(envelope(ctx, t, 0.38, 0.13));
+  osc.start(t);
+  wobble.start(t);
+  osc.stop(t + 0.4);
+  wobble.stop(t + 0.4);
+});
+
+/** 🎉 Ta-da: two quick brassy notes and a cymbal */
+var playTaDa = act(function (ctx, t) {
+  [[523, 0, 0.12], [784, 0.13, 0.5]].forEach(function (_ref6) {
+    var _ref7 = _slicedToArray(_ref6, 3),
+      f = _ref7[0],
+      dt = _ref7[1],
+      len = _ref7[2];
+    return [1, 1.5, 2].forEach(function (h, i) {
+      var osc = ctx.createOscillator();
+      osc.type = 'sawtooth';
+      osc.frequency.value = f * h;
+      var lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 2400;
+      osc.connect(lp);
+      lp.connect(envelope(ctx, t + dt, len, 0.06 / (i + 1)));
+      osc.start(t + dt);
+      osc.stop(t + dt + len + 0.02);
+    });
+  });
+  noiseBurst(ctx, t + 0.13, {
+    len: 0.9,
+    vol: 0.09,
+    type: 'highpass',
+    from: 6000,
+    to: 5000
+  });
+});
+
+/** 🤕 A cartoon bonk on the head */
+var playBonk = act(function (ctx, t) {
+  var osc = ctx.createOscillator();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(900, t);
+  osc.frequency.exponentialRampToValueAtTime(180, t + 0.12);
+  osc.connect(envelope(ctx, t, 0.16, 0.22));
+  osc.start(t);
+  osc.stop(t + 0.18);
+  noiseBurst(ctx, t, {
+    len: 0.05,
+    vol: 0.12,
+    type: 'bandpass',
+    from: 2500,
+    to: 1500,
+    q: 3
+  });
+});
+
+/** 🧨 A fizzing fuse, for `seconds` */
+var playFuseFizz = act(function (ctx, t) {
+  var seconds = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+  noiseBurst(ctx, t, {
+    len: seconds,
+    vol: 0.06,
+    type: 'highpass',
+    from: 4000,
+    to: 3000
+  });
+  for (var at = 0.05; at < seconds; at += 0.07 + Math.random() * 0.08) {
+    noiseBurst(ctx, t + at, {
+      len: 0.02,
+      vol: 0.07,
+      type: 'highpass',
+      from: 5000,
+      to: 5000
+    });
+  }
+});
+
+/** 💥 The cannon going off */
+var playCannonBoom = act(function (ctx, t) {
+  noiseBurst(ctx, t, {
+    len: 1.0,
+    vol: 0.38,
+    from: 2200,
+    to: 90
+  });
+  var thump = ctx.createOscillator();
+  thump.frequency.setValueAtTime(110, t);
+  thump.frequency.exponentialRampToValueAtTime(35, t + 0.4);
+  thump.connect(envelope(ctx, t, 0.5, 0.35));
+  thump.start(t);
+  thump.stop(t + 0.55);
+});
+
+/** 💨 Something flying past */
+var playWhoosh = act(function (ctx, t) {
+  var len = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0.5;
+  noiseBurst(ctx, t, {
+    len: len,
+    vol: 0.1,
+    type: 'bandpass',
+    from: 400,
+    to: 2400,
+    q: 1.5
+  });
+});
+
+/** 🥧 A cream pie landing */
+var playSplat = act(function (ctx, t) {
+  noiseBurst(ctx, t, {
+    len: 0.25,
+    vol: 0.28,
+    from: 2600,
+    to: 200,
+    q: 0.7
+  });
+  var osc = ctx.createOscillator();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(260, t);
+  osc.frequency.exponentialRampToValueAtTime(70, t + 0.2);
+  osc.connect(envelope(ctx, t, 0.22, 0.2));
+  osc.start(t);
+  osc.stop(t + 0.25);
+});
+
+/** 🎶 A slide whistle going down (a little "wah-wah" moment) */
+var playSlideDown = act(function (ctx, t) {
+  return slide(ctx, t, 1500, 500, 0.6, 0.08);
+});
 
 /***/ }),
 

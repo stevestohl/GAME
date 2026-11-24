@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { makeDirector } from '../TriviaCast/QuizScenes.jsx';
 import {
+    playHonkHonk, playSqueak, playBikeBell, playLionRoar, playCarEngine, playBoing, playTaDa, playBonk,
+    playFuseFizz, playCannonBoom, playWhoosh, playSplat, playSlideDown,
+} from '../../circusSounds.js';
+import {
     Clown, Ringmaster, Lion, ClownCar, Cannon, Trapeze, JugglingBalls, Smoke, Pow, Bubble, Bear, Hoop, FlyingPie,
     wearGear, sayIn, HANDS_UP_Y, FLOWER, CANNON_MUZZLE, CANNON_AIM,
 } from './CircusCast.jsx';
@@ -655,8 +659,9 @@ export const skitFor = (round, offset = 0) => CIRCUS_SKITS[(Math.max(1, round) -
 /**
  * One act on a little stage along the bottom of the TV (a 400 x 100 drawing). `skit`: one of CIRCUS_SKITS.
  * `encore`: when it's over, carry on with the next act (for screens that stay up longer than one act).
+ * `sounds`: with sound effects (the lion roars, the cannon booms...).
  */
-export function CircusSkit({ skit = 'bear', encore = false }) {
+export function CircusSkit({ skit = 'bear', encore = false, sounds = false }) {
     const svgRef = useRef(null);
     const aRef = useRef(null);
     const bRef = useRef(null);
@@ -682,6 +687,8 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
         const S = 0.62;
         const d = makeDirector();
         const { place, walk, hop, say, flipTo } = makeMoves(d, () => S, () => 400 + extra - 4);
+        // 🔊 A sound effect, if this act has them (and it's still on screen)
+        const sfx = (play, ...args) => { if (sounds && !d.isDead()) play(...args); };
         const A = { el: aRef.current, size: 0.94 };
         const B = { el: bRef.current, size: 1.0 };
         const R = { el: ringRef.current, size: 1.05 };
@@ -723,8 +730,11 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
                     bear.x = fromB + (offRight - fromB) * t; bear.rot = Math.sin(t * 26) * 5; place(bear);
                     A.x = fromA + (offRight - 70 - fromA) * t; place(A);
                 });
+                sfx(playBikeBell);
                 await d.wait(1000);
+                sfx(playHonkHonk);
                 await sayOver(A, 'HONK HONK!', 900);
+                sfx(playSqueak, 2);
                 await hop(B, 300, FLOOR, 40, 420);
                 await sayOver(B, 'EEK!', 800);
                 await ride;
@@ -733,13 +743,15 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
             car: async () => {
                 show(car.el); car.el.classList.add('has-clowns', 'is-bouncing');
                 car.x = offRight; place(car);
+                sfx(playCarEngine, 1.1);
                 await d.tween(1100, easeOut, (t) => { car.x = offRight + (200 - offRight) * t; place(car); });
                 car.el.classList.remove('is-bouncing', 'has-clowns');
-                const out = async (a, x) => { a.x = 200; a.y = FLOOR; show(a.el); await hop(a, x, FLOOR, 60, 450); };
+                const out = async (a, x) => { a.x = 200; a.y = FLOOR; show(a.el); sfx(playBoing); await hop(a, x, FLOOR, 60, 450); };
                 await out(A, 110);
                 await out(B, 290);
                 await out(R, 200);
                 wearGear(A.el, ['hands']); wearGear(B.el, ['hands']);
+                sfx(playTaDa);
                 await Promise.all([sayOver(R, 'TA-DA!', 900), bow(R)]);
             },
             // 🦁 The lion tamer holds up a hoop, the lion leaps through it, then roars at the tamer
@@ -750,12 +762,14 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
                 L.x = offLeft; L.flip = -1; show(L.el); place(L);
                 await walk(L, 140, 320);
                 L.el.classList.add('crew-running');
+                sfx(playWhoosh, 0.7);
                 await hop(L, 305, FLOOR, 46, 800);
                 L.el.classList.remove('crew-running');
                 L.flip = 1; place(L);
                 wearGear(L.el, ['roar']); L.el.classList.add('is-roaring');
                 R.el.classList.add('quiz-scared');
                 hide(hoopRef.current);
+                sfx(playLionRoar);
                 await Promise.all([say(sayRef.current, 'ROAR!', L.x - 30 * S, FLOOR - 70 * S, 900), hop(R, 262, FLOOR, 24, 380)]);
                 wearGear(L.el, []); L.el.classList.remove('is-roaring'); R.el.classList.remove('quiz-scared');
                 await sayOver(R, 'GOOD KITTY!', 900);
@@ -780,6 +794,8 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
                 balls.slice(1).forEach((b) => hide(b));
                 await d.tween(600, linear, (t) => put(last, fromX + (head.x - fromX) * t, handY + (head.y - handY) * t - Math.sin(Math.PI * t) * 46, S * 0.9));
                 burst(powRef.current, head.x, head.y, S * 1.3);
+                sfx(playBonk);
+                setTimeout(() => sfx(playSlideDown), 250);
                 B.el.classList.add('circus-dizzy');
                 await Promise.all([
                     d.tween(450, linear, (t) => put(last, head.x + 24 * t, head.y + (FLOOR - 4 - head.y) * t * t, S * 0.9)),
@@ -794,13 +810,17 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
                 const m = { x: cannon.x + CANNON_MUZZLE.x * S, y: FLOOR + CANNON_MUZZLE.y * S };
                 wearGear(A.el, ['helmet']);
                 cannon.el.classList.add('is-lit');
+                sfx(playFuseFizz, 1);
                 await sayOver(B, '3... 2... 1...', 1000);
                 cannon.el.classList.remove('is-lit');
+                sfx(playCannonBoom);
+                sfx(playWhoosh, 1);
                 burst(smokeRef.current, m.x, m.y, S);
                 burst(powRef.current, m.x + 6, m.y - 4, S * 1.6);
                 A.x = m.x; A.y = m.y + 24; show(A.el); place(A);
                 await flipTo(A, 330, FLOOR, 110, 1200, 2);
                 wearGear(A.el, ['helmet', 'hands']); wearGear(B.el, ['hands']);
+                sfx(playTaDa);
                 await sayOver(A, 'TA-DA!', 1000);
             },
             // 🥧 Two clowns throw cream pies at each other, and the ringmaster walks right into the middle
@@ -816,13 +836,17 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
                 const fly = (el, fromX, side) => d.tween(650, linear, (t) => {
                     put(el, fromX + (face.x + side * 8 - fromX) * t, FLOOR - 40 * S + (face.y - FLOOR + 40 * S) * t - Math.sin(Math.PI * t) * 30, S);
                 });
+                sfx(playWhoosh, 0.6);
                 await Promise.all([fly(pie1Ref.current, A.x + 15 * S, -1), fly(pie2Ref.current, B.x - 15 * S, 1), walkIn]);
+                sfx(playSplat);
+                setTimeout(() => sfx(playSplat), 70);
                 hide(pie1Ref.current, pie2Ref.current);
                 burst(powRef.current, face.x, face.y, S * 1.5);
                 wearGear(R.el, ['piefaced']);
                 R.el.classList.add('quiz-scared');
                 await sayOver(A, 'HA HA!', 800);
                 R.el.classList.remove('quiz-scared');
+                sfx(playSlideDown);
                 await sayOver(R, '...REALLY?', 1000);
             },
         };
@@ -839,7 +863,7 @@ export function CircusSkit({ skit = 'bear', encore = false }) {
         };
         run();
         return () => d.stop();
-    }, [skit, encore]);
+    }, [skit, encore, sounds]);
 
     return (
         <svg ref={svgRef} className="cc-crew cc-round-scene-art circus-skit" viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">

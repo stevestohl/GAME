@@ -6,6 +6,7 @@ import { DrawingView } from './DrawingCanvas.jsx';
 import ListBoard from '../Lists/ListBoard.jsx';
 import { ReviewGroups } from './MatchReview.jsx';
 import { CircusRulesShow, CircusSkit, skitFor } from './CircusShow.jsx';
+import { Avatar } from '../../avatars.jsx';
 import '../../styles/mixup.css';
 
 // 🎙️ What the host voice says while the rules are on screen: the ringmaster's welcome to the 3 Ring Circus.
@@ -164,8 +165,26 @@ export function RoundIntroTV({ room }) {
                 </div>
                 {round.type === 'match' && round.judgeName && <div className="mx-intro-blurb">⚖️ <strong>{round.judgeName}</strong> judges the matches.</div>}
             </div>
-            {/* 🎪 A circus act along the bottom: a different one each round */}
-            <div className="cc-round-scene"><CircusSkit key={room.currentRound} skit={skitFor(room.currentRound)} /></div>
+            {/* 🎪 A circus act along the bottom, with its sound effects: a different one each round */}
+            <div className="cc-round-scene"><CircusSkit key={room.currentRound} skit={skitFor(room.currentRound)} sounds /></div>
+        </div>
+    );
+}
+
+/** 🙋 Everyone's name tag, lighting up green with a ✅ once they've captioned (or voted) */
+function WhosIn({ players, isDone, waitingIcon }) {
+    return (
+        <div className="mx-whos-in">
+            {players.map((p) => {
+                const done = isDone(p);
+                return (
+                    <div key={p.id} className={`mx-whos-chip ${done ? 'done' : ''}`}>
+                        <Avatar id={p.avatar} name={p.name} size={40} className="mx-whos-avatar" />
+                        <span className="mx-whos-name">{p.name}</span>
+                        <span aria-hidden="true">{done ? '✅' : waitingIcon}</span>
+                    </div>
+                );
+            })}
         </div>
     );
 }
@@ -228,6 +247,10 @@ export function MemeTV({ room }) {
                 {state === 'meme_results' && (
                     <div className="mx-results-show"><CircusSkit key={`results-${room.currentRound}`} skit={skitFor(room.currentRound, 3)} encore /></div>
                 )}
+
+                {/* 🙋 Who's in: captions while writing, votes while voting */}
+                {state === 'meme_write' && <WhosIn players={players} isDone={(p) => p.hasSubmitted} waitingIcon="✏️" />}
+                {state === 'meme_vote' && <WhosIn players={players} isDone={(p) => p.hasVoted} waitingIcon="🗳️" />}
 
                 <div className="flex-shrink-0" style={{ marginTop: '1.5vh', paddingRight: '7rem' }}>
                     {state === 'meme_write' && (
