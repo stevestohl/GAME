@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Form, Spinner } from 'react-bootstrap';
+import { Alert, Col, Form, Row, Spinner } from 'react-bootstrap';
 import { adminFetch } from './adminApi.js';
 import { setVisibleGames } from '../../gameVisibility.js';
 
@@ -64,45 +64,50 @@ export default function GamesPage() {
 
     if (!games) return error ? <Alert variant="danger">{error}</Alert> : <Spinner animation="border" />;
 
+    // Side by side on a wide screen: Game Temple on the left, TopCake on the right (one above the other on a phone)
     return (
-        <div>
-            <p className="small text-secondary">
-                Hidden games and decks don't show on the public menus and can't be started. You and your admins still see them, marked Hidden.
-                Hiding only affects new rooms: a game already being played carries on.
-            </p>
-            {error && <Alert variant="danger" className="py-2">{error}</Alert>}
-            <div className="mb-3">
-                <h6 className="fw-bold text-secondary text-uppercase small mb-1">Tabs</h6>
-                <p className="small text-secondary mb-2">
-                    A hidden tab's button comes off the nav bar for the public. Its page and games still work from a direct link. You and your admins still see it, dashed.
+        <Row className="g-4">
+            <Col md={6}>
+                <h5 className="fw-bold mb-1">🏛️ Game Temple</h5>
+                <p className="small text-secondary">
+                    For game-temple.org. Hidden games and decks don't show on the public menus and can't be started. You and your admins still see them, marked Hidden.
+                    Hiding only affects new rooms: a game already being played carries on.
                 </p>
-                <div className="border rounded p-2 bg-white">
-                    {tabs.map((tab) => (
-                        <div key={tab.id} className="mb-1">
-                            <VisibilitySwitch
-                                id={`tab-${tab.id}`}
-                                label={tab.name}
-                                hidden={tab.hidden}
-                                disabled={saving === `tab:${tab.id}`}
-                                onChange={(hidden) => setTabHidden(tab.id, hidden)}
-                            />
-                        </div>
-                    ))}
+                {error && <Alert variant="danger" className="py-2">{error}</Alert>}
+                <div className="mb-3">
+                    <h6 className="fw-bold text-secondary text-uppercase small mb-1">Tabs</h6>
+                    <p className="small text-secondary mb-2">
+                        A hidden tab's button comes off the nav bar for the public. Its page and games still work from a direct link. You and your admins still see it, dashed.
+                    </p>
+                    <div className="border rounded p-2 bg-white">
+                        {tabs.map((tab) => (
+                            <div key={tab.id} className="mb-1">
+                                <VisibilitySwitch
+                                    id={`tab-${tab.id}`}
+                                    label={tab.name}
+                                    hidden={tab.hidden}
+                                    disabled={saving === `tab:${tab.id}`}
+                                    onChange={(hidden) => setTabHidden(tab.id, hidden)}
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <GameSwitches games={games} saving={saving} idPrefix="" onChange={setHidden} />
+                <GameSwitches games={games} saving={saving} idPrefix="" onChange={setHidden} />
+            </Col>
 
-            <hr />
-            <h5 className="fw-bold mb-1">🎂 TopCake</h5>
-            <p className="small text-secondary">
-                For topcake.party. Hidden games and decks are off the menus there and can't be started. Only you still see them, after signing in with the key on TopCake.
-                A change can take up to 30 seconds to reach it.
-            </p>
-            {topcakeError && <Alert variant="danger" className="py-2">{topcakeError}</Alert>}
-            {topcake
-                ? <GameSwitches games={topcake} saving={saving} idPrefix="topcake:" onChange={setTopcakeHidden} />
-                : !topcakeError && <Spinner animation="border" />}
-        </div>
+            <Col md={6}>
+                <h5 className="fw-bold mb-1">🎂 TopCake</h5>
+                <p className="small text-secondary">
+                    For topcake.party. Hidden games and decks are off the menus there and can't be started. Only you still see them, after signing in with the key on TopCake.
+                    A change can take up to 30 seconds to reach it.
+                </p>
+                {topcakeError && <Alert variant="danger" className="py-2">{topcakeError}</Alert>}
+                {topcake
+                    ? <GameSwitches games={topcake} saving={saving} idPrefix="topcake:" onChange={setTopcakeHidden} />
+                    : !topcakeError && <Spinner animation="border" />}
+            </Col>
+        </Row>
     );
 }
 
