@@ -12,7 +12,12 @@ export default function LibraryReport() {
 
     useEffect(() => {
         adminFetch('/dashboard/library')
-            .then((result) => { setData(result); setError(''); })
+            .then((result) => {
+                // A server from before the Library report answers with a web page, not numbers: say so, don't go blank
+                if (!Array.isArray(result?.sources)) throw new Error("The server doesn't have the Library report yet. If it was just updated, try again in a few minutes.");
+                setData(result);
+                setError('');
+            })
             .catch((err) => setError(err.message));
     }, []);
 

@@ -2635,6 +2635,8 @@ function LibraryReport() {
     setError = _useState4[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)('/dashboard/library').then(function (result) {
+      // A server from before the Library report answers with a web page, not numbers: say so, don't go blank
+      if (!Array.isArray(result === null || result === void 0 ? void 0 : result.sources)) throw new Error("The server doesn't have the Library report yet. If it was just updated, try again in a few minutes.");
       setData(result);
       setError('');
     })["catch"](function (err) {
