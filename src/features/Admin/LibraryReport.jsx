@@ -193,26 +193,31 @@ const ONE_COLOR = '#2a78d6';   // content that isn't split into parts
 const colorOf = (value) => (value ? SPLIT_COLORS[value] || '#898781' : ONE_COLOR);   // gray: a level that isn't set
 const name = (value) => value.charAt(0).toUpperCase() + value.slice(1);
 
-const PLOT = 140;   // px: the biggest deck's column
-const GAP = 2;   // px of white between the parts of a column
-const MIN_PART = 2;   // px: even one card still shows
+const PLOT = 140;   // px: the tallest bar
+const MIN_BAR = 2;   // px: even one card still shows
 
-// 📊 A column per deck, biggest first, so decks compare side by side. Each column is stacked from the bottom in its
-// parts' order (prompts, then responses / easy → hard), with the deck's count on top. Hovering or tapping a column
-// gives its parts; the legend has the totals.
+// 📊 A group of bars per deck, biggest deck first. Each part (prompts and responses / easy, medium, hard) gets its own
+// bar, side by side on one baseline and one scale, with its count on top, so a deck that's short of one part shows
+// it straight away. A part a deck doesn't have at all shows as 0. Hovering or tapping a deck gives its shares; the
+// legend has the totals.
 function DeckColumns({ decks, split, noun, heading }) {
     const [hovered, setActive] = useState(null);
-    // By deck name, so new numbers (another "Added by") never leave a column lit that isn't there any more
+    // By deck name, so new numbers (another "Added by") never leave a deck lit that isn't there any more
     const active = decks.some((d) => d.deck === hovered) ? hovered : null;
-    const most =Math.max(...decks.map((d) => d.total), 1);
-    const partsOf = (d) => (d.split.length ? d.split : [{ value: null, count: d.total }]);
-    const describe = (d) => `${d.deck}: ${fmt(d.total)} ${plural(d.total, noun)}${d.split.length ? ` (${d.split.map((c) => `${fmt(c.count)} ${c.value}`).join(', ')})` : ''}`;
+    // Every deck shows every part, in the same order, so the colors line up from deck to deck
+    const values = split?.counts.map((c) => c.value) || [];
+    const partsOf = (d) => (values.length
+        ? values.map((value) => ({ value, count: d.split.find((c) => c.value === value)?.count || 0 }))
+        : [{ value: null, count: d.total }]);
+    const most = Math.max(...decks.flatMap((d) => partsOf(d).map((p) => p.count)), 1);
+    const describe = (d) => `${d.deck}: ${fmt(d.total)} ${plural(d.total, noun)}${values.length ? ` (${partsOf(d).map((p) => `${fmt(p.count)} ${p.value}`).join(', ')})` : ''}`;
+    const grouped = values.length > 1;
 
     return (
         <div>
             <div className="d-flex flex-wrap justify-content-between align-items-baseline gap-2">
                 <span className="admin-library-heading mb-0">{heading}</span>
-                {split && split.counts.length > 1 && (
+                {grouped && (
                     <span className="admin-legend small">
                         {split.counts.map((c) => (
                             <span key={c.value}>
@@ -226,21 +231,21 @@ function DeckColumns({ decks, split, noun, heading }) {
             <div className="admin-columns" role="list" aria-label={`${plural(2, noun)} by deck`} onMouseLeave={() => setActive(null)}>
                 {decks.map((d, i) => {
                     const parts = partsOf(d);
-                    const room = Math.max(0, (d.total / most) * PLOT - GAP * (parts.length - 1));
                     return (
                         <div key={d.deck} role="listitem" tabIndex={0} aria-label={describe(d)}
                             className={`admin-column-slot${active !== null && active !== d.deck ? ' is-dim' : ''}`}
+                            style={{ flexBasis: `${grouped ? parts.length * 32 + 14 : 76}px` }}
                             onMouseEnter={() => setActive(d.deck)} onFocus={() => setActive(d.deck)} onBlur={() => setActive(null)} onClick={() => setActive(d.deck)}>
-                            <div className="admin-column-plot" style={{ height: `${PLOT + 20}px` }}>
-                                <div className="admin-column">
-                                    <span className="admin-column-total">{fmt(d.total)}</span>
-                                    {parts.map((p) => (
-                                        <span key={p.value || 'all'} style={{ height: `${Math.max(MIN_PART, (p.count / d.total) * room)}px`, background: colorOf(p.value) }} />
-                                    ))}
-                                </div>
+                            <div className={`admin-column-plot${grouped ? ' is-grouped' : ''}`} style={{ height: `${PLOT + 20}px` }}>
+                                {parts.map((p) => (
+                                    <div key={p.value || 'all'} className="admin-column">
+                                        <span className="admin-column-total">{fmt(p.count)}</span>
+                                        <span style={{ height: `${p.count ? Math.max(MIN_BAR, (p.count / most) * PLOT) : 0}px`, background: colorOf(p.value) }} />
+                                    </div>
+                                ))}
                             </div>
                             <div className="admin-column-name">{d.deck}</div>
-                            {/* Kept inside the card: the first column's opens to the right, the last one's to the left */}
+                            {/* Kept inside the card: the first deck's opens to the right, the last one's to the left */}
                             {active === d.deck && (
                                 <ColumnTip deck={d} noun={noun} align={i === 0 ? 'start' : i === decks.length - 1 ? 'end' : 'center'} />
                             )}
