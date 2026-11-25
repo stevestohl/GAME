@@ -67,6 +67,8 @@ export const topResponses = async (req, res) => {
 // (canAdd: false, like Re-Shuffled's card tags) share their cards with another source: they report how many cards
 // have been checked, and aren't counted twice.
 const RECENT_DAYS = 30;
+// Content screens left out of the Library for now (Re-Shuffled's card tags: the same cards as Couch Cast's)
+const NOT_IN_LIBRARY = new Set(['reshuffled']);
 
 // Content added by one person, or by nobody on the admin site (no createdBy at all counts as the original set)
 const addedBy = (createdBy) => {
@@ -151,7 +153,8 @@ export const library = async (req, res) => {
     const since = new Date(Date.now() - RECENT_DAYS * 24 * 60 * 60 * 1000);
     const createdBy = String(req.query.createdBy || '').trim().toLowerCase().slice(0, 32);
     const isOwner = req.adminUser.role === 'owner';
-    const visible = Object.entries(CONTENT_SOURCES).filter(([, source]) => isOwner || source.game !== 'topcake');
+    const visible = Object.entries(CONTENT_SOURCES)
+        .filter(([id, source]) => !NOT_IN_LIBRARY.has(id) && (isOwner || source.game !== 'topcake'));
 
     // One source that can't be counted (say, TopCake's database is asleep) shouldn't hide the rest
     const sources = await Promise.all(visible.map(([id, source]) => librarySource(id, source, createdBy, since).catch((err) => {
