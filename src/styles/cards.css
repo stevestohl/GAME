@@ -1164,6 +1164,18 @@
     --gt-bg-vignette: rgba(2, 22, 20, 0.5);
 }
 
+/* ♠️ Spades: same recipe, card-table green with a gold sun */
+.gt-bg.theme-spades {
+    --gt-navy:     #04241a;
+    --gt-blue-800: #0a4430;
+    --gt-blue-500: #136b48;
+    --gt-blue-400: #24935f;
+    --gt-blue-300: #8fdcae;
+    --gt-ice:      #eafff2;
+    --gt-bg-accent: #ffd166;
+    --gt-bg-vignette: rgba(1, 18, 12, 0.55);
+}
+
 /* 🐾 Animals deck: same recipe, forest-green palette */
 .gt-bg.theme-animals {
     --gt-navy:     #082a1e;

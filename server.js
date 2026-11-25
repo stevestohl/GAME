@@ -14,6 +14,7 @@ import registerListsNamespace from './sockets/lists_handler.js';
 import registerReshuffledNamespace from './sockets/reshuffled_handler.js';
 import registerMixupNamespace from './sockets/mixup_handler.js';
 import registerTownNamespace from './sockets/town_handler.js';
+import registerSpadesNamespace from './sockets/spades_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -75,6 +76,11 @@ console.log("Namespace '/mixup' registered.");
 const TTNS = io.of('/town');
 registerTownNamespace(TTNS);
 console.log("Namespace '/town' registered.");
+
+// ♠️ Spades (two teams of two; bots fill the empty seats)
+const SPNS = io.of('/spades');
+registerSpadesNamespace(SPNS);
+console.log("Namespace '/spades' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

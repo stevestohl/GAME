@@ -12,7 +12,7 @@ const TABS_CACHE_KEY = 'gtVisibleTabs';
 const REFRESH_MS = 30000;
 
 // Before the first answer: everything shows except the games hidden by default
-const STARTS_HIDDEN = ['reshuffled', 'town'];
+const STARTS_HIDDEN = ['reshuffled', 'town', 'spades'];
 
 const readCache = (key) => {
     try { return JSON.parse(localStorage.getItem(key)); } catch { return null; }

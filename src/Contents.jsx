@@ -23,6 +23,8 @@ import MixupManager from './features/Mixup/MixupManager.jsx'
 import MixupSetup from './features/Mixup/MixupSetup.jsx'
 import TownManager from './features/Town/TownManager.jsx'
 import TownSetup from './features/Town/TownSetup.jsx'
+import SpadesManager from './features/Spades/SpadesManager.jsx'
+import SpadesSetup from './features/Spades/SpadesSetup.jsx'
 import AdminApp from './features/Admin/AdminApp.jsx'
 import { useGameVisibility } from './gameVisibility.js'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
@@ -86,6 +88,9 @@ export default function Contents() {
             {/* 🏙️ Temple Town */}
             <Route path="/town" element={<TownManager />} />
             <Route path="/town-setup" element={<GameGate game="town"><TownSetup /></GameGate>} />
+            {/* ♠️ Spades */}
+            <Route path="/spades" element={<SpadesManager />} />
+            <Route path="/spades-setup" element={<GameGate game="spades"><SpadesSetup /></GameGate>} />
             {/* 🔐 Admin site (sign-in required; the server checks every request) */}
             <Route path="/admin" element={<AdminApp />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />

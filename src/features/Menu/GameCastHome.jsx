@@ -8,6 +8,7 @@ import { ListCastTile } from '../Lists/ListTiles.jsx';
 import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
 import TownTile from '../Town/TownTile.jsx';
+import SpadesTile from '../Spades/SpadesTile.jsx';
 import GameRow from './GameRow.jsx';
 import CastPartyScene from './CastPartyScene.jsx';
 import { useGameVisibility } from '../../gameVisibility.js';
@@ -284,6 +285,25 @@ export default function GameCastHome() {
                                         style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
                                     >
                                         <ListCastTile />
+                                    </Button>
+                                </GameRow>}
+
+                                {/* ♠️ Spades: hidden from the public until it's switched on in /admin — button left, text right */}
+                                {canSeeGame('spades') && <GameRow
+                                    flip
+                                    hidden={isGameHidden('spades')}
+                                    title="Spades"
+                                    players="1–4 players"
+                                    description="The classic card game, two teams of two. Bid your tricks, then make them. Bots fill any empty seats."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        onClick={() => navigate('/spades-setup')}
+                                        aria-label="Set up a Spades game"
+                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
+                                    >
+                                        <SpadesTile />
                                     </Button>
                                 </GameRow>}
 
