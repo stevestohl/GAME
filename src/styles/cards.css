@@ -2114,18 +2114,30 @@
 .admin-library-heading { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #52514e; margin-bottom: 4px; }
 .admin-library-notes { color: #52514e; display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #e1e0d9; padding-top: 8px; }
 
-/* One whole in parts (prompts | responses, easy | medium | hard): 2px of white between the parts */
-.admin-split { display: flex; gap: 2px; height: 28px; }
-.admin-split-part { min-width: 4px; border-radius: 4px; display: flex; align-items: center; padding: 0 6px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
-.admin-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; color: #52514e; }
+/* The legend: a swatch and a total for each part */
+.admin-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; color: #52514e; }
 .admin-legend-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
 
-/* A bar per deck: square where it starts, rounded at its end, the count just past it */
+/* A column per deck, sharing one baseline: parts stacked from the bottom with 2px of white between them, square on the
+   baseline and rounded on top, the deck's count above it. The whole slot (count, column and name) answers the hover. */
+.admin-columns { display: flex; margin-top: 8px; }
+.admin-column-slot { position: relative; flex: 0 1 76px; min-width: 0; cursor: default; outline: none; transition: opacity 0.15s; }
+.admin-column-slot.is-dim { opacity: 0.45; }
+.admin-column-slot:focus-visible .admin-column-name { outline: 2px solid #2a78d6; outline-offset: 1px; border-radius: 3px; }
+.admin-column-plot { display: flex; align-items: flex-end; justify-content: center; padding: 0 6px; border-bottom: 1px solid #c3c2b9; }
+.admin-column { position: relative; display: flex; flex-direction: column-reverse; gap: 2px; width: 100%; max-width: 40px; }
+.admin-column > span { display: block; }
+.admin-column > span:last-child { border-radius: 4px 4px 0 0; }
+.admin-column-total { position: absolute; bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: #52514e; white-space: nowrap; }
+.admin-column-name { margin-top: 4px; padding: 0 2px; font-size: 0.75rem; color: #52514e; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.admin-column-tip { position: absolute; bottom: calc(100% + 4px); z-index: 5; padding: 6px 10px; background: #fff; border: 1px solid #e1e0d9; border-radius: 6px; box-shadow: 0 4px 14px rgba(11, 11, 11, 0.12); font-size: 0.8rem; line-height: 1.5; color: #0b0b0b; white-space: nowrap; pointer-events: none; }
+.admin-column-tip.is-start { left: 0; }
+.admin-column-tip.is-end { right: 0; }
+.admin-column-tip.is-center { left: 50%; transform: translateX(-50%); }
+
+/* A row per deck with a meter (checked cards on the tag screens) */
 .admin-deck-row { display: grid; grid-template-columns: minmax(0, 6.5rem) 1fr; gap: 8px; align-items: center; font-size: 0.85rem; }
 .admin-deck-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.admin-deck-track { display: flex; align-items: center; gap: 6px; min-width: 0; }
-.admin-deck-fill { height: 14px; background: #2a78d6; border-radius: 0 4px 4px 0; flex: 0 0 auto; }
-.admin-deck-value { color: #52514e; font-size: 0.8rem; white-space: nowrap; }
 
 /* Checked so far: the same blue on a lighter blue */
 .admin-meter { flex: 1; height: 10px; border-radius: 999px; background: #cde2fb; overflow: hidden; display: block; }

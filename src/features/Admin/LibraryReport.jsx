@@ -59,7 +59,7 @@ export default function LibraryReport() {
                     <div className="admin-library">
                         {group.sources.map((source) => (
                             // Under the TopCake heading, "🎂 TopCake:" on every card would say it again
-                            <SourceCard key={source.id} source={{ ...source, label: source.label.replace(/^🎂\s*TopCake:\s*/, '') }} days={data.days} filtered={!!who} />
+                            <SourceCard key={source.id} source={{ ...source, label: source.label.replace(/^🎂\s*TopCake:\s*/, '') }} filtered={!!who} />
                         ))}
                     </div>
                 </section>
@@ -114,9 +114,9 @@ function Headline({ sources, days, title, hero, byWhom }) {
     );
 }
 
-// One kind of content (Couch Cast cards, trivia questions...): its total, then how it breaks down.
-// Filtered to one person: their part of it, without the deck warnings (those are about whole decks).
-function SourceCard({ source, days, filtered }) {
+// One kind of content (Couch Cast cards, trivia questions...): its total, a column per deck, who added it, and what's
+// worth knowing about it. Filtered to one person: their part of it, without the deck warnings (those are about whole decks).
+function SourceCard({ source, filtered }) {
     if (source.error) {
         return (
             <Card className="border shadow-sm">
@@ -131,6 +131,14 @@ function SourceCard({ source, days, filtered }) {
     const retired = source.inPlay === null ? 0 : total - source.inPlay;
     const people = filtered ? [] : source.people.filter((p) => p.name !== 'system');
     const notes = filtered ? [] : healthNotes(source);
+    // Content with no decks (some of TopCake's) is one column of its own, if it has parts to show
+    const hasDecks = source.decks?.length > 0;
+    const columns = hasDecks ? source.decks
+        : source.split?.counts.length ? [{ deck: 'all', total, split: source.split.counts }] : [];
+    const aside = !total ? `No ${plural(2, noun)} yet`
+        : source.tagsOnly ? 'The same cards as their game: not counted again in the total'
+        : retired > 0 ? `${fmt(retired)} taken out of play`
+        : null;
 
     return (
         <Card className="border shadow-sm">
@@ -141,32 +149,22 @@ function SourceCard({ source, days, filtered }) {
                         <span className="admin-stat-number">{fmt(total)}</span>
                         <span className="text-dark">{plural(total, noun)}</span>
                     </div>
-                    <div className="small text-muted">
-                        {!total ? `No ${plural(2, noun)} yet`
-                            : source.tagsOnly
-                            ? 'The same cards as their game: not counted again in the total'
-                            : <>
-                                {source.inPlay !== null && (retired > 0 ? `${fmt(source.inPlay)} in play · ${fmt(retired)} taken out · ` : 'All in play · ')}
-                                {fmt(source.added)} added in the last {days} days
-                            </>}
-                    </div>
+                    {aside && <div className="small text-muted">{aside}</div>}
                 </div>
 
-                {source.checked !== null && (
-                    <Meter label="Checked" done={source.checked} total={total} />
-                )}
-
-                {source.split && source.split.counts.length > 0 && !source.tagsOnly && (
-                    <SplitBar split={source.split} total={total} noun={noun} />
-                )}
-
-                {source.decks && source.decks.length > 0 && (
-                    <div>
-                        <div className="admin-library-heading">Decks</div>
-                        {source.checked !== null
-                            ? source.decks.map((d) => <Meter key={d.deck} label={d.deck} done={d.checked} total={d.total} compact />)
-                            : <DeckBars decks={source.decks} noun={noun} />}
-                    </div>
+                {/* Tag screens: how many of their cards have been checked */}
+                {source.checked !== null ? (
+                    <>
+                        <Meter label="Checked" done={source.checked} total={total} />
+                        {hasDecks && (
+                            <div>
+                                <div className="admin-library-heading">Decks</div>
+                                {source.decks.map((d) => <Meter key={d.deck} label={d.deck} done={d.checked} total={d.total} compact />)}
+                            </div>
+                        )}
+                    </>
+                ) : columns.length > 0 && (
+                    <DeckColumns decks={columns} split={source.split} noun={noun} heading={hasDecks ? 'Decks' : source.split.label} />
                 )}
 
                 {people.length > 0 && (
@@ -191,57 +189,83 @@ const SPLIT_COLORS = {
     prompt: '#2a78d6', response: '#eb6834',
     easy: '#86b6ef', medium: '#2a78d6', hard: '#104281',
 };
-const DARK_TEXT_ON = new Set(['easy']);   // the light blue takes dark writing
+const ONE_COLOR = '#2a78d6';   // content that isn't split into parts
+const colorOf = (value) => (value ? SPLIT_COLORS[value] || '#898781' : ONE_COLOR);   // gray: a level that isn't set
 const name = (value) => value.charAt(0).toUpperCase() + value.slice(1);
 
-// One whole split into parts: prompts vs responses, or easy / medium / hard. Each part shows its share if it fits.
-function SplitBar({ split, total, noun }) {
-    const described = split.counts.map((c) => `${name(c.value)}: ${fmt(c.count)} (${share(c.count, total)}%)`).join(', ');
+const PLOT = 140;   // px: the biggest deck's column
+const GAP = 2;   // px of white between the parts of a column
+const MIN_PART = 2;   // px: even one card still shows
+
+// 📊 A column per deck, biggest first, so decks compare side by side. Each column is stacked from the bottom in its
+// parts' order (prompts, then responses / easy → hard), with the deck's count on top. Hovering or tapping a column
+// gives its parts; the legend has the totals.
+function DeckColumns({ decks, split, noun, heading }) {
+    const [hovered, setActive] = useState(null);
+    // By deck name, so new numbers (another "Added by") never leave a column lit that isn't there any more
+    const active = decks.some((d) => d.deck === hovered) ? hovered : null;
+    const most =Math.max(...decks.map((d) => d.total), 1);
+    const partsOf = (d) => (d.split.length ? d.split : [{ value: null, count: d.total }]);
+    const describe = (d) => `${d.deck}: ${fmt(d.total)} ${plural(d.total, noun)}${d.split.length ? ` (${d.split.map((c) => `${fmt(c.count)} ${c.value}`).join(', ')})` : ''}`;
+
     return (
         <div>
-            <div className="admin-library-heading">{split.field === 'type' ? 'Prompts and responses' : 'By level'}</div>
-            <div className="admin-split" role="img" aria-label={`${plural(2, noun)} by ${split.label.toLowerCase()}: ${described}`}>
-                {split.counts.map((c) => {
-                    const pct = share(c.count, total);
+            <div className="d-flex flex-wrap justify-content-between align-items-baseline gap-2">
+                <span className="admin-library-heading mb-0">{heading}</span>
+                {split && split.counts.length > 1 && (
+                    <span className="admin-legend small">
+                        {split.counts.map((c) => (
+                            <span key={c.value}>
+                                <span className="admin-legend-swatch" style={{ background: colorOf(c.value) }} />
+                                {name(c.value)} {fmt(c.count)}
+                            </span>
+                        ))}
+                    </span>
+                )}
+            </div>
+            <div className="admin-columns" role="list" aria-label={`${plural(2, noun)} by deck`} onMouseLeave={() => setActive(null)}>
+                {decks.map((d, i) => {
+                    const parts = partsOf(d);
+                    const room = Math.max(0, (d.total / most) * PLOT - GAP * (parts.length - 1));
                     return (
-                        <div key={c.value} className="admin-split-part" title={`${name(c.value)}: ${fmt(c.count)} (${pct}%)`}
-                            style={{ flexGrow: c.count, background: SPLIT_COLORS[c.value] || '#898781', color: DARK_TEXT_ON.has(c.value) ? '#0b0b0b' : '#fff' }}>
-                            {/* Too narrow for its share: the legend and the hover say it */}
-                            {pct >= 12 && <span>{pct}%</span>}
+                        <div key={d.deck} role="listitem" tabIndex={0} aria-label={describe(d)}
+                            className={`admin-column-slot${active !== null && active !== d.deck ? ' is-dim' : ''}`}
+                            onMouseEnter={() => setActive(d.deck)} onFocus={() => setActive(d.deck)} onBlur={() => setActive(null)} onClick={() => setActive(d.deck)}>
+                            <div className="admin-column-plot" style={{ height: `${PLOT + 20}px` }}>
+                                <div className="admin-column">
+                                    <span className="admin-column-total">{fmt(d.total)}</span>
+                                    {parts.map((p) => (
+                                        <span key={p.value || 'all'} style={{ height: `${Math.max(MIN_PART, (p.count / d.total) * room)}px`, background: colorOf(p.value) }} />
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="admin-column-name">{d.deck}</div>
+                            {/* Kept inside the card: the first column's opens to the right, the last one's to the left */}
+                            {active === d.deck && (
+                                <ColumnTip deck={d} noun={noun} align={i === 0 ? 'start' : i === decks.length - 1 ? 'end' : 'center'} />
+                            )}
                         </div>
                     );
                 })}
-            </div>
-            <div className="admin-legend small">
-                {split.counts.map((c) => (
-                    <span key={c.value}>
-                        <span className="admin-legend-swatch" style={{ background: SPLIT_COLORS[c.value] || '#898781' }} />
-                        {name(c.value)} {fmt(c.count)}
-                    </span>
-                ))}
             </div>
         </div>
     );
 }
 
-// A bar per deck, longest first, with its count at the end
-function DeckBars({ decks, noun }) {
-    const most = Math.max(...decks.map((d) => d.total), 1);
+// The hovered column's parts (the column's own label already says all this to a screen reader)
+function ColumnTip({ deck, noun, align }) {
+    const count = (value) => deck.split.find((c) => c.value === value)?.count || 0;
+    const perPrompt = count('prompt') && count('response') ? Math.floor((count('response') / count('prompt')) * 10) / 10 : null;
     return (
-        <div className="d-flex flex-column gap-1">
-            {decks.map((d) => {
-                const parts = d.split.map((c) => `${fmt(c.count)} ${c.value}`).join(', ');
-                return (
-                    <div key={d.deck} className="admin-deck-row" title={`${d.deck}: ${fmt(d.total)} ${plural(d.total, noun)}${parts ? ` (${parts})` : ''}`}>
-                        <span className="admin-deck-name text-dark">{d.deck}</span>
-                        <span className="admin-deck-track">
-                            {/* The longest bar leaves room for its count after it */}
-                            <span className="admin-deck-fill" style={{ width: `calc((100% - 3.5rem) * ${Math.max(0.02, d.total / most)})` }} />
-                            <span className="admin-deck-value">{fmt(d.total)}</span>
-                        </span>
-                    </div>
-                );
-            })}
+        <div className={`admin-column-tip is-${align}`} aria-hidden="true">
+            <div className="fw-bold">{deck.deck} · {fmt(deck.total)} {plural(deck.total, noun)}</div>
+            {deck.split.map((c) => (
+                <div key={c.value}>
+                    <span className="admin-legend-swatch" style={{ background: colorOf(c.value) }} />
+                    {name(c.value)} {fmt(c.count)} <span className="text-muted">({share(c.count, deck.total)}%)</span>
+                </div>
+            ))}
+            {perPrompt !== null && <div className="text-muted">{perPrompt} responses per prompt</div>}
         </div>
     );
 }
@@ -262,7 +286,8 @@ function Meter({ label, done, total, compact }) {
     );
 }
 
-// 🩺 Things worth knowing about this content, worked out from its numbers
+// 🩺 Things worth knowing about this content, worked out from today's numbers each time the page loads: each one says
+// how many more would settle it, and goes away by itself once there are enough
 const PLAYERS = 6;   // a typical game, for "will the responses last as long as the prompts?"
 const LOW_LEVEL = 15;   // a level that's less than this share of the questions or words
 
@@ -280,7 +305,10 @@ function healthNotes(source) {
             if (!prompts || !responses) {
                 notes.push(`${where} has no ${prompts ? 'responses' : 'prompts'}, so it can't be played on its own.`);
             } else if (responses / prompts < PLAYERS - 1) {
-                notes.push(`${where} has ${(responses / prompts).toFixed(1)} responses per prompt. A ${PLAYERS}-player round uses ${PLAYERS - 1}, so its responses run out before its prompts.`);
+                // Rounded down, so it never reads "5.0" while it's still short
+                const perPrompt = Math.floor((responses / prompts) * 10) / 10;
+                const more = prompts * (PLAYERS - 1) - responses;
+                notes.push(`${where} has ${perPrompt} responses per prompt. A ${PLAYERS}-player round uses ${PLAYERS - 1}: ${fmt(more)} more ${plural(more, 'response')} would cover its prompts.`);
             }
         }
     }
@@ -289,7 +317,11 @@ function healthNotes(source) {
         for (const level of ['easy', 'medium', 'hard']) {
             const n = source.split.counts.find((c) => c.value === level)?.count || 0;
             if (!n) notes.push(`No ${level} ${plural(2, source.noun)} yet.`);
-            else if (share(n, total) < LOW_LEVEL) notes.push(`Only ${share(n, total)}% are ${level} (${fmt(n)}).`);
+            else if (share(n, total) < LOW_LEVEL) {
+                let more = 1;   // the fewest new ones at this level that bring it up to LOW_LEVEL
+                while (share(n + more, total + more) < LOW_LEVEL) more += 1;
+                notes.push(`Only ${share(n, total)}% are ${level} (${fmt(n)}): ${fmt(more)} more ${level} ${plural(more, source.noun)} would make it ${LOW_LEVEL}%.`);
+            }
         }
     }
     return notes;
