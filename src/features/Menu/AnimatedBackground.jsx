@@ -374,6 +374,7 @@ const THEMES = {
     trivia: TRIVIA_FLOATERS,
     animals: ANIMALS_FLOATERS,
     lists: LISTS_FLOATERS,
+    town: FLOATERS,      // 🏙️ Temple Town: the usual icons, in teal
     jeffinitely: [],   // 📼 draws its own full-colour retro scene instead (RetroBackdrop.jsx)
 };
 

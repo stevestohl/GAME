@@ -48,6 +48,11 @@ export const mixupSocket = io(`${SOCKET_URL}/mixup`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+// 🏙️ Temple Town
+export const townSocket = io(`${SOCKET_URL}/town`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
 // List Cast and Listopia
 export const listsSocket = io(`${SOCKET_URL}/lists`, {
     transports: ['websocket', 'polling'],
@@ -56,7 +61,7 @@ export const listsSocket = io(`${SOCKET_URL}/lists`, {
 
 // 🔑 Starting a room: every game's createRoom carries the sign-in token (if any), and a refused host
 // (a game or deck hidden from the public, see db/gameVisibility.js on the server) goes back to the menu
-const allSockets = [socket, tictactoeSocket, triviaSocket, prompt2Socket, couchCastSocket, triviaCastSocket, reshuffledSocket, mixupSocket, listsSocket];
+const allSockets = [socket, tictactoeSocket, triviaSocket, prompt2Socket, couchCastSocket, triviaCastSocket, reshuffledSocket, mixupSocket, townSocket, listsSocket];
 allSockets.forEach((s) => {
     const send = s.emit.bind(s);
     s.emit = (event, data, ...rest) => (event === 'createRoom' ? send(event, { ...data, authToken: getToken() }, ...rest) : send(event, data, ...rest));

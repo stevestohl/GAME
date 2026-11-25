@@ -21,6 +21,8 @@ import ReshuffledManager from './features/Reshuffled/ReshuffledManagerTV.jsx'
 import ReshuffledDeckSelect from './features/Reshuffled/ReshuffledDeckSelect.jsx'
 import MixupManager from './features/Mixup/MixupManager.jsx'
 import MixupSetup from './features/Mixup/MixupSetup.jsx'
+import TownManager from './features/Town/TownManager.jsx'
+import TownSetup from './features/Town/TownSetup.jsx'
 import AdminApp from './features/Admin/AdminApp.jsx'
 import { useGameVisibility } from './gameVisibility.js'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
@@ -81,6 +83,9 @@ export default function Contents() {
             {/* 🎪 Temple Mix Up */}
             <Route path="/mixup" element={<MixupManager />} />
             <Route path="/mixup-setup" element={<GameGate game="mixup"><MixupSetup /></GameGate>} />
+            {/* 🏙️ Temple Town */}
+            <Route path="/town" element={<TownManager />} />
+            <Route path="/town-setup" element={<GameGate game="town"><TownSetup /></GameGate>} />
             {/* 🔐 Admin site (sign-in required; the server checks every request) */}
             <Route path="/admin" element={<AdminApp />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />

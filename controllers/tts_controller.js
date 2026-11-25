@@ -3,6 +3,7 @@ import { getReshuffledRoom } from "../sockets/reshuffled_handler.js";
 import { getMixupRoom } from "../sockets/mixup_handler.js";
 import { getTriviaCastRoom } from "../sockets/triviacast_handler.js";
 import { getListCastRoom } from "../sockets/lists_handler.js";
+import { getTownRoom } from "../sockets/town_handler.js";
 import { readMp3, cutMp3 } from "./mp3.js";
 
 // ==========================================
@@ -182,9 +183,9 @@ export const speakLine = async (req, res) => {
             return res.status(400).json({ success: false, message: "Text is missing or too long." });
         }
 
-        // Only a live TV game (Couch Cast, Re-Shuffled, Trivia Cast, List Cast or Mix Up) can ask for speech
+        // Only a live TV game (Couch Cast, Re-Shuffled, Trivia Cast, List Cast, Mix Up or Temple Town) can ask for speech
         const couchCastRoom = getCouchCastRoom(roomCode);
-        const room = couchCastRoom || getReshuffledRoom(roomCode) || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode) || getMixupRoom(roomCode);
+        const room = couchCastRoom || getReshuffledRoom(roomCode) || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode) || getMixupRoom(roomCode) || getTownRoom(roomCode);
         if (!room) {
             return res.status(404).json({ success: false, message: "Room not found." });
         }

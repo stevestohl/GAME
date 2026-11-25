@@ -85,6 +85,10 @@ export default function UniversalJoinScreen() {
                 // Temple Mix Up
                 targetRoute = `/mixup?room=${code}&role=guest&name=${name}`;
                 break;
+            case 'B':
+                // Temple Town
+                targetRoute = `/town?room=${code}&role=guest&name=${name}`;
+                break;
             case 'S':
                 // Couch Cast Re-Shuffled (experimental)
                 targetRoute = `/reshuffled?room=${code}&role=guest&name=${name}`;

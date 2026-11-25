@@ -7,6 +7,7 @@ import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 import { ListCastTile } from '../Lists/ListTiles.jsx';
 import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
+import TownTile from '../Town/TownTile.jsx';
 import GameRow from './GameRow.jsx';
 import CastPartyScene from './CastPartyScene.jsx';
 import { useGameVisibility } from '../../gameVisibility.js';
@@ -246,6 +247,25 @@ export default function GameCastHome() {
                                         style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
                                     >
                                         <MixupTile />
+                                    </Button>
+                                </GameRow>}
+
+                                {/* 🏙️ Temple Town: hidden from the public until it's switched on in /admin — button left, text right */}
+                                {canSeeGame('town') && <GameRow
+                                    flip
+                                    hidden={isGameHidden('town')}
+                                    title="Temple Town"
+                                    players="3–8 players"
+                                    description="Bid on lots in secret, build Shops and Towers, then pick where to go out each night. Visitors pay rent to the owners."
+                                >
+                                    <Button
+                                        variant="primary"
+                                        className={gameImgBtnClass}
+                                        onClick={() => navigate('/town-setup')}
+                                        aria-label="Set up a Temple Town game"
+                                        style={{ '--shimmer-delay': '1.4s', ...squareStyle }}
+                                    >
+                                        <TownTile />
                                     </Button>
                                 </GameRow>}
 

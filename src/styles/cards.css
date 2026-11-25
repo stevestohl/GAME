@@ -1152,6 +1152,18 @@
     --gt-bg-vignette: rgba(24, 2, 6, 0.55);
 }
 
+/* 🏙️ Temple Town: same recipe, teal like its tile, with a gold sun */
+.gt-bg.theme-town {
+    --gt-navy:     #062a2a;
+    --gt-blue-800: #0b4d49;
+    --gt-blue-500: #13806f;
+    --gt-blue-400: #2fb39a;
+    --gt-blue-300: #8de3cf;
+    --gt-ice:      #e6fff8;
+    --gt-bg-accent: #ffc83d;
+    --gt-bg-vignette: rgba(2, 22, 20, 0.5);
+}
+
 /* 🐾 Animals deck: same recipe, forest-green palette */
 .gt-bg.theme-animals {
     --gt-navy:     #082a1e;

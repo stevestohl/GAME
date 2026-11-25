@@ -13,6 +13,7 @@ import registerTriviaCastNamespace from './sockets/triviacast_handler.js';
 import registerListsNamespace from './sockets/lists_handler.js';
 import registerReshuffledNamespace from './sockets/reshuffled_handler.js';
 import registerMixupNamespace from './sockets/mixup_handler.js';
+import registerTownNamespace from './sockets/town_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -69,6 +70,11 @@ console.log("Namespace '/reshuffled' registered.");
 const MXNS = io.of('/mixup');
 registerMixupNamespace(MXNS);
 console.log("Namespace '/mixup' registered.");
+
+// 🏙️ Temple Town (buy lots, build, charge rent)
+const TTNS = io.of('/town');
+registerTownNamespace(TTNS);
+console.log("Namespace '/town' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

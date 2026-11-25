@@ -32,7 +32,7 @@ final class CastCoordinator {
     static let shared = CastCoordinator()
 
     // The cast games' TV pages
-    private let tvPaths: Set<String> = ["/couchcast", "/triviacast", "/listcast", "/mixup", "/reshuffled"]
+    private let tvPaths: Set<String> = ["/couchcast", "/triviacast", "/listcast", "/mixup", "/reshuffled", "/town"]
 
     weak var phone: PhoneViewController?
     weak var tv: TVViewController?
