@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Form, Alert, Spinner, Badge } from 'react-bootstrap';
+import { Card, Form, Alert, Spinner, Badge, Nav } from 'react-bootstrap';
 import { adminFetch } from './adminApi.js';
+import LibraryReport from './LibraryReport.jsx';
 
 /**
- * 📊 The Dashboard tab. First report: the Couch Cast & Prompt 2 answers judges pick the most.
+ * 📊 The Dashboard tab, in two parts:
+ *   Performance -> how content does in games (the Couch Cast & Prompt 2 answers judges pick the most)
+ *   Library     -> how much content there is (LibraryReport.jsx)
  */
+const VIEW_KEY = 'gtAdminDashboardView';   // the part last looked at, so coming back to the Dashboard keeps it
+
 export default function DashboardPage() {
+    const [view, setView] = useState(() => sessionStorage.getItem(VIEW_KEY) || 'performance');
+    const pick = (key) => {
+        setView(key);
+        sessionStorage.setItem(VIEW_KEY, key);
+    };
+
     return (
         <div className="d-flex flex-column gap-3">
-            <TopResponses />
+            <Nav variant="pills" activeKey={view} onSelect={pick} className="admin-subtabs">
+                <Nav.Item><Nav.Link eventKey="performance">📈 Performance</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link eventKey="library">📚 Library</Nav.Link></Nav.Item>
+            </Nav>
+            {view === 'library' ? <LibraryReport /> : <TopResponses />}
         </div>
     );
 }

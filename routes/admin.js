@@ -3,7 +3,7 @@ import { login, me, requireAdmin, requireOwner } from '../controllers/admin_auth
 import { listUsers, createUser, updateUser, deleteUser } from '../controllers/admin_users_controller.js'
 import { MANAGED_GAMES } from '../db/adminCatalog.js'
 import { listSources, listContent, createContent, updateContent, deleteContent, signContentUpload } from '../controllers/admin_content_controller.js'
-import { topResponses } from '../controllers/admin_dashboard_controller.js'
+import { topResponses, library } from '../controllers/admin_dashboard_controller.js'
 import { visibleGames, updateVisibility, listTopcakeGames, updateTopcakeVisibility } from '../controllers/admin_visibility_controller.js'
 
 // 🔐 The admin API behind game-temple.org/admin. Everything except signing in needs a valid token.
@@ -34,6 +34,7 @@ router.delete('/content/:source/:id', safe(deleteContent))
 
 // Dashboard: limited to the decks each account manages (checked inside each handler)
 router.get('/dashboard/couchcast/top-responses', safe(topResponses))
+router.get('/dashboard/library', safe(library))
 
 // Hiding and showing games and decks: owner only
 router.patch('/visibility', requireOwner, safe(updateVisibility))

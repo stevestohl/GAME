@@ -9,7 +9,7 @@ import { canStorePictures, signUpload, keepPicture } from "../db/pictureStore.js
 const PAGE_SIZES = [10, 30, 50, 100];
 
 // Which decks this account may touch for a source: null means "all" (the owner)
-const allowedDecks = (user, source) => (user.role === 'owner'
+export const allowedDecks = (user, source) => (user.role === 'owner'
     ? null
     : [...new Set(user.access.filter((a) => a.game === source.game).map((a) => a.deck))]);
 
@@ -46,7 +46,7 @@ const fieldValue = (doc, key, field) => {
 };
 
 // Older questions aren't tidy: "Easy", "easy, like Ricardo"
-const tidyLevel = (value) => String(value || '').trim().split(/[^a-z]/i)[0].toLowerCase();
+export const tidyLevel = (value) => String(value || '').trim().split(/[^a-z]/i)[0].toLowerCase();
 
 // A database document -> a grid row (the deck field is always called "deck" on screen)
 const toRow = (doc, source) => {
@@ -57,7 +57,7 @@ const toRow = (doc, source) => {
 };
 
 // Which decks an account's limit covers (older content with no deck counts as core)
-const deckScope = (decks, source) => {
+export const deckScope = (decks, source) => {
     if (!decks || !source.deckField) return {};
     return { [source.deckField]: { $in: decks.includes('core') ? [...decks, null] : decks } };
 };

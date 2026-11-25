@@ -9,7 +9,7 @@ import { onAuthChange } from '../../auth.js';
 
 /**
  * 🔐 game-temple.org/admin. Sign in, then:
- *   Dashboard -> reports (top Couch Cast responses so far)
+ *   Dashboard -> reports: Performance (top Couch Cast responses so far) and Library (how much content there is)
  *   Content   -> edit cards, questions and topics for the games and decks you manage (stage 3)
  *   Games     -> owner only: hide and show games and decks
  *   Users     -> owner only: add accounts and choose which games/decks each admin manages
