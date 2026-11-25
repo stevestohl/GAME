@@ -2600,7 +2600,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var _adminApi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./adminApi.js */ "./src/features/Admin/adminApi.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -2621,46 +2622,75 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 /**
- * 📚 The Dashboard's Library tab: how much content there is, for each kind of content this account manages (only
- * its decks). The numbers come from GET /api/admin/dashboard/library (controllers/admin_dashboard_controller.js).
+ * 📚 The Dashboard's Library tab: how much content there is in every deck, shown to everyone who makes content, so a
+ * thin deck (like Holiday) is there for all of them to see. "Added by" narrows it to what one person added. Editing
+ * still stays within each person's own decks, on the Content tab, and TopCake's content is only shown to the owner.
+ * The numbers come from GET /api/admin/dashboard/library (controllers/admin_dashboard_controller.js).
  */
+var WHO_KEY = 'gtAdminLibraryWho'; // the "Added by" choice, kept while this browser tab is open
+
 function LibraryReport() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
+      return sessionStorage.getItem(WHO_KEY) || '';
+    }),
     _useState2 = _slicedToArray(_useState, 2),
-    data = _useState2[0],
-    setData = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    who = _useState2[0],
+    setWho = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState4 = _slicedToArray(_useState3, 2),
-    error = _useState4[0],
-    setError = _useState4[1];
+    data = _useState4[0],
+    setData = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    loading = _useState6[0],
+    setLoading = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    error = _useState8[0],
+    setError = _useState8[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)('/dashboard/library').then(function (result) {
+    var current = true; // a quicker answer for a later choice wins over a slow one for an earlier choice
+    setLoading(true);
+    (0,_adminApi_js__WEBPACK_IMPORTED_MODULE_1__.adminFetch)("/dashboard/library".concat(who ? "?createdBy=".concat(encodeURIComponent(who)) : '')).then(function (result) {
       // A server from before the Library report answers with a web page, not numbers: say so, don't go blank
       if (!Array.isArray(result === null || result === void 0 ? void 0 : result.sources)) throw new Error("The server doesn't have the Library report yet. If it was just updated, try again in a few minutes.");
+      if (!current) return;
       setData(result);
       setError('');
     })["catch"](function (err) {
-      return setError(err.message);
+      if (current) setError(err.message);
+    })["finally"](function () {
+      if (current) setLoading(false);
     });
-  }, []);
-  if (error) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return function () {
+      current = false;
+    };
+  }, [who]);
+  var pick = function pick(value) {
+    setWho(value);
+    sessionStorage.setItem(WHO_KEY, value);
+  };
+  if (!data) return error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     variant: "danger",
     className: "py-2"
-  }, error);
-  if (!data) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, error) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     animation: "border",
     size: "sm"
   });
-
+  var byWhom = who ? creatorName(who, data.me) : null;
+  // One person's content: just the kinds they've added
+  var shown = who ? data.sources.filter(function (s) {
+    return s.error || s.total > 0;
+  }) : data.sources;
   // Game Temple's content first, then TopCake's (only the owner sees those)
   var groups = [{
     title: null,
-    sources: data.sources.filter(function (s) {
+    sources: shown.filter(function (s) {
       return s.game !== 'topcake';
     })
   }, {
     title: '🎂 TopCake',
-    sources: data.sources.filter(function (s) {
+    sources: shown.filter(function (s) {
       return s.game === 'topcake';
     })
   }].filter(function (group) {
@@ -2668,7 +2698,18 @@ function LibraryReport() {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex flex-column gap-4"
-  }, groups.map(function (group, i) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CreatorFilter, {
+    who: who,
+    onPick: pick,
+    creators: data.creators || [],
+    me: data.me,
+    loading: loading
+  }), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "danger",
+    className: "py-2 mb-0"
+  }, error), groups.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-muted mb-0"
+  }, "Nothing added by ", byWhom, " yet."), groups.map(function (group, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
       key: group.title || 'main',
       className: "d-flex flex-column gap-3"
@@ -2677,7 +2718,7 @@ function LibraryReport() {
       days: data.days,
       title: group.title,
       hero: i === 0,
-      onlyYours: !data.everything
+      byWhom: byWhom
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "admin-library"
     }, group.sources.map(function (source) {
@@ -2689,7 +2730,8 @@ function LibraryReport() {
           source: _objectSpread(_objectSpread({}, source), {}, {
             label: source.label.replace(/^🎂\s*TopCake:\s*/, '')
           }),
-          days: data.days
+          days: data.days,
+          filtered: !!who
         })
       );
     })));
@@ -2705,6 +2747,11 @@ var share = function share(part, whole) {
   return whole ? Math.round(part / whole * 100) : 0;
 };
 
+// Content nobody added on the admin site is "system": the set the games started with
+var creatorName = function creatorName(name, me) {
+  return name === me ? 'you' : name === 'system' ? 'the original set' : name;
+};
+
 // What's counted in a total: tag screens share their cards with another source, so they aren't counted twice
 var counted = function counted(sources) {
   return sources.filter(function (s) {
@@ -2712,13 +2759,69 @@ var counted = function counted(sources) {
   });
 };
 
-// The big number at the top: all the content, and how much of it is new
-function Headline(_ref) {
-  var sources = _ref.sources,
-    days = _ref.days,
-    title = _ref.title,
-    hero = _ref.hero,
-    onlyYours = _ref.onlyYours;
+// 🔎 "Added by": everyone, or one person (you first, even before you've added anything), with how much each has added
+function CreatorFilter(_ref) {
+  var who = _ref.who,
+    onPick = _ref.onPick,
+    creators = _ref.creators,
+    me = _ref.me,
+    loading = _ref.loading;
+  var options = [creators.find(function (c) {
+    return c.name === me;
+  }) || {
+    name: me,
+    count: 0
+  }].concat(_toConsumableArray(creators.filter(function (c) {
+    return c.name !== me;
+  })));
+  if (who && !options.some(function (c) {
+    return c.name === who;
+  })) options.push({
+    name: who,
+    count: 0
+  });
+  var label = function label(c) {
+    return c.name === me ? "You (".concat(me, ")") : c.name === 'system' ? 'The original set' : c.name;
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "d-flex flex-wrap align-items-center gap-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Label, {
+    htmlFor: "library-added-by",
+    className: "small fw-bold text-secondary mb-0"
+  }, "Added by"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Select, {
+    id: "library-added-by",
+    size: "sm",
+    style: {
+      maxWidth: '260px'
+    },
+    value: who,
+    onChange: function onChange(e) {
+      return onPick(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: ""
+  }, "Everyone"), options.filter(function (c) {
+    return c.name;
+  }).map(function (c) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+      key: c.name,
+      value: c.name
+    }, label(c), " \xB7 ", fmt(c.count));
+  })), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    animation: "border",
+    size: "sm",
+    role: "status",
+    "aria-label": "Counting"
+  }));
+}
+
+// The big number at the top: all the content (or one person's), and how much of it is new
+function Headline(_ref2) {
+  var sources = _ref2.sources,
+    days = _ref2.days,
+    title = _ref2.title,
+    hero = _ref2.hero,
+    byWhom = _ref2.byWhom;
   var total = counted(sources).reduce(function (sum, s) {
     return sum + s.total;
   }, 0);
@@ -2734,19 +2837,21 @@ function Headline(_ref) {
     className: hero ? 'admin-hero-number' : 'admin-stat-number'
   }, fmt(total)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "text-dark"
-  }, "pieces of content")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, plural(total, 'piece'), " of content", byWhom ? " added by ".concat(byWhom) : '')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "small text-muted"
-  }, kinds, " ", kinds === 1 ? 'kind' : 'kinds', " of content \xB7 ", fmt(added), " added in the last ", days, " days", onlyYours && ' · only the decks you manage'));
+  }, kinds, " ", kinds === 1 ? 'kind' : 'kinds', " of content \xB7 ", fmt(added), " added in the last ", days, " days"));
 }
 
-// One kind of content (Couch Cast cards, trivia questions...): its total, then how it breaks down
-function SourceCard(_ref2) {
-  var source = _ref2.source,
-    days = _ref2.days;
+// One kind of content (Couch Cast cards, trivia questions...): its total, then how it breaks down.
+// Filtered to one person: their part of it, without the deck warnings (those are about whole decks).
+function SourceCard(_ref3) {
+  var source = _ref3.source,
+    days = _ref3.days,
+    filtered = _ref3.filtered;
   if (source.error) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "border shadow-sm"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
       className: "text-dark"
     }, source.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
       className: "small text-muted mb-0"
@@ -2755,13 +2860,13 @@ function SourceCard(_ref2) {
   var total = source.total,
     noun = source.noun;
   var retired = source.inPlay === null ? 0 : total - source.inPlay;
-  var people = source.people.filter(function (p) {
+  var people = filtered ? [] : source.people.filter(function (p) {
     return p.name !== 'system';
   });
-  var notes = healthNotes(source);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var notes = filtered ? [] : healthNotes(source);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "border shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
     className: "d-flex flex-column gap-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h6", {
     className: "text-dark mb-1"
@@ -2773,7 +2878,7 @@ function SourceCard(_ref2) {
     className: "text-dark"
   }, plural(total, noun))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "small text-muted"
-  }, !total ? "No ".concat(plural(2, noun), " in your decks yet") : source.tagsOnly ? 'The same cards as their game: not counted again in the total' : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, source.inPlay !== null && (retired > 0 ? "".concat(fmt(source.inPlay), " in play \xB7 ").concat(fmt(retired), " taken out \xB7 ") : 'All in play · '), fmt(source.added), " added in the last ", days, " days"))), source.checked !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Meter, {
+  }, !total ? "No ".concat(plural(2, noun), " yet") : source.tagsOnly ? 'The same cards as their game: not counted again in the total' : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, source.inPlay !== null && (retired > 0 ? "".concat(fmt(source.inPlay), " in play \xB7 ").concat(fmt(retired), " taken out \xB7 ") : 'All in play · '), fmt(source.added), " added in the last ", days, " days"))), source.checked !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Meter, {
     label: "Checked",
     done: source.checked,
     total: total
@@ -2825,10 +2930,10 @@ var name = function name(value) {
 };
 
 // One whole split into parts: prompts vs responses, or easy / medium / hard. Each part shows its share if it fits.
-function SplitBar(_ref3) {
-  var split = _ref3.split,
-    total = _ref3.total,
-    noun = _ref3.noun;
+function SplitBar(_ref4) {
+  var split = _ref4.split,
+    total = _ref4.total,
+    noun = _ref4.noun;
   var described = split.counts.map(function (c) {
     return "".concat(name(c.value), ": ").concat(fmt(c.count), " (").concat(share(c.count, total), "%)");
   }).join(', ');
@@ -2865,9 +2970,9 @@ function SplitBar(_ref3) {
 }
 
 // A bar per deck, longest first, with its count at the end
-function DeckBars(_ref4) {
-  var decks = _ref4.decks,
-    noun = _ref4.noun;
+function DeckBars(_ref5) {
+  var decks = _ref5.decks,
+    noun = _ref5.noun;
   var most = Math.max.apply(Math, _toConsumableArray(decks.map(function (d) {
     return d.total;
   })).concat([1]));
@@ -2897,11 +3002,11 @@ function DeckBars(_ref4) {
 }
 
 // How much of something is done: checked cards
-function Meter(_ref5) {
-  var label = _ref5.label,
-    done = _ref5.done,
-    total = _ref5.total,
-    compact = _ref5.compact;
+function Meter(_ref6) {
+  var label = _ref6.label,
+    done = _ref6.done,
+    total = _ref6.total,
+    compact = _ref6.compact;
   var pct = share(done, total);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: compact ? 'admin-deck-row' : '',

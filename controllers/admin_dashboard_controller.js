@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import PromptAnswer from "../models/PromptAnswer.js";
 import { CONTENT_SOURCES } from "../db/adminContent.js";
-import { allowedDecks, deckScope, tidyLevel } from "./admin_content_controller.js";
+import { tidyLevel } from "./admin_content_controller.js";
 
 // 📊 The Dashboard tab's numbers. Each report is limited to the decks the signed-in account
 // manages for that game (the owner sees everything).
@@ -58,14 +58,23 @@ export const topResponses = async (req, res) => {
     });
 };
 
-// ---------- GET /api/admin/dashboard/library ----------
-// 📚 How much content there is: for each content source on the Content tab that this account manages (only its
-// decks), the total, how much is in play, the split by type or level, a count per deck, how much was added in the
-// last 30 days, and who added it. Sources that only edit tags (canAdd: false, like Re-Shuffled's card tags) share
-// their cards with another source: they report how many cards have been checked, and aren't counted twice.
+// ---------- GET /api/admin/dashboard/library?createdBy ----------
+// 📚 How much content there is, across every deck: every admin sees all of Game Temple's content here (so everyone
+// can spot a thin deck, like Holiday), even though they can only edit their own decks on the Content tab. TopCake's
+// content is the owner's only. For each content source: the total, how much is in play, the split by type or level,
+// a count per deck, how much was added in the last 30 days, and who added it. `createdBy` narrows it all to what one
+// person added ('system' = the original set, content nobody added on the admin site). Sources that only edit tags
+// (canAdd: false, like Re-Shuffled's card tags) share their cards with another source: they report how many cards
+// have been checked, and aren't counted twice.
 const RECENT_DAYS = 30;
 
-const librarySource = async (id, source, decks, since) => {
+// Content added by one person, or by nobody on the admin site (no createdBy at all counts as the original set)
+const addedBy = (createdBy) => {
+    if (!createdBy) return null;
+    return createdBy === 'system' ? { $or: [{ createdBy: 'system' }, { createdBy: null }] } : { createdBy };
+};
+
+const librarySource = async (id, source, createdBy, since) => {
     const { model, deckField, fields } = source;
     // The type (prompt/response) or the level (easy/medium/hard), whichever this content has
     const splitKey = fields.type ? 'type' : fields.difficulty ? 'difficulty' : null;
@@ -73,12 +82,14 @@ const librarySource = async (id, source, decks, since) => {
     const hasActive = !!fields.active || !!model.schema?.path?.('active');
     const hasReviewed = !!fields.reviewed;
     const sinceId = mongoose.Types.ObjectId.createFromTime(Math.floor(since.getTime() / 1000));
+    // The creator filter applies to every count except `people`, which lists everyone for the filter itself
+    const who = addedBy(createdBy);
+    const only = (condition) => ({ $match: who && condition ? { $and: [who, condition] } : who || condition || {} });
 
     const [result] = await model.aggregate([
-        { $match: deckScope(decks, source) },
         { $facet: {
             // One row per deck × type/level × checked: the totals are added up from these
-            groups: [{ $group: {
+            groups: [only(), { $group: {
                 _id: {
                     deck: deckField ? { $ifNull: [`$${deckField}`, 'core'] } : null,
                     split: splitKey ? `$${fields[splitKey].path || splitKey}` : null,
@@ -87,9 +98,9 @@ const librarySource = async (id, source, decks, since) => {
                 n: { $sum: 1 },
             } }],
             // Never set means in play, like on the Content tab
-            ...(hasActive ? { inPlay: [{ $match: { active: { $ne: false } } }, { $count: 'n' }] } : {}),
+            ...(hasActive ? { inPlay: [only({ active: { $ne: false } }), { $count: 'n' }] } : {}),
             // A database id holds the moment it was made, so this works for content with no date field too
-            added: [{ $match: { _id: { $gte: sinceId } } }, { $count: 'n' }],
+            added: [only({ _id: { $gte: sinceId } }), { $count: 'n' }],
             people: [{ $group: { _id: { $ifNull: ['$createdBy', 'system'] }, n: { $sum: 1 } } }, { $sort: { n: -1 } }],
         } },
     ]);
@@ -138,16 +149,27 @@ const librarySource = async (id, source, decks, since) => {
 
 export const library = async (req, res) => {
     const since = new Date(Date.now() - RECENT_DAYS * 24 * 60 * 60 * 1000);
-    const visible = Object.entries(CONTENT_SOURCES)
-        .map(([id, source]) => ({ id, source, decks: allowedDecks(req.adminUser, source) }))
-        .filter(({ decks }) => decks === null || decks.length > 0);
-    if (visible.length === 0) return res.status(403).json({ message: "You don't manage any games or decks yet." });
+    const createdBy = String(req.query.createdBy || '').trim().toLowerCase().slice(0, 32);
+    const isOwner = req.adminUser.role === 'owner';
+    const visible = Object.entries(CONTENT_SOURCES).filter(([, source]) => isOwner || source.game !== 'topcake');
 
     // One source that can't be counted (say, TopCake's database is asleep) shouldn't hide the rest
-    const sources = await Promise.all(visible.map(({ id, source, decks }) => librarySource(id, source, decks, since).catch((err) => {
+    const sources = await Promise.all(visible.map(([id, source]) => librarySource(id, source, createdBy, since).catch((err) => {
         console.error(`[Admin] Library count for ${id} failed:`, err.message);
         return { id, game: source.game, label: source.label, noun: source.noun, error: "Couldn't count this one right now." };
     })));
 
-    res.json({ sources, days: RECENT_DAYS, everything: req.adminUser.role === 'owner' });
+    // Everyone who has added content, most first, for the filter (tag screens share their cards: not counted twice)
+    const creators = {};
+    sources.filter((s) => !s.error && !s.tagsOnly).forEach((s) => s.people.forEach((p) => {
+        creators[p.name] = (creators[p.name] || 0) + p.count;
+    }));
+
+    res.json({
+        sources,
+        days: RECENT_DAYS,
+        createdBy,
+        me: req.adminUser.username,
+        creators: Object.entries(creators).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count),
+    });
 };

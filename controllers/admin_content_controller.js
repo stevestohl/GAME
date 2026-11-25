@@ -9,7 +9,7 @@ import { canStorePictures, signUpload, keepPicture } from "../db/pictureStore.js
 const PAGE_SIZES = [10, 30, 50, 100];
 
 // Which decks this account may touch for a source: null means "all" (the owner)
-export const allowedDecks = (user, source) => (user.role === 'owner'
+const allowedDecks = (user, source) => (user.role === 'owner'
     ? null
     : [...new Set(user.access.filter((a) => a.game === source.game).map((a) => a.deck))]);
 
@@ -57,7 +57,7 @@ const toRow = (doc, source) => {
 };
 
 // Which decks an account's limit covers (older content with no deck counts as core)
-export const deckScope = (decks, source) => {
+const deckScope = (decks, source) => {
     if (!decks || !source.deckField) return {};
     return { [source.deckField]: { $in: decks.includes('core') ? [...decks, null] : decks } };
 };

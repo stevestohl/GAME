@@ -1,44 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Alert, Spinner } from 'react-bootstrap';
+import { Card, Alert, Spinner, Form } from 'react-bootstrap';
 import { adminFetch } from './adminApi.js';
 
 /**
- * 📚 The Dashboard's Library tab: how much content there is, for each kind of content this account manages (only
- * its decks). The numbers come from GET /api/admin/dashboard/library (controllers/admin_dashboard_controller.js).
+ * 📚 The Dashboard's Library tab: how much content there is in every deck, shown to everyone who makes content, so a
+ * thin deck (like Holiday) is there for all of them to see. "Added by" narrows it to what one person added. Editing
+ * still stays within each person's own decks, on the Content tab, and TopCake's content is only shown to the owner.
+ * The numbers come from GET /api/admin/dashboard/library (controllers/admin_dashboard_controller.js).
  */
+const WHO_KEY = 'gtAdminLibraryWho';   // the "Added by" choice, kept while this browser tab is open
+
 export default function LibraryReport() {
+    const [who, setWho] = useState(() => sessionStorage.getItem(WHO_KEY) || '');
     const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        adminFetch('/dashboard/library')
+        let current = true;   // a quicker answer for a later choice wins over a slow one for an earlier choice
+        setLoading(true);
+        adminFetch(`/dashboard/library${who ? `?createdBy=${encodeURIComponent(who)}` : ''}`)
             .then((result) => {
                 // A server from before the Library report answers with a web page, not numbers: say so, don't go blank
                 if (!Array.isArray(result?.sources)) throw new Error("The server doesn't have the Library report yet. If it was just updated, try again in a few minutes.");
+                if (!current) return;
                 setData(result);
                 setError('');
             })
-            .catch((err) => setError(err.message));
-    }, []);
+            .catch((err) => { if (current) setError(err.message); })
+            .finally(() => { if (current) setLoading(false); });
+        return () => { current = false; };
+    }, [who]);
 
-    if (error) return <Alert variant="danger" className="py-2">{error}</Alert>;
-    if (!data) return <Spinner animation="border" size="sm" />;
+    const pick = (value) => {
+        setWho(value);
+        sessionStorage.setItem(WHO_KEY, value);
+    };
 
+    if (!data) return error ? <Alert variant="danger" className="py-2">{error}</Alert> : <Spinner animation="border" size="sm" />;
+
+    const byWhom = who ? creatorName(who, data.me) : null;
+    // One person's content: just the kinds they've added
+    const shown = who ? data.sources.filter((s) => s.error || s.total > 0) : data.sources;
     // Game Temple's content first, then TopCake's (only the owner sees those)
     const groups = [
-        { title: null, sources: data.sources.filter((s) => s.game !== 'topcake') },
-        { title: '🎂 TopCake', sources: data.sources.filter((s) => s.game === 'topcake') },
+        { title: null, sources: shown.filter((s) => s.game !== 'topcake') },
+        { title: '🎂 TopCake', sources: shown.filter((s) => s.game === 'topcake') },
     ].filter((group) => group.sources.length > 0);
 
     return (
         <div className="d-flex flex-column gap-4">
+            <CreatorFilter who={who} onPick={pick} creators={data.creators || []} me={data.me} loading={loading} />
+            {error && <Alert variant="danger" className="py-2 mb-0">{error}</Alert>}
+            {groups.length === 0 && <p className="text-muted mb-0">Nothing added by {byWhom} yet.</p>}
             {groups.map((group, i) => (
                 <section key={group.title || 'main'} className="d-flex flex-column gap-3">
-                    <Headline sources={group.sources} days={data.days} title={group.title} hero={i === 0} onlyYours={!data.everything} />
+                    <Headline sources={group.sources} days={data.days} title={group.title} hero={i === 0} byWhom={byWhom} />
                     <div className="admin-library">
                         {group.sources.map((source) => (
                             // Under the TopCake heading, "🎂 TopCake:" on every card would say it again
-                            <SourceCard key={source.id} source={{ ...source, label: source.label.replace(/^🎂\s*TopCake:\s*/, '') }} days={data.days} />
+                            <SourceCard key={source.id} source={{ ...source, label: source.label.replace(/^🎂\s*TopCake:\s*/, '') }} days={data.days} filtered={!!who} />
                         ))}
                     </div>
                 </section>
@@ -51,11 +72,31 @@ const fmt = (n) => Number(n || 0).toLocaleString();
 const plural = (n, noun) => `${noun}${n === 1 ? '' : 's'}`;
 const share = (part, whole) => (whole ? Math.round((part / whole) * 100) : 0);
 
+// Content nobody added on the admin site is "system": the set the games started with
+const creatorName = (name, me) => (name === me ? 'you' : name === 'system' ? 'the original set' : name);
+
 // What's counted in a total: tag screens share their cards with another source, so they aren't counted twice
 const counted = (sources) => sources.filter((s) => !s.error && !s.tagsOnly);
 
-// The big number at the top: all the content, and how much of it is new
-function Headline({ sources, days, title, hero, onlyYours }) {
+// 🔎 "Added by": everyone, or one person (you first, even before you've added anything), with how much each has added
+function CreatorFilter({ who, onPick, creators, me, loading }) {
+    const options = [creators.find((c) => c.name === me) || { name: me, count: 0 }, ...creators.filter((c) => c.name !== me)];
+    if (who && !options.some((c) => c.name === who)) options.push({ name: who, count: 0 });
+    const label = (c) => (c.name === me ? `You (${me})` : c.name === 'system' ? 'The original set' : c.name);
+    return (
+        <div className="d-flex flex-wrap align-items-center gap-2">
+            <Form.Label htmlFor="library-added-by" className="small fw-bold text-secondary mb-0">Added by</Form.Label>
+            <Form.Select id="library-added-by" size="sm" style={{ maxWidth: '260px' }} value={who} onChange={(e) => onPick(e.target.value)}>
+                <option value="">Everyone</option>
+                {options.filter((c) => c.name).map((c) => <option key={c.name} value={c.name}>{label(c)} · {fmt(c.count)}</option>)}
+            </Form.Select>
+            {loading && <Spinner animation="border" size="sm" role="status" aria-label="Counting" />}
+        </div>
+    );
+}
+
+// The big number at the top: all the content (or one person's), and how much of it is new
+function Headline({ sources, days, title, hero, byWhom }) {
     const total = counted(sources).reduce((sum, s) => sum + s.total, 0);
     const added = counted(sources).reduce((sum, s) => sum + s.added, 0);
     const kinds = counted(sources).length;
@@ -64,18 +105,18 @@ function Headline({ sources, days, title, hero, onlyYours }) {
             {title && <h5 className="text-dark mb-1">{title}</h5>}
             <div className="d-flex flex-wrap align-items-baseline gap-2">
                 <span className={hero ? 'admin-hero-number' : 'admin-stat-number'}>{fmt(total)}</span>
-                <span className="text-dark">pieces of content</span>
+                <span className="text-dark">{plural(total, 'piece')} of content{byWhom ? ` added by ${byWhom}` : ''}</span>
             </div>
             <div className="small text-muted">
                 {kinds} {kinds === 1 ? 'kind' : 'kinds'} of content · {fmt(added)} added in the last {days} days
-                {onlyYours && ' · only the decks you manage'}
             </div>
         </div>
     );
 }
 
-// One kind of content (Couch Cast cards, trivia questions...): its total, then how it breaks down
-function SourceCard({ source, days }) {
+// One kind of content (Couch Cast cards, trivia questions...): its total, then how it breaks down.
+// Filtered to one person: their part of it, without the deck warnings (those are about whole decks).
+function SourceCard({ source, days, filtered }) {
     if (source.error) {
         return (
             <Card className="border shadow-sm">
@@ -88,8 +129,8 @@ function SourceCard({ source, days }) {
     }
     const { total, noun } = source;
     const retired = source.inPlay === null ? 0 : total - source.inPlay;
-    const people = source.people.filter((p) => p.name !== 'system');
-    const notes = healthNotes(source);
+    const people = filtered ? [] : source.people.filter((p) => p.name !== 'system');
+    const notes = filtered ? [] : healthNotes(source);
 
     return (
         <Card className="border shadow-sm">
@@ -101,7 +142,7 @@ function SourceCard({ source, days }) {
                         <span className="text-dark">{plural(total, noun)}</span>
                     </div>
                     <div className="small text-muted">
-                        {!total ? `No ${plural(2, noun)} in your decks yet`
+                        {!total ? `No ${plural(2, noun)} yet`
                             : source.tagsOnly
                             ? 'The same cards as their game: not counted again in the total'
                             : <>
