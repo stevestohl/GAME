@@ -2455,7 +2455,7 @@ html.cast-screen {
 .tp-teammate.is-up { background: #ffd36e; }
 .tp-hint { margin-top: 0.5rem; font-size: 0.75rem; color: #777; }
 
-/* 🎬 The end credits (TowerCredits.jsx): roll up over the final scores, then go away */
+/* 🎬 The end credits (CouchCastCredits.jsx): roll up over the final scores, then go away */
 .tp-credits {
   position: fixed;
   inset: 0;
@@ -2487,6 +2487,8 @@ html.cast-screen {
 .tp-credits-name { font-weight: 800; font-size: clamp(1rem, 3vh, 1.4rem); }
 .tp-credits-role { opacity: 0.85; }
 .tp-credits-end { margin-top: 1.6rem; font-style: italic; }
+.tp-credits-gap { margin-top: 2.4rem; }
+.tp-credits-cast { flex-direction: column; gap: 0; margin: 0.7rem 0; }   /* "Featuring": the name, with the role under it */
 /* 🐈 The crew's last chase: a lit floor to run on, and a pale outline so the black cat shows up on the dark */
 .tp-chase-floor {
   position: absolute;

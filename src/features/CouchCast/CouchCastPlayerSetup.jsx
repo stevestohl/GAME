@@ -18,7 +18,7 @@ import { getMyAvatar } from '../../avatars.jsx';
 // 🏗️ Tower Party, the old lobby game, is switched off for now (Avatar Attack, from Trivia Cast, took its place)
 // import TowerParty from './TowerParty.jsx';
 import AvatarAttack from '../TriviaCast/AvatarAttack.jsx';
-import TowerCredits from './TowerCredits.jsx';
+import CouchCastCredits, { crewThemeFor } from './CouchCastCredits.jsx';
 import CouchCastRoundIntro from './CouchCastRoundIntro.jsx';
 
 export default function CouchCastPlayerSetup({ roomCode, playerName }) {
@@ -118,7 +118,7 @@ useEffect(() => {
         socket.on('errorMsg', handleError);
         socket.on('start_judging', handleStartJudging);
         socket.on('round_ended', handleRoundEnded);
-        // 🎬 The TV finished reading the final scores: roll the lobby game's credits here too
+        // 🎬 The TV finished reading the final scores: roll the end credits here too
         const handleCreditsRoll = () => setShowCredits(true);
         socket.on('credits_roll', handleCreditsRoll);
 
@@ -383,7 +383,7 @@ useEffect(() => {
         <>
             {renderPhase()}
             {roomData.isPaused && <CouchCastPausedOverlay />}
-            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData.tower} attack={roomData.attack} onDone={() => setShowCredits(false)} />}
+            {showCredits && gameState === 'scoreboard' && <CouchCastCredits players={Object.values(roomData.players || {})} tower={roomData.tower} attack={roomData.attack} crewTheme={crewThemeFor(roomData.expansion)} onDone={() => setShowCredits(false)} />}
         </>
     );
 }

@@ -30,7 +30,7 @@ import { fillBlank } from './fillBlank.js';
 import { scoreRecap, NEXT_UP_LINES } from '../../scoreRecap.js';
 import { FINALE_DRUMROLL_MS } from './CouchCastFinale.jsx';
 import GameOverActions from '../Menu/GameOverActions.jsx';
-import TowerCredits from './TowerCredits.jsx';
+import CouchCastCredits, { crewThemeFor } from './CouchCastCredits.jsx';
 import CouchCastRoundIntro from './CouchCastRoundIntro.jsx';
 import { SCENE_MS as ROUND_SCENE_MS } from './RoundCatScene.jsx';
 import { usePlayerSounds } from '../../playerSounds.js';
@@ -99,7 +99,7 @@ export default function CouchCastManager() {
     const [submissions, setSubmissions] = useState(null);
     const [roundResults, setRoundResults] = useState(null);
     const [promptAutoPicked, setPromptAutoPicked] = useState(false);
-    const [showCredits, setShowCredits] = useState(false);   // 🎬 the lobby game's credits, after the final scores
+    const [showCredits, setShowCredits] = useState(false);   // 🎬 the end credits, after the final scores
 
     // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
     useSetBackgroundTheme(couchCastTheme(roomData?.expansion), true);
@@ -107,7 +107,7 @@ export default function CouchCastManager() {
     usePlayerSounds(roomData?.roomCode, roomData?.players);
     const lobbyTrack = lobbyTrackFor('couchCast', roomData?.expansion);
     const hasCrew = !!roomData;   // 🛋️ the Couch Cast crew shows up in every deck
-    const crewTheme = ['halloween', 'holiday', 'jeffinitely'].includes(roomData?.expansion) ? roomData.expansion : 'core';
+    const crewTheme = crewThemeFor(roomData?.expansion);
 
     // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
     const round = roomData?.currentRound;
@@ -211,7 +211,7 @@ export default function CouchCastManager() {
             };
         } else if (voiceMoment === 'game-over') {
             // 🥁 The narrator waits for the drum roll, then announces the champion over the cheers,
-            // then the lobby game's credits roll (here and on every phone)
+            // then the end credits roll (here and on every phone)
             let isCurrent = true;
             const timer = setTimeout(() => {
                 Promise.resolve(recap ? speak(recap.spoken, code) : null).then(() => {
@@ -480,7 +480,7 @@ export default function CouchCastManager() {
             {renderGamePhase()}
 
             {isPaused && <CouchCastPausedOverlay isCaster />}
-            {showCredits && gameState === 'scoreboard' && <TowerCredits tower={roomData?.tower} attack={roomData?.attack} chase={hasCrew} chaseTheme={crewTheme} onDone={() => setShowCredits(false)} />}
+            {showCredits && gameState === 'scoreboard' && <CouchCastCredits players={Object.values(roomData?.players || {})} tower={roomData?.tower} attack={roomData?.attack} chase={hasCrew} crewTheme={crewTheme} onDone={() => setShowCredits(false)} />}
             {roomData && (
                 <CouchCastCasterControls canPause={canPause || isPaused} isPaused={isPaused} onTogglePause={handleTogglePause} />
             )}
