@@ -4229,6 +4229,13 @@ function CouchCastDeckSelect() {
     (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.preloadLobbyMusic)('halloween');
     (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.preloadLobbyMusic)('holiday');
   }, []);
+  // 📼 The Jeffinitely mixtape too, but only for whoever can see that deck (it's hidden from the public for now)
+  var canPlayJeffinitely = visibleDecks('couchcast', _cardDecks_js__WEBPACK_IMPORTED_MODULE_6__.CARD_DECKS).some(function (deck) {
+    return deck.id === 'jeffinitely';
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (canPlayJeffinitely) (0,_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_5__.preloadLobbyMusic)('jeffinitely');
+  }, [canPlayJeffinitely]);
   var start = function start(deckId) {
     return onPhones ? (0,_Prompt2_prompt2Create_js__WEBPACK_IMPORTED_MODULE_4__.handleCreatePrompt2Room)(host.finalName(), navigate, setIsCreatingRoom, deckId, totalRounds) : (0,_CouchCastCreate_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateCouchCast)(null, navigate, setIsCreatingRoom, deckId, totalRounds);
   };
@@ -22488,7 +22495,11 @@ function Credits() {
       target: "_blank",
       rel: "noopener noreferrer"
     }, "MuseScore General"), ' ', "sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).");
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Voices"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The game show host and narrators are voiced with", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "\u201CDecades Mixtape\u201D (Couch Cast Jeffinitely deck lobby): our own tune and recording, played with the", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "MuseScore General"), ' ', "sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Voices"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The game show host and narrators are voiced with", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://elevenlabs.io",
     target: "_blank",
     rel: "noopener noreferrer"
@@ -56382,6 +56393,17 @@ var TRACKS = {
   "default": makeTrack('/audio/LobbyMusic.mp3'),
   couchCast: makeSynthTrack('couch-anthem'),
   // Couch Cast's core deck
+  // 📼 Couch Cast's Jeffinitely deck: "Decades Mixtape", our own tune, recorded with the MuseScore General sounds (listed on the
+  // Credits page; how it's made: audio-originals/decades-mixtape). '70s disco, '80s synth rock with electric guitars, a dial-up
+  // modem, '90s chiptune and a rewind. 28 bars at 120 bpm (one bar = 2 s) with a bar of lead-in and a bar of run-out around
+  // it, so it starts and goes round at 2 s and 58 s.
+  jeffinitely: makeTrack('/audio/DecadesMixtape.m4a', {
+    loop: {
+      start: 2,
+      end: 58
+    },
+    begin: 2
+  }),
   listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),
   // List Cast
   // Trivia Cast: "Upbeat Funk Show Groove" by AlexGuz (Pixabay; listed on the Credits page). 127 BPM, so a bar
@@ -56419,10 +56441,12 @@ var TRACKS = {
 };
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song, the Holiday deck its carols,
-// List Cast, Trivia Cast and Couch Cast have their own, and everything else plays the usual lobby music
+// Couch Cast's Jeffinitely deck its mixtape, List Cast, Trivia Cast and Couch Cast have their own, and everything else
+// plays the usual lobby music
 function lobbyTrackFor(game, expansion) {
   if (expansion === 'halloween') return 'halloween';
   if (expansion === 'holiday') return 'holiday';
+  if (game === 'couchCast' && expansion === 'jeffinitely') return 'jeffinitely';
   if (game === 'couchCast') return 'couchCast';
   if (game === 'listCast') return 'listCast';
   if (game === 'triviaCast') return 'triviaCast';

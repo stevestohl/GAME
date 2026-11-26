@@ -149,6 +149,11 @@ const makeSynthTrack = (trackId) => ({
 const TRACKS = {
     default: makeTrack('/audio/LobbyMusic.mp3'),
     couchCast: makeSynthTrack('couch-anthem'),                // Couch Cast's core deck
+    // 📼 Couch Cast's Jeffinitely deck: "Decades Mixtape", our own tune, recorded with the MuseScore General sounds (listed on the
+    // Credits page; how it's made: audio-originals/decades-mixtape). '70s disco, '80s synth rock with electric guitars, a dial-up
+    // modem, '90s chiptune and a rewind. 28 bars at 120 bpm (one bar = 2 s) with a bar of lead-in and a bar of run-out around
+    // it, so it starts and goes round at 2 s and 58 s.
+    jeffinitely: makeTrack('/audio/DecadesMixtape.m4a', { loop: { start: 2, end: 58 }, begin: 2 }),
     listCast: makeTrack('/audio/ListCastLobbyMusic.mp3'),     // List Cast
     // Trivia Cast: "Upbeat Funk Show Groove" by AlexGuz (Pixabay; listed on the Credits page). 127 BPM, so a bar
     // is 1.88974 s: it goes round from just before the final hit (51 bars in) to the top, skipping the ending.
@@ -166,10 +171,12 @@ const TRACKS = {
 };
 
 // Which track a game's lobby plays: Halloween decks always get the Halloween song, the Holiday deck its carols,
-// List Cast, Trivia Cast and Couch Cast have their own, and everything else plays the usual lobby music
+// Couch Cast's Jeffinitely deck its mixtape, List Cast, Trivia Cast and Couch Cast have their own, and everything else
+// plays the usual lobby music
 export function lobbyTrackFor(game, expansion) {
     if (expansion === 'halloween') return 'halloween';
     if (expansion === 'holiday') return 'holiday';
+    if (game === 'couchCast' && expansion === 'jeffinitely') return 'jeffinitely';
     if (game === 'couchCast') return 'couchCast';
     if (game === 'listCast') return 'listCast';
     if (game === 'triviaCast') return 'triviaCast';

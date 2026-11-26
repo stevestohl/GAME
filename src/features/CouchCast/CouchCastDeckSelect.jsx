@@ -38,6 +38,9 @@ export default function CouchCastDeckSelect() {
         preloadLobbyMusic('halloween');
         preloadLobbyMusic('holiday');
     }, []);
+    // 📼 The Jeffinitely mixtape too, but only for whoever can see that deck (it's hidden from the public for now)
+    const canPlayJeffinitely = visibleDecks('couchcast', CARD_DECKS).some((deck) => deck.id === 'jeffinitely');
+    useEffect(() => { if (canPlayJeffinitely) preloadLobbyMusic('jeffinitely'); }, [canPlayJeffinitely]);
 
     const start = (deckId) => (onPhones
         ? handleCreatePrompt2Room(host.finalName(), navigate, setIsCreatingRoom, deckId, totalRounds)

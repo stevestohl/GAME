@@ -70,6 +70,11 @@ export default function Credits() {
                                 {' '}sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).
                             </li>
                         ))}
+                        <li>
+                            “Decades Mixtape” (Couch Cast Jeffinitely deck lobby): our own tune and recording, played with the{' '}
+                            <a href="https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md" target="_blank" rel="noopener noreferrer">MuseScore General</a>
+                            {' '}sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).
+                        </li>
                     </ul>
 
                     <h2>Voices</h2>
