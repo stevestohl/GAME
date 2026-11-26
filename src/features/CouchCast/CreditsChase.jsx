@@ -4,6 +4,8 @@ import { duckCreditsMarch } from '../../celebrationSounds.js';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
 import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
 import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat } from './HolidayCrew.jsx';
+import { DiscoDuke, MulletMitch, AerobicsAngie, Pixel } from './JeffCrew.jsx';
+import { bubblePath, bubbleWidth } from './RoundCatScene.jsx';
 
 // 🐈 The crew's last bit, along the bottom of the end credits (Core deck, on the TV): the cat strolls
 // on, and all three chase it off the screen. Now and then the cat comes back with backup: a giant cat,
@@ -11,6 +13,8 @@ import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat } from './HolidayCre
 // 👻 The Halloween deck plays it with its own crew and a tiny ghost. They always chase it off the
 // screen, then come running back with a giant ghost after them, tiny ghost on its head, yelling BOO!
 // 🎄 The Holiday deck plays the Core deck's version, in holiday clothes (the cat wears its scarf).
+// 📼 The Jeffinitely deck plays it with Disco Duke, Mullet Mitch and Aerobics Angie chasing Pixel, the keychain
+// pet ("GET DOWN!"), and now and then a giant Pixel comes back for them, beeping, little Pixel riding on top.
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 
@@ -18,6 +22,7 @@ const FLOOR = 96;
 const S = 0.72;          // the crew's size here
 const CAT = 0.7;         // the cat's size
 const GIANT = 4.5;       // the giant cat's size: about half the screen high
+const GIANT_PIXEL = 4;   // (Pixel's taller than the cat, so a little less)
 const GIANT_CHANCE = 1 / 3;
 const START_MS = 1500;   // let the credits get going first
 
@@ -64,6 +69,37 @@ function playBoo() {
     [wobble, ...voices].forEach((osc) => {
         osc.start(at(0));
         osc.stop(at(1.6));
+    });
+}
+
+/** 📟 BEEP-BEEP from the giant Pixel: two big, buzzy square-wave beeps, made in the browser like the meow */
+function playBeep() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    duckCreditsMarch(1.1);
+    const t0 = ctx.currentTime + 0.02;
+    const soften = ctx.createBiquadFilter();
+    soften.type = 'lowpass';
+    soften.frequency.value = 2600;
+    soften.connect(ctx.destination);
+    [0, 0.28].forEach((start) => {
+        const at = (seconds) => t0 + start + seconds;
+        const volume = ctx.createGain();
+        volume.gain.setValueAtTime(0.0001, at(0));
+        volume.gain.exponentialRampToValueAtTime(0.16, at(0.012));
+        volume.gain.setValueAtTime(0.16, at(0.18));
+        volume.gain.exponentialRampToValueAtTime(0.0001, at(0.21));
+        volume.connect(soften);
+        // Two square waves a hair apart: a cheap little speaker, only enormous
+        [440, 443].forEach((hz) => {
+            const osc = ctx.createOscillator();
+            osc.type = 'square';
+            osc.frequency.value = hz;
+            osc.connect(volume);
+            osc.start(at(0));
+            osc.stop(at(0.23));
+        });
     });
 }
 
@@ -136,6 +172,7 @@ function playMeow() {
 
 export default function CreditsChase({ theme = 'core' }) {
     const isHalloween = theme === 'halloween';
+    const isJeff = theme === 'jeffinitely';
     const svgRef = useRef(null);
     const robotRef = useRef(null);
     const dogRef = useRef(null);
@@ -163,7 +200,8 @@ export default function CreditsChase({ theme = 'core' }) {
         const crew = [dog, robot, alien];
         const cat = actor(catRef.current, OFF_R, CAT);
         // Faces right, and starts with its nose just out of sight
-        const giant = actor(giantRef.current, OFF_L - 110, GIANT, -1);
+        const giant = actor(giantRef.current, OFF_L - 110, isJeff ? GIANT_PIXEL : GIANT, -1);
+        if (isJeff) giant.el.classList.add('is-giant');   // a heavier step (cards.css)
 
         const draw = (a) => a.el.setAttribute('transform',
             `translate(${a.x} ${a.y - a.lift}) rotate(${a.rot}) scale(${a.flip * a.size} ${a.size})`);
@@ -200,10 +238,14 @@ export default function CreditsChase({ theme = 'core' }) {
             await Promise.all([wait(700), crewRun([310, 365, 420], 900, 90)]);
             cat.el.classList.remove('crew-cat-swat');
             const bark = barkRef.current;
-            bark.setAttribute('transform', `translate(${dog.x + (isHalloween ? 30 : 16) * S} ${dog.y - 104 * S}) scale(${S})`);
+            // (clear of the HOA president's clipboard, and of Duke's afro)
+            const [dx, dy] = isHalloween ? [30, 104] : isJeff ? [24, 130] : [16, 104];
+            bark.setAttribute('transform', `translate(${dog.x + dx * S} ${dog.y - dy * S}) scale(${S})`);
             bark.classList.add('is-on');
+            if (isJeff) dog.el.classList.add('crew-bumping');   // 🕺 pointing at the sky
             await wait(550);
             bark.classList.remove('is-on');
+            dog.el.classList.remove('crew-bumping');
             await hop(cat);
         };
 
@@ -221,22 +263,24 @@ export default function CreditsChase({ theme = 'core' }) {
             crew.forEach((a) => a.el.setAttribute('data-look', 'left'));
             await wait(800);
 
-            // The little cat rides on top of the giant's head
+            // The little cat rides on top of the giant's head (little Pixel, on the giant's key ring)
             cat.flip = -1;
             cat.size = 0.55;
             const ride = () => {
-                cat.x = giant.x + 16 * GIANT;
-                cat.y = giant.y - giant.lift - 38 * GIANT;
+                cat.x = giant.x + (isJeff ? 0 : 16 * giant.size);
+                cat.y = giant.y - giant.lift - (isJeff ? 43 : 38) * giant.size;
                 draw(cat);
             };
             const from = giant.x;
+            // (Pixel's drawn round its middle, so it comes further on to show its face)
+            const stopAt = isJeff ? 40 : -20;
             giant.el.classList.add('crew-walking');
-            await tween(1100, (t) => { giant.x = from + (-20 - from) * t; draw(giant); ride(); });
+            await tween(1100, (t) => { giant.x = from + (stopAt - from) * t; draw(giant); ride(); });
             giant.el.classList.remove('crew-walking');
             svgRef.current.classList.remove('is-rumbling');
 
             meowRef.current.classList.add('is-on');
-            playMeow();
+            (isJeff ? playBeep : playMeow)();
             await Promise.all(crew.map((a) => hop(a, 300, 22)));
             await wait(250);
             meowRef.current.classList.remove('is-on');
@@ -310,12 +354,14 @@ export default function CreditsChase({ theme = 'core' }) {
         };
     }, []);
 
-    const bubble = "M -4 -14 H 40 a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z";
-    const wideBubble = bubble.replace('H 40', 'H 82');
     let cast = [Dog, Robot, Alien, Cat];
     if (isHalloween) cast = [HoaPresident, Witch, Vampire, Ghost];
     if (theme === 'holiday') cast = [HolidayDog, HolidayRobot, HolidayAlien, HolidayCat];
+    if (isJeff) cast = [DiscoDuke, MulletMitch, AerobicsAngie, Pixel];
     const [First, Second, Third, Pest] = cast;
+    const bark = isHalloween ? 'VIOLATION!' : isJeff ? 'GET DOWN!' : 'WOOF!';
+    const barkWidth = bubbleWidth(bark);
+    const yell = isHalloween ? 'BOO!' : isJeff ? 'BEEP!' : 'MEOW.';
     return (
         <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <g className="crew-world">
@@ -326,12 +372,13 @@ export default function CreditsChase({ theme = 'core' }) {
                 <Pest elRef={catRef} />
             </g>
             <g ref={barkRef} className="crew-bark">
-                <path d={isHalloween ? wideBubble : bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={isHalloween ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{isHalloween ? 'VIOLATION!' : 'WOOF!'}</text>
+                <path d={bubblePath(barkWidth)} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={(barkWidth - 4) / 2} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{bark}</text>
             </g>
-            <g ref={meowRef} className="crew-bark" transform="translate(112 -62) scale(1.6)">
-                <path d={bubble} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{isHalloween ? 'BOO!' : 'MEOW.'}</text>
+            {/* The giant's yell, by its face (the giant Pixel's screen is a little further right and lower) */}
+            <g ref={meowRef} className="crew-bark" transform={isJeff ? 'translate(105 -45) scale(1.6)' : 'translate(112 -62) scale(1.6)'}>
+                <path d={bubblePath()} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{yell}</text>
             </g>
         </svg>
     );

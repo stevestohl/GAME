@@ -2824,6 +2824,8 @@ html.cast-screen {
 .cc-crew .crew-pixel.crew-walking .crew-fig { animation: jeff-hop 0.26s ease-in-out infinite alternate; }
 .cc-crew .crew-pixel.crew-running .crew-fig { animation: jeff-hop 0.12s ease-in-out infinite alternate; }
 @keyframes jeff-hop { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+/* ...except the giant one at the end of the credits, which stomps (and so its little rider can keep its seat) */
+.cc-crew .crew-pixel.is-giant.crew-walking .crew-fig, .cc-crew .crew-pixel.is-giant.crew-running .crew-fig { animation: crew-bob 0.3s ease-in-out infinite alternate; }
 .cc-crew .crew-pixel-beep { opacity: 0; }
 .cc-crew .crew-pixel.crew-cat-swat .crew-pixel-beep { animation: jeff-beep 0.5s steps(1) infinite; }
 @keyframes jeff-beep { 50% { opacity: 1; } }
@@ -3050,8 +3052,27 @@ html.cast-screen {
 .cc-abduct .abduct-light { animation: crew-light 0.8s steps(1) infinite; }
 .cc-abduct .abduct-light-1 { animation-delay: 0.4s; }
 /* Back on the ground: squash, puff up, glare */
-.cc-abduct .crew-cat.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }
+.cc-abduct .crew-cat.is-landing .crew-fig, .cc-abduct .crew-pixel.is-landing .crew-fig { transform-box: fill-box; transform-origin: 50% 100%; animation: abduct-thud 0.9s ease-out; }
 @keyframes abduct-thud { 0% { transform: scale(1.25, 0.7); } 25% { transform: scale(0.95, 1.1); } 45%, 100% { transform: scale(1.12); } }
+/* 🖱️ Jeffinitely: the pointer presses down on a click, with a ring flashing out, and selected Pixel gets marching ants */
+.cc-abduct .abduct-arrow, .cc-abduct .abduct-click { transform-box: fill-box; }
+.cc-abduct .abduct-arrow { transform-origin: 0% 0%; }
+.cc-abduct .abduct-click { transform-origin: 50% 50%; opacity: 0; }
+.cc-abduct .abduct-pointer.is-clicking .abduct-arrow { animation: abduct-press 0.22s ease-out; }
+.cc-abduct .abduct-pointer.is-clicking .abduct-click { animation: abduct-ring 0.45s ease-out; }
+@keyframes abduct-press { 40% { transform: scale(0.82); } }
+@keyframes abduct-ring { from { opacity: 1; transform: scale(0.3); } to { opacity: 0; transform: scale(1.6); } }
+.cc-abduct .abduct-select {
+  fill: rgba(42, 111, 184, 0.1);
+  stroke: #2a6fb8;
+  stroke-width: 1.2;
+  stroke-dasharray: 3 2;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+.cc-abduct .abduct-select.is-on { opacity: 1; animation: abduct-ants 0.5s linear infinite; }
+@keyframes abduct-ants { to { stroke-dashoffset: -5; } }
 
 /* 🐈 Between rounds: one of the crew deals with the cat along the bottom of the TV (RoundCatScene.jsx) */
 .cc-round-scene {

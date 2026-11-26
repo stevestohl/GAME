@@ -2,11 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { Cat, INK, ink } from './CouchCrew.jsx';
 import { Ghost, BroomWitch } from './HalloweenCrew.jsx';
 import { HolidayCat } from './HolidayCrew.jsx';
+import { Pixel } from './JeffCrew.jsx';
 
 // 🛸 The rules screen's little show (Core deck): the lobby's cat wanders in and sits down, then the
 // alien's flying saucer glides over and beams it up. Near the end of the countdown the saucer comes
 // back and drops it off again, and the cat stalks away in a huff.
 // 🧹 On the Halloween deck, it's the witch on her broom, spiriting off the tiny ghost.
+// 🖱️ On the Jeffinitely deck, Pixel hops in and beeps at the screen, until a mouse pointer clicks on it and
+// drags it away off the top. Near the end it drags it back in and drops it, and Pixel hops off in a huff.
 //
 // Drawn in a fixed 200 × 120 box (it scales to fit its spot); the floor is at y = 112.
 
@@ -20,9 +23,11 @@ const linear = (t) => t;
 
 export default function RulesAbduction({ theme = 'core' }) {
     const isHalloween = theme === 'halloween';
+    const isJeff = theme === 'jeffinitely';
     const catRef = useRef(null);
     const saucerRef = useRef(null);
     const beamRef = useRef(null);
+    const selectRef = useRef(null);
 
     useEffect(() => {
         if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
@@ -61,7 +66,8 @@ export default function RulesAbduction({ theme = 'core' }) {
             return tween(ms, ease, (t) => {
                 saucer.x = from.x + (x - from.x) * t;
                 saucer.y = from.y + (y - from.y) * t;
-                saucer.rot = Math.sin(t * Math.PI) * (x > from.x ? 8 : -8);   // banks into the turn
+                // The saucer banks into the turn (a mouse pointer doesn't)
+                saucer.rot = isJeff ? 0 : Math.sin(t * Math.PI) * (x > from.x ? 8 : -8);
                 drawSaucer();
             });
         };
@@ -133,7 +139,93 @@ export default function RulesAbduction({ theme = 'core' }) {
             await wait(300);
             await walk(240, 1800);
         };
-        show();
+        // 🖱️ Jeffinitely: click, drag... and, eventually, drop
+        const pointerShow = async () => {
+            const pointer = saucer.el;
+            const selection = selectRef.current;
+            const middle = () => 19 * cat.size;   // the tip of the pointer, from Pixel's feet
+            // Held by the middle, so it wriggles round the pointer's tip (the dotted box stays upright)
+            const hold = () => {
+                const turn = (cat.rot * Math.PI) / 180;
+                cat.x = saucer.x - middle() * Math.sin(turn);
+                cat.y = saucer.y + middle() * Math.cos(turn);
+                drawCat();
+                selection.setAttribute('transform', `translate(${saucer.x} ${saucer.y + middle()}) scale(${cat.size})`);
+            };
+            const click = () => {
+                pointer.classList.remove('is-clicking');
+                void pointer.getBoundingClientRect();   // (so the click plays again)
+                pointer.classList.add('is-clicking');
+            };
+            const select = (on) => selection.classList.toggle('is-on', on);
+            const drag = (x, y, ms, ease) => {
+                const from = { x: saucer.x, y: saucer.y };
+                return tween(ms, ease, (t) => {
+                    saucer.x = from.x + (x - from.x) * t;
+                    saucer.y = from.y + (y - from.y) * t;
+                    cat.rot = Math.sin(t * Math.PI * 5) * 14;   // wriggling
+                    drawSaucer();
+                    hold();
+                });
+            };
+
+            drawCat();
+            drawSaucer();
+            await wait(1000);
+
+            // Pixel hops in and beeps at the screen
+            await walk(112, 2200);
+            cat.el.classList.add('crew-cat-swat');
+            await wait(700);
+
+            // Here comes the pointer: onto Pixel, click, and it's selected
+            await fly(cat.x, cat.y - middle(), 1700, easeOut);
+            await wait(500);
+            click();
+            select(true);
+            hold();
+            cat.el.classList.remove('crew-cat-swat');
+            await wait(600);
+
+            // Dragged up by the middle, legs going, a moment dangling, then off the top
+            cat.el.classList.add('crew-running');
+            await drag(140, 46, 2000, easeInOut);
+            await wait(600);
+            await drag(260, -40, 700, easeIn);
+            cat.el.classList.remove('crew-running');
+            cat.el.style.opacity = 0;
+            select(false);
+
+            // ...and back again, later, to drop it off
+            await wait(3500);   // back in time to finish before the narrator does
+            cat.rot = 0;
+            cat.el.style.opacity = 1;
+            cat.el.classList.add('crew-running');
+            select(true);
+            await drag(100, 40, 1300, easeOut);
+            cat.rot = 0;
+            hold();
+            await wait(250);
+            click();
+            select(false);
+            cat.el.classList.remove('crew-running');
+            const fromY = cat.y;
+            await tween(600, easeIn, (t) => {
+                cat.y = fromY + (FLOOR - fromY) * t;
+                cat.rot = 25 * t;
+                drawCat();
+            });
+            cat.rot = 0;
+            drawCat();
+            // Thud, a squash, then off in a huff
+            cat.el.classList.add('is-landing');
+            await wait(900);
+            cat.el.classList.remove('is-landing');
+            fly(-40, -40, 700, easeIn);
+            await wait(300);
+            await walk(240, 1800);
+        };
+        (isJeff ? pointerShow : show)();
 
         return () => {
             dead = true;
@@ -142,14 +234,31 @@ export default function RulesAbduction({ theme = 'core' }) {
         };
     }, []);
 
+    let pest = <Cat elRef={catRef} />;
+    if (isHalloween) pest = <Ghost elRef={catRef} />;
+    if (theme === 'holiday') pest = <HolidayCat elRef={catRef} />;
+    if (isJeff) pest = <Pixel elRef={catRef} />;
+    let flyer = <Saucer />;
+    if (isHalloween) flyer = <BroomWitch />;
+    if (isJeff) flyer = <Pointer />;
     return (
         <svg className={`cc-crew cc-abduct ${isHalloween ? 'cc-abduct-halloween' : ''}`} viewBox="0 0 200 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <polygon ref={beamRef} className="abduct-beam" points="0,0 0,0 0,0" />
-            {isHalloween ? <Ghost elRef={catRef} /> : theme === 'holiday' ? <HolidayCat elRef={catRef} /> : <Cat elRef={catRef} />}
-            <g ref={saucerRef}>
-                {isHalloween ? <BroomWitch /> : <Saucer />}
-            </g>
+            {pest}
+            {/* 🖱️ The dotted box around Pixel while it's selected (in Pixel's own units; Jeffinitely) */}
+            {isJeff && <rect ref={selectRef} className="abduct-select" x={-18} y={-46} width={36} height={49} />}
+            <g ref={saucerRef}>{flyer}</g>
         </svg>
+    );
+}
+
+function Pointer() {
+    // A '90s mouse pointer, the tip of its arrow at (0, 0), and a ring that flashes out when it clicks
+    return (
+        <g className="abduct-pointer">
+            <circle className="abduct-click" cx={0} cy={0} r={7} fill="none" stroke="#2a6fb8" strokeWidth={1.4} />
+            <path className="abduct-arrow" d="M 0 0 V 22 L 5.5 17 L 9.5 25.5 L 13 24 L 9 15.5 L 16 15.5 Z" fill="#fff" {...ink} strokeWidth={1.5} />
+        </g>
     );
 }
 

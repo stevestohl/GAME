@@ -44,7 +44,7 @@ const CAST = {
         ['Boomer the Boombox', 'as the Soundtrack'],
         ['Dial-Up Dana', "Connecting from the '90s"],
         ['Pixel', 'as the Pest'],
-        ['The Robot, the Dog and the Alien', 'on Cat-Chasing Duty'],
+        ['The Mouse Pointer', 'on Drag-and-Drop Duty'],
     ],
 };
 

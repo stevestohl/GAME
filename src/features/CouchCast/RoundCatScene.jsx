@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Robot, Dog, Alien, Cat, INK } from './CouchCrew.jsx';
 import { Witch, HoaPresident, Vampire, Ghost } from './HalloweenCrew.jsx';
 import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat } from './HolidayCrew.jsx';
+import { DiscoDuke, MulletMitch, AerobicsAngie, Pixel } from './JeffCrew.jsx';
 
 // 🐈 Between rounds (Core deck): along the bottom of the "Round 3" card, one of the crew deals with
 // the cat, taking turns round by round:
@@ -13,6 +14,10 @@ import { HolidayRobot, HolidayDog, HolidayAlien, HolidayCat } from './HolidayCre
 //   vampire: "BLEH!", and chases it off the screen
 //   witch:   shrinks it with her wand, and it rides off on her hat
 // 🎄 The Holiday deck plays the Core deck's scenes, with everyone in their holiday clothes.
+// 📼 On the Jeffinitely deck it's Pixel, the keychain pet, beeping at whoever turns up:
+//   duke:  "GET DOWN!", a disco point, and he chases it off the screen in his platform shoes
+//   mitch: "BOGUS!", and he blows on it like a dusty cartridge, which blows it clean off the screen
+//   angie: "AND HOP!": it hops along with her workout, then jumps up into her hair and rides off
 //
 // Drawn in a fixed 400 × 100 strip (it scales to fit); the floor is at y = 96.
 // The TV waits SCENE_MS for it before moving on to the prompts.
@@ -26,17 +31,32 @@ const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
 const easeOut = (t) => 1 - (1 - t) ** 3;
 const linear = (t) => t;
 
-const SCENES = { core: ['robot', 'dog', 'alien'], holiday: ['robot', 'dog', 'alien'], halloween: ['hoa', 'vampire', 'witch'] };
+const SCENES = {
+    core: ['robot', 'dog', 'alien'],
+    holiday: ['robot', 'dog', 'alien'],
+    halloween: ['hoa', 'vampire', 'witch'],
+    jeffinitely: ['duke', 'mitch', 'angie'],
+};
 /** Which of the crew has the cat this round (round 2 is the first one with an intro) */
-// (a deck without its own round scenes, like Jeffinitely, gets the core crew's)
+// (a deck without its own round scenes gets the core crew's)
 export const sceneFor = (round, theme = 'core') => {
     const scenes = SCENES[theme] || SCENES.core;
     return scenes[(Math.max(2, round) - 2) % scenes.length];
 };
 
-const HEROES = { robot: Robot, dog: Dog, alien: Alien, hoa: HoaPresident, vampire: Vampire, witch: Witch };
+const HEROES = {
+    robot: Robot, dog: Dog, alien: Alien,
+    hoa: HoaPresident, vampire: Vampire, witch: Witch,
+    duke: DiscoDuke, mitch: MulletMitch, angie: AerobicsAngie,
+};
 const HOLIDAY_HEROES = { robot: HolidayRobot, dog: HolidayDog, alien: HolidayAlien };
-const BARKS = { dog: 'WOOF!', vampire: 'BLEH!', hoa: 'VIOLATION!' };
+const BARKS = { dog: 'WOOF!', vampire: 'BLEH!', hoa: 'VIOLATION!', duke: 'GET DOWN!', mitch: 'BOGUS!', angie: 'AND HOP!' };
+// Where the speech bubble sits, from the speaker's feet (in their drawing's units): clear of the big hair
+const BUBBLE_AT = { hoa: [30, 104], duke: [24, 130], mitch: [24, 112], angie: [22, 134] };
+/** The speech bubble's outline, `width` wide (its tail points down and left, at the speaker) */
+export const bubblePath = (width = 40) => `M -4 -14 H ${width} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`;
+/** How wide a bubble `text` needs */
+export const bubbleWidth = (text) => Math.max(40, Math.round(text.length * 8.2));
 
 export default function RoundCatScene({ round, theme = 'core' }) {
     const isHalloween = theme === 'halloween';
@@ -48,6 +68,7 @@ export default function RoundCatScene({ round, theme = 'core' }) {
     const barkRef = useRef(null);
     const rayRef = useRef(null);
     const ticketRef = useRef(null);
+    const gustRef = useRef(null);
 
     useEffect(() => {
         if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
@@ -92,6 +113,15 @@ export default function RoundCatScene({ round, theme = 'core' }) {
         };
         // The cat's middle, for grabbing and zapping
         const catMiddle = () => ({ x: cat.x + 4 * cat.size * cat.flip, y: cat.y - 20 * cat.size });
+        const bubble = barkRef.current;
+        const say = () => {
+            const [dx, dy] = BUBBLE_AT[who] || [16, 104];
+            bubble.setAttribute('transform', `translate(${hero.x + dx * S} ${hero.y - dy * S}) scale(${S})`);
+            bubble.classList.add('is-on');
+        };
+        const hush = () => bubble.classList.remove('is-on');
+        // 📼 Pixel beeps at whoever's coming (Jeffinitely)
+        const beep = (on) => cat.el.classList.toggle('crew-cat-swat', on);
 
         // 🤖 Belly hatch, grabber claw, clank away
         const robotScene = async () => {
@@ -139,9 +169,7 @@ export default function RoundCatScene({ round, theme = 'core' }) {
             await Promise.all([walk(cat, 150, 1200), wait(200).then(() => walk(hero, 255, 1200))]);
             look('left');
             await wait(150);
-            const bubble = barkRef.current;
-            bubble.setAttribute('transform', `translate(${hero.x + 30 * S} ${hero.y - 104 * S}) scale(${S})`);
-            bubble.classList.add('is-on');
+            say();
             await wait(600);
             const ticket = ticketRef.current;
             const from = { x: hero.x - 20 * S, y: hero.y - 45 * S };
@@ -150,7 +178,7 @@ export default function RoundCatScene({ round, theme = 'core' }) {
             const to = stick();
             await tween(420, easeOut, (t) => ticket.setAttribute('transform',
                 `translate(${from.x + (to.x - from.x) * t} ${from.y + (to.y - from.y) * t - Math.sin(Math.PI * t) * 26}) rotate(${t * 360})`));
-            bubble.classList.remove('is-on');
+            hush();
             await wait(300);
             // Off it goes, head down, and off goes the president the other way
             cat.rot = -10;
@@ -166,16 +194,17 @@ export default function RoundCatScene({ round, theme = 'core' }) {
             ]);
         };
 
-        // 🐕 WOOF! and away
+        // 🐕 WOOF! and away (🕺 Duke points at the sky first)
         const dogScene = async () => {
-            await Promise.all([walk(cat, 190, 1200), wait(200).then(() => walk(hero, 285, 1300))]);
+            await Promise.all([walk(cat, 190, 1200).then(() => beep(true)), wait(200).then(() => walk(hero, 285, 1300))]);
             look('left');
             await wait(200);
-            const bubble = barkRef.current;
-            bubble.setAttribute('transform', `translate(${hero.x + 16 * S} ${hero.y - 104 * S}) scale(${S})`);
-            bubble.classList.add('is-on');
+            say();
+            if (who === 'duke') hero.el.classList.add('crew-bumping');
             await wait(700);
-            bubble.classList.remove('is-on');
+            hush();
+            hero.el.classList.remove('crew-bumping');
+            beep(false);
             await tween(260, linear, (t) => { cat.lift = Math.sin(Math.PI * t) * 12; draw(cat); });
             hero.rot = -8;   // leaning into the chase
             await Promise.all([
@@ -236,9 +265,97 @@ export default function RoundCatScene({ round, theme = 'core' }) {
             });
         };
 
+        // 🕹️ BOGUS! He blows on it like a dusty cartridge, and it tumbles away on the gust
+        const blowScene = async () => {
+            await Promise.all([walk(cat, 175, 1200).then(() => beep(true)), wait(200).then(() => walk(hero, 262, 1250))]);
+            look('left');
+            await wait(150);
+            say();
+            await wait(650);
+            hush();
+            hero.el.classList.add('crew-blowing');
+            await wait(250);   // the puffs start coming
+            // A gust of wind, from the end of the cartridge down to Pixel
+            const gust = gustRef.current;
+            const blowFrom = { x: hero.x - 70 * S, y: hero.y - 72 * S };   // (the streaks trail off to the right)
+            const gustAt = (x, y, fade = 1) => {
+                gust.setAttribute('transform', `translate(${x} ${y}) scale(${S})`);
+                gust.style.opacity = fade;
+            };
+            const target = { x: cat.x + 14 * cat.size, y: cat.y - 20 * cat.size };
+            await tween(450, easeOut, (t) => gustAt(blowFrom.x + (target.x - blowFrom.x) * t, blowFrom.y + (target.y - blowFrom.y) * t, Math.min(1, t * 3)));
+            beep(false);
+            // It digs in for a moment...
+            await tween(300, linear, (t) => {
+                cat.rot = Math.sin(t * Math.PI * 4) * 8;
+                draw(cat);
+                gustAt(target.x + Math.sin(t * Math.PI * 6) * 2, target.y);
+            });
+            // ...then off it goes, end over end, on the gust
+            cat.el.classList.add('crew-running');
+            const fromCat = cat.x;
+            await tween(950, (t) => t * t, (t) => {
+                cat.x = fromCat + (OFF_L - fromCat) * t;
+                cat.lift = Math.sin(Math.PI * Math.min(1, t * 1.4)) * 22;
+                cat.rot = -540 * t;
+                draw(cat);
+                gustAt(cat.x + 14 * cat.size, cat.y - cat.lift - 20 * cat.size, 1 - t);
+            });
+            hero.el.classList.remove('crew-blowing');
+            await wait(150);
+            await walk(hero, OFF_R, 1100);
+        };
+
+        // 🤸 AND HOP! It hops along with her workout, then jumps up into her hair for the jog home
+        const hopScene = async () => {
+            await Promise.all([walk(cat, 168, 1200).then(() => beep(true)), wait(150).then(() => walk(hero, 268, 1300, 'crew-running'))]);
+            look('left');
+            await wait(150);
+            say();
+            beep(false);
+            for (let i = 0; i < 3; i++) {
+                await tween(380, linear, (t) => {
+                    hero.lift = Math.sin(Math.PI * t) * 12;
+                    cat.lift = Math.sin(Math.PI * Math.max(0, t * 1.15 - 0.15)) * 9;   // a beat behind her
+                    draw(hero);
+                    draw(cat);
+                });
+            }
+            hush();
+            await wait(150);
+            // Up into the hair, getting smaller as it goes up (it's further away, honest)
+            const start = { x: cat.x, y: cat.y };
+            const perch = () => ({ x: hero.x, y: hero.y - hero.lift - 119 * S });
+            await tween(650, easeInOut, (t) => {
+                const end = perch();
+                cat.x = start.x + (end.x - start.x) * t;
+                cat.y = start.y + (end.y - start.y) * t - Math.sin(Math.PI * t) * 26;
+                cat.size = CAT * (1 - 0.3 * t);
+                draw(cat);
+            });
+            cat.flip = -1;
+            await wait(250);
+            // Jogging off, with a passenger
+            const fromX = hero.x;
+            hero.el.classList.add('crew-running');
+            look('right');
+            await tween(1300, linear, (t) => {
+                hero.x = fromX + (OFF_R - fromX) * t;
+                draw(hero);
+                const p = perch();
+                cat.x = p.x;
+                cat.y = p.y;
+                draw(cat);
+            });
+        };
+
         draw(hero);
         draw(cat);
-        ({ robot: robotScene, dog: dogScene, alien: alienScene, hoa: hoaScene, vampire: dogScene, witch: alienScene })[who]();
+        ({
+            robot: robotScene, dog: dogScene, alien: alienScene,
+            hoa: hoaScene, vampire: dogScene, witch: alienScene,
+            duke: dogScene, mitch: blowScene, angie: hopScene,
+        })[who]();
 
         return () => {
             dead = true;
@@ -249,13 +366,20 @@ export default function RoundCatScene({ round, theme = 'core' }) {
 
     const isHoliday = theme === 'holiday';
     const Hero = (isHoliday ? HOLIDAY_HEROES : HEROES)[who];
-    const Pest = isHalloween ? Ghost : isHoliday ? HolidayCat : Cat;
-    const isWide = who === 'hoa';
+    const Pest = isHalloween ? Ghost : isHoliday ? HolidayCat : theme === 'jeffinitely' ? Pixel : Cat;
+    const bark = BARKS[who] || '';
+    const barkWidth = bubbleWidth(bark);
     return (
         <svg ref={svgRef} className={`cc-crew cc-round-scene-art ${isHalloween ? 'cc-crew-halloween' : ''}`} viewBox="0 0 400 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
             <polyline ref={rayRef} className="rcs-ray" points="0,0" />
             <Pest elRef={catRef} />
             <Hero elRef={heroRef} />
+            {/* 💨 Mitch's gust: streaks of wind, blowing to the left */}
+            <g ref={gustRef} className="rcs-gust" style={{ opacity: 0 }}>
+                {[[-6, 0, 36], [0, 4, 28], [6, -3, 34]].map(([y, x, len]) => (
+                    <path key={y} d={`M ${x} ${y} q ${len / 6} -3 ${len / 3} 0 t ${len / 3} 0 t ${len / 3} 0`} fill="none" stroke="#fff" strokeWidth={2.2} strokeLinecap="round" />
+                ))}
+            </g>
             <g ref={ticketRef} className="rcs-ticket">
                 <rect x={-5} y={-6.5} width={10} height={13} fill="#fff6d8" stroke={INK} strokeWidth={1.2} />
                 <path d="M -3 -3.5 h 6 M -3 -0.5 h 6 M -3 2.5 h 4" stroke="#b5332f" strokeWidth={1} />
@@ -269,8 +393,8 @@ export default function RoundCatScene({ round, theme = 'core' }) {
                 </g>
             </g>
             <g ref={barkRef} className="crew-bark">
-                <path d={`M -4 -14 H ${isWide ? 82 : 40} a 6 6 0 0 1 6 6 V 6 a 6 6 0 0 1 -6 6 H 8 L -2 20 L 0 12 H -4 a 6 6 0 0 1 -6 -6 V -8 a 6 6 0 0 1 6 -6 Z`} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
-                <text x={isWide ? 39 : 18} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{BARKS[who] || ''}</text>
+                <path d={bubblePath(barkWidth)} fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
+                <text x={(barkWidth - 4) / 2} y={4} textAnchor="middle" fontSize={13} fontWeight={900} fill={INK} fontFamily="system-ui, sans-serif">{bark}</text>
             </g>
         </svg>
     );
