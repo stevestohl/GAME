@@ -4,6 +4,7 @@ import Temple_Trivia from "../models/Temple_Trivia.js";
 import PictionaryPrompt from "../models/PictionaryPrompt.js";
 import MixupMeme from "../models/MixupMeme.js";
 import { TOPCAKE_SOURCES } from "./topcakeContent.js";
+import { loadVerbFixes, tagResponse } from './reshuffledForms.js';
 
 // 🃏 What the admin site's Content tab can edit, one entry per "content source" (a collection of
 // cards/questions/topics shared by one or more games). Each source names:
@@ -19,6 +20,19 @@ import { TOPCAKE_SOURCES } from "./topcakeContent.js";
 //   filters   which columns get a filter dropdown; sortable: which columns sort
 //   search    the fields the search box looks in
 // Adding another game later = adding another entry here (the grid and the API are shared).
+// 🏷️ Works out a Couch Cast response's kind and forms (db/reshuffledForms.js) when it's added or its text changes.
+// Returns the fields to save with it (nothing for prompts, or for cards checked by hand on the tags screen).
+let verbFixes = null;   // loaded once, the first time a card needs tagging
+async function tagNewResponse(card, before) {
+    if (card.type !== 'response' || card.reviewed) return {};
+    const reworded = !before || before.text !== card.text;
+    const untagged = !(card.kinds || []).length;
+    if (!reworded && !untagged) return {};
+    if (!verbFixes) verbFixes = loadVerbFixes().catch(() => 0);
+    await verbFixes;
+    return tagResponse(card);
+}
+
 export const CONTENT_SOURCES = {
     couchcast: {
         game: 'couchcast',
@@ -34,9 +48,13 @@ export const CONTENT_SOURCES = {
         filters: ['type', 'deck', 'createdBy'],
         sortable: ['text', 'type', 'deck', 'createdBy', 'updatedAt'],
         search: ['text'],
-        // New cards: the extra fields the games expect. (Tags like `slot`, `kinds` and `forms` are
-        // left off: an untagged card still gets dealt, it just isn't matched to the prompt.)
+        // New cards: the extra fields the games expect. (`slot` is left off a prompt: it fits any blank until
+        // it's set on the tags screen.)
         defaults: { active: true },
+        // A new or reworded response gets its kind ("thing" or "action") and reworded forms from its text, the way the
+        // deck was first loaded, so the games can deal every hand a couple of each. Cards checked by hand on the
+        // tags screen keep the tags they were given.
+        beforeSave: tagNewResponse,
         titleField: 'text',
     },
     lists: {

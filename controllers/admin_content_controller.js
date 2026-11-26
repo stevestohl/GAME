@@ -252,6 +252,8 @@ export const createContent = async (req, res) => {
         updatedBy: req.adminUser.username,
         updatedAt: now,
     });
+    // Anything the source works out for itself before saving (Couch Cast: a response's kind)
+    if (source.beforeSave) Object.assign(doc, await source.beforeSave(doc, null));
     const result = await source.model.collection.insertOne(doc);
     res.status(201).json({ row: toRow({ ...doc, _id: result.insertedId }, source) });
 };
@@ -285,6 +287,11 @@ export const updateContent = async (req, res) => {
     }
     changes.updatedBy = req.adminUser.username;
     changes.updatedAt = new Date();
+    if (source.beforeSave) {
+        const after = { ...doc };
+        Object.entries(changes).forEach(([path, value]) => setPath(after, path, value));
+        Object.assign(changes, await source.beforeSave(after, doc));
+    }
 
     await source.model.collection.updateOne({ _id: doc._id }, { $set: changes });
     const updated = { ...doc };

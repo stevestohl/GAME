@@ -48,13 +48,28 @@ export const getRandomPromptsForHost = async (req, res) => {
     }
 };
 
+const HAND_SIZE = 7;
+// 🔀 Every hand has at least this many of each kind of card ("a thing" and "something you do"), so whatever the
+// prompt wants, every player has a couple of answers that read well. The same rule as Couch Cast on a TV.
+const MIN_OF_EACH_KIND = 2;
+
 /**
- * Gets 7 random response-type cards for a player's starting hand
- * (?expansion=halloween picks the deck; defaults to core)
+ * Gets a player's hand: 7 response cards, at least two of each kind, in a random order
+ * (?expansion=halloween picks the deck; defaults to core, which also tops up a deck that runs short)
  */
 export const getRandomResponsesForPlayers = async (req, res) => {
     try {
-        const randomResponses = await drawCards('response', req.query.expansion, 7);
+        const hand = [];
+        for (const kind of ['action', 'thing']) {
+            hand.push(...await drawCards('response', req.query.expansion, MIN_OF_EACH_KIND, hand.map((c) => c._id), { kinds: kind }));
+        }
+        hand.push(...await drawCards('response', req.query.expansion, HAND_SIZE - hand.length, hand.map((c) => c._id)));
+        // Shuffled, so the sure-fire cards aren't always the first ones in the hand
+        for (let i = hand.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [hand[i], hand[j]] = [hand[j], hand[i]];
+        }
+        const randomResponses = hand;
 
         res.status(200).json({
             success: true,

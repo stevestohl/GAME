@@ -20,7 +20,9 @@ export const normalizeExpansion = (expansion) => {
 // then tops up from the core deck if it runs short (small or not yet loaded).
 // Prompt 2 deals from the same cards as Couch Cast (the couchcast_reshuffled database).
 // excludeIds: cards that must not come up (e.g. ones already sitting in someone's hand).
-export const drawCards = async (type, expansion, size, excludeIds = []) => {
+// match: extra conditions, e.g. { kinds: 'action' } for action cards only.
+export const drawCards = async (type, expansion, size, excludeIds = [], match = {}) => {
+    if (size <= 0) return [];
     // Core also matches older cards saved without an expansion field
     const coreMatch = { $in: ['core', null] };
     const deck = normalizeExpansion(expansion);
@@ -28,14 +30,14 @@ export const drawCards = async (type, expansion, size, excludeIds = []) => {
     const notThese = excludeIds.length ? { _id: { $nin: excludeIds } } : {};
 
     const cards = await ReshuffledCard.aggregate([
-        { $match: { type, active: { $ne: false }, expansion: isCore ? coreMatch : deck, ...notThese } },
+        { $match: { type, active: { $ne: false }, ...match, expansion: isCore ? coreMatch : deck, ...notThese } },
         { $sample: { size } }
     ]);
 
     if (isCore || cards.length >= size) return cards;
 
     const extras = await ReshuffledCard.aggregate([
-        { $match: { type, active: { $ne: false }, expansion: coreMatch, ...notThese, _id: { $nin: [...excludeIds, ...cards.map((c) => c._id)] } } },
+        { $match: { type, active: { $ne: false }, ...match, expansion: coreMatch, ...notThese, _id: { $nin: [...excludeIds, ...cards.map((c) => c._id)] } } },
         { $sample: { size: size - cards.length } }
     ]);
     return [...cards, ...extras];
