@@ -64,11 +64,11 @@ export const topResponses = async (req, res) => {
 // content is the owner's only. For each content source: the total, how much is in play, the split by type or level,
 // a count per deck, how much was added in the last 30 days, and who added it. `createdBy` narrows it all to what one
 // person added ('system' = the original set, content nobody added on the admin site). Sources that only edit tags
-// (canAdd: false, like Re-Shuffled's card tags) share their cards with another source: they report how many cards
+// (canAdd: false, like Couch Cast's card tags) share their cards with another source: they report how many cards
 // have been checked, and aren't counted twice.
 const RECENT_DAYS = 30;
-// Content screens left out of the Library for now (Re-Shuffled's card tags: the same cards as Couch Cast's)
-const NOT_IN_LIBRARY = new Set(['reshuffled']);
+// Content screens left out of the Library (Couch Cast's card tags: the same cards as the Couch Cast cards screen)
+const NOT_IN_LIBRARY = new Set(['couchcastTags']);
 
 // Content added by one person, or by nobody on the admin site (no createdBy at all counts as the original set)
 const addedBy = (createdBy) => {

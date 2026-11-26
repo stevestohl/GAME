@@ -15,8 +15,6 @@ import BarHome from './features/Menu/BarHome.jsx'
 import Prompt2GameManager from './features/Prompt2/Prompt2GameManager.jsx'
 import CouchCastManager from './features/CouchCast/CouchCastManagerTV.jsx'
 import CouchCastDeckSelect from './features/CouchCast/CouchCastDeckSelect.jsx'
-import ReshuffledManager from './features/Reshuffled/ReshuffledManagerTV.jsx'
-import ReshuffledDeckSelect from './features/Reshuffled/ReshuffledDeckSelect.jsx'
 import MixupManager from './features/Mixup/MixupManager.jsx'
 import MixupSetup from './features/Mixup/MixupSetup.jsx'
 import TownManager from './features/Town/TownManager.jsx'
@@ -77,9 +75,6 @@ export default function Contents() {
             <Route path="/couchcast" element={<CouchCastManager />} />
             <Route path="/couchcast-setup" element={<CouchCastManager />} />
             <Route path="/couchcast-decks" element={<GameGate game={['couchcast', 'prompt2']}><CouchCastDeckSelect /></GameGate>} />
-            {/* 🔀 Couch Cast Re-Shuffled: experimental, not linked from any menu yet */}
-            <Route path="/reshuffled" element={<ReshuffledManager />} />
-            <Route path="/reshuffled-decks" element={<GameGate game="reshuffled"><ReshuffledDeckSelect /></GameGate>} />
             {/* 🎪 Temple Mix Up */}
             <Route path="/mixup" element={<MixupManager />} />
             <Route path="/mixup-setup" element={<GameGate game="mixup"><MixupSetup /></GameGate>} />

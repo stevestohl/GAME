@@ -57,6 +57,42 @@ export const CONTENT_SOURCES = {
         beforeSave: tagNewResponse,
         titleField: 'text',
     },
+    // 🏷️ The same cards as above: this screen edits the tags Couch Cast plays them by (what a prompt's blank takes, whether a
+    // card is a thing or an action, how it reads reworded to fit a blank, other wordings), so cards are added and deleted
+    // on the Couch Cast cards screen. Ticking "checked" keeps a card's tags from being worked out again from its text.
+    couchcastTags: {
+        game: 'couchcast',
+        label: 'Couch Cast card tags',
+        noun: 'card',
+        model: ReshuffledCard,
+        deckField: 'expansion',
+        canAdd: false,
+        canDelete: false,
+        fields: {
+            text: { label: 'Card text', kind: 'text', long: true, required: true, max: 200 },
+            type: { label: 'Type', kind: 'choice', choices: ['prompt', 'response'], required: true },
+            slot: { label: 'Blank takes', kind: 'choice', choices: ['any', 'thing', 'action', 'verb', 'word'], allowBlank: true },
+            kinds: { label: 'Fits', kind: 'tags', choices: ['thing', 'action'] },
+            formVerb: { label: 'As a verb', kind: 'text', path: 'forms.verb', max: 200 },
+            formBare: { label: 'As a name', kind: 'text', path: 'forms.bare', max: 200 },
+            alternates: {
+                label: 'Funnier versions',
+                kind: 'list',
+                max: 200,
+                maxItems: 10,
+                // Kept as { text, forms }: lines that haven't changed keep their forms
+                read: (doc) => (doc.alternates || []).map((alt) => alt.text),
+                write: (lines, doc) => lines.map((text) => (doc?.alternates || []).find((alt) => alt.text === text) || { text }),
+            },
+            reviewed: { label: 'Checked', kind: 'bool', defaultValue: false },
+        },
+        columns: ['text', 'type', 'slot', 'kinds', 'formVerb', 'formBare', 'alternates', 'deck', 'reviewed'],
+        filters: ['type', 'slot', 'deck', 'reviewed'],
+        sortable: ['text', 'type', 'slot', 'deck'],
+        search: ['text', 'forms.verb', 'forms.bare', 'alternates.text'],
+        defaults: {},
+        titleField: 'text',
+    },
     lists: {
         game: 'listcast',
         label: 'List Cast topics',
@@ -130,40 +166,6 @@ export const CONTENT_SOURCES = {
         search: ['name'],
         defaults: { active: true, timesUsed: 0, source: 'admin' },
         titleField: 'name',
-    },
-    // The same cards as Couch Cast's: this screen edits their tags, so cards are added and deleted over there
-    reshuffled: {
-        game: 'reshuffled',
-        label: 'Couch Cast Re-Shuffled card tags',
-        noun: 'card',
-        model: ReshuffledCard,
-        deckField: 'expansion',
-        canAdd: false,
-        canDelete: false,
-        fields: {
-            text: { label: 'Card text', kind: 'text', long: true, required: true, max: 200 },
-            type: { label: 'Type', kind: 'choice', choices: ['prompt', 'response'], required: true },
-            slot: { label: 'Blank takes', kind: 'choice', choices: ['any', 'thing', 'action', 'verb', 'word'], allowBlank: true },
-            kinds: { label: 'Fits', kind: 'tags', choices: ['thing', 'action'] },
-            formVerb: { label: 'As a verb', kind: 'text', path: 'forms.verb', max: 200 },
-            formBare: { label: 'As a name', kind: 'text', path: 'forms.bare', max: 200 },
-            alternates: {
-                label: 'Funnier versions',
-                kind: 'list',
-                max: 200,
-                maxItems: 10,
-                // Kept as { text, forms }: lines that haven't changed keep their forms
-                read: (doc) => (doc.alternates || []).map((alt) => alt.text),
-                write: (lines, doc) => lines.map((text) => (doc?.alternates || []).find((alt) => alt.text === text) || { text }),
-            },
-            reviewed: { label: 'Checked', kind: 'bool', defaultValue: false },
-        },
-        columns: ['text', 'type', 'slot', 'kinds', 'formVerb', 'formBare', 'alternates', 'deck', 'reviewed'],
-        filters: ['type', 'slot', 'deck', 'reviewed'],
-        sortable: ['text', 'type', 'slot', 'deck'],
-        search: ['text', 'forms.verb', 'forms.bare', 'alternates.text'],
-        defaults: {},
-        titleField: 'text',
     },
     ...TOPCAKE_SOURCES,
 };

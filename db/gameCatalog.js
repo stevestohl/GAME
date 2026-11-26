@@ -13,7 +13,6 @@ export const GAMES = [
     { id: 'triviacast', name: 'Trivia Cast', section: 'On a TV', decks: TRIVIA_DECKS },
     { id: 'listcast', name: 'List Cast', section: 'On a TV', decks: LIST_DECKS },
     { id: 'mixup', name: '3 Ring Circus', section: 'On a TV', decks: [{ id: 'core', name: 'Core Deck' }, { id: 'holiday', name: 'Holiday', defaultHidden: true }] },
-    { id: 'reshuffled', name: 'Couch Cast Re-Shuffled', section: 'On a TV', decks: CARD_DECKS, defaultHidden: true },
     // 🏙️ New: hidden until the owner switches it on
     { id: 'town', name: 'Temple Town', section: 'On a TV', decks: [], defaultHidden: true },
     // ♠️ New: hidden until the owner switches it on

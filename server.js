@@ -11,7 +11,6 @@ import registerPrompt2Namespace from './sockets/prompt2_handler.js';
 import registerCCNamespace from './sockets/couchcast_handler.js';
 import registerTriviaCastNamespace from './sockets/triviacast_handler.js';
 import registerListsNamespace from './sockets/lists_handler.js';
-import registerReshuffledNamespace from './sockets/reshuffled_handler.js';
 import registerMixupNamespace from './sockets/mixup_handler.js';
 import registerTownNamespace from './sockets/town_handler.js';
 import registerSpadesNamespace from './sockets/spades_handler.js';
@@ -62,10 +61,6 @@ const LNS = io.of('/lists');
 registerListsNamespace(LNS);
 console.log("Namespace '/lists' registered.");
 
-// 🔀 Couch Cast Re-Shuffled (experimental; its own cards database)
-const RSNS = io.of('/reshuffled');
-registerReshuffledNamespace(RSNS);
-console.log("Namespace '/reshuffled' registered.");
 
 // 🎪 Temple Mix Up (memes, Pictionary and trivia)
 const MXNS = io.of('/mixup');

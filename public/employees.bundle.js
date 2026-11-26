@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./features/Employee/EmployeeList.jsx */ "./src/features/Employee/EmployeeList.jsx");
 /* harmony import */ var _features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./features/Employee/EmployeeReport.jsx */ "./src/features/Employee/EmployeeReport.jsx");
 /* harmony import */ var _features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features/Employee/EmployeeEdit.jsx */ "./src/features/Employee/EmployeeEdit.jsx");
@@ -26,27 +26,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _features_Prompt2_Prompt2GameManager_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./features/Prompt2/Prompt2GameManager.jsx */ "./src/features/Prompt2/Prompt2GameManager.jsx");
 /* harmony import */ var _features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./features/CouchCast/CouchCastManagerTV.jsx */ "./src/features/CouchCast/CouchCastManagerTV.jsx");
 /* harmony import */ var _features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./features/CouchCast/CouchCastDeckSelect.jsx */ "./src/features/CouchCast/CouchCastDeckSelect.jsx");
-/* harmony import */ var _features_Reshuffled_ReshuffledManagerTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./features/Reshuffled/ReshuffledManagerTV.jsx */ "./src/features/Reshuffled/ReshuffledManagerTV.jsx");
-/* harmony import */ var _features_Reshuffled_ReshuffledDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./features/Reshuffled/ReshuffledDeckSelect.jsx */ "./src/features/Reshuffled/ReshuffledDeckSelect.jsx");
-/* harmony import */ var _features_Mixup_MixupManager_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/Mixup/MixupManager.jsx */ "./src/features/Mixup/MixupManager.jsx");
-/* harmony import */ var _features_Mixup_MixupSetup_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Mixup/MixupSetup.jsx */ "./src/features/Mixup/MixupSetup.jsx");
-/* harmony import */ var _features_Town_TownManager_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Town/TownManager.jsx */ "./src/features/Town/TownManager.jsx");
-/* harmony import */ var _features_Town_TownSetup_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/Town/TownSetup.jsx */ "./src/features/Town/TownSetup.jsx");
-/* harmony import */ var _features_Spades_SpadesManager_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./features/Spades/SpadesManager.jsx */ "./src/features/Spades/SpadesManager.jsx");
-/* harmony import */ var _features_Spades_SpadesSetup_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./features/Spades/SpadesSetup.jsx */ "./src/features/Spades/SpadesSetup.jsx");
-/* harmony import */ var _features_Admin_AdminApp_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./features/Admin/AdminApp.jsx */ "./src/features/Admin/AdminApp.jsx");
-/* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./gameVisibility.js */ "./src/gameVisibility.js");
-/* harmony import */ var _features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./features/TicTacToe/TictactoeManager.jsx */ "./src/features/TicTacToe/TictactoeManager.jsx");
-/* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
-/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
-/* harmony import */ var _features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastManager.jsx */ "./src/features/TriviaCast/TriviaCastManager.jsx");
-/* harmony import */ var _features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastDeckSelect.jsx */ "./src/features/TriviaCast/TriviaCastDeckSelect.jsx");
-/* harmony import */ var _features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./features/Lists/ListCastManager.jsx */ "./src/features/Lists/ListCastManager.jsx");
-/* harmony import */ var _features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./features/Lists/ListCastSetup.jsx */ "./src/features/Lists/ListCastSetup.jsx");
-/* harmony import */ var _features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./features/Lists/ListopiaManager.jsx */ "./src/features/Lists/ListopiaManager.jsx");
-/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
-/* harmony import */ var _features_Menu_PrivacyPolicy_jsx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./features/Menu/PrivacyPolicy.jsx */ "./src/features/Menu/PrivacyPolicy.jsx");
-/* harmony import */ var _features_Menu_Credits_jsx__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./features/Menu/Credits.jsx */ "./src/features/Menu/Credits.jsx");
+/* harmony import */ var _features_Mixup_MixupManager_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./features/Mixup/MixupManager.jsx */ "./src/features/Mixup/MixupManager.jsx");
+/* harmony import */ var _features_Mixup_MixupSetup_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./features/Mixup/MixupSetup.jsx */ "./src/features/Mixup/MixupSetup.jsx");
+/* harmony import */ var _features_Town_TownManager_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./features/Town/TownManager.jsx */ "./src/features/Town/TownManager.jsx");
+/* harmony import */ var _features_Town_TownSetup_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./features/Town/TownSetup.jsx */ "./src/features/Town/TownSetup.jsx");
+/* harmony import */ var _features_Spades_SpadesManager_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./features/Spades/SpadesManager.jsx */ "./src/features/Spades/SpadesManager.jsx");
+/* harmony import */ var _features_Spades_SpadesSetup_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./features/Spades/SpadesSetup.jsx */ "./src/features/Spades/SpadesSetup.jsx");
+/* harmony import */ var _features_Admin_AdminApp_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./features/Admin/AdminApp.jsx */ "./src/features/Admin/AdminApp.jsx");
+/* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./gameVisibility.js */ "./src/gameVisibility.js");
+/* harmony import */ var _features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./features/TicTacToe/TictactoeManager.jsx */ "./src/features/TicTacToe/TictactoeManager.jsx");
+/* harmony import */ var _features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./features/TicTacToe/TicTacToeCreateScreen.jsx */ "./src/features/TicTacToe/TicTacToeCreateScreen.jsx");
+/* harmony import */ var _features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./features/Trivia/TriviaManager.jsx */ "./src/features/Trivia/TriviaManager.jsx");
+/* harmony import */ var _features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastManager.jsx */ "./src/features/TriviaCast/TriviaCastManager.jsx");
+/* harmony import */ var _features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./features/TriviaCast/TriviaCastDeckSelect.jsx */ "./src/features/TriviaCast/TriviaCastDeckSelect.jsx");
+/* harmony import */ var _features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./features/Lists/ListCastManager.jsx */ "./src/features/Lists/ListCastManager.jsx");
+/* harmony import */ var _features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./features/Lists/ListCastSetup.jsx */ "./src/features/Lists/ListCastSetup.jsx");
+/* harmony import */ var _features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./features/Lists/ListopiaManager.jsx */ "./src/features/Lists/ListopiaManager.jsx");
+/* harmony import */ var _features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./features/Menu/UniversalJoinForm.jsx */ "./src/features/Menu/UniversalJoinForm.jsx");
+/* harmony import */ var _features_Menu_PrivacyPolicy_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./features/Menu/PrivacyPolicy.jsx */ "./src/features/Menu/PrivacyPolicy.jsx");
+/* harmony import */ var _features_Menu_Credits_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./features/Menu/Credits.jsx */ "./src/features/Menu/Credits.jsx");
 
 
 
@@ -61,8 +59,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // --- Game Imports ---
-
-
 
 
 
@@ -92,10 +88,10 @@ __webpack_require__.r(__webpack_exports__);
 function GameGate(_ref) {
   var game = _ref.game,
     children = _ref.children;
-  var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_21__.useGameVisibility)(),
+  var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_19__.useGameVisibility)(),
     confirmed = _useGameVisibility.confirmed,
     canSeeGame = _useGameVisibility.canSeeGame;
-  if (confirmed && ![].concat(game).some(canSeeGame)) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Navigate, {
+  if (confirmed && ![].concat(game).some(canSeeGame)) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
     replace: true,
     to: "/home",
     state: {
@@ -108,152 +104,144 @@ function Contents() {
   var NotFound = function NotFound() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Page Not Found");
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/home",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_GameCastHome_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/temple",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       replace: true,
       to: "/home"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/barhome",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_BarHome_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/join",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_30__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_UniversalJoinForm_jsx__WEBPACK_IMPORTED_MODULE_28__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/privacy",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_PrivacyPolicy_jsx__WEBPACK_IMPORTED_MODULE_31__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_PrivacyPolicy_jsx__WEBPACK_IMPORTED_MODULE_29__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/credits",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_Credits_jsx__WEBPACK_IMPORTED_MODULE_32__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Menu_Credits_jsx__WEBPACK_IMPORTED_MODULE_30__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/tictactoe",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_22__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TictactoeManager_jsx__WEBPACK_IMPORTED_MODULE_20__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/tictactoe-create",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: "tictactoe"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_23__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TicTacToe_TicTacToeCreateScreen_jsx__WEBPACK_IMPORTED_MODULE_21__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/trivia",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Trivia_TriviaManager_jsx__WEBPACK_IMPORTED_MODULE_22__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/trivia-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       replace: true,
       to: "/triviacast-decks?play=phones"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/flashcards",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_Flashcards_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/flashcardsList",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardsList_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/flashcardGame",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Flashcards_FlashcardGame_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/prompt2",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Prompt2_Prompt2GameManager_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/prompt2-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       replace: true,
       to: "/couchcast-decks?play=phones"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/couchcast",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/couchcast-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/couchcast-decks",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: ['couchcast', 'prompt2']
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
-    path: "/reshuffled",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Reshuffled_ReshuffledManagerTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
-    path: "/reshuffled-decks",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
-      game: "reshuffled"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Reshuffled_ReshuffledDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/mixup",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Mixup_MixupManager_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Mixup_MixupManager_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/mixup-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: "mixup"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Mixup_MixupSetup_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Mixup_MixupSetup_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/town",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Town_TownManager_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Town_TownManager_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/town-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: "town"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Town_TownSetup_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Town_TownSetup_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/spades",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Spades_SpadesManager_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Spades_SpadesManager_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/spades-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: "spades"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Spades_SpadesSetup_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Spades_SpadesSetup_jsx__WEBPACK_IMPORTED_MODULE_17__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/admin",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Admin_AdminApp_jsx__WEBPACK_IMPORTED_MODULE_20__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Admin_AdminApp_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/triviacast",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_25__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastManager_jsx__WEBPACK_IMPORTED_MODULE_23__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/triviacast-decks",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: ['triviacast', 'trivia']
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_26__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_TriviaCast_TriviaCastDeckSelect_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/listcast",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_27__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastManager_jsx__WEBPACK_IMPORTED_MODULE_25__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/listcast-setup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(GameGate, {
       game: ['listcast', 'listopia']
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_28__["default"], null))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListCastSetup_jsx__WEBPACK_IMPORTED_MODULE_26__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/listopia",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_29__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Lists_ListopiaManager_jsx__WEBPACK_IMPORTED_MODULE_27__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/listopia-create",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       replace: true,
       to: "/listcast-setup?play=phones"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/play",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_CouchCast_CouchCastManagerTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/employees",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/edit/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeEdit_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/report",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_Employee_EmployeeReport_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "/",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       replace: true,
       to: "/home"
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_33__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
     path: "*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NotFound, null)
   }));
@@ -22919,28 +22907,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ToastContainer.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Toast.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
 /* harmony import */ var _assets_logos_Couch_Cast_Button_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/logos/Couch_Cast_Button.jpg */ "./src/assets/logos/Couch_Cast_Button.jpg");
 /* harmony import */ var _assets_logos_Join_Room_Button_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/logos/Join_Room_Button.jpeg */ "./src/assets/logos/Join_Room_Button.jpeg");
 /* harmony import */ var _TriviaCast_TriviaCastTile_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../TriviaCast/TriviaCastTile.jsx */ "./src/features/TriviaCast/TriviaCastTile.jsx");
 /* harmony import */ var _Lists_ListTiles_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Lists/ListTiles.jsx */ "./src/features/Lists/ListTiles.jsx");
-/* harmony import */ var _Reshuffled_ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Reshuffled/ReshuffledTile.jsx */ "./src/features/Reshuffled/ReshuffledTile.jsx");
-/* harmony import */ var _Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Mixup/MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
-/* harmony import */ var _Town_TownTile_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Town/TownTile.jsx */ "./src/features/Town/TownTile.jsx");
-/* harmony import */ var _Spades_SpadesTile_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Spades/SpadesTile.jsx */ "./src/features/Spades/SpadesTile.jsx");
-/* harmony import */ var _TicTacToe_TicTacToeTile_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../TicTacToe/TicTacToeTile.jsx */ "./src/features/TicTacToe/TicTacToeTile.jsx");
-/* harmony import */ var _GameRow_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./GameRow.jsx */ "./src/features/Menu/GameRow.jsx");
-/* harmony import */ var _CastPartyScene_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CastPartyScene.jsx */ "./src/features/Menu/CastPartyScene.jsx");
-/* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../gameVisibility.js */ "./src/gameVisibility.js");
-/* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
-/* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
+/* harmony import */ var _Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Mixup/MixupTile.jsx */ "./src/features/Mixup/MixupTile.jsx");
+/* harmony import */ var _Town_TownTile_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Town/TownTile.jsx */ "./src/features/Town/TownTile.jsx");
+/* harmony import */ var _Spades_SpadesTile_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Spades/SpadesTile.jsx */ "./src/features/Spades/SpadesTile.jsx");
+/* harmony import */ var _TicTacToe_TicTacToeTile_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../TicTacToe/TicTacToeTile.jsx */ "./src/features/TicTacToe/TicTacToeTile.jsx");
+/* harmony import */ var _GameRow_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./GameRow.jsx */ "./src/features/Menu/GameRow.jsx");
+/* harmony import */ var _CastPartyScene_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CastPartyScene.jsx */ "./src/features/Menu/CastPartyScene.jsx");
+/* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../gameVisibility.js */ "./src/gameVisibility.js");
+/* harmony import */ var _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../assets/logos/Burglar_Alone.png */ "./src/assets/logos/Burglar_Alone.png");
+/* harmony import */ var _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/logos/Burglar_with_Button.png */ "./src/assets/logos/Burglar_with_Button.png");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -22950,7 +22937,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -23063,15 +23049,15 @@ var STEPS = [{
 function HowToSetUp(_ref) {
   var show = _ref.show,
     onClose = _ref.onClose;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
     show: show,
     onHide: onClose,
     centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Header, {
     closeButton: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Title, {
     className: "fw-bold fs-5"
-  }, "How to set up")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"].Body, {
+  }, "How to set up")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
     className: "gt-cast-steps p-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
     className: "gt-cast-steps-list"
@@ -23131,7 +23117,7 @@ var GAME_ROWS = [{
   to: '/mixup-setup',
   label: 'Set up a 3 Ring Circus game',
   description: "Three games under one big tent: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers.",
-  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
+  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Mixup_MixupTile_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
 }, {
   id: 'town',
   title: 'Temple Town',
@@ -23139,7 +23125,7 @@ var GAME_ROWS = [{
   to: '/town-setup',
   label: 'Set up a Temple Town game',
   description: 'Bid on lots in secret, build Shops and Towers, then pick where to go out each night. Visitors pay rent to the owners.',
-  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Town_TownTile_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
+  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Town_TownTile_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
 }, {
   id: 'listcast',
   phones: 'listopia',
@@ -23156,7 +23142,7 @@ var GAME_ROWS = [{
   to: '/spades-setup',
   label: 'Set up a Spades game',
   description: 'The classic card game, two teams of two. Bid your tricks, then make them. Bots fill any empty seats.',
-  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Spades_SpadesTile_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
+  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Spades_SpadesTile_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null)
 }, {
   id: 'tictactoe',
   phonesOnly: true,
@@ -23165,16 +23151,7 @@ var GAME_ROWS = [{
   to: '/tictactoe-create',
   label: 'Start a Tic-Tac-Toe game',
   description: 'The timeless classic, head to head. Take turns on your own phones: first to get three in a row wins.',
-  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TicTacToe_TicTacToeTile_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null)
-}, {
-  // 🔀 Hidden from the public until its next version is ready (switch it on from the Games tab in /admin)
-  id: 'reshuffled',
-  title: 'Couch Cast Re-Shuffled',
-  players: '3+ players',
-  to: '/reshuffled-decks',
-  label: 'Choose a Couch Cast Re-Shuffled deck',
-  description: 'Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank.',
-  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Reshuffled_ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+  tile: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TicTacToe_TicTacToeTile_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)
 }];
 
 /**
@@ -23184,9 +23161,9 @@ var GAME_ROWS = [{
  */
 function GameCastHome() {
   var _location$state;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.useLocation)();
-  var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_12__.useGameVisibility)(),
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.useLocation)();
+  var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_11__.useGameVisibility)(),
     canSeeGame = _useGameVisibility.canSeeGame,
     isGameHidden = _useGameVisibility.isGameHidden;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -23261,7 +23238,7 @@ function GameCastHome() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     style: {
       position: 'fixed',
       top: '20px',
@@ -23269,7 +23246,7 @@ function GameCastHome() {
       transform: 'translateX(-50%)',
       zIndex: 99999
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
     show: !!toastMsg,
     onClose: function onClose() {
       return setToastMsg('');
@@ -23277,17 +23254,17 @@ function GameCastHome() {
     delay: 4000,
     autohide: true,
     bg: "dark"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"].Body, {
     className: "fw-bold text-white text-center px-4 py-2"
-  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  }, "\uD83D\uDC4B ", toastMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
     className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"].Header, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Header, {
     className: "main-card-header"
-  }, "GAME-CAST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"].Body, {
+  }, "GAME-CAST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"].Body, {
     className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CastPartyScene_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CastPartyScene_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-center mt-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
     variant: "link",
     size: "sm",
     className: "fw-bold",
@@ -23299,11 +23276,11 @@ function GameCastHome() {
     onClose: function onClose() {
       return setShowSetup(false);
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
     className: "g-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
     variant: "primary",
     className: imgBtnClass,
     onClick: function onClick() {
@@ -23318,7 +23295,7 @@ function GameCastHome() {
     alt: "Join a Room",
     className: "w-100 h-100",
     style: imgStyle
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
     xs: 12,
     className: "d-flex align-items-center mb-1 position-relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
@@ -23330,7 +23307,7 @@ function GameCastHome() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "burglar-divider ".concat(burglarActive ? 'active' : '')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: isStolen ? _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_14__ : _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_13__,
+    src: isStolen ? _assets_logos_Burglar_with_Button_png__WEBPACK_IMPORTED_MODULE_13__ : _assets_logos_Burglar_Alone_png__WEBPACK_IMPORTED_MODULE_12__,
     alt: "",
     "aria-hidden": "true",
     style: {
@@ -23338,12 +23315,12 @@ function GameCastHome() {
       height: 'auto',
       mixBlendMode: 'multiply'
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
     xs: 12
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
     className: "g-1"
   }, rows.map(function (row, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameRow_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
       key: row.id,
       flip: i % 2 === 1,
       hidden: row.hidden,
@@ -23351,7 +23328,7 @@ function GameCastHome() {
       players: row.players,
       description: row.description,
       note: row.note
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_19__["default"], {
       variant: "primary",
       className: gameImgBtnClass,
       onClick: function onClick() {
@@ -23362,15 +23339,15 @@ function GameCastHome() {
         '--shimmer-delay': "".concat(0.4 * (i + 1), "s")
       }, squareStyle)
     }, row.tile));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_21__["default"], {
     xs: 12,
     className: "text-center mt-2 mb-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
     to: "/privacy",
     className: "small gt-privacy-link"
   }, "Privacy policy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "small text-muted mx-2"
-  }, "\xB7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Link, {
+  }, "\xB7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
     to: "/credits",
     className: "small gt-privacy-link"
   }, "Credits"))))));
@@ -24069,7 +24046,7 @@ function PrivacyPolicy() {
     className: "gt-privacy-date"
   }, "Last updated November 7, 2026"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Game Temple is a set of party games at game-temple.org and in the Game Temple iPhone app. This page explains what the games use, what we keep, and your choices."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "gt-privacy-short"
-  }, "The short version: you don't need an account, there are no ads or tracking, and we never sell your information."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "What you share when you play"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "A nickname (one you type, or one we make up for you) and an avatar."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Your moves in a game: cards you play, answers you type, lists, captions, drawings, trivia answers and votes. These go to the game server and are shown to the other players in your room, as the game needs.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "What we keep"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "In Couch Cast (on a TV or just phones), Couch Cast Re-Shuffled and Trivia Cast, we save a record of each round: the room code, your nickname, a random player ID, the card or answer you played (including answers you typed), how long you took, and the points. When you're the judge, we also save which prompt you picked. We use these records only to make the games better, for example to find the prompts and cards people enjoy and the questions that are too hard."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everything else, like lists, drawings, meme captions and scores in other games, is kept only while your room is open."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "On your device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "The site saves a few things in your browser's storage so you can rejoin a game after a refresh: a random player ID, your nickname, a game session code, and settings such as whether the music is muted. There are no advertising cookies."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "What we don't do"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "No player accounts, no ads, and no analytics or tracking tools."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "We don't sell or share your information for marketing."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "We don't ask for your real name, email, contacts, location, camera or microphone.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Services we use"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Render hosts the website and game server, and a hosted MongoDB database stores the round records."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Pictures in some games, like memes, load from Cloudinary or Imgflip.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Like any website, these services see your device's IP address and browser type when it connects, and may keep standard logs for security and troubleshooting."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "The iPhone app"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "The app shows game-temple.org, so everything above applies to it too. It doesn't collect anything more or track you. When you connect a TV with AirPlay, the game shows on the TV; nothing about your TV is saved."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Children"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Game Temple is for general audiences and isn't directed at children under 13. We don't knowingly collect personal information from children. If you think a child has shared personal information in a game, email us and we'll delete it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Deleting your answers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Round records are tied to a nickname and a random ID, not to who you are, and we keep them while they help improve the games. To have yours removed, email us your nickname and the room code (or roughly when you played), and we'll delete them."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Changes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "If this policy changes, we'll update this page and the date at the top."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Questions or requests: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  }, "The short version: you don't need an account, there are no ads or tracking, and we never sell your information."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "What you share when you play"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "A nickname (one you type, or one we make up for you) and an avatar."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Your moves in a game: cards you play, answers you type, lists, captions, drawings, trivia answers and votes. These go to the game server and are shown to the other players in your room, as the game needs.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "What we keep"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "In Couch Cast (on a TV or just phones) and Trivia Cast, we save a record of each round: the room code, your nickname, a random player ID, the card or answer you played (including answers you typed), how long you took, and the points. When you're the judge, we also save which prompt you picked. We use these records only to make the games better, for example to find the prompts and cards people enjoy and the questions that are too hard."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everything else, like lists, drawings, meme captions and scores in other games, is kept only while your room is open."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "On your device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "The site saves a few things in your browser's storage so you can rejoin a game after a refresh: a random player ID, your nickname, a game session code, and settings such as whether the music is muted. There are no advertising cookies."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "What we don't do"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "No player accounts, no ads, and no analytics or tracking tools."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "We don't sell or share your information for marketing."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "We don't ask for your real name, email, contacts, location, camera or microphone.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Services we use"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Render hosts the website and game server, and a hosted MongoDB database stores the round records."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Pictures in some games, like memes, load from Cloudinary or Imgflip.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Like any website, these services see your device's IP address and browser type when it connects, and may keep standard logs for security and troubleshooting."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "The iPhone app"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "The app shows game-temple.org, so everything above applies to it too. It doesn't collect anything more or track you. When you connect a TV with AirPlay, the game shows on the TV; nothing about your TV is saved."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Children"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Game Temple is for general audiences and isn't directed at children under 13. We don't knowingly collect personal information from children. If you think a child has shared personal information in a game, email us and we'll delete it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Deleting your answers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Round records are tied to a nickname and a random ID, not to who you are, and we keep them while they help improve the games. To have yours removed, email us your nickname and the room code (or roughly when you played), and we'll delete them."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Changes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "If this policy changes, we'll update this page and the date at the top."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Questions or requests: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "mailto:".concat(CONTACT)
   }, CONTACT)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "text-center mt-4 mb-1"
@@ -25448,10 +25425,6 @@ function UniversalJoinScreen() {
       case 'A':
         // Spades (A for the ace of spades)
         targetRoute = "/spades?room=".concat(code, "&role=guest&name=").concat(name);
-        break;
-      case 'S':
-        // Couch Cast Re-Shuffled (experimental)
-        targetRoute = "/reshuffled?room=".concat(code, "&role=guest&name=").concat(name);
         break;
       case 'Q':
         targetRoute = "/triviacast?room=".concat(code, "&role=guest&name=").concat(name);
@@ -34078,3459 +34051,6 @@ function Prompt2Scoreboard(_ref) {
       return window.location.reload();
     }
   }, "Play Again"))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledCreate.jsx":
-/*!******************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledCreate.jsx ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleCreateReshuffled": () => (/* binding */ handleCreateReshuffled)
-/* harmony export */ });
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-// Helper function to request fullscreen (Orientation lock removed)
-var enterFullscreen = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            if (!(!document.fullscreenElement && document.documentElement.requestFullscreen)) {
-              _context.next = 4;
-              break;
-            }
-            _context.next = 4;
-            return document.documentElement.requestFullscreen();
-          case 4:
-            _context.next = 9;
-            break;
-          case 6:
-            _context.prev = 6;
-            _context.t0 = _context["catch"](0);
-            console.warn("Fullscreen bypassed (likely an unsupported device or iOS Safari):", _context.t0.message);
-          case 9:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 6]]);
-  }));
-  return function enterFullscreen() {
-    return _ref.apply(this, arguments);
-  };
-}();
-function handleCreateReshuffled(playerName, navigate, setIsCreatingRoom) {
-  var expansion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'core';
-  var totalRounds = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 3;
-  var cleanName = 'Caster';
-  console.log("Request Couch Cast Re-Shuffled Room creation from ".concat(cleanName, " (deck: ").concat(expansion, ", rounds: ").concat(totalRounds, ")"));
-
-  // Trigger fullscreen without locking orientation or scroll
-  enterFullscreen();
-
-  // We're inside the tap that starts the game: the moment browsers allow sound to be switched on
-  (0,_voice_js__WEBPACK_IMPORTED_MODULE_1__.unlockVoice)();
-  (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)((0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.lobbyTrackFor)('reshuffled', expansion));
-  if (setIsCreatingRoom) setIsCreatingRoom(true);
-
-  // Set the timeout
-  var timeout = setTimeout(function () {
-    setIsCreatingRoom(false);
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
-    alert("The server is taking too long to wake up. Please try again.");
-    _socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.off('roomCreated');
-  }, 60000);
-  var emitCreate = function emitCreate() {
-    _socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.emit('createRoom', {
-      playerName: cleanName,
-      expansion: expansion,
-      totalRounds: totalRounds
-    });
-  };
-
-  // Sets up the Success Listener
-  _socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.off('roomCreated');
-  _socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.once('roomCreated', function (_ref2) {
-    var roomCode = _ref2.roomCode;
-    clearTimeout(timeout); // Stops timeout on success
-    console.log("Reshuffled room created successfully! Code: ".concat(roomCode));
-    if (setIsCreatingRoom) setIsCreatingRoom(false);
-
-    // 👈 ADDED: Strip away Bootstrap modal scroll locks before React Router takes us away
-    document.body.style.overflow = 'unset';
-    document.body.classList.remove('modal-open');
-    document.body.style.paddingRight = '';
-    navigate("/reshuffled?room=".concat(roomCode, "&role=caster&name=").concat(encodeURIComponent(cleanName)));
-  });
-
-  // Handle Connection
-  if (_socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.connected) {
-    emitCreate();
-  } else {
-    console.warn("Socket disconnected! Waiting for connection to emit...");
-    _socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.connect();
-    _socket__WEBPACK_IMPORTED_MODULE_0__.reshuffledSocket.once('connect', function () {
-      console.log("Socket connected, now emitting createRoom...");
-      emitCreate();
-    });
-  }
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledDeckSelect.jsx":
-/*!**********************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledDeckSelect.jsx ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledDeckSelect)
-/* harmony export */ });
-/* harmony import */ var _gameVisibility_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../gameVisibility.js */ "./src/gameVisibility.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var _ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReshuffledTile.jsx */ "./src/features/Reshuffled/ReshuffledTile.jsx");
-/* harmony import */ var _ReshuffledCreate_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReshuffledCreate.jsx */ "./src/features/Reshuffled/ReshuffledCreate.jsx");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _cardDecks_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../cardDecks.js */ "./src/cardDecks.js");
-/* harmony import */ var _Menu_PickerPill_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Menu/PickerPill.jsx */ "./src/features/Menu/PickerPill.jsx");
-/* harmony import */ var _Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Menu/DeckCard.jsx */ "./src/features/Menu/DeckCard.jsx");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-
-
-/**
- * 🛋️ Couch Cast Re-Shuffled deck selection.
- * Sits between the home page button and the game: shows what Couch Cast Re-Shuffled is,
- * then lets the caster pick which card deck (expansion) the room will use.
- */
-function ReshuffledDeckSelect() {
-  var _useGameVisibility = (0,_gameVisibility_js__WEBPACK_IMPORTED_MODULE_0__.useGameVisibility)(),
-    visibleDecks = _useGameVisibility.visibleDecks;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isCreatingRoom = _useState2[0],
-    setIsCreatingRoom = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(_cardDecks_js__WEBPACK_IMPORTED_MODULE_5__.DEFAULT_ROUNDS),
-    _useState4 = _slicedToArray(_useState3, 2),
-    totalRounds = _useState4[0],
-    setTotalRounds = _useState4[1];
-
-  // Global Scroll Unlock Safety Net (same as Home)
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    document.body.style.overflow = 'unset';
-    document.body.classList.remove('modal-open');
-    document.body.style.paddingRight = '';
-  }, []);
-
-  // Start downloading the lobby music now, so it plays the moment a deck is tapped
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_4__.preloadLobbyMusic)();
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_4__.preloadLobbyMusic)('halloween');
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "page-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: "main-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Header, {
-    className: "main-card-header"
-  }, "Couch Cast Re-Shuffled"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
-    className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: "bg-light border-0 shadow-sm m-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Body, {
-    className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "g-2 align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    xs: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "w-100 rounded shadow-sm overflow-hidden",
-    style: {
-      aspectRatio: '1 / 1'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ReshuffledTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    xs: 8,
-    className: "text-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "fw-bold mb-1"
-  }, "Couch Cast Re-Shuffled", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("span", {
-    className: "text-muted fw-normal small ms-2"
-  }, "3+ players")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "small text-secondary lh-sm"
-  }, "Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank. Cast one extra device to the TV as the main screen."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "d-flex align-items-center my-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("hr", {
-    className: "flex-grow-1 my-0 opacity-25"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("span", {
-    className: "mx-2 small fw-bold text-muted text-uppercase"
-  }, "How Many Rounds?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("hr", {
-    className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "gt-picker-row is-single"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Menu_PickerPill_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    label: "Rounds",
-    value: totalRounds,
-    options: (0,_Menu_PickerPill_jsx__WEBPACK_IMPORTED_MODULE_6__.numberOptions)(_cardDecks_js__WEBPACK_IMPORTED_MODULE_5__.ROUND_OPTIONS),
-    onChange: setTotalRounds,
-    disabled: isCreatingRoom
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    className: "d-flex align-items-center mt-3 mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("hr", {
-    className: "flex-grow-1 my-0 opacity-25"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("span", {
-    className: "mx-2 small fw-bold text-muted text-uppercase"
-  }, "Then Tap a Deck to Start"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("hr", {
-    className: "flex-grow-1 my-0 opacity-25"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "g-2"
-  }, visibleDecks('reshuffled', _cardDecks_js__WEBPACK_IMPORTED_MODULE_5__.CARD_DECKS).map(function (deck, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      xs: 6,
-      key: deck.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Menu_DeckCard_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      deck: deck,
-      index: i,
-      disabled: isCreatingRoom,
-      onClick: function onClick() {
-        return (0,_ReshuffledCreate_jsx__WEBPACK_IMPORTED_MODULE_3__.handleCreateReshuffled)(null, navigate, setIsCreatingRoom, deck.id, totalRounds);
-      },
-      ariaLabel: "Create a Couch Cast Re-Shuffled room with the ".concat(deck.title, " deck")
-    }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    variant: "outline-secondary",
-    className: "w-100 fw-bold mt-3",
-    disabled: isCreatingRoom,
-    onClick: function onClick() {
-      return navigate('/home');
-    }
-  }, "Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    show: isCreatingRoom,
-    backdrop: "static",
-    keyboard: false,
-    centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"].Body, {
-    className: "d-flex flex-column align-items-center justify-content-center p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
-    animation: "border",
-    variant: "primary",
-    className: "mb-3"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h4", {
-    className: "fw-bold text-dark"
-  }, "Creating Room..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", {
-    className: "text-muted small mb-0"
-  }, "Waking up game server..."))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledJudging.jsx":
-/*!*******************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledJudging.jsx ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledJudging)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function ReshuffledJudging(_ref) {
-  var roomCode = _ref.roomCode,
-    isJudge = _ref.isJudge,
-    currentPrompt = _ref.currentPrompt,
-    endTime = _ref.endTime,
-    _ref$submissions = _ref.submissions,
-    submissions = _ref$submissions === void 0 ? [] : _ref$submissions,
-    expansion = _ref.expansion;
-  // Core deck uses the standard (primary) colours; the Halloween deck keeps its orange
-  var isSeasonal = expansion === 'halloween';
-  // The answer the Judge tapped (one tap crowns it, so this also locks the screen)
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState2 = _slicedToArray(_useState, 2),
-    selectedWinnerId = _useState2[0],
-    setSelectedWinnerId = _useState2[1];
-
-  // Countdown to the server's deadline (after it, a random answer wins)
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    timeLeft = _useState4[0],
-    setTimeLeft = _useState4[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!endTime) return;
-    var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
-      setTimeLeft(remaining > 0 ? remaining : 0);
-    };
-    updateTime();
-    var timer = setInterval(updateTime, 1000);
-    return function () {
-      return clearInterval(timer);
-    };
-  }, [endTime]);
-
-  // One tap picks the winner straight away (no separate "crown" button)
-  var handlePickWinner = function handlePickWinner(playerId) {
-    if (selectedWinnerId) return; // Prevent double-taps
-    setSelectedWinnerId(playerId);
-    console.log("[Reshuffled] Judge picked winner ".concat(playerId, " for room ").concat(roomCode));
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('pick_winner', {
-      roomCode: roomCode,
-      winningPlayerId: playerId
-    });
-  };
-
-  // ==========================================
-  // 1. THE PLAYER'S VIEW (Waiting for Judge)
-  // ==========================================
-  if (!isJudge) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "shadow-sm w-100 border-info",
-      style: {
-        maxWidth: '420px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-      className: "text-center p-5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      animation: "border",
-      variant: "info",
-      className: "mb-4",
-      style: {
-        width: '3rem',
-        height: '3rem'
-      }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-      className: "fw-bold fs-4 text-dark mb-2"
-    }, "Moment of Truth"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
-      className: "text-muted fs-6"
-    }, "The Judge is currently reviewing the submissions. Look up at the TV and cross your fingers!"))));
-  }
-
-  // ==========================================
-  // 2. THE JUDGE'S VIEW (Picking the Winner)
-  // ==========================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-4 d-flex justify-content-center pb-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-sm w-100 ".concat(isSeasonal ? 'border-warning' : 'border-primary'),
-    style: {
-      maxWidth: '420px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
-    className: "text-center py-3 ".concat(isSeasonal ? 'bg-warning text-dark' : 'bg-primary text-white')
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "small fw-bold text-uppercase opacity-75 mb-1",
-    style: {
-      letterSpacing: '2px'
-    }
-  }, "You Are The Judge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fs-5 fw-bold"
-  }, (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-center text-muted fw-bold mb-3"
-  }, "Read the answers on the TV, then tap your favorite to crown it!"), timeLeft !== null && submissions.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "fw-bold mb-1 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-info')
-  }, "\u23F1\uFE0F ", timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "small text-muted"
-  }, "No pick in time? A random answer wins.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column gap-2"
-  }, submissions.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center text-danger fw-bold my-4"
-  }, "No one submitted an answer!") : submissions.map(function (sub, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      key: index,
-      variant: selectedWinnerId === sub.playerId ? 'warning' : 'outline-dark',
-      className: "text-start p-3 fw-semibold text-wrap shadow-sm cc-tap-option",
-      onClick: function onClick() {
-        return handlePickWinner(sub.playerId);
-      },
-      disabled: !!selectedWinnerId && selectedWinnerId !== sub.playerId
-    }, sub.answer);
-  })))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledJudgingTV.jsx":
-/*!*********************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledJudgingTV.jsx ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledJudgingTV)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-function ReshuffledJudgingTV(_ref) {
-  var currentPrompt = _ref.currentPrompt,
-    submissions = _ref.submissions,
-    judgeName = _ref.judgeName,
-    endTime = _ref.endTime,
-    winningSubmission = _ref.winningSubmission;
-  // Add state to track device orientation for the overlay
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
-    _useState2 = _slicedToArray(_useState, 2),
-    isPortrait = _useState2[0],
-    setIsPortrait = _useState2[1];
-
-  // Countdown to the judge's deadline (after it, a random answer wins)
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    timeLeft = _useState4[0],
-    setTimeLeft = _useState4[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!endTime) {
-      setTimeLeft(null);
-      return;
-    }
-    var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
-      setTimeLeft(remaining > 0 ? remaining : 0);
-    };
-    updateTime();
-    var timer = setInterval(updateTime, 1000);
-    return function () {
-      return clearInterval(timer);
-    };
-  }, [endTime]);
-
-  // Listen for screen rotation
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var handleResize = function handleResize() {
-      return setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return function () {
-      return window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100 p-3 pb-4 w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fullscreen-gameplay-header text-center mb-3 text-wrap text-break px-3",
-    style: {
-      fontSize: 'clamp(1.5rem, 4vh, 2.5rem)'
-    }
-  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column flex-grow-1 overflow-auto align-items-center w-100"
-  }, !winningSubmission ?
-  /*#__PURE__*/
-  /* --- STATE 1: WAITING FOR JUDGE --- */
-  react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 d-flex flex-column align-items-center h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-white fw-bold mb-3 text-center",
-    style: {
-      textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
-    }
-  }, submissions && submissions.length > 0 ? "".concat(judgeName, " is deciding the winner! Read them aloud:") : 'Time is up!', timeLeft !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "ms-3 ".concat(timeLeft <= 10 ? 'text-danger' : '')
-  }, "\u23F1\uFE0F ", timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "w-100 justify-content-center m-0 px-2 flex-grow-1 overflow-auto"
-  }, submissions && submissions.length > 0 ? submissions.map(function (sub, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      md: 6,
-      lg: 4,
-      key: index,
-      className: "mb-3"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "shining-border-wrapper h-100"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "fullscreen-gameplay-card h-100",
-      style: {
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        backdropFilter: 'blur(10px)'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-      className: "d-flex align-items-center justify-content-center p-3 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "fw-bold text-dark m-0",
-      style: {
-        fontSize: 'clamp(1.1rem, 2.5vh, 1.5rem)'
-      }
-    }, sub.answer)))));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    className: "text-white fw-bold text-center mt-5"
-  }, "No one submitted anything! How embarrassing.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "On to the next round..."))) :
-  /*#__PURE__*/
-  /* --- STATE 2: THE WINNER REVEAL --- */
-  react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column align-items-center justify-content-center h-100 w-100",
-    style: {
-      maxWidth: '800px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3",
-    style: {
-      color: '#ffd700',
-      textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
-      fontSize: 'clamp(2rem, 5vh, 3.5rem)'
-    }
-  }, "WINNER!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "fullscreen-gameplay-card",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      backdropFilter: 'blur(15px)',
-      border: '3px solid #198754'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "d-flex flex-column align-items-center justify-content-center p-4 p-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-center fw-bold text-dark mb-4 display-5",
-    style: {
-      fontSize: 'clamp(1.8rem, 4vh, 3rem)'
-    }
-  }, "\"", winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    bg: "success",
-    className: "fs-3 p-3 shadow-sm rounded-pill",
-    style: {
-      fontSize: 'clamp(1.2rem, 3vh, 1.5rem)'
-    }
-  }, "Submitted by: ", winningSubmission.playerName))))))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledLobby.jsx":
-/*!*****************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledLobby.jsx ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledLobby)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ListGroupItem.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/esm/index.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
-/* harmony import */ var _hooks_useAutoScrollList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useAutoScrollList.js */ "./src/hooks/useAutoScrollList.js");
-/* harmony import */ var _hooks_useLobbyPlayerSizes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/useLobbyPlayerSizes.js */ "./src/hooks/useLobbyPlayerSizes.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-function ReshuffledLobby(_ref) {
-  var roomCode = _ref.roomCode,
-    _ref$players = _ref.players,
-    players = _ref$players === void 0 ? [] : _ref$players,
-    _ref$title = _ref.title,
-    title = _ref$title === void 0 ? 'Couch Cast Re-Shuffled Room Created' : _ref$title,
-    _ref$musicTrack = _ref.musicTrack,
-    musicTrack = _ref$musicTrack === void 0 ? 'default' : _ref$musicTrack;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isPortrait = _useState2[0],
-    setIsPortrait = _useState2[1];
-  var playersRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  (0,_hooks_useAutoScrollList_js__WEBPACK_IMPORTED_MODULE_4__["default"])(playersRef);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // Check orientation on load and resize
-    var checkOrientation = function checkOrientation() {
-      setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-
-    // Wait a brief moment for rendering, then scroll down by 1 pixel
-    var timer = setTimeout(function () {
-      window.scrollTo(0, 1);
-    }, 100);
-
-    // Usually already playing (started by the tap that created the room); this covers a refresh
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.startLobbyMusic)(musicTrack);
-    return function () {
-      (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_2__.stopLobbyMusic)();
-      window.removeEventListener('resize', checkOrientation);
-      clearTimeout(timer);
-    };
-  }, []);
-  var activePlayers = players.filter(function (player) {
-    return !player.isCaster;
-  });
-  // 👥 A few players fill the card; more share it (two columns from three)
-  var sizes = (0,_hooks_useLobbyPlayerSizes_js__WEBPACK_IMPORTED_MODULE_5__["default"])(playersRef, activePlayers.length);
-  var hostPlayer = activePlayers.find(function (player) {
-    return player.isPlayerHost;
-  });
-  var hostName = hostPlayer ? hostPlayer.name : "the first player";
-  var joinUrl = "".concat(window.location.origin, "/join?room=").concat(roomCode || '');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100 p-3 pb-4 w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fullscreen-gameplay-header"
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "cc-cast-now"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 100 100",
-    className: "cc-cast-now-icon",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M8 34 V26 a8 8 0 0 1 8 -8 H84 a8 8 0 0 1 8 8 V70 a8 8 0 0 1 -8 8 H56"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
-    cx: "12",
-    cy: "76",
-    r: "4",
-    className: "cc-cast-now-dot"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M8 60 a18 18 0 0 1 18 18"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M8 46 a32 32 0 0 1 32 32"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Cast now to screen!"), " Mirror this device to your TV, then everyone scans the code to join.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "row flex-grow-1 gx-3 gy-0",
-    style: {
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-6 d-flex flex-column h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    className: "fullscreen-gameplay-card",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-      backdropFilter: 'blur(10px)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
-    className: "d-flex flex-column align-items-center justify-content-between p-2 p-md-3 overflow-hidden",
-    style: {
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
-    className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
-    style: {
-      fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
-    }
-  }, "Scan to join!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bg-white rounded shadow-sm d-flex justify-content-center align-items-center border flex-grow-1 p-2",
-    style: {
-      minHeight: 0,
-      aspectRatio: '1/1',
-      maxHeight: '60vh'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(qrcode_react__WEBPACK_IMPORTED_MODULE_1__.QRCodeSVG, {
-    value: joinUrl,
-    style: {
-      width: '100%',
-      height: '100%',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      objectFit: 'contain'
-    },
-    fgColor: "#014eb6",
-    level: "H",
-    includeMargin: false
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fw-bold flex-shrink-0 mt-1",
-    style: {
-      color: '#ffffff',
-      letterSpacing: '0.15em',
-      fontSize: 'clamp(1.2rem, 3.2vh, 2.2rem)'
-    }
-  }, roomCode))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "col-6 d-flex flex-column h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    className: "fullscreen-gameplay-card",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-      backdropFilter: 'blur(10px)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
-    className: "d-flex flex-column",
-    style: {
-      padding: 'clamp(0.4rem, 1.5vh, 1rem) clamp(0.5rem, 3vh, 1.5rem)',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-between align-items-center gap-2 flex-shrink-0 mb-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-    className: "text-start mb-0 fw-semibold flex-shrink-0 text-dark",
-    style: {
-      fontSize: 'clamp(0.9rem, 2.2vh, 1.3rem)'
-    }
-  }, "Players (", activePlayers.length, "):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-dark fw-semibold px-2 py-1 border border-primary border-dashed rounded text-center text-truncate",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
-      fontSize: 'clamp(0.7rem, 1.7vh, 1rem)',
-      minWidth: 0 // beside the title: a long name gets cut off, not the title
-    }
-  }, activePlayers.length < 1 ? "Waiting for players..." : "Waiting for ".concat(hostName, "..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    ref: playersRef,
-    className: "text-start flex-grow-1 custom-scrollbar overflow-auto bg-transparent border-0 cc-lobby-players-grid",
-    style: _objectSpread({
-      minHeight: 0
-    }, sizes.gridStyle)
-  }, activePlayers.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      key: player.id,
-      className: "d-flex justify-content-between align-items-center border-0 border-bottom border-secondary px-2 py-1 bg-transparent text-dark"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "d-flex align-items-center gap-2 fw-bold",
-      style: {
-        maxWidth: '78%',
-        minWidth: 0,
-        fontSize: "".concat(sizes.font, "px")
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
-      id: player.avatar,
-      name: player.name,
-      size: Math.max(56, sizes.avatar),
-      style: {
-        width: sizes.avatar,
-        height: sizes.avatar,
-        flexShrink: 0
-      }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "text-truncate"
-    }, player.name)), player.isPlayerHost && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      bg: "primary",
-      className: "rounded-pill px-2 py-1 shadow-sm",
-      style: {
-        fontSize: "".concat(Math.max(11, sizes.font * 0.55), "px")
-      }
-    }, "Host"));
-  }), activePlayers.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-secondary fst-italic mt-1",
-    style: {
-      fontSize: 'clamp(0.8rem, 1.8vh, 1.1rem)',
-      gridColumn: '1 / -1'
-    }
-  }, "No players yet..."))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "cc-lobby-tip"
-  }, "\uD83D\uDD0B For the best experience, turn off Battery Saver / Low Power Mode on this device so the screen stays awake.")));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledManagerTV.jsx":
-/*!*********************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledManagerTV.jsx ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledManager)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-/* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
-/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
-/* harmony import */ var _Menu_ConnectionLost_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/ConnectionLost.jsx */ "./src/features/Menu/ConnectionLost.jsx");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-/* harmony import */ var _CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CouchCast/lobbyMusic.js */ "./src/features/CouchCast/lobbyMusic.js");
-/* harmony import */ var _timerMusic_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../timerMusic.js */ "./src/timerMusic.js");
-/* harmony import */ var _ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReshuffledLobby.jsx */ "./src/features/Reshuffled/ReshuffledLobby.jsx");
-/* harmony import */ var _ReshuffledWritingTV_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ReshuffledWritingTV.jsx */ "./src/features/Reshuffled/ReshuffledWritingTV.jsx");
-/* harmony import */ var _ReshuffledJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ReshuffledJudgingTV.jsx */ "./src/features/Reshuffled/ReshuffledJudgingTV.jsx");
-/* harmony import */ var _ReshuffledWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ReshuffledWinnerRevealTV.jsx */ "./src/features/Reshuffled/ReshuffledWinnerRevealTV.jsx");
-/* harmony import */ var _ReshuffledScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ReshuffledScoreboardTV.jsx */ "./src/features/Reshuffled/ReshuffledScoreboardTV.jsx");
-/* harmony import */ var _ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ReshuffledRules.jsx */ "./src/features/Reshuffled/ReshuffledRules.jsx");
-/* harmony import */ var _ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ReshuffledPromptSelection.jsx */ "./src/features/Reshuffled/ReshuffledPromptSelection.jsx");
-/* harmony import */ var _ReshuffledPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./ReshuffledPlayerSetup.jsx */ "./src/features/Reshuffled/ReshuffledPlayerSetup.jsx");
-/* harmony import */ var _CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../CouchCast/fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-// Lock Screen to keep phone screen awake
-
-
-
-
-
-
-
-
-// TV Phase Components
-
-
-
-
-
-
-
-
-// Player Controller Component
-
-
-
-
-
-
-// 🎙️ Narrator lines that never change. They're fetched in the lobby so they start instantly,
-// and they give the changing part of each announcement a moment to load behind them.
-var VOICE_PROMPT_INTRO = "The prompt is...";
-var VOICE_WINNER_INTRO = "And the winner is...";
-var vibeLine = function vibeLine(name) {
-  return "".concat(name, " is setting the vibe.");
-};
-// When the judge runs out of time and a prompt is picked for them
-var VOICE_TOO_SLOW = ["Too slow!", "I'm just gonna pick for you."];
-function ReshuffledManager() {
-  var _roomData$players, _roomData$players$roo;
-  (0,_hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
-
-  // Grab the room code, player name, and role from the URL!
-  var searchParams = new URLSearchParams(window.location.search);
-  var urlRoomCode = searchParams.get('room');
-  var urlPlayerName = searchParams.get('name') || 'Caster';
-  var urlRole = searchParams.get('role');
-
-  // 🚀 ROUTING CHECK: If this is a guest player, bypass TV mode and load their controller!
-  if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPlayerSetup_jsx__WEBPACK_IMPORTED_MODULE_16__["default"], {
-      roomCode: urlRoomCode,
-      playerName: urlPlayerName
-    }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "cc-room-code"
-    }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, urlRoomCode.toUpperCase())));
-  }
-
-  // --- TV STATE MANAGEMENT ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.useNavigate)();
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('creating'),
-    _useState2 = _slicedToArray(_useState, 2),
-    gameState = _useState2[0],
-    setGameState = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    roomData = _useState4[0],
-    setRoomData = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState6 = _slicedToArray(_useState5, 2),
-    errorMessage = _useState6[0],
-    setErrorMessage = _useState6[1];
-  (0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket, urlRoomCode, !!roomData);
-
-  // Phase-specific state for the TV
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState8 = _slicedToArray(_useState7, 2),
-    endTime = _useState8[0],
-    setEndTime = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState10 = _slicedToArray(_useState9, 2),
-    currentPrompt = _useState10[0],
-    setCurrentPrompt = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState12 = _slicedToArray(_useState11, 2),
-    submissions = _useState12[0],
-    setSubmissions = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState14 = _slicedToArray(_useState13, 2),
-    roundResults = _useState14[0],
-    setRoundResults = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState16 = _slicedToArray(_useState15, 2),
-    promptAutoPicked = _useState16[0],
-    setPromptAutoPicked = _useState16[1];
-
-  // 🎨 Background matches the room's card deck, and covers the nav bar on the TV
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_5__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion), true);
-  // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_20__.usePlayerSounds)(roomData === null || roomData === void 0 ? void 0 : roomData.roomCode, roomData === null || roomData === void 0 ? void 0 : roomData.players);
-  var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.lobbyTrackFor)('reshuffled', roomData === null || roomData === void 0 ? void 0 : roomData.expansion);
-
-  // 🎙️ Voice-overs: one key per "moment worth announcing", so each is spoken exactly once
-  var round = roomData === null || roomData === void 0 ? void 0 : roomData.currentRound;
-  var judgeName = roomData === null || roomData === void 0 ? void 0 : (_roomData$players = roomData.players) === null || _roomData$players === void 0 ? void 0 : (_roomData$players$roo = _roomData$players[roomData.hostId]) === null || _roomData$players$roo === void 0 ? void 0 : _roomData$players$roo.name;
-  var voiceMoment = null;
-  if (gameState === 'prompt_selection' && judgeName) voiceMoment = "picking-".concat(round);else if (gameState === 'writing' && currentPrompt) voiceMoment = "prompt-".concat(round);
-  // (Nothing is said while the judge reads the answers; the narrator returns for the winner.)
-  else if (gameState === 'winner_reveal' && roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission) voiceMoment = "winner-".concat(round);else if (gameState === 'scoreboard' && roundResults !== null && roundResults !== void 0 && roundResults.isGameOver) voiceMoment = 'game-over';else if (gameState === 'scoreboard' && roomData) voiceMoment = "scores-".concat(round);
-
-  // 🏆 The score recap: on the scoreboard headline and read by the narrator
-  var recap = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
-    if (gameState !== 'scoreboard' || !roomData) return null;
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_18__.scoreRecap)({
-      players: Object.values(roomData.players).filter(function (p) {
-        return !p.isCaster;
-      }),
-      roundHadWinner: !!(roundResults !== null && roundResults !== void 0 && roundResults.winner),
-      round: round,
-      isGameOver: !!(roundResults !== null && roundResults !== void 0 && roundResults.isGameOver)
-    });
-  }, [gameState, roomData, roundResults, round]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // The screen changed: stop whatever was being said
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice)();
-    if (!voiceMoment || !roomData) return;
-    var code = roomData.roomCode;
-    var promptText = (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt;
-    if (voiceMoment.startsWith('picking')) {
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(vibeLine(judgeName), code);
-    } else if (voiceMoment.startsWith('prompt')) {
-      // The judge never picked: the narrator teases them before reading the prompt
-      var lines = promptAutoPicked ? [VOICE_TOO_SLOW[Math.floor(Math.random() * VOICE_TOO_SLOW.length)], VOICE_PROMPT_INTRO, promptText] : [VOICE_PROMPT_INTRO, promptText];
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(lines, code);
-    } else if (voiceMoment.startsWith('winner')) {
-      var _roundResults$winning = roundResults.winningSubmission,
-        playerName = _roundResults$winning.playerName,
-        answer = _roundResults$winning.answer;
-      // Read the whole card: the prompt with the winning answer in the blank
-      var _fillBlank = (0,_CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_17__.fillBlank)(currentPrompt, answer),
-        sentence = _fillBlank.sentence;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)([VOICE_WINNER_INTRO, "".concat(sentence, " That one came from ").concat(playerName, "!")], code);
-      // Get the next judge's line ready while the confetti falls
-      if (!roundResults.isGameOver && roundResults.nextHostName) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(vibeLine(roundResults.nextHostName), code);
-    } else if (voiceMoment === 'game-over' || voiceMoment.startsWith('scores')) {
-      if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.speak)(recap.spoken, code);
-    }
-  }, [voiceMoment]);
-
-  // 🔁 End of the game: the caster picks what happens next
-  var handlePlayAgain = function handlePlayAgain() {
-    (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack); // this tap lets the lobby music play again
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('playAgain', {
-      roomCode: roomData === null || roomData === void 0 ? void 0 : roomData.roomCode
-    });
-  };
-  var handleGoHome = function handleGoHome() {
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('endGame', {
-      roomCode: roomData === null || roomData === void 0 ? void 0 : roomData.roomCode
-    });
-    navigate('/home', {
-      state: {
-        toastMessage: 'Thanks for playing!'
-      }
-    });
-  };
-
-  // ⏳ Tick-tock music while the judge picks a prompt and while everyone writes.
-  // (The judge's pick is a 15-second clock on the screens; writing uses the server's clock.)
-  var promptPickEnd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
-    return gameState === 'prompt_selection' ? Date.now() + 15 * 1000 : null;
-  }, [gameState, round]);
-  var isTimerPhase = gameState === 'prompt_selection' || gameState === 'writing';
-  (0,_timerMusic_js__WEBPACK_IMPORTED_MODULE_8__.useTimerMusic)(isTimerPhase, {
-    endTime: gameState === 'writing' ? endTime : promptPickEnd,
-    key: "".concat(gameState, "-").concat(round)
-  });
-
-  // Fetch the fixed lines while everyone is still joining, so the narrator never starts late
-  var lobbyRoomCode = roomData === null || roomData === void 0 ? void 0 : roomData.roomCode;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!lobbyRoomCode) return;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)([].concat(_toConsumableArray(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_14__.RULES_NARRATION), [VOICE_PROMPT_INTRO, VOICE_WINNER_INTRO], VOICE_TOO_SLOW), lobbyRoomCode);
-  }, [lobbyRoomCode]);
-
-  // The first judge is known once the rules are showing: get their line ready too
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (gameState === 'rules' && judgeName && lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.preloadVoice)(vibeLine(judgeName), lobbyRoomCode);
-  }, [gameState, judgeName, lobbyRoomCode]);
-
-  // 🔇 After a page refresh the browser mutes us until someone taps the screen.
-  // When that happens, show a button that switches the narrator and music back on.
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState18 = _slicedToArray(_useState17, 2),
-    isSoundLocked = _useState18[0],
-    setIsSoundLocked = _useState18[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.canPlaySound)().then(function (allowed) {
-      if (isCurrent) setIsSoundLocked(!allowed);
-    });
-    return function () {
-      isCurrent = false;
-    };
-  }, []);
-  var handleTurnSoundOn = function handleTurnSoundOn() {
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_6__.unlockVoice)();
-    if (gameState === 'lobby') (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_7__.startLobbyMusic)(lobbyTrack);
-    setIsSoundLocked(false);
-  };
-
-  // Leaving the game: stop talking
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return _voice_js__WEBPACK_IMPORTED_MODULE_6__.stopVoice;
-  }, []);
-
-  // --- SOCKET LISTENERS (TV ONLY) ---
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // (Re)join our room on every connection: first load, a page refresh,
-    // and any time the network drops and the socket comes back with a new ID.
-    var joinMyRoom = function joinMyRoom() {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('joinRoom', {
-        roomCode: urlRoomCode,
-        playerName: urlPlayerName
-      });
-    };
-    if (urlRoomCode) {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('connect', joinMyRoom);
-      if (_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.connected) {
-        joinMyRoom();
-      } else {
-        // After a page refresh nothing has opened the connection yet
-        _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.connect();
-      }
-    } else {
-      setErrorMessage("No room code found in the URL!");
-    }
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('sync_game_state', function (payload) {
-      var _payload$roomData, _payload$roomData2;
-      // Only this screen's own room gets to drive it
-      if (((_payload$roomData = payload.roomData) === null || _payload$roomData === void 0 ? void 0 : _payload$roomData.roomCode) !== urlRoomCode) return;
-      setGameState(payload.gameState);
-      setRoomData(payload.roomData);
-      setEndTime(payload.endTime);
-      setCurrentPrompt(payload.currentPrompt);
-      setSubmissions(payload.submissions);
-      setRoundResults(payload.roundResults);
-      setPromptAutoPicked(!!((_payload$roomData2 = payload.roomData) !== null && _payload$roomData2 !== void 0 && _payload$roomData2.promptAutoPicked));
-    });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('room_updated', function (room) {
-      if (room.roomCode !== urlRoomCode) return;
-      setRoomData(room);
-      setGameState(room.gameState);
-      if (room.currentPrompt) setCurrentPrompt(room.currentPrompt);
-      // "Play Again": forget the last game's results
-      if (room.gameState === 'lobby') setRoundResults(null);
-    });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('writing_phase_started', function (data) {
-      setGameState(data.gameState);
-      setCurrentPrompt(data.prompt);
-      setEndTime(data.endTime);
-      setPromptAutoPicked(!!data.autoPicked);
-    });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('start_judging', function (data) {
-      setGameState(data.gameState);
-      setSubmissions(data.submissions);
-    });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('round_ended', function (data) {
-      setGameState(data.gameState);
-      setRoundResults({
-        winner: data.winner,
-        winningSubmission: data.winningSubmission,
-        // 👈 WE ADDED THIS
-        nextHostName: data.nextHostName,
-        isGameOver: data.isGameOver
-      });
-    });
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('joinError', function (msg) {
-      setErrorMessage(msg);
-      setTimeout(function () {
-        return setErrorMessage("");
-      }, 5000);
-    });
-    return function () {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('connect', joinMyRoom);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('sync_game_state');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('room_updated');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('writing_phase_started');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('start_judging');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('round_ended');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('errorMsg');
-    };
-  }, [urlRoomCode, urlPlayerName]);
-
-  // --- TV RENDER LOGIC ---
-  var renderGamePhase = function renderGamePhase() {
-    var _roomData$players$roo2, _roomData$players$roo3;
-    if (gameState === 'creating' || !roomData) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_22__["default"], {
-        animation: "border",
-        variant: "light"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-        className: "mt-3 text-white"
-      }, "Powering up the TV..."));
-    }
-    var playersArray = Object.values(roomData.players);
-    switch (gameState) {
-      case 'lobby':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledLobby_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          roomCode: roomData.roomCode,
-          players: playersArray,
-          musicTrack: lobbyTrack
-        });
-      case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledRules_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
-          roomCode: roomData.roomCode
-        });
-      case 'prompt_selection':
-        var pickerName = ((_roomData$players$roo2 = roomData.players[roomData.hostId]) === null || _roomData$players$roo2 === void 0 ? void 0 : _roomData$players$roo2.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
-          isCastScreen: true,
-          judgeName: pickerName,
-          roomCode: roomData.roomCode,
-          prompts: roomData.promptOptions
-        });
-      case 'writing':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWritingTV_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
-          currentPrompt: currentPrompt,
-          endTime: endTime,
-          players: playersArray,
-          hostId: roomData.hostId
-        });
-      case 'judging':
-        var _judgeName = ((_roomData$players$roo3 = roomData.players[roomData.hostId]) === null || _roomData$players$roo3 === void 0 ? void 0 : _roomData$players$roo3.name) || 'The Judge';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledJudgingTV_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
-          currentPrompt: currentPrompt,
-          submissions: submissions,
-          judgeName: _judgeName,
-          endTime: roomData.endTime
-        });
-      case 'winner_reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWinnerRevealTV_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
-          currentPrompt: currentPrompt,
-          winner: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winner,
-          winningSubmission: roundResults === null || roundResults === void 0 ? void 0 : roundResults.winningSubmission // 👈 AND PASSED IT HERE
-          ,
-          nextHostName: roundResults === null || roundResults === void 0 ? void 0 : roundResults.nextHostName,
-          isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
-        });
-      case 'scoreboard':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
-          players: playersArray,
-          isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver // 👈 Also passed isGameOver here!
-          ,
-          headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], {
-            onPlayAgain: handlePlayAgain,
-            onGoHome: handleGoHome
-          })
-        });
-      default:
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-          className: "text-white"
-        }, "Unknown Game State: ", gameState));
-    }
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
-    fluid: true,
-    className: "p-0",
-    style: {
-      minHeight: '100vh'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_ConnectionLost_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    socket: _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket
-  }), errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_24__["default"], {
-    variant: "danger",
-    className: "text-center m-2 position-absolute w-100",
-    style: {
-      zIndex: 10002
-    }
-  }, errorMessage), renderGamePhase(), isSoundLocked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    type: "button",
-    className: "cc-sound-button",
-    onClick: handleTurnSoundOn
-  }, "\uD83D\uDD07 Tap to turn sound back on"), (roomData === null || roomData === void 0 ? void 0 : roomData.roomCode) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "cc-room-code"
-  }, "Room ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, roomData.roomCode)));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledPlayerSetup.jsx":
-/*!***********************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledPlayerSetup.jsx ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledPlayerSetup)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/index.mjs");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
-/* harmony import */ var _ReshuffledScoreboard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReshuffledScoreboard.jsx */ "./src/features/Reshuffled/ReshuffledScoreboard.jsx");
-/* harmony import */ var _ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ReshuffledPromptSelection.jsx */ "./src/features/Reshuffled/ReshuffledPromptSelection.jsx");
-/* harmony import */ var _ReshuffledWritingPlayer_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ReshuffledWritingPlayer.jsx */ "./src/features/Reshuffled/ReshuffledWritingPlayer.jsx");
-/* harmony import */ var _ReshuffledJudging_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ReshuffledJudging.jsx */ "./src/features/Reshuffled/ReshuffledJudging.jsx");
-/* harmony import */ var _Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Menu/backgroundTheme.js */ "./src/features/Menu/backgroundTheme.js");
-/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
-/* harmony import */ var _CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../CouchCast/fillBlank.js */ "./src/features/CouchCast/fillBlank.js");
-/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-// 🎮 Import your mobile screens
-
-
-
- // 👈 IMPORTED OUR JUDGING COMPONENT
-
-
-
-
-function ReshuffledPlayerSetup(_ref) {
-  var roomCode = _ref.roomCode,
-    playerName = _ref.playerName;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('joining'),
-    _useState2 = _slicedToArray(_useState, 2),
-    gameState = _useState2[0],
-    setGameState = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useNavigate)();
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    roomData = _useState4[0],
-    setRoomData = _useState4[1];
-
-  // 🎨 Background matches the room's card deck
-  (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_8__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_8__.couchCastTheme)(roomData === null || roomData === void 0 ? void 0 : roomData.expansion));
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState6 = _slicedToArray(_useState5, 2),
-    playerData = _useState6[0],
-    setPlayerData = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState8 = _slicedToArray(_useState7, 2),
-    error = _useState8[0],
-    setError = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState10 = _slicedToArray(_useState9, 2),
-    roundResults = _useState10[0],
-    setRoundResults = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState12 = _slicedToArray(_useState11, 2),
-    submissions = _useState12[0],
-    setSubmissions = _useState12[1]; // 👈 Added state to hold the anonymous answers for the judge
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState14 = _slicedToArray(_useState13, 2),
-    retryName = _useState14[0],
-    setRetryName = _useState14[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // 1. Generate or grab a persistent Player ID for backend reconnection
-    var pId = localStorage.getItem('templePlayerId');
-    if (!pId) {
-      pId = 'player_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('templePlayerId', pId);
-    }
-
-    // 2. NEW LISTENER FOR THE TOAST!
-    var handleJoinError = function handleJoinError(errorMessage) {
-      if (errorMessage === _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__.ROOM_NOT_FOUND) {
-        navigate.apply(void 0, _toConsumableArray((0,_hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__.joinAgain)(roomCode)));
-        return;
-      }
-      react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.error(errorMessage, {
-        toastId: 'joinError',
-        // the same message never stacks
-        position: "top-center",
-        autoClose: 4000
-      });
-      // Stop the spinner and let them know there's an error
-      setError(errorMessage);
-      setGameState('name_retry');
-    };
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('joinError', handleJoinError);
-
-    // 🚨 Connection logic: one named listener, removed on cleanup, so a re-mount never sends joinRoom twice
-    var joinMyRoom = function joinMyRoom() {
-      return _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('joinRoom', {
-        roomCode: roomCode,
-        playerName: playerName,
-        playerId: pId,
-        avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_11__.getMyAvatar)()
-      });
-    };
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('connect', joinMyRoom);
-    if (_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.connected) joinMyRoom();else _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.connect();
-
-    // 3. Socket listeners
-    var handleSync = function handleSync(payload) {
-      setGameState(payload.gameState);
-      setRoomData(payload.roomData);
-      setPlayerData(payload.playerStatus);
-      if (payload.submissions) setSubmissions(payload.submissions);
-      if (payload.roundResults) setRoundResults(payload.roundResults);
-    };
-    var handleRoomUpdate = function handleRoomUpdate(room) {
-      setRoomData(room);
-      setGameState(room.gameState);
-      if (room.players[_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.id]) {
-        setPlayerData(room.players[_socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.id]);
-      }
-    };
-    var handleError = function handleError(msg) {
-      setError(msg);
-      setGameState('error');
-    };
-    var handleStartJudging = function handleStartJudging(data) {
-      setGameState(data.gameState);
-      setSubmissions(data.submissions);
-    };
-    var handleRoundEnded = function handleRoundEnded(data) {
-      setGameState(data.gameState);
-      setRoundResults({
-        winner: data.winner,
-        winningSubmission: data.winningSubmission,
-        nextHostName: data.nextHostName,
-        isGameOver: data.isGameOver
-      });
-    };
-
-    // The TV started a different game: this one is over
-    var handleRoomClosed = function handleRoomClosed(_ref2) {
-      var message = _ref2.message;
-      navigate('/home', {
-        state: {
-          toastMessage: message || 'That game has ended.'
-        }
-      });
-    };
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('room_closed', handleRoomClosed);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('sync_game_state', handleSync);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('room_updated', handleRoomUpdate);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('errorMsg', handleError);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('start_judging', handleStartJudging);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('round_ended', handleRoundEnded);
-    return function () {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('connect', joinMyRoom);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('joinError', handleJoinError); // 👈 Cleaned up here!
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('sync_game_state', handleSync);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('room_closed', handleRoomClosed);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('room_updated', handleRoomUpdate);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('errorMsg', handleError);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('start_judging', handleStartJudging);
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('round_ended', handleRoundEnded);
-    };
-  }, [roomCode, playerName]);
-
-  // 🔔 Chime when it becomes this player's turn to do something
-  var myTurn = function () {
-    if (!roomData || !playerData) return null;
-    var amJudge = playerData.isPlayerHost;
-    if (gameState === 'prompt_selection') return amJudge ? 'pick-prompt' : null;
-    if (gameState === 'writing') return !amJudge && !playerData.hasSubmitted ? 'answer' : null;
-    if (gameState === 'judging') return amJudge && submissions.length > 0 ? 'crown-winner' : null;
-    return null;
-  }();
-  var turnKey = myTurn ? "".concat(myTurn, "-").concat(roomData.currentRound) : null;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (turnKey) (0,_chime_js__WEBPACK_IMPORTED_MODULE_9__.playChime)();
-  }, [turnKey]);
-  var handleStartGame = function handleStartGame() {
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('showRules', {
-      roomCode: roomCode
-    });
-  };
-
-  // ==========================================
-  // RENDER VIEWS BASED ON GAME STATE
-  // ==========================================
-
-  // The Retry Screen
-  if (gameState === 'name_retry') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-      className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
-      className: "text-center shadow-sm w-100 border-0",
-      style: {
-        maxWidth: '400px',
-        backgroundColor: '#f8f9fa'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
-      className: "p-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
-      variant: "warning",
-      className: "fw-bold shadow-sm"
-    }, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-      className: "mb-3 text-dark"
-    }, "Try a different name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"].Control, {
-      type: "text",
-      placeholder: "New Player Name",
-      value: retryName,
-      onChange: function onChange(e) {
-        return setRetryName(e.target.value);
-      },
-      className: "mb-4 text-center fs-5 shadow-sm",
-      autoFocus: true
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
-      variant: "primary",
-      size: "lg",
-      className: "w-100 fw-bold shadow-sm",
-      disabled: !retryName.trim() // Prevents joining with a blank name
-      ,
-      onClick: function onClick() {
-        // Put the spinner back on
-        setGameState('joining');
-
-        // Fire the exact same join event, but with the NEW name
-        _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('joinRoom', {
-          roomCode: roomCode,
-          playerName: retryName.trim(),
-          playerId: localStorage.getItem('templePlayerId'),
-          avatar: (0,_avatars_jsx__WEBPACK_IMPORTED_MODULE_11__.getMyAvatar)()
-        });
-      }
-    }, "Join Room"))));
-  }
-  if (gameState === 'error') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-      className: "mt-5 text-center d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
-      variant: "danger",
-      className: "fw-bold shadow-sm",
-      style: {
-        maxWidth: '400px'
-      }
-    }, error));
-  }
-  if (gameState === 'joining' || !roomData || !playerData) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-      className: "mt-5 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
-      animation: "border",
-      variant: "primary",
-      style: {
-        width: '3rem',
-        height: '3rem'
-      }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-      className: "mt-3 text-muted"
-    }, "Connecting to room ", roomCode, "..."));
-  }
-  var isHost = playerData.isPlayerHost;
-  var hostPlayer = roomData.hostId ? roomData.players[roomData.hostId] : null;
-  var hostName = hostPlayer ? hostPlayer.name : 'the host';
-  switch (gameState) {
-    case 'lobby':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-        className: "mt-5 d-flex justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
-        className: "text-center shadow-sm w-100 border-0",
-        style: {
-          maxWidth: '400px',
-          backgroundColor: '#f8f9fa'
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
-        className: "p-4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-        className: "text-primary fw-bold mb-3"
-      }, "You're In!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-        className: "fs-6 text-muted mb-4"
-      }, "Look up at the TV."), isHost ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "p-3 border border-warning rounded bg-white shadow-sm"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-        className: "fw-bold text-dark mb-3"
-      }, "\uD83D\uDC51 You are the Room Leader"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
-        variant: roomData.expansion === 'halloween' ? 'success' : 'primary',
-        size: "lg",
-        className: "w-100 fw-bold py-3 fs-5 shadow-sm",
-        onClick: handleStartGame
-      }, "All in!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "p-3 border border-dashed rounded bg-light text-muted fs-6"
-      }, "Waiting for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, hostName), " to start the game..."))));
-    case 'rules':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-        className: "mt-5 pt-4 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-        className: "text-primary fw-bold mb-3"
-      }, "Welcome to Couch Cast Re-Shuffled!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-        className: "text-muted fw-normal"
-      }, "Keep your eyes on the TV to learn how to play."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
-        animation: "grow",
-        variant: "warning",
-        className: "mt-5"
-      }));
-    case 'prompt_selection':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledPromptSelection_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        isJudge: isHost,
-        judgeName: hostName,
-        roomCode: roomCode,
-        prompts: roomData.promptOptions
-      });
-    case 'writing':
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledWritingPlayer_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        roomCode: roomCode,
-        currentPrompt: roomData.currentPrompt,
-        endTime: roomData.endTime,
-        isJudge: isHost,
-        hasSubmitted: playerData.hasSubmitted,
-        hasUsedWriteIn: !!playerData.hasUsedWriteIn,
-        promptOptions: roomData.promptOptions,
-        judgeStars: roomData.judgeStars
-      });
-    case 'judging':
-      // 👈 WIRED UP THE JUDGE CONTROLLER
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledJudging_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        roomCode: roomCode,
-        isJudge: isHost,
-        currentPrompt: roomData.currentPrompt,
-        endTime: roomData.endTime,
-        submissions: submissions,
-        expansion: roomData.expansion
-      });
-    case 'winner_reveal':
-      {
-        var _roundResults$winner, _roundResults$winning, _roundResults$winner2;
-        // Every phone shows this round's winning card (no more "look at the TV")
-        var didIWin = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner = roundResults.winner) === null || _roundResults$winner === void 0 ? void 0 : _roundResults$winner.id) === playerData.id;
-        var winnerName = (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winning = roundResults.winningSubmission) === null || _roundResults$winning === void 0 ? void 0 : _roundResults$winning.playerName) || (roundResults === null || roundResults === void 0 ? void 0 : (_roundResults$winner2 = roundResults.winner) === null || _roundResults$winner2 === void 0 ? void 0 : _roundResults$winner2.name) || 'Someone';
-        var card = roundResults !== null && roundResults !== void 0 && roundResults.winningSubmission ? (0,_CouchCast_fillBlank_js__WEBPACK_IMPORTED_MODULE_10__.fillBlank)(roomData.currentPrompt, roundResults.winningSubmission.answer) : null;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-          className: "mt-5 d-flex justify-content-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
-          className: "text-center shadow-sm w-100 border-0 ".concat(didIWin ? 'bg-success text-white' : 'bg-light'),
-          style: {
-            maxWidth: '400px'
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"].Body, {
-          className: "p-4 p-sm-5"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-          className: "display-1 mb-2"
-        }, didIWin ? '🏆' : '🎉'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-          className: "fw-bold mb-3 ".concat(didIWin ? '' : 'text-primary')
-        }, didIWin ? 'You Won!' : "".concat(winnerName, " wins!")), card && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "rounded p-3 mb-3 text-start fs-5 ".concat(didIWin ? 'bg-white text-dark' : 'bg-white border')
-        }, card.hasBlank ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, card.before, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-          className: "text-primary"
-        }, card.answer), card.after) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "text-muted mb-2"
-        }, card.before), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-          className: "text-primary"
-        }, card.answer))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-          className: "mb-0 ".concat(didIWin ? '' : 'text-muted')
-        }, didIWin ? 'The judge loved your answer.' : '+100 points'))));
-      }
-    case 'scoreboard':
-      // The players just wait here passively. The backend timer will automatically 
-      // kick everyone back to 'prompt_selection' after a few seconds!
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReshuffledScoreboard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        playerData: playerData,
-        players: Object.values(roomData.players),
-        isGameOver: roundResults === null || roundResults === void 0 ? void 0 : roundResults.isGameOver
-      });
-    default:
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-        className: "mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_18__["default"], {
-        animation: "grow",
-        variant: "warning"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-        className: "mt-3 text-muted"
-      }, "Wait for it..."));
-  }
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledPromptSelection.jsx":
-/*!***************************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledPromptSelection.jsx ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledPromptSelection)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function ReshuffledPromptSelection(_ref) {
-  var isCastScreen = _ref.isCastScreen,
-    isJudge = _ref.isJudge,
-    judgeName = _ref.judgeName,
-    roomCode = _ref.roomCode,
-    _ref$prompts = _ref.prompts,
-    prompts = _ref$prompts === void 0 ? [] : _ref$prompts;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(15),
-    _useState2 = _slicedToArray(_useState, 2),
-    timeLeft = _useState2[0],
-    setTimeLeft = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    selectedPrompt = _useState4[0],
-    setSelectedPrompt = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState6 = _slicedToArray(_useState5, 2),
-    highlightIndex = _useState6[0],
-    setHighlightIndex = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
-    _useState8 = _slicedToArray(_useState7, 2),
-    isPortrait = _useState8[0],
-    setIsPortrait = _useState8[1];
-
-  // Track device orientation for the TV display
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var handleResize = function handleResize() {
-      return setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return function () {
-      return window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  // Helper to safely extract text from MongoDB objects
-  var getPromptText = function getPromptText(p) {
-    if (!p) return "";
-    if (typeof p === 'string') return p;
-    return p.prompt || p.text || "Unknown Prompt";
-  };
-
-  // --- LOGIC: The Countdown & Auto-Pick / Auto-Submit ---
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (timeLeft <= 0) {
-      if (isJudge && prompts.length > 0) {
-        // Time's up: pick randomly if the judge never tapped one.
-        // If they did tap and we're still here, the pick didn't land, so send it again.
-        var promptToSubmit = selectedPrompt || prompts[Math.floor(Math.random() * prompts.length)];
-        _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('select_prompt', {
-          roomCode: roomCode,
-          selectedPrompt: promptToSubmit,
-          autoPicked: !selectedPrompt
-        });
-      }
-      return;
-    }
-    var timer = setInterval(function () {
-      setTimeLeft(function (prev) {
-        return prev - 1;
-      });
-    }, 1000);
-    return function () {
-      return clearInterval(timer);
-    };
-  }, [timeLeft, isJudge, prompts, roomCode, selectedPrompt]);
-
-  // A tap from the screen before (e.g. "All in!") can leave the browser treating the
-  // button now under that finger as focused, which paints it grey as if it were picked
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!isCastScreen && document.activeElement instanceof HTMLElement) document.activeElement.blur();
-  }, [isCastScreen]);
-
-  // How long the TV spotlight rests on each prompt before moving to the next (ms)
-  var HIGHLIGHT_MS = 1500;
-
-  // --- LOGIC: The TV Juggling Effect ---
-  // Depends on "is the clock running", not the seconds themselves,
-  // so the spotlight timer isn't restarted on every tick
-  var isCounting = timeLeft > 0;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!isCastScreen || !isCounting || prompts.length === 0) return;
-    var roulette = setInterval(function () {
-      setHighlightIndex(function (prev) {
-        return (prev + 1) % prompts.length;
-      });
-    }, HIGHLIGHT_MS);
-    return function () {
-      return clearInterval(roulette);
-    };
-  }, [isCastScreen, isCounting, prompts.length]);
-
-  // Tapping a prompt picks it straight away (no separate submit button)
-  var handlePromptPick = function handlePromptPick(promptObj) {
-    if (selectedPrompt) return;
-    setSelectedPrompt(promptObj);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('select_prompt', {
-      roomCode: roomCode,
-      selectedPrompt: promptObj
-    });
-  };
-
-  // ==========================================
-  // 1. CAST SCREEN (The TV / Shared Display)
-  // ==========================================
-  if (isCastScreen) {
-    if (prompts.length === 0) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "fullscreen-gameplay-container d-flex justify-content-center align-items-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        animation: "border",
-        variant: "light",
-        style: {
-          width: '4rem',
-          height: '4rem'
-        }
-      }));
-    }
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "fullscreen-gameplay-container"
-    }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "landscape-overlay"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-      viewBox: "0 0 24 24",
-      className: "rotate-device-icon"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-      d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-      className: "fw-bold mb-3 text-white"
-    }, "Rotate Your TV/Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "fs-5 text-white"
-    }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex flex-column h-100 p-3 pb-4 w-100 align-items-center justify-content-between"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-      className: "fullscreen-gameplay-header text-center mt-2 mb-4 flex-shrink-0"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      style: {
-        color: 'var(--gt-gold)'
-      }
-    }, judgeName), " is picking the poison..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex flex-row justify-content-center align-items-stretch w-100 gap-3 gap-md-4 px-2 px-md-5",
-      style: {
-        flexGrow: 1,
-        maxHeight: '55vh'
-      }
-    }, prompts.map(function (p, idx) {
-      var isHighlighted = highlightIndex === idx;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        key: idx,
-        className: "d-flex flex-column h-100 transition-all",
-        style: {
-          flex: '1 1 0',
-          transform: isHighlighted ? 'scale(1.05)' : 'scale(0.95)',
-          transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-          opacity: isHighlighted ? 1 : 0.6
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "h-100 w-100 shining-border-wrapper"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        className: "fullscreen-gameplay-card h-100 w-100 border-0",
-        style: {
-          backgroundColor: isHighlighted ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.25)',
-          backdropFilter: 'blur(10px)',
-          transition: 'background-color 0.5s ease-in-out'
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-        className: "d-flex align-items-center justify-content-center p-3 p-md-4 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-        className: "fw-bold m-0 ".concat(isHighlighted ? 'text-dark' : 'text-white'),
-        style: {
-          fontSize: 'clamp(1.2rem, 3vh, 2.2rem)',
-          textShadow: isHighlighted ? 'none' : '1px 1px 5px rgba(0,0,0,0.8)'
-        }
-      }, getPromptText(p))))));
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "w-100 mt-4 px-3 flex-shrink-0",
-      style: {
-        maxWidth: '800px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "display-3 fw-bold text-center text-white mb-2",
-      style: {
-        textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
-      }
-    }, timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      animated: true,
-      now: timeLeft / 15 * 100,
-      variant: timeLeft <= 5 ? 'danger' : 'light',
-      style: {
-        height: '20px',
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        backdropFilter: 'blur(5px)',
-        borderRadius: '10px'
-      }
-    }))));
-  }
-
-  // ==========================================
-  // 2. JUDGE SCREEN (The Host selecting on Mobile)
-  // ==========================================
-  if (isJudge) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "mt-4 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "shadow-sm w-100",
-      style: {
-        maxWidth: '420px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-      className: "text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-      className: "fw-bold mb-3 fs-4 text-primary"
-    }, "Set the Vibe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "text-muted mb-3"
-    }, "Tap 1 of the 3 prompts below to pick it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-      className: "fw-bold mb-4 ".concat(timeLeft <= 5 ? 'text-danger' : 'text-info')
-    }, "\u23F1\uFE0F ", timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex flex-column",
-      style: {
-        gap: '10px'
-      }
-    }, prompts.map(function (promptObj, index) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        key: index,
-        variant: selectedPrompt === promptObj ? 'primary' : 'outline-secondary',
-        className: "text-start p-3 text-wrap cc-tap-option",
-        disabled: !!selectedPrompt && selectedPrompt !== promptObj,
-        onClick: function onClick() {
-          return handlePromptPick(promptObj);
-        }
-      }, getPromptText(promptObj));
-    })))));
-  }
-
-  // ==========================================
-  // 3. PLAYER SCREEN (Waiting on Mobile)
-  // ==========================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    className: "mt-5 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-sm w-100 border-warning",
-    style: {
-      maxWidth: '420px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "text-center p-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    animation: "grow",
-    variant: "warning",
-    className: "mb-4",
-    style: {
-      width: '3rem',
-      height: '3rem'
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-    className: "fw-bold fs-4 text-dark mb-2"
-  }, "Hold Your Horses..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Text, {
-    className: "text-muted fs-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, judgeName), " is judging their options. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "(", timeLeft, "s left)"))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledRules.jsx":
-/*!*****************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledRules.jsx ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RULES_NARRATION": () => (/* binding */ RULES_NARRATION),
-/* harmony export */   "default": () => (/* binding */ ReshuffledRules)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-/* harmony import */ var _voice_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../voice.js */ "./src/voice.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-// 🎙️ What the host voice says while the rules are on screen
-var RULES_NARRATION = ["Welcome to Couch Cast Re-Shuffled! An Apples to Apples style party game, with a rotating judge.", "Here's how it works. Each round, the judge picks one of three prompts to set the vibe. Everyone else taps their funniest answer from the cards on their phone. You also get one custom write-in per game, so make it count.", "Then the judge crowns the winner. Let's get started!"];
-
-// If the voice stalls, start the game anyway this many seconds after the countdown ends
-var NARRATION_GRACE_SECONDS = 20;
-function ReshuffledRules(_ref) {
-  var roomCode = _ref.roomCode;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(30),
-    _useState2 = _slicedToArray(_useState, 2),
-    timeLeft = _useState2[0],
-    setTimeLeft = _useState2[1];
-
-  // Add state to track device orientation for the overlay
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
-    _useState4 = _slicedToArray(_useState3, 2),
-    isPortrait = _useState4[0],
-    setIsPortrait = _useState4[1];
-
-  // Listen for screen rotation
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var handleResize = function handleResize() {
-      return setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return function () {
-      return window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  // True while the host voice is still reading the rules
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-    _useState6 = _slicedToArray(_useState5, 2),
-    isNarrating = _useState6[0],
-    setIsNarrating = _useState6[1];
-  var hasStarted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-
-  // Read the rules aloud. When the voice finishes, the game starts straight away;
-  // with no voice available, the countdown below runs the show as before.
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var isCurrent = true;
-    (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.speak)(RULES_NARRATION, roomCode).then(function (wasSpoken) {
-      if (!isCurrent) return;
-      setIsNarrating(false);
-      if (wasSpoken) setTimeout(function () {
-        return isCurrent && handleNext();
-      }, 800);
-    });
-    return function () {
-      isCurrent = false;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_2__.stopVoice)();
-    };
-  }, [roomCode]);
-
-  // Run the countdown timer (it waits at zero for the voice to finish its sentence)
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (timeLeft <= 0 && (!isNarrating || timeLeft <= -NARRATION_GRACE_SECONDS)) {
-      handleNext();
-      return;
-    }
-    var timerId = setInterval(function () {
-      setTimeLeft(function (prevTime) {
-        return prevTime - 1;
-      });
-    }, 1000);
-    return function () {
-      return clearInterval(timerId);
-    };
-  }, [timeLeft, roomCode, isNarrating]);
-  var handleNext = function handleNext() {
-    if (hasStarted.current) return; // voice, countdown and Skip can all land here: only go once
-    hasStarted.current = true;
-    console.log("Sending startPromptSelection event for room: ".concat(roomCode));
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('startPromptSelection', {
-      roomCode: roomCode
-    });
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100 p-3 pb-4 w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fullscreen-gameplay-header text-center"
-  }, "How To Play Couch Cast Re-Shuffled!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-row flex-grow-1 gap-3",
-    style: {
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100",
-    style: {
-      flex: '2 1 0',
-      minWidth: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "fullscreen-gameplay-card h-100",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.6)',
-      backdropFilter: 'blur(10px)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "d-flex flex-column h-100",
-    style: {
-      padding: 'clamp(0.5rem, 3vh, 1.5rem)',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-    className: "fw-bold text-dark text-center flex-shrink-0 border-bottom border-secondary",
-    style: {
-      fontSize: 'clamp(1rem, 3.5vh, 1.8rem)',
-      paddingBottom: '0.6vh',
-      marginBottom: '1.5vh'
-    }
-  }, "RULES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column flex-grow-1 px-2 px-md-3 overflow-auto custom-scrollbar",
-    style: {
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", {
-    className: "my-auto text-secondary d-flex flex-column",
-    style: {
-      fontWeight: '500',
-      fontSize: 'clamp(0.7rem, 3.3vh, 1.3rem)',
-      lineHeight: 1.3,
-      gap: 'clamp(0.3rem, 2vh, 1rem)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-    className: "text-dark"
-  }, "Host Picks the Prompt:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Each round, one player is the Host and picks ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "1 of 3 prompts"), " to set the vibe."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-    className: "text-dark"
-  }, "Contestants Respond:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Players pick from ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "6 responses"), " to submit their funniest answer. You get 1 custom \"Write-In\" per game, so make it count!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
-    className: "text-dark"
-  }, "Host Judges the Winner:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "The Host reads all the submissions and crowns the winner of the round!"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100",
-    style: {
-      flex: '1 1 0',
-      minWidth: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper h-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "fullscreen-gameplay-card h-100",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.6)',
-      backdropFilter: 'blur(10px)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "d-flex flex-column align-items-center justify-content-between",
-    style: {
-      padding: 'clamp(0.5rem, 3vh, 1rem)',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-    className: "fw-bold text-dark mb-1 text-center flex-shrink-0",
-    style: {
-      fontSize: 'clamp(0.9rem, 2.2vh, 1.4rem)'
-    }
-  }, "GAME STARTS IN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fw-bold text-danger text-center",
-    style: {
-      fontSize: 'clamp(2.5rem, 18vh, 6rem)',
-      lineHeight: 1
-    }
-  }, Math.max(timeLeft, 0), "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "light",
-    size: "sm",
-    className: "w-100 fw-bold mt-auto py-2 shadow-sm",
-    style: {
-      fontSize: '0.9rem'
-    },
-    onClick: handleNext
-  }, "\u23ED\uFE0F Skip"))))))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledScoreboard.jsx":
-/*!**********************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledScoreboard.jsx ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledScoreboard)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-
-
-
-function ReshuffledScoreboard(_ref) {
-  var playerData = _ref.playerData,
-    players = _ref.players,
-    isGameOver = _ref.isGameOver;
-  // 👈 Catching isGameOver
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
-
-  // Determine the player's rank
-  var rankedPlayers = players.filter(function (p) {
-    return !p.isCaster;
-  }).sort(function (a, b) {
-    return b.score - a.score;
-  });
-  var myRank = rankedPlayers.findIndex(function (p) {
-    return p.id === playerData.id;
-  }) + 1;
-  var isFirstPlace = myRank === 1;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mt-4 d-flex justify-content-center pb-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "shadow-sm w-100 text-center border-0 bg-light",
-    style: {
-      maxWidth: '420px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
-    className: "bg-dark text-white py-3 border-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "mb-0 fw-bold text-uppercase",
-    style: {
-      letterSpacing: '2px'
-    }
-  }, isGameOver ? 'Game Over' : 'Current Standings')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-    className: "p-5"
-  }, isFirstPlace ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-1 mb-2"
-  }, "\uD83C\uDFC6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold text-success"
-  }, isGameOver ? 'Ultimate Champion!' : 'You are in the lead!'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-muted fw-bold"
-  }, isGameOver ? 'You destroyed the competition.' : 'Keep it up!')) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mb-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-3 mb-2"
-  }, isGameOver ? '👏' : '👀'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold text-primary"
-  }, isGameOver ? 'Good Effort.' : 'Time to catch up!'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-muted"
-  }, isGameOver ? 'But not good enough to win.' : 'You can still win this round!')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "p-3 bg-white border rounded shadow-sm mb-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fs-5 text-muted fw-bold text-uppercase mb-1"
-  }, isGameOver ? 'Final Score' : 'Current Score'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "display-4 fw-bold text-dark"
-  }, playerData.score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-2 text-secondary fw-semibold"
-  }, "Rank: #", myRank, " out of ", rankedPlayers.length)), isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "primary",
-    size: "lg",
-    className: "w-100 fw-bold py-3 shadow-sm",
-    onClick: function onClick() {
-      return navigate('/');
-    }
-  }, "Return to Hub") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-4 text-muted fw-bold d-flex flex-column align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    animation: "border",
-    variant: "secondary",
-    className: "mb-3"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Look at the TV! Next round starting soon...")))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledScoreboardTV.jsx":
-/*!************************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledScoreboardTV.jsx ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledScoreboardTV)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function ReshuffledScoreboardTV(_ref) {
-  var players = _ref.players,
-    isGameOver = _ref.isGameOver,
-    _ref$nextLabel = _ref.nextLabel,
-    nextLabel = _ref$nextLabel === void 0 ? 'Next round starting soon...' : _ref$nextLabel,
-    headline = _ref.headline,
-    endActions = _ref.endActions;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isPortrait = _useState2[0],
-    setIsPortrait = _useState2[1];
-
-  // Filter out the Caster and sort the rest by score (highest to lowest)
-  // To this (add the fallback):
-  var rankedPlayers = (players || []).filter(function (p) {
-    return !(p !== null && p !== void 0 && p.isCaster);
-  }).sort(function (a, b) {
-    return ((b === null || b === void 0 ? void 0 : b.score) || 0) - ((a === null || a === void 0 ? void 0 : a.score) || 0);
-  });
-  var leader = rankedPlayers[0];
-
-  // More players = more columns, so the whole table fits on the TV without scrolling
-  var columnCount = rankedPlayers.length <= 3 ? 1 : rankedPlayers.length <= 8 ? 2 : 3;
-  var rowCount = Math.max(1, Math.ceil(rankedPlayers.length / columnCount));
-
-  // Detect if the device is in portrait mode
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var checkOrientation = function checkOrientation() {
-      setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-
-    // Check immediately on mount
-    checkOrientation();
-
-    // Listen for resizes or orientation changes
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', checkOrientation);
-    return function () {
-      window.removeEventListener('resize', checkOrientation);
-      window.removeEventListener('orientationchange', checkOrientation);
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 text-center flex-shrink-0 px-3",
-    style: {
-      maxWidth: '800px',
-      marginBottom: '1.5vh'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper",
-    style: {
-      borderRadius: '15px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "border-0 text-white w-100 frosted-glass-panel",
-    style: {
-      borderRadius: '10px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    style: {
-      padding: 'clamp(0.3rem, 1.5vh, 1rem) 1rem'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-0 text-uppercase",
-    style: {
-      color: 'var(--gt-gold)',
-      letterSpacing: '2px',
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
-      fontSize: 'clamp(0.85rem, 3.2vh, 1.5rem)'
-    }
-  }, isGameOver ? 'Final Standings' : 'Current Scores'), headline && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "fw-bold text-white mb-0",
-    style: {
-      fontSize: 'clamp(1rem, 4.5vh, 2.2rem)',
-      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
-    }
-  }, headline), !headline && leader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "fw-bold text-white mb-0",
-    style: {
-      fontSize: 'clamp(1rem, 4.5vh, 2.2rem)',
-      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
-    }
-  }, (leader.score || 0) === 0 ? isGameOver ? "It's a tie... nobody scored!" : 'No points on the board yet!' : "\uD83D\uDC51 ".concat(isGameOver ? "".concat(leader.name, " Wins the Game!") : "".concat(leader.name, " is in the lead!"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 flex-grow-1 px-3",
-    style: {
-      maxWidth: columnCount === 1 ? '750px' : '1100px',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "h-100 overflow-auto custom-scrollbar",
-    style: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gridTemplateColumns: "repeat(".concat(columnCount, ", minmax(0, 1fr))"),
-      gridTemplateRows: "repeat(".concat(rowCount, ", minmax(0, auto))"),
-      alignContent: 'center',
-      gap: 'clamp(0.25rem, 1.2vh, 0.75rem) 0.75rem'
-    }
-  }, rankedPlayers.map(function (player, index) {
-    var isLeader = index === 0;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      key: player.id,
-      className: "d-flex justify-content-between align-items-center ".concat(isLeader ? 'shadow' : 'frosted-glass-panel'),
-      style: {
-        // The leader's row is solid white so it stands out from the glass rows
-        backgroundColor: isLeader ? 'rgba(255, 255, 255, 0.92)' : undefined,
-        borderRadius: '12px',
-        padding: 'clamp(0.25rem, 1.4vh, 0.9rem) clamp(0.6rem, 2vh, 1.25rem)',
-        minWidth: 0
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex align-items-center text-start",
-      style: {
-        minWidth: 0
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fw-bold me-2 me-md-3 flex-shrink-0 ".concat(isLeader ? 'text-primary' : 'text-white-50'),
-      style: {
-        fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)'
-      }
-    }, "#", index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_avatars_jsx__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
-      id: player.avatar,
-      name: player.name,
-      size: 72,
-      className: "me-2 me-md-3",
-      style: {
-        width: 'clamp(44px, 9vh, 88px)',
-        height: 'clamp(44px, 9vh, 88px)'
-      }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fw-bold text-truncate ".concat(isLeader ? 'text-dark' : 'text-white'),
-      style: {
-        fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)',
-        textShadow: isLeader ? 'none' : '1px 1px 3px rgba(0,0,0,0.8)'
-      }
-    }, player.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      bg: isLeader ? 'primary' : 'light',
-      text: isLeader ? 'light' : 'dark',
-      className: "rounded-pill shadow-sm fw-bold flex-shrink-0 ms-2",
-      style: {
-        fontSize: 'clamp(0.75rem, 3vh, 1.25rem)',
-        padding: '0.8vh 1.6vh'
-      }
-    }, player.score, " pts"));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex-shrink-0 text-center w-100",
-    style: {
-      marginTop: '1.5vh',
-      paddingBottom: '1.75rem'
-    }
-  }, isGameOver ? endActions || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-white fw-semibold m-0",
-    style: {
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
-      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
-    }
-  }, "Thanks for playing! Close the room to start a new game.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex align-items-center justify-content-center text-white opacity-90"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    animation: "border",
-    size: "sm",
-    className: "me-2 text-primary"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "m-0 fw-semibold",
-    style: {
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
-      fontSize: 'clamp(1rem, 2vh, 1.3rem)'
-    }
-  }, nextLabel))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledTile.jsx":
-/*!****************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledTile.jsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledTile)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-/**
- * 🔀 Game tile for Couch Cast Re-Shuffled, drawn in code to match the List Cast and Trivia Cast tiles:
- * a blue glass square with a couch, two cards being shuffled above it, and the game's name.
- */
-function ReshuffledTile(_ref) {
-  var _ref$className = _ref.className,
-    className = _ref$className === void 0 ? 'w-100 h-100' : _ref$className,
-    style = _ref.style;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 200 200",
-    className: className,
-    style: _objectSpread({
-      display: 'block'
-    }, style),
-    role: "img",
-    "aria-label": "Couch Cast Re-Shuffled"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("linearGradient", {
-    id: "rsTileBg",
-    x1: "0",
-    y1: "0",
-    x2: "0",
-    y2: "1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
-    offset: "0",
-    stopColor: "#5d7fe8"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("stop", {
-    offset: "1",
-    stopColor: "#3550c8"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    width: "200",
-    height: "200",
-    fill: "url(#rsTileBg)"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", {
-    fill: "none",
-    stroke: "#fff",
-    strokeWidth: "5",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "60",
-    y: "12",
-    width: "34",
-    height: "46",
-    rx: "6",
-    transform: "rotate(-14 77 35)"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "106",
-    y: "12",
-    width: "34",
-    height: "46",
-    rx: "6",
-    transform: "rotate(14 123 35)"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M74 88 C 92 88, 104 70, 122 70",
-    strokeWidth: "4"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M74 70 C 92 70, 104 88, 122 88",
-    strokeWidth: "4"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M116 64 L123 70 L116 76",
-    strokeWidth: "4"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M116 82 L123 88 L116 94",
-    strokeWidth: "4"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M54 118 V110 a8 8 0 0 1 8 -8 H138 a8 8 0 0 1 8 8 V118"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "40",
-    y: "114",
-    width: "18",
-    height: "24",
-    rx: "6"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
-    x: "142",
-    y: "114",
-    width: "18",
-    height: "24",
-    rx: "6"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M58 122 H142 V138 H58"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M52 138 V146 M148 138 V146"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("text", {
-    x: "100",
-    y: "176",
-    textAnchor: "middle",
-    fill: "#fff",
-    fontSize: "23",
-    fontWeight: "700",
-    fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
-  }, "Re-Shuffled"));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledWinnerRevealTV.jsx":
-/*!**************************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledWinnerRevealTV.jsx ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledWinnerRevealTV)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Badge.js");
-/* harmony import */ var react_confetti__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-confetti */ "./node_modules/react-confetti/dist/react-confetti.mjs");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function ReshuffledWinnerRevealTV(_ref) {
-  var currentPrompt = _ref.currentPrompt,
-    winner = _ref.winner,
-    winningSubmission = _ref.winningSubmission,
-    nextHostName = _ref.nextHostName,
-    isGameOver = _ref.isGameOver;
-  // Track both the window size (for confetti) and device orientation (for overlay)
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      width: window.innerWidth,
-      height: window.innerHeight
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    windowDimensions = _useState2[0],
-    setWindowDimensions = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerHeight > window.innerWidth),
-    _useState4 = _slicedToArray(_useState3, 2),
-    isPortrait = _useState4[0],
-    setIsPortrait = _useState4[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var handleResize = function handleResize() {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-      setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return function () {
-      return window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_confetti__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    width: windowDimensions.width,
-    height: windowDimensions.height,
-    numberOfPieces: 600,
-    recycle: false,
-    gravity: 0.15,
-    initialVelocityY: 20,
-    style: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      zIndex: 9999,
-      pointerEvents: 'none'
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, "\n                    @keyframes popIn {\n                        0% { transform: scale(0.8); opacity: 0; }\n                        80% { transform: scale(1.05); opacity: 1; }\n                        100% { transform: scale(1); opacity: 1; }\n                    }\n                    .animate-pop-in {\n                        animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;\n                    }\n                "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column h-100 p-3 pb-4 w-100 align-items-center justify-content-center text-center",
-    style: {
-      zIndex: 10
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold text-uppercase flex-shrink-0",
-    style: {
-      color: '#ffd700',
-      letterSpacing: '4px',
-      textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
-      fontSize: 'clamp(1.1rem, 5vh, 2.5rem)',
-      marginBottom: '2vh'
-    }
-  }, "And the winner is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper animate-pop-in w-100",
-    style: {
-      maxWidth: '900px',
-      height: 'auto',
-      minHeight: 0,
-      marginBottom: '2vh'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "fullscreen-gameplay-card",
-    style: {
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      backdropFilter: 'blur(15px)',
-      border: '3px solid #198754',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "d-flex flex-column align-items-center justify-content-center text-center",
-    style: {
-      padding: 'clamp(0.5rem, 3.5vh, 3rem)',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "fst-italic text-dark",
-    style: {
-      fontSize: 'clamp(0.8rem, 3.6vh, 1.8rem)',
-      marginBottom: '2vh'
-    }
-  }, "\"", (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.text) || currentPrompt, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "fw-bold text-dark px-3",
-    style: {
-      fontSize: ((winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.answer) || '').length > 45 ? 'clamp(1rem, 5vh, 2.6rem)' : 'clamp(1.2rem, 7vh, 3.5rem)',
-      lineHeight: 1.15,
-      marginBottom: '2vh'
-    }
-  }, "\"", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.answer, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
-    className: "w-75 mx-auto opacity-50 border-secondary flex-shrink-0",
-    style: {
-      marginTop: 0,
-      marginBottom: '2vh'
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    bg: "success",
-    className: "shadow-sm rounded-pill flex-shrink-0",
-    style: {
-      fontSize: 'clamp(0.9rem, 4vh, 2rem)',
-      padding: '1.5vh 3vh',
-      marginBottom: '1.5vh'
-    }
-  }, "\uD83C\uDF89 ", winningSubmission === null || winningSubmission === void 0 ? void 0 : winningSubmission.playerName, " \uD83C\uDF89"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fw-bold text-dark flex-shrink-0",
-    style: {
-      fontSize: 'clamp(0.9rem, 3.6vh, 1.5rem)'
-    }
-  }, "Total Score: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "text-success"
-  }, winner === null || winner === void 0 ? void 0 : winner.score))))), isGameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper animate-pop-in flex-shrink-0",
-    style: {
-      animationDelay: '1.5s',
-      height: 'auto',
-      width: 'auto'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "fullscreen-gameplay-card",
-    style: {
-      backgroundColor: 'rgba(220, 53, 69, 0.8)',
-      backdropFilter: 'blur(10px)'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Body, {
-    className: "py-2 px-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    className: "text-white m-0 fw-bold",
-    style: {
-      fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)'
-    }
-  }, "Game Over! Calculating final scores...")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "text-white fw-bold m-0 flex-shrink-0 animate-pop-in",
-    style: {
-      textShadow: '1px 1px 3px rgba(0,0,0,0.5)',
-      fontSize: 'clamp(0.9rem, 3.6vh, 1.8rem)',
-      animationDelay: '1.5s',
-      opacity: 0
-    }
-  }, "Get ready! ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      color: '#ffd700'
-    }
-  }, nextHostName), " is the next Host.")));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledWritingPlayer.jsx":
-/*!*************************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledWritingPlayer.jsx ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cardForSlot": () => (/* binding */ cardForSlot),
-/* harmony export */   "default": () => (/* binding */ ReshuffledWritingPlayer)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-// 🔀 How a card reads in this prompt (see models/ReshuffledCard.js for the tags).
-// Every card can still be played; the ones that fit the blank are listed first.
-var SLOT_HINTS = {
-  thing: 'This one wants a thing',
-  action: 'This one wants something you do',
-  verb: 'This one wants something to do',
-  word: 'This one wants a name'
-};
-function cardForSlot(card, slot) {
-  var _card$forms, _card$forms2;
-  var kinds = card.kinds || [];
-  switch (slot) {
-    case 'thing':
-    case 'action':
-      return {
-        fits: kinds.includes(slot),
-        text: card.text
-      };
-    case 'verb':
-      return (_card$forms = card.forms) !== null && _card$forms !== void 0 && _card$forms.verb ? {
-        fits: true,
-        text: card.forms.verb
-      } : {
-        fits: false,
-        text: card.text
-      };
-    case 'word':
-      return (_card$forms2 = card.forms) !== null && _card$forms2 !== void 0 && _card$forms2.bare ? {
-        fits: true,
-        text: card.forms.bare
-      } : {
-        fits: false,
-        text: card.text
-      };
-    default:
-      return {
-        fits: true,
-        text: card.text
-      };
-  }
-}
-var LONG_PRESS_MS = 500;
-
-/** One card in the hand: tap to play it, press and hold for its alternates (when it has any) */
-function HandCard(_ref) {
-  var card = _ref.card,
-    text = _ref.text,
-    fits = _ref.fits,
-    onPlay = _ref.onPlay,
-    onLongPress = _ref.onLongPress;
-  var timer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var didLongPress = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-  var hasAlternates = (card.alternates || []).length > 0;
-  var startPress = function startPress() {
-    didLongPress.current = false;
-    if (!hasAlternates) return;
-    timer.current = setTimeout(function () {
-      didLongPress.current = true;
-      if (navigator.vibrate) navigator.vibrate(15);
-      onLongPress(card);
-    }, LONG_PRESS_MS);
-  };
-  var endPress = function endPress() {
-    return clearTimeout(timer.current);
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    variant: "outline-secondary"
-    // text-dark: the outline button's hover turns text white, which vanishes on this white card
-    ,
-    className: "text-start p-3 text-wrap fw-bold shadow-sm bg-white text-dark cc-tap-option d-flex justify-content-between align-items-center gap-2 ".concat(fits ? '' : 'opacity-75'),
-    style: {
-      WebkitTouchCallout: 'none',
-      userSelect: 'none'
-    },
-    onPointerDown: startPress,
-    onPointerUp: endPress,
-    onPointerLeave: endPress,
-    onPointerCancel: endPress,
-    onContextMenu: function onContextMenu(e) {
-      if (hasAlternates) e.preventDefault();
-    },
-    onClick: function onClick() {
-      if (!didLongPress.current) onPlay(text);
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, text), hasAlternates && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "small text-muted fw-normal flex-shrink-0",
-    "aria-hidden": "true",
-    title: "Press and hold for more"
-  }, "\u22EF"));
-}
-
-/** ⭐ The judge's job while everyone writes: star the prompts that made them laugh (for an All-Stars deck) */
-function PromptStars(_ref2) {
-  var roomCode = _ref2.roomCode,
-    _ref2$promptOptions = _ref2.promptOptions,
-    promptOptions = _ref2$promptOptions === void 0 ? [] : _ref2$promptOptions,
-    _ref2$judgeStars = _ref2.judgeStars,
-    judgeStars = _ref2$judgeStars === void 0 ? [] : _ref2$judgeStars,
-    currentPrompt = _ref2.currentPrompt;
-  var starred = new Set(judgeStars);
-  if (!promptOptions.length) return null;
-  var toggle = function toggle(prompt) {
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('star_prompt', {
-      roomCode: roomCode,
-      promptId: prompt._id,
-      starred: !starred.has(String(prompt._id))
-    });
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-start mt-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fw-bold text-dark mb-1"
-  }, "\u2B50 Any funny prompts?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "small text-muted mb-2"
-  }, "Star as many as you like. The best ones go in an All-Stars deck."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column gap-2"
-  }, promptOptions.map(function (prompt) {
-    var isStarred = starred.has(String(prompt._id));
-    var isPicked = String(prompt._id) === String(currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt._id);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      key: prompt._id,
-      variant: isStarred ? 'warning' : 'outline-secondary',
-      className: "text-start p-2 text-wrap d-flex align-items-start gap-2",
-      "aria-pressed": isStarred,
-      onClick: function onClick() {
-        return toggle(prompt);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fs-5 lh-1",
-      "aria-hidden": "true"
-    }, isStarred ? '★' : '☆'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "small fw-bold"
-    }, prompt.text, isPicked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "d-block fw-normal text-muted"
-    }, "(this round's prompt)")));
-  })));
-}
-function ReshuffledWritingPlayer(_ref3) {
-  var roomCode = _ref3.roomCode,
-    currentPrompt = _ref3.currentPrompt,
-    endTime = _ref3.endTime,
-    isJudge = _ref3.isJudge,
-    hasSubmitted = _ref3.hasSubmitted,
-    hasUsedWriteIn = _ref3.hasUsedWriteIn,
-    promptOptions = _ref3.promptOptions,
-    judgeStars = _ref3.judgeStars;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(60),
-    _useState2 = _slicedToArray(_useState, 2),
-    timeLeft = _useState2[0],
-    setTimeLeft = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    writeIn = _useState4[0],
-    setWriteIn = _useState4[1];
-
-  // NEW: State to hold the real database cards
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState6 = _slicedToArray(_useState5, 2),
-    playerHand = _useState6[0],
-    setPlayerHand = _useState6[1];
-
-  // Timer Sync
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!endTime) return;
-    var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
-      setTimeLeft(remaining > 0 ? remaining : 0);
-    };
-    updateTime();
-    var timer = setInterval(updateTime, 1000);
-    return function () {
-      return clearInterval(timer);
-    };
-  }, [endTime]);
-
-  // NEW: Fetch hand from the backend
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!isJudge && !hasSubmitted) {
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('request_hand');
-      _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.on('receive_hand', function (data) {
-        setPlayerHand(data.hand);
-      });
-    }
-    return function () {
-      return _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.off('receive_hand');
-    };
-  }, [isJudge, hasSubmitted]);
-  var getPromptText = function getPromptText(p) {
-    if (!p) return "";
-    if (typeof p === 'string') return p;
-    return p.prompt || p.text || "Unknown Prompt";
-  };
-
-  // Tapping a card plays it straight away, in the wording shown on it
-  var handlePlayCard = function handlePlayCard(card) {
-    var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : card.text;
-    setAlternatesFor(null);
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('submit_answer', {
-      roomCode: roomCode,
-      answer: text,
-      cardId: card._id,
-      usedWriteIn: false
-    });
-  };
-
-  // 🔀 The prompt's blank decides how each card reads, and which ones go to the top
-  var slot = (currentPrompt === null || currentPrompt === void 0 ? void 0 : currentPrompt.slot) || 'any';
-  var shownHand = playerHand.map(function (card) {
-    return _objectSpread({
-      card: card
-    }, cardForSlot(card, slot));
-  });
-  var goodFits = shownHand.filter(function (c) {
-    return c.fits;
-  });
-  var wildCards = shownHand.filter(function (c) {
-    return !c.fits;
-  });
-
-  // Press and hold: the card's funny alternates
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState8 = _slicedToArray(_useState7, 2),
-    alternatesFor = _useState8[0],
-    setAlternatesFor = _useState8[1];
-
-  // The write-in is the only answer that needs a send button
-  var handleSendWriteIn = function handleSendWriteIn(e) {
-    e.preventDefault();
-    var answer = writeIn.trim();
-    if (!answer) return;
-    _socket__WEBPACK_IMPORTED_MODULE_1__.reshuffledSocket.emit('submit_answer', {
-      roomCode: roomCode,
-      answer: answer,
-      usedWriteIn: true
-    });
-  };
-
-  // ==========================================
-  // 1. JUDGE VIEW (Waiting for answers)
-  // ==========================================
-  if (isJudge) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "shadow-sm w-100 border-primary",
-      style: {
-        maxWidth: '420px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-      className: "text-center p-4"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-      className: "text-primary fw-bold mb-3"
-    }, "You set the vibe!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-      className: "text-dark mb-4"
-    }, "\"", getPromptText(currentPrompt), "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      animation: "border",
-      variant: "primary",
-      className: "mb-3"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "text-muted"
-    }, "Waiting for players to submit their answers..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-      className: "fw-bold mt-4 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-info')
-    }, "\u23F1\uFE0F ", timeLeft, "s"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PromptStars, {
-      roomCode: roomCode,
-      promptOptions: promptOptions,
-      judgeStars: judgeStars,
-      currentPrompt: currentPrompt
-    }))));
-  }
-
-  // ==========================================
-  // 2. PLAYER VIEW (Answer Locked In)
-  // ==========================================
-  if (hasSubmitted) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "mt-5 d-flex justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "shadow-sm w-100 bg-success text-white border-0",
-      style: {
-        maxWidth: '420px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-      className: "text-center p-5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-      className: "display-1 mb-3"
-    }, "\u2705"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-      className: "fw-bold mb-3"
-    }, "Answer Locked!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      className: "fs-5"
-    }, "Waiting for the rest of the room..."))));
-  }
-
-  // ==========================================
-  // 3. PLAYER VIEW (Currently Writing)
-  // ==========================================
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "mt-4 pb-4 d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "shadow-sm w-100 border-0",
-    style: {
-      maxWidth: '450px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
-    className: "bg-primary text-white text-center py-4 border-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-    className: "mb-0 fw-bold lh-base"
-  }, getPromptText(currentPrompt))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-    className: "p-4 bg-light"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-between align-items-center mb-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fw-bold text-muted text-uppercase small"
-  }, "Tap your answer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fw-bold fs-5 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-info')
-  }, "\u23F1\uFE0F ", timeLeft, "s")), SLOT_HINTS[slot] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "small text-muted mb-3"
-  }, "\uD83D\uDCA1 ", SLOT_HINTS[slot], ", so those cards are on top."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex flex-column gap-2"
-  }, playerHand.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center py-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    animation: "border",
-    variant: "secondary"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "text-muted mt-2 mb-0"
-  }, "Drawing cards...")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, goodFits.map(function (_ref4) {
-    var card = _ref4.card,
-      text = _ref4.text;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HandCard, {
-      key: card._id,
-      card: card,
-      text: text,
-      fits: true,
-      onPlay: function onPlay(t) {
-        return handlePlayCard(card, t);
-      },
-      onLongPress: setAlternatesFor
-    });
-  }), wildCards.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "text-center small text-muted text-uppercase fw-bold mt-2"
-  }, goodFits.length ? 'Wild cards (might read funny)' : 'Your cards'), wildCards.map(function (_ref5) {
-    var card = _ref5.card,
-      text = _ref5.text;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HandCard, {
-      key: card._id,
-      card: card,
-      text: text,
-      fits: false,
-      onPlay: function onPlay(t) {
-        return handlePlayCard(card, t);
-      },
-      onLongPress: setAlternatesFor
-    });
-  })), !hasUsedWriteIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "shadow-sm mt-2 border-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-    className: "p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    onSubmit: handleSendWriteIn
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-    type: "text",
-    placeholder: "\u270D\uFE0F Write your own (1 per game)",
-    value: writeIn,
-    onChange: function onChange(e) {
-      return setWriteIn(e.target.value);
-    },
-    className: "fw-bold border-0 shadow-none fs-5 py-2",
-    maxLength: 60,
-    "aria-label": "Custom write-in answer"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    type: "submit",
-    variant: writeIn.trim() ? 'success' : 'secondary',
-    className: "fw-bold px-3 rounded",
-    disabled: !writeIn.trim(),
-    "aria-label": "Send write-in answer"
-  }, "Send")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    show: !!alternatesFor,
-    onHide: function onHide() {
-      return setAlternatesFor(null);
-    },
-    centered: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Header, {
-    closeButton: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Title, {
-    className: "fs-5"
-  }, "Play it another way")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
-    className: "d-flex flex-column gap-2"
-  }, alternatesFor && [alternatesFor].concat(_toConsumableArray((alternatesFor.alternates || []).map(function (alt) {
-    return _objectSpread(_objectSpread({}, alt), {}, {
-      kinds: alternatesFor.kinds
-    });
-  }))).map(function (version) {
-    return cardForSlot(version, slot).text;
-  }).map(function (text, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      key: i,
-      variant: i === 0 ? 'outline-secondary' : 'outline-primary',
-      className: "text-start p-3 text-wrap fw-bold",
-      onClick: function onClick() {
-        return handlePlayCard(alternatesFor, text);
-      }
-    }, text);
-  }))));
-}
-
-/***/ }),
-
-/***/ "./src/features/Reshuffled/ReshuffledWritingTV.jsx":
-/*!*********************************************************!*\
-  !*** ./src/features/Reshuffled/ReshuffledWritingTV.jsx ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ReshuffledWritingTV)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ProgressBar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-function ReshuffledWritingTV(_ref) {
-  var currentPrompt = _ref.currentPrompt,
-    endTime = _ref.endTime,
-    players = _ref.players,
-    hostId = _ref.hostId,
-    _ref$defaultDuration = _ref.defaultDuration,
-    defaultDuration = _ref$defaultDuration === void 0 ? 60 : _ref$defaultDuration;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(defaultDuration),
-    _useState2 = _slicedToArray(_useState, 2),
-    timeLeft = _useState2[0],
-    setTimeLeft = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(defaultDuration),
-    _useState4 = _slicedToArray(_useState3, 2),
-    totalTime = _useState4[0],
-    setTotalTime = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    isPortrait = _useState6[0],
-    setIsPortrait = _useState6[1];
-
-  // Sync timer perfectly with the backend's absolute endTime and compute total duration
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!endTime) return;
-    var initialRemaining = Math.floor((endTime - Date.now()) / 1000);
-    var calculatedTotal = initialRemaining > 0 ? initialRemaining : defaultDuration;
-    setTotalTime(calculatedTotal);
-    var updateTime = function updateTime() {
-      var remaining = Math.floor((endTime - Date.now()) / 1000);
-      setTimeLeft(remaining > 0 ? remaining : 0);
-    };
-    updateTime(); // Run once immediately
-    var timer = setInterval(updateTime, 1000);
-    return function () {
-      return clearInterval(timer);
-    };
-  }, [endTime, defaultDuration]);
-
-  // Detect if the device is in portrait mode
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var checkOrientation = function checkOrientation() {
-      setIsPortrait(window.innerHeight > window.innerWidth);
-    };
-
-    // Check immediately on mount
-    checkOrientation();
-
-    // Listen for resizes or orientation changes
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', checkOrientation);
-    return function () {
-      window.removeEventListener('resize', checkOrientation);
-      window.removeEventListener('orientationchange', checkOrientation);
-    };
-  }, []);
-  var getPromptText = function getPromptText(p) {
-    if (!p) return "";
-    if (typeof p === 'string') return p;
-    return p.prompt || p.text || "Unknown Prompt";
-  };
-
-  // Filter out the TV (Caster) and the Judge (Host) so we only map the writers
-  var activeWriters = (players || []).filter(function (p) {
-    return (p === null || p === void 0 ? void 0 : p.id) !== hostId && !(p !== null && p !== void 0 && p.isCaster);
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fullscreen-gameplay-container"
-  }, isPortrait && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "landscape-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    viewBox: "0 0 24 24",
-    className: "rotate-device-icon"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    d: "M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19Z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-3"
-  }, "Rotate Your Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "fs-5"
-  }, "Couch Cast Re-Shuffled is best experienced in landscape mode!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 text-center flex-shrink-0 mb-2 px-3",
-    style: {
-      maxWidth: '900px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "shining-border-wrapper",
-    style: {
-      borderRadius: '15px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "border-0 text-white w-100 frosted-glass-panel",
-    style: {
-      borderRadius: '10px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
-    className: "p-3 p-md-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "fw-bold mb-2 fs-4 text-uppercase",
-    style: {
-      color: 'var(--gt-gold)',
-      letterSpacing: '2px',
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
-    }
-  }, "The Prompt is..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "fw-bold m-0",
-    style: {
-      fontSize: 'clamp(1.2rem, 3.5vh, 2.2rem)',
-      textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
-    }
-  }, getPromptText(currentPrompt)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 my-2 px-3 flex-shrink-0",
-    style: {
-      maxWidth: '800px'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "d-flex justify-content-between align-items-center mb-1 px-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fw-bold text-white fs-5",
-    style: {
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
-    }
-  }, "Time Remaining"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "fw-bold fs-3 ".concat(timeLeft <= 10 ? 'text-danger' : 'text-white'),
-    style: {
-      textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
-    }
-  }, timeLeft, "s")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    animated: true,
-    now: timeLeft / totalTime * 100,
-    variant: timeLeft <= 10 ? 'danger' : 'light',
-    style: {
-      height: '20px',
-      backgroundColor: 'rgba(255,255,255,0.2)',
-      backdropFilter: 'blur(5px)',
-      borderRadius: '10px',
-      border: '1px solid rgba(255,255,255,0.2)'
-    }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-100 flex-grow-1 overflow-auto custom-scrollbar my-2 px-3 pb-2 d-flex justify-content-center align-items-start",
-    style: {
-      maxWidth: '1000px',
-      minHeight: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "justify-content-center g-2 w-100 m-0"
-  }, activeWriters.map(function (player) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      xs: 6,
-      md: 3,
-      key: player.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      className: "shadow-sm h-100 border-0 transition-all frosted-glass-panel ".concat(player.hasSubmitted ? 'bg-success bg-opacity-75 text-white' : 'text-white'),
-      style: {
-        transform: player.hasSubmitted ? 'scale(1.03)' : 'scale(1)',
-        transition: 'transform 0.2s ease-in-out, background-color 0.2s ease-in-out',
-        borderRadius: '12px',
-        minHeight: '80px' // 2. Reduced from 110px
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["default"].Body, {
-      className: "d-flex flex-column align-items-center justify-content-center p-2 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
-      className: "fw-bold mb-1 text-truncate w-100 fs-5",
-      style: {
-        textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
-      }
-    }, player.name), player.hasSubmitted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-      className: "fs-4 m-0",
-      style: {
-        filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))'
-      }
-    }, "\u2705") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "d-flex align-items-center gap-2 mt-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      animation: "grow",
-      variant: "light",
-      size: "sm"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", {
-      className: "text-white-50 fw-semibold"
-    }, "Writing...")))));
-  }))));
 }
 
 /***/ }),
@@ -54671,7 +51191,7 @@ var range = function range(from, to) {
     return from + i * step;
   });
 };
-var ROUND_OPTIONS = range(3, 50); // Couch Cast (TV and phones) and Re-Shuffled: rounds
+var ROUND_OPTIONS = range(3, 50); // Couch Cast (TV and phones): rounds
 var DEFAULT_ROUNDS = 3;
 var QUESTION_OPTIONS = range(5, 50, 5); // Trivia Cast (TV and phones): questions
 var DEFAULT_QUESTIONS = 5;
@@ -57213,7 +53733,7 @@ var TABS_CACHE_KEY = 'gtVisibleTabs';
 var REFRESH_MS = 30000;
 
 // Before the first answer: everything shows except the games hidden by default
-var STARTS_HIDDEN = ['reshuffled', 'town', 'spades'];
+var STARTS_HIDDEN = ['town', 'spades'];
 var readCache = function readCache(key) {
   try {
     return JSON.parse(localStorage.getItem(key));
@@ -58762,7 +55282,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "listsSocket": () => (/* binding */ listsSocket),
 /* harmony export */   "mixupSocket": () => (/* binding */ mixupSocket),
 /* harmony export */   "prompt2Socket": () => (/* binding */ prompt2Socket),
-/* harmony export */   "reshuffledSocket": () => (/* binding */ reshuffledSocket),
 /* harmony export */   "spadesSocket": () => (/* binding */ spadesSocket),
 /* harmony export */   "tictactoeSocket": () => (/* binding */ tictactoeSocket),
 /* harmony export */   "townSocket": () => (/* binding */ townSocket),
@@ -58809,11 +55328,6 @@ var triviaCastSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".c
   transports: ['websocket', 'polling'],
   autoConnect: false
 });
-// 🔀 Couch Cast Re-Shuffled (experimental)
-var reshuffledSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/reshuffled"), {
-  transports: ['websocket', 'polling'],
-  autoConnect: false
-});
 // 🎪 Temple Mix Up
 var mixupSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat(SOCKET_URL, "/mixup"), {
   transports: ['websocket', 'polling'],
@@ -58837,7 +55351,7 @@ var listsSocket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)("".concat
 
 // 🔑 Starting a room: every game's createRoom carries the sign-in token (if any), and a refused host
 // (a game or deck hidden from the public, see db/gameVisibility.js on the server) goes back to the menu
-var allSockets = [socket, tictactoeSocket, triviaSocket, prompt2Socket, couchCastSocket, triviaCastSocket, reshuffledSocket, mixupSocket, townSocket, spadesSocket, listsSocket];
+var allSockets = [socket, tictactoeSocket, triviaSocket, prompt2Socket, couchCastSocket, triviaCastSocket, mixupSocket, townSocket, spadesSocket, listsSocket];
 allSockets.forEach(function (s) {
   var send = s.emit.bind(s);
   s.emit = function (event, data) {

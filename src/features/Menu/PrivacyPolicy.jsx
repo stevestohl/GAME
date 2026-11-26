@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
 
                     <h2>What we keep</h2>
                     <p>
-                        In Couch Cast (on a TV or just phones), Couch Cast Re-Shuffled and Trivia Cast, we save a record of each round: the room code,
+                        In Couch Cast (on a TV or just phones) and Trivia Cast, we save a record of each round: the room code,
                         your nickname, a random player ID, the card or answer you played (including answers you typed), how long you took,
                         and the points. When you're the judge, we also save which prompt you picked. We use these records only to make
                         the games better, for example to find the prompts and cards people enjoy and the questions that are too hard.

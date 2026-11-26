@@ -93,10 +93,6 @@ export default function UniversalJoinScreen() {
                 // Spades (A for the ace of spades)
                 targetRoute = `/spades?room=${code}&role=guest&name=${name}`;
                 break;
-            case 'S':
-                // Couch Cast Re-Shuffled (experimental)
-                targetRoute = `/reshuffled?room=${code}&role=guest&name=${name}`;
-                break;
             case 'Q':
                 targetRoute = `/triviacast?room=${code}&role=guest&name=${name}`;
                 break;

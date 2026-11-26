@@ -5,7 +5,6 @@ import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import joinImg from '../../assets/logos/Join_Room_Button.jpeg';
 import TriviaCastTile from '../TriviaCast/TriviaCastTile.jsx';
 import { ListCastTile } from '../Lists/ListTiles.jsx';
-import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
 import TownTile from '../Town/TownTile.jsx';
 import SpadesTile from '../Spades/SpadesTile.jsx';
@@ -135,12 +134,6 @@ const GAME_ROWS = [
         id: 'tictactoe', phonesOnly: true, title: 'Tic-Tac-Toe', players: '2 players', to: '/tictactoe-create', label: 'Start a Tic-Tac-Toe game',
         description: 'The timeless classic, head to head. Take turns on your own phones: first to get three in a row wins.',
         tile: <TicTacToeTile />,
-    },
-    {
-        // 🔀 Hidden from the public until its next version is ready (switch it on from the Games tab in /admin)
-        id: 'reshuffled', title: 'Couch Cast Re-Shuffled', players: '3+ players', to: '/reshuffled-decks', label: 'Choose a Couch Cast Re-Shuffled deck',
-        description: 'Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank.',
-        tile: <ReshuffledTile />,
     },
 ];
 

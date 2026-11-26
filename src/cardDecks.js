@@ -117,7 +117,7 @@ export const MIXUP_DECKS = [
 
 // How long a game can be: picked on each setup screen from a list (the phone's own picker), up to 50
 const range = (from, to, step = 1) => Array.from({ length: Math.floor((to - from) / step) + 1 }, (_, i) => from + i * step);
-export const ROUND_OPTIONS = range(3, 50);             // Couch Cast (TV and phones) and Re-Shuffled: rounds
+export const ROUND_OPTIONS = range(3, 50);             // Couch Cast (TV and phones): rounds
 export const DEFAULT_ROUNDS = 3;
 export const QUESTION_OPTIONS = range(5, 50, 5);       // Trivia Cast (TV and phones): questions
 export const DEFAULT_QUESTIONS = 5;
