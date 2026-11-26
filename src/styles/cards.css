@@ -985,6 +985,35 @@
     opacity: 0.9;
 }
 
+/* 📺📱 TV or just phones: two big glass buttons at the top of a setup screen, the same look as the rounds pills */
+.gt-playmode { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+.gt-playmode-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.4rem;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #fff;
+    font-weight: 800;
+    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);
+    opacity: 0.55;
+    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.gt-playmode-option.selected {
+    opacity: 1;
+    border-color: var(--gt-gold);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);
+}
+.gt-playmode-option:active:not(:disabled) { transform: scale(0.96); }
+.gt-playmode-option:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }
+.gt-playmode-icon { font-size: 1.25rem; line-height: 1; }
+
+/* A small line under a game's description on the menu (e.g. it also plays on just phones) */
+.gt-row-note { margin-top: 0.3rem; font-size: 0.72rem; font-weight: 700; color: var(--gt-blue-600, #3d4db7); }
+
 /* Three decks side by side (Trivia): tighten the text so it still fits on a phone */
 .cc-deck-card.compact { aspect-ratio: 4 / 7; padding: 0.5rem 0.3rem; gap: 0.25rem; }
 .cc-deck-card.compact .cc-deck-tag { font-size: 0.48rem; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; }

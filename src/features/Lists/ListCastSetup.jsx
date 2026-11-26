@@ -8,17 +8,21 @@ import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { LIST_DECKS, LIST_ROUND_OPTIONS } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, SetupDivider } from '../Menu/PlayMode.jsx';
 
 /**
  * 📺📝 List Cast setup.
- * Sits between the home page button and the game: says what List Cast is,
- * then the caster picks how many rounds and which deck.
+ * Sits between the home page button and the game: says what List Cast is, whether it's on a TV or just
+ * phones (just phones starts Listopia, the same game run on the phones), then the rounds and a deck to start.
  */
 export default function ListCastSetup() {
-    const { visibleDecks } = useGameVisibility();
+    const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(LIST_ROUND_OPTIONS[0]);
+    const { mode, choose, canChoose } = usePlayMode({ tv: canSeeGame('listcast'), phones: canSeeGame('listopia') });
+    const host = useHostName();
+    const onPhones = mode === 'phones';
 
     // Global Scroll Unlock Safety Net (same as Home)
     useEffect(() => {
@@ -32,6 +36,10 @@ export default function ListCastSetup() {
         preloadLobbyMusic('listCast');
         preloadLobbyMusic('halloween');
     }, []);
+
+    const start = (deckId) => createListRoom(navigate, setIsCreatingRoom, onPhones
+        ? { mode: 'phones', expansion: deckId, totalRounds, playerName: host.finalName() }
+        : { mode: 'cast', expansion: deckId, totalRounds });
 
     return (
         <div className="page-container">
@@ -51,19 +59,31 @@ export default function ListCastSetup() {
                                         <span className="text-muted fw-normal small ms-2">3+ players</span>
                                     </div>
                                     <div className="small text-secondary lh-sm">
-                                        Everyone writes a list on their phone. Matching answers get crossed out on the TV, then you vote on the rest. Cast one extra device to the TV as the main screen.
+                                        {onPhones
+                                            ? 'Everyone writes a list on their phone. Matching answers get crossed out, then you vote on the rest, all on your phones. No TV needed.'
+                                            : 'Everyone writes a list on their phone. Matching answers get crossed out on the TV, then you vote on the rest. Cast one extra device to the TV as the main screen.'}
                                     </div>
                                 </Col>
                             </Row>
                         </Card.Body>
                     </Card>
 
-                    <div className="d-flex align-items-center my-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Many Rounds?</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
+                    {canChoose && (
+                        <>
+                            <SetupDivider className="my-2">Where Are You Playing?</SetupDivider>
+                            <PlayModeSwitch mode={mode} onChange={choose} disabled={isCreatingRoom} hidden={{ tv: isGameHidden('listcast'), phones: isGameHidden('listopia') }} />
+                            <p className="small text-muted text-center mt-1 mb-0">{playModeHint(mode)}</p>
+                        </>
+                    )}
 
+                    {onPhones && (
+                        <>
+                            <SetupDivider>Your Nickname</SetupDivider>
+                            <HostNameField name={host.name} setName={host.setName} disabled={isCreatingRoom} />
+                        </>
+                    )}
+
+                    <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>How Many Rounds?</SetupDivider>
                     <RoundsPicker
                         label="Rounds"
                         options={LIST_ROUND_OPTIONS}
@@ -72,21 +92,18 @@ export default function ListCastSetup() {
                         disabled={isCreatingRoom}
                     />
 
-                    <div className="d-flex align-items-center mt-3 mb-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">Then Tap a Deck to Start</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
+                    <SetupDivider>Then Tap a Deck to Start</SetupDivider>
 
+                    {/* 📝 List decks: each version has its own deck switches in /admin */}
                     <Row className="g-2">
-                        {visibleDecks('listcast', LIST_DECKS).map((deck, i) => (
+                        {visibleDecks(onPhones ? 'listopia' : 'listcast', LIST_DECKS).map((deck, i) => (
                             <Col xs={6} key={deck.id}>
                                 <DeckCard
                                     deck={deck}
                                     index={i}
                                     disabled={isCreatingRoom}
-                                    onClick={() => createListRoom(navigate, setIsCreatingRoom, { mode: 'cast', expansion: deck.id, totalRounds })}
-                                    ariaLabel={`Create a List Cast room with the ${deck.title} lists`}
+                                    onClick={() => start(deck.id)}
+                                    ariaLabel={`Start a List Cast game ${onPhones ? 'on just phones' : 'on the TV'} with the ${deck.title} lists`}
                                 />
                             </Col>
                         ))}

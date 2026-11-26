@@ -18,16 +18,17 @@ export const GAMES = [
     { id: 'town', name: 'Temple Town', section: 'Game-Cast', decks: [], defaultHidden: true },
     // ♠️ New: hidden until the owner switches it on
     { id: 'spades', name: 'Spades', section: 'Game-Cast', decks: [], defaultHidden: true },
-    { id: 'trivia', name: 'Trivia', section: 'Game-Temple', decks: TRIVIA_DECKS },
-    { id: 'prompt2', name: 'Prompt 2', section: 'Game-Temple', decks: CARD_DECKS },
-    { id: 'listopia', name: 'Listopia', section: 'Game-Temple', decks: LIST_DECKS },
-    { id: 'tictactoe', name: 'Tic-Tac-Toe', section: 'Game-Temple', decks: [] },
+    // 📱 Just phones: Trivia, Prompt 2 and Listopia start from Trivia Cast's, Couch Cast's and List Cast's setup
+    // screens when "Just phones" is picked; Tic-Tac-Toe has its own row on the menu
+    { id: 'trivia', name: 'Trivia (Trivia Cast on phones)', section: 'Just phones', decks: TRIVIA_DECKS },
+    { id: 'prompt2', name: 'Prompt 2 (Couch Cast on phones)', section: 'Just phones', decks: CARD_DECKS },
+    { id: 'listopia', name: 'Listopia (List Cast on phones)', section: 'Just phones', decks: LIST_DECKS },
+    { id: 'tictactoe', name: 'Tic-Tac-Toe', section: 'Just phones', decks: [] },
 ];
 
 // The tabs in the nav bar. Hiding one only takes its button away: its page and games still work from a direct link.
 export const SITE_TABS = [
     { id: 'home', name: 'Game-Cast' },
-    { id: 'temple', name: 'Game-Temple' },
     { id: 'barhome', name: 'Bar Training' },
 ];
 

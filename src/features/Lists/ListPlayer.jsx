@@ -532,7 +532,7 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
                     )}
 
                     {room.isGameOver ? (
-                        <Button variant="primary" className="w-100 fw-bold" onClick={() => navigate(isListopia ? '/temple' : '/home')}>
+                        <Button variant="primary" className="w-100 fw-bold" onClick={() => navigate('/home')}>
                             Back to Home
                         </Button>
                     ) : (

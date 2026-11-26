@@ -4,21 +4,26 @@ import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import { handleCreateCouchCast } from './CouchCastCreate.jsx';
+import { handleCreatePrompt2Room } from '../Prompt2/prompt2Create.js';
 import { preloadLobbyMusic } from './lobbyMusic.js';
 import { CARD_DECKS, ROUND_OPTIONS } from '../../cardDecks.js';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
+import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, SetupDivider } from '../Menu/PlayMode.jsx';
 
 /**
- * 🛋️ Couch Cast deck selection.
- * Sits between the home page button and the game: shows what Couch Cast is,
- * then lets the caster pick which card deck (expansion) the room will use.
+ * 🛋️ Couch Cast setup.
+ * Sits between the home page button and the game: shows what Couch Cast is, whether it's on a TV or just
+ * phones (just phones starts Prompt 2, the same game run on the phones), then the rounds and a deck to start.
  */
 export default function CouchCastDeckSelect() {
-    const { visibleDecks } = useGameVisibility();
+    const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
+    const { mode, choose, canChoose } = usePlayMode({ tv: canSeeGame('couchcast'), phones: canSeeGame('prompt2') });
+    const host = useHostName();
+    const onPhones = mode === 'phones';
 
     // Global Scroll Unlock Safety Net (same as Home)
     useEffect(() => {
@@ -33,6 +38,10 @@ export default function CouchCastDeckSelect() {
         preloadLobbyMusic('halloween');
         preloadLobbyMusic('holiday');
     }, []);
+
+    const start = (deckId) => (onPhones
+        ? handleCreatePrompt2Room(host.finalName(), navigate, setIsCreatingRoom, deckId, totalRounds)
+        : handleCreateCouchCast(null, navigate, setIsCreatingRoom, deckId, totalRounds));
 
     return (
         <div className="page-container">
@@ -60,19 +69,30 @@ export default function CouchCastDeckSelect() {
                                         <span className="text-muted fw-normal small ms-2">3+ players</span>
                                     </div>
                                     <div className="small text-secondary lh-sm">
-                                        An Apples to Apples–style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone. Cast one extra device to the TV as the main screen.
+                                        An Apples to Apples–style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone.
+                                        {onPhones ? ' No TV needed: the whole game runs on your phones.' : ' Cast one extra device to the TV as the main screen.'}
                                     </div>
                                 </Col>
                             </Row>
                         </Card.Body>
                     </Card>
 
-                    <div className="d-flex align-items-center my-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Many Rounds?</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
+                    {canChoose && (
+                        <>
+                            <SetupDivider className="my-2">Where Are You Playing?</SetupDivider>
+                            <PlayModeSwitch mode={mode} onChange={choose} disabled={isCreatingRoom} hidden={{ tv: isGameHidden('couchcast'), phones: isGameHidden('prompt2') }} />
+                            <p className="small text-muted text-center mt-1 mb-0">{playModeHint(mode)}</p>
+                        </>
+                    )}
 
+                    {onPhones && (
+                        <>
+                            <SetupDivider>Your Nickname</SetupDivider>
+                            <HostNameField name={host.name} setName={host.setName} disabled={isCreatingRoom} />
+                        </>
+                    )}
+
+                    <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>How Many Rounds?</SetupDivider>
                     <RoundsPicker
                         options={ROUND_OPTIONS}
                         value={totalRounds}
@@ -80,22 +100,18 @@ export default function CouchCastDeckSelect() {
                         disabled={isCreatingRoom}
                     />
 
-                    <div className="d-flex align-items-center mt-3 mb-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">Then Tap a Deck to Start</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
+                    <SetupDivider>Then Tap a Deck to Start</SetupDivider>
 
-                    {/* 🃏 Card decks (expansions) */}
+                    {/* 🃏 Card decks (expansions): each version has its own deck switches in /admin */}
                     <Row className="g-2">
-                        {visibleDecks('couchcast', CARD_DECKS).map((deck, i) => (
+                        {visibleDecks(onPhones ? 'prompt2' : 'couchcast', CARD_DECKS).map((deck, i) => (
                             <Col xs={6} key={deck.id}>
                                 <DeckCard
                                     deck={deck}
                                     index={i}
                                     disabled={isCreatingRoom}
-                                    onClick={() => handleCreateCouchCast(null, navigate, setIsCreatingRoom, deck.id, totalRounds)}
-                                    ariaLabel={`Create a Couch Cast room with the ${deck.title} deck`}
+                                    onClick={() => start(deck.id)}
+                                    ariaLabel={`Start a Couch Cast game ${onPhones ? 'on just phones' : 'on the TV'} with the ${deck.title} deck`}
                                 />
                             </Col>
                         ))}

@@ -9,6 +9,7 @@ import ReshuffledTile from '../Reshuffled/ReshuffledTile.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
 import TownTile from '../Town/TownTile.jsx';
 import SpadesTile from '../Spades/SpadesTile.jsx';
+import TicTacToeTile from '../TicTacToe/TicTacToeTile.jsx';
 import GameRow from './GameRow.jsx';
 import CastPartyScene from './CastPartyScene.jsx';
 import { useGameVisibility } from '../../gameVisibility.js';
@@ -96,9 +97,57 @@ function HowToSetUp({ show, onClose }) {
     );
 }
 
+const ROW_IMG_STYLE = { objectFit: 'cover', display: 'block' };
+
+// 🎮 Every game on the menu, in order. `phones`: the id of its phone-only version (started from its setup screen).
+const GAME_ROWS = [
+    {
+        id: 'couchcast', phones: 'prompt2', title: 'Couch Cast', players: '3+ players', to: '/couchcast-decks', label: 'Set up a Couch Cast game',
+        description: 'An Apples to Apples–style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone.',
+        tile: <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={ROW_IMG_STYLE} />,
+    },
+    {
+        id: 'triviacast', phones: 'trivia', title: 'Trivia Cast', players: '2+ players', to: '/triviacast-decks', label: 'Set up a Trivia Cast game',
+        description: 'Trivia night on the big screen. Questions show on the TV and everyone answers on their phone.',
+        tile: <TriviaCastTile />,
+    },
+    {
+        id: 'mixup', title: '3 Ring Circus', players: '3+ players', to: '/mixup-setup', label: 'Set up a 3 Ring Circus game',
+        description: "Three games under one big tent: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers.",
+        tile: <MixupTile />,
+    },
+    {
+        id: 'town', title: 'Temple Town', players: '3–8 players', to: '/town-setup', label: 'Set up a Temple Town game',
+        description: 'Bid on lots in secret, build Shops and Towers, then pick where to go out each night. Visitors pay rent to the owners.',
+        tile: <TownTile />,
+    },
+    {
+        id: 'listcast', phones: 'listopia', title: 'List Cast', players: '3+ players', to: '/listcast-setup', label: 'Set up a List Cast game',
+        description: 'Write a list on your phone and try not to match anyone. Matching answers get crossed out on the TV, then everyone votes on the rest.',
+        tile: <ListCastTile />,
+    },
+    {
+        id: 'spades', title: 'Spades', players: '1–4 players', to: '/spades-setup', label: 'Set up a Spades game',
+        description: 'The classic card game, two teams of two. Bid your tricks, then make them. Bots fill any empty seats.',
+        tile: <SpadesTile />,
+    },
+    {
+        id: 'tictactoe', phonesOnly: true, title: 'Tic-Tac-Toe', players: '2 players', to: '/tictactoe-create', label: 'Start a Tic-Tac-Toe game',
+        description: 'The timeless classic, head to head. Take turns on your own phones: first to get three in a row wins.',
+        tile: <TicTacToeTile />,
+    },
+    {
+        // 🔀 Hidden from the public until its next version is ready (switch it on from the Games tab in /admin)
+        id: 'reshuffled', title: 'Couch Cast Re-Shuffled', players: '3+ players', to: '/reshuffled-decks', label: 'Choose a Couch Cast Re-Shuffled deck',
+        description: 'Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank.',
+        tile: <ReshuffledTile />,
+    },
+];
+
 /**
- * 📺 Game-Cast: the landing page. Games that put a shared screen on the TV,
- * with a party scene at the top and the "how to cast" steps a tap away.
+ * 📺 Game-Cast: the landing page, and the one list of games. Most put a shared screen on the TV (a party scene
+ * at the top, the "how to cast" steps a tap away); Couch Cast, Trivia Cast and List Cast also play on just
+ * phones (picked on their setup screen), and Tic-Tac-Toe is phones only.
  */
 export default function GameCastHome() {
     const navigate = useNavigate();
@@ -115,7 +164,7 @@ export default function GameCastHome() {
         }
     }, [location]);
 
-    // 🥷 The button burglar sneaks in and steals the divider (same as Game-Temple)
+    // 🥷 The button burglar sneaks in and steals the divider
     const [burglarActive, setBurglarActive] = useState(false);
     const [isStolen, setIsStolen] = useState(false);
     useEffect(() => {
@@ -130,12 +179,23 @@ export default function GameCastHome() {
         };
     }, []);
 
-    // Global Scroll Unlock Safety Net (same as Game-Temple)
+    // Global Scroll Unlock Safety Net
     useEffect(() => {
         document.body.style.overflow = 'unset';
         document.body.classList.remove('modal-open');
         document.body.style.paddingRight = '';
     }, []);
+
+    // 🎮 The games this person can see. A game that also comes on just phones shows if either version is open,
+    // and only reads "Hidden" when both are hidden from the public.
+    const shownToPublic = (id) => canSeeGame(id) && !isGameHidden(id);
+    const rows = GAME_ROWS
+        .filter((row) => canSeeGame(row.id) || (row.phones && canSeeGame(row.phones)))
+        .map((row) => ({
+            ...row,
+            hidden: !shownToPublic(row.id) && !(row.phones && shownToPublic(row.phones)),
+            note: row.phonesOnly ? '📱 Just phones, no TV' : row.phones && canSeeGame(row.phones) ? '📱 No TV? Plays on just phones too' : null,
+        }));
 
     const imgBtnClass = 'glass-btn w-100 h-100 p-0 overflow-hidden shadow-sm border-0';
     const gameImgBtnClass = 'glass-btn w-100 p-0 overflow-hidden shadow-sm border-0 align-self-center';
@@ -180,7 +240,7 @@ export default function GameCastHome() {
                             <hr className="flex-grow-1 my-0 opacity-25" />
                             <span className={`gt-loot mx-2 small fw-bold text-center ${isStolen ? 'stolen' : ''}`}>
                                 OR <br />
-                                Cast a New Game
+                                Start a New Game
                             </span>
                             <hr className="flex-grow-1 my-0 opacity-25" />
 
@@ -196,146 +256,31 @@ export default function GameCastHome() {
 
                         <Col xs={12}>
                             <Row className="g-1">
-                                {/* 🛋️ Couch Cast — text left, button right */}
-                                {canSeeGame('couchcast') && <GameRow
-                                    hidden={isGameHidden('couchcast')}
-                                    title="Couch Cast"
-                                    players="3+ players"
-                                    description="An Apples to Apples–style party game. A rotating judge reads a prompt and everyone secretly plays their best card from their phone."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/couchcast-decks')}
-                                        aria-label="Choose a Couch Cast deck"
-                                        style={{ '--shimmer-delay': '0.4s', ...squareStyle }}
+                                {rows.map((row, i) => (
+                                    <GameRow
+                                        key={row.id}
+                                        flip={i % 2 === 1}
+                                        hidden={row.hidden}
+                                        title={row.title}
+                                        players={row.players}
+                                        description={row.description}
+                                        note={row.note}
                                     >
-                                        <img src={couchCastImg} alt="Couch Cast" className="w-100 h-100" style={imgStyle} />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* 📺❔ Trivia Cast — button left, text right */}
-                                {canSeeGame('triviacast') && <GameRow
-                                    flip
-                                    hidden={isGameHidden('triviacast')}
-                                    title="Trivia Cast"
-                                    players="2+ players"
-                                    description="Trivia night on the big screen. Questions show on the TV and everyone answers on their phone."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/triviacast-decks')}
-                                        aria-label="Set up a Trivia Cast game"
-                                        style={{ '--shimmer-delay': '0.8s', ...squareStyle }}
-                                    >
-                                        <TriviaCastTile />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* 🎪 3 Ring Circus (Temple Mix Up) — text left, button right */}
-                                {canSeeGame('mixup') && <GameRow
-                                    hidden={isGameHidden('mixup')}
-                                    title="3 Ring Circus"
-                                    players="3+ players"
-                                    description="Three games under one big tent: caption a meme and vote for the funniest, draw and guess Pictionary-style, then match your friends' answers."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/mixup-setup')}
-                                        aria-label="Set up a 3 Ring Circus game"
-                                        style={{ '--shimmer-delay': '1.2s', ...squareStyle }}
-                                    >
-                                        <MixupTile />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* 🏙️ Temple Town: hidden from the public until it's switched on in /admin — button left, text right */}
-                                {canSeeGame('town') && <GameRow
-                                    flip
-                                    hidden={isGameHidden('town')}
-                                    title="Temple Town"
-                                    players="3–8 players"
-                                    description="Bid on lots in secret, build Shops and Towers, then pick where to go out each night. Visitors pay rent to the owners."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/town-setup')}
-                                        aria-label="Set up a Temple Town game"
-                                        style={{ '--shimmer-delay': '1.4s', ...squareStyle }}
-                                    >
-                                        <TownTile />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* 📺📝 List Cast — text left, button right */}
-                                {canSeeGame('listcast') && <GameRow
-                                    hidden={isGameHidden('listcast')}
-                                    title="List Cast"
-                                    players="3+ players"
-                                    description="Write a list on your phone and try not to match anyone. Matching answers get crossed out on the TV, then everyone votes on the rest."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/listcast-setup')}
-                                        aria-label="Set up a List Cast game"
-                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
-                                    >
-                                        <ListCastTile />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* ♠️ Spades: hidden from the public until it's switched on in /admin — button left, text right */}
-                                {canSeeGame('spades') && <GameRow
-                                    flip
-                                    hidden={isGameHidden('spades')}
-                                    title="Spades"
-                                    players="1–4 players"
-                                    description="The classic card game, two teams of two. Bid your tricks, then make them. Bots fill any empty seats."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/spades-setup')}
-                                        aria-label="Set up a Spades game"
-                                        style={{ '--shimmer-delay': '1.6s', ...squareStyle }}
-                                    >
-                                        <SpadesTile />
-                                    </Button>
-                                </GameRow>}
-
-                                {/* 🔀 Couch Cast Re-Shuffled: hidden from the public until its next version is
-                                    ready (switch it on from the Games tab in /admin). */}
-                                {canSeeGame('reshuffled') && <GameRow
-                                    hidden={isGameHidden('reshuffled')}
-                                    title="Couch Cast Re-Shuffled"
-                                    players="3+ players"
-                                    description="Our new take on Couch Cast, still in testing. Your hand always has cards that fit the prompt, and each card rewords itself to read right in the blank."
-                                >
-                                    <Button
-                                        variant="primary"
-                                        className={gameImgBtnClass}
-                                        onClick={() => navigate('/reshuffled-decks')}
-                                        aria-label="Choose a Couch Cast Re-Shuffled deck"
-                                        style={{ '--shimmer-delay': '2s', ...squareStyle }}
-                                    >
-                                        <ReshuffledTile />
-                                    </Button>
-                                </GameRow>}
+                                        <Button
+                                            variant="primary"
+                                            className={gameImgBtnClass}
+                                            onClick={() => navigate(row.to)}
+                                            aria-label={row.label}
+                                            style={{ '--shimmer-delay': `${0.4 * (i + 1)}s`, ...squareStyle }}
+                                        >
+                                            {row.tile}
+                                        </Button>
+                                    </GameRow>
+                                ))}
                             </Row>
                         </Col>
 
                         <Col xs={12} className="text-center mt-2 mb-1">
-                            <span className="small text-muted">No TV? </span>
-                            <Button variant="link" size="sm" className="p-0 fw-bold align-baseline" onClick={() => navigate('/temple')}>
-                                Play phone-only games on Game-Temple →
-                            </Button>
-                        </Col>
-
-                        <Col xs={12} className="text-center mb-1">
                             <Link to="/privacy" className="small gt-privacy-link">Privacy policy</Link>
                             <span className="small text-muted mx-2">·</span>
                             <Link to="/credits" className="small gt-privacy-link">Credits</Link>

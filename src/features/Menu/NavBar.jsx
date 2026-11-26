@@ -8,7 +8,7 @@ import { useGameVisibility } from '../../gameVisibility.js';
  * Brand on the left, pill-style section switcher on the right.
  * The active section lights up in the Join Room blue.
  *
- * Links: /home (Game-Cast, TV games), /temple (Game-Temple, phone-only games) and /barhome (bartending).
+ * Links: /home (Game-Cast: every game, on a TV or just phones) and /barhome (bartending).
  * The key at the far right is for signing in (managers and content creators).
  */
 
@@ -39,7 +39,6 @@ const MartiniIcon = () => (
 
 const LINKS = [
     { id: 'home', to: '/home', label: 'Game-Cast', Icon: CastIcon },
-    { id: 'temple', to: '/temple', label: 'Game-Temple', Icon: TempleIcon },
     { id: 'barhome', to: '/barhome', label: 'Bar Training', Icon: MartiniIcon },
 ];
 

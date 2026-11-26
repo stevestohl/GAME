@@ -4,23 +4,29 @@ import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import TriviaCastTile from './TriviaCastTile.jsx';
 import { handleCreateTriviaCast } from './TriviaCastCreate.js';
+import { handleCreateTriviaRoom } from '../Trivia/triviaCreate.js';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { TRIVIA_DECKS, QUESTION_OPTIONS } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
 import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
 import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, SetupDivider } from '../Menu/PlayMode.jsx';
 
 /**
  * 📺❔ Trivia Cast setup.
- * Sits between the home page button and the game: says what Trivia Cast is,
- * then the caster picks how many questions and which deck.
+ * Sits between the home page button and the game: says what Trivia Cast is, whether it's on a TV or just
+ * phones (just phones starts Trivia, the same quiz run on the phones), then how many questions, the level
+ * and a deck to start.
  */
 export default function TriviaCastDeckSelect() {
-    const { visibleDecks } = useGameVisibility();
+    const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
     const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
     const [level, setLevel] = useState(DEFAULT_LEVEL);
+    const { mode, choose, canChoose } = usePlayMode({ tv: canSeeGame('triviacast'), phones: canSeeGame('trivia') });
+    const host = useHostName();
+    const onPhones = mode === 'phones';
 
     // Global Scroll Unlock Safety Net (same as Home)
     useEffect(() => {
@@ -34,6 +40,10 @@ export default function TriviaCastDeckSelect() {
         preloadLobbyMusic('triviaCast');
         preloadLobbyMusic('halloween');
     }, []);
+
+    const start = (deckId) => (onPhones
+        ? handleCreateTriviaRoom(host.finalName(), navigate, setIsCreatingRoom, deckId, totalRounds, level)
+        : handleCreateTriviaCast(navigate, setIsCreatingRoom, deckId, totalRounds, level));
 
     return (
         <div className="page-container">
@@ -56,19 +66,31 @@ export default function TriviaCastDeckSelect() {
                                         <span className="text-muted fw-normal small ms-2">2+ players</span>
                                     </div>
                                     <div className="small text-secondary lh-sm">
-                                        Trivia night on the big screen. Questions show on the TV and everyone answers on their phone. Cast one extra device to the TV as the main screen.
+                                        {onPhones
+                                            ? 'Trivia night, no TV needed. Everyone answers the same questions on their own phone, and the best scores rise to the top.'
+                                            : 'Trivia night on the big screen. Questions show on the TV and everyone answers on their phone. Cast one extra device to the TV as the main screen.'}
                                     </div>
                                 </Col>
                             </Row>
                         </Card.Body>
                     </Card>
 
-                    <div className="d-flex align-items-center my-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Many Questions?</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
+                    {canChoose && (
+                        <>
+                            <SetupDivider className="my-2">Where Are You Playing?</SetupDivider>
+                            <PlayModeSwitch mode={mode} onChange={choose} disabled={isCreatingRoom} hidden={{ tv: isGameHidden('triviacast'), phones: isGameHidden('trivia') }} />
+                            <p className="small text-muted text-center mt-1 mb-0">{playModeHint(mode)}</p>
+                        </>
+                    )}
 
+                    {onPhones && (
+                        <>
+                            <SetupDivider>Your Nickname</SetupDivider>
+                            <HostNameField name={host.name} setName={host.setName} disabled={isCreatingRoom} />
+                        </>
+                    )}
+
+                    <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>How Many Questions?</SetupDivider>
                     <RoundsPicker
                         label="Questions"
                         options={QUESTION_OPTIONS}
@@ -77,31 +99,22 @@ export default function TriviaCastDeckSelect() {
                         disabled={isCreatingRoom}
                     />
 
-                    <div className="d-flex align-items-center mt-3 mb-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">What Level?</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
-
+                    <SetupDivider>What Level?</SetupDivider>
                     <LevelPicker value={level} onChange={setLevel} disabled={isCreatingRoom} />
 
-                    <div className="d-flex align-items-center mt-3 mb-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">Then Tap a Deck to Start</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
+                    <SetupDivider>Then Tap a Deck to Start</SetupDivider>
 
-                    {/* 🃏 Question decks (expansions) */}
+                    {/* 🃏 Question decks (expansions): each version has its own deck switches in /admin */}
                     <Row className="g-2">
-                        {visibleDecks('triviacast', TRIVIA_DECKS).map((deck, i) => (
+                        {visibleDecks(onPhones ? 'trivia' : 'triviacast', TRIVIA_DECKS).map((deck, i) => (
                             <Col xs={4} key={deck.id}>
                                 <DeckCard
                                     compact
                                     deck={deck}
                                     index={i}
                                     disabled={isCreatingRoom}
-                                    onClick={() => handleCreateTriviaCast(navigate, setIsCreatingRoom, deck.id, totalRounds, level)}
-                                    ariaLabel={`Create a Trivia Cast room with the ${deck.title} questions`}
+                                    onClick={() => start(deck.id)}
+                                    ariaLabel={`Start a Trivia game ${onPhones ? 'on just phones' : 'on the TV'} with the ${deck.title} questions`}
                                 />
                             </Col>
                         ))}
