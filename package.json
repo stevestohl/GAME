@@ -8,14 +8,12 @@
     "compile": "webpack",
     "watch": "webpack --watch",
     "seed:lists": "node db/seedListCategories.js",
-    "seed:reshuffled": "node db/seedReshuffled.js",
     "reshuffled:alternates": "node db/addReshuffledAlternates.js",
     "seed:memes": "node db/seedMixupMemes.js",
     "pictionary:add": "node db/addPictionaryPrompts.js",
     "admin:owner": "node db/createOwner.js",
     "seed:jeffinitely": "node db/seedJeffinitely.js",
-    "seed:holiday": "node db/seedHoliday.js",
-    "move:rounds": "node db/moveRoundHistory.js"
+    "seed:holiday": "node db/seedHoliday.js"
   },
   "type": "module",
   "keywords": [],

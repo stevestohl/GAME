@@ -10,3 +10,6 @@ audio-originals/
 # Secrets never go to GitHub (set DB and the rest in Render's Environment settings)
 .env
 .env.local
+
+# Database backups (kept locally, never committed)
+db-backups/

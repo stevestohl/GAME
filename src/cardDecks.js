@@ -3,7 +3,7 @@
 // `icon` picks the glass artwork in features/Menu/DeckCard.jsx.
 // To add a deck: add its cards to Mongo with a new expansion value, then add an entry here.
 
-// Couch Cast and Prompt 2 (the prompt2 collection)
+// Couch Cast and Prompt 2 (the cards in the couchcast_reshuffled database)
 export const CARD_DECKS = [
     {
         id: 'core',

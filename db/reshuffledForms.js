@@ -1,5 +1,5 @@
 // 🔀 Couch Cast Re-Shuffled: works out how a response card reads in each kind of blank.
-// Shared by the seed script (npm run seed:reshuffled) and the alternates import
+// Shared by the admin site's Content tab (new cards are tagged as they're saved) and the alternates import
 // (npm run reshuffled:alternates), so a card and its alternates are tagged the same way.
 //   "Taking over the world." -> kinds ['action'], forms.verb "take over the world"
 //   "A fragile ego."         -> kinds ['thing'],  forms.bare "Fragile Ego"
