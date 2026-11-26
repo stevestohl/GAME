@@ -1,12 +1,11 @@
 import { triviaSocket as socket } from '../../socket.js';
-import { QUESTION_OPTIONS } from '../../cardDecks.js';
-import { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
+import { DEFAULT_QUESTIONS, DEFAULT_LEVEL } from '../../cardDecks.js';
 
 /**
  * 📱❔ Starts a Trivia Cast room on just phones (the trivia game): whoever starts it plays too, as the host.
  * Called from the Trivia Cast setup screen when "Just phones" is picked.
  */
-export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds = QUESTION_OPTIONS[0], level = DEFAULT_LEVEL) {
+export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds = DEFAULT_QUESTIONS, level = DEFAULT_LEVEL) {
     const cleanName = playerName && playerName.trim() ? playerName.trim() : 'Host';
 
     if (!socket) {

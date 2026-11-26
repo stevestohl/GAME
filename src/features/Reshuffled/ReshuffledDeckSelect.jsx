@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import ReshuffledTile from './ReshuffledTile.jsx';
 import { handleCreateReshuffled } from './ReshuffledCreate.jsx';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
-import { CARD_DECKS, ROUND_OPTIONS } from '../../cardDecks.js';
-import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import { CARD_DECKS, ROUND_OPTIONS, DEFAULT_ROUNDS } from '../../cardDecks.js';
+import PickerPill, { numberOptions } from '../Menu/PickerPill.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
 
 /**
@@ -18,7 +18,7 @@ export default function ReshuffledDeckSelect() {
     const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
+    const [totalRounds, setTotalRounds] = useState(DEFAULT_ROUNDS);
 
     // Global Scroll Unlock Safety Net (same as Home)
     useEffect(() => {
@@ -69,12 +69,9 @@ export default function ReshuffledDeckSelect() {
                         <hr className="flex-grow-1 my-0 opacity-25" />
                     </div>
 
-                    <RoundsPicker
-                        options={ROUND_OPTIONS}
-                        value={totalRounds}
-                        onChange={setTotalRounds}
-                        disabled={isCreatingRoom}
-                    />
+                    <div className="gt-picker-row is-single">
+                        <PickerPill label="Rounds" value={totalRounds} options={numberOptions(ROUND_OPTIONS)} onChange={setTotalRounds} disabled={isCreatingRoom} />
+                    </div>
 
                     <div className="d-flex align-items-center mt-3 mb-2">
                         <hr className="flex-grow-1 my-0 opacity-25" />

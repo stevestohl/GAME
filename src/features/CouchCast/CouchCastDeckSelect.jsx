@@ -6,8 +6,8 @@ import couchCastImg from '../../assets/logos/Couch_Cast_Button.jpg';
 import { handleCreateCouchCast } from './CouchCastCreate.jsx';
 import { handleCreatePrompt2Room } from '../Prompt2/prompt2Create.js';
 import { preloadLobbyMusic } from './lobbyMusic.js';
-import { CARD_DECKS, ROUND_OPTIONS } from '../../cardDecks.js';
-import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import { CARD_DECKS, ROUND_OPTIONS, DEFAULT_ROUNDS } from '../../cardDecks.js';
+import PickerPill, { numberOptions } from '../Menu/PickerPill.jsx';
 import DeckCard from '../Menu/DeckCard.jsx';
 import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, SetupDivider } from '../Menu/PlayMode.jsx';
 
@@ -20,7 +20,7 @@ export default function CouchCastDeckSelect() {
     const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [totalRounds, setTotalRounds] = useState(ROUND_OPTIONS[0]);
+    const [totalRounds, setTotalRounds] = useState(DEFAULT_ROUNDS);
     const { mode, choose, canChoose } = usePlayMode({ tv: canSeeGame('couchcast'), phones: canSeeGame('prompt2') });
     const host = useHostName();
     const onPhones = mode === 'phones';
@@ -93,12 +93,9 @@ export default function CouchCastDeckSelect() {
                     )}
 
                     <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>How Many Rounds?</SetupDivider>
-                    <RoundsPicker
-                        options={ROUND_OPTIONS}
-                        value={totalRounds}
-                        onChange={setTotalRounds}
-                        disabled={isCreatingRoom}
-                    />
+                    <div className="gt-picker-row is-single">
+                        <PickerPill label="Rounds" value={totalRounds} options={numberOptions(ROUND_OPTIONS)} onChange={setTotalRounds} disabled={isCreatingRoom} />
+                    </div>
 
                     <SetupDivider>Then Tap a Deck to Start</SetupDivider>
 

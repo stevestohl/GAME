@@ -33,7 +33,8 @@ const activeMixupRooms = {};
 export const getMixupRoom = (roomCode) => activeMixupRooms[roomCode] || null;
 
 // --- Game settings ---
-export const ROUND_OPTIONS = [9, 12, 15];
+// A multiple of 3 (the same number of each of the three games), 3 to 48. Content repeats if a deck runs short.
+export const ROUND_OPTIONS = Array.from({ length: 16 }, (_, i) => (i + 1) * 3);
 const MIN_PLAYERS = 3;
 const ROUND_TYPES = ['meme', 'draw', 'match'];
 

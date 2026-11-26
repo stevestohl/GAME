@@ -947,44 +947,6 @@
     .glass-btn::after { animation: none; display: none; }
 }
 
-/* 🔢 Rounds picker: a row of glass pills (the games' setup screens) */
-.gt-rounds {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(0, 1fr);   /* equal pills that shrink to fit narrow phones */
-    gap: 0.4rem;
-}
-.gt-rounds-pill {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.4rem 0.25rem;
-    border-radius: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    color: #fff;
-    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px rgba(20, 31, 87, 0.25);
-    opacity: 0.55;
-    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-.gt-rounds-pill.selected {
-    opacity: 1;
-    border-color: var(--gt-gold);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);
-}
-.gt-rounds-pill:active:not(:disabled) { transform: scale(0.96); }
-.gt-rounds-pill:focus-visible { outline: 3px solid var(--gt-gold); outline-offset: 2px; }
-.gt-rounds-number { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }
-.gt-rounds-label {
-    max-width: 100%;
-    overflow: hidden;
-    font-size: 0.55rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    opacity: 0.9;
-}
-
 /* 📺📱 TV or just phones: two big glass buttons at the top of a setup screen, the same look as the rounds pills */
 .gt-playmode { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
 .gt-playmode-option {
@@ -1596,8 +1558,33 @@
   .wa-hammer, .wa-points { animation: none; }
 }
 
-/* 🎚️ The Trivia level picker (LevelPicker.jsx): words on the same pills as the round counts */
-.gt-rounds-pill.gt-level-pill { font-weight: 800; font-size: clamp(0.8rem, 3.6vw, 1rem); padding-left: 0.2rem; padding-right: 0.2rem; }
+/* 🎡 PickerPill.jsx: a choice in one glass pill that opens the phone's own picker (an invisible <select> on top).
+   Looks like a chosen rounds pill: two side by side in a row (Trivia Cast: Questions and Level). */
+.gt-picker-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+.gt-picker-row.is-single { grid-template-columns: minmax(0, 13rem); justify-content: center; }
+.gt-picker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0.35rem 0.5rem 0.4rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--gt-gold);
+    color: #fff;
+    background: linear-gradient(160deg, var(--gt-blue-300), var(--gt-blue-600));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 0 3px var(--gt-gold), 0 6px 16px rgba(20, 31, 87, 0.35);
+    cursor: pointer;
+}
+.gt-picker.is-disabled { opacity: 0.55; cursor: default; }
+.gt-picker:focus-within { outline: 3px solid #fff; outline-offset: 3px; }
+.gt-picker-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.9; }
+.gt-picker-value { display: flex; align-items: center; gap: 0.35rem; font-size: 1.35rem; font-weight: 800; line-height: 1.15; }
+.gt-picker-caret { font-size: 0.85rem; opacity: 0.85; }
+/* The real picker: invisible, covering the whole pill (16px text so iPhones don't zoom in when it opens) */
+.gt-picker-select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; font-size: 16px; cursor: pointer; appearance: none; -webkit-appearance: none; }
+.gt-picker-select:disabled { cursor: default; }
+
 
 /* ❌⭕ Tic-Tac-Toe: neon blue outlines on dark squares (TicTacToeGameScreen.jsx) */
 .ttt-square.btn, .ttt-square.btn:disabled, .ttt-square.btn:hover { background: #0a1238; border: 2px solid rgba(45, 226, 255, 0.45); opacity: 1; }

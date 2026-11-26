@@ -6,10 +6,9 @@ import TriviaCastTile from './TriviaCastTile.jsx';
 import { handleCreateTriviaCast } from './TriviaCastCreate.js';
 import { handleCreateTriviaRoom } from '../Trivia/triviaCreate.js';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
-import { TRIVIA_DECKS, QUESTION_OPTIONS } from '../../cardDecks.js';
+import { TRIVIA_DECKS, QUESTION_OPTIONS, DEFAULT_QUESTIONS, LEVEL_OPTIONS, DEFAULT_LEVEL } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
-import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
-import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import PickerPill, { numberOptions } from '../Menu/PickerPill.jsx';
 import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, SetupDivider } from '../Menu/PlayMode.jsx';
 
 /**
@@ -22,7 +21,7 @@ export default function TriviaCastDeckSelect() {
     const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [totalRounds, setTotalRounds] = useState(QUESTION_OPTIONS[0]);
+    const [totalRounds, setTotalRounds] = useState(DEFAULT_QUESTIONS);
     const [level, setLevel] = useState(DEFAULT_LEVEL);
     const { mode, choose, canChoose } = usePlayMode({ tv: canSeeGame('triviacast'), phones: canSeeGame('trivia') });
     const host = useHostName();
@@ -90,17 +89,24 @@ export default function TriviaCastDeckSelect() {
                         </>
                     )}
 
-                    <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>How Many Questions?</SetupDivider>
-                    <RoundsPicker
-                        label="Questions"
-                        options={QUESTION_OPTIONS}
-                        value={totalRounds}
-                        onChange={setTotalRounds}
-                        disabled={isCreatingRoom}
-                    />
-
-                    <SetupDivider>What Level?</SetupDivider>
-                    <LevelPicker value={level} onChange={setLevel} disabled={isCreatingRoom} />
+                    {/* How many questions and how hard, side by side: each opens the phone's own picker */}
+                    <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>Questions &amp; Level</SetupDivider>
+                    <div className="gt-picker-row">
+                        <PickerPill
+                            label="Questions"
+                            value={totalRounds}
+                            options={numberOptions(QUESTION_OPTIONS)}
+                            onChange={setTotalRounds}
+                            disabled={isCreatingRoom}
+                        />
+                        <PickerPill
+                            label="Level"
+                            value={level}
+                            options={LEVEL_OPTIONS.map(({ id, label }) => ({ value: id, label }))}
+                            onChange={setLevel}
+                            disabled={isCreatingRoom}
+                        />
+                    </div>
 
                     <SetupDivider>Then Tap a Deck to Start</SetupDivider>
 

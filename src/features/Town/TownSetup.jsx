@@ -3,11 +3,12 @@ import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import TownTile from './TownTile.jsx';
 import { createTownRoom } from './townCreate.js';
-import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import PickerPill, { numberOptions } from '../Menu/PickerPill.jsx';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { useSetBackgroundTheme } from '../Menu/backgroundTheme.js';
 
-export const TOWN_ROUND_OPTIONS = [6, 8, 10];
+// 3 to 20 rounds (the land is usually all sold within about 8; later rounds skip the land grab)
+export const TOWN_ROUND_OPTIONS = Array.from({ length: 18 }, (_, i) => i + 3);
 
 /**
  * 🏙️ Temple Town setup: what the game is and how many rounds, then start.
@@ -59,13 +60,9 @@ export default function TownSetup() {
                         <hr className="flex-grow-1 my-0 opacity-25" />
                     </div>
 
-                    <RoundsPicker
-                        label="Rounds"
-                        options={TOWN_ROUND_OPTIONS}
-                        value={totalRounds}
-                        onChange={setTotalRounds}
-                        disabled={isCreatingRoom}
-                    />
+                    <div className="gt-picker-row is-single">
+                        <PickerPill label="Rounds" value={totalRounds} options={numberOptions(TOWN_ROUND_OPTIONS)} onChange={setTotalRounds} disabled={isCreatingRoom} />
+                    </div>
                     <p className="small text-muted text-center mt-2 mb-3">
                         About {Math.round(totalRounds * 1.75)} minutes. Each round: a headline, a land grab, building, then a night out.
                     </p>

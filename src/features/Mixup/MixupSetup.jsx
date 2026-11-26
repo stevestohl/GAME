@@ -3,15 +3,17 @@ import { Card, Row, Col, Button, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import MixupTile from './MixupTile.jsx';
 import { createMixupRoom } from './mixupCreate.js';
-import LevelPicker, { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
-import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import PickerPill, { numberOptions } from '../Menu/PickerPill.jsx';
+import { LEVEL_OPTIONS, DEFAULT_LEVEL } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
 import { MIXUP_DECKS } from '../../cardDecks.js';
 import { useGameVisibility } from '../../gameVisibility.js';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
 import { useSetBackgroundTheme } from '../Menu/backgroundTheme.js';
 
-export const MIXUP_ROUND_OPTIONS = [9, 12, 15];
+// A multiple of 3 (the same number of each of the three games), 3 to 48
+export const MIXUP_ROUND_OPTIONS = Array.from({ length: 16 }, (_, i) => (i + 1) * 3);
+const DEFAULT_MIXUP_ROUNDS = 9;
 
 /**
  * 🎪 3 Ring Circus (Temple Mix Up) setup: what the game is, how many rounds, how hard, then tap a deck to start.
@@ -20,7 +22,7 @@ export default function MixupSetup() {
     const { visibleDecks } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [totalRounds, setTotalRounds] = useState(MIXUP_ROUND_OPTIONS[0]);
+    const [totalRounds, setTotalRounds] = useState(DEFAULT_MIXUP_ROUNDS);
     const [level, setLevel] = useState(DEFAULT_LEVEL);
     useSetBackgroundTheme('circus');   // 🎪 bears on unicycles, clowns and the big top
 
@@ -63,29 +65,25 @@ export default function MixupSetup() {
 
                     <div className="d-flex align-items-center my-2">
                         <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Many Rounds?</span>
+                        <span className="mx-2 small fw-bold text-muted text-uppercase">Rounds &amp; Drawing Level</span>
                         <hr className="flex-grow-1 my-0 opacity-25" />
                     </div>
 
-                    <RoundsPicker
-                        label="Rounds"
-                        options={MIXUP_ROUND_OPTIONS}
-                        value={totalRounds}
-                        onChange={setTotalRounds}
-                        disabled={isCreatingRoom}
-                    />
+                    {/* How many rounds and how hard to draw, side by side: each opens the phone's own picker */}
+                    <div className="gt-picker-row">
+                        <PickerPill label="Rounds" value={totalRounds} options={numberOptions(MIXUP_ROUND_OPTIONS)} onChange={setTotalRounds} disabled={isCreatingRoom} />
+                        <PickerPill
+                            label="Drawing level"
+                            value={level}
+                            options={LEVEL_OPTIONS.map(({ id, label }) => ({ value: id, label }))}
+                            onChange={setLevel}
+                            disabled={isCreatingRoom}
+                        />
+                    </div>
 
                     <p className="small text-muted text-center mt-2 mb-3">
                         🖼️ {each} meme rounds, then ✏️ {each} Pictionary, then 🤝 {each} Threefold.
                     </p>
-
-                    <div className="d-flex align-items-center mb-2">
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                        <span className="mx-2 small fw-bold text-muted text-uppercase">How Hard to Draw?</span>
-                        <hr className="flex-grow-1 my-0 opacity-25" />
-                    </div>
-
-                    <LevelPicker value={level} onChange={setLevel} disabled={isCreatingRoom} />
 
                     <div className="d-flex align-items-center mt-3 mb-2">
                         <hr className="flex-grow-1 my-0 opacity-25" />

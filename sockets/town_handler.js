@@ -41,7 +41,8 @@ const DRAW = [0, 50, 125];           // what each building adds to its neighborh
 const BUILD_COST = [1, 1.5];         // a Shop costs the lot's price; a Tower costs 1.5 times it on top
 
 // --- Game settings ---
-export const ROUND_OPTIONS = [6, 8, 10];
+// 3 to 20 rounds. The 20 lots are usually all sold within about 8 rounds; after that a round skips the land grab.
+export const ROUND_OPTIONS = Array.from({ length: 18 }, (_, i) => i + 3);
 const MIN_PLAYERS = 3;
 const START_CASH = 1500;
 const HOME_PAY = 100;                // staying in

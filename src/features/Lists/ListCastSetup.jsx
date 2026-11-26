@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { ListCastTile } from './ListTiles.jsx';
 import { createListRoom } from './listsCreate.js';
 import { preloadLobbyMusic } from '../CouchCast/lobbyMusic.js';
-import { LIST_DECKS, LIST_ROUND_OPTIONS } from '../../cardDecks.js';
+import { LIST_DECKS, LIST_ROUND_OPTIONS, DEFAULT_LIST_ROUNDS } from '../../cardDecks.js';
 import DeckCard from '../Menu/DeckCard.jsx';
-import RoundsPicker from '../Menu/RoundsPicker.jsx';
+import PickerPill, { numberOptions } from '../Menu/PickerPill.jsx';
 import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, SetupDivider } from '../Menu/PlayMode.jsx';
 
 /**
@@ -19,7 +19,7 @@ export default function ListCastSetup() {
     const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();
     const navigate = useNavigate();
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
-    const [totalRounds, setTotalRounds] = useState(LIST_ROUND_OPTIONS[0]);
+    const [totalRounds, setTotalRounds] = useState(DEFAULT_LIST_ROUNDS);
     const { mode, choose, canChoose } = usePlayMode({ tv: canSeeGame('listcast'), phones: canSeeGame('listopia') });
     const host = useHostName();
     const onPhones = mode === 'phones';
@@ -84,13 +84,9 @@ export default function ListCastSetup() {
                     )}
 
                     <SetupDivider className={canChoose || onPhones ? 'mt-3 mb-2' : 'my-2'}>How Many Rounds?</SetupDivider>
-                    <RoundsPicker
-                        label="Rounds"
-                        options={LIST_ROUND_OPTIONS}
-                        value={totalRounds}
-                        onChange={setTotalRounds}
-                        disabled={isCreatingRoom}
-                    />
+                    <div className="gt-picker-row is-single">
+                        <PickerPill label="Rounds" value={totalRounds} options={numberOptions(LIST_ROUND_OPTIONS)} onChange={setTotalRounds} disabled={isCreatingRoom} />
+                    </div>
 
                     <SetupDivider>Then Tap a Deck to Start</SetupDivider>
 

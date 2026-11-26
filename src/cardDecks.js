@@ -115,7 +115,20 @@ export const MIXUP_DECKS = [
     },
 ];
 
-// How long a game can be. The first number in each list is the default.
-export const ROUND_OPTIONS = [3, 5, 7, 10];        // Couch Cast and Prompt 2: rounds
-export const QUESTION_OPTIONS = [5, 10, 15, 20];   // Trivia: questions
-export const LIST_ROUND_OPTIONS = [5, 7, 10];      // List Cast and Listopia: rounds
+// How long a game can be: picked on each setup screen from a list (the phone's own picker), up to 50
+const range = (from, to, step = 1) => Array.from({ length: Math.floor((to - from) / step) + 1 }, (_, i) => from + i * step);
+export const ROUND_OPTIONS = range(3, 50);             // Couch Cast (TV and phones) and Re-Shuffled: rounds
+export const DEFAULT_ROUNDS = 3;
+export const QUESTION_OPTIONS = range(5, 50, 5);       // Trivia Cast (TV and phones): questions
+export const DEFAULT_QUESTIONS = 5;
+export const LIST_ROUND_OPTIONS = range(3, 50);        // List Cast (TV and phones): rounds
+export const DEFAULT_LIST_ROUNDS = 5;
+
+// 🎚️ How hard (Trivia Cast's questions, 3 Ring Circus's drawings)
+export const LEVEL_OPTIONS = [
+    { id: 'easy', label: 'Easy' },
+    { id: 'medium', label: 'Medium' },
+    { id: 'hard', label: 'Hard' },
+    { id: 'mixed', label: 'Mixed' },
+];
+export const DEFAULT_LEVEL = 'mixed';

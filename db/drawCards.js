@@ -41,9 +41,10 @@ export const drawCards = async (type, expansion, size, excludeIds = []) => {
     return [...cards, ...extras];
 };
 
-// How many rounds (or trivia questions) a game runs for.
-// Anything missing or out of range falls back to the default.
-export const normalizeRounds = (rounds, fallback = 3, max = 20) => {
+// How many rounds (or trivia questions) a game runs for: 1 to 50 (the setup screens offer from 3 or 5 up).
+// Long games are fine: Couch Cast shuffles a used-up deck back in, trivia borrows from other levels and core,
+// and List Cast has more than 50 topics. Anything missing or out of range falls back to the default.
+export const normalizeRounds = (rounds, fallback = 3, max = 50) => {
     const count = Number(rounds);
     return Number.isInteger(count) && count >= 1 && count <= max ? count : fallback;
 };

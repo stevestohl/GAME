@@ -19,7 +19,7 @@ const activeSpadesRooms = {};
 export const getSpadesRoom = (roomCode) => activeSpadesRooms[roomCode] || null;
 
 // --- Game settings ---
-export const TARGET_OPTIONS = [200, 300, 500];
+export const TARGET_OPTIONS = [100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000];
 const DEFAULT_TARGET = 300;
 const MIN_PLAYERS = 1;
 const SEATS = [0, 1, 2, 3];
