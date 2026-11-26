@@ -1,7 +1,7 @@
 import { prompt2Socket } from '../../socket.js';
 
 /**
- * 📱🃏 Starts a Prompt 2 room (Couch Cast with just phones): whoever starts it plays too, as the host.
+ * 📱🃏 Starts a Couch Cast room on just phones (the prompt2 game): whoever starts it plays too, as the host.
  * Called from the Couch Cast setup screen when "Just phones" is picked.
  */
 export function handleCreatePrompt2Room(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds) {

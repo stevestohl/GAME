@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * 🔢 "How long should the game be?" picker: a row of glass pills, one per option.
- * Used on the Couch Cast, Prompt 2 and Trivia setup screens.
+ * Used on the games' setup screens.
  */
 export default function RoundsPicker({ label = 'Rounds', options, value, onChange, disabled }) {
     return (

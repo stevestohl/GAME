@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * ♠️ Game tile for Spades, drawn in code to match the other cast tiles: card-table green, two fanned cards in
+ * ♠️ Game tile for Spades, drawn in code to match the other cast tiles: the same blue, two fanned cards in
  * white line art with a big spade on the front one, and the name.
  */
 export default function SpadesTile({ className = 'w-100 h-100', style }) {
@@ -9,8 +9,8 @@ export default function SpadesTile({ className = 'w-100 h-100', style }) {
         <svg viewBox="0 0 200 200" className={className} style={{ display: 'block', ...style }} role="img" aria-label="Spades">
             <defs>
                 <linearGradient id="spTileBg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#24935f" />
-                    <stop offset="1" stopColor="#0f5c3a" />
+                    <stop offset="0" stopColor="#5d7fe8" />
+                    <stop offset="1" stopColor="#3550c8" />
                 </linearGradient>
             </defs>
             <rect width="200" height="200" fill="url(#spTileBg)" />
@@ -18,7 +18,7 @@ export default function SpadesTile({ className = 'w-100 h-100', style }) {
                 {/* The card behind, tipped left */}
                 <rect x="52" y="34" width="64" height="90" rx="8" transform="rotate(-12 84 79)" />
                 {/* The card in front, tipped right */}
-                <rect x="84" y="30" width="64" height="90" rx="8" transform="rotate(10 116 75)" fill="#0f5c3a" />
+                <rect x="84" y="30" width="64" height="90" rx="8" transform="rotate(10 116 75)" fill="#4e6ddc" />
             </g>
             {/* A spade on the front card */}
             <path

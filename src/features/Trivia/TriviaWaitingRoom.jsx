@@ -7,7 +7,7 @@ export default function TriviaWaitingRoom({ roomCode, role, players = [], socket
     return (
         <TempleWaitingRoom
             game="trivia"
-            title="Trivia"
+            title="Trivia Cast"
             roomCode={roomCode}
             players={players}
             meId={socketId}

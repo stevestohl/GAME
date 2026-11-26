@@ -5,7 +5,7 @@ import ContentGrid from './ContentGrid.jsx';
 
 /**
  * 🃏 The Content tab: pick which content to edit (only what this account manages), then the grid.
- * Each "source" is one collection that one or more games share (e.g. Couch Cast & Prompt 2 cards).
+ * Each "source" is one collection that one or more games share (e.g. Couch Cast cards, played on a TV or just phones).
  */
 export default function ContentPage() {
     const [sources, setSources] = useState(null);

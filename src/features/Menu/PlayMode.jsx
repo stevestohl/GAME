@@ -5,7 +5,8 @@ import { getRandomFunnyName } from '../../funnyNames.js';
 
 /**
  * 📺📱 TV or just phones: the choice at the top of a game's setup screen, for the games that come both ways
- * (Couch Cast / Prompt 2, Trivia Cast / Trivia, List Cast / Listopia). Under the hood they stay separate games;
+ * (Couch Cast, Trivia Cast and List Cast; their phone versions are the games with ids prompt2, trivia and listopia).
+ * Under the hood they stay separate games;
  * the choice picks which one a deck starts. It's remembered on this device, so it's usually already right.
  * `?play=phones` in the address (the old Game-Temple links) picks phones.
  */

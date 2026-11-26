@@ -18,14 +18,14 @@ import CouchCastScoreboard, { preloadBurglar } from '../CouchCast/CouchCastScore
 const blankList = (size) => Array.from({ length: size }, () => '');
 
 /**
- * 📱 A player's phone in List Cast and Listopia.
+ * 📱 A player's phone in List Cast, on a TV or just phones.
  *   mode 'cast'   (List Cast): the TV shows the big picture; the phone is for writing and voting.
- *   mode 'phones' (Listopia):  there's no TV, so the phone shows everything, including everyone's lists.
+ *   mode 'phones' (just phones): there's no TV, so the phone shows everything, including everyone's lists.
  */
 export default function ListPlayer({ roomCode, playerName, mode }) {
     const navigate = useNavigate();
     const isListopia = mode === 'phones';
-    const gameName = isListopia ? 'Listopia' : 'List Cast';
+    const gameName = 'List Cast';
 
     const [room, setRoom] = useState(null);
     const [error, setError] = useState('');
@@ -261,11 +261,11 @@ export default function ListPlayer({ roomCode, playerName, mode }) {
                 ));
             }
 
-            // Listopia: no TV, so this phone shows the code for everyone else
+            // Just phones: no TV, so this phone shows the code for everyone else
             return (
                 <TempleWaitingRoom
                     game="listopia"
-                    title="Listopia"
+                    title="List Cast"
                     roomCode={roomCode}
                     players={connected}
                     meId={me.id}

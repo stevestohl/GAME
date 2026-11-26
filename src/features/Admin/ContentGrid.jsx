@@ -10,7 +10,7 @@ const MAX_PICTURE_MB = 10;
 const formatDate = (value) => (value ? new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '—');
 
 /**
- * 🃏 One content source (e.g. Couch Cast & Prompt 2 cards) as a grid: 30 rows a page, a search box,
+ * 🃏 One content source (e.g. Couch Cast cards) as a grid: 30 rows a page, a search box,
  * filter dropdowns and sorting on the column headers, and add / edit / delete. The server limits
  * everything to the decks this account manages, so admins only ever see their own decks.
  */

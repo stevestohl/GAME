@@ -7,7 +7,7 @@ export default function Prompt2Lobby({ roomCode, players = [], isHost }) {
     return (
         <TempleWaitingRoom
             game="prompt2"
-            title="Prompt 2"
+            title="Couch Cast"
             roomCode={roomCode}
             players={players}
             meId={socket.id}

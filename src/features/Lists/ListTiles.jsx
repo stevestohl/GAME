@@ -49,23 +49,3 @@ export function ListCastTile({ className = 'w-100 h-100', style }) {
         </svg>
     );
 }
-
-/** 📱📝 Listopia: blue, two phones with lists */
-export function ListopiaTile({ className = 'w-100 h-100', style }) {
-    return (
-        <svg viewBox="0 0 200 200" className={className} style={{ display: 'block', ...style }} role="img" aria-label="Listopia">
-            <defs>
-                <linearGradient id="lpTileBg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#5d7fe8" />
-                    <stop offset="1" stopColor="#3550c8" />
-                </linearGradient>
-            </defs>
-            <rect width="200" height="200" fill="url(#lpTileBg)" />
-            <g fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
-                {listIcon(36, 34)}
-                <g transform="rotate(10 132 74)">{listIcon(100, 34)}</g>
-            </g>
-            {tileText('Listopia')}
-        </svg>
-    );
-}

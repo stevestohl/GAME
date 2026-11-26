@@ -5,7 +5,7 @@ import LibraryReport from './LibraryReport.jsx';
 
 /**
  * 📊 The Dashboard tab, in two parts:
- *   Performance -> how content does in games (the Couch Cast & Prompt 2 answers judges pick the most)
+ *   Performance -> how content does in games (the Couch Cast answers judges pick the most, TV and phones)
  *   Library     -> how much content there is (LibraryReport.jsx)
  */
 const VIEW_KEY = 'gtAdminDashboardView';   // the part last looked at, so coming back to the Dashboard keeps it
@@ -52,7 +52,7 @@ function TopResponses() {
                     <div>
                         <h5 className="text-dark mb-0">🏆 Top 10 favorite responses</h5>
                         <div className="small text-muted">
-                            Couch Cast &amp; Prompt 2: how many times the judge picked each answer
+                            Couch Cast, on a TV or just phones: how many times the judge picked each answer
                             {data?.decks ? ` (your decks: ${data.decks.join(', ')})` : ''}
                         </div>
                     </div>

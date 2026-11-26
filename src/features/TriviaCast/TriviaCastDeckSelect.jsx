@@ -15,7 +15,7 @@ import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, 
 /**
  * 📺❔ Trivia Cast setup.
  * Sits between the home page button and the game: says what Trivia Cast is, whether it's on a TV or just
- * phones (just phones starts Trivia, the same quiz run on the phones), then how many questions, the level
+ * phones (just phones starts its phone version, the game with id trivia), then how many questions, the level
  * and a deck to start.
  */
 export default function TriviaCastDeckSelect() {

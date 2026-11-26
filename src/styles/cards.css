@@ -947,7 +947,7 @@
     .glass-btn::after { animation: none; display: none; }
 }
 
-/* 🔢 Rounds picker: a row of glass pills (Couch Cast, Prompt 2 and Trivia setup) */
+/* 🔢 Rounds picker: a row of glass pills (the games' setup screens) */
 .gt-rounds {
     display: grid;
     grid-auto-flow: column;

@@ -13,7 +13,7 @@ import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, 
 /**
  * 📺📝 List Cast setup.
  * Sits between the home page button and the game: says what List Cast is, whether it's on a TV or just
- * phones (just phones starts Listopia, the same game run on the phones), then the rounds and a deck to start.
+ * phones (just phones starts its phone version, the game with id listopia), then the rounds and a deck to start.
  */
 export default function ListCastSetup() {
     const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();

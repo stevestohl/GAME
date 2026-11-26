@@ -7,10 +7,10 @@
 export const ROLES = ['owner', 'admin'];
 
 export const MANAGED_GAMES = [
-    { id: 'couchcast', name: 'Couch Cast & Prompt 2', content: 'Prompt and response cards' },
+    { id: 'couchcast', name: 'Couch Cast', content: 'Prompt and response cards' },
     { id: 'reshuffled', name: 'Couch Cast Re-Shuffled', content: 'Tagged cards, alternates and prompt stars' },
-    { id: 'triviacast', name: 'Trivia Cast & Trivia', content: 'Trivia questions' },
-    { id: 'listcast', name: 'List Cast & Listopia', content: 'List topics' },
+    { id: 'triviacast', name: 'Trivia Cast', content: 'Trivia questions' },
+    { id: 'listcast', name: 'List Cast', content: 'List topics' },
     { id: 'mixup', name: '3 Ring Circus', content: 'Memes and Pictionary prompts' },
 ];
 

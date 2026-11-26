@@ -9,20 +9,21 @@ const TRIVIA_DECKS = [{ id: 'core', name: 'Core' }, { id: 'halloween', name: 'Ha
 const LIST_DECKS = [{ id: 'core', name: 'Core Lists' }, { id: 'halloween', name: 'Halloween' }];
 
 export const GAMES = [
-    { id: 'couchcast', name: 'Couch Cast', section: 'Game-Cast', decks: [...CARD_DECKS, { id: 'holiday', name: 'Holiday', defaultHidden: true }, { id: 'jeffinitely', name: 'Jeffinitely', defaultHidden: true }] },
-    { id: 'triviacast', name: 'Trivia Cast', section: 'Game-Cast', decks: TRIVIA_DECKS },
-    { id: 'listcast', name: 'List Cast', section: 'Game-Cast', decks: LIST_DECKS },
-    { id: 'mixup', name: '3 Ring Circus', section: 'Game-Cast', decks: [{ id: 'core', name: 'Core Deck' }, { id: 'holiday', name: 'Holiday', defaultHidden: true }] },
-    { id: 'reshuffled', name: 'Couch Cast Re-Shuffled', section: 'Game-Cast', decks: CARD_DECKS, defaultHidden: true },
+    { id: 'couchcast', name: 'Couch Cast', section: 'On a TV', decks: [...CARD_DECKS, { id: 'holiday', name: 'Holiday', defaultHidden: true }, { id: 'jeffinitely', name: 'Jeffinitely', defaultHidden: true }] },
+    { id: 'triviacast', name: 'Trivia Cast', section: 'On a TV', decks: TRIVIA_DECKS },
+    { id: 'listcast', name: 'List Cast', section: 'On a TV', decks: LIST_DECKS },
+    { id: 'mixup', name: '3 Ring Circus', section: 'On a TV', decks: [{ id: 'core', name: 'Core Deck' }, { id: 'holiday', name: 'Holiday', defaultHidden: true }] },
+    { id: 'reshuffled', name: 'Couch Cast Re-Shuffled', section: 'On a TV', decks: CARD_DECKS, defaultHidden: true },
     // 🏙️ New: hidden until the owner switches it on
-    { id: 'town', name: 'Temple Town', section: 'Game-Cast', decks: [], defaultHidden: true },
+    { id: 'town', name: 'Temple Town', section: 'On a TV', decks: [], defaultHidden: true },
     // ♠️ New: hidden until the owner switches it on
-    { id: 'spades', name: 'Spades', section: 'Game-Cast', decks: [], defaultHidden: true },
-    // 📱 Just phones: Trivia, Prompt 2 and Listopia start from Trivia Cast's, Couch Cast's and List Cast's setup
-    // screens when "Just phones" is picked; Tic-Tac-Toe has its own row on the menu
-    { id: 'trivia', name: 'Trivia (Trivia Cast on phones)', section: 'Just phones', decks: TRIVIA_DECKS },
-    { id: 'prompt2', name: 'Prompt 2 (Couch Cast on phones)', section: 'Just phones', decks: CARD_DECKS },
-    { id: 'listopia', name: 'Listopia (List Cast on phones)', section: 'Just phones', decks: LIST_DECKS },
+    { id: 'spades', name: 'Spades', section: 'On a TV', decks: [], defaultHidden: true },
+    // 📱 Just phones: the phone versions of Couch Cast, Trivia Cast and List Cast (started from their setup screens
+    // when "Just phones" is picked; their ids are the old game names, kept so saved stats and switches still match).
+    // Tic-Tac-Toe has its own row on the menu.
+    { id: 'prompt2', name: 'Couch Cast', section: 'Just phones', decks: CARD_DECKS },
+    { id: 'trivia', name: 'Trivia Cast', section: 'Just phones', decks: TRIVIA_DECKS },
+    { id: 'listopia', name: 'List Cast', section: 'Just phones', decks: LIST_DECKS },
     { id: 'tictactoe', name: 'Tic-Tac-Toe', section: 'Just phones', decks: [] },
 ];
 

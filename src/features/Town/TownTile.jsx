@@ -9,8 +9,8 @@ export default function TownTile({ className = 'w-100 h-100', style }) {
         <svg viewBox="0 0 200 200" className={className} style={{ display: 'block', ...style }} role="img" aria-label="Temple Town">
             <defs>
                 <linearGradient id="ttTileBg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#2fb39a" />
-                    <stop offset="1" stopColor="#13806f" />
+                    <stop offset="0" stopColor="#5d7fe8" />
+                    <stop offset="1" stopColor="#3550c8" />
                 </linearGradient>
             </defs>
             <rect width="200" height="200" fill="url(#ttTileBg)" />

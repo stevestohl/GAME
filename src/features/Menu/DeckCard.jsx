@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * 🃏 One card deck (expansion), drawn as a tall glass playing card.
- * Used on the Couch Cast deck page and the Prompt 2 and Trivia create screens.
+ * Used on the games' setup screens.
  *
  * Pass `selected` (true/false) to use it as a pick-one toggle;
  * leave it undefined for a plain "tap to go" button.

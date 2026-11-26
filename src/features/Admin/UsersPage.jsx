@@ -7,7 +7,7 @@ const KNOWN_DECKS = ['core', 'halloween', 'holiday', 'animals', 'jeffinitely'];
 
 /**
  * 👥 Owner only: the admin accounts. Each admin manages a list of game + deck pairs
- * ("Couch Cast & Prompt 2: jeffinitely"); the owner can do everything.
+ * ("Couch Cast: jeffinitely"); the owner can do everything.
  */
 export default function UsersPage({ me, catalog }) {
     const [users, setUsers] = useState(null);

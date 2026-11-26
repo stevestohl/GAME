@@ -14,7 +14,7 @@ import { usePlayMode, PlayModeSwitch, playModeHint, useHostName, HostNameField, 
 /**
  * 🛋️ Couch Cast setup.
  * Sits between the home page button and the game: shows what Couch Cast is, whether it's on a TV or just
- * phones (just phones starts Prompt 2, the same game run on the phones), then the rounds and a deck to start.
+ * phones (just phones starts its phone version, the game with id prompt2), then the rounds and a deck to start.
  */
 export default function CouchCastDeckSelect() {
     const { visibleDecks, canSeeGame, isGameHidden } = useGameVisibility();

@@ -22,7 +22,7 @@ import { TOPCAKE_SOURCES } from "./topcakeContent.js";
 export const CONTENT_SOURCES = {
     couchcast: {
         game: 'couchcast',
-        label: 'Couch Cast & Prompt 2 cards',
+        label: 'Couch Cast cards',
         noun: 'card',
         model: ReshuffledCard,   // the couchcast_reshuffled cards, dealt by both games
         deckField: 'expansion',
@@ -41,7 +41,7 @@ export const CONTENT_SOURCES = {
     },
     lists: {
         game: 'listcast',
-        label: 'List Cast & Listopia topics',
+        label: 'List Cast topics',
         noun: 'topic',
         model: ListCategory,
         deckField: 'expansion',
@@ -58,7 +58,7 @@ export const CONTENT_SOURCES = {
     },
     trivia: {
         game: 'triviacast',
-        label: 'Trivia Cast & Trivia questions',
+        label: 'Trivia Cast questions',
         noun: 'question',
         model: Temple_Trivia,
         deckField: 'expansion',

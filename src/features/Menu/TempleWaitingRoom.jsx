@@ -4,7 +4,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { Avatar } from '../../avatars.jsx';
 
 /**
- * 🏛️ The waiting room for the Game-Temple games (Trivia, Prompt 2, Listopia, Tic-Tac-Toe), played on phones with no TV:
+ * 🏛️ The waiting room for the games played on just phones (Couch Cast, Trivia Cast, List Cast and Tic-Tac-Toe, no TV):
  * the game's own moving picture, the code and QR to get friends in, who's here, and the leader's start button
  * pinned under the nav bar so it can't be scrolled away.
  *

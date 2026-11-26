@@ -3,7 +3,7 @@ import { QUESTION_OPTIONS } from '../../cardDecks.js';
 import { DEFAULT_LEVEL } from '../Menu/LevelPicker.jsx';
 
 /**
- * 📱❔ Starts a Trivia room (Trivia Cast with just phones): whoever starts it plays too, as the host.
+ * 📱❔ Starts a Trivia Cast room on just phones (the trivia game): whoever starts it plays too, as the host.
  * Called from the Trivia Cast setup screen when "Just phones" is picked.
  */
 export function handleCreateTriviaRoom(playerName, navigate, setIsCreatingRoom, expansion = 'core', totalRounds = QUESTION_OPTIONS[0], level = DEFAULT_LEVEL) {
