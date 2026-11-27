@@ -376,6 +376,7 @@ const THEMES = {
     lists: LISTS_FLOATERS,
     town: FLOATERS,      // 🏙️ Temple Town: the usual icons, in teal
     spades: FLOATERS,    // ♠️ Spades: the usual icons, on card-table green
+    wordweave: FLOATERS, // 🧶 Word Weave: the usual icons, on a plum night
     jeffinitely: [],   // 📼 draws its own full-colour retro scene instead (RetroBackdrop.jsx)
 };
 

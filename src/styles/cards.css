@@ -1167,6 +1167,18 @@
     --gt-bg-vignette: rgba(1, 18, 12, 0.55);
 }
 
+/* 🧶 Word Weave: same recipe, a plum night with a coral-yarn sun */
+.gt-bg.theme-wordweave {
+    --gt-navy:     #1b0d2e;
+    --gt-blue-800: #3a1d5c;
+    --gt-blue-500: #643a96;
+    --gt-blue-400: #9468cc;
+    --gt-blue-300: #d5c0f2;
+    --gt-ice:      #f6efff;
+    --gt-bg-accent: #ff8a5c;
+    --gt-bg-vignette: rgba(12, 4, 24, 0.55);
+}
+
 /* 🐾 Animals deck: same recipe, forest-green palette */
 .gt-bg.theme-animals {
     --gt-navy:     #082a1e;

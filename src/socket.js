@@ -53,6 +53,12 @@ export const spadesSocket = io(`${SOCKET_URL}/spades`, {
     transports: ['websocket', 'polling'],
     autoConnect: false
 })
+// 🧶 Word Weave (on a TV and just phones): its round clock follows the server's (see serverClock.js)
+export const wordWeaveSocket = io(`${SOCKET_URL}/wordweave`, {
+    transports: ['websocket', 'polling'],
+    autoConnect: false
+})
+watchServerClock(wordWeaveSocket)
 // List Cast and Listopia
 export const listsSocket = io(`${SOCKET_URL}/lists`, {
     transports: ['websocket', 'polling'],
@@ -61,7 +67,7 @@ export const listsSocket = io(`${SOCKET_URL}/lists`, {
 
 // 🔑 Starting a room: every game's createRoom carries the sign-in token (if any), and a refused host
 // (a game or deck hidden from the public, see db/gameVisibility.js on the server) goes back to the menu
-const allSockets = [socket, tictactoeSocket, triviaSocket, prompt2Socket, couchCastSocket, triviaCastSocket, mixupSocket, townSocket, spadesSocket, listsSocket];
+const allSockets = [socket, tictactoeSocket, triviaSocket, prompt2Socket, couchCastSocket, triviaCastSocket, mixupSocket, townSocket, spadesSocket, wordWeaveSocket, listsSocket];
 allSockets.forEach((s) => {
     const send = s.emit.bind(s);
     s.emit = (event, data, ...rest) => (event === 'createRoom' ? send(event, { ...data, authToken: getToken() }, ...rest) : send(event, data, ...rest));

@@ -8,6 +8,7 @@ import { ListCastTile } from '../Lists/ListTiles.jsx';
 import MixupTile from '../Mixup/MixupTile.jsx';
 import TownTile from '../Town/TownTile.jsx';
 import SpadesTile from '../Spades/SpadesTile.jsx';
+import WordWeaveTile from '../WordWeave/WordWeaveTile.jsx';
 import TicTacToeTile from '../TicTacToe/TicTacToeTile.jsx';
 import GameRow from './GameRow.jsx';
 import CastPartyScene from './CastPartyScene.jsx';
@@ -131,6 +132,11 @@ const GAME_ROWS = [
         tile: <SpadesTile />,
     },
     {
+        id: 'wordweave', phones: 'wordweavephones', title: 'Word Weave', players: '2+ players', to: '/wordweave-setup', label: 'Set up a Word Weave game',
+        description: 'Race the clock to find words in a grid of letters. Any word someone else also found gets crossed out, so go long!',
+        tile: <WordWeaveTile />,
+    },
+    {
         id: 'tictactoe', phonesOnly: true, title: 'Tic-Tac-Toe', players: '2 players', to: '/tictactoe-create', label: 'Start a Tic-Tac-Toe game',
         description: 'The timeless classic, head to head. Take turns on your own phones: first to get three in a row wins.',
         tile: <TicTacToeTile />,
@@ -139,7 +145,7 @@ const GAME_ROWS = [
 
 /**
  * 📺 Game-Cast: the landing page, and the one list of games. Most put a shared screen on the TV (a party scene
- * at the top, the "how to cast" steps a tap away); Couch Cast, Trivia Cast and List Cast also play on just
+ * at the top, the "how to cast" steps a tap away); Couch Cast, Trivia Cast, List Cast and Word Weave also play on just
  * phones (picked on their setup screen), and Tic-Tac-Toe is phones only.
  */
 export default function GameCastHome() {

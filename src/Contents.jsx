@@ -21,6 +21,8 @@ import TownManager from './features/Town/TownManager.jsx'
 import TownSetup from './features/Town/TownSetup.jsx'
 import SpadesManager from './features/Spades/SpadesManager.jsx'
 import SpadesSetup from './features/Spades/SpadesSetup.jsx'
+import WordWeaveManager from './features/WordWeave/WordWeaveManager.jsx'
+import WordWeaveSetup from './features/WordWeave/WordWeaveSetup.jsx'
 import AdminApp from './features/Admin/AdminApp.jsx'
 import { useGameVisibility } from './gameVisibility.js'
 import TicTacToe from './features/TicTacToe/TictactoeManager.jsx'
@@ -84,6 +86,9 @@ export default function Contents() {
             {/* ♠️ Spades */}
             <Route path="/spades" element={<SpadesManager />} />
             <Route path="/spades-setup" element={<GameGate game="spades"><SpadesSetup /></GameGate>} />
+            {/* 🧶 Word Weave (on a TV or just phones: the TV is role=caster, every phone role=guest) */}
+            <Route path="/wordweave" element={<WordWeaveManager />} />
+            <Route path="/wordweave-setup" element={<GameGate game={['wordweave', 'wordweavephones']}><WordWeaveSetup /></GameGate>} />
             {/* 🔐 Admin site (sign-in required; the server checks every request) */}
             <Route path="/admin" element={<AdminApp />} />
             <Route path="/triviacast" element={<TriviaCastManager />} />

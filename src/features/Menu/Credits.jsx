@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 /**
- * 🎬 Credits (game-temple.org/credits): the music, voices and tools Game Temple uses that someone else made.
+ * 🎬 Credits (game-temple.org/credits): the music, voices, word list and tools Game Temple uses that someone else made.
  * Linked next to the privacy policy on the menus. When you add a song, sound or picture from somewhere else,
  * add it to MUSIC (or a new list) with where it came from and its license.
  */
@@ -82,6 +82,15 @@ export default function Credits() {
                         <li>
                             The game show host and narrators are voiced with{' '}
                             <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">ElevenLabs</a>.
+                        </li>
+                    </ul>
+
+                    <h2>Words</h2>
+                    <ul>
+                        <li>
+                            Word Weave checks words against{' '}
+                            <a href="https://github.com/dolph/dictionary" target="_blank" rel="noopener noreferrer">ENABLE</a>
+                            {' '}(the Enhanced North American Benchmark LExicon), a word list its authors placed in the public domain.
                         </li>
                     </ul>
 

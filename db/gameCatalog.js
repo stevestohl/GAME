@@ -17,12 +17,15 @@ export const GAMES = [
     { id: 'town', name: 'Temple Town', section: 'On a TV', decks: [], defaultHidden: true },
     // ♠️ New: hidden until the owner switches it on
     { id: 'spades', name: 'Spades', section: 'On a TV', decks: [], defaultHidden: true },
-    // 📱 Just phones: the phone versions of Couch Cast, Trivia Cast and List Cast (started from their setup screens
-    // when "Just phones" is picked; their ids are the old game names, kept so saved stats and switches still match).
+    // 🧶 New: hidden until the owner switches it on (its Just phones version is below)
+    { id: 'wordweave', name: 'Word Weave', section: 'On a TV', decks: [], defaultHidden: true },
+    // 📱 Just phones: the phone versions of Couch Cast, Trivia Cast, List Cast and Word Weave (started from their setup screens
+    // when "Just phones" is picked; the first three keep their old game names as ids, so saved stats and switches still match).
     // Tic-Tac-Toe has its own row on the menu.
     { id: 'prompt2', name: 'Couch Cast', section: 'Just phones', decks: CARD_DECKS },
     { id: 'trivia', name: 'Trivia Cast', section: 'Just phones', decks: TRIVIA_DECKS },
     { id: 'listopia', name: 'List Cast', section: 'Just phones', decks: LIST_DECKS },
+    { id: 'wordweavephones', name: 'Word Weave', section: 'Just phones', decks: [], defaultHidden: true },
     { id: 'tictactoe', name: 'Tic-Tac-Toe', section: 'Just phones', decks: [] },
 ];
 

@@ -14,6 +14,7 @@ import registerListsNamespace from './sockets/lists_handler.js';
 import registerMixupNamespace from './sockets/mixup_handler.js';
 import registerTownNamespace from './sockets/town_handler.js';
 import registerSpadesNamespace from './sockets/spades_handler.js';
+import registerWordWeaveNamespace from './sockets/wordweave_handler.js';
 
 const PORT = process.env.PORT || 5005;
 const server = http.createServer(app); 
@@ -76,6 +77,11 @@ console.log("Namespace '/town' registered.");
 const SPNS = io.of('/spades');
 registerSpadesNamespace(SPNS);
 console.log("Namespace '/spades' registered.");
+
+// 🧶 Word Weave (a word-grid game, on a TV or just phones)
+const WWNS = io.of('/wordweave');
+registerWordWeaveNamespace(WWNS);
+console.log("Namespace '/wordweave' registered.");
 
 // Database Connection & Server Startup
 mongoose.connect(process.env.DB || process.env.DATABASE_ACCESS)

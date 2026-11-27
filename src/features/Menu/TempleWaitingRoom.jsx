@@ -4,11 +4,11 @@ import { QRCodeSVG } from 'qrcode.react';
 import { Avatar } from '../../avatars.jsx';
 
 /**
- * 🏛️ The waiting room for the games played on just phones (Couch Cast, Trivia Cast, List Cast and Tic-Tac-Toe, no TV):
+ * 🏛️ The waiting room for the games played on just phones (Couch Cast, Trivia Cast, List Cast, Word Weave and Tic-Tac-Toe, no TV):
  * the game's own moving picture, the code and QR to get friends in, who's here, and the leader's start button
  * pinned under the nav bar so it can't be scrolled away.
  *
- *   game:      which picture ('trivia', 'prompt2', 'listopia', 'tictactoe')
+ *   game:      which picture ('trivia', 'prompt2', 'listopia', 'tictactoe', 'wordweave')
  *   players:   [{ id, name, avatar }]; `meId` marks yours, `leaderId` wears the crown
  *   onStart:   the leader's button (leave it out for no button: Tic-Tac-Toe starts by itself)
  *   startLabel, startDisabledLabel: its words, ready and not ready; `canStart` says which
@@ -162,4 +162,25 @@ function TicTacToePicture() {
     );
 }
 
-const PICTURES = { trivia: TriviaPicture, prompt2: Prompt2Picture, listopia: ListopiaPicture, tictactoe: TicTacToePicture };
+function WordWeavePicture() {
+    // Two rows of letter tiles, and a thread weaving W-E-A-V-E through them, over and over
+    const rows = ['WTANELS', 'PERVOIK'];
+    const centre = (col, row) => [59 + col * 30, 25 + row * 36];
+    const thread = [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0]].map(([c, r]) => centre(c, r).join(',')).join(' ');
+    return (
+        <svg viewBox="0 0 300 92">
+            {rows.map((letters, row) => letters.split('').map((letter, col) => {
+                const [x, y] = centre(col, row);
+                return (
+                    <g key={`${col}-${row}`}>
+                        <rect x={x - 13} y={y - 13} width={26} height={26} rx={6} fill="#fbf4e6" stroke="#16245e" strokeWidth={2} />
+                        <text x={x} y={y + 6} textAnchor="middle" fontSize="16" fontWeight="900" fill="#2b1745" fontFamily="system-ui, sans-serif">{letter}</text>
+                    </g>
+                );
+            }))}
+            <polyline className="tw-mark" points={thread} fill="none" stroke="#ff6b3d" strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" opacity="0.8" pathLength="1" />
+        </svg>
+    );
+}
+
+const PICTURES = { trivia: TriviaPicture, prompt2: Prompt2Picture, listopia: ListopiaPicture, tictactoe: TicTacToePicture, wordweave: WordWeavePicture };

@@ -4,6 +4,7 @@ import { getTriviaCastRoom } from "../sockets/triviacast_handler.js";
 import { getListCastRoom } from "../sockets/lists_handler.js";
 import { getTownRoom } from "../sockets/town_handler.js";
 import { getSpadesRoom } from "../sockets/spades_handler.js";
+import { getWordWeaveRoom } from "../sockets/wordweave_handler.js";
 import { readMp3, cutMp3 } from "./mp3.js";
 
 // ==========================================
@@ -183,9 +184,9 @@ export const speakLine = async (req, res) => {
             return res.status(400).json({ success: false, message: "Text is missing or too long." });
         }
 
-        // Only a live TV game (Couch Cast, Trivia Cast, List Cast, Mix Up, Temple Town or Spades) can ask for speech
+        // Only a live TV game (Couch Cast, Trivia Cast, List Cast, Mix Up, Temple Town, Spades or Word Weave) can ask for speech
         const couchCastRoom = getCouchCastRoom(roomCode);
-        const room = couchCastRoom || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode) || getMixupRoom(roomCode) || getTownRoom(roomCode) || getSpadesRoom(roomCode);
+        const room = couchCastRoom || getTriviaCastRoom(roomCode) || getListCastRoom(roomCode) || getMixupRoom(roomCode) || getTownRoom(roomCode) || getSpadesRoom(roomCode) || getWordWeaveRoom(roomCode);
         if (!room) {
             return res.status(404).json({ success: false, message: "Room not found." });
         }

@@ -5,7 +5,7 @@ import { useEffect, useSyncExternalStore } from 'react';
  * The background is rendered once (in Page.jsx); any screen can re-theme it
  * with useSetBackgroundTheme() and it snaps back to 'home' when that screen leaves.
  *
- * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'circus', 'trivia', 'animals', 'jeffinitely', 'town', 'spades')
+ * theme: a key of THEMES in AnimatedBackground.jsx ('home', 'couchcast', 'halloween', 'holiday', 'circus', 'trivia', 'animals', 'jeffinitely', 'town', 'spades', 'wordweave')
  * cover: true lifts the background above the nav bar (used by the fullscreen TV screens)
  */
 const DEFAULT_THEME = { theme: 'home', cover: false };

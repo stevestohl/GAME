@@ -93,6 +93,10 @@ export default function UniversalJoinScreen() {
                 // Spades (A for the ace of spades)
                 targetRoute = `/spades?room=${code}&role=guest&name=${name}`;
                 break;
+            case 'W':
+                // Word Weave (on a TV or just phones: the phone page is the same)
+                targetRoute = `/wordweave?room=${code}&role=guest&name=${name}`;
+                break;
             case 'Q':
                 targetRoute = `/triviacast?room=${code}&role=guest&name=${name}`;
                 break;
