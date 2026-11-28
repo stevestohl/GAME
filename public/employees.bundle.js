@@ -22987,6 +22987,10 @@ function Credits() {
     href: "https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md",
     target: "_blank",
     rel: "noopener noreferrer"
+  }, "MuseScore General"), ' ', "sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License)."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "\u201CCurtain Call\u201D (Trivia Cast end credits): our own tune and recording, played with the", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, "MuseScore General"), ' ', "sounds by S. Christian Collins, based on FluidR3 by Frank Wen (MIT License).")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Voices"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The game show host and narrators are voiced with", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://elevenlabs.io",
     target: "_blank",
@@ -41806,6 +41810,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _avatars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../avatars.jsx */ "./src/avatars.jsx");
 /* harmony import */ var _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
 /* harmony import */ var _celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../celebrationSounds.js */ "./src/celebrationSounds.js");
+/* harmony import */ var _curtainCallMusic_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./curtainCallMusic.js */ "./src/features/TriviaCast/curtainCallMusic.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -41817,13 +41822,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 // 🎭 The end of Trivia Cast, after the final scores are read: a drum roll as the red curtains sweep in, a fanfare
 // and applause as they part, and the Whack-an-Avatar results from the lobby roll up the stage while the whole
 // cast (dinosaur included) takes a bow. Then the curtains close and part on the final scores again.
+// The music is our own recording (curtainCallMusic.js), whose bars keep time with the curtains and which finishes
+// on its own ending when the credits do; if it hasn't downloaded, the browser-made drum roll and march play instead.
 //
 // The Play Again and Home buttons underneath still work the whole time.
 
-var CURTAIN_MS = 1500; // keep in step with .qf-curtain in cards.css
+var CURTAIN_MS = 1500; // keep in step with .qf-curtain in cards.css (and the recording's drum roll: 1.8 s)
 var FANFARE_MS = 3600; // before the march takes over from the fanfare
 
 var CAST = [['Abraham Lincoln', 'Contestant A'], ['Babe Ruth', 'Contestant B'], ['Cleopatra', 'Contestant C'], ['Amelia Earhart', 'Contestant D'], ['T. rex', 'Himself']];
@@ -41837,6 +41845,7 @@ function QuizFinale(_ref) {
     phase = _useState2[0],
     setPhase = _useState2[1];
   var stopSounds = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
+  var music = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   // 🔨 The lobby game's results: most whacks first
   var whackers = Object.values(scores || {}).filter(function (s) {
@@ -41859,25 +41868,32 @@ function QuizFinale(_ref) {
       return setPhase('open');
     }, 40 + CURTAIN_MS + 300));
     // The drum roll lands just as the curtains start to part, then comes the crowd
-    (0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.playCelebration)((CURTAIN_MS + 300) / 1000);
+    music.current = (0,_curtainCallMusic_js__WEBPACK_IMPORTED_MODULE_4__.startCurtainCall)();
+    if (!music.current) {
+      (0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.playCelebration)((CURTAIN_MS + 300) / 1000);
+      timers.push(setTimeout(function () {
+        stopSounds.current.push((0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.startCreditsMarch)());
+      }, CURTAIN_MS + 300 + FANFARE_MS));
+    }
     timers.push(setTimeout(function () {
       stopSounds.current.push((0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.startApplause)());
     }, CURTAIN_MS + 500));
-    timers.push(setTimeout(function () {
-      stopSounds.current.push((0,_celebrationSounds_js__WEBPACK_IMPORTED_MODULE_3__.startCreditsMarch)());
-    }, CURTAIN_MS + 300 + FANFARE_MS));
     return function () {
+      var _music$current;
       timers.forEach(clearTimeout);
       stopSounds.current.forEach(function (stop) {
         return stop();
       });
       stopSounds.current = [];
+      (_music$current = music.current) === null || _music$current === void 0 ? void 0 : _music$current.stop();
     };
   }, []);
 
   // The credits have finished: close the curtains, and part them on the final scores
   var handleRollEnd = function handleRollEnd() {
+    var _music$current2;
     setPhase('closing');
+    (_music$current2 = music.current) === null || _music$current2 === void 0 ? void 0 : _music$current2.finish();
     stopSounds.current.forEach(function (stop) {
       return stop();
     });
@@ -44022,10 +44038,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-QUQL4437.mjs");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Alert.js");
 /* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
 /* harmony import */ var _hooks_useWakeLock_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useWakeLock.js */ "./src/hooks/useWakeLock.js");
 /* harmony import */ var _hooks_useRoomGone_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useRoomGone.js */ "./src/hooks/useRoomGone.js");
@@ -44041,12 +44057,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CouchCast_CouchCastScoreboardTV_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../CouchCast/CouchCastScoreboardTV.jsx */ "./src/features/CouchCast/CouchCastScoreboardTV.jsx");
 /* harmony import */ var _CouchCast_CouchCastFinale_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../CouchCast/CouchCastFinale.jsx */ "./src/features/CouchCast/CouchCastFinale.jsx");
 /* harmony import */ var _QuizFinale_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./QuizFinale.jsx */ "./src/features/TriviaCast/QuizFinale.jsx");
-/* harmony import */ var _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
-/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
-/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
-/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
-/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
-/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
+/* harmony import */ var _curtainCallMusic_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./curtainCallMusic.js */ "./src/features/TriviaCast/curtainCallMusic.js");
+/* harmony import */ var _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./QuizScenes.jsx */ "./src/features/TriviaCast/QuizScenes.jsx");
+/* harmony import */ var _TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./TriviaCastScreensTV.jsx */ "./src/features/TriviaCast/TriviaCastScreensTV.jsx");
+/* harmony import */ var _TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./TriviaCastPlayer.jsx */ "./src/features/TriviaCast/TriviaCastPlayer.jsx");
+/* harmony import */ var _scoreRecap_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../scoreRecap.js */ "./src/scoreRecap.js");
+/* harmony import */ var _Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../Menu/GameOverActions.jsx */ "./src/features/Menu/GameOverActions.jsx");
+/* harmony import */ var _playerSounds_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../playerSounds.js */ "./src/playerSounds.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -44067,6 +44084,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 // TV screens (the lobby and scoreboard are shared with Couch Cast)
+
 
 
 
@@ -44098,7 +44116,7 @@ function TriviaCastManager() {
   var urlPlayerName = searchParams.get('name') || 'Caster';
   var urlRole = searchParams.get('role');
   if (urlRole === 'guest') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastPlayer_jsx__WEBPACK_IMPORTED_MODULE_19__["default"], {
       roomCode: urlRoomCode,
       playerName: urlPlayerName
     }), urlRoomCode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -44107,7 +44125,7 @@ function TriviaCastManager() {
   }
 
   // --- TV STATE ---
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_22__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_23__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     room = _useState2[0],
@@ -44122,11 +44140,15 @@ function TriviaCastManager() {
     _useState6 = _slicedToArray(_useState5, 2),
     showFinale = _useState6[0],
     setShowFinale = _useState6[1]; // 🎭 the curtain call, after the final scores
+  // 🎭 Fetch the curtain call's music once the game's under way, so it's ready for the end
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (gameState && gameState !== 'lobby') (0,_curtainCallMusic_js__WEBPACK_IMPORTED_MODULE_16__.preloadCurtainCall)();
+  }, [gameState]);
 
   // 🎨 Background follows the question deck, and covers the nav bar on the TV
   (0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_6__.useSetBackgroundTheme)((0,_Menu_backgroundTheme_js__WEBPACK_IMPORTED_MODULE_6__.triviaCastTheme)(room === null || room === void 0 ? void 0 : room.expansion), true);
   // 🔊 Each player's own sound: when they join, and each time they answer
-  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_21__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
+  (0,_playerSounds_js__WEBPACK_IMPORTED_MODULE_22__.usePlayerSounds)(room === null || room === void 0 ? void 0 : room.roomCode, room === null || room === void 0 ? void 0 : room.players);
   var lobbyTrack = (0,_CouchCast_lobbyMusic_js__WEBPACK_IMPORTED_MODULE_8__.lobbyTrackFor)('triviaCast', room === null || room === void 0 ? void 0 : room.expansion);
 
   // --- SOCKET LISTENERS ---
@@ -44172,7 +44194,7 @@ function TriviaCastManager() {
     var players = Object.values(room.players).filter(function (p) {
       return !p.isCaster;
     });
-    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_19__.scoreRecap)({
+    return (0,_scoreRecap_js__WEBPACK_IMPORTED_MODULE_20__.scoreRecap)({
       players: players,
       roundHadWinner: players.some(function (p) {
         return (p.lastPoints || 0) > 0;
@@ -44191,9 +44213,9 @@ function TriviaCastManager() {
       var startedAt = Date.now();
       var isCurrent = true;
       var timer;
-      (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.roundIntroLine)(round, room.totalRounds), code).then(function (spoken) {
+      (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__.roundIntroLine)(round, room.totalRounds), code).then(function (spoken) {
         // ...and the cast's bit along the bottom gets to finish
-        var sceneLeft = _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_16__.SCENE_MS - (Date.now() - startedAt);
+        var sceneLeft = _QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_17__.SCENE_MS - (Date.now() - startedAt);
         if (isCurrent) timer = setTimeout(function () {
           return _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket.emit('round_intro_read', {
             roomCode: code,
@@ -44230,7 +44252,7 @@ function TriviaCastManager() {
     } else if (voiceMoment.startsWith('scores')) {
       if (recap) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.speak)(recap.spoken, code);
       // Get the next round's line ready behind it
-      if (!room.isGameOver) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.roundIntroLine)(room.currentRound + 1, room.totalRounds), code);
+      if (!room.isGameOver) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)((0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__.roundIntroLine)(room.currentRound + 1, room.totalRounds), code);
     }
     return undefined;
   }, [voiceMoment]);
@@ -44276,7 +44298,7 @@ function TriviaCastManager() {
   // Fetch the rules narration while everyone is still joining, so it starts instantly
   var lobbyRoomCode = room === null || room === void 0 ? void 0 : room.roomCode;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
+    if (lobbyRoomCode) (0,_voice_js__WEBPACK_IMPORTED_MODULE_7__.preloadVoice)(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__.TRIVIA_CAST_RULES_NARRATION, lobbyRoomCode);
   }, [lobbyRoomCode]);
 
   // 🔇 After a page refresh the browser mutes us until someone taps the screen
@@ -44309,7 +44331,7 @@ function TriviaCastManager() {
     if (!room) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "fullscreen-gameplay-container justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_23__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_24__["default"], {
         animation: "border",
         variant: "light"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -44331,22 +44353,22 @@ function TriviaCastManager() {
           }
         });
       case 'rules':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.TriviaCastRulesTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__.TriviaCastRulesTV, {
           roomCode: room.roomCode
         });
       case 'round_intro':
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CouchCast_CouchCastRoundIntro_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
           round: room.currentRound,
           totalRounds: room.totalRounds,
-          kicker: (0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.roundKicker)(room.currentRound, room.totalRounds),
+          kicker: (0,_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__.roundKicker)(room.currentRound, room.totalRounds),
           tagline: "Up next, get ready!",
-          scene: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_16__.QuizRoundScene, {
+          scene: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuizScenes_jsx__WEBPACK_IMPORTED_MODULE_17__.QuizRoundScene, {
             round: room.currentRound
           })
         });
       case 'question':
       case 'reveal':
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_17__.TriviaCastQuestionTV, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TriviaCastScreensTV_jsx__WEBPACK_IMPORTED_MODULE_18__.TriviaCastQuestionTV, {
           room: room
         });
       case 'scoreboard':
@@ -44356,7 +44378,7 @@ function TriviaCastManager() {
           celebrate: true,
           nextLabel: "Next question coming up...",
           headline: recap === null || recap === void 0 ? void 0 : recap.headline,
-          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_20__["default"], {
+          endActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_GameOverActions_jsx__WEBPACK_IMPORTED_MODULE_21__["default"], {
             onPlayAgain: handlePlayAgain,
             onGoHome: handleGoHome
           })
@@ -44367,7 +44389,7 @@ function TriviaCastManager() {
         }, "Unknown Game State: ", gameState));
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_24__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_25__["default"], {
     fluid: true,
     className: "p-0",
     style: {
@@ -44375,7 +44397,7 @@ function TriviaCastManager() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Menu_ConnectionLost_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
     socket: _socket__WEBPACK_IMPORTED_MODULE_1__.triviaCastSocket
-  }), errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_25__["default"], {
+  }), errorMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_26__["default"], {
     variant: "danger",
     className: "text-center m-2 position-absolute w-100",
     style: {
@@ -56400,6 +56422,161 @@ function handleCreateTriviaCast(navigate, setIsCreatingRoom) {
     _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.connect();
     _socket_js__WEBPACK_IMPORTED_MODULE_0__.triviaCastSocket.once('connect', emitCreate);
   }
+}
+
+/***/ }),
+
+/***/ "./src/features/TriviaCast/curtainCallMusic.js":
+/*!*****************************************************!*\
+  !*** ./src/features/TriviaCast/curtainCallMusic.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "preloadCurtainCall": () => (/* binding */ preloadCurtainCall),
+/* harmony export */   "startCurtainCall": () => (/* binding */ startCurtainCall)
+/* harmony export */ });
+/* harmony import */ var _chime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chime.js */ "./src/chime.js");
+/* harmony import */ var _musicMute_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../musicMute.js */ "./src/musicMute.js");
+// 🎭 Trivia Cast's curtain call: the end credits' music, our own recording (public/audio/TriviaCurtainCall.m4a, made
+// in audio-originals/trivia-curtain-call). One bar is 1.8 s, so it keeps time with the finale (QuizFinale.jsx): a drum
+// roll while the curtains sweep in (bar 0), a fanfare as they part (bars 1-2), the theme in B-flat (bars 3-10), then
+// a bigger one in C (bars 11-18) that goes round for as long as the credits roll. When they're over it finishes on
+// the next bar line with one of its two endings, in the key it's playing in.
+// It's part of the soundtrack, so the caster's 🔇 music button silences it like the rest.
+
+
+
+var SRC = '/audio/TriviaCurtainCall.m4a';
+var BAR = 1.8;
+var LOOP_FROM = 11; // the theme in C: bars 11-18 go round
+var LOOP_TO = 19;
+var ENDINGS = {
+  bb: 22 * BAR,
+  c: 27 * BAR
+}; // where each ending starts in the file
+var ENDING_SECONDS = 8.5; // the stabs, the held chord, the last hit and its ring
+var LAST_HIT = 1.75 * BAR; // the last hit, from the start of the ending
+var VOLUME = 0.42; // as loud as the lobby songs (a touch louder than the old march)
+var LOOP_FADE = 0.02; // seconds blended across the loop's join
+
+var song = null;
+var loading = null;
+
+// The loop's two ends come from different passes of the room's reverb: blend the last moment before the end into
+// the moment before the start, so going round doesn't click
+var smoothLoopJoin = function smoothLoopJoin(buffer) {
+  var rate = buffer.sampleRate;
+  var fade = Math.round(LOOP_FADE * rate);
+  var s = Math.round(LOOP_FROM * BAR * rate);
+  var e = Math.round(LOOP_TO * BAR * rate);
+  for (var c = 0; c < buffer.numberOfChannels; c++) {
+    var data = buffer.getChannelData(c);
+    for (var i = 0; i < fade; i++) {
+      var t = (i + 1) / fade;
+      data[e - fade + i] = data[e - fade + i] * Math.cos(t * Math.PI / 2) + data[s - fade + i] * Math.sin(t * Math.PI / 2);
+    }
+  }
+};
+
+/** Start downloading it (the TV does this once the game's under way, so it's ready for the end) */
+function preloadCurtainCall() {
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (!ctx || loading) return loading;
+  loading = fetch(SRC).then(function (res) {
+    return res.arrayBuffer();
+  }).then(function (data) {
+    return new Promise(function (resolve, reject) {
+      return ctx.decodeAudioData(data, resolve, reject);
+    });
+  }).then(function (buffer) {
+    smoothLoopJoin(buffer);
+    song = buffer;
+    return buffer;
+  })["catch"](function () {
+    loading = null;
+    return null;
+  });
+  return loading;
+}
+
+/**
+ * Start the curtain call from its drum roll. Returns null if it hasn't downloaded yet (the finale falls back to
+ * the old drum roll and march), else:
+ *   finish(): the credits are over, so end it on the next bar line
+ *   stop():   the finale's gone (Play Again, or it's over): fade out, but never before the last hit
+ */
+function startCurtainCall() {
+  var ctx = (0,_chime_js__WEBPACK_IMPORTED_MODULE_0__.getAudioContext)();
+  if (!ctx || !song) return null;
+  if (ctx.state === 'suspended') ctx.resume()["catch"](function () {});
+  var out = ctx.createGain();
+  var level = function level() {
+    return (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.isMusicMuted)() ? 0.0001 : VOLUME;
+  };
+  out.gain.setValueAtTime(level(), ctx.currentTime);
+  out.connect(ctx.destination);
+  var fading = false;
+  var stopWatchingMute = (0,_musicMute_js__WEBPACK_IMPORTED_MODULE_1__.onMusicMuteChange)(function () {
+    if (!fading) out.gain.setTargetAtTime(level(), ctx.currentTime, 0.05);
+  });
+  var main = ctx.createGain();
+  main.connect(out);
+  var source = ctx.createBufferSource();
+  source.buffer = song;
+  source.loop = true;
+  source.loopStart = LOOP_FROM * BAR;
+  source.loopEnd = LOOP_TO * BAR;
+  source.connect(main);
+  var t0 = ctx.currentTime + 0.05;
+  source.start(t0);
+  var lastHitAt = null; // set once the ending is on its way
+  var done = false;
+  var cleanUp = function cleanUp(afterSeconds) {
+    setTimeout(function () {
+      stopWatchingMute();
+      out.disconnect();
+    }, afterSeconds * 1000);
+  };
+  return {
+    finish: function finish() {
+      if (done || lastHitAt !== null) return;
+      var now = ctx.currentTime;
+      // The next bar line at least 60 ms away; which bar of the music that is (bars 19 on go round 11-18)
+      var bar = Math.max(3, Math.ceil((now + 0.06 - t0) / BAR));
+      var musicBar = bar < LOOP_TO ? bar : LOOP_FROM + (bar - LOOP_TO) % (LOOP_TO - LOOP_FROM);
+      var when = t0 + bar * BAR;
+      var ending = ctx.createBufferSource();
+      ending.buffer = song;
+      ending.connect(out);
+      ending.start(when, musicBar >= LOOP_FROM ? ENDINGS.c : ENDINGS.bb, ENDING_SECONDS);
+      main.gain.setValueAtTime(1, when);
+      main.gain.linearRampToValueAtTime(0.0001, when + 0.12);
+      source.stop(when + 0.15);
+      lastHitAt = when + LAST_HIT;
+      cleanUp(when - now + ENDING_SECONDS + 0.5);
+    },
+    stop: function stop() {
+      if (done) return;
+      done = true;
+      fading = true;
+      var now = ctx.currentTime;
+      // During the ending, let the last hit land and ring a moment first. Stopped before it's even got going
+      // (React's development mode starts the finale twice), it goes at once, so the two don't overlap.
+      var justStarted = now < t0 + 0.3;
+      var from = lastHitAt !== null ? Math.max(now, lastHitAt + 1) : now;
+      out.gain.cancelScheduledValues(now);
+      out.gain.setValueAtTime(out.gain.value, now);
+      out.gain.setTargetAtTime(0.0001, from, lastHitAt !== null ? 0.5 : justStarted ? 0.005 : 0.2);
+      if (lastHitAt === null) {
+        try {
+          source.stop(now + (justStarted ? 0.05 : 1.5));
+        } catch (err) {/* already stopped */}
+        cleanUp(2);
+      }
+    }
+  };
 }
 
 /***/ }),

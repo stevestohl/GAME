@@ -19,6 +19,7 @@ import CouchCastCasterControls, { CouchCastPausedOverlay } from '../CouchCast/Co
 import CouchCastScoreboardTV from '../CouchCast/CouchCastScoreboardTV.jsx';
 import { FINALE_DRUMROLL_MS } from '../CouchCast/CouchCastFinale.jsx';
 import QuizFinale from './QuizFinale.jsx';
+import { preloadCurtainCall } from './curtainCallMusic.js';
 import { QuizRoundScene, SCENE_MS as ROUND_SCENE_MS } from './QuizScenes.jsx';
 import { TriviaCastRulesTV, TriviaCastQuestionTV, TRIVIA_CAST_RULES_NARRATION, roundKicker, roundIntroLine } from './TriviaCastScreensTV.jsx';
 
@@ -67,6 +68,8 @@ export default function TriviaCastManager() {
 
     const gameState = room?.gameState;
     const [showFinale, setShowFinale] = useState(false);   // 🎭 the curtain call, after the final scores
+    // 🎭 Fetch the curtain call's music once the game's under way, so it's ready for the end
+    useEffect(() => { if (gameState && gameState !== 'lobby') preloadCurtainCall(); }, [gameState]);
 
     // 🎨 Background follows the question deck, and covers the nav bar on the TV
     useSetBackgroundTheme(triviaCastTheme(room?.expansion), true);

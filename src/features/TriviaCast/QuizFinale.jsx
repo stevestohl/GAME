@@ -2,14 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Avatar } from '../../avatars.jsx';
 import { QuizBows } from './QuizScenes.jsx';
 import { playCelebration, startApplause, startCreditsMarch } from '../../celebrationSounds.js';
+import { startCurtainCall } from './curtainCallMusic.js';
 
 // 🎭 The end of Trivia Cast, after the final scores are read: a drum roll as the red curtains sweep in, a fanfare
 // and applause as they part, and the Whack-an-Avatar results from the lobby roll up the stage while the whole
 // cast (dinosaur included) takes a bow. Then the curtains close and part on the final scores again.
+// The music is our own recording (curtainCallMusic.js), whose bars keep time with the curtains and which finishes
+// on its own ending when the credits do; if it hasn't downloaded, the browser-made drum roll and march play instead.
 //
 // The Play Again and Home buttons underneath still work the whole time.
 
-const CURTAIN_MS = 1500;      // keep in step with .qf-curtain in cards.css
+const CURTAIN_MS = 1500;      // keep in step with .qf-curtain in cards.css (and the recording's drum roll: 1.8 s)
 const FANFARE_MS = 3600;      // before the march takes over from the fanfare
 
 const CAST = [
@@ -24,6 +27,7 @@ export default function QuizFinale({ scores, onDone }) {
     // 'waiting' (curtains off to the sides) -> 'closed' -> 'open' -> 'closing' -> 'leaving' (off to the sides again)
     const [phase, setPhase] = useState('waiting');
     const stopSounds = useRef([]);
+    const music = useRef(null);
 
     // 🔨 The lobby game's results: most whacks first
     const whackers = Object.values(scores || {})
@@ -38,19 +42,24 @@ export default function QuizFinale({ scores, onDone }) {
         timers.push(setTimeout(() => setPhase('closed'), 40));
         timers.push(setTimeout(() => setPhase('open'), 40 + CURTAIN_MS + 300));
         // The drum roll lands just as the curtains start to part, then comes the crowd
-        playCelebration((CURTAIN_MS + 300) / 1000);
+        music.current = startCurtainCall();
+        if (!music.current) {
+            playCelebration((CURTAIN_MS + 300) / 1000);
+            timers.push(setTimeout(() => { stopSounds.current.push(startCreditsMarch()); }, CURTAIN_MS + 300 + FANFARE_MS));
+        }
         timers.push(setTimeout(() => { stopSounds.current.push(startApplause()); }, CURTAIN_MS + 500));
-        timers.push(setTimeout(() => { stopSounds.current.push(startCreditsMarch()); }, CURTAIN_MS + 300 + FANFARE_MS));
         return () => {
             timers.forEach(clearTimeout);
             stopSounds.current.forEach((stop) => stop());
             stopSounds.current = [];
+            music.current?.stop();
         };
     }, []);
 
     // The credits have finished: close the curtains, and part them on the final scores
     const handleRollEnd = () => {
         setPhase('closing');
+        music.current?.finish();
         stopSounds.current.forEach((stop) => stop());
         stopSounds.current = [];
         setTimeout(() => setPhase('leaving'), CURTAIN_MS + 400);
